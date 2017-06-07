@@ -1,0 +1,26 @@
+###  Test Suite list ###
+#  Change the title of the test results
+--name SQL
+--output SQL
+
+# List of test suites
+EFD_Tables/Archiver_EFD_Tables.robot
+EFD_Tables/Camera_EFD_Tables.robot
+EFD_Tables/CatchupArchiver_EFD_Tables.robot
+EFD_Tables/DomeADB_EFD_Tables.robot
+EFD_Tables/DomeAPS_EFD_Tables.robot
+EFD_Tables/DomeLWS_EFD_Tables.robot
+EFD_Tables/DomeLouvers_EFD_Tables.robot
+EFD_Tables/DomeMONCS_EFD_Tables.robot
+EFD_Tables/DomeTHCS_EFD_Tables.robot
+EFD_Tables/Dome_EFD_Tables.robot
+EFD_Tables/Hexapod_EFD_Tables.robot
+EFD_Tables/M1M3_EFD_Tables.robot
+EFD_Tables/M2MS_EFD_Tables.robot
+EFD_Tables/MTMount_EFD_Tables.robot
+EFD_Tables/OCS_EFD_Tables.robot
+EFD_Tables/ProcessingCluster_EFD_Tables.robot
+EFD_Tables/Rotator_EFD_Tables.robot
+EFD_Tables/Scheduler_EFD_Tables.robot
+EFD_Tables/Sequencer_EFD_Tables.robot
+EFD_Tables/TCS_EFD_Tables.robot
