@@ -1,0 +1,26 @@
+###  Test Suite list ###
+#  Change the title of the test results
+--name Jenkins_SQL
+--output SQL
+
+# List of test suites
+rbtefd/SQL/Archiver_SQL_Files.robot
+rbtefd/SQL/Camera_SQL_Files.robot
+rbtefd/SQL/CatchupArchiver_SQL_Files.robot
+rbtefd/SQL/DomeADB_SQL_Files.robot
+rbtefd/SQL/DomeAPS_SQL_Files.robot
+rbtefd/SQL/DomeLWS_SQL_Files.robot
+rbtefd/SQL/DomeLouvers_SQL_Files.robot
+rbtefd/SQL/DomeMONCS_SQL_Files.robot
+rbtefd/SQL/DomeTHCS_SQL_Files.robot
+rbtefd/SQL/Dome_SQL_Files.robot
+rbtefd/SQL/Hexapod_SQL_Files.robot
+rbtefd/SQL/M1M3_SQL_Files.robot
+rbtefd/SQL/M2MS_SQL_Files.robot
+rbtefd/SQL/MTMount_SQL_Files.robot
+rbtefd/SQL/OCS_SQL_Files.robot
+rbtefd/SQL/ProcessingCluster_SQL_Files.robot
+rbtefd/SQL/Rotator_SQL_Files.robot
+rbtefd/SQL/Scheduler_SQL_Files.robot
+rbtefd/SQL/Sequencer_SQL_Files.robot
+rbtefd/SQL/TCS_SQL_Files.robot

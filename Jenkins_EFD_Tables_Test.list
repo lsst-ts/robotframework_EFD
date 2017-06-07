@@ -1,0 +1,26 @@
+###  Test Suite list ###
+#  Change the title of the test results
+--name Jenkins_EFD_Tables
+--output EFD_Tables
+
+# List of test suites
+rbtefd/EFD_Tables/Archiver_EFD_Tables.robot
+rbtefd/EFD_Tables/Camera_EFD_Tables.robot
+rbtefd/EFD_Tables/CatchupArchiver_EFD_Tables.robot
+rbtefd/EFD_Tables/DomeADB_EFD_Tables.robot
+rbtefd/EFD_Tables/DomeAPS_EFD_Tables.robot
+rbtefd/EFD_Tables/DomeLWS_EFD_Tables.robot
+rbtefd/EFD_Tables/DomeLouvers_EFD_Tables.robot
+rbtefd/EFD_Tables/DomeMONCS_EFD_Tables.robot
+rbtefd/EFD_Tables/DomeTHCS_EFD_Tables.robot
+rbtefd/EFD_Tables/Dome_EFD_Tables.robot
+rbtefd/EFD_Tables/Hexapod_EFD_Tables.robot
+rbtefd/EFD_Tables/M1M3_EFD_Tables.robot
+rbtefd/EFD_Tables/M2MS_EFD_Tables.robot
+rbtefd/EFD_Tables/MTMount_EFD_Tables.robot
+rbtefd/EFD_Tables/OCS_EFD_Tables.robot
+rbtefd/EFD_Tables/ProcessingCluster_EFD_Tables.robot
+rbtefd/EFD_Tables/Rotator_EFD_Tables.robot
+rbtefd/EFD_Tables/Scheduler_EFD_Tables.robot
+rbtefd/EFD_Tables/Sequencer_EFD_Tables.robot
+rbtefd/EFD_Tables/TCS_EFD_Tables.robot
