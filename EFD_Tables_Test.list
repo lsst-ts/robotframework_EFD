@@ -1,7 +1,7 @@
 ###  Test Suite list ###
 #  Change the title of the test results
---name SQL
---output SQL
+--name EFD_Tables
+--output EFD_Tables
 
 # List of test suites
 EFD_Tables/Archiver_EFD_Tables.robot

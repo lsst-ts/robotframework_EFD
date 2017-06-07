@@ -20,8 +20,8 @@ fi
 # Setup argument file
 echo "###  Test Suite list ###" >> $argfile
 echo "#  Change the title of the test results" >> $argfile
-echo "--name SQL" >> $argfile
-echo "--output SQL" >> $argfile
+echo "--name EFD_Tables" >> $argfile
+echo "--output EFD_Tables" >> $argfile
 echo "" >> $argfile
 echo "# List of test suites" >> $argfile
 
