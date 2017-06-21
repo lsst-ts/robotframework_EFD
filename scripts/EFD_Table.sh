@@ -35,14 +35,19 @@ function createVariables() {
 
 function verifySQLTelemetryDefinitions() {
 	for topic in "${telemetryArray[@]}"; do
+		tags=""
+		if [ "$subSystem" == "scheduler" ] && [ "$topic" == "blockPusher" ]; then tags="skipped"; fi
+		if [ "$subSystem" == "scheduler" ] && [ "$topic" == "sequencePropConfig" ]; then tags="skipped"; fi
+		if [ "$subSystem" == "camera" ] && [ "$topic" == "Cluster_Encoder" ]; then tags="skipped"; fi
+		if [ "$subSystem" == "m1m3" ] && [ "$topic" == "Surface" ]; then tags="skipped"; fi
 		echo "Verify $subSystemUp Telemetry $topic EFD table create" >> $testSuite
-        echo "    [Tags]    sql" >> $testSuite
+        echo "    [Tags]    sql    ${tags}" >> $testSuite
 		echo "    \${output}    \${rc}=    Execute Command    mysql --user=\${EFDUser} --password=\${EFDPass} -h \${EFDHost} -D EFD < \${SALWorkDir}/sql/${subSystem}_${topic}.sqldef    return_rc=True" >> $testSuite
 		echo "    Should Be Equal As Integers    \${rc}    0    values=False    msg=Failed to create the $topic table" >> $testSuite
 		echo "    Should Be Equal As Strings    \${output}    \${EMPTY}" >> $testSuite
 		echo "" >> $testSuite
         echo "Verify $subSystemUp Telemetry $topic EFD table" >> $testSuite
-        echo "    [Tags]    sql" >> $testSuite
+        echo "    [Tags]    sql    ${tags}" >> $testSuite
         echo "    \${output}    \${rc}=    Execute Command    mysql --user=\${EFDUser} --password=\${EFDPass} -h \${EFDHost} -D EFD -v -v -e \"select * from ${subSystem}_${topic}\"    return_rc=True" >> $testSuite
 		echo "    Should Be Equal As Integers    \${rc}    0    values=False    msg=Table $topic does not exist" >> $testSuite
 		echo "    Should Contain    \${output}    Empty set" >> $testSuite
@@ -53,13 +58,13 @@ function verifySQLTelemetryDefinitions() {
 function verifySQLCommandsDefinitions() {
 	for topic in "${stateArray[@]}"; do
         echo "Verify $subSystemUp State Command $topic EFD table create" >> $testSuite
-        echo "    [Tags]    sql" >> $testSuite
+        echo "    [Tags]    sql    ${tags}" >> $testSuite
         echo "    \${output}    \${rc}=    Execute Command    mysql --user=\${EFDUser} --password=\${EFDPass} -h \${EFDHost} -D EFD < \${SALWorkDir}/sql/${subSystem}_command_${topic}.sqldef    return_rc=True" >> $testSuite
 		echo "    Should Be Equal As Integers    \${rc}    0    values=False    msg=Failed to create the $topic table" >> $testSuite
         echo "    Should Be Equal As Strings    \${output}    \${EMPTY}" >> $testSuite
         echo "" >> $testSuite
         echo "Verify $subSystemUp State Command $topic EFD table" >> $testSuite
-        echo "    [Tags]    sql" >> $testSuite
+        echo "    [Tags]    sql    ${tags}" >> $testSuite
         echo "    \${output}    \${rc}=    Execute Command    mysql --user=\${EFDUser} --password=\${EFDPass} -h \${EFDHost} -D EFD -v -v -e \"select * from ${subSystem}_command_${topic}\"    return_rc=True" >> $testSuite
 		echo "    Should Be Equal As Integers    \${rc}    0    values=False    msg=Table $topic does not exist" >> $testSuite
 		echo "    Should Contain    \${output}    Empty set" >> $testSuite
@@ -67,13 +72,13 @@ function verifySQLCommandsDefinitions() {
     done
     for topic in "${commandArray[@]}"; do
         echo "Verify $subSystemUp Command $topic EFD table create" >> $testSuite
-        echo "    [Tags]    sql" >> $testSuite
+        echo "    [Tags]    sql    ${tags}" >> $testSuite
         echo "    \${output}    \${rc}=    Execute Command    mysql --user=\${EFDUser} --password=\${EFDPass} -h \${EFDHost} -D EFD < \${SALWorkDir}/sql/${subSystem}_command_${topic}.sqldef    return_rc=True" >> $testSuite
 		echo "    Should Be Equal As Integers    \${rc}    0    values=False    msg=Failed to create the $topic table" >> $testSuite
         echo "    Should Be Equal As Strings    \${output}    \${EMPTY}" >> $testSuite
         echo "" >> $testSuite
         echo "Verify $subSystemUp Command $topic EFD table" >> $testSuite
-        echo "    [Tags]    sql" >> $testSuite
+        echo "    [Tags]    sql    ${tags}" >> $testSuite
         echo "    \${output}    \${rc}=    Execute Command    mysql --user=\${EFDUser} --password=\${EFDPass} -h \${EFDHost} -D EFD -v -v -e \"select * from ${subSystem}_command_${topic}\"    return_rc=True" >> $testSuite
 		echo "    Should Be Equal As Integers    \${rc}    0    values=False    msg=Table $topic does not exist" >> $testSuite
 		echo "    Should Contain    \${output}    Empty set" >> $testSuite
@@ -85,13 +90,13 @@ function verifySQLCommandsDefinitions() {
 function verifySQLEventsDefinitions() {
     for topic in "${eventArray[@]}"; do
         echo "Verify $subSystemUp Event $topic EFD table create" >> $testSuite
-        echo "    [Tags]    sql" >> $testSuite
+        echo "    [Tags]    sql    ${tags}" >> $testSuite
         echo "    \${output}    \${rc}=    Execute Command    mysql --user=\${EFDUser} --password=\${EFDPass} -h \${EFDHost} -D EFD < \${SALWorkDir}/sql/${subSystem}_logevent_${topic}.sqldef    return_rc=True" >> $testSuite
 		echo "    Should Be Equal As Integers    \${rc}    0    values=False    msg=Failed to create the $topic table" >> $testSuite
         echo "    Should Be Equal As Strings    \${output}    \${EMPTY}" >> $testSuite
         echo "" >> $testSuite
         echo "Verify $subSystemUp Event $topic EFD table" >> $testSuite
-        echo "    [Tags]    sql" >> $testSuite
+        echo "    [Tags]    sql    ${tags}" >> $testSuite
         echo "    \${output}    \${rc}=    Execute Command    mysql --user=\${EFDUser} --password=\${EFDPass} -h \${EFDHost} -D EFD -v -v -e \"select * from ${subSystem}_logevent_${topic}\"    return_rc=True" >> $testSuite
         echo "    Log    \${output}" >> $testSuite
 		echo "    Should Be Equal As Integers    \${rc}    0    values=False    msg=Table $topic does not exist" >> $testSuite
