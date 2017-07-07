@@ -11,7 +11,7 @@ ${timeout}    1500s
 
 *** Test Cases ***
 Create SALGEN Session
-    [Documentation]    Connect to the SAL host.
+    [Documentation]    Connect to the host.
     [Tags]    smoke
     Comment    Connect to host.
     Open Connection    host=${Host}    alias=SALGEN    timeout=${timeout}    prompt=${Prompt}
@@ -41,6 +41,7 @@ Salgen MTMount Validate
     Directory Should Exist    ${SALWorkDir}/idl-templates/validated
     @{files}=    List Directory    ${SALWorkDir}/idl-templates    pattern=*${subSystem}*
     Log Many    @{files}
+    Comment    Telemetry
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_Az.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_Alt.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_Az_CW.idl
@@ -55,6 +56,7 @@ Salgen MTMount Validate
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_DP_1.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_DP_2.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_MotionParameters.idl
+    Comment    State Commands
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_enable.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_disable.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_abort.idl
@@ -63,6 +65,7 @@ Salgen MTMount Validate
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_standby.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_start.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_stop.idl
+    Comment    Commands
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_closeMirrorCover.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_configure.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_disableCamWrap.idl
@@ -71,6 +74,7 @@ Salgen MTMount Validate
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_openMirrorCover.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_trackTarget.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_clearerror.idl
+    Comment    Events
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_mountState.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_mountWarning.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_mountError.idl

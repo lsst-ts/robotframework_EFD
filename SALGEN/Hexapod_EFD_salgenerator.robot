@@ -11,7 +11,7 @@ ${timeout}    1500s
 
 *** Test Cases ***
 Create SALGEN Session
-    [Documentation]    Connect to the SAL host.
+    [Documentation]    Connect to the host.
     [Tags]    smoke
     Comment    Connect to host.
     Open Connection    host=${Host}    alias=SALGEN    timeout=${timeout}    prompt=${Prompt}
@@ -41,12 +41,14 @@ Salgen Hexapod Validate
     Directory Should Exist    ${SALWorkDir}/idl-templates/validated
     @{files}=    List Directory    ${SALWorkDir}/idl-templates    pattern=*${subSystem}*
     Log Many    @{files}
+    Comment    Telemetry
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_Metrology.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_LimitSensors.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_Electrical.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_Application.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_Actuators.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_TC.idl
+    Comment    State Commands
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_enable.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_disable.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_abort.idl
@@ -55,6 +57,7 @@ Salgen Hexapod Validate
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_standby.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_start.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_stop.idl
+    Comment    Commands
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_configureAcceleration.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_configureLimits.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_configureLut.idl
@@ -63,6 +66,7 @@ Salgen Hexapod Validate
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_offset.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_pivot.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_test.idl
+    Comment    Events
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_error.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_interlock.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_limit.idl

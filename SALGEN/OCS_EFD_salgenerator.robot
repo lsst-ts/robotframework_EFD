@@ -11,7 +11,7 @@ ${timeout}    1500s
 
 *** Test Cases ***
 Create SALGEN Session
-    [Documentation]    Connect to the SAL host.
+    [Documentation]    Connect to the host.
     [Tags]    smoke
     Comment    Connect to host.
     Open Connection    host=${Host}    alias=SALGEN    timeout=${timeout}    prompt=${Prompt}
@@ -41,7 +41,9 @@ Salgen OCS Validate
     Directory Should Exist    ${SALWorkDir}/idl-templates/validated
     @{files}=    List Directory    ${SALWorkDir}/idl-templates    pattern=*${subSystem}*
     Log Many    @{files}
+    Comment    Telemetry
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_SequencerHeartbeat.idl
+    Comment    State Commands
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_enable.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_disable.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_abort.idl
@@ -50,8 +52,10 @@ Salgen OCS Validate
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_standby.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_start.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_stop.idl
+    Comment    Commands
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_sequence.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_script.idl
+    Comment    Events
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_ocsEntitySummaryState.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_ocsEntityStartup.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_ocsEntityShutdown.idl

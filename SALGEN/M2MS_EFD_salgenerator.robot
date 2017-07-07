@@ -11,7 +11,7 @@ ${timeout}    1500s
 
 *** Test Cases ***
 Create SALGEN Session
-    [Documentation]    Connect to the SAL host.
+    [Documentation]    Connect to the host.
     [Tags]    smoke
     Comment    Connect to host.
     Open Connection    host=${Host}    alias=SALGEN    timeout=${timeout}    prompt=${Prompt}
@@ -41,6 +41,7 @@ Salgen M2MS Validate
     Directory Should Exist    ${SALWorkDir}/idl-templates/validated
     @{files}=    List Directory    ${SALWorkDir}/idl-templates    pattern=*${subSystem}*
     Log Many    @{files}
+    Comment    Telemetry
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_MirrorPositionMeasured.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_AxialForcesMeasured.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_TangentForcesMeasured.idl
@@ -57,6 +58,7 @@ Salgen M2MS Validate
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_SystemStatus.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_RawTelemetry.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_ActuatorLimitSwitches.idl
+    Comment    State Commands
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_enable.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_disable.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_abort.idl
@@ -65,11 +67,13 @@ Salgen M2MS Validate
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_standby.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_start.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_stop.idl
+    Comment    Commands
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_ApplyBendingMode.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_ApplyForce.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_SetCorrectionMode.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_PositionMirror.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_MoveAxialActuator.idl
+    Comment    Events
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_M2SummaryState.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_M2DetailedState.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_M2FaultState.idl

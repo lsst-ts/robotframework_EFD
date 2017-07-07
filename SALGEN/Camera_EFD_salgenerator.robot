@@ -11,7 +11,7 @@ ${timeout}    1500s
 
 *** Test Cases ***
 Create SALGEN Session
-    [Documentation]    Connect to the SAL host.
+    [Documentation]    Connect to the host.
     [Tags]    smoke
     Comment    Connect to host.
     Open Connection    host=${Host}    alias=SALGEN    timeout=${timeout}    prompt=${Prompt}
@@ -41,6 +41,7 @@ Salgen Camera Validate
     Directory Should Exist    ${SALWorkDir}/idl-templates/validated
     @{files}=    List Directory    ${SALWorkDir}/idl-templates    pattern=*${subSystem}*
     Log Many    @{files}
+    Comment    Telemetry
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_Cold.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_SAS.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_SDS.idl
@@ -56,6 +57,7 @@ Salgen Camera Validate
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_PCMS.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_Cryo.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_WAS.idl
+    Comment    State Commands
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_enable.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_disable.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_abort.idl
@@ -64,11 +66,13 @@ Salgen Camera Validate
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_standby.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_start.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_stop.idl
+    Comment    Commands
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_configure.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_initGuiders.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_initImage.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_setFilter.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_takeImages.idl
+    Comment    Events
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_ccsConfigured.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_endInitializeGuider.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_endInitializeImage.idl

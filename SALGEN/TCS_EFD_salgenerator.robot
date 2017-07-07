@@ -11,7 +11,7 @@ ${timeout}    1500s
 
 *** Test Cases ***
 Create SALGEN Session
-    [Documentation]    Connect to the SAL host.
+    [Documentation]    Connect to the host.
     [Tags]    smoke
     Comment    Connect to host.
     Open Connection    host=${Host}    alias=SALGEN    timeout=${timeout}    prompt=${Prompt}
@@ -41,6 +41,7 @@ Salgen TCS Validate
     Directory Should Exist    ${SALWorkDir}/idl-templates/validated
     @{files}=    List Directory    ${SALWorkDir}/idl-templates    pattern=*${subSystem}*
     Log Many    @{files}
+    Comment    Telemetry
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_kernel_PointingModel.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_AOCS.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_kernel_TimeKeeper.idl
@@ -57,6 +58,7 @@ Salgen TCS Validate
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_kernel_FK5Target.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_LoopTime_ms.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_Timestamp.idl
+    Comment    State Commands
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_enable.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_disable.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_abort.idl
@@ -65,9 +67,11 @@ Salgen TCS Validate
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_standby.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_start.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_stop.idl
+    Comment    Commands
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_wfpCalculate.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_wfpSimulate.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_injectError.idl
+    Comment    Events
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_wfpDataReady.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_zemaxError.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_InternalCommand.idl
