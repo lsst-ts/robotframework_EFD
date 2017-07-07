@@ -101,6 +101,12 @@ function verifySQLDirectory() {
     echo "    Directory Should Exist    \${SALWorkDir}/sql" >> $testSuite
     echo "    @{files}=    List Directory    \${SALWorkDir}/sql    pattern=${subSystem}*" >> $testSuite
     echo "    Log Many    @{files}" >> $testSuite
+	echo "    Should Not Be Empty    \${files}" >> $testSuite
+	# Determine number of EFD topics. There are 4 default Events and 9 default Commands that are not listed in the XMLs.
+	total=$(( ${#telemetryArray[@]} + ${#eventArray[@]} + 4 + ${#commandArray[@]} + 9 ))
+	length=$(( $total * 3 )) # There are 3 SQL files per topic.
+	echo "    Comment    Length is calculated in the bash generation script." >> $testSuite
+	echo "    Length Should Be    \${files}    $length" >> $testSuite
     echo "" >> $testSuite
 }
 
