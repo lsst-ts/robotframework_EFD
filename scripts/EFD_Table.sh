@@ -45,15 +45,15 @@ function verifySQLTelemetryDefinitions() {
         echo "    [Tags]    sql    ${tags}" >> $testSuite
 		echo "    \${output}    \${error}    \${rc}=    Execute Command    mysql --user=\${EFDUser} --password=\${EFDPass} -h \${EFDHost} -D EFD < \${SALWorkDir}/sql/${subSystem}_${topic}.sqldef    return_stderr=True    return_rc=True" >> $testSuite
 		echo "    Run Keyword And Continue On Failure    Should Be Equal As Integers    \${rc}    0    values=False    msg=Failed to create the $subSystem $topic table" >> $testSuite
-		echo "    Run Keyword And Continue On Failure    Should Be Equal As Strings    \${output}    \${EMPTY}" >> $testSuite
-		echo "    Run Keyword And Continue On Failure    Should Be Equal As Strings    \${error}    \${EMPTY}" >> $testSuite
+		echo "    Run Keyword And Continue On Failure    Should Be Empty    \${output}" >> $testSuite
+		echo "    Run Keyword And Continue On Failure    Should Be Empty    \${error}" >> $testSuite
 		echo "" >> $testSuite
         echo "Verify $subSystemUp Telemetry $topic EFD table" >> $testSuite
         echo "    [Tags]    sql    ${tags}" >> $testSuite
         echo "    \${output}    \${error}    \${rc}=    Execute Command    mysql --user=\${EFDUser} --password=\${EFDPass} -h \${EFDHost} -D EFD -v -v -e \"select * from ${subSystem}_${topic}\"    return_stderr=True    return_rc=True" >> $testSuite
 		echo "    Run Keyword And Continue On Failure    Should Be Equal As Integers    \${rc}    0    values=False    msg=Table $subSystem $topic does not exist" >> $testSuite
 		echo "    Run Keyword And Continue On Failure    Should Contain    \${output}    Empty set" >> $testSuite
-        echo "    Run Keyword And Continue On Failure    Should Be Equal As Strings    \${error}    \${EMPTY}" >> $testSuite
+        echo "    Run Keyword And Continue On Failure    Should Be Empty    \${error}" >> $testSuite
         echo "" >> $testSuite
 	done
 }
@@ -64,15 +64,15 @@ function verifySQLCommandsDefinitions() {
         echo "    [Tags]    sql    ${tags}" >> $testSuite
         echo "    \${output}    \${error}    \${rc}=    Execute Command    mysql --user=\${EFDUser} --password=\${EFDPass} -h \${EFDHost} -D EFD < \${SALWorkDir}/sql/${subSystem}_command_${topic}.sqldef    return_stderr=True    return_rc=True" >> $testSuite
 		echo "    Run Keyword And Continue On Failure    Should Be Equal As Integers    \${rc}    0    values=False    msg=Failed to create the $subSystem $topic table" >> $testSuite
-        echo "    Run Keyword And Continue On Failure    Should Be Equal As Strings    \${output}    \${EMPTY}" >> $testSuite
-        echo "    Run Keyword And Continue On Failure    Should Be Equal As Strings    \${error}    \${EMPTY}" >> $testSuite
+        echo "    Run Keyword And Continue On Failure    Should Be Empty    \${output}" >> $testSuite 
+        echo "    Run Keyword And Continue On Failure    Should Be Empty    \${error}" >> $testSuite
         echo "" >> $testSuite
         echo "Verify $subSystemUp State Command $topic EFD table" >> $testSuite
         echo "    [Tags]    sql    ${tags}" >> $testSuite
         echo "    \${output}    \${error}    \${rc}=    Execute Command    mysql --user=\${EFDUser} --password=\${EFDPass} -h \${EFDHost} -D EFD -v -v -e \"select * from ${subSystem}_command_${topic}\"    return_stderr=True    return_rc=True" >> $testSuite
 		echo "    Run Keyword And Continue On Failure    Should Be Equal As Integers    \${rc}    0    values=False    msg=Table $subSystem $topic does not exist" >> $testSuite
 		echo "    Run Keyword And Continue On Failure    Should Contain    \${output}    Empty set" >> $testSuite
-        echo "    Run Keyword And Continue On Failure    Should Be Equal As Strings    \${error}    \${EMPTY}" >> $testSuite
+        echo "    Run Keyword And Continue On Failure    Should Be Empty    \${error}" >> $testSuite
         echo "" >> $testSuite
     done
     for topic in "${commandArray[@]}"; do
@@ -80,15 +80,15 @@ function verifySQLCommandsDefinitions() {
         echo "    [Tags]    sql    ${tags}" >> $testSuite
         echo "    \${output}    \${error}    \${rc}=    Execute Command    mysql --user=\${EFDUser} --password=\${EFDPass} -h \${EFDHost} -D EFD < \${SALWorkDir}/sql/${subSystem}_command_${topic}.sqldef    return_stderr=True    return_rc=True" >> $testSuite
 		echo "    Run Keyword And Continue On Failure    Should Be Equal As Integers    \${rc}    0    values=False    msg=Failed to create the $subSystem $topic table" >> $testSuite
-        echo "    Run Keyword And Continue On Failure    Should Be Equal As Strings    \${output}    \${EMPTY}" >> $testSuite
-        echo "    Run Keyword And Continue On Failure    Should Be Equal As Strings    \${error}    \${EMPTY}" >> $testSuite
+        echo "    Run Keyword And Continue On Failure    Should Be Empty    \${output}" >> $testSuite 
+        echo "    Run Keyword And Continue On Failure    Should Be Empty    \${error}" >> $testSuite
         echo "" >> $testSuite
         echo "Verify $subSystemUp Command $topic EFD table" >> $testSuite
         echo "    [Tags]    sql    ${tags}" >> $testSuite
         echo "    \${output}    \${error}    \${rc}=    Execute Command    mysql --user=\${EFDUser} --password=\${EFDPass} -h \${EFDHost} -D EFD -v -v -e \"select * from ${subSystem}_command_${topic}\"    return_stderr=True    return_rc=True" >> $testSuite
 		echo "    Run Keyword And Continue On Failure    Should Be Equal As Integers    \${rc}    0    values=False    msg=Table $subSystem $topic does not exist" >> $testSuite
 		echo "    Run Keyword And Continue On Failure    Should Contain    \${output}    Empty set" >> $testSuite
-        echo "    Run Keyword And Continue On Failure    Should Be Equal As Strings    \${error}    \${EMPTY}" >> $testSuite
+        echo "    Run Keyword And Continue On Failure    Should Be Empty    \${error}" >> $testSuite
         echo "" >> $testSuite
     done
 
@@ -100,8 +100,8 @@ function verifySQLEventsDefinitions() {
         echo "    [Tags]    sql    ${tags}" >> $testSuite
         echo "    \${output}    \${error}    \${rc}=    Execute Command    mysql --user=\${EFDUser} --password=\${EFDPass} -h \${EFDHost} -D EFD < \${SALWorkDir}/sql/${subSystem}_logevent_${topic}.sqldef    return_stderr=True    return_rc=True" >> $testSuite
 		echo "    Run Keyword And Continue On Failure    Should Be Equal As Integers    \${rc}    0    values=False    msg=Failed to create the $subSystem $topic table" >> $testSuite
-        echo "    Run Keyword And Continue On Failure    Should Be Equal As Strings    \${output}    \${EMPTY}" >> $testSuite
-        echo "    Run Keyword And Continue On Failure    Should Be Equal As Strings    \${error}    \${EMPTY}" >> $testSuite
+        echo "    Run Keyword And Continue On Failure    Should Be Empty    \${output}" >> $testSuite 
+        echo "    Run Keyword And Continue On Failure    Should Be Empty    \${error}" >> $testSuite
         echo "" >> $testSuite
         echo "Verify $subSystemUp Event $topic EFD table" >> $testSuite
         echo "    [Tags]    sql    ${tags}" >> $testSuite
@@ -109,7 +109,7 @@ function verifySQLEventsDefinitions() {
         echo "    Log    \${output}" >> $testSuite
 		echo "    Run Keyword And Continue On Failure    Should Be Equal As Integers    \${rc}    0    values=False    msg=Table $subSystem $topic does not exist" >> $testSuite
 		echo "    Run Keyword And Continue On Failure    Should Contain    \${output}    Empty set" >> $testSuite
-        echo "    Run Keyword And Continue On Failure    Should Be Equal As Strings    \${error}    \${EMPTY}" >> $testSuite
+        echo "    Run Keyword And Continue On Failure    Should Be Empty    \${error}" >> $testSuite
         echo "" >> $testSuite
 	done
 }
