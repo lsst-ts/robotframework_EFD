@@ -30,7 +30,7 @@ function createVariables() {
 	entity=$(getEntity $1)
     echo "*** Variables ***" >> $testSuite
     echo "\${subSystem}    $entity" >> $testSuite
-    echo "\${timeout}    1500s" >> $testSuite
+    echo "\${timeout}    15s" >> $testSuite
     echo "" >> $testSuite
 }
 
@@ -99,7 +99,7 @@ function verifySQLDirectory() {
     echo "Verify SQL directory exists" >> $testSuite
     echo "    [Tags]    sql" >> $testSuite
     echo "    Directory Should Exist    \${SALWorkDir}/sql" >> $testSuite
-    echo "    @{files}=    List Directory    \${SALWorkDir}/sql    pattern=${subSystem}*" >> $testSuite
+    echo "    @{files}=    List Directory    \${SALWorkDir}/sql    pattern=\${subSystem}_*" >> $testSuite
     echo "    Log Many    @{files}" >> $testSuite
 	echo "    Should Not Be Empty    \${files}" >> $testSuite
 	# Determine number of EFD topics. There are 4 default Events and 9 default Commands that are not listed in the XMLs.
@@ -111,7 +111,7 @@ function verifySQLDirectory() {
 }
 
 function createTestSuite() {
-	subSystem=$1
+	subSystem=$(getEntity $1)
 
 	#  Define test suite name
 	subSystemUp=$(capitializeSubsystem $subSystem)
