@@ -7,7 +7,7 @@ Resource    ../Global_Vars.robot
 
 *** Variables ***
 ${subSystem}    domeADB
-${timeout}    1500s
+${timeout}    15s
 
 *** Test Cases ***
 Create SALGEN Session
@@ -53,7 +53,30 @@ Salgen DomeADB Validate
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_start.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_stop.idl
     Comment    Commands
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_Crawl.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_Move.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_VelocityMove.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_Echo.idl
     Comment    Events
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_StateChanged.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_DriveEnabled.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_DriveDisabled.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_DriveReady.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_DriveOverTemp.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_DriveFault.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_RotationEnabled.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_RotationPrevented.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_LockingPinEngaged.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_LockingPinDisengaged.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_BrakeEngaged.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_BrakeDisengaged.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_SpeedLimitReached.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_AccelerationLimitReached.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_SpeedLimitSubsided.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_AccelerationLimitSubsided.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_EchoResponse.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_MotionModeChanged.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_SubsystemError.idl
 
 Salgen DomeADB HTML
     [Documentation]    Create web form interfaces.
@@ -72,6 +95,9 @@ Salgen DomeADB HTML
 Verify SQL directory exists
     [Tags]    sql
     Directory Should Exist    ${SALWorkDir}/sql
-    @{files}=    List Directory    ${SALWorkDir}/sql    pattern=domeadb*
+    @{files}=    List Directory    ${SALWorkDir}/sql    pattern=${subSystem}_*
     Log Many    @{files}
+    Should Not Be Empty    ${files}
+    Comment    Length is calculated in the bash generation script.
+    Length Should Be    ${files}    111
 

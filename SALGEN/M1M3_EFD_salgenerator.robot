@@ -7,7 +7,7 @@ Resource    ../Global_Vars.robot
 
 *** Variables ***
 ${subSystem}    m1m3
-${timeout}    1500s
+${timeout}    15s
 
 *** Test Cases ***
 Create SALGEN Session
@@ -91,6 +91,9 @@ Salgen M1M3 HTML
 Verify SQL directory exists
     [Tags]    sql
     Directory Should Exist    ${SALWorkDir}/sql
-    @{files}=    List Directory    ${SALWorkDir}/sql    pattern=m1m3*
+    @{files}=    List Directory    ${SALWorkDir}/sql    pattern=${subSystem}_*
     Log Many    @{files}
+    Should Not Be Empty    ${files}
+    Comment    Length is calculated in the bash generation script.
+    Length Should Be    ${files}    99
 
