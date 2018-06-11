@@ -127,7 +127,8 @@ function createTestSuite() {
             skipped=true
         fi
 	done
-	if (( ! $skipped )); then verifySQLStateDefinitions; else echo "Skipping"; fi
+	echo $skipped
+	if [[ "$skipped" == "false" ]]; then verifySQLStateDefinitions; else echo "Skipping"; fi
 	verifySQLCommandsDefinitions
 	verifySQLEventsDefinitions
 	# Indicate completion of the test suite.
