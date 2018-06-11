@@ -57,8 +57,8 @@ function createSession() {
 }
 
 function subsystemArray() {
-	echo "archiver camera catchuparchiver dome domeadb domeaps domelws domelouvers domemoncs domethcs hexapod \
-m1m3 m2ms mtmount ocs processingcluster rotator scheduler sequencer tcs"
+    # calibrationElectrometer (TSS-2606)
+    echo "archiver atArchiver atcamera atcs atHeaderService atMonochromator atScheduler camera catchuparchiver dome domeADB domeAPS domeLouvers domeLWS domeMONCS domeTHCS eec efd headerService hexapod m1m3 m2ms MTMount ocs promptprocessing rotator scheduler sequencer summitFacility tcs tcsOfc tcsWEP vms"
 }
 
 function stateArray() {
