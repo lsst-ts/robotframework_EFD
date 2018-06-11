@@ -59,7 +59,7 @@ function createSession() {
 
 function subsystemArray() {
     # calibrationElectrometer promptprocessing (TSS-2606, TSS-2633)
-    echo "archiver atArchiver atcamera atcs atHeaderService atMonochromator atScheduler camera catchuparchiver dome domeADB domeAPS domeLouvers domeLWS domeMONCS domeTHCS eec efd headerService hexapod m1m3 m2ms MTMount ocs rotator scheduler sequencer summitFacility tcs tcsOfc tcsWEP vms"
+    echo "archiver atarchiver atcamera atcs atheaderservice atmonochromator atscheduler camera catchuparchiver dome domeadb domeaps domelouvers domelws domemoncs domethcs eec efd headerservice hexapod m1m3 m2ms mtmount ocs rotator scheduler sequencer summitfacility tcs tcsofc tcswep vms"
 }
 
 function stateMachineSkipped() {
