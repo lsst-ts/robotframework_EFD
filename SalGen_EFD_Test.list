@@ -28,7 +28,6 @@ SALGEN/M1M3_EFD_salgenerator.robot
 SALGEN/M2MS_EFD_salgenerator.robot
 SALGEN/MTMount_EFD_salgenerator.robot
 SALGEN/OCS_EFD_salgenerator.robot
-SALGEN/PromptProcessing_EFD_salgenerator.robot
 SALGEN/Rotator_EFD_salgenerator.robot
 SALGEN/Scheduler_EFD_salgenerator.robot
 SALGEN/Sequencer_EFD_salgenerator.robot

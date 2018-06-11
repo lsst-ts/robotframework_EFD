@@ -71,7 +71,8 @@ function stateArray() {
 }
 
 function capitializeSubsystem() {
-    local subSystem=$1
+    # This function returns the CSC name in a pretty-print pattern used only for Test Suite naming.
+    local subSystem=$(echo $1 |tr '[:upper:]' '[:lower:]')
     if [ "$subSystem" == "m1m3" ]; then
         echo "M1M3"
     elif [ "$subSystem" == "m2ms" ]; then
@@ -80,10 +81,16 @@ function capitializeSubsystem() {
         echo "OCS"
     elif [ "$subSystem" == "atcs" ]; then
         echo "ATCS"
+    elif [ "$subSystem" == "atarchiver" ]; then
+        echo "AtArchiver"
     elif [ "$subSystem" == "atcamera" ]; then
         echo "AtCamera"
-    elif [ "$subSystem" == "tcs" ]; then
-        echo "TCS"
+    elif [ "$subSystem" == "atheaderservice" ]; then
+        echo "AtHeaderService"
+    elif [ "$subSystem" == "atmonochromator" ]; then
+        echo "AtMonochromator"
+    elif [ "$subSystem" == "atscheduler" ]; then
+        echo "AtScheduler"
     elif [ "$subSystem" == "mtmount" ]; then
         echo "MTMount"
     elif [ "$subSystem" == "domeadb" ]; then
@@ -108,8 +115,10 @@ function capitializeSubsystem() {
         echo "EEC"
     elif [ "$subSystem" == "headerservice" ]; then
         echo "HeaderService"
-    elif [ "$subSystem" == "atheaderservice" ]; then
-        echo "AtHeaderService"
+    elif [ "$subSystem" == "summitfacility" ]; then
+        echo "SummitFacility"
+    elif [ "$subSystem" == "tcs" ]; then
+        echo "TCS"
     elif [ "$subSystem" == "tcsofc" ]; then
         echo "TcsOFC"
     elif [ "$subSystem" == "tcswep" ]; then

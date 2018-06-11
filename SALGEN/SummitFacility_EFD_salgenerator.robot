@@ -1,5 +1,5 @@
 *** Settings ***
-Documentation    This suite builds the various interfaces for the Summitfacility.
+Documentation    This suite builds the various interfaces for the SummitFacility.
 Force Tags    TSS-2622
 Suite Setup    Log Many    ${Host}    ${timeout}    ${SALVersion}
 Suite Teardown    Close All Connections
@@ -22,14 +22,14 @@ Create SALGEN Session
     Directory Should Exist    ${SALInstall}
     Directory Should Exist    ${SALHome}
 
-Verify Summitfacility XML Defintions exist
+Verify SummitFacility XML Defintions exist
     [Tags]
     File Should Exist    ${SALWorkDir}/summitFacility_Commands.xml
     File Should Exist    ${SALWorkDir}/summitFacility_Events.xml
     File Should Exist    ${SALWorkDir}/summitFacility_Telemetry.xml
 
-Salgen Summitfacility Validate
-    [Documentation]    Validate the Summitfacility XML definitions.
+Salgen SummitFacility Validate
+    [Documentation]    Validate the SummitFacility XML definitions.
     [Tags]
     Write    cd ${SALWorkDir}
     ${output}=    Read Until Prompt
@@ -58,7 +58,7 @@ Salgen Summitfacility Validate
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_ErrorCode.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_SettingVersions.idl
 
-Salgen Summitfacility HTML
+Salgen SummitFacility HTML
     [Documentation]    Create web form interfaces.
     [Tags]
     ${input}=    Write    ${SALHome}/scripts/salgenerator ${subSystem} html

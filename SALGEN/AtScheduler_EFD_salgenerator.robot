@@ -1,5 +1,5 @@
 *** Settings ***
-Documentation    This suite builds the various interfaces for the Atscheduler.
+Documentation    This suite builds the various interfaces for the AtScheduler.
 Force Tags    
 Suite Setup    Log Many    ${Host}    ${timeout}    ${SALVersion}
 Suite Teardown    Close All Connections
@@ -22,13 +22,13 @@ Create SALGEN Session
     Directory Should Exist    ${SALInstall}
     Directory Should Exist    ${SALHome}
 
-Verify Atscheduler XML Defintions exist
+Verify AtScheduler XML Defintions exist
     [Tags]
     File Should Exist    ${SALWorkDir}/atScheduler_Events.xml
     File Should Exist    ${SALWorkDir}/atScheduler_Telemetry.xml
 
-Salgen Atscheduler Validate
-    [Documentation]    Validate the Atscheduler XML definitions.
+Salgen AtScheduler Validate
+    [Documentation]    Validate the AtScheduler XML definitions.
     [Tags]
     Write    cd ${SALWorkDir}
     ${output}=    Read Until Prompt
@@ -48,7 +48,7 @@ Salgen Atscheduler Validate
     Comment    Events
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_target.idl
 
-Salgen Atscheduler HTML
+Salgen AtScheduler HTML
     [Documentation]    Create web form interfaces.
     [Tags]
     ${input}=    Write    ${SALHome}/scripts/salgenerator ${subSystem} html

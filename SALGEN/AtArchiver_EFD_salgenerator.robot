@@ -1,5 +1,5 @@
 *** Settings ***
-Documentation    This suite builds the various interfaces for the Atarchiver.
+Documentation    This suite builds the various interfaces for the AtArchiver.
 Force Tags    
 Suite Setup    Log Many    ${Host}    ${timeout}    ${SALVersion}
 Suite Teardown    Close All Connections
@@ -22,14 +22,14 @@ Create SALGEN Session
     Directory Should Exist    ${SALInstall}
     Directory Should Exist    ${SALHome}
 
-Verify Atarchiver XML Defintions exist
+Verify AtArchiver XML Defintions exist
     [Tags]
     File Should Exist    ${SALWorkDir}/atArchiver_Commands.xml
     File Should Exist    ${SALWorkDir}/atArchiver_Events.xml
     File Should Exist    ${SALWorkDir}/atArchiver_Telemetry.xml
 
-Salgen Atarchiver Validate
-    [Documentation]    Validate the Atarchiver XML definitions.
+Salgen AtArchiver Validate
+    [Documentation]    Validate the AtArchiver XML definitions.
     [Tags]
     Write    cd ${SALWorkDir}
     ${output}=    Read Until Prompt
@@ -65,7 +65,7 @@ Salgen Atarchiver Validate
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_AppliedSettingsMatchStart.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_SettingsApplied.idl
 
-Salgen Atarchiver HTML
+Salgen AtArchiver HTML
     [Documentation]    Create web form interfaces.
     [Tags]
     ${input}=    Write    ${SALHome}/scripts/salgenerator ${subSystem} html

@@ -1,5 +1,5 @@
 *** Settings ***
-Documentation    This suite builds the various interfaces for the Atmonochromator.
+Documentation    This suite builds the various interfaces for the AtMonochromator.
 Force Tags    
 Suite Setup    Log Many    ${Host}    ${timeout}    ${SALVersion}
 Suite Teardown    Close All Connections
@@ -22,14 +22,14 @@ Create SALGEN Session
     Directory Should Exist    ${SALInstall}
     Directory Should Exist    ${SALHome}
 
-Verify Atmonochromator XML Defintions exist
+Verify AtMonochromator XML Defintions exist
     [Tags]
     File Should Exist    ${SALWorkDir}/atMonochromator_Commands.xml
     File Should Exist    ${SALWorkDir}/atMonochromator_Events.xml
     File Should Exist    ${SALWorkDir}/atMonochromator_Telemetry.xml
 
-Salgen Atmonochromator Validate
-    [Documentation]    Validate the Atmonochromator XML definitions.
+Salgen AtMonochromator Validate
+    [Documentation]    Validate the AtMonochromator XML definitions.
     [Tags]
     Write    cd ${SALWorkDir}
     ${output}=    Read Until Prompt
@@ -85,7 +85,7 @@ Salgen Atmonochromator Validate
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_SettingsAppliedLoop.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_SettingsAppliedMonochromatorRanges.idl
 
-Salgen Atmonochromator HTML
+Salgen AtMonochromator HTML
     [Documentation]    Create web form interfaces.
     [Tags]
     ${input}=    Write    ${SALHome}/scripts/salgenerator ${subSystem} html

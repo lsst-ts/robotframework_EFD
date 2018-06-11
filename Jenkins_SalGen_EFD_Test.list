@@ -28,7 +28,6 @@ rbtefd/SALGEN/M1M3_EFD_salgenerator.robot
 rbtefd/SALGEN/M2MS_EFD_salgenerator.robot
 rbtefd/SALGEN/MTMount_EFD_salgenerator.robot
 rbtefd/SALGEN/OCS_EFD_salgenerator.robot
-rbtefd/SALGEN/PromptProcessing_EFD_salgenerator.robot
 rbtefd/SALGEN/Rotator_EFD_salgenerator.robot
 rbtefd/SALGEN/Scheduler_EFD_salgenerator.robot
 rbtefd/SALGEN/Sequencer_EFD_salgenerator.robot
