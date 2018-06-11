@@ -48,6 +48,7 @@ function salgenValidate() {
     echo "    [Documentation]    Validate the $subSystemUp XML definitions." >> $testSuite
     echo "    [Tags]" >> $testSuite
     echo "    Write    cd \${SALWorkDir}" >> $testSuite
+    echo "    \${output}=    Read Until Prompt" >> $testSuite
     echo "    \${input}=    Write    \${SALHome}/scripts/salgenerator \${subSystem} validate" >> $testSuite
     echo "    \${output}=    Read Until Prompt" >> $testSuite
     echo "    Log    \${output}" >> $testSuite
