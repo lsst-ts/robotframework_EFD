@@ -63,10 +63,6 @@ function salgenValidate() {
 	for topic in "${telemetryArray[@]}"; do
 		echo "    File Should Exist    \${SALWorkDir}/idl-templates/\${subSystem}_${topic}.idl" >> $testSuite
 	done
-	echo "    Comment    State Commands" >> $testSuite
-    for topic in "${stateArray[@]}"; do
-        echo "    File Should Exist    \${SALWorkDir}/idl-templates/\${subSystem}_command_${topic}.idl" >> $testSuite
-    done
 	echo "    Comment    Commands" >> $testSuite
     for topic in "${commandArray[@]}"; do
         echo "    File Should Exist    \${SALWorkDir}/idl-templates/\${subSystem}_command_${topic}.idl" >> $testSuite
@@ -103,8 +99,8 @@ function verifySQLDirectory() {
     echo "    @{files}=    List Directory    \${SALWorkDir}/sql    pattern=\${subSystem}_*" >> $testSuite
     echo "    Log Many    @{files}" >> $testSuite
 	echo "    Should Not Be Empty    \${files}" >> $testSuite
-	# Determine number of EFD topics. There are 4 default Events and 9 default Commands that are not listed in the XMLs.
-	total=$(( ${#telemetryArray[@]} + ${#eventArray[@]} + 4 + ${#commandArray[@]} + 9 ))
+	# Determine number of EFD topics.
+	total=$(( ${#telemetryArray[@]} + ${#eventArray[@]} + ${#commandArray[@]} ))
 	length=$(( $total * 3 )) # There are 3 SQL files per topic.
 	echo "    Comment    Length is calculated in the bash generation script." >> $testSuite
 	echo "    Length Should Be    \${files}    $length" >> $testSuite
