@@ -93,14 +93,24 @@ function salgenHTML() {
 }
 
 function verifySQLDirectory() {
+	arg=$(echo $subSystem |tr '[:upper:]' '[:lower:]')
     echo "Verify SQL directory exists" >> $testSuite
     echo "    [Tags]    sql" >> $testSuite
     echo "    Directory Should Exist    \${SALWorkDir}/sql" >> $testSuite
     echo "    @{files}=    List Directory    \${SALWorkDir}/sql    pattern=\${subSystem}_*" >> $testSuite
     echo "    Log Many    @{files}" >> $testSuite
 	echo "    Should Not Be Empty    \${files}" >> $testSuite
+	generic=13
+    declare -a array=($(stateMachineSkipped))
+    for item in "${array[@]}"; do
+        if [[ "$item" == "$arg" ]]; then
+            echo "The $(capitializeSubsystem $arg) explicitly defines the generic commands and events"
+            echo ""
+            generic=0
+        fi
+    done
 	# Determine number of EFD topics.
-	total=$(( ${#telemetryArray[@]} + ${#eventArray[@]} + ${#commandArray[@]} ))
+	total=$(( ${#telemetryArray[@]} + ${#eventArray[@]} + ${#commandArray[@]} + $generic ))
 	length=$(( $total * 3 )) # There are 3 SQL files per topic.
 	echo "    Comment    Length is calculated in the bash generation script." >> $testSuite
 	echo "    Length Should Be    \${files}    $length" >> $testSuite
@@ -108,10 +118,11 @@ function verifySQLDirectory() {
 }
 
 function createTestSuite() {
-	subSystem=$(getEntity $1)
+	arg=$(echo $1 |tr '[:upper:]' '[:lower:]')
+	subSystem=$(getEntity $arg)
 
 	#  Define test suite name
-	subSystemUp=$(capitializeSubsystem $subSystem)
+	subSystemUp=$(capitializeSubsystem $arg)
 	testSuite=$workDir/${subSystemUp}_EFD_salgenerator.robot
 		
 	#  Check to see if the TestSuite exists then, if it does, delete it.

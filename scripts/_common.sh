@@ -26,7 +26,8 @@ function getEventTopics() {
 function clearTestSuites() {
 	# Get the terms into the correct capitalization.
 	local slash="/"
-	local subsystem=$(capitializeSubsystem $1)
+	local arg=$(echo $1 |tr '[:upper:]' '[:lower:]')
+	local subsystem=$(capitializeSubsystem $arg)
 	local language=$(echo $2 |tr [a-z] [A-Z]) #Programming language is fully capitalized
 	if [ -n "$3" ]; then local topic_type=$(tr '[:lower:]' '[:upper:]' <<< ${3:0:1})${3:1}${slash}; else local topic_type=""; fi #Topic type is capitalized 
 	echo "============================================================================================"
@@ -57,8 +58,12 @@ function createSession() {
 }
 
 function subsystemArray() {
-    # calibrationElectrometer (TSS-2606)
-    echo "archiver atArchiver atcamera atcs atHeaderService atMonochromator atScheduler camera catchuparchiver dome domeADB domeAPS domeLouvers domeLWS domeMONCS domeTHCS eec efd headerService hexapod m1m3 m2ms MTMount ocs promptprocessing rotator scheduler sequencer summitFacility tcs tcsOfc tcsWEP vms"
+    # calibrationElectrometer promptprocessing (TSS-2606, TSS-2633)
+    echo "archiver atArchiver atcamera atcs atHeaderService atMonochromator atScheduler camera catchuparchiver dome domeADB domeAPS domeLouvers domeLWS domeMONCS domeTHCS eec efd headerService hexapod m1m3 m2ms MTMount ocs rotator scheduler sequencer summitFacility tcs tcsOfc tcsWEP vms"
+}
+
+function stateMachineSkipped() {
+    echo "archiver atarchiver atheaderservice atmonochromator atcamera atcs calibrationelectrometer camera catchuparchiver eec headerservice m1m3 promptprocessing sedspectrometer summitfacility vms"
 }
 
 function stateArray() {
@@ -103,11 +108,11 @@ function capitializeSubsystem() {
         echo "EEC"
     elif [ "$subSystem" == "headerservice" ]; then
         echo "HeaderService"
-    elif [ "$subSystem" == "atHeaderService" ]; then
+    elif [ "$subSystem" == "atheaderservice" ]; then
         echo "AtHeaderService"
-    elif [ "$subSystem" == "tcsOfc" ]; then
+    elif [ "$subSystem" == "tcsofc" ]; then
         echo "TcsOFC"
-    elif [ "$subSystem" == "tcsWEP" ]; then
+    elif [ "$subSystem" == "tcswep" ]; then
         echo "TcsWEP"
     elif [ "$subSystem" == "vms" ]; then
         echo "VMS"

@@ -1,5 +1,5 @@
 *** Settings ***
-Documentation    This suite builds the various interfaces for the AtArchiver.
+Documentation    This suite builds the various interfaces for the Atarchiver.
 Suite Setup    Log Many    ${Host}    ${timeout}    ${SALVersion}
 Suite Teardown    Close All Connections
 Library    SSHLibrary
@@ -21,14 +21,14 @@ Create SALGEN Session
     Directory Should Exist    ${SALInstall}
     Directory Should Exist    ${SALHome}
 
-Verify AtArchiver XML Defintions exist
+Verify Atarchiver XML Defintions exist
     [Tags]
     File Should Exist    ${SALWorkDir}/atArchiver_Commands.xml
     File Should Exist    ${SALWorkDir}/atArchiver_Events.xml
     File Should Exist    ${SALWorkDir}/atArchiver_Telemetry.xml
 
-Salgen AtArchiver Validate
-    [Documentation]    Validate the AtArchiver XML definitions.
+Salgen Atarchiver Validate
+    [Documentation]    Validate the Atarchiver XML definitions.
     [Tags]
     Write    cd ${SALWorkDir}
     ${output}=    Read Until Prompt
@@ -64,7 +64,7 @@ Salgen AtArchiver Validate
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_AppliedSettingsMatchStart.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_SettingsApplied.idl
 
-Salgen AtArchiver HTML
+Salgen Atarchiver HTML
     [Documentation]    Create web form interfaces.
     [Tags]
     ${input}=    Write    ${SALHome}/scripts/salgenerator ${subSystem} html

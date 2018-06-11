@@ -1,5 +1,5 @@
 *** Settings ***
-Documentation    This suite builds the various interfaces for the SummitFacility.
+Documentation    This suite builds the various interfaces for the Summitfacility.
 Suite Setup    Log Many    ${Host}    ${timeout}    ${SALVersion}
 Suite Teardown    Close All Connections
 Library    SSHLibrary
@@ -21,14 +21,14 @@ Create SALGEN Session
     Directory Should Exist    ${SALInstall}
     Directory Should Exist    ${SALHome}
 
-Verify SummitFacility XML Defintions exist
+Verify Summitfacility XML Defintions exist
     [Tags]
     File Should Exist    ${SALWorkDir}/summitFacility_Commands.xml
     File Should Exist    ${SALWorkDir}/summitFacility_Events.xml
     File Should Exist    ${SALWorkDir}/summitFacility_Telemetry.xml
 
-Salgen SummitFacility Validate
-    [Documentation]    Validate the SummitFacility XML definitions.
+Salgen Summitfacility Validate
+    [Documentation]    Validate the Summitfacility XML definitions.
     [Tags]
     Write    cd ${SALWorkDir}
     ${output}=    Read Until Prompt
@@ -57,7 +57,7 @@ Salgen SummitFacility Validate
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_ErrorCode.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_SettingVersions.idl
 
-Salgen SummitFacility HTML
+Salgen Summitfacility HTML
     [Documentation]    Create web form interfaces.
     [Tags]
     ${input}=    Write    ${SALHome}/scripts/salgenerator ${subSystem} html

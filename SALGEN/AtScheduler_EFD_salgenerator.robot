@@ -1,5 +1,5 @@
 *** Settings ***
-Documentation    This suite builds the various interfaces for the AtScheduler.
+Documentation    This suite builds the various interfaces for the Atscheduler.
 Suite Setup    Log Many    ${Host}    ${timeout}    ${SALVersion}
 Suite Teardown    Close All Connections
 Library    SSHLibrary
@@ -21,13 +21,13 @@ Create SALGEN Session
     Directory Should Exist    ${SALInstall}
     Directory Should Exist    ${SALHome}
 
-Verify AtScheduler XML Defintions exist
+Verify Atscheduler XML Defintions exist
     [Tags]
     File Should Exist    ${SALWorkDir}/atScheduler_Events.xml
     File Should Exist    ${SALWorkDir}/atScheduler_Telemetry.xml
 
-Salgen AtScheduler Validate
-    [Documentation]    Validate the AtScheduler XML definitions.
+Salgen Atscheduler Validate
+    [Documentation]    Validate the Atscheduler XML definitions.
     [Tags]
     Write    cd ${SALWorkDir}
     ${output}=    Read Until Prompt
@@ -47,7 +47,7 @@ Salgen AtScheduler Validate
     Comment    Events
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_target.idl
 
-Salgen AtScheduler HTML
+Salgen Atscheduler HTML
     [Documentation]    Create web form interfaces.
     [Tags]
     ${input}=    Write    ${SALHome}/scripts/salgenerator ${subSystem} html
@@ -67,5 +67,5 @@ Verify SQL directory exists
     Log Many    @{files}
     Should Not Be Empty    ${files}
     Comment    Length is calculated in the bash generation script.
-    Length Should Be    ${files}    6
+    Length Should Be    ${files}    45
 

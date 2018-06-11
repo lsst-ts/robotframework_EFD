@@ -91,5 +91,5 @@ Verify SQL directory exists
     Log Many    @{files}
     Should Not Be Empty    ${files}
     Comment    Length is calculated in the bash generation script.
-    Length Should Be    ${files}    72
+    Length Should Be    ${files}    111
 
