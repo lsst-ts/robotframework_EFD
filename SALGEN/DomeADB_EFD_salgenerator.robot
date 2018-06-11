@@ -44,15 +44,6 @@ Salgen DomeADB Validate
     Log Many    @{files}
     Comment    Telemetry
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_status.idl
-    Comment    State Commands
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_enable.idl
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_disable.idl
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_abort.idl
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_enterControl.idl
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_exitControl.idl
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_standby.idl
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_start.idl
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_stop.idl
     Comment    Commands
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_Crawl.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_Move.idl
@@ -100,5 +91,5 @@ Verify SQL directory exists
     Log Many    @{files}
     Should Not Be Empty    ${files}
     Comment    Length is calculated in the bash generation script.
-    Length Should Be    ${files}    111
+    Length Should Be    ${files}    72
 

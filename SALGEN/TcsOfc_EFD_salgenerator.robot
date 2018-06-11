@@ -1,5 +1,5 @@
 *** Settings ***
-Documentation    This suite builds the various interfaces for the TcsOfc.
+Documentation    This suite builds the various interfaces for the TcsOFC.
 Suite Setup    Log Many    ${Host}    ${timeout}    ${SALVersion}
 Suite Teardown    Close All Connections
 Library    SSHLibrary
@@ -21,14 +21,14 @@ Create SALGEN Session
     Directory Should Exist    ${SALInstall}
     Directory Should Exist    ${SALHome}
 
-Verify TcsOfc XML Defintions exist
+Verify TcsOFC XML Defintions exist
     [Tags]
     File Should Exist    ${SALWorkDir}/tcsOfc_Commands.xml
     File Should Exist    ${SALWorkDir}/tcsOfc_Events.xml
     File Should Exist    ${SALWorkDir}/tcsOfc_Telemetry.xml
 
-Salgen TcsOfc Validate
-    [Documentation]    Validate the TcsOfc XML definitions.
+Salgen TcsOFC Validate
+    [Documentation]    Validate the TcsOFC XML definitions.
     [Tags]
     Write    cd ${SALWorkDir}
     ${output}=    Read Until Prompt
@@ -44,22 +44,13 @@ Salgen TcsOfc Validate
     Log Many    @{files}
     Comment    Telemetry
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_DegreeOfFreedom.idl
-    Comment    State Commands
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_enable.idl
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_disable.idl
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_abort.idl
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_enterControl.idl
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_exitControl.idl
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_standby.idl
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_start.idl
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_stop.idl
     Comment    Commands
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_ApplyForces.idl
     Comment    Events
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_ErrorCode.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_NoEnoughZernikeTerm.idl
 
-Salgen TcsOfc HTML
+Salgen TcsOFC HTML
     [Documentation]    Create web form interfaces.
     [Tags]
     ${input}=    Write    ${SALHome}/scripts/salgenerator ${subSystem} html
@@ -80,5 +71,5 @@ Verify SQL directory exists
     Log Many    @{files}
     Should Not Be Empty    ${files}
     Comment    Length is calculated in the bash generation script.
-    Length Should Be    ${files}    51
+    Length Should Be    ${files}    12
 

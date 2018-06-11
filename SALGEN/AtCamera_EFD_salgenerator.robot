@@ -1,5 +1,5 @@
 *** Settings ***
-Documentation    This suite builds the various interfaces for the Atcamera.
+Documentation    This suite builds the various interfaces for the AtCamera.
 Suite Setup    Log Many    ${Host}    ${timeout}    ${SALVersion}
 Suite Teardown    Close All Connections
 Library    SSHLibrary
@@ -21,14 +21,14 @@ Create SALGEN Session
     Directory Should Exist    ${SALInstall}
     Directory Should Exist    ${SALHome}
 
-Verify Atcamera XML Defintions exist
+Verify AtCamera XML Defintions exist
     [Tags]
     File Should Exist    ${SALWorkDir}/atcamera_Commands.xml
     File Should Exist    ${SALWorkDir}/atcamera_Events.xml
     File Should Exist    ${SALWorkDir}/atcamera_Telemetry.xml
 
-Salgen Atcamera Validate
-    [Documentation]    Validate the Atcamera XML definitions.
+Salgen AtCamera Validate
+    [Documentation]    Validate the AtCamera XML definitions.
     [Tags]
     Write    cd ${SALWorkDir}
     ${output}=    Read Until Prompt
@@ -45,15 +45,6 @@ Salgen Atcamera Validate
     Comment    Telemetry
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_Heartbeat.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_WREB.idl
-    Comment    State Commands
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_enable.idl
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_disable.idl
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_abort.idl
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_enterControl.idl
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_exitControl.idl
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_standby.idl
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_start.idl
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_stop.idl
     Comment    Commands
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_discardRows.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_enable.idl
@@ -100,7 +91,7 @@ Salgen Atcamera Validate
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_shutterMotionProfile.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_imageReadoutParameters.idl
 
-Salgen Atcamera HTML
+Salgen AtCamera HTML
     [Documentation]    Create web form interfaces.
     [Tags]
     ${input}=    Write    ${SALHome}/scripts/salgenerator ${subSystem} html
@@ -121,5 +112,5 @@ Verify SQL directory exists
     Log Many    @{files}
     Should Not Be Empty    ${files}
     Comment    Length is calculated in the bash generation script.
-    Length Should Be    ${files}    174
+    Length Should Be    ${files}    135
 

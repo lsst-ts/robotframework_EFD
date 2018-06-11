@@ -1,5 +1,5 @@
 *** Settings ***
-Documentation    This suite builds the various interfaces for the Promptprocessing.
+Documentation    This suite builds the various interfaces for the PromptProcessing.
 Suite Setup    Log Many    ${Host}    ${timeout}    ${SALVersion}
 Suite Teardown    Close All Connections
 Library    SSHLibrary
@@ -21,14 +21,14 @@ Create SALGEN Session
     Directory Should Exist    ${SALInstall}
     Directory Should Exist    ${SALHome}
 
-Verify Promptprocessing XML Defintions exist
+Verify PromptProcessing XML Defintions exist
     [Tags]
     File Should Exist    ${SALWorkDir}/promptprocessing_Commands.xml
     File Should Exist    ${SALWorkDir}/promptprocessing_Events.xml
     File Should Exist    ${SALWorkDir}/promptprocessing_Telemetry.xml
 
-Salgen Promptprocessing Validate
-    [Documentation]    Validate the Promptprocessing XML definitions.
+Salgen PromptProcessing Validate
+    [Documentation]    Validate the PromptProcessing XML definitions.
     [Tags]
     Write    cd ${SALWorkDir}
     ${output}=    Read Until Prompt
@@ -44,15 +44,6 @@ Salgen Promptprocessing Validate
     Log Many    @{files}
     Comment    Telemetry
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_promptProcessing_SequencerHeartbeat.idl
-    Comment    State Commands
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_enable.idl
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_disable.idl
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_abort.idl
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_enterControl.idl
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_exitControl.idl
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_standby.idl
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_start.idl
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_stop.idl
     Comment    Commands
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_promptProcessing_command_start.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_promptProcessing_command_enable.idl
@@ -73,7 +64,7 @@ Salgen Promptprocessing Validate
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_promptProcessing_logevent_promptprocessingEntityStartup.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_promptProcessing_logevent_promptprocessingEntityShutdown.idl
 
-Salgen Promptprocessing HTML
+Salgen PromptProcessing HTML
     [Documentation]    Create web form interfaces.
     [Tags]
     ${input}=    Write    ${SALHome}/scripts/salgenerator ${subSystem} html
@@ -94,5 +85,5 @@ Verify SQL directory exists
     Log Many    @{files}
     Should Not Be Empty    ${files}
     Comment    Length is calculated in the bash generation script.
-    Length Should Be    ${files}    93
+    Length Should Be    ${files}    54
 

@@ -1,5 +1,5 @@
 *** Settings ***
-Documentation    This suite builds the various interfaces for the Vms.
+Documentation    This suite builds the various interfaces for the VMS.
 Suite Setup    Log Many    ${Host}    ${timeout}    ${SALVersion}
 Suite Teardown    Close All Connections
 Library    SSHLibrary
@@ -21,14 +21,14 @@ Create SALGEN Session
     Directory Should Exist    ${SALInstall}
     Directory Should Exist    ${SALHome}
 
-Verify Vms XML Defintions exist
+Verify VMS XML Defintions exist
     [Tags]
     File Should Exist    ${SALWorkDir}/vms_Commands.xml
     File Should Exist    ${SALWorkDir}/vms_Events.xml
     File Should Exist    ${SALWorkDir}/vms_Telemetry.xml
 
-Salgen Vms Validate
-    [Documentation]    Validate the Vms XML definitions.
+Salgen VMS Validate
+    [Documentation]    Validate the VMS XML definitions.
     [Tags]
     Write    cd ${SALWorkDir}
     ${output}=    Read Until Prompt
@@ -47,15 +47,6 @@ Salgen Vms Validate
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_TMA.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_M2.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_CameraRotator.idl
-    Comment    State Commands
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_enable.idl
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_disable.idl
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_abort.idl
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_enterControl.idl
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_exitControl.idl
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_standby.idl
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_start.idl
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_stop.idl
     Comment    Commands
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_Start.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_Enable.idl
@@ -71,7 +62,7 @@ Salgen Vms Validate
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_SettingsApplied.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_AcquisitionRate.idl
 
-Salgen Vms HTML
+Salgen VMS HTML
     [Documentation]    Create web form interfaces.
     [Tags]
     ${input}=    Write    ${SALHome}/scripts/salgenerator ${subSystem} html
@@ -92,5 +83,5 @@ Verify SQL directory exists
     Log Many    @{files}
     Should Not Be Empty    ${files}
     Comment    Length is calculated in the bash generation script.
-    Length Should Be    ${files}    87
+    Length Should Be    ${files}    48
 

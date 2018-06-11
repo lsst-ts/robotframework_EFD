@@ -67,17 +67,21 @@ function stateArray() {
 
 function capitializeSubsystem() {
     local subSystem=$1
-	if [ "$subSystem" == "m1m3" ]; then
+    if [ "$subSystem" == "m1m3" ]; then
         echo "M1M3"
     elif [ "$subSystem" == "m2ms" ]; then
         echo "M2MS"
     elif [ "$subSystem" == "ocs" ]; then
         echo "OCS"
+    elif [ "$subSystem" == "atcs" ]; then
+        echo "ATCS"
+    elif [ "$subSystem" == "atcamera" ]; then
+        echo "AtCamera"
     elif [ "$subSystem" == "tcs" ]; then
         echo "TCS"
     elif [ "$subSystem" == "mtmount" ]; then
         echo "MTMount"
-	elif [ "$subSystem" == "domeadb" ]; then
+    elif [ "$subSystem" == "domeadb" ]; then
         echo "DomeADB"
     elif [ "$subSystem" == "domeaps" ]; then
         echo "DomeAPS"
@@ -89,33 +93,73 @@ function capitializeSubsystem() {
         echo "DomeMONCS"
     elif [ "$subSystem" == "domethcs" ]; then
         echo "DomeTHCS"
-	elif [ "$subSystem" == "catchuparchiver" ]; then
+    elif [ "$subSystem" == "catchuparchiver" ]; then
         echo "CatchupArchiver"
-	elif [ "$subSystem" == "processingcluster" ]; then
-        echo "ProcessingCluster"
+    elif [ "$subSystem" == "promptprocessing" ]; then
+        echo "PromptProcessing"
+    elif [ "$subSystem" == "efd" ]; then
+        echo "EFD"
+    elif [ "$subSystem" == "eec" ]; then
+        echo "EEC"
+    elif [ "$subSystem" == "headerservice" ]; then
+        echo "HeaderService"
+    elif [ "$subSystem" == "atHeaderService" ]; then
+        echo "AtHeaderService"
+    elif [ "$subSystem" == "tcsOfc" ]; then
+        echo "TcsOFC"
+    elif [ "$subSystem" == "tcsWEP" ]; then
+        echo "TcsWEP"
+    elif [ "$subSystem" == "vms" ]; then
+        echo "VMS"
     else
         local var="$(tr '[:lower:]' '[:upper:]' <<< ${subSystem:0:1})${subSystem:1}"
-		echo $var
+        echo $var
     fi
 }
 
 function getEntity() {
-	local entity=$1
-	if [ "$entity" == "mtmount" ]; then
+    local entity=$1
+    if [ "$entity" == "all" ]; then
+        echo "all"
+    elif [ "$entity" == "atarchiver" ]; then
+        echo "atArchiver"
+    elif [ "$entity" == "atheaderservice" ]; then
+        echo "atHeaderService"
+    elif [ "$entity" == "headerservice" ]; then
+        echo "headerService"
+    elif [ "$entity" == "atmonochromator" ]; then
+        echo "atMonochromator"
+    elif [ "$entity" == "atscheduler" ]; then
+        echo "atScheduler"
+    elif [ "$entity" == "atwhitelight" ]; then
+        echo "atWhiteLight"
+    elif [ "$entity" == "summitfacility" ]; then
+        echo "summitFacility"
+    elif [ "$entity" == "calibrationelectrometer" ]; then
+        echo "calibrationElectrometer"
+    elif [ "$entity" == "promptprocessing" ]; then
+        echo "promptprocessing"
+    elif [ "$entity" == "mtmount" ]; then
         echo "MTMount"
     elif [ "$entity" == "domeadb" ]; then
         echo "domeADB"
     elif [ "$entity" == "domeaps" ]; then
-		echo "domeAPS"
+        echo "domeAPS"
     elif [ "$entity" == "domelws" ]; then
-		echo "domeLWS"
+        echo "domeLWS"
     elif [ "$entity" == "domelouvers" ]; then
-		echo "domeLouvers"
+        echo "domeLouvers"
     elif [ "$entity" == "domemoncs" ]; then
-		echo "domeMONCS"
+        echo "domeMONCS"
     elif [ "$entity" == "domethcs" ]; then
-		echo "domeTHCS"
-	else
-		echo "$entity"
-	fi
+        echo "domeTHCS"
+    elif [ "$entity" == "headerservice" ]; then
+        echo "headerService"
+    elif [ "$entity" == "tcsofc" ]; then
+        echo "tcsOfc"
+    elif [ "$entity" == "tcswep" ]; then
+        echo "tcsWEP"
+    else
+        echo "$entity"
+    fi
 }

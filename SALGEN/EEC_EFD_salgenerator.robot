@@ -1,12 +1,12 @@
 *** Settings ***
-Documentation    This suite builds the various interfaces for the Atcs.
+Documentation    This suite builds the various interfaces for the EEC.
 Suite Setup    Log Many    ${Host}    ${timeout}    ${SALVersion}
 Suite Teardown    Close All Connections
 Library    SSHLibrary
 Resource    ../Global_Vars.robot
 
 *** Variables ***
-${subSystem}    atcs
+${subSystem}    eec
 ${timeout}    15s
 
 *** Test Cases ***
@@ -21,14 +21,14 @@ Create SALGEN Session
     Directory Should Exist    ${SALInstall}
     Directory Should Exist    ${SALHome}
 
-Verify Atcs XML Defintions exist
+Verify EEC XML Defintions exist
     [Tags]
-    File Should Exist    ${SALWorkDir}/atcs_Commands.xml
-    File Should Exist    ${SALWorkDir}/atcs_Events.xml
-    File Should Exist    ${SALWorkDir}/atcs_Telemetry.xml
+    File Should Exist    ${SALWorkDir}/eec_Commands.xml
+    File Should Exist    ${SALWorkDir}/eec_Events.xml
+    File Should Exist    ${SALWorkDir}/eec_Telemetry.xml
 
-Salgen Atcs Validate
-    [Documentation]    Validate the Atcs XML definitions.
+Salgen EEC Validate
+    [Documentation]    Validate the EEC XML definitions.
     [Tags]
     Write    cd ${SALWorkDir}
     ${output}=    Read Until Prompt
@@ -43,42 +43,39 @@ Salgen Atcs Validate
     @{files}=    List Directory    ${SALWorkDir}/idl-templates    pattern=*${subSystem}*
     Log Many    @{files}
     Comment    Telemetry
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_LoopTime_ms.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_hvactelem.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_Timestamp.idl
-    Comment    State Commands
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_enable.idl
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_disable.idl
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_abort.idl
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_enterControl.idl
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_exitControl.idl
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_standby.idl
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_start.idl
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_stop.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_nightsetpoint.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_eectelem.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_LoopTime_ms.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_daysetpoint.idl
     Comment    Commands
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_disable.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_operatormode.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_nighttimemode.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_enable.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_exitControl.idl
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_standby.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_sethvac.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_daytimemode.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_setlouvers.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_start.idl
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_enterControl.idl
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_Target.idl
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_Offset.idl
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_SpectrographSetup.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_engineeringmode.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_standby.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_disable.idl
     Comment    Events
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_AppliedSettingsMatchStart.idl
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_ErrorCode.idl
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_SummaryState.idl
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_DetailedState.idl
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_SpectrographInPosition.idl
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_TelescopeInPosition.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_nighttimefail.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_RejectedCommand.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_SettingsApplied.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_DetailedState.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_daytimefail.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_InternalCommand.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_LoopTimeOutOfRange.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_SummaryState.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_ErrorCode.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_Heartbeat.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_SettingVersions.idl
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_LoopTimeOutOfRange.idl
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_SettingsApplied_Example.idl
 
-Salgen Atcs HTML
+Salgen EEC HTML
     [Documentation]    Create web form interfaces.
     [Tags]
     ${input}=    Write    ${SALHome}/scripts/salgenerator ${subSystem} html
@@ -88,9 +85,9 @@ Salgen Atcs HTML
     Directory Should Exist    ${SALWorkDir}/html/salgenerator/${subSystem}
     @{files}=    List Directory    ${SALWorkDir}/html/salgenerator/${subSystem}    pattern=*${subSystem}*
     Log Many    @{files}
-    File Should Exist    ${SALWorkDir}/html/${subSystem}/atcs_Commands.html
-    File Should Exist    ${SALWorkDir}/html/${subSystem}/atcs_Events.html
-    File Should Exist    ${SALWorkDir}/html/${subSystem}/atcs_Telemetry.html
+    File Should Exist    ${SALWorkDir}/html/${subSystem}/eec_Commands.html
+    File Should Exist    ${SALWorkDir}/html/${subSystem}/eec_Events.html
+    File Should Exist    ${SALWorkDir}/html/${subSystem}/eec_Telemetry.html
 
 Verify SQL directory exists
     [Tags]    sql
@@ -99,5 +96,5 @@ Verify SQL directory exists
     Log Many    @{files}
     Should Not Be Empty    ${files}
     Comment    Length is calculated in the bash generation script.
-    Length Should Be    ${files}    108
+    Length Should Be    ${files}    87
 

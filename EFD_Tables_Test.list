@@ -19,7 +19,6 @@ EFD_Tables/M1M3_EFD_Tables.robot
 EFD_Tables/M2MS_EFD_Tables.robot
 EFD_Tables/MTMount_EFD_Tables.robot
 EFD_Tables/OCS_EFD_Tables.robot
-EFD_Tables/ProcessingCluster_EFD_Tables.robot
 EFD_Tables/Rotator_EFD_Tables.robot
 EFD_Tables/Scheduler_EFD_Tables.robot
 EFD_Tables/Sequencer_EFD_Tables.robot
