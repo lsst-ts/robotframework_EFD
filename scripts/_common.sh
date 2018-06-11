@@ -168,3 +168,25 @@ function getEntity() {
         echo "$entity"
     fi
 }
+
+function checkIfSkipped() {
+    subsystem=$(echo $1 |tr '[:upper:]' '[:lower:]')
+    if [[ ("$subsystem" == "summitfacility") ]]; then
+        skipped="TSS-2622"
+    elif [[ ("$subsystem" == "tcsofc") ]]; then
+        skipped="TSS-2625"
+    elif [[ ("$subsystem" == "tcswep") ]]; then
+        skipped="TSS-2626"
+    elif [[ ("$subsystem" == "promptprocessing") ]]; then
+        skipped="TSS-2633"
+    elif [[ ("$subsystem" == "calibrationelectrometer") ]]; then
+        skipped="TSS-2619"
+    elif [[ ("$subsystem" == "m1m3") ]]; then
+        skipped="TSS-2617"
+    elif [[ ("$subsystem" == "vms") ]]; then
+        skipped="TSS-2618"
+    else
+        skipped=""
+    fi
+    echo $skipped
+}

@@ -17,8 +17,10 @@ declare -a stateArray=($(stateArray))
 
 #  FUNCTIONS
 function createSettings() {
+	skipped=$(checkIfSkipped $subSystem)
     echo "*** Settings ***" >> $testSuite
     echo "Documentation    This suite builds the various interfaces for the $subSystemUp." >> $testSuite
+    echo "Force Tags    $skipped" >> $testSuite
     echo "Suite Setup    Log Many    \${Host}    \${timeout}    \${SALVersion}" >> $testSuite
     echo "Suite Teardown    Close All Connections" >> $testSuite
     echo "Library    SSHLibrary" >> $testSuite

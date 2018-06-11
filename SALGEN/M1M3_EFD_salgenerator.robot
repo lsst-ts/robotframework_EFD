@@ -1,5 +1,6 @@
 *** Settings ***
 Documentation    This suite builds the various interfaces for the M1M3.
+Force Tags    TSS-2617
 Suite Setup    Log Many    ${Host}    ${timeout}    ${SALVersion}
 Suite Teardown    Close All Connections
 Library    SSHLibrary

@@ -1,5 +1,6 @@
 *** Settings ***
 Documentation    This suite builds the various interfaces for the Summitfacility.
+Force Tags    TSS-2622
 Suite Setup    Log Many    ${Host}    ${timeout}    ${SALVersion}
 Suite Teardown    Close All Connections
 Library    SSHLibrary

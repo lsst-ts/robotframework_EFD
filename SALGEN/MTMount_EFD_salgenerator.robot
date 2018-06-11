@@ -1,5 +1,6 @@
 *** Settings ***
 Documentation    This suite builds the various interfaces for the MTMount.
+Force Tags    
 Suite Setup    Log Many    ${Host}    ${timeout}    ${SALVersion}
 Suite Teardown    Close All Connections
 Library    SSHLibrary
