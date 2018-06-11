@@ -31,6 +31,7 @@ Salgen Hexapod Validate
     [Documentation]    Validate the Hexapod XML definitions.
     [Tags]
     Write    cd ${SALWorkDir}
+    ${output}=    Read Until Prompt
     ${input}=    Write    ${SALHome}/scripts/salgenerator ${subSystem} validate
     ${output}=    Read Until Prompt
     Log    ${output}
@@ -42,12 +43,9 @@ Salgen Hexapod Validate
     @{files}=    List Directory    ${SALWorkDir}/idl-templates    pattern=*${subSystem}*
     Log Many    @{files}
     Comment    Telemetry
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_Metrology.idl
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_LimitSensors.idl
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_Electrical.idl
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_Application.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_Actuators.idl
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_TC.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_Application.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_Electrical.idl
     Comment    State Commands
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_enable.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_disable.idl
@@ -60,20 +58,22 @@ Salgen Hexapod Validate
     Comment    Commands
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_configureAcceleration.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_configureLimits.idl
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_configureLut.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_configureElevationRawLUT.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_move.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_positionSet.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_rawPositionSet.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_configureVelocity.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_offset.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_pivot.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_clearError.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_test.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_configureAzimuthRawLUT.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_configureTemperatureRawLUT.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_moveLUT.idl
     Comment    Events
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_error.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_interlock.idl
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_limit.idl
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_slewOK.idl
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_tempError.idl
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_trackLost.idl
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_tracking.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_inPosition.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_deviceError.idl
 
 Salgen Hexapod HTML
     [Documentation]    Create web form interfaces.
@@ -96,5 +96,5 @@ Verify SQL directory exists
     Log Many    @{files}
     Should Not Be Empty    ${files}
     Comment    Length is calculated in the bash generation script.
-    Length Should Be    ${files}    102
+    Length Should Be    ${files}    99
 

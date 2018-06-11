@@ -31,6 +31,7 @@ Salgen Rotator Validate
     [Documentation]    Validate the Rotator XML definitions.
     [Tags]
     Write    cd ${SALWorkDir}
+    ${output}=    Read Until Prompt
     ${input}=    Write    ${SALHome}/scripts/salgenerator ${subSystem} validate
     ${output}=    Read Until Prompt
     Log    ${output}
@@ -42,10 +43,9 @@ Salgen Rotator Validate
     @{files}=    List Directory    ${SALWorkDir}/idl-templates    pattern=*${subSystem}*
     Log Many    @{files}
     Comment    Telemetry
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_LimitSensors.idl
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_Position.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_Electrical.idl
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_TC.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_Application.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_Motors.idl
     Comment    State Commands
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_enable.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_disable.idl
@@ -61,14 +61,15 @@ Salgen Rotator Validate
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_move.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_track.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_test.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_trackStart.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_clearError.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_positionSet.idl
     Comment    Events
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_error.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_interlock.idl
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_limit.idl
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_moveOK.idl
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_tempError.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_trackLost.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_tracking.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_deviceError.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_inPosition.idl
 
 Salgen Rotator HTML
     [Documentation]    Create web form interfaces.

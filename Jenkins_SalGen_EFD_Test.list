@@ -5,6 +5,12 @@
 
 # List of test suites
 rbtefd/SALGEN/Archiver_EFD_salgenerator.robot
+rbtefd/SALGEN/AtArchiver_EFD_salgenerator.robot
+rbtefd/SALGEN/AtHeaderService_EFD_salgenerator.robot
+rbtefd/SALGEN/AtMonochromator_EFD_salgenerator.robot
+rbtefd/SALGEN/AtScheduler_EFD_salgenerator.robot
+rbtefd/SALGEN/Atcamera_EFD_salgenerator.robot
+rbtefd/SALGEN/Atcs_EFD_salgenerator.robot
 rbtefd/SALGEN/Camera_EFD_salgenerator.robot
 rbtefd/SALGEN/CatchupArchiver_EFD_salgenerator.robot
 rbtefd/SALGEN/DomeADB_EFD_salgenerator.robot
@@ -14,13 +20,21 @@ rbtefd/SALGEN/DomeLouvers_EFD_salgenerator.robot
 rbtefd/SALGEN/DomeMONCS_EFD_salgenerator.robot
 rbtefd/SALGEN/DomeTHCS_EFD_salgenerator.robot
 rbtefd/SALGEN/Dome_EFD_salgenerator.robot
+rbtefd/SALGEN/Eec_EFD_salgenerator.robot
+rbtefd/SALGEN/Efd_EFD_salgenerator.robot
+rbtefd/SALGEN/HeaderService_EFD_salgenerator.robot
 rbtefd/SALGEN/Hexapod_EFD_salgenerator.robot
 rbtefd/SALGEN/M1M3_EFD_salgenerator.robot
 rbtefd/SALGEN/M2MS_EFD_salgenerator.robot
 rbtefd/SALGEN/MTMount_EFD_salgenerator.robot
 rbtefd/SALGEN/OCS_EFD_salgenerator.robot
 rbtefd/SALGEN/ProcessingCluster_EFD_salgenerator.robot
+rbtefd/SALGEN/Promptprocessing_EFD_salgenerator.robot
 rbtefd/SALGEN/Rotator_EFD_salgenerator.robot
 rbtefd/SALGEN/Scheduler_EFD_salgenerator.robot
 rbtefd/SALGEN/Sequencer_EFD_salgenerator.robot
+rbtefd/SALGEN/SummitFacility_EFD_salgenerator.robot
 rbtefd/SALGEN/TCS_EFD_salgenerator.robot
+rbtefd/SALGEN/TcsOfc_EFD_salgenerator.robot
+rbtefd/SALGEN/TcsWEP_EFD_salgenerator.robot
+rbtefd/SALGEN/Vms_EFD_salgenerator.robot

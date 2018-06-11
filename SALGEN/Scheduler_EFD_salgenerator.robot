@@ -29,6 +29,7 @@ Salgen Scheduler Validate
     [Documentation]    Validate the Scheduler XML definitions.
     [Tags]
     Write    cd ${SALWorkDir}
+    ${output}=    Read Until Prompt
     ${input}=    Write    ${SALHome}/scripts/salgenerator ${subSystem} validate
     ${output}=    Read Until Prompt
     Log    ${output}
@@ -57,7 +58,6 @@ Salgen Scheduler Validate
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_parkConfig.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_generalPropConfig.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_sequencePropConfig.idl
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_blockPusher.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_observatoryState.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_target.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_observation.idl
@@ -100,5 +100,5 @@ Verify SQL directory exists
     Log Many    @{files}
     Should Not Be Empty    ${files}
     Comment    Length is calculated in the bash generation script.
-    Length Should Be    ${files}    126
+    Length Should Be    ${files}    123
 

@@ -31,6 +31,7 @@ Salgen TCS Validate
     [Documentation]    Validate the TCS XML definitions.
     [Tags]
     Write    cd ${SALWorkDir}
+    ${output}=    Read Until Prompt
     ${input}=    Write    ${SALHome}/scripts/salgenerator ${subSystem} validate
     ${output}=    Read Until Prompt
     Log    ${output}
@@ -70,7 +71,9 @@ Salgen TCS Validate
     Comment    Commands
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_wfpCalculate.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_wfpSimulate.idl
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_injectError.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_filterChangeRequest.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_stopMotion.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_target.idl
     Comment    Events
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_wfpDataReady.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_zemaxError.idl
@@ -80,6 +83,9 @@ Salgen TCS Validate
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_LoopTimeOutOfRange.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_RejectedCommand.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_HeartbeatIn.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_FilterChangeInPosition.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_TargetInPosition.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_SettingsApplied.idl
 
 Salgen TCS HTML
     [Documentation]    Create web form interfaces.
@@ -102,5 +108,5 @@ Verify SQL directory exists
     Log Many    @{files}
     Should Not Be Empty    ${files}
     Comment    Length is calculated in the bash generation script.
-    Length Should Be    ${files}    120
+    Length Should Be    ${files}    135
 

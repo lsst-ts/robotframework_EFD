@@ -5,6 +5,12 @@
 
 # List of test suites
 SALGEN/Archiver_EFD_salgenerator.robot
+SALGEN/AtArchiver_EFD_salgenerator.robot
+SALGEN/AtHeaderService_EFD_salgenerator.robot
+SALGEN/AtMonochromator_EFD_salgenerator.robot
+SALGEN/AtScheduler_EFD_salgenerator.robot
+SALGEN/Atcamera_EFD_salgenerator.robot
+SALGEN/Atcs_EFD_salgenerator.robot
 SALGEN/Camera_EFD_salgenerator.robot
 SALGEN/CatchupArchiver_EFD_salgenerator.robot
 SALGEN/DomeADB_EFD_salgenerator.robot
@@ -14,13 +20,21 @@ SALGEN/DomeLouvers_EFD_salgenerator.robot
 SALGEN/DomeMONCS_EFD_salgenerator.robot
 SALGEN/DomeTHCS_EFD_salgenerator.robot
 SALGEN/Dome_EFD_salgenerator.robot
+SALGEN/Eec_EFD_salgenerator.robot
+SALGEN/Efd_EFD_salgenerator.robot
+SALGEN/HeaderService_EFD_salgenerator.robot
 SALGEN/Hexapod_EFD_salgenerator.robot
 SALGEN/M1M3_EFD_salgenerator.robot
 SALGEN/M2MS_EFD_salgenerator.robot
 SALGEN/MTMount_EFD_salgenerator.robot
 SALGEN/OCS_EFD_salgenerator.robot
 SALGEN/ProcessingCluster_EFD_salgenerator.robot
+SALGEN/Promptprocessing_EFD_salgenerator.robot
 SALGEN/Rotator_EFD_salgenerator.robot
 SALGEN/Scheduler_EFD_salgenerator.robot
 SALGEN/Sequencer_EFD_salgenerator.robot
+SALGEN/SummitFacility_EFD_salgenerator.robot
 SALGEN/TCS_EFD_salgenerator.robot
+SALGEN/TcsOfc_EFD_salgenerator.robot
+SALGEN/TcsWEP_EFD_salgenerator.robot
+SALGEN/Vms_EFD_salgenerator.robot

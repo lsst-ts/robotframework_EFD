@@ -31,6 +31,7 @@ Salgen DomeTHCS Validate
     [Documentation]    Validate the DomeTHCS XML definitions.
     [Tags]
     Write    cd ${SALWorkDir}
+    ${output}=    Read Until Prompt
     ${input}=    Write    ${SALHome}/scripts/salgenerator ${subSystem} validate
     ${output}=    Read Until Prompt
     Log    ${output}

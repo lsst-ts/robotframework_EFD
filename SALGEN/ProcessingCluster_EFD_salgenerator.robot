@@ -23,13 +23,12 @@ Create SALGEN Session
 
 Verify ProcessingCluster XML Defintions exist
     [Tags]
-    File Should Exist    ${SALWorkDir}/processingcluster_Events.xml
-    File Should Exist    ${SALWorkDir}/processingcluster_Telemetry.xml
 
 Salgen ProcessingCluster Validate
     [Documentation]    Validate the ProcessingCluster XML definitions.
     [Tags]
     Write    cd ${SALWorkDir}
+    ${output}=    Read Until Prompt
     ${input}=    Write    ${SALHome}/scripts/salgenerator ${subSystem} validate
     ${output}=    Read Until Prompt
     Log    ${output}
@@ -41,7 +40,6 @@ Salgen ProcessingCluster Validate
     @{files}=    List Directory    ${SALWorkDir}/idl-templates    pattern=*${subSystem}*
     Log Many    @{files}
     Comment    Telemetry
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_SequencerHeartbeat.idl
     Comment    State Commands
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_enable.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_disable.idl
@@ -53,9 +51,6 @@ Salgen ProcessingCluster Validate
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_stop.idl
     Comment    Commands
     Comment    Events
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_processingclusterEntitySummaryState.idl
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_processingclusterEntityStartup.idl
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_processingclusterEntityShutdown.idl
 
 Salgen ProcessingCluster HTML
     [Documentation]    Create web form interfaces.
@@ -67,8 +62,6 @@ Salgen ProcessingCluster HTML
     Directory Should Exist    ${SALWorkDir}/html/salgenerator/${subSystem}
     @{files}=    List Directory    ${SALWorkDir}/html/salgenerator/${subSystem}    pattern=*${subSystem}*
     Log Many    @{files}
-    File Should Exist    ${SALWorkDir}/html/${subSystem}/processingcluster_Events.html
-    File Should Exist    ${SALWorkDir}/html/${subSystem}/processingcluster_Telemetry.html
 
 Verify SQL directory exists
     [Tags]    sql
@@ -77,5 +70,5 @@ Verify SQL directory exists
     Log Many    @{files}
     Should Not Be Empty    ${files}
     Comment    Length is calculated in the bash generation script.
-    Length Should Be    ${files}    51
+    Length Should Be    ${files}    39
 

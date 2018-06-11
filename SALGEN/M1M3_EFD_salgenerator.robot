@@ -31,6 +31,7 @@ Salgen M1M3 Validate
     [Documentation]    Validate the M1M3 XML definitions.
     [Tags]
     Write    cd ${SALWorkDir}
+    ${output}=    Read Until Prompt
     ${input}=    Write    ${SALHome}/scripts/salgenerator ${subSystem} validate
     ${output}=    Read Until Prompt
     Log    ${output}
@@ -42,15 +43,16 @@ Salgen M1M3 Validate
     @{files}=    List Directory    ${SALWorkDir}/idl-templates    pattern=*${subSystem}*
     Log Many    @{files}
     Comment    Telemetry
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_LimitSensors.idl
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_Metrology.idl
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_Application.idl
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_LUT.idl
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_Actuators.idl
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_TC.idl
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_Electrical.idl
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_Surface.idl
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_Support.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_ForceActuatorData.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_InclinometerData.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_OuterLoopData.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_AccelerometerData.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_HardpointActuatorData.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_IMSData.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_GyroData.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_PowerSupplyData.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_PIDData.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_HardpointMonitorData.idl
     Comment    State Commands
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_enable.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_disable.idl
@@ -61,18 +63,108 @@ Salgen M1M3 Validate
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_start.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_stop.idl
     Comment    Commands
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_configure.idl
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_status.idl
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_target.idl
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_update.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_Start.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_Enable.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_RaiseM1M3.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_AbortRaiseM1M3.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_LowerM1M3.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_EnterEngineering.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_ExitEngineering.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_TurnAirOn.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_TurnAirOff.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_TestAir.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_MoveHardpointActuators.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_StopHardpointMotion.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_TestHardpoint.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_EnableHardpointChase.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_DisableHardpointChase.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_TestForceActuator.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_ApplyOffsetForces.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_Disable.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_Standby.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_Shutdown.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_TranslateM1M3.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_ClearOffsetForces.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_ApplyAberrationForcesByBendingModes.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_ApplyAberrationForces.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_ClearAberrationForces.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_ApplyActiveOpticForcesByBendingModes.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_ApplyActiveOpticForces.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_ClearActiveOpticForces.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_PositionM1M3.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_TurnLightsOn.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_TurnLightsOff.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_TurnPowerOn.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_TurnPowerOff.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_EnableHardpointCorrections.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_DisableHardpointCorrections.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_RunMirrorForceProfile.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_AbortProfile.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_ApplyOffsetForcesByMirrorForce.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_UpdatePID.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_ResetPID.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_SetThermalSetpoint.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_ProgramILC.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_ModbusTransmit.idl
     Comment    Events
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_interlock.idl
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_limitError.idl
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_targetDone.idl
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_targetError.idl
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_tempError.idl
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_updateDone.idl
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_updateError.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_ErrorCode.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_SettingVersions.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_AppliedSettingsMatchStart.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_SettingsApplied.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_DetailedState.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_SummaryState.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_HardpointActuatorInfo.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_ForceActuatorInfo.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_ILCWarning.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_InterlockWarning.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_AirSupplyStatus.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_AirSupplyWarning.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_InterlockStatus.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_DisplacementSensorWarning.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_InclinometerSensorWarning.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_AccelerometerWarning.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_ForceSetpointWarning.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_ForceActuatorState.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_HardpointMonitorInfo.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_CellLightStatus.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_CellLightWarning.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_PowerStatus.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_PowerWarning.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_ForceActuatorForceWarning.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_GyroWarning.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_PowerSupplyStatus.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_AppliedOffsetForces.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_AppliedStaticForces.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_AppliedActiveOpticForces.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_AppliedAberrationForces.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_AppliedAzimuthForces.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_CommandRejectionWarning.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_PIDInfo.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_HardpointActuatorWarning.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_HardpointMonitorWarning.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_HardpointActuatorState.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_HardpointMonitorState.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_ForceActuatorWarning.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_RejectedStaticForces.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_RejectedElevationForces.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_RejectedAzimuthForces.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_RejectedThermalForces.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_RejectedActiveOpticForces.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_RejectedAberrationForces.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_RejectedBalanceForces.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_RejectedVelocityForces.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_RejectedAccelerationForces.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_RejectedOffsetForces.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_RejectedForces.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_AppliedElevationForces.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_AppliedAccelerationForces.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_AppliedThermalForces.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_AppliedVelocityForces.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_AppliedBalanceForces.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_AppliedForces.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_RejectedCylinderForces.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_AppliedCylinderForces.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_ModbusResponse.idl
 
 Salgen M1M3 HTML
     [Documentation]    Create web form interfaces.
@@ -95,5 +187,5 @@ Verify SQL directory exists
     Log Many    @{files}
     Should Not Be Empty    ${files}
     Comment    Length is calculated in the bash generation script.
-    Length Should Be    ${files}    99
+    Length Should Be    ${files}    372
 

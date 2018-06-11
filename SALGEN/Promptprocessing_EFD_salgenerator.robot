@@ -1,12 +1,12 @@
 *** Settings ***
-Documentation    This suite builds the various interfaces for the CatchupArchiver.
+Documentation    This suite builds the various interfaces for the Promptprocessing.
 Suite Setup    Log Many    ${Host}    ${timeout}    ${SALVersion}
 Suite Teardown    Close All Connections
 Library    SSHLibrary
 Resource    ../Global_Vars.robot
 
 *** Variables ***
-${subSystem}    catchuparchiver
+${subSystem}    promptprocessing
 ${timeout}    15s
 
 *** Test Cases ***
@@ -21,14 +21,14 @@ Create SALGEN Session
     Directory Should Exist    ${SALInstall}
     Directory Should Exist    ${SALHome}
 
-Verify CatchupArchiver XML Defintions exist
+Verify Promptprocessing XML Defintions exist
     [Tags]
-    File Should Exist    ${SALWorkDir}/catchuparchiver_Commands.xml
-    File Should Exist    ${SALWorkDir}/catchuparchiver_Events.xml
-    File Should Exist    ${SALWorkDir}/catchuparchiver_Telemetry.xml
+    File Should Exist    ${SALWorkDir}/promptprocessing_Commands.xml
+    File Should Exist    ${SALWorkDir}/promptprocessing_Events.xml
+    File Should Exist    ${SALWorkDir}/promptprocessing_Telemetry.xml
 
-Salgen CatchupArchiver Validate
-    [Documentation]    Validate the CatchupArchiver XML definitions.
+Salgen Promptprocessing Validate
+    [Documentation]    Validate the Promptprocessing XML definitions.
     [Tags]
     Write    cd ${SALWorkDir}
     ${output}=    Read Until Prompt
@@ -43,7 +43,7 @@ Salgen CatchupArchiver Validate
     @{files}=    List Directory    ${SALWorkDir}/idl-templates    pattern=*${subSystem}*
     Log Many    @{files}
     Comment    Telemetry
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_SequencerHeartbeat.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_promptProcessing_SequencerHeartbeat.idl
     Comment    State Commands
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_enable.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_disable.idl
@@ -54,26 +54,26 @@ Salgen CatchupArchiver Validate
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_start.idl
     File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_stop.idl
     Comment    Commands
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_start.idl
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_enable.idl
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_disable.idl
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_standby.idl
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_enterControl.idl
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_exitControl.idl
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_setValue.idl
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_abort.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_promptProcessing_command_start.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_promptProcessing_command_enable.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_promptProcessing_command_disable.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_promptProcessing_command_standby.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_promptProcessing_command_enterControl.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_promptProcessing_command_exitControl.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_promptProcessing_command_setValue.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_command_promptProcessing_command_abort.idl
     Comment    Events
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_ErrorCode.idl
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_SettingVersions.idl
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_AppliedSettingsMatchStart.idl
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_SettingsApplied.idl
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_DetailedState.idl
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_SummaryState.idl
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_catchuparchiverEntitySummaryState.idl
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_catchuparchiverEntityStartup.idl
-    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_catchuparchiverEntityShutdown.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_promptProcessing_logevent_ErrorCode.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_promptProcessing_logevent_SettingVersions.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_promptProcessing_logevent_AppliedSettingsMatchStart.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_promptProcessing_logevent_SettingsApplied.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_promptProcessing_logevent_DetailedState.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_promptProcessing_logevent_SummaryState.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_promptProcessing_logevent_promptprocessingEntitySummaryState.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_promptProcessing_logevent_promptprocessingEntityStartup.idl
+    File Should Exist    ${SALWorkDir}/idl-templates/${subSystem}_logevent_promptProcessing_logevent_promptprocessingEntityShutdown.idl
 
-Salgen CatchupArchiver HTML
+Salgen Promptprocessing HTML
     [Documentation]    Create web form interfaces.
     [Tags]
     ${input}=    Write    ${SALHome}/scripts/salgenerator ${subSystem} html
@@ -83,9 +83,9 @@ Salgen CatchupArchiver HTML
     Directory Should Exist    ${SALWorkDir}/html/salgenerator/${subSystem}
     @{files}=    List Directory    ${SALWorkDir}/html/salgenerator/${subSystem}    pattern=*${subSystem}*
     Log Many    @{files}
-    File Should Exist    ${SALWorkDir}/html/${subSystem}/catchuparchiver_Commands.html
-    File Should Exist    ${SALWorkDir}/html/${subSystem}/catchuparchiver_Events.html
-    File Should Exist    ${SALWorkDir}/html/${subSystem}/catchuparchiver_Telemetry.html
+    File Should Exist    ${SALWorkDir}/html/${subSystem}/promptprocessing_Commands.html
+    File Should Exist    ${SALWorkDir}/html/${subSystem}/promptprocessing_Events.html
+    File Should Exist    ${SALWorkDir}/html/${subSystem}/promptprocessing_Telemetry.html
 
 Verify SQL directory exists
     [Tags]    sql
