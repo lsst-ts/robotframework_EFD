@@ -21,29 +21,13 @@ Create SQL Session
     Directory Should Exist    ${SALInstall}
     Directory Should Exist    ${SALHome}
 
-Verify Hexapod Telemetry Metrology SQL defintion files exist
+Verify Hexapod Telemetry Actuators SQL defintion files exist
     [Tags]    sql
-    @{files}=    List Directory    ${SALWorkDir}/sql    pattern=*Metrology*
+    @{files}=    List Directory    ${SALWorkDir}/sql    pattern=*Actuators*
     Log Many    @{files}
-    File Should Exist    ${SALWorkDir}/sql/hexapod_Metrology.sqldef
-    File Should Exist    ${SALWorkDir}/sql/hexapod_Metrology.sqlwrt
-    File Should Exist    ${SALWorkDir}/sql/hexapod_Metrology_items.sql
-
-Verify Hexapod Telemetry LimitSensors SQL defintion files exist
-    [Tags]    sql
-    @{files}=    List Directory    ${SALWorkDir}/sql    pattern=*LimitSensors*
-    Log Many    @{files}
-    File Should Exist    ${SALWorkDir}/sql/hexapod_LimitSensors.sqldef
-    File Should Exist    ${SALWorkDir}/sql/hexapod_LimitSensors.sqlwrt
-    File Should Exist    ${SALWorkDir}/sql/hexapod_LimitSensors_items.sql
-
-Verify Hexapod Telemetry Electrical SQL defintion files exist
-    [Tags]    sql
-    @{files}=    List Directory    ${SALWorkDir}/sql    pattern=*Electrical*
-    Log Many    @{files}
-    File Should Exist    ${SALWorkDir}/sql/hexapod_Electrical.sqldef
-    File Should Exist    ${SALWorkDir}/sql/hexapod_Electrical.sqlwrt
-    File Should Exist    ${SALWorkDir}/sql/hexapod_Electrical_items.sql
+    File Should Exist    ${SALWorkDir}/sql/hexapod_Actuators.sqldef
+    File Should Exist    ${SALWorkDir}/sql/hexapod_Actuators.sqlwrt
+    File Should Exist    ${SALWorkDir}/sql/hexapod_Actuators_items.sql
 
 Verify Hexapod Telemetry Application SQL defintion files exist
     [Tags]    sql
@@ -53,21 +37,13 @@ Verify Hexapod Telemetry Application SQL defintion files exist
     File Should Exist    ${SALWorkDir}/sql/hexapod_Application.sqlwrt
     File Should Exist    ${SALWorkDir}/sql/hexapod_Application_items.sql
 
-Verify Hexapod Telemetry Actuators SQL defintion files exist
+Verify Hexapod Telemetry Electrical SQL defintion files exist
     [Tags]    sql
-    @{files}=    List Directory    ${SALWorkDir}/sql    pattern=*Actuators*
+    @{files}=    List Directory    ${SALWorkDir}/sql    pattern=*Electrical*
     Log Many    @{files}
-    File Should Exist    ${SALWorkDir}/sql/hexapod_Actuators.sqldef
-    File Should Exist    ${SALWorkDir}/sql/hexapod_Actuators.sqlwrt
-    File Should Exist    ${SALWorkDir}/sql/hexapod_Actuators_items.sql
-
-Verify Hexapod Telemetry TC SQL defintion files exist
-    [Tags]    sql
-    @{files}=    List Directory    ${SALWorkDir}/sql    pattern=*TC*
-    Log Many    @{files}
-    File Should Exist    ${SALWorkDir}/sql/hexapod_TC.sqldef
-    File Should Exist    ${SALWorkDir}/sql/hexapod_TC.sqlwrt
-    File Should Exist    ${SALWorkDir}/sql/hexapod_TC_items.sql
+    File Should Exist    ${SALWorkDir}/sql/hexapod_Electrical.sqldef
+    File Should Exist    ${SALWorkDir}/sql/hexapod_Electrical.sqlwrt
+    File Should Exist    ${SALWorkDir}/sql/hexapod_Electrical_items.sql
 
 Verify Hexapod State Command enable SQL defintion files exist
     [Tags]    sql
@@ -149,13 +125,13 @@ Verify Hexapod Command configureLimits SQL defintion files exist
     File Should Exist    ${SALWorkDir}/sql/hexapod_command_configureLimits.sqlwrt
     File Should Exist    ${SALWorkDir}/sql/hexapod_command_configureLimits_items.sql
 
-Verify Hexapod Command configureLut SQL defintion files exist
+Verify Hexapod Command configureElevationRawLUT SQL defintion files exist
     [Tags]    sql
-    @{files}=    List Directory    ${SALWorkDir}/sql    pattern=hexapod_*configureLut*
+    @{files}=    List Directory    ${SALWorkDir}/sql    pattern=hexapod_*configureElevationRawLUT*
     Log Many    @{files}
-    File Should Exist    ${SALWorkDir}/sql/hexapod_command_configureLut.sqldef
-    File Should Exist    ${SALWorkDir}/sql/hexapod_command_configureLut.sqlwrt
-    File Should Exist    ${SALWorkDir}/sql/hexapod_command_configureLut_items.sql
+    File Should Exist    ${SALWorkDir}/sql/hexapod_command_configureElevationRawLUT.sqldef
+    File Should Exist    ${SALWorkDir}/sql/hexapod_command_configureElevationRawLUT.sqlwrt
+    File Should Exist    ${SALWorkDir}/sql/hexapod_command_configureElevationRawLUT_items.sql
 
 Verify Hexapod Command move SQL defintion files exist
     [Tags]    sql
@@ -164,6 +140,22 @@ Verify Hexapod Command move SQL defintion files exist
     File Should Exist    ${SALWorkDir}/sql/hexapod_command_move.sqldef
     File Should Exist    ${SALWorkDir}/sql/hexapod_command_move.sqlwrt
     File Should Exist    ${SALWorkDir}/sql/hexapod_command_move_items.sql
+
+Verify Hexapod Command positionSet SQL defintion files exist
+    [Tags]    sql
+    @{files}=    List Directory    ${SALWorkDir}/sql    pattern=hexapod_*positionSet*
+    Log Many    @{files}
+    File Should Exist    ${SALWorkDir}/sql/hexapod_command_positionSet.sqldef
+    File Should Exist    ${SALWorkDir}/sql/hexapod_command_positionSet.sqlwrt
+    File Should Exist    ${SALWorkDir}/sql/hexapod_command_positionSet_items.sql
+
+Verify Hexapod Command rawPositionSet SQL defintion files exist
+    [Tags]    sql
+    @{files}=    List Directory    ${SALWorkDir}/sql    pattern=hexapod_*rawPositionSet*
+    Log Many    @{files}
+    File Should Exist    ${SALWorkDir}/sql/hexapod_command_rawPositionSet.sqldef
+    File Should Exist    ${SALWorkDir}/sql/hexapod_command_rawPositionSet.sqlwrt
+    File Should Exist    ${SALWorkDir}/sql/hexapod_command_rawPositionSet_items.sql
 
 Verify Hexapod Command configureVelocity SQL defintion files exist
     [Tags]    sql
@@ -189,6 +181,14 @@ Verify Hexapod Command pivot SQL defintion files exist
     File Should Exist    ${SALWorkDir}/sql/hexapod_command_pivot.sqlwrt
     File Should Exist    ${SALWorkDir}/sql/hexapod_command_pivot_items.sql
 
+Verify Hexapod Command clearError SQL defintion files exist
+    [Tags]    sql
+    @{files}=    List Directory    ${SALWorkDir}/sql    pattern=hexapod_*clearError*
+    Log Many    @{files}
+    File Should Exist    ${SALWorkDir}/sql/hexapod_command_clearError.sqldef
+    File Should Exist    ${SALWorkDir}/sql/hexapod_command_clearError.sqlwrt
+    File Should Exist    ${SALWorkDir}/sql/hexapod_command_clearError_items.sql
+
 Verify Hexapod Command test SQL defintion files exist
     [Tags]    sql
     @{files}=    List Directory    ${SALWorkDir}/sql    pattern=hexapod_*test*
@@ -197,13 +197,29 @@ Verify Hexapod Command test SQL defintion files exist
     File Should Exist    ${SALWorkDir}/sql/hexapod_command_test.sqlwrt
     File Should Exist    ${SALWorkDir}/sql/hexapod_command_test_items.sql
 
-Verify Hexapod Event error SQL defintion files exist
+Verify Hexapod Command configureAzimuthRawLUT SQL defintion files exist
     [Tags]    sql
-    @{files}=    List Directory    ${SALWorkDir}/sql    pattern=hexapod_*error*
+    @{files}=    List Directory    ${SALWorkDir}/sql    pattern=hexapod_*configureAzimuthRawLUT*
     Log Many    @{files}
-    File Should Exist    ${SALWorkDir}/sql/hexapod_logevent_error.sqldef
-    File Should Exist    ${SALWorkDir}/sql/hexapod_logevent_error.sqlwrt
-    File Should Exist    ${SALWorkDir}/sql/hexapod_logevent_error_items.sql
+    File Should Exist    ${SALWorkDir}/sql/hexapod_command_configureAzimuthRawLUT.sqldef
+    File Should Exist    ${SALWorkDir}/sql/hexapod_command_configureAzimuthRawLUT.sqlwrt
+    File Should Exist    ${SALWorkDir}/sql/hexapod_command_configureAzimuthRawLUT_items.sql
+
+Verify Hexapod Command configureTemperatureRawLUT SQL defintion files exist
+    [Tags]    sql
+    @{files}=    List Directory    ${SALWorkDir}/sql    pattern=hexapod_*configureTemperatureRawLUT*
+    Log Many    @{files}
+    File Should Exist    ${SALWorkDir}/sql/hexapod_command_configureTemperatureRawLUT.sqldef
+    File Should Exist    ${SALWorkDir}/sql/hexapod_command_configureTemperatureRawLUT.sqlwrt
+    File Should Exist    ${SALWorkDir}/sql/hexapod_command_configureTemperatureRawLUT_items.sql
+
+Verify Hexapod Command moveLUT SQL defintion files exist
+    [Tags]    sql
+    @{files}=    List Directory    ${SALWorkDir}/sql    pattern=hexapod_*moveLUT*
+    Log Many    @{files}
+    File Should Exist    ${SALWorkDir}/sql/hexapod_command_moveLUT.sqldef
+    File Should Exist    ${SALWorkDir}/sql/hexapod_command_moveLUT.sqlwrt
+    File Should Exist    ${SALWorkDir}/sql/hexapod_command_moveLUT_items.sql
 
 Verify Hexapod Event interlock SQL defintion files exist
     [Tags]    sql
@@ -213,43 +229,19 @@ Verify Hexapod Event interlock SQL defintion files exist
     File Should Exist    ${SALWorkDir}/sql/hexapod_logevent_interlock.sqlwrt
     File Should Exist    ${SALWorkDir}/sql/hexapod_logevent_interlock_items.sql
 
-Verify Hexapod Event limit SQL defintion files exist
+Verify Hexapod Event inPosition SQL defintion files exist
     [Tags]    sql
-    @{files}=    List Directory    ${SALWorkDir}/sql    pattern=hexapod_*limit*
+    @{files}=    List Directory    ${SALWorkDir}/sql    pattern=hexapod_*inPosition*
     Log Many    @{files}
-    File Should Exist    ${SALWorkDir}/sql/hexapod_logevent_limit.sqldef
-    File Should Exist    ${SALWorkDir}/sql/hexapod_logevent_limit.sqlwrt
-    File Should Exist    ${SALWorkDir}/sql/hexapod_logevent_limit_items.sql
+    File Should Exist    ${SALWorkDir}/sql/hexapod_logevent_inPosition.sqldef
+    File Should Exist    ${SALWorkDir}/sql/hexapod_logevent_inPosition.sqlwrt
+    File Should Exist    ${SALWorkDir}/sql/hexapod_logevent_inPosition_items.sql
 
-Verify Hexapod Event slewOK SQL defintion files exist
+Verify Hexapod Event deviceError SQL defintion files exist
     [Tags]    sql
-    @{files}=    List Directory    ${SALWorkDir}/sql    pattern=hexapod_*slewOK*
+    @{files}=    List Directory    ${SALWorkDir}/sql    pattern=hexapod_*deviceError*
     Log Many    @{files}
-    File Should Exist    ${SALWorkDir}/sql/hexapod_logevent_slewOK.sqldef
-    File Should Exist    ${SALWorkDir}/sql/hexapod_logevent_slewOK.sqlwrt
-    File Should Exist    ${SALWorkDir}/sql/hexapod_logevent_slewOK_items.sql
-
-Verify Hexapod Event tempError SQL defintion files exist
-    [Tags]    sql
-    @{files}=    List Directory    ${SALWorkDir}/sql    pattern=hexapod_*tempError*
-    Log Many    @{files}
-    File Should Exist    ${SALWorkDir}/sql/hexapod_logevent_tempError.sqldef
-    File Should Exist    ${SALWorkDir}/sql/hexapod_logevent_tempError.sqlwrt
-    File Should Exist    ${SALWorkDir}/sql/hexapod_logevent_tempError_items.sql
-
-Verify Hexapod Event trackLost SQL defintion files exist
-    [Tags]    sql
-    @{files}=    List Directory    ${SALWorkDir}/sql    pattern=hexapod_*trackLost*
-    Log Many    @{files}
-    File Should Exist    ${SALWorkDir}/sql/hexapod_logevent_trackLost.sqldef
-    File Should Exist    ${SALWorkDir}/sql/hexapod_logevent_trackLost.sqlwrt
-    File Should Exist    ${SALWorkDir}/sql/hexapod_logevent_trackLost_items.sql
-
-Verify Hexapod Event tracking SQL defintion files exist
-    [Tags]    sql
-    @{files}=    List Directory    ${SALWorkDir}/sql    pattern=hexapod_*tracking*
-    Log Many    @{files}
-    File Should Exist    ${SALWorkDir}/sql/hexapod_logevent_tracking.sqldef
-    File Should Exist    ${SALWorkDir}/sql/hexapod_logevent_tracking.sqlwrt
-    File Should Exist    ${SALWorkDir}/sql/hexapod_logevent_tracking_items.sql
+    File Should Exist    ${SALWorkDir}/sql/hexapod_logevent_deviceError.sqldef
+    File Should Exist    ${SALWorkDir}/sql/hexapod_logevent_deviceError.sqlwrt
+    File Should Exist    ${SALWorkDir}/sql/hexapod_logevent_deviceError_items.sql
 

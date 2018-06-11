@@ -229,13 +229,29 @@ Verify TCS Command wfpSimulate SQL defintion files exist
     File Should Exist    ${SALWorkDir}/sql/tcs_command_wfpSimulate.sqlwrt
     File Should Exist    ${SALWorkDir}/sql/tcs_command_wfpSimulate_items.sql
 
-Verify TCS Command injectError SQL defintion files exist
+Verify TCS Command filterChangeRequest SQL defintion files exist
     [Tags]    sql
-    @{files}=    List Directory    ${SALWorkDir}/sql    pattern=tcs_*injectError*
+    @{files}=    List Directory    ${SALWorkDir}/sql    pattern=tcs_*filterChangeRequest*
     Log Many    @{files}
-    File Should Exist    ${SALWorkDir}/sql/tcs_command_injectError.sqldef
-    File Should Exist    ${SALWorkDir}/sql/tcs_command_injectError.sqlwrt
-    File Should Exist    ${SALWorkDir}/sql/tcs_command_injectError_items.sql
+    File Should Exist    ${SALWorkDir}/sql/tcs_command_filterChangeRequest.sqldef
+    File Should Exist    ${SALWorkDir}/sql/tcs_command_filterChangeRequest.sqlwrt
+    File Should Exist    ${SALWorkDir}/sql/tcs_command_filterChangeRequest_items.sql
+
+Verify TCS Command stopMotion SQL defintion files exist
+    [Tags]    sql
+    @{files}=    List Directory    ${SALWorkDir}/sql    pattern=tcs_*stopMotion*
+    Log Many    @{files}
+    File Should Exist    ${SALWorkDir}/sql/tcs_command_stopMotion.sqldef
+    File Should Exist    ${SALWorkDir}/sql/tcs_command_stopMotion.sqlwrt
+    File Should Exist    ${SALWorkDir}/sql/tcs_command_stopMotion_items.sql
+
+Verify TCS Command target SQL defintion files exist
+    [Tags]    sql
+    @{files}=    List Directory    ${SALWorkDir}/sql    pattern=tcs_*target*
+    Log Many    @{files}
+    File Should Exist    ${SALWorkDir}/sql/tcs_command_target.sqldef
+    File Should Exist    ${SALWorkDir}/sql/tcs_command_target.sqlwrt
+    File Should Exist    ${SALWorkDir}/sql/tcs_command_target_items.sql
 
 Verify TCS Event wfpDataReady SQL defintion files exist
     [Tags]    sql
@@ -300,4 +316,28 @@ Verify TCS Event HeartbeatIn SQL defintion files exist
     File Should Exist    ${SALWorkDir}/sql/tcs_logevent_HeartbeatIn.sqldef
     File Should Exist    ${SALWorkDir}/sql/tcs_logevent_HeartbeatIn.sqlwrt
     File Should Exist    ${SALWorkDir}/sql/tcs_logevent_HeartbeatIn_items.sql
+
+Verify TCS Event FilterChangeInPosition SQL defintion files exist
+    [Tags]    sql
+    @{files}=    List Directory    ${SALWorkDir}/sql    pattern=tcs_*FilterChangeInPosition*
+    Log Many    @{files}
+    File Should Exist    ${SALWorkDir}/sql/tcs_logevent_FilterChangeInPosition.sqldef
+    File Should Exist    ${SALWorkDir}/sql/tcs_logevent_FilterChangeInPosition.sqlwrt
+    File Should Exist    ${SALWorkDir}/sql/tcs_logevent_FilterChangeInPosition_items.sql
+
+Verify TCS Event TargetInPosition SQL defintion files exist
+    [Tags]    sql
+    @{files}=    List Directory    ${SALWorkDir}/sql    pattern=tcs_*TargetInPosition*
+    Log Many    @{files}
+    File Should Exist    ${SALWorkDir}/sql/tcs_logevent_TargetInPosition.sqldef
+    File Should Exist    ${SALWorkDir}/sql/tcs_logevent_TargetInPosition.sqlwrt
+    File Should Exist    ${SALWorkDir}/sql/tcs_logevent_TargetInPosition_items.sql
+
+Verify TCS Event SettingsApplied SQL defintion files exist
+    [Tags]    sql
+    @{files}=    List Directory    ${SALWorkDir}/sql    pattern=tcs_*SettingsApplied*
+    Log Many    @{files}
+    File Should Exist    ${SALWorkDir}/sql/tcs_logevent_SettingsApplied.sqldef
+    File Should Exist    ${SALWorkDir}/sql/tcs_logevent_SettingsApplied.sqlwrt
+    File Should Exist    ${SALWorkDir}/sql/tcs_logevent_SettingsApplied_items.sql
 

@@ -21,22 +21,6 @@ Create SQL Session
     Directory Should Exist    ${SALInstall}
     Directory Should Exist    ${SALHome}
 
-Verify Rotator Telemetry LimitSensors SQL defintion files exist
-    [Tags]    sql
-    @{files}=    List Directory    ${SALWorkDir}/sql    pattern=*LimitSensors*
-    Log Many    @{files}
-    File Should Exist    ${SALWorkDir}/sql/rotator_LimitSensors.sqldef
-    File Should Exist    ${SALWorkDir}/sql/rotator_LimitSensors.sqlwrt
-    File Should Exist    ${SALWorkDir}/sql/rotator_LimitSensors_items.sql
-
-Verify Rotator Telemetry Position SQL defintion files exist
-    [Tags]    sql
-    @{files}=    List Directory    ${SALWorkDir}/sql    pattern=*Position*
-    Log Many    @{files}
-    File Should Exist    ${SALWorkDir}/sql/rotator_Position.sqldef
-    File Should Exist    ${SALWorkDir}/sql/rotator_Position.sqlwrt
-    File Should Exist    ${SALWorkDir}/sql/rotator_Position_items.sql
-
 Verify Rotator Telemetry Electrical SQL defintion files exist
     [Tags]    sql
     @{files}=    List Directory    ${SALWorkDir}/sql    pattern=*Electrical*
@@ -45,13 +29,21 @@ Verify Rotator Telemetry Electrical SQL defintion files exist
     File Should Exist    ${SALWorkDir}/sql/rotator_Electrical.sqlwrt
     File Should Exist    ${SALWorkDir}/sql/rotator_Electrical_items.sql
 
-Verify Rotator Telemetry TC SQL defintion files exist
+Verify Rotator Telemetry Application SQL defintion files exist
     [Tags]    sql
-    @{files}=    List Directory    ${SALWorkDir}/sql    pattern=*TC*
+    @{files}=    List Directory    ${SALWorkDir}/sql    pattern=*Application*
     Log Many    @{files}
-    File Should Exist    ${SALWorkDir}/sql/rotator_TC.sqldef
-    File Should Exist    ${SALWorkDir}/sql/rotator_TC.sqlwrt
-    File Should Exist    ${SALWorkDir}/sql/rotator_TC_items.sql
+    File Should Exist    ${SALWorkDir}/sql/rotator_Application.sqldef
+    File Should Exist    ${SALWorkDir}/sql/rotator_Application.sqlwrt
+    File Should Exist    ${SALWorkDir}/sql/rotator_Application_items.sql
+
+Verify Rotator Telemetry Motors SQL defintion files exist
+    [Tags]    sql
+    @{files}=    List Directory    ${SALWorkDir}/sql    pattern=*Motors*
+    Log Many    @{files}
+    File Should Exist    ${SALWorkDir}/sql/rotator_Motors.sqldef
+    File Should Exist    ${SALWorkDir}/sql/rotator_Motors.sqlwrt
+    File Should Exist    ${SALWorkDir}/sql/rotator_Motors_items.sql
 
 Verify Rotator State Command enable SQL defintion files exist
     [Tags]    sql
@@ -157,13 +149,29 @@ Verify Rotator Command test SQL defintion files exist
     File Should Exist    ${SALWorkDir}/sql/rotator_command_test.sqlwrt
     File Should Exist    ${SALWorkDir}/sql/rotator_command_test_items.sql
 
-Verify Rotator Event error SQL defintion files exist
+Verify Rotator Command trackStart SQL defintion files exist
     [Tags]    sql
-    @{files}=    List Directory    ${SALWorkDir}/sql    pattern=rotator_*error*
+    @{files}=    List Directory    ${SALWorkDir}/sql    pattern=rotator_*trackStart*
     Log Many    @{files}
-    File Should Exist    ${SALWorkDir}/sql/rotator_logevent_error.sqldef
-    File Should Exist    ${SALWorkDir}/sql/rotator_logevent_error.sqlwrt
-    File Should Exist    ${SALWorkDir}/sql/rotator_logevent_error_items.sql
+    File Should Exist    ${SALWorkDir}/sql/rotator_command_trackStart.sqldef
+    File Should Exist    ${SALWorkDir}/sql/rotator_command_trackStart.sqlwrt
+    File Should Exist    ${SALWorkDir}/sql/rotator_command_trackStart_items.sql
+
+Verify Rotator Command clearError SQL defintion files exist
+    [Tags]    sql
+    @{files}=    List Directory    ${SALWorkDir}/sql    pattern=rotator_*clearError*
+    Log Many    @{files}
+    File Should Exist    ${SALWorkDir}/sql/rotator_command_clearError.sqldef
+    File Should Exist    ${SALWorkDir}/sql/rotator_command_clearError.sqlwrt
+    File Should Exist    ${SALWorkDir}/sql/rotator_command_clearError_items.sql
+
+Verify Rotator Command positionSet SQL defintion files exist
+    [Tags]    sql
+    @{files}=    List Directory    ${SALWorkDir}/sql    pattern=rotator_*positionSet*
+    Log Many    @{files}
+    File Should Exist    ${SALWorkDir}/sql/rotator_command_positionSet.sqldef
+    File Should Exist    ${SALWorkDir}/sql/rotator_command_positionSet.sqlwrt
+    File Should Exist    ${SALWorkDir}/sql/rotator_command_positionSet_items.sql
 
 Verify Rotator Event interlock SQL defintion files exist
     [Tags]    sql
@@ -172,30 +180,6 @@ Verify Rotator Event interlock SQL defintion files exist
     File Should Exist    ${SALWorkDir}/sql/rotator_logevent_interlock.sqldef
     File Should Exist    ${SALWorkDir}/sql/rotator_logevent_interlock.sqlwrt
     File Should Exist    ${SALWorkDir}/sql/rotator_logevent_interlock_items.sql
-
-Verify Rotator Event limit SQL defintion files exist
-    [Tags]    sql
-    @{files}=    List Directory    ${SALWorkDir}/sql    pattern=rotator_*limit*
-    Log Many    @{files}
-    File Should Exist    ${SALWorkDir}/sql/rotator_logevent_limit.sqldef
-    File Should Exist    ${SALWorkDir}/sql/rotator_logevent_limit.sqlwrt
-    File Should Exist    ${SALWorkDir}/sql/rotator_logevent_limit_items.sql
-
-Verify Rotator Event moveOK SQL defintion files exist
-    [Tags]    sql
-    @{files}=    List Directory    ${SALWorkDir}/sql    pattern=rotator_*moveOK*
-    Log Many    @{files}
-    File Should Exist    ${SALWorkDir}/sql/rotator_logevent_moveOK.sqldef
-    File Should Exist    ${SALWorkDir}/sql/rotator_logevent_moveOK.sqlwrt
-    File Should Exist    ${SALWorkDir}/sql/rotator_logevent_moveOK_items.sql
-
-Verify Rotator Event tempError SQL defintion files exist
-    [Tags]    sql
-    @{files}=    List Directory    ${SALWorkDir}/sql    pattern=rotator_*tempError*
-    Log Many    @{files}
-    File Should Exist    ${SALWorkDir}/sql/rotator_logevent_tempError.sqldef
-    File Should Exist    ${SALWorkDir}/sql/rotator_logevent_tempError.sqlwrt
-    File Should Exist    ${SALWorkDir}/sql/rotator_logevent_tempError_items.sql
 
 Verify Rotator Event trackLost SQL defintion files exist
     [Tags]    sql
@@ -212,4 +196,20 @@ Verify Rotator Event tracking SQL defintion files exist
     File Should Exist    ${SALWorkDir}/sql/rotator_logevent_tracking.sqldef
     File Should Exist    ${SALWorkDir}/sql/rotator_logevent_tracking.sqlwrt
     File Should Exist    ${SALWorkDir}/sql/rotator_logevent_tracking_items.sql
+
+Verify Rotator Event deviceError SQL defintion files exist
+    [Tags]    sql
+    @{files}=    List Directory    ${SALWorkDir}/sql    pattern=rotator_*deviceError*
+    Log Many    @{files}
+    File Should Exist    ${SALWorkDir}/sql/rotator_logevent_deviceError.sqldef
+    File Should Exist    ${SALWorkDir}/sql/rotator_logevent_deviceError.sqlwrt
+    File Should Exist    ${SALWorkDir}/sql/rotator_logevent_deviceError_items.sql
+
+Verify Rotator Event inPosition SQL defintion files exist
+    [Tags]    sql
+    @{files}=    List Directory    ${SALWorkDir}/sql    pattern=rotator_*inPosition*
+    Log Many    @{files}
+    File Should Exist    ${SALWorkDir}/sql/rotator_logevent_inPosition.sqldef
+    File Should Exist    ${SALWorkDir}/sql/rotator_logevent_inPosition.sqlwrt
+    File Should Exist    ${SALWorkDir}/sql/rotator_logevent_inPosition_items.sql
 

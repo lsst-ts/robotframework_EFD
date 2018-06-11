@@ -157,14 +157,6 @@ Verify Scheduler Telemetry sequencePropConfig SQL defintion files exist
     File Should Exist    ${SALWorkDir}/sql/scheduler_sequencePropConfig.sqlwrt
     File Should Exist    ${SALWorkDir}/sql/scheduler_sequencePropConfig_items.sql
 
-Verify Scheduler Telemetry blockPusher SQL defintion files exist
-    [Tags]    sql
-    @{files}=    List Directory    ${SALWorkDir}/sql    pattern=*blockPusher*
-    Log Many    @{files}
-    File Should Exist    ${SALWorkDir}/sql/scheduler_blockPusher.sqldef
-    File Should Exist    ${SALWorkDir}/sql/scheduler_blockPusher.sqlwrt
-    File Should Exist    ${SALWorkDir}/sql/scheduler_blockPusher_items.sql
-
 Verify Scheduler Telemetry observatoryState SQL defintion files exist
     [Tags]    sql
     @{files}=    List Directory    ${SALWorkDir}/sql    pattern=*observatoryState*
