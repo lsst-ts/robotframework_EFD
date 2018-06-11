@@ -1,5 +1,6 @@
 *** Settings ***
-Documentation    This suite verify SQL table creation for the TcsOFC.
+Documentation    This suite verifies SQL table creation for the TcsOFC.
+Force Tags    TSS-2625
 Suite Setup    Log Many    ${Host}    ${timeout}    ${SALVersion}
 Suite Teardown    Close All Connections
 Library    SSHLibrary

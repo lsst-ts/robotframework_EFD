@@ -1,5 +1,6 @@
 *** Settings ***
-Documentation    This suite verify SQL table creation for the Hexapod.
+Documentation    This suite verifies SQL table creation for the Hexapod.
+Force Tags    
 Suite Setup    Log Many    ${Host}    ${timeout}    ${SALVersion}
 Suite Teardown    Close All Connections
 Library    SSHLibrary

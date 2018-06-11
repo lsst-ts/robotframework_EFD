@@ -1,5 +1,6 @@
 *** Settings ***
-Documentation    This suite verify SQL table creation for the TcsWEP.
+Documentation    This suite verifies SQL table creation for the TcsWEP.
+Force Tags    TSS-2626
 Suite Setup    Log Many    ${Host}    ${timeout}    ${SALVersion}
 Suite Teardown    Close All Connections
 Library    SSHLibrary

@@ -1,5 +1,6 @@
 *** Settings ***
-Documentation    This suite verify SQL table creation for the M1M3.
+Documentation    This suite verifies SQL table creation for the M1M3.
+Force Tags    TSS-2617
 Suite Setup    Log Many    ${Host}    ${timeout}    ${SALVersion}
 Suite Teardown    Close All Connections
 Library    SSHLibrary

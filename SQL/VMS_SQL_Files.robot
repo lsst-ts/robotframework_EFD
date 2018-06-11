@@ -1,5 +1,6 @@
 *** Settings ***
-Documentation    This suite verify SQL table creation for the VMS.
+Documentation    This suite verifies SQL table creation for the VMS.
+Force Tags    TSS-2618
 Suite Setup    Log Many    ${Host}    ${timeout}    ${SALVersion}
 Suite Teardown    Close All Connections
 Library    SSHLibrary

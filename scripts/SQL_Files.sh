@@ -16,8 +16,10 @@ declare -a subSystemArray=($(subsystemArray))
 
 #  FUNCTIONS
 function createSettings() {
+    skipped=$(checkIfSkipped $subSystem)
     echo "*** Settings ***" >> $testSuite
-    echo "Documentation    This suite verify SQL table creation for the $subSystemUp." >> $testSuite
+    echo "Documentation    This suite verifies SQL table creation for the $subSystemUp." >> $testSuite
+    echo "Force Tags    $skipped" >> $testSuite
     echo "Suite Setup    Log Many    \${Host}    \${timeout}    \${SALVersion}" >> $testSuite
     echo "Suite Teardown    Close All Connections" >> $testSuite
     echo "Library    SSHLibrary" >> $testSuite
@@ -46,17 +48,20 @@ function verifySQLTelemetryDefinitions() {
 	done
 }
  
-function verifySQLCommandsDefinitions() {
+function verifySQLStateDefinitions() {
 	for topic in "${stateArray[@]}"; do
-        echo "Verify $subSystemUp State Command $topic SQL defintion files exist" >> $testSuite
-        echo "    [Tags]    sql" >> $testSuite
-        echo "    @{files}=    List Directory    \${SALWorkDir}/sql    pattern=${subSystem}_*${topic}*" >> $testSuite
-        echo "    Log Many    @{files}" >> $testSuite
-        echo "    File Should Exist    \${SALWorkDir}/sql/${subSystem}_command_${topic}.sqldef" >> $testSuite
-        echo "    File Should Exist    \${SALWorkDir}/sql/${subSystem}_command_${topic}.sqlwrt" >> $testSuite
-        echo "    File Should Exist    \${SALWorkDir}/sql/${subSystem}_command_${topic}_items.sql" >> $testSuite
-        echo "" >> $testSuite
-    done
+   		echo "Verify $subSystemUp State Command $topic SQL defintion files exist" >> $testSuite
+   		echo "    [Tags]    sql" >> $testSuite
+   		echo "    @{files}=    List Directory    \${SALWorkDir}/sql    pattern=${subSystem}_*${topic}*" >> $testSuite
+   		echo "    Log Many    @{files}" >> $testSuite
+   		echo "    File Should Exist    \${SALWorkDir}/sql/${subSystem}_command_${topic}.sqldef" >> $testSuite
+   		echo "    File Should Exist    \${SALWorkDir}/sql/${subSystem}_command_${topic}.sqlwrt" >> $testSuite
+   		echo "    File Should Exist    \${SALWorkDir}/sql/${subSystem}_command_${topic}_items.sql" >> $testSuite
+   		echo "" >> $testSuite
+	done
+}
+
+function verifySQLCommandsDefinitions() {
     for topic in "${commandArray[@]}"; do
         echo "Verify $subSystemUp Command $topic SQL defintion files exist" >> $testSuite
         echo "    [Tags]    sql" >> $testSuite
@@ -84,6 +89,7 @@ function verifySQLEventsDefinitions() {
 }
 
 function createTestSuite() {
+	arg=$(echo $1 |tr '[:upper:]' '[:lower:]')
 	subSystem=$1
 
 	#  Define test suite name
@@ -111,6 +117,17 @@ function createTestSuite() {
 	echo "*** Test Cases ***" >> $testSuite
 	createSession "SQL"
     verifySQLTelemetryDefinitions
+	# Generate State Definition tests. Skip CSCs that explicitly define these topics.
+    declare -a array=($(stateMachineSkipped))
+	skipped=false
+	for item in "${array[@]}"; do
+        if [[ "$item" == "$arg" ]]; then
+            echo "The $(capitializeSubsystem $arg) explicitly defines the generic commands and events"
+            echo ""
+            skipped=true
+        fi
+	done
+	if (( ! $skipped )); then verifySQLStateDefinitions; else echo "Skipping"; fi
 	verifySQLCommandsDefinitions
 	verifySQLEventsDefinitions
 	# Indicate completion of the test suite.
