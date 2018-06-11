@@ -4,7 +4,13 @@
 --output EFD_Tables
 
 # List of test suites
+EFD_Tables/ATCS_EFD_Tables.robot
 EFD_Tables/Archiver_EFD_Tables.robot
+EFD_Tables/AtArchiver_EFD_Tables.robot
+EFD_Tables/AtCamera_EFD_Tables.robot
+EFD_Tables/AtHeaderService_EFD_Tables.robot
+EFD_Tables/AtMonochromator_EFD_Tables.robot
+EFD_Tables/AtScheduler_EFD_Tables.robot
 EFD_Tables/Camera_EFD_Tables.robot
 EFD_Tables/CatchupArchiver_EFD_Tables.robot
 EFD_Tables/DomeADB_EFD_Tables.robot
@@ -14,6 +20,9 @@ EFD_Tables/DomeLouvers_EFD_Tables.robot
 EFD_Tables/DomeMONCS_EFD_Tables.robot
 EFD_Tables/DomeTHCS_EFD_Tables.robot
 EFD_Tables/Dome_EFD_Tables.robot
+EFD_Tables/EEC_EFD_Tables.robot
+EFD_Tables/EFD_EFD_Tables.robot
+EFD_Tables/HeaderService_EFD_Tables.robot
 EFD_Tables/Hexapod_EFD_Tables.robot
 EFD_Tables/M1M3_EFD_Tables.robot
 EFD_Tables/M2MS_EFD_Tables.robot
@@ -22,4 +31,8 @@ EFD_Tables/OCS_EFD_Tables.robot
 EFD_Tables/Rotator_EFD_Tables.robot
 EFD_Tables/Scheduler_EFD_Tables.robot
 EFD_Tables/Sequencer_EFD_Tables.robot
+EFD_Tables/SummitFacility_EFD_Tables.robot
 EFD_Tables/TCS_EFD_Tables.robot
+EFD_Tables/TcsOFC_EFD_Tables.robot
+EFD_Tables/TcsWEP_EFD_Tables.robot
+EFD_Tables/VMS_EFD_Tables.robot

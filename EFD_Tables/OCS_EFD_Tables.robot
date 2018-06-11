@@ -1,5 +1,6 @@
 *** Settings ***
 Documentation    This suite verify SQL table creation for the OCS.
+Force Tags    
 Suite Setup    Log Many    ${Host}    ${timeout}    ${SALVersion}
 Suite Teardown    Close All Connections
 Library    SSHLibrary
@@ -20,20 +21,6 @@ Create EFD_Tables Session
     Login With Public Key    ${UserName}    keyfile=${KeyFile}    password=${PassWord}
     Directory Should Exist    ${SALInstall}
     Directory Should Exist    ${SALHome}
-
-Verify OCS Telemetry SequencerHeartbeat EFD table create
-    [Tags]    sql    
-    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD < ${SALWorkDir}/sql/ocs_SequencerHeartbeat.sqldef    return_stderr=True    return_rc=True
-    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Failed to create the ocs SequencerHeartbeat table
-    Run Keyword And Continue On Failure    Should Be Empty    ${output}
-    Run Keyword And Continue On Failure    Should Be Empty    ${error}
-
-Verify OCS Telemetry SequencerHeartbeat EFD table
-    [Tags]    sql    
-    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD -v -v -e "select * from ocs_SequencerHeartbeat"    return_stderr=True    return_rc=True
-    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Table ocs SequencerHeartbeat does not exist
-    Run Keyword And Continue On Failure    Should Contain    ${output}    Empty set
-    Run Keyword And Continue On Failure    Should Be Empty    ${error}
 
 Verify OCS State Command enable EFD table create
     [Tags]    sql    
@@ -144,6 +131,20 @@ Verify OCS State Command stop EFD table
     [Tags]    sql    
     ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD -v -v -e "select * from ocs_command_stop"    return_stderr=True    return_rc=True
     Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Table ocs stop does not exist
+    Run Keyword And Continue On Failure    Should Contain    ${output}    Empty set
+    Run Keyword And Continue On Failure    Should Be Empty    ${error}
+
+Verify OCS Telemetry SequencerHeartbeat EFD table create
+    [Tags]    sql    
+    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD < ${SALWorkDir}/sql/ocs_SequencerHeartbeat.sqldef    return_stderr=True    return_rc=True
+    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Failed to create the ocs SequencerHeartbeat table
+    Run Keyword And Continue On Failure    Should Be Empty    ${output}
+    Run Keyword And Continue On Failure    Should Be Empty    ${error}
+
+Verify OCS Telemetry SequencerHeartbeat EFD table
+    [Tags]    sql    
+    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD -v -v -e "select * from ocs_SequencerHeartbeat"    return_stderr=True    return_rc=True
+    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Table ocs SequencerHeartbeat does not exist
     Run Keyword And Continue On Failure    Should Contain    ${output}    Empty set
     Run Keyword And Continue On Failure    Should Be Empty    ${error}
 

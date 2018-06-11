@@ -1,5 +1,6 @@
 *** Settings ***
 Documentation    This suite verify SQL table creation for the CatchupArchiver.
+Force Tags    
 Suite Setup    Log Many    ${Host}    ${timeout}    ${SALVersion}
 Suite Teardown    Close All Connections
 Library    SSHLibrary
@@ -35,115 +36,205 @@ Verify CatchupArchiver Telemetry SequencerHeartbeat EFD table
     Run Keyword And Continue On Failure    Should Contain    ${output}    Empty set
     Run Keyword And Continue On Failure    Should Be Empty    ${error}
 
-Verify CatchupArchiver State Command enable EFD table create
-    [Tags]    sql    
-    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD < ${SALWorkDir}/sql/catchuparchiver_command_enable.sqldef    return_stderr=True    return_rc=True
-    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Failed to create the catchuparchiver enable table
-    Run Keyword And Continue On Failure    Should Be Empty    ${output}
-    Run Keyword And Continue On Failure    Should Be Empty    ${error}
-
-Verify CatchupArchiver State Command enable EFD table
-    [Tags]    sql    
-    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD -v -v -e "select * from catchuparchiver_command_enable"    return_stderr=True    return_rc=True
-    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Table catchuparchiver enable does not exist
-    Run Keyword And Continue On Failure    Should Contain    ${output}    Empty set
-    Run Keyword And Continue On Failure    Should Be Empty    ${error}
-
-Verify CatchupArchiver State Command disable EFD table create
-    [Tags]    sql    
-    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD < ${SALWorkDir}/sql/catchuparchiver_command_disable.sqldef    return_stderr=True    return_rc=True
-    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Failed to create the catchuparchiver disable table
-    Run Keyword And Continue On Failure    Should Be Empty    ${output}
-    Run Keyword And Continue On Failure    Should Be Empty    ${error}
-
-Verify CatchupArchiver State Command disable EFD table
-    [Tags]    sql    
-    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD -v -v -e "select * from catchuparchiver_command_disable"    return_stderr=True    return_rc=True
-    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Table catchuparchiver disable does not exist
-    Run Keyword And Continue On Failure    Should Contain    ${output}    Empty set
-    Run Keyword And Continue On Failure    Should Be Empty    ${error}
-
-Verify CatchupArchiver State Command abort EFD table create
-    [Tags]    sql    
-    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD < ${SALWorkDir}/sql/catchuparchiver_command_abort.sqldef    return_stderr=True    return_rc=True
-    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Failed to create the catchuparchiver abort table
-    Run Keyword And Continue On Failure    Should Be Empty    ${output}
-    Run Keyword And Continue On Failure    Should Be Empty    ${error}
-
-Verify CatchupArchiver State Command abort EFD table
-    [Tags]    sql    
-    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD -v -v -e "select * from catchuparchiver_command_abort"    return_stderr=True    return_rc=True
-    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Table catchuparchiver abort does not exist
-    Run Keyword And Continue On Failure    Should Contain    ${output}    Empty set
-    Run Keyword And Continue On Failure    Should Be Empty    ${error}
-
-Verify CatchupArchiver State Command enterControl EFD table create
-    [Tags]    sql    
-    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD < ${SALWorkDir}/sql/catchuparchiver_command_enterControl.sqldef    return_stderr=True    return_rc=True
-    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Failed to create the catchuparchiver enterControl table
-    Run Keyword And Continue On Failure    Should Be Empty    ${output}
-    Run Keyword And Continue On Failure    Should Be Empty    ${error}
-
-Verify CatchupArchiver State Command enterControl EFD table
-    [Tags]    sql    
-    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD -v -v -e "select * from catchuparchiver_command_enterControl"    return_stderr=True    return_rc=True
-    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Table catchuparchiver enterControl does not exist
-    Run Keyword And Continue On Failure    Should Contain    ${output}    Empty set
-    Run Keyword And Continue On Failure    Should Be Empty    ${error}
-
-Verify CatchupArchiver State Command exitControl EFD table create
-    [Tags]    sql    
-    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD < ${SALWorkDir}/sql/catchuparchiver_command_exitControl.sqldef    return_stderr=True    return_rc=True
-    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Failed to create the catchuparchiver exitControl table
-    Run Keyword And Continue On Failure    Should Be Empty    ${output}
-    Run Keyword And Continue On Failure    Should Be Empty    ${error}
-
-Verify CatchupArchiver State Command exitControl EFD table
-    [Tags]    sql    
-    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD -v -v -e "select * from catchuparchiver_command_exitControl"    return_stderr=True    return_rc=True
-    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Table catchuparchiver exitControl does not exist
-    Run Keyword And Continue On Failure    Should Contain    ${output}    Empty set
-    Run Keyword And Continue On Failure    Should Be Empty    ${error}
-
-Verify CatchupArchiver State Command standby EFD table create
-    [Tags]    sql    
-    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD < ${SALWorkDir}/sql/catchuparchiver_command_standby.sqldef    return_stderr=True    return_rc=True
-    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Failed to create the catchuparchiver standby table
-    Run Keyword And Continue On Failure    Should Be Empty    ${output}
-    Run Keyword And Continue On Failure    Should Be Empty    ${error}
-
-Verify CatchupArchiver State Command standby EFD table
-    [Tags]    sql    
-    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD -v -v -e "select * from catchuparchiver_command_standby"    return_stderr=True    return_rc=True
-    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Table catchuparchiver standby does not exist
-    Run Keyword And Continue On Failure    Should Contain    ${output}    Empty set
-    Run Keyword And Continue On Failure    Should Be Empty    ${error}
-
-Verify CatchupArchiver State Command start EFD table create
+Verify CatchupArchiver Command start EFD table create
     [Tags]    sql    
     ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD < ${SALWorkDir}/sql/catchuparchiver_command_start.sqldef    return_stderr=True    return_rc=True
     Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Failed to create the catchuparchiver start table
     Run Keyword And Continue On Failure    Should Be Empty    ${output}
     Run Keyword And Continue On Failure    Should Be Empty    ${error}
 
-Verify CatchupArchiver State Command start EFD table
+Verify CatchupArchiver Command start EFD table
     [Tags]    sql    
     ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD -v -v -e "select * from catchuparchiver_command_start"    return_stderr=True    return_rc=True
     Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Table catchuparchiver start does not exist
     Run Keyword And Continue On Failure    Should Contain    ${output}    Empty set
     Run Keyword And Continue On Failure    Should Be Empty    ${error}
 
-Verify CatchupArchiver State Command stop EFD table create
+Verify CatchupArchiver Command enable EFD table create
     [Tags]    sql    
-    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD < ${SALWorkDir}/sql/catchuparchiver_command_stop.sqldef    return_stderr=True    return_rc=True
-    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Failed to create the catchuparchiver stop table
+    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD < ${SALWorkDir}/sql/catchuparchiver_command_enable.sqldef    return_stderr=True    return_rc=True
+    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Failed to create the catchuparchiver enable table
     Run Keyword And Continue On Failure    Should Be Empty    ${output}
     Run Keyword And Continue On Failure    Should Be Empty    ${error}
 
-Verify CatchupArchiver State Command stop EFD table
+Verify CatchupArchiver Command enable EFD table
     [Tags]    sql    
-    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD -v -v -e "select * from catchuparchiver_command_stop"    return_stderr=True    return_rc=True
-    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Table catchuparchiver stop does not exist
+    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD -v -v -e "select * from catchuparchiver_command_enable"    return_stderr=True    return_rc=True
+    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Table catchuparchiver enable does not exist
+    Run Keyword And Continue On Failure    Should Contain    ${output}    Empty set
+    Run Keyword And Continue On Failure    Should Be Empty    ${error}
+
+Verify CatchupArchiver Command disable EFD table create
+    [Tags]    sql    
+    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD < ${SALWorkDir}/sql/catchuparchiver_command_disable.sqldef    return_stderr=True    return_rc=True
+    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Failed to create the catchuparchiver disable table
+    Run Keyword And Continue On Failure    Should Be Empty    ${output}
+    Run Keyword And Continue On Failure    Should Be Empty    ${error}
+
+Verify CatchupArchiver Command disable EFD table
+    [Tags]    sql    
+    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD -v -v -e "select * from catchuparchiver_command_disable"    return_stderr=True    return_rc=True
+    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Table catchuparchiver disable does not exist
+    Run Keyword And Continue On Failure    Should Contain    ${output}    Empty set
+    Run Keyword And Continue On Failure    Should Be Empty    ${error}
+
+Verify CatchupArchiver Command standby EFD table create
+    [Tags]    sql    
+    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD < ${SALWorkDir}/sql/catchuparchiver_command_standby.sqldef    return_stderr=True    return_rc=True
+    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Failed to create the catchuparchiver standby table
+    Run Keyword And Continue On Failure    Should Be Empty    ${output}
+    Run Keyword And Continue On Failure    Should Be Empty    ${error}
+
+Verify CatchupArchiver Command standby EFD table
+    [Tags]    sql    
+    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD -v -v -e "select * from catchuparchiver_command_standby"    return_stderr=True    return_rc=True
+    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Table catchuparchiver standby does not exist
+    Run Keyword And Continue On Failure    Should Contain    ${output}    Empty set
+    Run Keyword And Continue On Failure    Should Be Empty    ${error}
+
+Verify CatchupArchiver Command enterControl EFD table create
+    [Tags]    sql    
+    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD < ${SALWorkDir}/sql/catchuparchiver_command_enterControl.sqldef    return_stderr=True    return_rc=True
+    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Failed to create the catchuparchiver enterControl table
+    Run Keyword And Continue On Failure    Should Be Empty    ${output}
+    Run Keyword And Continue On Failure    Should Be Empty    ${error}
+
+Verify CatchupArchiver Command enterControl EFD table
+    [Tags]    sql    
+    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD -v -v -e "select * from catchuparchiver_command_enterControl"    return_stderr=True    return_rc=True
+    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Table catchuparchiver enterControl does not exist
+    Run Keyword And Continue On Failure    Should Contain    ${output}    Empty set
+    Run Keyword And Continue On Failure    Should Be Empty    ${error}
+
+Verify CatchupArchiver Command exitControl EFD table create
+    [Tags]    sql    
+    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD < ${SALWorkDir}/sql/catchuparchiver_command_exitControl.sqldef    return_stderr=True    return_rc=True
+    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Failed to create the catchuparchiver exitControl table
+    Run Keyword And Continue On Failure    Should Be Empty    ${output}
+    Run Keyword And Continue On Failure    Should Be Empty    ${error}
+
+Verify CatchupArchiver Command exitControl EFD table
+    [Tags]    sql    
+    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD -v -v -e "select * from catchuparchiver_command_exitControl"    return_stderr=True    return_rc=True
+    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Table catchuparchiver exitControl does not exist
+    Run Keyword And Continue On Failure    Should Contain    ${output}    Empty set
+    Run Keyword And Continue On Failure    Should Be Empty    ${error}
+
+Verify CatchupArchiver Command setValue EFD table create
+    [Tags]    sql    
+    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD < ${SALWorkDir}/sql/catchuparchiver_command_setValue.sqldef    return_stderr=True    return_rc=True
+    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Failed to create the catchuparchiver setValue table
+    Run Keyword And Continue On Failure    Should Be Empty    ${output}
+    Run Keyword And Continue On Failure    Should Be Empty    ${error}
+
+Verify CatchupArchiver Command setValue EFD table
+    [Tags]    sql    
+    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD -v -v -e "select * from catchuparchiver_command_setValue"    return_stderr=True    return_rc=True
+    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Table catchuparchiver setValue does not exist
+    Run Keyword And Continue On Failure    Should Contain    ${output}    Empty set
+    Run Keyword And Continue On Failure    Should Be Empty    ${error}
+
+Verify CatchupArchiver Command abort EFD table create
+    [Tags]    sql    
+    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD < ${SALWorkDir}/sql/catchuparchiver_command_abort.sqldef    return_stderr=True    return_rc=True
+    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Failed to create the catchuparchiver abort table
+    Run Keyword And Continue On Failure    Should Be Empty    ${output}
+    Run Keyword And Continue On Failure    Should Be Empty    ${error}
+
+Verify CatchupArchiver Command abort EFD table
+    [Tags]    sql    
+    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD -v -v -e "select * from catchuparchiver_command_abort"    return_stderr=True    return_rc=True
+    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Table catchuparchiver abort does not exist
+    Run Keyword And Continue On Failure    Should Contain    ${output}    Empty set
+    Run Keyword And Continue On Failure    Should Be Empty    ${error}
+
+Verify CatchupArchiver Event ErrorCode EFD table create
+    [Tags]    sql    
+    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD < ${SALWorkDir}/sql/catchuparchiver_logevent_ErrorCode.sqldef    return_stderr=True    return_rc=True
+    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Failed to create the catchuparchiver ErrorCode table
+    Run Keyword And Continue On Failure    Should Be Empty    ${output}
+    Run Keyword And Continue On Failure    Should Be Empty    ${error}
+
+Verify CatchupArchiver Event ErrorCode EFD table
+    [Tags]    sql    
+    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD -v -v -e "select * from catchuparchiver_logevent_ErrorCode"    return_stderr=True    return_rc=True
+    Log    ${output}
+    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Table catchuparchiver ErrorCode does not exist
+    Run Keyword And Continue On Failure    Should Contain    ${output}    Empty set
+    Run Keyword And Continue On Failure    Should Be Empty    ${error}
+
+Verify CatchupArchiver Event SettingVersions EFD table create
+    [Tags]    sql    
+    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD < ${SALWorkDir}/sql/catchuparchiver_logevent_SettingVersions.sqldef    return_stderr=True    return_rc=True
+    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Failed to create the catchuparchiver SettingVersions table
+    Run Keyword And Continue On Failure    Should Be Empty    ${output}
+    Run Keyword And Continue On Failure    Should Be Empty    ${error}
+
+Verify CatchupArchiver Event SettingVersions EFD table
+    [Tags]    sql    
+    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD -v -v -e "select * from catchuparchiver_logevent_SettingVersions"    return_stderr=True    return_rc=True
+    Log    ${output}
+    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Table catchuparchiver SettingVersions does not exist
+    Run Keyword And Continue On Failure    Should Contain    ${output}    Empty set
+    Run Keyword And Continue On Failure    Should Be Empty    ${error}
+
+Verify CatchupArchiver Event AppliedSettingsMatchStart EFD table create
+    [Tags]    sql    
+    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD < ${SALWorkDir}/sql/catchuparchiver_logevent_AppliedSettingsMatchStart.sqldef    return_stderr=True    return_rc=True
+    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Failed to create the catchuparchiver AppliedSettingsMatchStart table
+    Run Keyword And Continue On Failure    Should Be Empty    ${output}
+    Run Keyword And Continue On Failure    Should Be Empty    ${error}
+
+Verify CatchupArchiver Event AppliedSettingsMatchStart EFD table
+    [Tags]    sql    
+    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD -v -v -e "select * from catchuparchiver_logevent_AppliedSettingsMatchStart"    return_stderr=True    return_rc=True
+    Log    ${output}
+    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Table catchuparchiver AppliedSettingsMatchStart does not exist
+    Run Keyword And Continue On Failure    Should Contain    ${output}    Empty set
+    Run Keyword And Continue On Failure    Should Be Empty    ${error}
+
+Verify CatchupArchiver Event SettingsApplied EFD table create
+    [Tags]    sql    
+    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD < ${SALWorkDir}/sql/catchuparchiver_logevent_SettingsApplied.sqldef    return_stderr=True    return_rc=True
+    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Failed to create the catchuparchiver SettingsApplied table
+    Run Keyword And Continue On Failure    Should Be Empty    ${output}
+    Run Keyword And Continue On Failure    Should Be Empty    ${error}
+
+Verify CatchupArchiver Event SettingsApplied EFD table
+    [Tags]    sql    
+    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD -v -v -e "select * from catchuparchiver_logevent_SettingsApplied"    return_stderr=True    return_rc=True
+    Log    ${output}
+    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Table catchuparchiver SettingsApplied does not exist
+    Run Keyword And Continue On Failure    Should Contain    ${output}    Empty set
+    Run Keyword And Continue On Failure    Should Be Empty    ${error}
+
+Verify CatchupArchiver Event DetailedState EFD table create
+    [Tags]    sql    
+    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD < ${SALWorkDir}/sql/catchuparchiver_logevent_DetailedState.sqldef    return_stderr=True    return_rc=True
+    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Failed to create the catchuparchiver DetailedState table
+    Run Keyword And Continue On Failure    Should Be Empty    ${output}
+    Run Keyword And Continue On Failure    Should Be Empty    ${error}
+
+Verify CatchupArchiver Event DetailedState EFD table
+    [Tags]    sql    
+    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD -v -v -e "select * from catchuparchiver_logevent_DetailedState"    return_stderr=True    return_rc=True
+    Log    ${output}
+    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Table catchuparchiver DetailedState does not exist
+    Run Keyword And Continue On Failure    Should Contain    ${output}    Empty set
+    Run Keyword And Continue On Failure    Should Be Empty    ${error}
+
+Verify CatchupArchiver Event SummaryState EFD table create
+    [Tags]    sql    
+    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD < ${SALWorkDir}/sql/catchuparchiver_logevent_SummaryState.sqldef    return_stderr=True    return_rc=True
+    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Failed to create the catchuparchiver SummaryState table
+    Run Keyword And Continue On Failure    Should Be Empty    ${output}
+    Run Keyword And Continue On Failure    Should Be Empty    ${error}
+
+Verify CatchupArchiver Event SummaryState EFD table
+    [Tags]    sql    
+    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD -v -v -e "select * from catchuparchiver_logevent_SummaryState"    return_stderr=True    return_rc=True
+    Log    ${output}
+    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Table catchuparchiver SummaryState does not exist
     Run Keyword And Continue On Failure    Should Contain    ${output}    Empty set
     Run Keyword And Continue On Failure    Should Be Empty    ${error}
 

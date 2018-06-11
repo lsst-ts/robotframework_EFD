@@ -1,5 +1,6 @@
 *** Settings ***
 Documentation    This suite verify SQL table creation for the MTMount.
+Force Tags    
 Suite Setup    Log Many    ${Host}    ${timeout}    ${SALVersion}
 Suite Teardown    Close All Connections
 Library    SSHLibrary
@@ -20,6 +21,118 @@ Create EFD_Tables Session
     Login With Public Key    ${UserName}    keyfile=${KeyFile}    password=${PassWord}
     Directory Should Exist    ${SALInstall}
     Directory Should Exist    ${SALHome}
+
+Verify MTMount State Command enable EFD table create
+    [Tags]    sql    
+    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD < ${SALWorkDir}/sql/MTMount_command_enable.sqldef    return_stderr=True    return_rc=True
+    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Failed to create the MTMount enable table
+    Run Keyword And Continue On Failure    Should Be Empty    ${output}
+    Run Keyword And Continue On Failure    Should Be Empty    ${error}
+
+Verify MTMount State Command enable EFD table
+    [Tags]    sql    
+    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD -v -v -e "select * from MTMount_command_enable"    return_stderr=True    return_rc=True
+    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Table MTMount enable does not exist
+    Run Keyword And Continue On Failure    Should Contain    ${output}    Empty set
+    Run Keyword And Continue On Failure    Should Be Empty    ${error}
+
+Verify MTMount State Command disable EFD table create
+    [Tags]    sql    
+    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD < ${SALWorkDir}/sql/MTMount_command_disable.sqldef    return_stderr=True    return_rc=True
+    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Failed to create the MTMount disable table
+    Run Keyword And Continue On Failure    Should Be Empty    ${output}
+    Run Keyword And Continue On Failure    Should Be Empty    ${error}
+
+Verify MTMount State Command disable EFD table
+    [Tags]    sql    
+    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD -v -v -e "select * from MTMount_command_disable"    return_stderr=True    return_rc=True
+    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Table MTMount disable does not exist
+    Run Keyword And Continue On Failure    Should Contain    ${output}    Empty set
+    Run Keyword And Continue On Failure    Should Be Empty    ${error}
+
+Verify MTMount State Command abort EFD table create
+    [Tags]    sql    
+    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD < ${SALWorkDir}/sql/MTMount_command_abort.sqldef    return_stderr=True    return_rc=True
+    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Failed to create the MTMount abort table
+    Run Keyword And Continue On Failure    Should Be Empty    ${output}
+    Run Keyword And Continue On Failure    Should Be Empty    ${error}
+
+Verify MTMount State Command abort EFD table
+    [Tags]    sql    
+    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD -v -v -e "select * from MTMount_command_abort"    return_stderr=True    return_rc=True
+    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Table MTMount abort does not exist
+    Run Keyword And Continue On Failure    Should Contain    ${output}    Empty set
+    Run Keyword And Continue On Failure    Should Be Empty    ${error}
+
+Verify MTMount State Command enterControl EFD table create
+    [Tags]    sql    
+    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD < ${SALWorkDir}/sql/MTMount_command_enterControl.sqldef    return_stderr=True    return_rc=True
+    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Failed to create the MTMount enterControl table
+    Run Keyword And Continue On Failure    Should Be Empty    ${output}
+    Run Keyword And Continue On Failure    Should Be Empty    ${error}
+
+Verify MTMount State Command enterControl EFD table
+    [Tags]    sql    
+    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD -v -v -e "select * from MTMount_command_enterControl"    return_stderr=True    return_rc=True
+    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Table MTMount enterControl does not exist
+    Run Keyword And Continue On Failure    Should Contain    ${output}    Empty set
+    Run Keyword And Continue On Failure    Should Be Empty    ${error}
+
+Verify MTMount State Command exitControl EFD table create
+    [Tags]    sql    
+    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD < ${SALWorkDir}/sql/MTMount_command_exitControl.sqldef    return_stderr=True    return_rc=True
+    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Failed to create the MTMount exitControl table
+    Run Keyword And Continue On Failure    Should Be Empty    ${output}
+    Run Keyword And Continue On Failure    Should Be Empty    ${error}
+
+Verify MTMount State Command exitControl EFD table
+    [Tags]    sql    
+    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD -v -v -e "select * from MTMount_command_exitControl"    return_stderr=True    return_rc=True
+    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Table MTMount exitControl does not exist
+    Run Keyword And Continue On Failure    Should Contain    ${output}    Empty set
+    Run Keyword And Continue On Failure    Should Be Empty    ${error}
+
+Verify MTMount State Command standby EFD table create
+    [Tags]    sql    
+    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD < ${SALWorkDir}/sql/MTMount_command_standby.sqldef    return_stderr=True    return_rc=True
+    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Failed to create the MTMount standby table
+    Run Keyword And Continue On Failure    Should Be Empty    ${output}
+    Run Keyword And Continue On Failure    Should Be Empty    ${error}
+
+Verify MTMount State Command standby EFD table
+    [Tags]    sql    
+    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD -v -v -e "select * from MTMount_command_standby"    return_stderr=True    return_rc=True
+    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Table MTMount standby does not exist
+    Run Keyword And Continue On Failure    Should Contain    ${output}    Empty set
+    Run Keyword And Continue On Failure    Should Be Empty    ${error}
+
+Verify MTMount State Command start EFD table create
+    [Tags]    sql    
+    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD < ${SALWorkDir}/sql/MTMount_command_start.sqldef    return_stderr=True    return_rc=True
+    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Failed to create the MTMount start table
+    Run Keyword And Continue On Failure    Should Be Empty    ${output}
+    Run Keyword And Continue On Failure    Should Be Empty    ${error}
+
+Verify MTMount State Command start EFD table
+    [Tags]    sql    
+    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD -v -v -e "select * from MTMount_command_start"    return_stderr=True    return_rc=True
+    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Table MTMount start does not exist
+    Run Keyword And Continue On Failure    Should Contain    ${output}    Empty set
+    Run Keyword And Continue On Failure    Should Be Empty    ${error}
+
+Verify MTMount State Command stop EFD table create
+    [Tags]    sql    
+    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD < ${SALWorkDir}/sql/MTMount_command_stop.sqldef    return_stderr=True    return_rc=True
+    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Failed to create the MTMount stop table
+    Run Keyword And Continue On Failure    Should Be Empty    ${output}
+    Run Keyword And Continue On Failure    Should Be Empty    ${error}
+
+Verify MTMount State Command stop EFD table
+    [Tags]    sql    
+    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD -v -v -e "select * from MTMount_command_stop"    return_stderr=True    return_rc=True
+    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Table MTMount stop does not exist
+    Run Keyword And Continue On Failure    Should Contain    ${output}    Empty set
+    Run Keyword And Continue On Failure    Should Be Empty    ${error}
 
 Verify MTMount Telemetry Az EFD table create
     [Tags]    sql    
@@ -214,118 +327,6 @@ Verify MTMount Telemetry MotionParameters EFD table
     [Tags]    sql    
     ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD -v -v -e "select * from MTMount_MotionParameters"    return_stderr=True    return_rc=True
     Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Table MTMount MotionParameters does not exist
-    Run Keyword And Continue On Failure    Should Contain    ${output}    Empty set
-    Run Keyword And Continue On Failure    Should Be Empty    ${error}
-
-Verify MTMount State Command enable EFD table create
-    [Tags]    sql    
-    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD < ${SALWorkDir}/sql/MTMount_command_enable.sqldef    return_stderr=True    return_rc=True
-    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Failed to create the MTMount enable table
-    Run Keyword And Continue On Failure    Should Be Empty    ${output}
-    Run Keyword And Continue On Failure    Should Be Empty    ${error}
-
-Verify MTMount State Command enable EFD table
-    [Tags]    sql    
-    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD -v -v -e "select * from MTMount_command_enable"    return_stderr=True    return_rc=True
-    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Table MTMount enable does not exist
-    Run Keyword And Continue On Failure    Should Contain    ${output}    Empty set
-    Run Keyword And Continue On Failure    Should Be Empty    ${error}
-
-Verify MTMount State Command disable EFD table create
-    [Tags]    sql    
-    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD < ${SALWorkDir}/sql/MTMount_command_disable.sqldef    return_stderr=True    return_rc=True
-    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Failed to create the MTMount disable table
-    Run Keyword And Continue On Failure    Should Be Empty    ${output}
-    Run Keyword And Continue On Failure    Should Be Empty    ${error}
-
-Verify MTMount State Command disable EFD table
-    [Tags]    sql    
-    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD -v -v -e "select * from MTMount_command_disable"    return_stderr=True    return_rc=True
-    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Table MTMount disable does not exist
-    Run Keyword And Continue On Failure    Should Contain    ${output}    Empty set
-    Run Keyword And Continue On Failure    Should Be Empty    ${error}
-
-Verify MTMount State Command abort EFD table create
-    [Tags]    sql    
-    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD < ${SALWorkDir}/sql/MTMount_command_abort.sqldef    return_stderr=True    return_rc=True
-    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Failed to create the MTMount abort table
-    Run Keyword And Continue On Failure    Should Be Empty    ${output}
-    Run Keyword And Continue On Failure    Should Be Empty    ${error}
-
-Verify MTMount State Command abort EFD table
-    [Tags]    sql    
-    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD -v -v -e "select * from MTMount_command_abort"    return_stderr=True    return_rc=True
-    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Table MTMount abort does not exist
-    Run Keyword And Continue On Failure    Should Contain    ${output}    Empty set
-    Run Keyword And Continue On Failure    Should Be Empty    ${error}
-
-Verify MTMount State Command enterControl EFD table create
-    [Tags]    sql    
-    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD < ${SALWorkDir}/sql/MTMount_command_enterControl.sqldef    return_stderr=True    return_rc=True
-    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Failed to create the MTMount enterControl table
-    Run Keyword And Continue On Failure    Should Be Empty    ${output}
-    Run Keyword And Continue On Failure    Should Be Empty    ${error}
-
-Verify MTMount State Command enterControl EFD table
-    [Tags]    sql    
-    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD -v -v -e "select * from MTMount_command_enterControl"    return_stderr=True    return_rc=True
-    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Table MTMount enterControl does not exist
-    Run Keyword And Continue On Failure    Should Contain    ${output}    Empty set
-    Run Keyword And Continue On Failure    Should Be Empty    ${error}
-
-Verify MTMount State Command exitControl EFD table create
-    [Tags]    sql    
-    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD < ${SALWorkDir}/sql/MTMount_command_exitControl.sqldef    return_stderr=True    return_rc=True
-    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Failed to create the MTMount exitControl table
-    Run Keyword And Continue On Failure    Should Be Empty    ${output}
-    Run Keyword And Continue On Failure    Should Be Empty    ${error}
-
-Verify MTMount State Command exitControl EFD table
-    [Tags]    sql    
-    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD -v -v -e "select * from MTMount_command_exitControl"    return_stderr=True    return_rc=True
-    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Table MTMount exitControl does not exist
-    Run Keyword And Continue On Failure    Should Contain    ${output}    Empty set
-    Run Keyword And Continue On Failure    Should Be Empty    ${error}
-
-Verify MTMount State Command standby EFD table create
-    [Tags]    sql    
-    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD < ${SALWorkDir}/sql/MTMount_command_standby.sqldef    return_stderr=True    return_rc=True
-    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Failed to create the MTMount standby table
-    Run Keyword And Continue On Failure    Should Be Empty    ${output}
-    Run Keyword And Continue On Failure    Should Be Empty    ${error}
-
-Verify MTMount State Command standby EFD table
-    [Tags]    sql    
-    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD -v -v -e "select * from MTMount_command_standby"    return_stderr=True    return_rc=True
-    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Table MTMount standby does not exist
-    Run Keyword And Continue On Failure    Should Contain    ${output}    Empty set
-    Run Keyword And Continue On Failure    Should Be Empty    ${error}
-
-Verify MTMount State Command start EFD table create
-    [Tags]    sql    
-    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD < ${SALWorkDir}/sql/MTMount_command_start.sqldef    return_stderr=True    return_rc=True
-    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Failed to create the MTMount start table
-    Run Keyword And Continue On Failure    Should Be Empty    ${output}
-    Run Keyword And Continue On Failure    Should Be Empty    ${error}
-
-Verify MTMount State Command start EFD table
-    [Tags]    sql    
-    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD -v -v -e "select * from MTMount_command_start"    return_stderr=True    return_rc=True
-    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Table MTMount start does not exist
-    Run Keyword And Continue On Failure    Should Contain    ${output}    Empty set
-    Run Keyword And Continue On Failure    Should Be Empty    ${error}
-
-Verify MTMount State Command stop EFD table create
-    [Tags]    sql    
-    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD < ${SALWorkDir}/sql/MTMount_command_stop.sqldef    return_stderr=True    return_rc=True
-    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Failed to create the MTMount stop table
-    Run Keyword And Continue On Failure    Should Be Empty    ${output}
-    Run Keyword And Continue On Failure    Should Be Empty    ${error}
-
-Verify MTMount State Command stop EFD table
-    [Tags]    sql    
-    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD -v -v -e "select * from MTMount_command_stop"    return_stderr=True    return_rc=True
-    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Table MTMount stop does not exist
     Run Keyword And Continue On Failure    Should Contain    ${output}    Empty set
     Run Keyword And Continue On Failure    Should Be Empty    ${error}
 

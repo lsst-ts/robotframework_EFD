@@ -1,5 +1,6 @@
 *** Settings ***
 Documentation    This suite verify SQL table creation for the DomeLWS.
+Force Tags    
 Suite Setup    Log Many    ${Host}    ${timeout}    ${SALVersion}
 Suite Teardown    Close All Connections
 Library    SSHLibrary
@@ -20,20 +21,6 @@ Create EFD_Tables Session
     Login With Public Key    ${UserName}    keyfile=${KeyFile}    password=${PassWord}
     Directory Should Exist    ${SALInstall}
     Directory Should Exist    ${SALHome}
-
-Verify DomeLWS Telemetry status EFD table create
-    [Tags]    sql    
-    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD < ${SALWorkDir}/sql/domeLWS_status.sqldef    return_stderr=True    return_rc=True
-    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Failed to create the domeLWS status table
-    Run Keyword And Continue On Failure    Should Be Empty    ${output}
-    Run Keyword And Continue On Failure    Should Be Empty    ${error}
-
-Verify DomeLWS Telemetry status EFD table
-    [Tags]    sql    
-    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD -v -v -e "select * from domeLWS_status"    return_stderr=True    return_rc=True
-    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Table domeLWS status does not exist
-    Run Keyword And Continue On Failure    Should Contain    ${output}    Empty set
-    Run Keyword And Continue On Failure    Should Be Empty    ${error}
 
 Verify DomeLWS State Command enable EFD table create
     [Tags]    sql    
@@ -144,6 +131,20 @@ Verify DomeLWS State Command stop EFD table
     [Tags]    sql    
     ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD -v -v -e "select * from domeLWS_command_stop"    return_stderr=True    return_rc=True
     Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Table domeLWS stop does not exist
+    Run Keyword And Continue On Failure    Should Contain    ${output}    Empty set
+    Run Keyword And Continue On Failure    Should Be Empty    ${error}
+
+Verify DomeLWS Telemetry status EFD table create
+    [Tags]    sql    
+    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD < ${SALWorkDir}/sql/domeLWS_status.sqldef    return_stderr=True    return_rc=True
+    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Failed to create the domeLWS status table
+    Run Keyword And Continue On Failure    Should Be Empty    ${output}
+    Run Keyword And Continue On Failure    Should Be Empty    ${error}
+
+Verify DomeLWS Telemetry status EFD table
+    [Tags]    sql    
+    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD -v -v -e "select * from domeLWS_status"    return_stderr=True    return_rc=True
+    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Table domeLWS status does not exist
     Run Keyword And Continue On Failure    Should Contain    ${output}    Empty set
     Run Keyword And Continue On Failure    Should Be Empty    ${error}
 

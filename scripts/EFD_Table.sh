@@ -16,8 +16,10 @@ declare -a subSystemArray=($(subsystemArray))
 
 #  FUNCTIONS
 function createSettings() {
+	skipped=$(checkIfSkipped $subSystem)
     echo "*** Settings ***" >> $testSuite
     echo "Documentation    This suite verify SQL table creation for the $subSystemUp." >> $testSuite
+    echo "Force Tags    $skipped" >> $testSuite
     echo "Suite Setup    Log Many    \${Host}    \${timeout}    \${SALVersion}" >> $testSuite
     echo "Suite Teardown    Close All Connections" >> $testSuite
     echo "Library    SSHLibrary" >> $testSuite
@@ -58,7 +60,7 @@ function verifySQLTelemetryDefinitions() {
 	done
 }
  
-function verifySQLCommandsDefinitions() {
+function verifySQLStateDefinitions() {
 	for topic in "${stateArray[@]}"; do
         echo "Verify $subSystemUp State Command $topic EFD table create" >> $testSuite
         echo "    [Tags]    sql    ${tags}" >> $testSuite
@@ -75,6 +77,9 @@ function verifySQLCommandsDefinitions() {
         echo "    Run Keyword And Continue On Failure    Should Be Empty    \${error}" >> $testSuite
         echo "" >> $testSuite
     done
+}
+
+function verifySQLCommandsDefinitions() {
     for topic in "${commandArray[@]}"; do
         echo "Verify $subSystemUp Command $topic EFD table create" >> $testSuite
         echo "    [Tags]    sql    ${tags}" >> $testSuite
@@ -115,10 +120,11 @@ function verifySQLEventsDefinitions() {
 }
 
 function createTestSuite() {
+    arg=$(echo $1 |tr '[:upper:]' '[:lower:]')
 	subSystem=$1
 
 	#  Define test suite name
-	subSystemUp=$(capitializeSubsystem $subSystem)
+	subSystemUp=$(capitializeSubsystem $arg)
 	testSuite=$workDir/${subSystemUp}_EFD_Tables.robot
 		
 	#  Check to see if the TestSuite exists then, if it does, delete it.
@@ -141,6 +147,17 @@ function createTestSuite() {
 	createVariables $subSystem
 	echo "*** Test Cases ***" >> $testSuite
 	createSession "EFD_Tables"
+    # Generate State Definition tests. Skip CSCs that explicitly define these topics.
+    declare -a array=($(stateMachineSkipped))
+    skipped=false
+    for item in "${array[@]}"; do
+        if [[ "$item" == "$arg" ]]; then
+            echo "The $(capitializeSubsystem $arg) explicitly defines the generic commands and events"
+            skipped=true
+        fi
+    done
+    if [[ "$skipped" == "false" ]]; then verifySQLStateDefinitions; fi
+	echo ""
     verifySQLTelemetryDefinitions
 	verifySQLCommandsDefinitions
 	verifySQLEventsDefinitions

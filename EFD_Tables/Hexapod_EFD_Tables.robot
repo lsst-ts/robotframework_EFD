@@ -1,5 +1,6 @@
 *** Settings ***
 Documentation    This suite verify SQL table creation for the Hexapod.
+Force Tags    
 Suite Setup    Log Many    ${Host}    ${timeout}    ${SALVersion}
 Suite Teardown    Close All Connections
 Library    SSHLibrary
@@ -20,90 +21,6 @@ Create EFD_Tables Session
     Login With Public Key    ${UserName}    keyfile=${KeyFile}    password=${PassWord}
     Directory Should Exist    ${SALInstall}
     Directory Should Exist    ${SALHome}
-
-Verify Hexapod Telemetry Metrology EFD table create
-    [Tags]    sql    
-    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD < ${SALWorkDir}/sql/hexapod_Metrology.sqldef    return_stderr=True    return_rc=True
-    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Failed to create the hexapod Metrology table
-    Run Keyword And Continue On Failure    Should Be Empty    ${output}
-    Run Keyword And Continue On Failure    Should Be Empty    ${error}
-
-Verify Hexapod Telemetry Metrology EFD table
-    [Tags]    sql    
-    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD -v -v -e "select * from hexapod_Metrology"    return_stderr=True    return_rc=True
-    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Table hexapod Metrology does not exist
-    Run Keyword And Continue On Failure    Should Contain    ${output}    Empty set
-    Run Keyword And Continue On Failure    Should Be Empty    ${error}
-
-Verify Hexapod Telemetry LimitSensors EFD table create
-    [Tags]    sql    
-    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD < ${SALWorkDir}/sql/hexapod_LimitSensors.sqldef    return_stderr=True    return_rc=True
-    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Failed to create the hexapod LimitSensors table
-    Run Keyword And Continue On Failure    Should Be Empty    ${output}
-    Run Keyword And Continue On Failure    Should Be Empty    ${error}
-
-Verify Hexapod Telemetry LimitSensors EFD table
-    [Tags]    sql    
-    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD -v -v -e "select * from hexapod_LimitSensors"    return_stderr=True    return_rc=True
-    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Table hexapod LimitSensors does not exist
-    Run Keyword And Continue On Failure    Should Contain    ${output}    Empty set
-    Run Keyword And Continue On Failure    Should Be Empty    ${error}
-
-Verify Hexapod Telemetry Electrical EFD table create
-    [Tags]    sql    
-    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD < ${SALWorkDir}/sql/hexapod_Electrical.sqldef    return_stderr=True    return_rc=True
-    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Failed to create the hexapod Electrical table
-    Run Keyword And Continue On Failure    Should Be Empty    ${output}
-    Run Keyword And Continue On Failure    Should Be Empty    ${error}
-
-Verify Hexapod Telemetry Electrical EFD table
-    [Tags]    sql    
-    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD -v -v -e "select * from hexapod_Electrical"    return_stderr=True    return_rc=True
-    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Table hexapod Electrical does not exist
-    Run Keyword And Continue On Failure    Should Contain    ${output}    Empty set
-    Run Keyword And Continue On Failure    Should Be Empty    ${error}
-
-Verify Hexapod Telemetry Application EFD table create
-    [Tags]    sql    
-    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD < ${SALWorkDir}/sql/hexapod_Application.sqldef    return_stderr=True    return_rc=True
-    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Failed to create the hexapod Application table
-    Run Keyword And Continue On Failure    Should Be Empty    ${output}
-    Run Keyword And Continue On Failure    Should Be Empty    ${error}
-
-Verify Hexapod Telemetry Application EFD table
-    [Tags]    sql    
-    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD -v -v -e "select * from hexapod_Application"    return_stderr=True    return_rc=True
-    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Table hexapod Application does not exist
-    Run Keyword And Continue On Failure    Should Contain    ${output}    Empty set
-    Run Keyword And Continue On Failure    Should Be Empty    ${error}
-
-Verify Hexapod Telemetry Actuators EFD table create
-    [Tags]    sql    
-    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD < ${SALWorkDir}/sql/hexapod_Actuators.sqldef    return_stderr=True    return_rc=True
-    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Failed to create the hexapod Actuators table
-    Run Keyword And Continue On Failure    Should Be Empty    ${output}
-    Run Keyword And Continue On Failure    Should Be Empty    ${error}
-
-Verify Hexapod Telemetry Actuators EFD table
-    [Tags]    sql    
-    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD -v -v -e "select * from hexapod_Actuators"    return_stderr=True    return_rc=True
-    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Table hexapod Actuators does not exist
-    Run Keyword And Continue On Failure    Should Contain    ${output}    Empty set
-    Run Keyword And Continue On Failure    Should Be Empty    ${error}
-
-Verify Hexapod Telemetry TC EFD table create
-    [Tags]    sql    
-    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD < ${SALWorkDir}/sql/hexapod_TC.sqldef    return_stderr=True    return_rc=True
-    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Failed to create the hexapod TC table
-    Run Keyword And Continue On Failure    Should Be Empty    ${output}
-    Run Keyword And Continue On Failure    Should Be Empty    ${error}
-
-Verify Hexapod Telemetry TC EFD table
-    [Tags]    sql    
-    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD -v -v -e "select * from hexapod_TC"    return_stderr=True    return_rc=True
-    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Table hexapod TC does not exist
-    Run Keyword And Continue On Failure    Should Contain    ${output}    Empty set
-    Run Keyword And Continue On Failure    Should Be Empty    ${error}
 
 Verify Hexapod State Command enable EFD table create
     [Tags]    sql    
@@ -217,6 +134,48 @@ Verify Hexapod State Command stop EFD table
     Run Keyword And Continue On Failure    Should Contain    ${output}    Empty set
     Run Keyword And Continue On Failure    Should Be Empty    ${error}
 
+Verify Hexapod Telemetry Actuators EFD table create
+    [Tags]    sql    
+    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD < ${SALWorkDir}/sql/hexapod_Actuators.sqldef    return_stderr=True    return_rc=True
+    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Failed to create the hexapod Actuators table
+    Run Keyword And Continue On Failure    Should Be Empty    ${output}
+    Run Keyword And Continue On Failure    Should Be Empty    ${error}
+
+Verify Hexapod Telemetry Actuators EFD table
+    [Tags]    sql    
+    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD -v -v -e "select * from hexapod_Actuators"    return_stderr=True    return_rc=True
+    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Table hexapod Actuators does not exist
+    Run Keyword And Continue On Failure    Should Contain    ${output}    Empty set
+    Run Keyword And Continue On Failure    Should Be Empty    ${error}
+
+Verify Hexapod Telemetry Application EFD table create
+    [Tags]    sql    
+    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD < ${SALWorkDir}/sql/hexapod_Application.sqldef    return_stderr=True    return_rc=True
+    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Failed to create the hexapod Application table
+    Run Keyword And Continue On Failure    Should Be Empty    ${output}
+    Run Keyword And Continue On Failure    Should Be Empty    ${error}
+
+Verify Hexapod Telemetry Application EFD table
+    [Tags]    sql    
+    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD -v -v -e "select * from hexapod_Application"    return_stderr=True    return_rc=True
+    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Table hexapod Application does not exist
+    Run Keyword And Continue On Failure    Should Contain    ${output}    Empty set
+    Run Keyword And Continue On Failure    Should Be Empty    ${error}
+
+Verify Hexapod Telemetry Electrical EFD table create
+    [Tags]    sql    
+    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD < ${SALWorkDir}/sql/hexapod_Electrical.sqldef    return_stderr=True    return_rc=True
+    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Failed to create the hexapod Electrical table
+    Run Keyword And Continue On Failure    Should Be Empty    ${output}
+    Run Keyword And Continue On Failure    Should Be Empty    ${error}
+
+Verify Hexapod Telemetry Electrical EFD table
+    [Tags]    sql    
+    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD -v -v -e "select * from hexapod_Electrical"    return_stderr=True    return_rc=True
+    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Table hexapod Electrical does not exist
+    Run Keyword And Continue On Failure    Should Contain    ${output}    Empty set
+    Run Keyword And Continue On Failure    Should Be Empty    ${error}
+
 Verify Hexapod Command configureAcceleration EFD table create
     [Tags]    sql    
     ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD < ${SALWorkDir}/sql/hexapod_command_configureAcceleration.sqldef    return_stderr=True    return_rc=True
@@ -245,17 +204,17 @@ Verify Hexapod Command configureLimits EFD table
     Run Keyword And Continue On Failure    Should Contain    ${output}    Empty set
     Run Keyword And Continue On Failure    Should Be Empty    ${error}
 
-Verify Hexapod Command configureLut EFD table create
+Verify Hexapod Command configureElevationRawLUT EFD table create
     [Tags]    sql    
-    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD < ${SALWorkDir}/sql/hexapod_command_configureLut.sqldef    return_stderr=True    return_rc=True
-    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Failed to create the hexapod configureLut table
+    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD < ${SALWorkDir}/sql/hexapod_command_configureElevationRawLUT.sqldef    return_stderr=True    return_rc=True
+    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Failed to create the hexapod configureElevationRawLUT table
     Run Keyword And Continue On Failure    Should Be Empty    ${output}
     Run Keyword And Continue On Failure    Should Be Empty    ${error}
 
-Verify Hexapod Command configureLut EFD table
+Verify Hexapod Command configureElevationRawLUT EFD table
     [Tags]    sql    
-    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD -v -v -e "select * from hexapod_command_configureLut"    return_stderr=True    return_rc=True
-    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Table hexapod configureLut does not exist
+    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD -v -v -e "select * from hexapod_command_configureElevationRawLUT"    return_stderr=True    return_rc=True
+    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Table hexapod configureElevationRawLUT does not exist
     Run Keyword And Continue On Failure    Should Contain    ${output}    Empty set
     Run Keyword And Continue On Failure    Should Be Empty    ${error}
 
@@ -270,6 +229,34 @@ Verify Hexapod Command move EFD table
     [Tags]    sql    
     ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD -v -v -e "select * from hexapod_command_move"    return_stderr=True    return_rc=True
     Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Table hexapod move does not exist
+    Run Keyword And Continue On Failure    Should Contain    ${output}    Empty set
+    Run Keyword And Continue On Failure    Should Be Empty    ${error}
+
+Verify Hexapod Command positionSet EFD table create
+    [Tags]    sql    
+    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD < ${SALWorkDir}/sql/hexapod_command_positionSet.sqldef    return_stderr=True    return_rc=True
+    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Failed to create the hexapod positionSet table
+    Run Keyword And Continue On Failure    Should Be Empty    ${output}
+    Run Keyword And Continue On Failure    Should Be Empty    ${error}
+
+Verify Hexapod Command positionSet EFD table
+    [Tags]    sql    
+    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD -v -v -e "select * from hexapod_command_positionSet"    return_stderr=True    return_rc=True
+    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Table hexapod positionSet does not exist
+    Run Keyword And Continue On Failure    Should Contain    ${output}    Empty set
+    Run Keyword And Continue On Failure    Should Be Empty    ${error}
+
+Verify Hexapod Command rawPositionSet EFD table create
+    [Tags]    sql    
+    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD < ${SALWorkDir}/sql/hexapod_command_rawPositionSet.sqldef    return_stderr=True    return_rc=True
+    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Failed to create the hexapod rawPositionSet table
+    Run Keyword And Continue On Failure    Should Be Empty    ${output}
+    Run Keyword And Continue On Failure    Should Be Empty    ${error}
+
+Verify Hexapod Command rawPositionSet EFD table
+    [Tags]    sql    
+    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD -v -v -e "select * from hexapod_command_rawPositionSet"    return_stderr=True    return_rc=True
+    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Table hexapod rawPositionSet does not exist
     Run Keyword And Continue On Failure    Should Contain    ${output}    Empty set
     Run Keyword And Continue On Failure    Should Be Empty    ${error}
 
@@ -315,6 +302,20 @@ Verify Hexapod Command pivot EFD table
     Run Keyword And Continue On Failure    Should Contain    ${output}    Empty set
     Run Keyword And Continue On Failure    Should Be Empty    ${error}
 
+Verify Hexapod Command clearError EFD table create
+    [Tags]    sql    
+    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD < ${SALWorkDir}/sql/hexapod_command_clearError.sqldef    return_stderr=True    return_rc=True
+    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Failed to create the hexapod clearError table
+    Run Keyword And Continue On Failure    Should Be Empty    ${output}
+    Run Keyword And Continue On Failure    Should Be Empty    ${error}
+
+Verify Hexapod Command clearError EFD table
+    [Tags]    sql    
+    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD -v -v -e "select * from hexapod_command_clearError"    return_stderr=True    return_rc=True
+    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Table hexapod clearError does not exist
+    Run Keyword And Continue On Failure    Should Contain    ${output}    Empty set
+    Run Keyword And Continue On Failure    Should Be Empty    ${error}
+
 Verify Hexapod Command test EFD table create
     [Tags]    sql    
     ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD < ${SALWorkDir}/sql/hexapod_command_test.sqldef    return_stderr=True    return_rc=True
@@ -329,18 +330,45 @@ Verify Hexapod Command test EFD table
     Run Keyword And Continue On Failure    Should Contain    ${output}    Empty set
     Run Keyword And Continue On Failure    Should Be Empty    ${error}
 
-Verify Hexapod Event error EFD table create
+Verify Hexapod Command configureAzimuthRawLUT EFD table create
     [Tags]    sql    
-    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD < ${SALWorkDir}/sql/hexapod_logevent_error.sqldef    return_stderr=True    return_rc=True
-    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Failed to create the hexapod error table
+    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD < ${SALWorkDir}/sql/hexapod_command_configureAzimuthRawLUT.sqldef    return_stderr=True    return_rc=True
+    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Failed to create the hexapod configureAzimuthRawLUT table
     Run Keyword And Continue On Failure    Should Be Empty    ${output}
     Run Keyword And Continue On Failure    Should Be Empty    ${error}
 
-Verify Hexapod Event error EFD table
+Verify Hexapod Command configureAzimuthRawLUT EFD table
     [Tags]    sql    
-    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD -v -v -e "select * from hexapod_logevent_error"    return_stderr=True    return_rc=True
-    Log    ${output}
-    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Table hexapod error does not exist
+    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD -v -v -e "select * from hexapod_command_configureAzimuthRawLUT"    return_stderr=True    return_rc=True
+    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Table hexapod configureAzimuthRawLUT does not exist
+    Run Keyword And Continue On Failure    Should Contain    ${output}    Empty set
+    Run Keyword And Continue On Failure    Should Be Empty    ${error}
+
+Verify Hexapod Command configureTemperatureRawLUT EFD table create
+    [Tags]    sql    
+    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD < ${SALWorkDir}/sql/hexapod_command_configureTemperatureRawLUT.sqldef    return_stderr=True    return_rc=True
+    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Failed to create the hexapod configureTemperatureRawLUT table
+    Run Keyword And Continue On Failure    Should Be Empty    ${output}
+    Run Keyword And Continue On Failure    Should Be Empty    ${error}
+
+Verify Hexapod Command configureTemperatureRawLUT EFD table
+    [Tags]    sql    
+    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD -v -v -e "select * from hexapod_command_configureTemperatureRawLUT"    return_stderr=True    return_rc=True
+    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Table hexapod configureTemperatureRawLUT does not exist
+    Run Keyword And Continue On Failure    Should Contain    ${output}    Empty set
+    Run Keyword And Continue On Failure    Should Be Empty    ${error}
+
+Verify Hexapod Command moveLUT EFD table create
+    [Tags]    sql    
+    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD < ${SALWorkDir}/sql/hexapod_command_moveLUT.sqldef    return_stderr=True    return_rc=True
+    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Failed to create the hexapod moveLUT table
+    Run Keyword And Continue On Failure    Should Be Empty    ${output}
+    Run Keyword And Continue On Failure    Should Be Empty    ${error}
+
+Verify Hexapod Command moveLUT EFD table
+    [Tags]    sql    
+    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD -v -v -e "select * from hexapod_command_moveLUT"    return_stderr=True    return_rc=True
+    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Table hexapod moveLUT does not exist
     Run Keyword And Continue On Failure    Should Contain    ${output}    Empty set
     Run Keyword And Continue On Failure    Should Be Empty    ${error}
 
@@ -359,78 +387,33 @@ Verify Hexapod Event interlock EFD table
     Run Keyword And Continue On Failure    Should Contain    ${output}    Empty set
     Run Keyword And Continue On Failure    Should Be Empty    ${error}
 
-Verify Hexapod Event limit EFD table create
+Verify Hexapod Event inPosition EFD table create
     [Tags]    sql    
-    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD < ${SALWorkDir}/sql/hexapod_logevent_limit.sqldef    return_stderr=True    return_rc=True
-    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Failed to create the hexapod limit table
+    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD < ${SALWorkDir}/sql/hexapod_logevent_inPosition.sqldef    return_stderr=True    return_rc=True
+    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Failed to create the hexapod inPosition table
     Run Keyword And Continue On Failure    Should Be Empty    ${output}
     Run Keyword And Continue On Failure    Should Be Empty    ${error}
 
-Verify Hexapod Event limit EFD table
+Verify Hexapod Event inPosition EFD table
     [Tags]    sql    
-    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD -v -v -e "select * from hexapod_logevent_limit"    return_stderr=True    return_rc=True
+    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD -v -v -e "select * from hexapod_logevent_inPosition"    return_stderr=True    return_rc=True
     Log    ${output}
-    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Table hexapod limit does not exist
+    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Table hexapod inPosition does not exist
     Run Keyword And Continue On Failure    Should Contain    ${output}    Empty set
     Run Keyword And Continue On Failure    Should Be Empty    ${error}
 
-Verify Hexapod Event slewOK EFD table create
+Verify Hexapod Event deviceError EFD table create
     [Tags]    sql    
-    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD < ${SALWorkDir}/sql/hexapod_logevent_slewOK.sqldef    return_stderr=True    return_rc=True
-    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Failed to create the hexapod slewOK table
+    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD < ${SALWorkDir}/sql/hexapod_logevent_deviceError.sqldef    return_stderr=True    return_rc=True
+    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Failed to create the hexapod deviceError table
     Run Keyword And Continue On Failure    Should Be Empty    ${output}
     Run Keyword And Continue On Failure    Should Be Empty    ${error}
 
-Verify Hexapod Event slewOK EFD table
+Verify Hexapod Event deviceError EFD table
     [Tags]    sql    
-    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD -v -v -e "select * from hexapod_logevent_slewOK"    return_stderr=True    return_rc=True
+    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD -v -v -e "select * from hexapod_logevent_deviceError"    return_stderr=True    return_rc=True
     Log    ${output}
-    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Table hexapod slewOK does not exist
-    Run Keyword And Continue On Failure    Should Contain    ${output}    Empty set
-    Run Keyword And Continue On Failure    Should Be Empty    ${error}
-
-Verify Hexapod Event tempError EFD table create
-    [Tags]    sql    
-    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD < ${SALWorkDir}/sql/hexapod_logevent_tempError.sqldef    return_stderr=True    return_rc=True
-    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Failed to create the hexapod tempError table
-    Run Keyword And Continue On Failure    Should Be Empty    ${output}
-    Run Keyword And Continue On Failure    Should Be Empty    ${error}
-
-Verify Hexapod Event tempError EFD table
-    [Tags]    sql    
-    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD -v -v -e "select * from hexapod_logevent_tempError"    return_stderr=True    return_rc=True
-    Log    ${output}
-    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Table hexapod tempError does not exist
-    Run Keyword And Continue On Failure    Should Contain    ${output}    Empty set
-    Run Keyword And Continue On Failure    Should Be Empty    ${error}
-
-Verify Hexapod Event trackLost EFD table create
-    [Tags]    sql    
-    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD < ${SALWorkDir}/sql/hexapod_logevent_trackLost.sqldef    return_stderr=True    return_rc=True
-    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Failed to create the hexapod trackLost table
-    Run Keyword And Continue On Failure    Should Be Empty    ${output}
-    Run Keyword And Continue On Failure    Should Be Empty    ${error}
-
-Verify Hexapod Event trackLost EFD table
-    [Tags]    sql    
-    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD -v -v -e "select * from hexapod_logevent_trackLost"    return_stderr=True    return_rc=True
-    Log    ${output}
-    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Table hexapod trackLost does not exist
-    Run Keyword And Continue On Failure    Should Contain    ${output}    Empty set
-    Run Keyword And Continue On Failure    Should Be Empty    ${error}
-
-Verify Hexapod Event tracking EFD table create
-    [Tags]    sql    
-    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD < ${SALWorkDir}/sql/hexapod_logevent_tracking.sqldef    return_stderr=True    return_rc=True
-    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Failed to create the hexapod tracking table
-    Run Keyword And Continue On Failure    Should Be Empty    ${output}
-    Run Keyword And Continue On Failure    Should Be Empty    ${error}
-
-Verify Hexapod Event tracking EFD table
-    [Tags]    sql    
-    ${output}    ${error}    ${rc}=    Execute Command    mysql --user=${EFDUser} --password=${EFDPass} -h ${EFDHost} -D EFD -v -v -e "select * from hexapod_logevent_tracking"    return_stderr=True    return_rc=True
-    Log    ${output}
-    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Table hexapod tracking does not exist
+    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${rc}    0    values=False    msg=Table hexapod deviceError does not exist
     Run Keyword And Continue On Failure    Should Contain    ${output}    Empty set
     Run Keyword And Continue On Failure    Should Be Empty    ${error}
 
