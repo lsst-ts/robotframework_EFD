@@ -1,0 +1,13 @@
+# vi:syntax=cmake 
+#  Arguments file for testing the SAL XML definition files
+#  Output directory
+-d Reports/today
+
+#  Specify tags to NOT run
+#-e skipped
+
+# Specify non-critical failures
+--skiponfailure skipped
+--reportbackground #61C4CD:#61C4CD
+
+#  Redefine default variables
