@@ -1,0 +1,16 @@
+###  Test Suite list ###
+#  Change the title of the test results
+--name Standby
+--output standby
+--skiponfailure skipped
+
+# List of test suites
+Standby/Verify_ATCS_Standby.robot
+Standby/Verify_AT_Light_Cal_Standby.robot
+Standby/Verify_ComCam_Standby.robot
+Standby/Verify_EAS_AE_Standby.robot
+Standby/Verify_EAS_Standby.robot
+Standby/Verify_LATISS_Standby.robot
+Standby/Verify_MTCS_Standby.robot
+Standby/Verify_ObsSys1_Standby.robot
+Standby/Verify_ObsSys2_Standby.robot
