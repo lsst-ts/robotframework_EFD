@@ -5,12 +5,4 @@
 --skiponfailure skipped
 
 # List of test suites
-Offline/Verify_ATCS_Offline.robot
-Offline/Verify_AT_Light_Cal_Offline.robot
-Offline/Verify_ComCam_Offline.robot
-Offline/Verify_EAS_AE_Offline.robot
-Offline/Verify_EAS_Offline.robot
-Offline/Verify_LATISS_Offline.robot
-Offline/Verify_MTCS_Offline.robot
-Offline/Verify_ObsSys1_Offline.robot
-Offline/Verify_ObsSys2_Offline.robot
+Offline/Verify_Camera_Offline.robot
