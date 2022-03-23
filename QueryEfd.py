@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 
 import asyncio
-from utils import utils
 from utils import dataframe
 from utils import state_enums
 
@@ -9,12 +8,12 @@ from robot.api.deco import library, keyword, not_keyword
 from lsst_efd_client import EfdClient
 
 
-@library(scope='GLOBAL', version='0.1', doc_format='reST', auto_keywords=False)
-class QueryEfd():
+@library(scope="GLOBAL", version="0.1", doc_format="reST", auto_keywords=False)
+class QueryEfd:
 
-    INDEX_DELIM = ':'
-    time_format = '%Y-%m-%dT%H:%M:%S.%f'
-    
+    INDEX_DELIM = ":"
+    time_format = "%Y-%m-%dT%H:%M:%S.%f"
+
     def __init__(self, efd_name="tucson_teststand_efd"):
         self.efd_name = efd_name
 
@@ -35,29 +34,46 @@ class QueryEfd():
     def get_topic_fields(self, csc, topic):
         efd_client = EfdClient(self.efd_name)
         loop = asyncio.get_event_loop()
-        fields = loop.run_until_complete(efd_client.get_fields(topic_name=self._efd_topic(csc, topic)))
+        fields = loop.run_until_complete(
+            efd_client.get_fields(topic_name=self._efd_topic(csc, topic))
+        )
         return fields
 
     @keyword
     def get_recent_samples(self, csc, topic, fields, num, index=None):
         efd_client = EfdClient(self.efd_name)
         loop = asyncio.get_event_loop()
-        recent_samples = loop.run_until_complete(efd_client.select_top_n(topic_name=self._efd_topic(csc, topic), fields=fields, num=num, index=index))
+        recent_samples = loop.run_until_complete(
+            efd_client.select_top_n(
+                topic_name=self._efd_topic(csc, topic),
+                fields=fields,
+                num=num,
+                index=index,
+            )
+        )
         if hasattr(recent_samples, "private_sndStamp"):
-            recent_samples = dataframe.convert_timestamps(recent_samples, ['private_sndStamp'])
+            recent_samples = dataframe.convert_timestamps(
+                recent_samples, ["private_sndStamp"]
+            )
         return recent_samples
 
     @keyword
-    def verify_summary_state(self, expected_state, csc_str, auto_enable=False): 
+    def verify_summary_state(self, expected_state, csc_str, auto_enable=False):
         csc, index = self._from_entry(csc_str)
         if auto_enable:
             num = 3
         else:
             num = 1
         print(num)
-        ss_df = self.get_recent_samples(csc, "logevent_summaryState", ["private_sndStamp", "summaryState"], num, index)
+        ss_df = self.get_recent_samples(
+            csc,
+            "logevent_summaryState",
+            ["private_sndStamp", "summaryState"],
+            num,
+            index,
+        )
         if not self._check_attribute(ss_df, "summaryState"):
-            raise AttributeError(f"SummaryState Event Not Found.")
+            raise AttributeError("SummaryState Event Not Found.")
         if num == 3:
             ss_df = ss_df.iloc[[1]]
         expected_state_str = state_enums.as_state(int(expected_state)).name
@@ -67,11 +83,16 @@ class QueryEfd():
             print(f"{csc_str} in {expected_state_str} State")
             print(f"Time of Summary State: {event_sent_time}")
         else:
-            raise AssertionError(f"{csc_str} is not in {expected_state_str} state.\n{csc_str} is in {actual_state_str} state.")
+            raise AssertionError(
+                f"{csc_str} is not in {expected_state_str} state."
+                f"{csc_str} is in {actual_state_str} state."
+            )
 
     @keyword
     def get_topic_sent_time(self, csc, topic, fields, num, index=None):
-        recent_samples = self.get_recent_samples(csc=csc, topic=topic, fields=fields, num=num, index=index)
+        recent_samples = self.get_recent_samples(
+            csc=csc, topic=topic, fields=fields, num=num, index=index
+        )
         if not self._check_attribute(recent_samples, "private_sndStamp"):
             raise AttributeError(f"{topic} - Topic Not Found.")
         event_sent_time = recent_samples.private_sndStamp[0].strftime(self.time_format)
@@ -80,13 +101,12 @@ class QueryEfd():
     @keyword
     def verify_topic(self, csc, topic):
         csc, index = self._from_entry(csc)
-        full_topic = self._efd_topic(csc, topic)
         topic_df = self.get_recent_samples(csc, topic, "*", 1, index)
         print(topic_df)
 
     @not_keyword
     def _efd_topic(self, csc, topic):
-        return f'lsst.sal.{csc}.{topic}'
+        return f"lsst.sal.{csc}.{topic}"
 
     @not_keyword
     def _from_entry(self, csc_str):
