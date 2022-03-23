@@ -12,7 +12,7 @@ Force Tags    software_versions
 
 *** Test Cases ***
 Verify ATAOS SoftwareVersions
-    [Tags]    obsys1
+    [Tags]    atcs
     Verify SoftwareVersions    ATAOS
 
 Verify ATDome SoftwareVersions
@@ -28,13 +28,13 @@ Verify ATHexapod SoftwareVersions
     Verify SoftwareVersions    ATHexapod
 
 Verify ATMCS SoftwareVersions
-    [Tags]    obsys1
+    [Tags]    atcs
     Verify SoftwareVersions    ATMCS
 
 Verify ATPneumatics SoftwareVersions
-    [Tags]    obsys1
+    [Tags]    atcs
     Verify SoftwareVersions    ATPneumatics
 
 Verify ATPtg SoftwareVersions
-    [Tags]    obsys1
+    [Tags]    atcs
     Verify SoftwareVersions    ATPtg

@@ -11,7 +11,7 @@ Force Tags    software_versions
 
 *** Test Cases ***
 Verify MTMount SoftwareVersions
-    [Tags]    obsys1
+    [Tags]    mtcs
     Verify SoftwareVersions    MTMount
 
 Verify MTPtg SoftwareVersions
@@ -27,7 +27,7 @@ Verify MTDomeTrajectory SoftwareVersions
     Verify SoftwareVersions    MTDomeTrajectory
 
 Verify MTAOS SoftwareVersions
-    [Tags]    obsys1
+    [Tags]    mtcs
     Verify SoftwareVersions    MTAOS
 
 Verify MTHexapod:1 SoftwareVersions
@@ -43,7 +43,7 @@ Verify MTRotator SoftwareVersions
     Verify SoftwareVersions    MTRotator
 
 Verify MTM1M3 SoftwareVersions
-    [Tags]    obsys1
+    [Tags]    mtcs
     Verify SoftwareVersions    MTM1M3
 
 Verify MTM2 SoftwareVersions

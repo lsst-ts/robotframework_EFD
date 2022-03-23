@@ -11,17 +11,17 @@ Force Tags    software_versions
 
 *** Test Cases ***
 Verify ATArchiver SoftwareVersions
-    [Tags]    obsys1
+    [Tags]    latiss
     Verify SoftwareVersions    ATArchiver
 
 Verify ATCamera SoftwareVersions
-    [Tags]    obsys1
+    [Tags]    latiss
     Verify SoftwareVersions    ATCamera
 
 Verify ATHeaderService SoftwareVersions
-    [Tags]    obsys1
+    [Tags]    latiss
     Verify SoftwareVersions    ATHeaderService
 
 Verify ATSpectrograph SoftwareVersions
-    [Tags]    obsys1
+    [Tags]    latiss
     Verify SoftwareVersions    ATSpectrograph

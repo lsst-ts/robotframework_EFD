@@ -11,9 +11,9 @@ Force Tags    software_versions
 
 *** Test Cases ***
 Verify ATMonochromator SoftwareVersions
-    [Tags]    obsys1
+    [Tags]    at_light_cal
     Verify SoftwareVersions    ATMonochromator
 
 Verify FiberSpectrograph SoftwareVersions
-    [Tags]    obsys1
+    [Tags]    at_light_cal
     Verify SoftwareVersions    FiberSpectrograph    3

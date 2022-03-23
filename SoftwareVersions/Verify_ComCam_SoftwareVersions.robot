@@ -11,13 +11,13 @@ Force Tags    software_versions
 
 *** Test Cases ***
 Verify CCArchiver SoftwareVersions
-    [Tags]    obsys1
+    [Tags]    comcam
     Verify SoftwareVersions    CCArchiver
 
 Verify CCCamera SoftwareVersions
-    [Tags]    obsys1
+    [Tags]    comcam
     Verify SoftwareVersions    CCCamera
 
 Verify CCHeaderService SoftwareVersions
-    [Tags]    obsys1
+    [Tags]    comcam
     Verify SoftwareVersions    CCHeaderService
