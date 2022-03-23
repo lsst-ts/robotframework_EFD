@@ -1,0 +1,16 @@
+###  Test Suite list ###
+#  Change the title of the test results
+--name Disabled
+--output disabled
+--skiponfailure skipped
+
+# List of test suites
+Disabled/Verify_ATCS_Disabled.robot
+Disabled/Verify_AT_Light_Cal_Disabled.robot
+Disabled/Verify_ComCam_Disabled.robot
+Disabled/Verify_EAS_AE_Disabled.robot
+Disabled/Verify_EAS_Disabled.robot
+Disabled/Verify_LATISS_Disabled.robot
+Disabled/Verify_MTCS_Disabled.robot
+Disabled/Verify_ObsSys1_Disabled.robot
+Disabled/Verify_ObsSys2_Disabled.robot
