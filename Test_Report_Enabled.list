@@ -1,0 +1,16 @@
+###  Test Suite list ###
+#  Change the title of the test results
+--name Enabled
+--output enabled
+--skiponfailure skipped
+
+# List of test suites
+Enabled/Verify_ATCS_Enabled.robot
+Enabled/Verify_AT_Light_Cal_Enabled.robot
+Enabled/Verify_ComCam_Enabled.robot
+Enabled/Verify_EAS_AE_Enabled.robot
+Enabled/Verify_EAS_Enabled.robot
+Enabled/Verify_LATISS_Enabled.robot
+Enabled/Verify_MTCS_Enabled.robot
+Enabled/Verify_ObsSys1_Enabled.robot
+Enabled/Verify_ObsSys2_Enabled.robot
