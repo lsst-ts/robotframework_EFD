@@ -16,10 +16,6 @@ Verify ATArchiver Offline
     [Tags]    latiss
     Verify Summary State    ${STATES}[offline]    ATArchiver
 
-Verify ATArchiver SoftwareVersions
-    [Tags]    obsys1
-    Verify SoftwareVersions    ATArchiver
-
 Verify ATCamera Offline
     [Tags]    latiss
     Verify Summary State    ${STATES}[offline]    ATCamera
@@ -50,14 +46,6 @@ Verify ATHeaderService Offline
     [Tags]    latiss
     Verify Summary State    ${STATES}[offline]    ATHeaderService
 
-Verify ATHeaderService SoftwareVersions
-    [Tags]    obsys1
-    Verify SoftwareVersions    ATHeaderService
-
 Verify ATSpectrograph Offline
     [Tags]    latiss
     Verify Summary State    ${STATES}[offline]    ATSpectrograph
-
-Verify ATSpectrograph SoftwareVersions
-    [Tags]    obsys1
-    Verify SoftwareVersions    ATSpectrograph

@@ -23,10 +23,6 @@ Verify ATAOS Offline
     ${ataos_offline_event_time}=    Get Topic Sent Time    "logevent_SummaryState"    ATAOS
     Set Suite Variable    ${ataos_offline_event_time}
 
-Verify ATAOS SoftwareVersions
-    [Tags]    obsys1
-    Verify SoftwareVersions    ATAOS
-
 Verify ATAOS SettingVersions
     [Tags]    obsys1
     ${output}=    Get Recent Samples    ATAOS    ${sv_topic}   ${sv_fields}    1
@@ -68,19 +64,11 @@ Verify ATMCS Offline
     ${atmcs_offline_event_time}=    Get Topic Sent Time    "logevent_SummaryState"    ATMCS
     Set Suite Variable    ${atmcs_offline_event_time}
 
-Verify ATMCS SoftwareVersions
-    [Tags]    obsys1
-    Verify SoftwareVersions    ATMCS
-
 Verify ATPneumatics Offline
     [Tags]    atcs
     Verify Summary State    ${STATES}[offline]    ATPneumatics
     ${atpneu_offline_event_time}=    Get Topic Sent Time    "logevent_SummaryState"    ATPneumatics
     Set Suite Variable    ${atpnue_offline_event_time}
-
-Verify ATPneumatics SoftwareVersions
-    [Tags]    obsys1
-    Verify SoftwareVersions    ATPneumatics
 
 Verify ATPtg Offline
     [Tags]    atcs
@@ -88,6 +76,3 @@ Verify ATPtg Offline
     ${atptg_offline_event_time}=    Get Topic Sent Time    "logevent_SummaryState"    ATPtg
     Set Suite Variable    ${atptg_offline_event_time}
 
-Verify ATPtg SoftwareVersions
-    [Tags]    obsys1
-    Verify SoftwareVersions    ATPtg

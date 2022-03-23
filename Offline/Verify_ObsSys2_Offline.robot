@@ -18,10 +18,6 @@ Verify Scheduler:2 Offline
     [Tags]    obsys2
     Verify Summary State    ${STATES}[offline]    Scheduler:2
 
-Verify Scheduler:2 SoftwareVersions
-    [Tags]    obsys2 
-    Verify SoftwareVersions    Scheduler    2
-
 Verify OCPS:1 Offline
     [Tags]    obsys2
     Verify Summary State    ${STATES}[offline]    OCPS:1

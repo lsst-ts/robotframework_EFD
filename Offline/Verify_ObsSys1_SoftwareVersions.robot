@@ -6,19 +6,19 @@ Library    DateTime
 Resource    ../Common_Keywords.resource
 Resource    ../Global_Vars.resource
 Resource    ../CSC_Lists.resource
-Force Tags    offline
+Force Tags    software_versions
 
 *** Variables ***
 
 *** Test Cases ***
-Verify ScriptQueue:1 Offline
+Verify ScriptQueue:1 SoftwareVersions
     [Tags]    obsys1
-    Verify Summary State    ${STATES}[offline]    ScriptQueue:1
+    Verify SoftwareVersions    ScriptQueue    1
 
-Verify ScriptQueue:2 Offline
+Verify ScriptQueue:2 SoftwareVersions
     [Tags]    obsys1
-    Verify Summary State    ${STATES}[offline]    ScriptQueue:2
+    Verify SoftwareVersions    ScriptQueue    2
 
-Verify Watcher Offline
+Verify Watcher SoftwareVersions
     [Tags]    obsys1
-    Verify Summary State    ${STATES}[offline]    Watcher
+    Verify SoftwareVersions    Watcher

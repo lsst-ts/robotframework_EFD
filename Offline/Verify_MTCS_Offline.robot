@@ -14,10 +14,6 @@ Verify MTMount Offline
     [Tags]    mtcs
     Verify Summary State    ${STATES}[offline]    MTMount
 
-Verify MTMount SoftwareVersions
-    [Tags]    obsys1
-    Verify SoftwareVersions    MTMount
-
 Verify MTPtg Offline
     [Tags]    mtcs
     Verify Summary State    ${STATES}[offline]    MTPtg
@@ -34,10 +30,6 @@ Verify MTAOS Offline
     [Tags]    mtcs
     Verify Summary State    ${STATES}[offline]    MTAOS
 
-Verify MTAOS SoftwareVersions
-    [Tags]    obsys1
-    Verify SoftwareVersions    MTAOS
-
 Verify MTHexapod:1 Offline
     [Tags]    mtcs
     Verify Summary State    ${STATES}[offline]    MTHexapod:1
@@ -53,10 +45,6 @@ Verify MTRotator Offline
 Verify MTM1M3 Offline
     [Tags]    mtcs
     Verify Summary State    ${STATES}[offline]    MTM1M3
-
-Verify MTM1M3 SoftwareVersions
-    [Tags]    obsys1
-    Verify SoftwareVersions    MTM1M3
 
 Verify MTM2 Offline
     [Tags]    mtcs

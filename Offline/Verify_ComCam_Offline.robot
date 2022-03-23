@@ -16,10 +16,6 @@ Verify CCArchiver Offline
     [Tags]    comcam
     Verify Summary State    ${STATES}[offline]    CCArchiver
 
-Verify CCArchiver SoftwareVersions
-    [Tags]    obsys1
-    Verify SoftwareVersions    CCArchiver
-
 Verify CCCamera Offline
     [Tags]    comcam
     Verify Summary State    ${STATES}[offline]    CCCamera
@@ -49,7 +45,3 @@ Verify CCCamera OfflineDetailedStates
 Verify CCHeaderService Offline
     [Tags]    comcam
     Verify Summary State    ${STATES}[offline]    CCHeaderService
-
-Verify CCHeaderService SoftwareVersions
-    [Tags]    obsys1
-    Verify SoftwareVersions    CCHeaderService
