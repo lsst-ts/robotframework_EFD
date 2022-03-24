@@ -24,11 +24,11 @@ Verify ATAOS Standby
     Set Suite Variable    ${ataos_standby_event_time}
 
 Verify ATAOS SettingVersions
-    [Tags]    obsys1
+    [Tags]    atcs
     Verify SettingVersions    ATAOS
 
 Verify ATAOS Standby timing
-    [Tags]    obsys1
+    [Tags]    atcs
     ${ataos_standby_event_time}=    Convert Time    ${ataos_standby_event_time}    number
     ${ataos_softwareversions_event_time}=    Convert Time    ${ataos_softwareversions_event_time}    number
     ${delta}=    Subtract Time from Time    ${ataos_standby_event_time}    ${ataos_softwareversions_event_time}
@@ -40,7 +40,7 @@ Verify ATDome Standby
     Verify Summary State    ${STATES}[standby]    ATDome
 
 Verify ATDome SettingVersions
-    [Tags]    obsys1
+    [Tags]    atcs
     Verify SettingVersions    ATDome
 
 Verify ATDomeTrajectory Standby
@@ -48,7 +48,7 @@ Verify ATDomeTrajectory Standby
     Verify Summary State    ${STATES}[standby]    ATDomeTrajectory
 
 Verify ATDomeTrajectory SettingVersions
-    [Tags]    obsys1
+    [Tags]    atcs
     Verify SettingVersions    ATDomeTrajectory
 
 Verify ATHexapod Standby
@@ -56,7 +56,7 @@ Verify ATHexapod Standby
     Verify Summary State    ${STATES}[standby]    ATHexapod
 
 Verify ATHexapod SettingVersions
-    [Tags]    obsys1
+    [Tags]    atcs
     Verify SettingVersions    ATHexapod
 
 Verify ATMCS Standby
