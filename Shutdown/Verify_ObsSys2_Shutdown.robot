@@ -21,7 +21,7 @@ Verify Scheduler:1 Shutdown
 
 Verify Scheduler:2 Shutdown
     [Tags]    obsys2
-    #Verify Shutdown Process    Scheduler    2
+    Verify Shutdown Process    Scheduler    2
     Verify Time Delta    Scheduler    ${topic_1}    ${topic_2}    ${time_window}    index=2
 
 Verify OCPS:1 Shutdown
