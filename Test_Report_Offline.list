@@ -1,0 +1,8 @@
+###  Test Suite list ###
+#  Change the title of the test results
+--name Offline
+--output offline
+--skiponfailure skipped
+
+# List of test suites
+Offline/Verify_Camera_Offline.robot
