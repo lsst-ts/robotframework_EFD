@@ -10,9 +10,9 @@ Force Tags    standby
 *** Variables ***
 
 *** Test Cases ***
-Verify ATArchiver Standby
+Verify ATOODS Standby
     [Tags]    latiss
-    Verify Summary State    ${STATES}[standby]    ATArchiver
+    Verify Summary State    ${STATES}[standby]    ATOODS
 
 Verify ATCamera Standby
     [Tags]    latiss

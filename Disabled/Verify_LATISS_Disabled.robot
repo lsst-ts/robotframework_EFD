@@ -9,9 +9,9 @@ Force Tags    disabled
 *** Variables ***
 
 *** Test Cases ***
-Verify ATArchiver Disabled
+Verify ATOODS Disabled
     [Tags]    latiss
-    Verify Summary State    ${STATES}[disabled]    ATArchiver
+    Verify Summary State    ${STATES}[disabled]    ATOODS
 
 Verify ATCamera Disabled
     [Tags]    latiss
