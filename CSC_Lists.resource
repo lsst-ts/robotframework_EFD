@@ -4,7 +4,7 @@
 @{ATCS}            ATAOS    ATDome    ATDomeTrajectory    ATHexapod    ATMCS    ATPneumatics    ATPtg
 @{AT_Light_Cal}    ATMonochromator    FiberSpectrograph:3
 @{ComCam}          CCOODS    CCCamera    CCHeaderService
-@{EAS}             DIMM:1    DIMM:2    WeatherStation:1
+@{EAS}             DIMM:1    WeatherStation:1
 @{EAS_AE}          DSM:1    DSM:2
 @{LATISS}          ATOODS    ATCamera    ATHeaderService    ATSpectrograph
 @{MTCS}            MTMount    MTPtg    MTDome    MTDomeTrajectory    MTAOS    MTHexapod:1    MTHexapod:2    MTRotator    MTM1M3    MTM2

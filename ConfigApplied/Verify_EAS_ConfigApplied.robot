@@ -9,10 +9,6 @@ Verify DIMM:1 ConfigurationApplied Event
     [Tags]    eas
     Verify ConfigurationApplied    DIMM    index=1
 
-Verify DIMM:2 ConfigurationApplied Event
-    [Tags]    eas
-    Verify ConfigurationApplied    DIMM    index=2
-
 Verify WeatherStation:1 ConfigurationApplied Event
     [Tags]    eas
     Verify ConfigurationApplied    WeatherStation    index=1
