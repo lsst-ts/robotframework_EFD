@@ -10,11 +10,6 @@ Force Tags    standby
 Suite Setup    Log Many    ${STATES}[standby]
 
 *** Variables ***
-${swv_topic}    logevent_softwareVersions
-@{swv_fields}    "private_sndStamp"    "cscVersion"    "openSpliceVersion"    "salVersion"   "xmlVersion"
-${sv_topic}    logevent_settingVersions
-@{sv_fields}    "private_sndStamp"    "recommendedSettingsLabels"    "recommendedSettingsVersion"    "settingsUrl"
-${time_window}    10
 
 *** Test Cases ***
 Verify ATAOS Standby
@@ -23,9 +18,9 @@ Verify ATAOS Standby
     ${ataos_standby_event_time}=    Get Topic Sent Time    "logevent_SummaryState"    ATAOS
     Set Suite Variable    ${ataos_standby_event_time}
 
-Verify ATAOS SettingVersions
+Verify ATAOS ConfigurationsAvailable
     [Tags]    atcs
-    Verify SettingVersions    ATAOS
+    Verify ConfigurationsAvailable    ATAOS
 
 Verify ATAOS Standby timing
     [Tags]    atcs
@@ -39,25 +34,25 @@ Verify ATDome Standby
     [Tags]    atcs
     Verify Summary State    ${STATES}[standby]    ATDome
 
-Verify ATDome SettingVersions
+Verify ATDome ConfigurationsAvailable
     [Tags]    atcs
-    Verify SettingVersions    ATDome
+    Verify ConfigurationsAvailable    ATDome
 
 Verify ATDomeTrajectory Standby
     [Tags]    atcs
     Verify Summary State    ${STATES}[standby]    ATDomeTrajectory
 
-Verify ATDomeTrajectory SettingVersions
+Verify ATDomeTrajectory ConfigurationsAvailable
     [Tags]    atcs
-    Verify SettingVersions    ATDomeTrajectory
+    Verify ConfigurationsAvailable    ATDomeTrajectory
 
 Verify ATHexapod Standby
     [Tags]    atcs
     Verify Summary State    ${STATES}[standby]    ATHexapod
 
-Verify ATHexapod SettingVersions
+Verify ATHexapod ConfigurationsAvailable
     [Tags]    atcs
-    Verify SettingVersions    ATHexapod
+    Verify ConfigurationsAvailable    ATHexapod
 
 Verify ATMCS Standby
     [Tags]    atcs

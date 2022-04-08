@@ -18,6 +18,10 @@ Verify CCCamera Standby
     [Tags]    comcam
     Verify Summary State    ${STATES}[standby]    CCCamera
 
+Verify CCCamera ConfigurationsAvailable
+    [Tags]    atcs
+    Verify ConfigurationsAvailable    CCCamera
+
 Verify CCHeaderService Standby
     [Tags]    comcam
     Verify Summary State    ${STATES}[standby]    CCHeaderService

@@ -22,3 +22,7 @@ Verify ScriptQueue:2 Standby
 Verify Watcher Standby
     [Tags]    obsys1
     Verify Summary State    ${STATES}[standby]    Watcher
+
+Verify Watcher ConfigurationsAvailable
+    [Tags]    atcs
+    Verify ConfigurationsAvailable    Watcher

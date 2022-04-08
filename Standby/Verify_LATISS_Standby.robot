@@ -18,6 +18,10 @@ Verify ATCamera Standby
     [Tags]    latiss
     Verify Summary State    ${STATES}[standby]    ATCamera
 
+Verify ATCamera ConfigurationsAvailable
+    [Tags]    atcs
+    Verify ConfigurationsAvailable    ATCamera
+
 Verify ATHeaderService Standby
     [Tags]    latiss
     Verify Summary State    ${STATES}[standby]    ATHeaderService
@@ -25,3 +29,7 @@ Verify ATHeaderService Standby
 Verify ATSpectrograph Standby
     [Tags]    latiss
     Verify Summary State    ${STATES}[standby]    ATSpectrograph
+
+Verify ATSpectrograph ConfigurationsAvailable
+    [Tags]    atcs
+    Verify ConfigurationsAvailable    ATSpectrograph
