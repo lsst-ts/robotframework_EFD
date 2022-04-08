@@ -38,7 +38,6 @@ Verify ConfigurationsAvailable
     @{time}=    Split String    ${words}[3]    +
     Set Suite Variable    ${ataos_configsavailable_event_time}    ${time}[0]
     Log Many    Overrides: ${words}[4]    Version: ${words}[5]    URL: ${words}[6]
-    Should Not Be Empty    ${words}[4]
     Should Not Be Empty    ${words}[5]
     Should Not Be Empty    ${words}[6]
 
