@@ -1,11 +1,32 @@
+*** Settings ***
+Resource    CSC_Lists.resource
+
 *** Variables ***
-${sv_topic}    logevent_settingVersions
-@{sv_fields}    "private_sndStamp"    "recommendedSettingsLabels"    "recommendedSettingsVersion"    "settingsUrl"
+${ca_topic}    logevent_configurationApplied
+@{ca_fields}    "private_sndStamp"    "configurations"    "version"    "url"
+${cav_topic}    logevent_configurationsAvailable
+@{cav_fields}    "private_sndStamp"    "overrides"    "version"    "url"    "schemaVersion"
 ${swv_topic}    logevent_softwareVersions
 @{swv_fields}    "private_sndStamp"    "cscVersion"    "openSpliceVersion"    "salVersion"   "xmlVersion"
 
 *** Keywords ***
-Verify SettingVersions
+Verify ConfigurationApplied
+    [Arguments]    ${csc}    ${csc_index}=None
+    ${output}=    Get Recent Samples    ${csc}    ${ca_topic}    ${ca_fields}    1    ${csc_index}
+    ${output}=    Convert to String    ${output}
+    Log    ${output}
+    IF    $csc in $NON_CONFIG    
+        Should Contain    ${output}    Empty DataFrame
+    ELSE
+        Log    ${output}
+        #${line}=    Get Line    ${output}    -1
+        #@{words}=    Split String    ${line}
+        #Log Many    ${words}[2]    ${words}[3]
+        #@{time}=    Split String    ${words}[3]    +
+        #Set Suite Variable    ${watcher_settingsapplied_event_time}    ${time}[0]
+    END
+
+Verify ConfigurationsAvailable
     [Arguments]    ${csc}    ${csc_index}=None
     ${output}=    Get Recent Samples    ${csc}    ${sv_topic}   ${sv_fields}    1    ${csc_index}
     ${output}=    Convert to String    ${output}
@@ -15,9 +36,8 @@ Verify SettingVersions
     @{words}=    Split String    ${line}
     Log Many    ${words}
     @{time}=    Split String    ${words}[3]    +
-    Set Suite Variable    ${ataos_settingseversions_event_time}    ${time}[0]
-    Log Many    RecommendedSettingsLabels: ${words}[4]    RecommendedSettingsVersion: ${words}[5]    SettingsURL: ${words}[6]
-    Should Not Be Empty    ${words}[4]
+    Set Suite Variable    ${ataos_configsavailable_event_time}    ${time}[0]
+    Log Many    Overrides: ${words}[4]    Version: ${words}[5]    URL: ${words}[6]
     Should Not Be Empty    ${words}[5]
     Should Not Be Empty    ${words}[6]
 

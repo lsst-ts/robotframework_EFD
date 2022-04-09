@@ -9,9 +9,9 @@ Force Tags    enabled
 *** Variables ***
 
 *** Test Cases ***
-Verify ATArchiver Enabled
+Verify ATOODS Enabled
     [Tags]    latiss
-    Verify Summary State    ${STATES}[enabled]    ATArchiver
+    Verify Summary State    ${STATES}[enabled]    ATOODS
 
 Verify ATCamera Enabled
     [Tags]    latiss

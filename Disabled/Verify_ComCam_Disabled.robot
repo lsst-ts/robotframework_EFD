@@ -9,9 +9,9 @@ Force Tags    disabled
 *** Variables ***
 
 *** Test Cases ***
-Verify CCArchiver Disabled
+Verify CCOODS Disabled
     [Tags]    comcam
-    Verify Summary State    ${STATES}[disabled]    CCArchiver
+    Verify Summary State    ${STATES}[disabled]    CCOODS
 
 Verify CCCamera Disabled
     [Tags]    comcam

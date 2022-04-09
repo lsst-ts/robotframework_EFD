@@ -10,13 +10,17 @@ Force Tags    standby
 *** Variables ***
 
 *** Test Cases ***
-Verify ATArchiver Standby
+Verify ATOODS Standby
     [Tags]    latiss
-    Verify Summary State    ${STATES}[standby]    ATArchiver
+    Verify Summary State    ${STATES}[standby]    ATOODS
 
 Verify ATCamera Standby
     [Tags]    latiss
     Verify Summary State    ${STATES}[standby]    ATCamera
+
+Verify ATCamera ConfigurationsAvailable
+    [Tags]    atcs
+    Verify ConfigurationsAvailable    ATCamera
 
 Verify ATHeaderService Standby
     [Tags]    latiss
@@ -25,3 +29,7 @@ Verify ATHeaderService Standby
 Verify ATSpectrograph Standby
     [Tags]    latiss
     Verify Summary State    ${STATES}[standby]    ATSpectrograph
+
+Verify ATSpectrograph ConfigurationsAvailable
+    [Tags]    atcs
+    Verify ConfigurationsAvailable    ATSpectrograph

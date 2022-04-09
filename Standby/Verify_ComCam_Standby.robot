@@ -10,13 +10,17 @@ Force Tags    standby
 *** Variables ***
 
 *** Test Cases ***
-Verify CCArchiver Standby
+Verify CCOODS Standby
     [Tags]    comcam
-    Verify Summary State    ${STATES}[standby]    CCArchiver
+    Verify Summary State    ${STATES}[standby]    CCOODS
 
 Verify CCCamera Standby
     [Tags]    comcam
     Verify Summary State    ${STATES}[standby]    CCCamera
+
+Verify CCCamera ConfigurationsAvailable
+    [Tags]    atcs
+    Verify ConfigurationsAvailable    CCCamera
 
 Verify CCHeaderService Standby
     [Tags]    comcam

@@ -14,10 +14,10 @@ ${topic_2}    command_disable
 ${time_window}    600
 
 *** Test Cases ***
-Verify CCArchiver Shutdown
+Verify CCOODS Shutdown
     [Tags]    comcam
-    Verify Shutdown Process    CCArchiver
-    Verify Time Delta    CCArchiver    ${topic_1}    ${topic_2}    ${time_window}
+    Verify Shutdown Process    CCOODS
+    Verify Time Delta    CCOODS    ${topic_1}    ${topic_2}    ${time_window}
 
 Verify CCCamera Shutdown
     [Tags]    comcam

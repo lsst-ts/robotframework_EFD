@@ -13,10 +13,6 @@ Verify DIMM:1 Disabled
     [Tags]    eas
     Verify Summary State    ${STATES}[disabled]    DIMM:1
 
-Verify DIMM:2 Disabled
-    [Tags]    eas
-    Verify Summary State    ${STATES}[disabled]    DIMM:2
-
 Verify WeatherStation:1 Disabled
     [Tags]    eas
     Verify Summary State    ${STATES}[disabled]    WeatherStation:1

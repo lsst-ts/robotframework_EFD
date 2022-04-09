@@ -19,11 +19,6 @@ Verify DIMM:1 Shutdown
     Verify Shutdown Process    DIMM    1
     Verify Time Delta    DIMM    ${topic_1}    ${topic_2}    ${time_window}    index=1
 
-Verify DIMM:2 Shutdown
-    [Tags]    eas
-    Verify Shutdown Process    DIMM    2
-    Verify Time Delta    DIMM    ${topic_1}    ${topic_2}    ${time_window}    index=2
-
 Verify WeatherStation:1 Shutdown
     [Tags]    eas
     Verify Shutdown Process    WeatherStation    1

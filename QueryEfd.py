@@ -84,8 +84,8 @@ class QueryEfd:
             print(f"Time of Summary State: {event_sent_time}")
         else:
             raise AssertionError(
-                f"{csc_str} is not in {expected_state_str} state."
-                f"{csc_str} is in {actual_state_str} state."
+                f"{csc_str} is not in the {expected_state_str} state."
+                f"\n{csc_str} is in the {actual_state_str} state."
             )
 
     @keyword

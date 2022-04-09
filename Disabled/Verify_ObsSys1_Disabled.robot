@@ -29,18 +29,6 @@ Verify Watcher Disabled
     ${watcher_disabled_event_timestamp}=    Split String    ${watcher_disabled_event_timestamp}    T
     Set Suite Variable    ${watcher_disabled_event_time}    ${watcher_disabled_event_timestamp}[1]
 
-Verify Watcher SettingsApplied
-    [Tags]    obsys1
-    ${output}=    Get Recent Samples    Watcher    ${topic}    ${fields}    1
-    ${output}=    Convert to String    ${output}
-    Log    ${output}
-    Should Not Contain    ${output}    Empty DataFrame
-    ${line}=    Get Line    ${output}    -1
-    @{words}=    Split String    ${line}
-    Log Many    ${words}[2]    ${words}[3]
-    @{time}=    Split String    ${words}[3]    +
-    Set Suite Variable    ${watcher_settingsapplied_event_time}    ${time}[0]
-
 Verify Watcher Disabled timing
     [Tags]    obsys1
     Verify Time Delta    Watcher    logevent_summaryState    ${topic}    ${time_window}

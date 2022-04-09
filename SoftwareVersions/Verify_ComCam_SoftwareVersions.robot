@@ -10,9 +10,9 @@ Force Tags    software_versions
 *** Variables ***
 
 *** Test Cases ***
-Verify CCArchiver SoftwareVersions
+Verify CCOODS SoftwareVersions
     [Tags]    comcam
-    Verify SoftwareVersions    CCArchiver
+    Verify SoftwareVersions    CCOODS
 
 Verify CCCamera SoftwareVersions
     [Tags]    comcam

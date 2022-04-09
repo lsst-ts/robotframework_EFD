@@ -1,0 +1,16 @@
+###  Test Suite list ###
+#  Change the title of the test results
+--name ConfigApplied
+--output config_applied
+--skiponfailure skipped
+
+# List of test suites
+ConfigApplied/Verify_ATCS_ConfigApplied.robot
+ConfigApplied/Verify_AT_Light_Cal_ConfigApplied.robot
+ConfigApplied/Verify_ComCam_ConfigApplied.robot
+ConfigApplied/Verify_EAS_AE_ConfigApplied.robot
+ConfigApplied/Verify_EAS_ConfigApplied.robot
+ConfigApplied/Verify_LATISS_ConfigApplied.robot
+ConfigApplied/Verify_MTCS_ConfigApplied.robot
+ConfigApplied/Verify_ObsSys1_ConfigApplied.robot
+ConfigApplied/Verify_ObsSys2_ConfigApplied.robot

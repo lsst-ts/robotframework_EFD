@@ -14,10 +14,10 @@ ${topic_2}    command_disable
 ${time_window}    600
 
 *** Test Cases ***
-Verify ATArchiver Shutdown
+Verify ATOODS Shutdown
     [Tags]    latiss
-    Verify Shutdown Process    ATArchiver
-    Verify Time Delta    ATArchiver    ${topic_1}    ${topic_2}    ${time_window}
+    Verify Shutdown Process    ATOODS
+    Verify Time Delta    ATOODS    ${topic_1}    ${topic_2}    ${time_window}
 
 Verify ATCamera Shutdown
     [Tags]    latiss

@@ -10,9 +10,9 @@ Force Tags    software_versions
 *** Variables ***
 
 *** Test Cases ***
-Verify ATArchiver SoftwareVersions
+Verify ATOODS SoftwareVersions
     [Tags]    latiss
-    Verify SoftwareVersions    ATArchiver
+    Verify SoftwareVersions    ATOODS
 
 Verify ATCamera SoftwareVersions
     [Tags]    latiss
