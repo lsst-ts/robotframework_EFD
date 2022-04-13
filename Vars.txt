@@ -11,3 +11,5 @@
 --reportbackground #61C4CD:#61C4CD
 
 #  Redefine default variables
+--variable XMLVersion:11.1.1
+--variable SALVersion:6.1.0
