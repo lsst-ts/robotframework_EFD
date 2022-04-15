@@ -6,23 +6,52 @@ Library    DateTime
 Resource    ../Common_Keywords.resource
 Resource    ../Global_Vars.resource
 Resource    ../CSC_Lists.resource
-Force Tags    standby
+Force Tags    obsys1
 
 *** Variables ***
+${time_window}    10
 
 *** Test Cases ***
 Verify ScriptQueue:1 Standby
-    [Tags]    obsys1
+    [Tags]    standby
     Verify Summary State    ${STATES}[standby]    ScriptQueue:1
 
+Verify ScriptQueue:1 SoftwareVersions
+    [Tags]    software_versions
+    Verify SoftwareVersions    ScriptQueue    1
+
+Verify ScriptQueue:1 SoftwareVersions timing
+    [Tags]    software_versions    timing
+    Verify Time Delta    ScriptQueue    logevent_summaryState    logevent_softwareVersions    ${time_window}    1
+
 Verify ScriptQueue:2 Standby
-    [Tags]    obsys1
+    [Tags]    standby
     Verify Summary State    ${STATES}[standby]    ScriptQueue:2
 
+Verify ScriptQueue:2 SoftwareVersions
+    [Tags]    software_versions
+    Verify SoftwareVersions    ScriptQueue    2
+
+Verify ScriptQueue:2 SoftwareVersions timing
+    [Tags]    software_versions    timing
+    Verify Time Delta    ScriptQueue    logevent_summaryState    logevent_softwareVersions    ${time_window}    2
+
 Verify Watcher Standby
-    [Tags]    obsys1
+    [Tags]    standby
     Verify Summary State    ${STATES}[standby]    Watcher
 
+Verify Watcher SoftwareVersions
+    [Tags]    software_versions
+    Verify SoftwareVersions    Watcher
+
+Verify Watcher SoftwareVersions timing
+    [Tags]    software_versions    timing
+    Verify Time Delta    Watcher    logevent_summaryState    logevent_softwareVersions    ${time_window}
+
 Verify Watcher ConfigurationsAvailable
-    [Tags]    atcs
+    [Tags]    config_available
     Verify ConfigurationsAvailable    Watcher
+
+Verify Watcher ConfigurationsAvailable timing
+    [Tags]    config_available    timing
+    Verify Time Delta    Watcher    logevent_summaryState    logevent_configurationsAvailable    ${time_window}

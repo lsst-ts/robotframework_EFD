@@ -6,69 +6,125 @@ Library    DateTime
 Resource    ../Common_Keywords.resource
 Resource    ../Global_Vars.resource
 Resource    ../CSC_Lists.resource
-Force Tags    standby
+Force Tags    atcs
 Suite Setup    Log Many    ${STATES}[standby]
 
 *** Variables ***
+${time_window}    10
 
 *** Test Cases ***
 Verify ATAOS Standby
-    [Tags]    atcs
+    [Tags]    standby
     Verify Summary State    ${STATES}[standby]    ATAOS
-    ${ataos_standby_event_time}=    Get Topic Sent Time    "logevent_SummaryState"    ATAOS
-    Set Suite Variable    ${ataos_standby_event_time}
+
+Verify ATAOS SoftwareVersions
+    [Tags]    software_versions
+    Verify SoftwareVersions    ATAOS
+
+Verify ATAOS SoftwareVersions timing
+    [Tags]    software_versions    timing
+    Verify Time Delta    ATAOS    logevent_summaryState    logevent_softwareVersions    ${time_window}
 
 Verify ATAOS ConfigurationsAvailable
-    [Tags]    atcs
+    [Tags]    config_available
     Verify ConfigurationsAvailable    ATAOS
 
-Verify ATAOS Standby timing
-    [Tags]    atcs
-    ${ataos_standby_event_time}=    Convert Time    ${ataos_standby_event_time}    number
-    ${ataos_softwareversions_event_time}=    Convert Time    ${ataos_softwareversions_event_time}    number
-    ${delta}=    Subtract Time from Time    ${ataos_standby_event_time}    ${ataos_softwareversions_event_time}
-    ${delta}=    Subtract Time from Time    ${ataos_softwareversions_event_time}    ${ataos_standby_event_time}
-    Should Be True    ${delta} < ${time_window}
+Verify ATAOS ConfigurationsAvailable timing
+    [Tags]    config_available    timing
+    Verify Time Delta    ATAOS    logevent_summaryState    logevent_configurationsAvailable    ${time_window}
 
 Verify ATDome Standby
-    [Tags]    atcs
+    [Tags]    standby
     Verify Summary State    ${STATES}[standby]    ATDome
 
+Verify ATDome SoftwareVersions
+    [Tags]    software_versions
+    Verify SoftwareVersions    ATDome
+
+Verify ATDome SoftwareVersions timing
+    [Tags]    software_versions    timing
+    Verify Time Delta    ATDome    logevent_summaryState    logevent_softwareVersions    ${time_window}
+
 Verify ATDome ConfigurationsAvailable
-    [Tags]    atcs
+    [Tags]    config_available
     Verify ConfigurationsAvailable    ATDome
 
+Verify ATDome ConfigurationsAvailable timing
+    [Tags]    config_available    timing
+    Verify Time Delta    ATDome    logevent_summaryState    logevent_configurationsAvailable    ${time_window}
+
 Verify ATDomeTrajectory Standby
-    [Tags]    atcs
+    [Tags]    standby
     Verify Summary State    ${STATES}[standby]    ATDomeTrajectory
 
+Verify ATDomeTrajectory SoftwareVersions
+    [Tags]    software_versions
+    Verify SoftwareVersions    ATDomeTrajectory
+
+Verify ATDomeTrajectory SoftwareVersions timing
+    [Tags]    software_versions    timing
+    Verify Time Delta    ATDomeTrajectory    logevent_summaryState    logevent_softwareVersions    ${time_window}
+
 Verify ATDomeTrajectory ConfigurationsAvailable
-    [Tags]    atcs
+    [Tags]    config_available
     Verify ConfigurationsAvailable    ATDomeTrajectory
 
+Verify ATDomeTrajectory ConfigurationsAvailable timing
+    [Tags]    config_available    timing
+    Verify Time Delta    ATDomeTrajectory    logevent_summaryState    logevent_configurationsAvailable    ${time_window}
+
 Verify ATHexapod Standby
-    [Tags]    atcs
+    [Tags]    standby
     Verify Summary State    ${STATES}[standby]    ATHexapod
 
 Verify ATHexapod ConfigurationsAvailable
-    [Tags]    atcs
+    [Tags]    config_available
     Verify ConfigurationsAvailable    ATHexapod
 
+Verify ATHexapod ConfigurationsAvailable timing
+    [Tags]    config_available    timing
+    Verify Time Delta    ATHexapod    logevent_summaryState    logevent_configurationsAvailable    ${time_window}
+
+Verify ATHexapod SoftwareVersions
+    [Tags]    software_versions
+    Verify SoftwareVersions    ATHexapod
+
+Verify ATHexapod SoftwareVersions timing
+    [Tags]    software_versions    timing
+    Verify Time Delta    ATHexapod    logevent_summaryState    logevent_softwareVersions    ${time_window}
+
 Verify ATMCS Standby
-    [Tags]    atcs
+    [Tags]    standby
     Verify Summary State    ${STATES}[standby]    ATMCS
-    ${atmcs_standby_event_time}=    Get Topic Sent Time    "logevent_SummaryState"    ATMCS
-    Set Suite Variable    ${atmcs_standby_event_time}
+
+Verify ATMCS SoftwareVersions
+    [Tags]    software_versions
+    Verify SoftwareVersions    ATMCS
+
+Verify ATMCS SoftwareVersions timing
+    [Tags]    software_versions    timing
+    Verify Time Delta    ATMCS    logevent_summaryState    logevent_softwareVersions    ${time_window}
 
 Verify ATPneumatics Standby
-    [Tags]    atcs
+    [Tags]    standby
     Verify Summary State    ${STATES}[standby]    ATPneumatics
-    ${atpneu_standby_event_time}=    Get Topic Sent Time    "logevent_SummaryState"    ATPneumatics
-    Set Suite Variable    ${atpnue_standby_event_time}
+
+Verify ATPneumatics SoftwareVersions
+    [Tags]    software_versions
+    Verify SoftwareVersions    ATPneumatics
+
+Verify ATPneumatics SoftwareVersions timing
+    [Tags]    software_versions    timing
+    Verify Time Delta    ATPneumatics    logevent_summaryState    logevent_softwareVersions    ${time_window}
 
 Verify ATPtg Standby
-    [Tags]    atcs
+    [Tags]    standby
     Verify Summary State    ${STATES}[standby]    ATPtg
-    ${atptg_standby_event_time}=    Get Topic Sent Time    "logevent_SummaryState"    ATPtg
-    Set Suite Variable    ${atptg_standby_event_time}
 
+Verify ATPtg SoftwareVersions
+    [Tags]    software_versions
+    Verify SoftwareVersions    ATPtg
+
+Verify ATPtg SoftwareVersions timing
+    [Tags]    software_versions    timing
+    Verify Time Delta    ATPtg    logevent_summaryState    logevent_softwareVersions    ${time_window}
