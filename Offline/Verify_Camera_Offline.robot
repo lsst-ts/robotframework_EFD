@@ -2,6 +2,7 @@
 Library    QueryEfd
 Library    Collections
 Library    String
+Library    DateTime
 Resource    ../Common_Keywords.resource
 Resource    ../Global_Vars.resource
 Resource    ../CSC_Lists.resource
@@ -10,6 +11,7 @@ Force Tags    offline
 *** Variables ***
 ${offdet_topic}    logevent_offlineDetailedState
 @{offdet_fields}    "private_sndStamp"    "substate"
+${time_window}    10
 
 *** Test Cases ***
 Verify ATCamera Offline
@@ -17,7 +19,7 @@ Verify ATCamera Offline
     Verify Summary State    ${STATES}[offline]    ATCamera
 
 Verify ATCamera OfflineDetailedStates
-    [Tags]    comcam
+    [Tags]    comcam    detailed_states
     Log Many    ATCamera    ${offdet_topic}   ${offdet_fields}
     ${output}=    Get Recent Samples    ATCamera    ${offdet_topic}   ${offdet_fields}    2
     ${output}=    Convert to String    ${output}
@@ -26,17 +28,17 @@ Verify ATCamera OfflineDetailedStates
     ${first}=    Get Line    ${output}    1
     @{first_event}=    Split String    ${first}
     Log Many    ${first_event}
-    @{first_event_time}=    Split String    ${first_event}[3]    +
     ${second}=    Get Line    ${output}    2
     @{second_event}=    Split String    ${second}
     Log Many    ${second_event}
-    @{second_event_time}=    Split String    ${second_event}[3]    +
-    Set Suite Variable    ${cccamera_first_event_time}    ${first_event_time}[0]
-    Set Suite Variable    ${cccamera_second_event_time}    ${second_event_time}[0]
     Log Many    First Substate: ${first_event}[4]
-    Should Not Be Empty    ${first_event}[4]
+    Should Be Equal    ${first_event}[4]    1
     Log Many    Second Substate: ${second_event}[4]
-    Should Not Be Empty    ${second_event}[4]
+    Should Be Equal    ${second_event}[4]    2
+
+Verify ATCamera OfflineDetailedStates timing
+    [Tags]    latiss    detailed_states    timing
+    Verify Time Delta    ATCamera    logevent_summaryState    ${offdet_topic}    ${time_window}
 
 Verify CCCamera Offline
     [Tags]    comcam
@@ -52,14 +54,14 @@ Verify CCCamera OfflineDetailedStates
     ${first}=    Get Line    ${output}    1
     @{first_event}=    Split String    ${first}
     Log Many    ${first_event}
-    @{first_event_time}=    Split String    ${first_event}[3]    +
     ${second}=    Get Line    ${output}    2
     @{second_event}=    Split String    ${second}
     Log Many    ${second_event}
-    @{second_event_time}=    Split String    ${second_event}[3]    +
-    Set Suite Variable    ${cccamera_first_event_time}    ${first_event_time}[0]
-    Set Suite Variable    ${cccamera_second_event_time}    ${second_event_time}[0]
-    Log Many    First Substate: ${first_event}[4]
-    Should Not Be Empty    ${first_event}[4]
-    Log Many    Second Substate: ${second_event}[4]
-    Should Not Be Empty    ${second_event}[4]
+    Log    First Substate: ${first_event}[4]
+    Should Be Equal    ${first_event}[4]    1
+    Log    Second Substate: ${second_event}[4]
+    Should Be Equal    ${second_event}[4]    2
+
+Verify CCCamera OfflineDetailedStates timing
+    [Tags]    comcam    detailed_states    timing
+    Verify Time Delta    CCCamera    logevent_summaryState    ${offdet_topic}    ${time_window}
