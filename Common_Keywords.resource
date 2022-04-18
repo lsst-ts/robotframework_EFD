@@ -82,11 +82,11 @@ Verify SoftwareVersions
     Should Not Contain    ${output}    Empty DataFrame
     ${line}=    Get Line    ${output}    1
     @{words}=    Split String    ${line}
-    Log Many    ${words}[2]    ${words}[3]
-    @{time}=    Split String    ${words}[3]    +
-    Set Suite Variable    ${ataos_softwareversions_event_time}    ${time}[0]
-    Should Contain    ${words}    ${SALVersion}
-    Should Contain    ${words}    ${XMLVersion}
+    Log Many    Expected: OSPLVersion: ${OSPLVersion}, SALVersion: ${SALVersion}, XMLVersion: ${XMLVersion}
+    ...    ${SPACE}${SPACE}Actual: OSPLVersion: ${words}[5], SALVersion: ${words}[6], XMLVersion: ${words}[7]
+    Should Match    ${words}[5]    ${OSPLVersion}
+    Should Match    ${words}[6]    ${SALVersion}
+    Should Match    ${words}[7]    ${XMLVersion}
     Log    CSC Version: ${words}[4]
     Should Not Be Empty    ${words}[4]
 
