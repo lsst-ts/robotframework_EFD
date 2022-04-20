@@ -14,7 +14,7 @@ ${time_window}    10
 *** Test Cases ***
 Verify DSM:1 Standby
     [Tags]    eas_ae
-    Verify Summary State    ${STATES}[disabled]    DSM:1    True
+    Verify Summary State    ${STATES}[standby]    DSM:1    True
 
 Verify DSM:1 SoftwareVersions
     [Tags]    eas_ae
