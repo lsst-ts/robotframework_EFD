@@ -10,5 +10,5 @@
 @{MTCS}            MTMount    MTPtg    MTDome    MTDomeTrajectory    MTAOS    MTHexapod:1    MTHexapod:2    MTRotator    MTM1M3    MTM2
 @{ObsSys1}         ScriptQueue:1    ScriptQueue:2    Watcher
 @{ObsSys2}         Scheduler:1    Scheduler:2    OCPS:1    OCPS:2
-@{NON_CONFIG}      ATOODS    ATHeaderService    ATMCS    ATPneumatics    ATPtg    CCHeaderService    CCOODS    DSM    LinearStage    MTPtg    ScriptQueue
+@{NON_CONFIG}      ATMCS    ATHeaderService    ATOODS    ATPneumatics    ATPtg    CCHeaderService    CCOODS    DSM    LinearStage    MTPtg    ScriptQueue
 @{OFFLINE}         ATCamera    CCCamera
