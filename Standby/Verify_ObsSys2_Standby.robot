@@ -24,7 +24,7 @@ Verify Scheduler:1 SoftwareVersions timing
     [Tags]    software_versions    timing
     Verify Time Delta    Scheduler    logevent_summaryState    logevent_softwareVersions    ${time_window}    1
 
-Verify Scheduler:1 ConfigurationsAvailable
+Verify Scheduler:1 ConfigurationsAvailable Event
     [Tags]    config_available
     Verify ConfigurationsAvailable    Scheduler    1
 
@@ -44,7 +44,7 @@ Verify Scheduler:2 SoftwareVersions timing
     [Tags]    software_versions    timing
     Verify Time Delta    Scheduler    logevent_summaryState    logevent_softwareVersions    ${time_window}    2
 
-Verify Scheduler:2 ConfigurationsAvailable
+Verify Scheduler:2 ConfigurationsAvailable Event
     [Tags]    config_available
     Verify ConfigurationsAvailable    Scheduler    2
 
@@ -64,7 +64,7 @@ Verify OCPS:1 SoftwareVersions timing
     [Tags]    software_versions    timing
     Verify Time Delta    OCPS    logevent_summaryState    logevent_softwareVersions    ${time_window}    1
 
-Verify OCPS:1 ConfigurationsAvailable
+Verify OCPS:1 ConfigurationsAvailable Event
     [Tags]    config_available
     Verify ConfigurationsAvailable    OCPS    1
 
@@ -84,7 +84,7 @@ Verify OCPS:2 SoftwareVersions timing
     [Tags]    software_versions    timing
     Verify Time Delta    OCPS    logevent_summaryState    logevent_softwareVersions    ${time_window}    2
 
-Verify OCPS:2 ConfigurationsAvailable
+Verify OCPS:2 ConfigurationsAvailable Event
     [Tags]    config_available
     Verify ConfigurationsAvailable    OCPS    2
 

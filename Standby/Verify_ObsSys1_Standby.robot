@@ -24,6 +24,10 @@ Verify ScriptQueue:1 SoftwareVersions timing
     [Tags]    software_versions    timing
     Verify Time Delta    ScriptQueue    logevent_summaryState    logevent_softwareVersions    ${time_window}    1
 
+Verify ScriptQueue:1 ConfigurationsAvailable Event
+    [Tags]    config_available
+    Verify ConfigurationsAvailable    ScriptQueue    index=1
+
 Verify ScriptQueue:2 Standby
     [Tags]    standby
     Verify Summary State    ${STATES}[standby]    ScriptQueue:2
@@ -35,6 +39,10 @@ Verify ScriptQueue:2 SoftwareVersions
 Verify ScriptQueue:2 SoftwareVersions timing
     [Tags]    software_versions    timing
     Verify Time Delta    ScriptQueue    logevent_summaryState    logevent_softwareVersions    ${time_window}    2
+
+Verify ScriptQueue:2 ConfigurationsAvailable Event
+    [Tags]    config_available
+    Verify ConfigurationsAvailable    ScriptQueue    index=2
 
 Verify Watcher Standby
     [Tags]    standby
@@ -48,7 +56,7 @@ Verify Watcher SoftwareVersions timing
     [Tags]    software_versions    timing
     Verify Time Delta    Watcher    logevent_summaryState    logevent_softwareVersions    ${time_window}
 
-Verify Watcher ConfigurationsAvailable
+Verify Watcher ConfigurationsAvailable Event
     [Tags]    config_available
     Verify ConfigurationsAvailable    Watcher
 

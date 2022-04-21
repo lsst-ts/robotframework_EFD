@@ -24,6 +24,10 @@ Verify ATOODS SoftwareVersions timing
     [Tags]    software_versions    timing
     Verify Time Delta    ATOODS    logevent_summaryState    logevent_softwareVersions    ${time_window}
 
+Verify ATOODS ConfigurationsAvailable Event
+    [Tags]    config_available
+    Verify ConfigurationsAvailable    ATOODS
+
 Verify ATCamera Standby
     [Tags]    standby
     Verify Summary State    ${STATES}[standby]    ATCamera
@@ -36,7 +40,7 @@ Verify ATCamera SoftwareVersions timing
     [Tags]    software_versions    timing
     Verify Time Delta    ATCamera    logevent_summaryState    logevent_softwareVersions    ${time_window}
 
-Verify ATCamera ConfigurationsAvailable
+Verify ATCamera ConfigurationsAvailable Event
     [Tags]    config_available
     Verify ConfigurationsAvailable    ATCamera
 
@@ -56,6 +60,10 @@ Verify ATHeaderService SoftwareVersions timing
     [Tags]    software_versions    timing
     Verify Time Delta    ATHeaderService    logevent_summaryState    logevent_softwareVersions    ${time_window}
 
+Verify ATHeaderService ConfigurationsAvailable Event
+    [Tags]    config_available
+    Verify ConfigurationsAvailable    ATHeaderService
+
 Verify ATSpectrograph Standby
     [Tags]    standby
     Verify Summary State    ${STATES}[standby]    ATSpectrograph
@@ -68,7 +76,7 @@ Verify ATSpectrograph SoftwareVersions timing
     [Tags]    software_versions    timing
     Verify Time Delta    ATSpectrograph    logevent_summaryState    logevent_softwareVersions    ${time_window}
 
-Verify ATSpectrograph ConfigurationsAvailable
+Verify ATSpectrograph ConfigurationsAvailable Event
     [Tags]    config_available
     Verify ConfigurationsAvailable    ATSpectrograph
 

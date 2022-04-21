@@ -24,6 +24,10 @@ Verify CCOODS SoftwareVersions timing
     [Tags]    software_versions    timing
     Verify Time Delta    CCOODS    logevent_summaryState    logevent_softwareVersions    ${time_window}
 
+Verify CCOODS ConfigurationsAvailable Event
+    [Tags]    config_available
+    Verify ConfigurationsAvailable    CCOODS
+
 Verify CCCamera Standby
     [Tags]    standby
     Verify Summary State    ${STATES}[standby]    CCCamera
@@ -36,7 +40,7 @@ Verify CCCamera SoftwareVersions timing
     [Tags]    software_versions    timing
     Verify Time Delta    CCCamera    logevent_summaryState    logevent_softwareVersions    ${time_window}
 
-Verify CCCamera ConfigurationsAvailable
+Verify CCCamera ConfigurationsAvailable Event
     [Tags]    config_available
     Verify ConfigurationsAvailable    CCCamera
 
@@ -47,6 +51,10 @@ Verify CCCamera ConfigurationsAvailable timing
 Verify CCHeaderService Standby
     [Tags]    standby
     Verify Summary State    ${STATES}[standby]    CCHeaderService
+
+Verify CCHeaderService ConfigurationsAvailable Event
+    [Tags]    config_available
+    Verify CCHeaderService    CCCamera
 
 Verify CCHeaderService SoftwareVersions
     [Tags]    software_versions

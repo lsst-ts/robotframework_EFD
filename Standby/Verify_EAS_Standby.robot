@@ -24,7 +24,7 @@ Verify DIMM:1 SoftwareVersions timing
     [Tags]    software_versions    timing
     Verify Time Delta    DIMM    logevent_summaryState    logevent_softwareVersions    ${time_window}    1
 
-Verify DIMM:1 ConfigurationsAvailable
+Verify DIMM:1 ConfigurationsAvailable Event
     [Tags]    config_available
     Verify ConfigurationsAvailable    DIMM    1
 
@@ -44,7 +44,7 @@ Verify WeatherStation:1 SoftwareVersions timing
     [Tags]    software_versions    timing
     Verify Time Delta    WeatherStation    logevent_summaryState    logevent_softwareVersions    ${time_window}    1
 
-Verify WeatherStation:1 ConfigurationsAvailable
+Verify WeatherStation:1 ConfigurationsAvailable Event
     [Tags]    config_available
     Verify ConfigurationsAvailable    WeatherStation    1
 
