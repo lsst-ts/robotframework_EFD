@@ -18,7 +18,7 @@ Verify ScriptQueue:1 Disabled
 
 Verify ScriptQueue:1 ConfigurationApplied Event
     [Tags]    obsys1
-    Verify ConfigurationApplied    ScriptQueue    index=1
+    Verify ConfigurationApplied    ScriptQueue    1
 
 Verify ScriptQueue:2 Disabled
     [Tags]    disabled
@@ -26,7 +26,7 @@ Verify ScriptQueue:2 Disabled
 
 Verify ScriptQueue:2 ConfigurationApplied Event
     [Tags]    obsys1
-    Verify ConfigurationApplied    ScriptQueue    index=2
+    Verify ConfigurationApplied    ScriptQueue    2
 
 Verify Watcher Disabled
     [Tags]    disabled

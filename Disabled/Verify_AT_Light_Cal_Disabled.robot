@@ -30,8 +30,8 @@ Verify FiberSpectrograph:3 Disabled
 
 Verify FiberSpectrograph:3 ConfigurationApplied Event
     [Tags]    config_applied
-    Verify ConfigurationApplied    FiberSpectrograph    index=3
+    Verify ConfigurationApplied    FiberSpectrograph    3
 
 Verify FiberSpectrograph:3 ConfigurationApplied timing
     [Tags]    config_applied    timing
-    Verify Time Delta    FiberSpectrograph    logevent_summaryState    logevent_configurationApplied    ${time_window}    index=3
+    Verify Time Delta    FiberSpectrograph    logevent_summaryState    logevent_configurationApplied    ${time_window}    3

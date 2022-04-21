@@ -18,7 +18,7 @@ Verify DSM:1 Disabled
 
 Verify DSM:1 ConfigurationApplied Event
     [Tags]    config_applied
-    Verify ConfigurationApplied    DSM    index=1
+    Verify ConfigurationApplied    DSM    1
 
 Verify DSM:2 Disabled
     [Tags]    disabled
@@ -26,4 +26,4 @@ Verify DSM:2 Disabled
 
 Verify DSM:2 ConfigurationApplied Event
     [Tags]    config_applied
-    Verify ConfigurationApplied    DSM    index=2
+    Verify ConfigurationApplied    DSM    2

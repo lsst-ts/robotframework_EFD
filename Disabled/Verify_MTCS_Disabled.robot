@@ -74,11 +74,11 @@ Verify MTHexapod:1 Disabled
 
 Verify MTHexapod:1 ConfigurationApplied Event
     [Tags]    config_applied
-    Verify ConfigurationApplied    MTHexapod    index=1
+    Verify ConfigurationApplied    MTHexapod    1
 
 Verify MTHexapod:1 ConfigurationApplied timing
     [Tags]    config_applied    timing
-    Verify Time Delta    MTHexapod    logevent_summaryState    logevent_configurationApplied    ${time_window}    index=1
+    Verify Time Delta    MTHexapod    logevent_summaryState    logevent_configurationApplied    ${time_window}    1
 
 Verify MTHexapod:2 Disabled
     [Tags]    disabled
@@ -86,11 +86,11 @@ Verify MTHexapod:2 Disabled
 
 Verify MTHexapod:2 ConfigurationApplied Event
     [Tags]    config_applied
-    Verify ConfigurationApplied    MTHexapod    index=2
+    Verify ConfigurationApplied    MTHexapod    2
 
 Verify MTHexapod:2 ConfigurationApplied timing
     [Tags]    config_applied    timing
-    Verify Time Delta    MTHexapod    logevent_summaryState    logevent_configurationApplied    ${time_window}    index=2
+    Verify Time Delta    MTHexapod    logevent_summaryState    logevent_configurationApplied    ${time_window}    2
 
 Verify MTRotator Disabled
     [Tags]    disabled
