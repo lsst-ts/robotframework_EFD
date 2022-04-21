@@ -6,7 +6,7 @@ Library    DateTime
 Resource    ../Common_Keywords.resource
 Resource    ../Global_Vars.resource
 Resource    ../CSC_Lists.resource
-Force Tags    shutdown
+Force Tags    shutdown    skipped
 
 *** Variables ***
 ${topic_1}    logevent_summaryState

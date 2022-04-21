@@ -64,7 +64,6 @@ class QueryEfd:
             num = 3
         else:
             num = 1
-        print(num)
         ss_df = self.get_recent_samples(
             csc,
             "logevent_summaryState",
@@ -72,10 +71,15 @@ class QueryEfd:
             num,
             index,
         )
+        print(ss_df)
         if not self._check_attribute(ss_df, "summaryState"):
             raise AttributeError("SummaryState Event Not Found.")
-        if num == 3:
+        if num == 3 and expected_state == 5:
+            ss_df = ss_df.iloc[[2]]
+        if num == 3 and expected_state == 1:
             ss_df = ss_df.iloc[[1]]
+        if num == 3 and expected_state == 2:
+            ss_df = ss_df.iloc[[0]]
         expected_state_str = state_enums.as_state(int(expected_state)).name
         actual_state_str = state_enums.as_state(int(ss_df.summaryState[0])).name
         event_sent_time = ss_df.private_sndStamp[0].strftime(self.time_format)

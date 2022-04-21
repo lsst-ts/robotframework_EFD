@@ -14,3 +14,4 @@ Standby/Verify_LATISS_Standby.robot
 Standby/Verify_MTCS_Standby.robot
 Standby/Verify_ObsSys1_Standby.robot
 Standby/Verify_ObsSys2_Standby.robot
+Standby/Verify_Camera_SoftwareVersions.robot 
