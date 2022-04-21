@@ -6,7 +6,7 @@ Library    DateTime
 Resource    ../Common_Keywords.resource
 Resource    ../Global_Vars.resource
 Resource    ../CSC_Lists.resource
-Force Tags    timing
+Force Tags    comcam
 
 *** Variables ***
 ${time_window}    10

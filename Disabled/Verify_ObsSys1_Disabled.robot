@@ -17,7 +17,7 @@ Verify ScriptQueue:1 Disabled
     Verify Summary State    ${STATES}[disabled]    ScriptQueue:1
 
 Verify ScriptQueue:1 ConfigurationApplied Event
-    [Tags]    obsys1
+    [Tags]    config_applied
     Verify ConfigurationApplied    ScriptQueue    1
 
 Verify ScriptQueue:2 Disabled
@@ -25,7 +25,7 @@ Verify ScriptQueue:2 Disabled
     Verify Summary State    ${STATES}[disabled]    ScriptQueue:2
 
 Verify ScriptQueue:2 ConfigurationApplied Event
-    [Tags]    obsys1
+    [Tags]    config_applied
     Verify ConfigurationApplied    ScriptQueue    2
 
 Verify Watcher Disabled
@@ -33,9 +33,9 @@ Verify Watcher Disabled
     Verify Summary State    ${STATES}[disabled]    Watcher
 
 Verify Watcher ConfigurationApplied Event
-    [Tags]    obsys1
+    [Tags]    config_applied
     Verify ConfigurationApplied    Watcher
 
 Verify Watcher ConfigurationApplied timing
-    [Tags]    obsys1
+    [Tags]    config_applied    timing
     Verify Time Delta    Watcher    logevent_summaryState    logevent_configurationApplied    ${time_window}
