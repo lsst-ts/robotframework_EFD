@@ -3,11 +3,12 @@ Resource    CSC_Lists.resource
 
 *** Variables ***
 ${ca_topic}    logevent_configurationApplied
-@{ca_fields}    "private_sndStamp"    "configurations"    "version"    "url"
+@{ca_fields}    "private_sndStamp"    "configurations"    "version"    "url"    "otherInfo"
 ${cav_topic}    logevent_configurationsAvailable
 @{cav_fields}    "private_sndStamp"    "overrides"    "version"    "url"    "schemaVersion"
 ${swv_topic}    logevent_softwareVersions
 @{swv_fields}    "private_sndStamp"    "cscVersion"    "openSpliceVersion"    "salVersion"   "xmlVersion"
+${version_regex}    ^v?(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:[.-]((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$
 
 *** Keywords ***
 Verify ConfigurationApplied
@@ -18,28 +19,59 @@ Verify ConfigurationApplied
     IF    $csc in $NON_CONFIG    
         Should Contain    ${output}    Empty DataFrame
     ELSE
-        Log    ${output}
-        #${line}=    Get Line    ${output}    -1
-        #@{words}=    Split String    ${line}
-        #Log Many    ${words}[2]    ${words}[3]
-        #@{time}=    Split String    ${words}[3]    +
-        #Set Suite Variable    ${watcher_settingsapplied_event_time}    ${time}[0]
+        ${line}=    Get Line    ${output}    -1
+        @{words}=    Split String    ${line}
+        Log Many    Configurationss: ${words}[3]    Version: ${words}[4]    URL: ${words}[5]
+        Should Not Be Empty    ${words}[4]
+        Should Not Be Empty    ${words}[6]
+        Should Contain Any    ${words}[6]    https://    file://
+        Should Not Be Empty    ${words}[5]
+        Should Match Regexp    ${words}[5]    ${version_regex}
     END
 
 Verify ConfigurationsAvailable
     [Arguments]    ${csc}    ${csc_index}=None
-    ${output}=    Get Recent Samples    ${csc}    ${sv_topic}   ${sv_fields}    1    ${csc_index}
+    ${output}=    Get Recent Samples    ${csc}    ${cav_topic}    ${cav_fields}    1    ${csc_index}
     ${output}=    Convert to String    ${output}
     Log    ${output}
-    Should Not Contain    ${output}    Empty DataFrame
-    ${line}=    Get Line    ${output}    1
-    @{words}=    Split String    ${line}
-    Log Many    ${words}
-    @{time}=    Split String    ${words}[3]    +
-    Set Suite Variable    ${ataos_configsavailable_event_time}    ${time}[0]
-    Log Many    Overrides: ${words}[4]    Version: ${words}[5]    URL: ${words}[6]
-    Should Not Be Empty    ${words}[5]
-    Should Not Be Empty    ${words}[6]
+    IF    $csc in $NON_CONFIG
+        Should Contain    ${output}    Empty DataFrame
+    ELSE
+        # Get Overrides value.
+        ${output}=    Get Recent Samples    ${csc}    ${cav_topic}   ${cav_fields}[1]    1    ${csc_index}
+        ${output}=    Convert to String    ${output}
+        ${line}=    Get Line    ${output}    -1
+        @{words}=    Split String    ${line}
+        # The overrides field can be empty.
+        ${length}=    Get Length    ${words}
+        Run Keyword If    ${length} > 2    Set Test Variable    ${overrides}    ${words}[2]
+        Run Keyword Unless    ${length} > 2    Set Test Variable    ${overrides}    EMPTY
+        # Get Version value.
+        ${output}=    Get Recent Samples    ${csc}    ${cav_topic}   ${cav_fields}[2]    1    ${csc_index}
+        ${output}=    Convert to String    ${output}
+        ${line}=    Get Line    ${output}    -1
+        @{words}=    Split String    ${line}
+        ${version}=    Set Variable    ${words}[2]
+        # Get URL value.
+        ${output}=    Get Recent Samples    ${csc}    ${cav_topic}   ${cav_fields}[3]    1    ${csc_index}
+        ${output}=    Convert to String    ${output}
+        ${line}=    Get Line    ${output}    -1
+        @{words}=    Split String    ${line}
+        ${url}=    Set Variable    ${words}[2]
+        # Get SchemaVersion value.
+        ${output}=    Get Recent Samples    ${csc}    ${cav_topic}   ${cav_fields}[4]    1    ${csc_index}
+        ${output}=    Convert to String    ${output}
+        ${line}=    Get Line    ${output}    -1
+        @{words}=    Split String    ${line}
+        ${schema_version}=    Set Variable    ${words}[2]
+        # Verify field values.
+        Log Many    Overrides: ${overrides}    Version: ${version}    URL: ${url}    SchemaVersion: ${schema_version}
+        Should Not Be Empty    ${url}
+        Should Contain Any    ${url}    https://    file://
+        Should Not Be Empty    ${version}
+        Should Match Regexp    ${version}    ${version_regex}
+        Should Not Be Empty    ${schema_version}
+    END
 
 Verify SoftwareVersions
     [Arguments]    ${csc}    ${csc_index}=None
