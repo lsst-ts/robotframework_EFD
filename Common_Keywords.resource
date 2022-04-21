@@ -13,6 +13,7 @@ ${version_regex}    ^v?(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:[.-]((?:0
 *** Keywords ***
 Verify ConfigurationApplied
     [Arguments]    ${csc}    ${csc_index}=None
+    Log Many    Get Recent Samples    ${csc}    ${ca_topic}    ${ca_fields}    1    ${csc_index}
     ${output}=    Get Recent Samples    ${csc}    ${ca_topic}    ${ca_fields}    1    ${csc_index}
     ${output}=    Convert to String    ${output}
     Log    ${output}
