@@ -54,7 +54,7 @@ Verify CCHeaderService Standby
 
 Verify CCHeaderService ConfigurationsAvailable Event
     [Tags]    config_available
-    Verify CCHeaderService    CCCamera
+    Verify ConfigurationsAvailable    CCHeaderService
 
 Verify CCHeaderService SoftwareVersions
     [Tags]    software_versions
