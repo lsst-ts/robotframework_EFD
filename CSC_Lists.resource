@@ -12,3 +12,7 @@
 @{ObsSys2}         Scheduler:1    Scheduler:2    OCPS:1    OCPS:2
 @{NON_CONFIG}      ATHeaderService    ATMCS    ATOODS    ATPneumatics    ATPtg    CCHeaderService    CCOODS    DSM    LinearStage    MTPtg    ScriptQueue
 @{OFFLINE}         ATCamera    CCCamera
+@{SALOBJ}          ATAOS   ATDome   ATDomeTrajectory   ATHeaderService   ATHexapod   ATMCS   ATMonochromator   ATOODS   ATPneumatics   ATSpectrograph   ATWhiteLight
+...    CCHeaderService   CCOODS   DIMM:1   DIMM:2   DSM:1   DSM:2   FiberSpectrograph:3   LinearStage   MTAOS   MTDome   MTDomeTrajectory   MTHexapod MTRotator
+...    OCPS:1   OCPS:2   Scheduler:1   Scheduler:2   ScriptQueue   Watcher   WeatherStation:1
+@{Camera}       ATCamera    CCCamera
