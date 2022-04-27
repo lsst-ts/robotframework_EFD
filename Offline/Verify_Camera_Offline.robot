@@ -27,7 +27,7 @@ Verify ATCamera SoftwareVersions timing
     Verify Time Delta    ATCamera    logevent_summaryState    logevent_softwareVersions    ${time_window}
 
 Verify ATCamera OfflineDetailedStates
-    [Tags]    comcam    detailed_states
+    [Tags]    latiss    detailed_states
     Log Many    ATCamera    ${offdet_topic}   ${offdet_fields}
     ${output}=    Get Recent Samples    ATCamera    ${offdet_topic}   ${offdet_fields}    2
     ${output}=    Convert to String    ${output}
