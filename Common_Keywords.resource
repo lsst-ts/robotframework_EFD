@@ -22,7 +22,7 @@ Verify ConfigurationApplied
         ${configurations}=    Evaluate    $dataframe.configurations.values[0]
         ${version}=    Evaluate    $dataframe.version.values[0]
         ${url}=    Evaluate    $dataframe.url.values[0]
-        Log Many    Configurationss: ${configurations}    Version: ${version}    URL: ${url}
+        Log Many    Configurations: ${configurations}    Version: ${version}    URL: ${url}
         Should Not Be Empty    ${configurations}
         Should Not Be Empty    ${version}]
         Should Contain Any    ${url}    https://    file://
@@ -67,9 +67,10 @@ Verify SoftwareVersions
     ...    ${SPACE}${SPACE}Actual: SALVersion: ${sal_ver}, XMLVersion: ${xml_ver}, OSPLVersion: ${ospl_ver}
     Should Match    ${sal_ver}    ${SALVersion}
     Should Match    ${xml_ver}    ${XMLVersion}
+    Should Match    ${ospl_ver}    ${OSPLVersion}
     Log    CSC Version: ${csc_ver}
     Should Not Be Empty    ${csc_ver}
-    Should Match    ${ospl_ver}    ${OSPLVersion}
+    Should Match Regexp    ${version}    ${version_regex}    msg="Version is not in Semantic Version format."    values=False
 
 Verify Shutdown Process
     [Arguments]    ${csc}    ${csc_index}=None
