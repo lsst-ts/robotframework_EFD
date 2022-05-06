@@ -71,7 +71,7 @@ class QueryEfd:
             num,
             index,
         )
-        print(ss_df)
+        print(f"*TRACE*dataframe:\n{ss_df}")
         if not self._check_attribute(ss_df, "summaryState"):
             raise AttributeError("SummaryState Event Not Found.")
         if num == 3 and expected_state == 5:
@@ -106,7 +106,7 @@ class QueryEfd:
     def verify_topic(self, csc, topic):
         csc, index = self._from_entry(csc)
         topic_df = self.get_recent_samples(csc, topic, "*", 1, index)
-        print(topic_df)
+        print(f"*TRACE*dataframe:\n{topic_df}")
 
     @not_keyword
     def _efd_topic(self, csc, topic):
