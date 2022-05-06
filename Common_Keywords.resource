@@ -13,13 +13,13 @@ ${version_regex}    ^v?(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:[.-]((?:0
 *** Keywords ***
 Verify Version
     [Arguments]    ${version}
+    [Tags]    robot:continue-on-failure    custom
     Should Match Regexp    ${version}    ${version_regex}    msg=Version, '${version}', is not SemVer compliant.    values=False
 
 Verify ConfigurationApplied
     [Arguments]    ${csc}    ${csc_index}=None
-    [Tags]    robot:continue-on-failure
+    [Tags]    robot:continue-on-failure    custom
     ${dataframe}=    Get Recent Samples    ${csc}    ${ca_topic}    ${ca_fields}    1    ${csc_index}
-    Log    ${dataframe}
     IF    $csc in $NON_CONFIG    
         Should Be True    $dataframe.empty
     ELSE
@@ -43,9 +43,8 @@ Verify ConfigurationApplied
 
 Verify ConfigurationsAvailable
     [Arguments]    ${csc}    ${csc_index}=None
-    [Tags]    robot:continue-on-failure
+    [Tags]    robot:continue-on-failure    custom
     ${dataframe}=    Get Recent Samples    ${csc}    ${cav_topic}    ${cav_fields}    1    ${csc_index}
-    Log    ${dataframe}
     IF    $csc in $NON_CONFIG
         Should Be True    $dataframe.empty
     ELSE
@@ -69,9 +68,8 @@ Verify ConfigurationsAvailable
 
 Verify SoftwareVersions
     [Arguments]    ${csc}    ${csc_index}=None
-    [Tags]    robot:continue-on-failure
+    [Tags]    robot:continue-on-failure    custom
     ${dataframe}=    Get Recent Samples    ${csc}    ${swv_topic}    ${swv_fields}    1    ${csc_index}
-    Log    ${dataframe}
     Should Not Be True    $dataframe.empty
     ${sal_ver}=    Evaluate    $dataframe.salVersion[0]
     ${xml_ver}=    Evaluate    $dataframe.xmlVersion[0]
@@ -82,18 +80,16 @@ Verify SoftwareVersions
     Should Match    ${sal_ver}    ${SALVersion}
     Should Match    ${xml_ver}    ${XMLVersion}
     Should Match    ${ospl_ver}    ${OSPLVersion}
-    Log    CSC Version: ${csc_ver}
     Should Not Be Empty    ${csc_ver}
     Verify Version    ${csc_ver}
 
 Verify Shutdown Process
     [Arguments]    ${csc}    ${csc_index}=None
-    [Tags]    robot:continue-on-failure
+    [Tags]    robot:continue-on-failure    custom
     @{fields}=    Create List    "private_sndStamp"    "summaryState"
     @{states_keys}=    Get Dictionary Keys    ${STATES}
     @{shutdown_list}=    Create List    ${states_keys}[3]    ${states_keys}[4]    ${states_keys}[0]    ${states_keys}[1]
     ${dataframe}=    Get Recent Samples    ${csc}    logevent_summaryState   ${fields}    4    ${csc_index}
-    Log    ${dataframe}
     Should Not Be True    $dataframe.empty
     ${first}=    Evaluate    $dataframe.summaryState[0]
     ${second}=    Evaluate    $dataframe.summaryState[1]
@@ -104,6 +100,7 @@ Verify Shutdown Process
 
 Verify Time Delta
     [Arguments]    ${csc}    ${topic_1}    ${topic_2}    ${time_window}    ${index}=None
+    [Tags]    robot:continue-on-failure    custom
     Log Many    ${csc}    ${topic_1}    ${topic_2}    ${time_window}    ${index}
     ${timestamp1}=    Get Topic Sent Time    ${csc}    ${topic_1}    "private_sndStamp"    1
     ${time_1}=    Convert Date    ${timestamp1}    result_format=timestamp    date_format=%Y-%m-%dT%H:%M:%S.%f
