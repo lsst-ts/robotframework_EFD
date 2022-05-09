@@ -14,7 +14,7 @@ ${time_window}    10
 *** Test Cases ***
 Verify ScriptQueue:1 Standby
     [Tags]    standby
-    Verify Summary State    ${STATES}[standby]    ScriptQueue:1
+    Verify Summary State    ${STATES}[standby]    ScriptQueue:1    True
 
 Verify ScriptQueue:1 SoftwareVersions
     [Tags]    software_versions
@@ -30,7 +30,7 @@ Verify ScriptQueue:1 ConfigurationsAvailable Event
 
 Verify ScriptQueue:2 Standby
     [Tags]    standby
-    Verify Summary State    ${STATES}[standby]    ScriptQueue:2
+    Verify Summary State    ${STATES}[standby]    ScriptQueue:2    True
 
 Verify ScriptQueue:2 SoftwareVersions
     [Tags]    software_versions
@@ -46,7 +46,7 @@ Verify ScriptQueue:2 ConfigurationsAvailable Event
 
 Verify Watcher Standby
     [Tags]    standby
-    Verify Summary State    ${STATES}[standby]    Watcher
+    Verify Summary State    ${STATES}[standby]    Watcher    True
 
 Verify Watcher SoftwareVersions
     [Tags]    software_versions

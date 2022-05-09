@@ -14,7 +14,7 @@ ${time_window}    10
 *** Test Cases ***
 Verify ScriptQueue:1 Disabled
     [Tags]    disabled
-    Verify Summary State    ${STATES}[disabled]    ScriptQueue:1
+    Verify Summary State    ${STATES}[disabled]    ScriptQueue:1    True
 
 Verify ScriptQueue:1 ConfigurationApplied Event
     [Tags]    config_applied
@@ -22,7 +22,7 @@ Verify ScriptQueue:1 ConfigurationApplied Event
 
 Verify ScriptQueue:2 Disabled
     [Tags]    disabled
-    Verify Summary State    ${STATES}[disabled]    ScriptQueue:2
+    Verify Summary State    ${STATES}[disabled]    ScriptQueue:2    True
 
 Verify ScriptQueue:2 ConfigurationApplied Event
     [Tags]    config_applied
@@ -30,7 +30,7 @@ Verify ScriptQueue:2 ConfigurationApplied Event
 
 Verify Watcher Disabled
     [Tags]    disabled
-    Verify Summary State    ${STATES}[disabled]    Watcher
+    Verify Summary State    ${STATES}[disabled]    Watcher    True
 
 Verify Watcher ConfigurationApplied Event
     [Tags]    config_applied

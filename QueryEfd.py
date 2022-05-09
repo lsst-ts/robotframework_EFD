@@ -58,7 +58,7 @@ class QueryEfd:
         return recent_samples
 
     @keyword
-    def verify_summary_state(self, expected_state, csc_str, auto_enable=False):
+    def verify_summary_state(self, expected_state: int, csc_str: str, auto_enable: bool = False):
         csc, index = self._from_entry(csc_str)
         if auto_enable:
             num = 3
