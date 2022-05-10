@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 
+import typing
 import asyncio
+import pandas
 from utils import dataframe
 from utils import state_enums
 
@@ -11,27 +13,27 @@ from lsst_efd_client import EfdClient
 @library(scope="GLOBAL", version="0.1", doc_format="reST", auto_keywords=False)
 class QueryEfd:
 
-    INDEX_DELIM = ":"
-    time_format = "%Y-%m-%dT%H:%M:%S.%f"
+    INDEX_DELIM: str = ":"
+    time_format: str = "%Y-%m-%dT%H:%M:%S.%f"
 
-    def __init__(self, efd_name="tucson_teststand_efd"):
+    def __init__(self, efd_name: str = "tucson_teststand_efd") -> None:
         self.efd_name = efd_name
 
     @keyword
-    def get_efd_names(self):
+    def get_efd_names(self) -> list:
         efd_client = EfdClient(self.efd_name)
         efd_list = efd_client.list_efd_names()
         return efd_list
 
     @keyword
-    def get_efd_topics(self):
+    def get_efd_topics(self) -> list:
         efd_client = EfdClient(self.efd_name)
         loop = asyncio.get_event_loop()
         topics_list = loop.run_until_complete(efd_client.get_topics())
         return topics_list
 
     @keyword
-    def get_topic_fields(self, csc, topic):
+    def get_topic_fields(self, csc: str, topic: str) -> list:
         efd_client = EfdClient(self.efd_name)
         loop = asyncio.get_event_loop()
         fields = loop.run_until_complete(
@@ -40,7 +42,7 @@ class QueryEfd:
         return fields
 
     @keyword
-    def get_recent_samples(self, csc, topic, fields, num, index=None):
+    def get_recent_samples(self, csc: str, topic: str, fields: list, num: int, index=None) -> pandas.core.frame.DataFrame:
         efd_client = EfdClient(self.efd_name)
         loop = asyncio.get_event_loop()
         recent_samples = loop.run_until_complete(
@@ -58,8 +60,10 @@ class QueryEfd:
         return recent_samples
 
     @keyword
-    def verify_summary_state(self, expected_state: int, csc_str: str, auto_enable: bool = False):
-        csc, index = self._from_entry(csc_str)
+    def verify_summary_state(self, expected_state: int, csc_str: str, auto_enable: bool = False) -> None:
+        if not isinstance(expected_state, int):
+            raise TypeError("Expected State must be an integer.")
+        csc, index = self._split_indexed_csc(csc_str)
         if auto_enable:
             num = 3
         else:
@@ -93,7 +97,7 @@ class QueryEfd:
             )
 
     @keyword
-    def get_topic_sent_time(self, csc, topic, fields, num, index=None):
+    def get_topic_sent_time(self, csc: str, topic: str, fields: list, num: int, index=None) -> str:
         recent_samples = self.get_recent_samples(
             csc=csc, topic=topic, fields=fields, num=num, index=index
         )
@@ -103,17 +107,17 @@ class QueryEfd:
         return event_sent_time
 
     @keyword
-    def verify_topic(self, csc, topic):
-        csc, index = self._from_entry(csc)
+    def verify_topic(self, csc: str, topic: str) -> None:
+        csc, index = self._split_indexed_csc(csc)
         topic_df = self.get_recent_samples(csc, topic, "*", 1, index)
         print(f"*TRACE*dataframe:\n{topic_df}")
 
     @not_keyword
-    def _efd_topic(self, csc, topic):
+    def _efd_topic(self, csc: str, topic: str) -> str:
         return f"lsst.sal.{csc}.{topic}"
 
     @not_keyword
-    def _from_entry(self, csc_str):
+    def _split_indexed_csc(self, csc_str: str) -> typing.Union[str, int]:
         if self.INDEX_DELIM in csc_str:
             parts = csc_str.split(self.INDEX_DELIM)
             return parts[0], int(parts[1])
@@ -121,7 +125,7 @@ class QueryEfd:
             return csc_str, None
 
     @not_keyword
-    def _check_attribute(self, dataframe, attribute):
+    def _check_attribute(self, dataframe: pandas.core.frame.DataFrame, attribute: str) -> bool:
         if not hasattr(dataframe, attribute):
             return False
         else:
