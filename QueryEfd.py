@@ -274,7 +274,9 @@ class QueryEfd:
         return f"lsst.sal.{csc}.{topic}"
 
     @not_keyword
-    def _split_indexed_csc(self, csc_str: str) -> typing.Union[str, int]:
+    def _split_indexed_csc(
+        self, csc_str: str
+    ) -> typing.Tuple[str, typing.Optional[int]]:
         """Returns the CSC name and index, if applicable,
         given a CSC:INDEX string.
 
