@@ -239,7 +239,7 @@ class QueryEfd:
         return event_sent_time
 
     @keyword
-    def verify_topic(self, csc: str, topic: str) -> None:
+    def verify_topic_attribute(self, csc: str, topic: str, fields: list, expected_value: str) -> None:
         """Placeholder for the Verify Topic keyword. When the integration
         tests are inevitably expanded beyond the SummaryState tests, this
         Keyword will be greatly improved.
@@ -250,10 +250,20 @@ class QueryEfd:
             The name of the CSC.
         topic : `str`
             The name of the topic.
+        fields : `list`
+            The list of fields for the given topic.
+        expected_value : `str`
+            The expected value of the attribute.
         """
         csc, index = self._split_indexed_csc(csc)
-        topic_df = self.get_recent_samples(csc, topic, "*", 1, index)
+        attribute = fields[0]
+        topic_df = self.get_recent_samples(csc, topic, fields, 1, index)
+        actual_value = getattr(topic_df, attribute)[0]
         print(f"*TRACE*dataframe:\n{topic_df}")
+        if str(actual_value) != str(expected_value):
+            raise AssertionError(
+                f"{actual_value} does not match {expected_value}."
+            )
 
     @not_keyword
     def _efd_topic(self, csc: str, topic: str) -> str:
