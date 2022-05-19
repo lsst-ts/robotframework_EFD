@@ -11,25 +11,27 @@ Force Tags    auxtel_stop
 *** Variables ***
 @{azimuthInPosition}    inPosition
 @{allAxesInPosition}    inPosition
-@{atMountState}    state
+@{atMountState}         state
+@{in_pos_expected}      False
+@{states_expected}      8
 
 *** Test Cases ***
 Verify ATDome logevent_azimuthInPosition
-    [Tags]    disabled
-    Verify Topic Attribute    ATDome    logevent_azimuthInPosition    ${azimuthInPosition}    False
+    [Tags]
+    Verify Topic Attribute    ATDome    logevent_azimuthInPosition    ${azimuthInPosition}    ${in_pos_expected}
 
 Verify ATDomeTrajectory Disabled
-    [Tags]    disabled
+    [Tags]
     Verify Summary State    ${STATES}[disabled]    ATDomeTrajectory
 
 Verify ATMCS logevent_atMountState
-    [Tags]    disabled
-    Verify Topic Attribute    ATMCS    logevent_atMountState    ${atMountState}    8
+    [Tags]
+    Verify Topic Attribute    ATMCS    logevent_atMountState    ${atMountState}    ${states_expected}
 
 Verify ATMCS logevent_allAxesInPosition
-    [Tags]    disabled
-    Verify Topic Attribute    ATMCS    logevent_allAxesInPosition    ${allAxesInPosition}    False
+    [Tags]
+    Verify Topic Attribute    ATMCS    logevent_allAxesInPosition    ${allAxesInPosition}    ${in_pos_expected}
 
 Verify ATPtg Fault
-    [Tags]    disabled
+    [Tags]
     Verify Summary State    ${STATES}[fault]    ATPtg
