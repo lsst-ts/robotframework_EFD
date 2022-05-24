@@ -3,6 +3,8 @@
 import typing
 import asyncio
 import pandas
+import time
+import datetime
 from utils import dataframe
 from utils import state_enums
 
@@ -239,7 +241,9 @@ class QueryEfd:
         return event_sent_time
 
     @keyword
-    def verify_topic_attribute(self, csc: str, topic: str, fields: list, expected_values: list) -> None:
+    def verify_topic_attribute(
+        self, csc: str, topic: str, fields: list, expected_values: list
+    ) -> None:
         """Fails if the values of the given field attributes do not match
         the expected_values.
 
@@ -264,8 +268,47 @@ class QueryEfd:
         actual_value = getattr(topic_df, attribute)[0]
         print(f"*TRACE*dataframe:\n{topic_df}")
         if str(actual_value) != str(expected_values[0]):
+            raise AssertionError(f"{actual_value} does not match {expected_values[0]}.")
+
+    @keyword
+    def verify_time_delta(
+        self, csc: str, topic_1: str, topic_2: str, time_window: int, index: int = None
+    ) -> None:
+        """Fails if the difference between the publish times for the two given
+        topics is greater than the given time_window..
+
+        Parameters
+        ----------
+        csc : `str`
+            The name of the CSC.
+        topic_1 : `str`
+            The name of the first topic.
+        topic_2 : `str`
+            The name of the second topic.
+        time_window : `int`
+            The value, in seconds, under which publish times
+            should differ..
+        index : `int`
+            The index of the CSC, if applicable (default is None).
+        """
+        timestamp1 = self.get_topic_sent_time(csc, topic_1)
+        time_1 = time.mktime(
+            datetime.datetime.strptime(timestamp1, self.time_format).timetuple()
+        )
+        timestamp2 = self.get_topic_sent_time(csc, topic_2)
+        time_2 = time.mktime(
+            datetime.datetime.strptime(timestamp2, self.time_format).timetuple()
+        )
+        delta = abs(time_1 - time_2)
+        print(
+            f"*TRACE*{topic_1} was sent at {time_1}.\n"
+            f"*TRACE*{topic_2} was sent at {time_2}.\n"
+            f"*TRACE*The time difference is {delta} seconds."
+        )
+        if delta > time_window:
             raise AssertionError(
-                f"{actual_value} does not match {expected_values[0]}."
+                f"{topic_2} was published {delta}s outside "
+                f"the {time_window}s time window from {topic_1}."
             )
 
     @not_keyword

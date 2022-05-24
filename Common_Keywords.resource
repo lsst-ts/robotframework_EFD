@@ -97,15 +97,3 @@ Verify Shutdown Process
     ${fourth}=    Evaluate    $dataframe.summaryState[3]
     @{state_list}=    Create List    ${states_keys}[${first-1}]    ${states_keys}[${second-1}]    ${states_keys}[${thrid-1}]    ${states_keys}[${fourth-1}]
     Should Be Equal    ${state_list}    ${shutdown_list}    msg=Incorrect Shutdown Order: ${state_list}    values=False
-
-Verify Time Delta
-    [Arguments]    ${csc}    ${topic_1}    ${topic_2}    ${time_window}    ${index}=None
-    [Tags]    robot:continue-on-failure    custom
-    Log Many    ${csc}    ${topic_1}    ${topic_2}    ${time_window}    ${index}
-    ${timestamp1}=    Get Topic Sent Time    ${csc}    ${topic_1}
-    ${time_1}=    Convert Date    ${timestamp1}    result_format=timestamp    date_format=%Y-%m-%dT%H:%M:%S.%f
-    ${timestamp2}=    Get Topic Sent Time    ${csc}    ${topic_2}
-    ${time_2}=    Convert Date    ${timestamp2}    result_format=timestamp    date_format=%Y-%m-%dT%H:%M:%S.%f
-    ${delta}=    Subtract Date from Date    ${time_1}    ${time_2}
-    ${abs_delta}=    Evaluate    abs(${delta})
-    Should Be True    ${abs_delta} < ${time_window}
