@@ -47,14 +47,26 @@ class QueryEfd:
         ]
     )
 
-    def __init__(self, efd_name: str = "tucson_teststand_efd") -> None:
+    def __init__(self,
+    salver: str, xmlver: str, osplver: str,
+    efd_name: str = "tucson_teststand_efd", 
+    ) -> None:
         """
         Parameters
         ----------
         efd_name : `str`
             The name of the EFD instance (default is tucson_teststand_efd).
+        salver : `str`
+            The SAL version.
+        xmlver : `str`
+            The XML version.
+        osplver : `str`
+            The OSPL version.
         """
         self.efd_name = efd_name
+        self.sal_version = salver
+        self.xml_version = xmlver
+        self.ospl_version = osplver
 
     @keyword
     def get_efd_names(self) -> list:
@@ -276,6 +288,49 @@ class QueryEfd:
         print(f"*TRACE*The SummaryState sequence: {states}")
         if state_list != shutdown_sequence:
             raise AssertionError(f"Incorrect Shutdown Order: {states}")
+
+    @keyword
+    def verify_software_versions(self, csc: str, index: int = None) -> None:
+        """Fails if the dependency versions used to build the package
+        do not match the expected versions.
+
+        Parameters
+        ----------
+        csc : `str`
+            The name of the CSC.
+        index : `int`
+            The index of the CSC, if applicable (default is None).
+        """
+        swv_topic = "logevent_softwareVersions"
+        swv_fields = ["private_sndStamp", "cscVersion", "openSpliceVersion", "salVersion", "xmlVersion"]
+        dataframe = self.get_recent_samples(csc, swv_topic, swv_fields, 1, index)
+        if dataframe.empty:
+            raise ValueError("Dataframe is empty")
+        # Get the dependency versions.
+        sal_ver = dataframe.salVersion[0]
+        xml_ver = dataframe.xmlVersion[0]
+        ospl_ver = dataframe.openSpliceVersion[0]
+        csc_ver = dataframe.cscVersion[0]
+        print(f"*TRACE*Expected: SALVersion: {self.sal_version}, XMLVersion: {self.xml_version}, OSPLVersion: {self.ospl_version}",
+              f"\n  Actual: SALVersion: {sal_ver}, XMLVersion: {xml_ver}, OSPLVersion: {ospl_ver}, CSCVersion: {csc_ver}")
+        # Test the various versions, collect error messages in a list,
+        # and print out all errors, if present.
+        error_list = []
+        if sal_ver != self.sal_version:
+            error_list.append(f"Bad SAL Version: {sal_ver}")
+        if xml_ver != self.xml_version:
+            error_list.append(f"Bad XML Version: {sml_ver}")
+        if ospl_ver != self.ospl_version:
+            error_list.append(f"Bad OSPL Version: {ospl_ver}")
+        if not csc_ver:
+            error_list.append("CSC version cannot be blank.")
+        try:
+            self.verify_version(csc_ver)
+        except AssertionError as e:
+            error_list.append("CSC " + str(e))
+        # If any errors raised, print them all.
+        if len(error_list) > 0:
+            raise AssertionError("\n".join(error_list))
 
     @keyword
     def get_topic_sent_time(self, csc: str, topic: str) -> str:

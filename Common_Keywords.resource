@@ -6,8 +6,6 @@ ${ca_topic}    logevent_configurationApplied
 @{ca_fields}    "private_sndStamp"    "configurations"    "version"    "url"    "otherInfo"
 ${cav_topic}    logevent_configurationsAvailable
 @{cav_fields}    "private_sndStamp"    "overrides"    "version"    "url"    "schemaVersion"
-${swv_topic}    logevent_softwareVersions
-@{swv_fields}    "private_sndStamp"    "cscVersion"    "openSpliceVersion"    "salVersion"   "xmlVersion"
 
 *** Keywords ***
 Verify ConfigurationApplied
@@ -59,20 +57,3 @@ Verify ConfigurationsAvailable
         Should Not Be Empty    ${version}
         Verify Version    ${version}
     END
-
-Verify SoftwareVersions
-    [Arguments]    ${csc}    ${csc_index}=None
-    [Tags]    robot:continue-on-failure    custom
-    ${dataframe}=    Get Recent Samples    ${csc}    ${swv_topic}    ${swv_fields}    1    ${csc_index}
-    Should Not Be True    $dataframe.empty
-    ${sal_ver}=    Evaluate    $dataframe.salVersion[0]
-    ${xml_ver}=    Evaluate    $dataframe.xmlVersion[0]
-    ${csc_ver}=    Evaluate    $dataframe.cscVersion[0]
-    ${ospl_ver}=    Evaluate    $dataframe.openSpliceVersion[0]
-    Log Many    Expected: SALVersion: ${SALVersion}, XMLVersion: ${XMLVersion}, OSPLVersion: ${OSPLVersion}
-    ...    ${SPACE}${SPACE}Actual: SALVersion: ${sal_ver}, XMLVersion: ${xml_ver}, OSPLVersion: ${ospl_ver}
-    Should Match    ${sal_ver}    ${SALVersion}
-    Should Match    ${xml_ver}    ${XMLVersion}
-    Should Match    ${ospl_ver}    ${OSPLVersion}
-    Should Not Be Empty    ${csc_ver}
-    Verify Version    ${csc_ver}
