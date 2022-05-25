@@ -82,18 +82,3 @@ Verify SoftwareVersions
     Should Match    ${ospl_ver}    ${OSPLVersion}
     Should Not Be Empty    ${csc_ver}
     Verify Version    ${csc_ver}
-
-Verify Shutdown Process
-    [Arguments]    ${csc}    ${csc_index}=None
-    [Tags]    robot:continue-on-failure    custom
-    @{fields}=    Create List    "private_sndStamp"    "summaryState"
-    @{states_keys}=    Get Dictionary Keys    ${STATES}
-    @{shutdown_list}=    Create List    ${states_keys}[3]    ${states_keys}[4]    ${states_keys}[0]    ${states_keys}[1]
-    ${dataframe}=    Get Recent Samples    ${csc}    logevent_summaryState   ${fields}    4    ${csc_index}
-    Should Not Be True    $dataframe.empty
-    ${first}=    Evaluate    $dataframe.summaryState[0]
-    ${second}=    Evaluate    $dataframe.summaryState[1]
-    ${thrid}=    Evaluate    $dataframe.summaryState[2]
-    ${fourth}=    Evaluate    $dataframe.summaryState[3]
-    @{state_list}=    Create List    ${states_keys}[${first-1}]    ${states_keys}[${second-1}]    ${states_keys}[${thrid-1}]    ${states_keys}[${fourth-1}]
-    Should Be Equal    ${state_list}    ${shutdown_list}    msg=Incorrect Shutdown Order: ${state_list}    values=False

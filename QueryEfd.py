@@ -36,6 +36,9 @@ class QueryEfd:
 
     INDEX_DELIM: str = ":"
     time_format: str = "%Y-%m-%dT%H:%M:%S.%f"
+    states_dict = {
+        "disabled": 1, "enabled": 2, "fault": 3, "offline": 4, "standby": 5
+    }
 
     def __init__(self, efd_name: str = "tucson_teststand_efd") -> None:
         """
@@ -205,6 +208,43 @@ class QueryEfd:
                 f"{csc_str} is not in the {expected_state_str} state."
                 f"\n{csc_str} is in the {actual_state_str} state."
             )
+
+    @keyword
+    def verify_shutdown_process(self, csc: str, index: int = None) -> None:
+        """Fails if the sequence of SummaryStates does not match
+        the expected sequence.
+
+        Parameters
+        ----------
+        csc : `str`
+            The name of the CSC.
+        index : `int`
+            The index of the CSC, if applicable (default is None).
+        """
+        # Define the expected shutdown sequence.
+        shutdown_sequence = [4, 5, 1, 2,]
+        # Get the last four SummaryState events.
+        fields = ["private_sndStamp", "summaryState",]
+        dataframe = self.get_recent_samples(csc, "logevent_summaryState", fields, 4, index)
+        if dataframe.empty:
+            raise ValueError("Dataframe is empty")
+        # Get the sequence of summaryStates.
+        first = dataframe.summaryState[0]
+        second = dataframe.summaryState[1]
+        third = dataframe.summaryState[2]
+        fourth = dataframe.summaryState[3]
+        state_list = [first, second, third, fourth]
+        # Convert list to human-readable for error message.
+        states = []
+        key_list = list(self.states_dict.keys())
+        val_list = list(self.states_dict.values())
+        for item in state_list:
+            position = val_list.index(item)
+            states.append(key_list[position])
+        # Assert lists are equal.
+        print(f"*TRACE*The SummaryState sequence: {states}")
+        if state_list != shutdown_sequence:
+            raise AssertionError(f"Incorrect Shutdown Order: {states}")
 
     @keyword
     def get_topic_sent_time(self, csc: str, topic: str) -> str:
