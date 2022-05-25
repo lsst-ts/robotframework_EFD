@@ -8,14 +8,8 @@ ${cav_topic}    logevent_configurationsAvailable
 @{cav_fields}    "private_sndStamp"    "overrides"    "version"    "url"    "schemaVersion"
 ${swv_topic}    logevent_softwareVersions
 @{swv_fields}    "private_sndStamp"    "cscVersion"    "openSpliceVersion"    "salVersion"   "xmlVersion"
-${version_regex}    ^v?(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:[.-]((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$
 
 *** Keywords ***
-Verify Version
-    [Arguments]    ${version}
-    [Tags]    robot:continue-on-failure    custom
-    Should Match Regexp    ${version}    ${version_regex}    msg=Version, '${version}', is not SemVer compliant.    values=False
-
 Verify ConfigurationApplied
     [Arguments]    ${csc}    ${csc_index}=None
     [Tags]    robot:continue-on-failure    custom

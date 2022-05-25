@@ -3,6 +3,7 @@
 import typing
 import asyncio
 import pandas
+import re
 import time
 import datetime
 from utils import dataframe
@@ -36,9 +37,15 @@ class QueryEfd:
 
     INDEX_DELIM: str = ":"
     time_format: str = "%Y-%m-%dT%H:%M:%S.%f"
-    states_dict = {
-        "disabled": 1, "enabled": 2, "fault": 3, "offline": 4, "standby": 5
-    }
+    states_dict = {"disabled": 1, "enabled": 2, "fault": 3, "offline": 4, "standby": 5}
+    version_regex = "".join(
+        [
+            "^v?(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)",
+            "(?:[.-]((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)",
+            "(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?",
+            "(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$",
+        ]
+    )
 
     def __init__(self, efd_name: str = "tucson_teststand_efd") -> None:
         """
@@ -146,6 +153,20 @@ class QueryEfd:
         return recent_samples
 
     @keyword
+    def verify_version(self, version: str) -> None:
+        """Fails if the version does not conform to SemVer syntax.
+        The version_regex is defined as a Class attribute.
+
+        Parameters
+        ----------
+        version : `str`
+            The version string.
+        """
+        pattern = re.compile(self.version_regex)
+        if not pattern.match(version):
+            raise AssertionError(f"Version '{version}' is not SemVer compliant.")
+
+    @keyword
     def verify_summary_state(
         self, expected_state: int, csc_str: str, auto_enable: bool = False
     ) -> None:
@@ -222,10 +243,20 @@ class QueryEfd:
             The index of the CSC, if applicable (default is None).
         """
         # Define the expected shutdown sequence.
-        shutdown_sequence = [4, 5, 1, 2,]
+        shutdown_sequence = [
+            4,
+            5,
+            1,
+            2,
+        ]
         # Get the last four SummaryState events.
-        fields = ["private_sndStamp", "summaryState",]
-        dataframe = self.get_recent_samples(csc, "logevent_summaryState", fields, 4, index)
+        fields = [
+            "private_sndStamp",
+            "summaryState",
+        ]
+        dataframe = self.get_recent_samples(
+            csc, "logevent_summaryState", fields, 4, index
+        )
         if dataframe.empty:
             raise ValueError("Dataframe is empty")
         # Get the sequence of summaryStates.
