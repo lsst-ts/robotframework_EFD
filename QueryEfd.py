@@ -375,6 +375,7 @@ class QueryEfd:
             # Test that the configurable CSCs published the additional set
             # of events, as defined in the otherInfo field of the
             # ConfigurationApplied event.
+            error_list = []
             try:
                 self.verify_version(version)
             except AssertionError as e:
@@ -382,7 +383,7 @@ class QueryEfd:
             if len(dataframe.otherInfo[0]) > 0:
                 events = dataframe.otherInfo[0].split(",")
                 for event in events:
-                    fq_event = "logevent_".join(event)
+                    fq_event = "logevent_" + event
                     event_df = self.get_recent_samples(csc, fq_event, "*", 1, index)
                     if event_df.empty:
                         error_list.append(f"{event} was not published.")
@@ -496,7 +497,7 @@ class QueryEfd:
             error_list.append("CSC " + str(e))
         # If any errors raised, print them all.
         if len(error_list) > 0:
-            raise AssertionError("\n".join(error_list))
+            raise AssertionError("\n" + "\n".join(error_list))
 
     @keyword
     def verify_topic_attribute(
