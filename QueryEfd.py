@@ -375,7 +375,6 @@ class QueryEfd:
             # Test that the configurable CSCs published the additional set
             # of events, as defined in the otherInfo field of the
             # ConfigurationApplied event.
-            error_list = []
             try:
                 self.verify_version(version)
             except AssertionError as e:
@@ -497,7 +496,7 @@ class QueryEfd:
             error_list.append("CSC " + str(e))
         # If any errors raised, print them all.
         if len(error_list) > 0:
-            raise AssertionError("\n" + "\n".join(error_list))
+            raise AssertionError("\n".join(error_list))
 
     @keyword
     def verify_topic_attribute(
