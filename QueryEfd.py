@@ -122,6 +122,40 @@ class QueryEfd:
         return fields
 
     @keyword
+    def get_topic_sent_time(self, csc: str, topic: str) -> str:
+        """Returns the most recent published time of the given topic.
+
+        Parameters
+        ----------
+        csc : `str`
+            The name of the CSC.
+        topic : `str`
+            The name of the topic.
+
+        Returns
+        -------
+        event_sent_time : `str`
+            The event time in the Class-defined time_format.
+        """
+        csc, index = self._split_indexed_csc(csc)
+        # Since this is only returning the most recent sent time of the
+        # givent topic, only the private_sndStamp field is needed.
+        fields = "private_sndStamp"
+        num = 1
+        recent_samples = self.get_recent_samples(
+            csc=csc, topic=topic, fields=fields, num=num, index=index
+        )
+        try:
+            event_sent_time = recent_samples.private_sndStamp[0].strftime(
+                self.time_format
+            )
+        except AttributeError:
+            raise AttributeError(
+                "'DataFrame' object has no attribute 'private_sndStamp'"
+            )
+        return event_sent_time
+
+    @keyword
     def get_recent_samples(
         self, csc: str, topic: str, fields: list, num: int, index=None
     ) -> pandas.core.frame.DataFrame:
@@ -331,40 +365,6 @@ class QueryEfd:
         # If any errors raised, print them all.
         if len(error_list) > 0:
             raise AssertionError("\n".join(error_list))
-
-    @keyword
-    def get_topic_sent_time(self, csc: str, topic: str) -> str:
-        """Returns the most recent published time of the given topic.
-
-        Parameters
-        ----------
-        csc : `str`
-            The name of the CSC.
-        topic : `str`
-            The name of the topic.
-
-        Returns
-        -------
-        event_sent_time : `str`
-            The event time in the Class-defined time_format.
-        """
-        csc, index = self._split_indexed_csc(csc)
-        # Since this is only returning the most recent sent time of the
-        # givent topic, only the private_sndStamp field is needed.
-        fields = "private_sndStamp"
-        num = 1
-        recent_samples = self.get_recent_samples(
-            csc=csc, topic=topic, fields=fields, num=num, index=index
-        )
-        try:
-            event_sent_time = recent_samples.private_sndStamp[0].strftime(
-                self.time_format
-            )
-        except AttributeError:
-            raise AttributeError(
-                "'DataFrame' object has no attribute 'private_sndStamp'"
-            )
-        return event_sent_time
 
     @keyword
     def verify_topic_attribute(
