@@ -8,6 +8,7 @@ import time
 import datetime
 from utils import dataframe
 from utils import state_enums
+from utils import csc_lists
 
 from robot.api.deco import library, keyword, not_keyword
 from lsst_efd_client import EfdClient
@@ -47,9 +48,12 @@ class QueryEfd:
         ]
     )
 
-    def __init__(self,
-    salver: str, xmlver: str, osplver: str,
-    efd_name: str = "tucson_teststand_efd", 
+    def __init__(
+        self,
+        salver: str,
+        xmlver: str,
+        osplver: str,
+        efd_name: str = "tucson_teststand_efd",
     ) -> None:
         """
         Parameters
@@ -303,6 +307,7 @@ class QueryEfd:
         dataframe = self.get_recent_samples(
             csc, "logevent_summaryState", fields, 4, index
         )
+        print(f"*TRACE*dataframe:\n{dataframe}")
         if dataframe.empty:
             raise ValueError("Dataframe is empty")
         # Get the sequence of summaryStates.
@@ -324,6 +329,68 @@ class QueryEfd:
             raise AssertionError(f"Incorrect Shutdown Order: {states}")
 
     @keyword
+    def verify_configuration_applied(self, csc: str, index: str = None) -> None:
+        """Fails if additional configuration events were not published.
+
+        Parameters
+        ----------
+        csc : `str`
+            The name of the CSC.
+        index : `int`
+            The index of the CSC, if applicable (default is None).
+        """
+        ca_topic = "logevent_configurationApplied"
+        ca_fields = [
+            "private_sndStamp",
+            "configurations",
+            "version",
+            "url",
+            "otherInfo",
+        ]
+        dataframe = self.get_recent_samples(csc, ca_topic, ca_fields, 1, index)
+        print(f"*TRACE*dataframe:\n{dataframe}")
+        # If the CSC is non-configurable, the ConfigurationApplied event
+        # is not applicable.
+        if csc in csc_lists.non_config:
+            if not dataframe.empty:
+                raise ValueError("Dataframe should be empty")
+        else:
+            # Get the various field values.
+            configurations = dataframe.configurations[0]
+            version = dataframe.version[0]
+            url = dataframe.url[0]
+            print(
+                f"*TRACE*Configurations: {configurations}, Version: {version}, URL: {url}"
+            )
+            # Test the field values, as much as possible.
+            if not configurations:
+                raise ValueError("The configuration field should not be empty.")
+            if not version:
+                raise ValueError("The version field should not be empty.")
+            if "https://" not in str(url) and "file://" not in str(url):
+                raise ValueError(
+                    f"The url should start with 'https://' or 'file://' - URL: {url}"
+                )
+            # Test that the configurable CSCs published the additional set
+            # of events, as defined in the otherInfo field of the
+            # ConfigurationApplied event.
+            error_list = []
+            try:
+                self.verify_version(version)
+            except AssertionError as e:
+                error_list.append("CSC " + str(e))
+            if len(dataframe.otherInfo[0]) > 0:
+                events = dataframe.otherInfo[0].split(",")
+                for event in events:
+                    fq_event = "logevent_".join(event)
+                    event_df = self.get_recent_samples(csc, fq_event, "*", 1, index)
+                    if event_df.empty:
+                        error_list.append(f"{event} was not published.")
+            # If any errors raised, print them all.
+            if len(error_list) > 0:
+                raise AssertionError("\n" + "\n".join(error_list))
+
+    @keyword
     def verify_software_versions(self, csc: str, index: int = None) -> None:
         """Fails if the dependency versions used to build the package
         do not match the expected versions.
@@ -336,8 +403,15 @@ class QueryEfd:
             The index of the CSC, if applicable (default is None).
         """
         swv_topic = "logevent_softwareVersions"
-        swv_fields = ["private_sndStamp", "cscVersion", "openSpliceVersion", "salVersion", "xmlVersion"]
+        swv_fields = [
+            "private_sndStamp",
+            "cscVersion",
+            "openSpliceVersion",
+            "salVersion",
+            "xmlVersion",
+        ]
         dataframe = self.get_recent_samples(csc, swv_topic, swv_fields, 1, index)
+        print(f"*TRACE*dataframe:\n{dataframe}")
         if dataframe.empty:
             raise ValueError("Dataframe is empty")
         # Get the dependency versions.
@@ -345,8 +419,10 @@ class QueryEfd:
         xml_ver = dataframe.xmlVersion[0]
         ospl_ver = dataframe.openSpliceVersion[0]
         csc_ver = dataframe.cscVersion[0]
-        print(f"*TRACE*Expected: SALVersion: {self.sal_version}, XMLVersion: {self.xml_version}, OSPLVersion: {self.ospl_version}",
-              f"\n  Actual: SALVersion: {sal_ver}, XMLVersion: {xml_ver}, OSPLVersion: {ospl_ver}, CSCVersion: {csc_ver}")
+        print(
+            f"*TRACE*Expected: SALVersion: {self.sal_version}, XMLVersion: {self.xml_version}, OSPLVersion: {self.ospl_version}",
+            f"\n  Actual: SALVersion: {sal_ver}, XMLVersion: {xml_ver}, OSPLVersion: {ospl_ver}, CSCVersion: {csc_ver}",
+        )
         # Test the various versions, collect error messages in a list,
         # and print out all errors, if present.
         error_list = []
@@ -364,7 +440,7 @@ class QueryEfd:
             error_list.append("CSC " + str(e))
         # If any errors raised, print them all.
         if len(error_list) > 0:
-            raise AssertionError("\n".join(error_list))
+            raise AssertionError("\n" + "\n".join(error_list))
 
     @keyword
     def verify_topic_attribute(
