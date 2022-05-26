@@ -5,7 +5,6 @@ Library    QueryEfd    ${SALVersion}    ${XMLVersion}    ${OSPLVersion}
 Library    Collections
 Library    String
 Library    DateTime
-Resource    ../Common_Keywords.resource
 Force Tags    shutdown    skipped
 
 *** Variables ***

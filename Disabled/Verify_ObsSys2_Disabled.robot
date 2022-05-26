@@ -5,7 +5,6 @@ Library    QueryEfd    ${SALVersion}    ${XMLVersion}    ${OSPLVersion}
 Library    Collections
 Library    String
 Library    DateTime
-Resource    ../Common_Keywords.resource
 Force Tags    obsys2
 
 *** Variables ***

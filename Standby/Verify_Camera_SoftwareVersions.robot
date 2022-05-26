@@ -4,7 +4,6 @@ Resource    ../CSC_Lists.resource
 Library    QueryEfd    ${SALVersion}    ${XMLVersion}    ${OSPLVersion}
 Library    Collections
 Library    String
-Resource    ../Common_Keywords.resource
 Force Tags    software_versions
 
 *** Variables ***
