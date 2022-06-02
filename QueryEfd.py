@@ -38,7 +38,6 @@ class QueryEfd:
 
     INDEX_DELIM: str = ":"
     time_format: str = "%Y-%m-%dT%H:%M:%S.%f"
-    states_dict = {"disabled": 1, "enabled": 2, "fault": 3, "offline": 4, "standby": 5}
     version_regex = "".join(
         [
             "^v?(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)",
@@ -293,11 +292,13 @@ class QueryEfd:
             The index of the CSC, if applicable (default is None).
         """
         # Define the expected shutdown sequence.
+        # NOTE: The EFD returns data in descending time order,
+        # so the sequence is "reversed."
         shutdown_sequence = [
-            4,
-            5,
-            1,
-            2,
+            "offline",
+            "standby",
+            "disabled",
+            "enabled",
         ]
         # Get the last four SummaryState events.
         fields = [
@@ -310,23 +311,19 @@ class QueryEfd:
         print(f"*TRACE*dataframe:\n{dataframe}")
         if dataframe.empty:
             raise ValueError("Dataframe is empty")
-        # Get the sequence of summaryStates.
-        first = dataframe.summaryState[0]
-        second = dataframe.summaryState[1]
-        third = dataframe.summaryState[2]
-        fourth = dataframe.summaryState[3]
-        state_list = [first, second, third, fourth]
-        # Convert list to human-readable for error message.
+        # Get the sequence of summaryStates and convert
+        # the list to human-readable for the error message.
         states = []
-        key_list = list(self.states_dict.keys())
-        val_list = list(self.states_dict.values())
-        for item in state_list:
-            position = val_list.index(item)
-            states.append(key_list[position])
+        for item in dataframe.summaryState.values.tolist():
+            states.append(state_enums.as_state(item).name.lower())
         # Assert lists are equal.
-        print(f"*TRACE*The SummaryState sequence: {states}")
-        if state_list != shutdown_sequence:
-            raise AssertionError(f"Incorrect Shutdown Order: {states}")
+        print(
+            f"*TRACE*The SummaryState sequence: {states} should match {shutdown_sequence}"
+        )
+        if states != shutdown_sequence:
+            raise AssertionError(
+                f"Incorrect Shutdown Order: {states} does not match {shutdown_sequence}"
+            )
 
     @keyword
     def verify_configuration_applied(self, csc: str, index: int = None) -> None:
