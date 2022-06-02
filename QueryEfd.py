@@ -546,15 +546,14 @@ class QueryEfd:
         index : `int`
             The index of the CSC, if applicable (default is None).
         """
+        # Get the timestamps for the topics.
         timestamp1 = self.get_topic_sent_time(csc, topic_1)
-        time_1 = time.mktime(
-            datetime.datetime.strptime(timestamp1, self.time_format).timetuple()
-        )
         timestamp2 = self.get_topic_sent_time(csc, topic_2)
-        time_2 = time.mktime(
-            datetime.datetime.strptime(timestamp2, self.time_format).timetuple()
-        )
-        delta = abs(time_1 - time_2)
+        # Convert timestamps to datetime objects for comparison.
+        time_1 = datetime.datetime.strptime(timestamp1, self.time_format)
+        time_2 = datetime.datetime.strptime(timestamp2, self.time_format)
+        # Get the timedelta, in seconds.
+        delta = (time_1 - time_2).total_seconds()
         print(
             f"*TRACE*{topic_1} was sent at {time_1}.\n"
             f"*TRACE*{topic_2} was sent at {time_2}.\n"
