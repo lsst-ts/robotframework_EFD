@@ -47,6 +47,7 @@ class QueryEfd:
             "(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$",
         ]
     )
+    pattern = re.compile(version_regex)
 
     def __init__(
         self,
@@ -212,8 +213,7 @@ class QueryEfd:
         version : `str`
             The version string.
         """
-        pattern = re.compile(self.version_regex)
-        if not pattern.match(version):
+        if not self.pattern.match(version):
             raise AssertionError(f"Version '{version}' is not SemVer compliant.")
 
     @keyword
