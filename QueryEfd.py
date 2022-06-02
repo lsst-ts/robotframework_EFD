@@ -3,8 +3,12 @@
 import typing
 import asyncio
 import pandas
+import re
+import time
+import datetime
 from utils import dataframe
 from utils import state_enums
+from utils import csc_lists
 
 from robot.api.deco import library, keyword, not_keyword
 from lsst_efd_client import EfdClient
@@ -34,15 +38,39 @@ class QueryEfd:
 
     INDEX_DELIM: str = ":"
     time_format: str = "%Y-%m-%dT%H:%M:%S.%f"
+    version_regex = "".join(
+        [
+            "^v?(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)",
+            "(?:[.-]((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)",
+            "(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?",
+            "(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$",
+        ]
+    )
+    pattern = re.compile(version_regex)
 
-    def __init__(self, efd_name: str = "tucson_teststand_efd") -> None:
+    def __init__(
+        self,
+        salver: str,
+        xmlver: str,
+        osplver: str,
+        efd_name: str = "tucson_teststand_efd",
+    ) -> None:
         """
         Parameters
         ----------
         efd_name : `str`
             The name of the EFD instance (default is tucson_teststand_efd).
+        salver : `str`
+            The SAL version.
+        xmlver : `str`
+            The XML version.
+        osplver : `str`
+            The OSPL version.
         """
         self.efd_name = efd_name
+        self.sal_version = salver
+        self.xml_version = xmlver
+        self.ospl_version = osplver
 
     @keyword
     def get_efd_names(self) -> list:
@@ -98,6 +126,38 @@ class QueryEfd:
         return fields
 
     @keyword
+    def get_topic_sent_time(self, csc: str, topic: str) -> str:
+        """Returns the most recent published time of the given topic.
+
+        Parameters
+        ----------
+        csc : `str`
+            The name of the CSC.
+        topic : `str`
+            The name of the topic.
+
+        Returns
+        -------
+        event_sent_time : `str`
+            The event time in the Class-defined time_format.
+        """
+        csc, index = self._split_indexed_csc(csc)
+        # Since this is only returning the most recent sent time of the
+        # givent topic, only the private_sndStamp field is needed.
+        fields = "private_sndStamp"
+        num = 1
+        recent_samples = self.get_recent_samples(
+            csc=csc, topic=topic, fields=fields, num=num, index=index
+        )
+        try:
+            event_sent_time = recent_samples.private_sndStamp[0]
+        except AttributeError:
+            raise AttributeError(
+                "'DataFrame' object has no attribute 'private_sndStamp'"
+            )
+        return event_sent_time
+
+    @keyword
     def get_recent_samples(
         self, csc: str, topic: str, fields: list, num: int, index=None
     ) -> pandas.core.frame.DataFrame:
@@ -139,6 +199,19 @@ class QueryEfd:
                 recent_samples, ["private_sndStamp"]
             )
         return recent_samples
+
+    @keyword
+    def verify_version(self, version: str) -> None:
+        """Fails if the version does not conform to SemVer syntax.
+        The version_regex is defined as a Class attribute.
+
+        Parameters
+        ----------
+        version : `str`
+            The version string.
+        """
+        if not self.pattern.match(version):
+            raise AssertionError(f"Version '{version}' is not SemVer compliant.")
 
     @keyword
     def verify_summary_state(
@@ -205,41 +278,223 @@ class QueryEfd:
             )
 
     @keyword
-    def get_topic_sent_time(self, csc: str, topic: str) -> str:
-        """Returns the most recent published time of the given topic.
+    def verify_shutdown_process(self, csc: str, index: int = None) -> None:
+        """Fails if the sequence of SummaryStates does not match
+        the expected sequence.
 
         Parameters
         ----------
         csc : `str`
             The name of the CSC.
-        topic : `str`
-            The name of the topic.
-
-        Returns
-        -------
-        event_sent_time : `str`
-            The event time in the Class-defined time_format.
+        index : `int`
+            The index of the CSC, if applicable (default is None).
         """
-        csc, index = self._split_indexed_csc(csc)
-        # Since this is only returning the most recent sent time of the
-        # givent topic, only the private_sndStamp field is needed.
-        fields = "private_sndStamp"
-        num = 1
-        recent_samples = self.get_recent_samples(
-            csc=csc, topic=topic, fields=fields, num=num, index=index
+        # Define the expected shutdown sequence.
+        # NOTE: The EFD returns data in descending time order,
+        # so the sequence is "reversed."
+        shutdown_sequence = [
+            "offline",
+            "standby",
+            "disabled",
+            "enabled",
+        ]
+        # Get the last four SummaryState events.
+        fields = [
+            "private_sndStamp",
+            "summaryState",
+        ]
+        dataframe = self.get_recent_samples(
+            csc, "logevent_summaryState", fields, 4, index
         )
-        try:
-            event_sent_time = recent_samples.private_sndStamp[0].strftime(
-                self.time_format
+        print(f"*TRACE*dataframe:\n{dataframe}")
+        if dataframe.empty:
+            raise ValueError("Dataframe is empty")
+        # Get the sequence of summaryStates and convert
+        # the list to human-readable for the error message.
+        states = [state_enums.as_state(x).name.lower() for x in dataframe.summaryState.values]
+        # Assert lists are equal.
+        print(
+            f"*TRACE*The SummaryState sequence: {states} should match {shutdown_sequence}"
+        )
+        if states != shutdown_sequence:
+            raise AssertionError(
+                f"Incorrect Shutdown Order: {states} does not match {shutdown_sequence}"
             )
-        except AttributeError:
-            raise AttributeError(
-                "'DataFrame' object has no attribute 'private_sndStamp'"
-            )
-        return event_sent_time
 
     @keyword
-    def verify_topic_attribute(self, csc: str, topic: str, fields: list, expected_values: list) -> None:
+    def verify_configuration_applied(self, csc: str, index: int = None) -> None:
+        """Fails if additional configuration events were not published.
+
+        Parameters
+        ----------
+        csc : `str`
+            The name of the CSC.
+        index : `int`
+            The index of the CSC, if applicable (default is None).
+        """
+        ca_topic = "logevent_configurationApplied"
+        ca_fields = [
+            "private_sndStamp",
+            "configurations",
+            "version",
+            "url",
+            "otherInfo",
+        ]
+        dataframe = self.get_recent_samples(csc, ca_topic, ca_fields, 1, index)
+        print(f"*TRACE*dataframe:\n{dataframe}")
+        # If the CSC is non-configurable, the ConfigurationApplied event
+        # is not applicable.
+        if csc in csc_lists.non_config:
+            if not dataframe.empty:
+                raise ValueError("Dataframe should be empty")
+        else:
+            # Get the various field values.
+            configurations = dataframe.configurations[0]
+            version = dataframe.version[0]
+            url = dataframe.url[0]
+            print(
+                f"*TRACE*Configurations: {configurations}, Version: {version}, URL: {url}"
+            )
+            # Test the field values, as much as possible.
+            error_list = []
+            if not configurations:
+                error_list.append("The configuration field should not be empty.")
+            if not version:
+                error_list.append("The version field should not be empty.")
+            if "https://" not in str(url) and "file://" not in str(url):
+                error_list.append(
+                    f"The url should start with 'https://' or 'file://' - URL: {url}"
+                )
+            # Test that the configurable CSCs published the additional set
+            # of events, as defined in the otherInfo field of the
+            # ConfigurationApplied event.
+            try:
+                self.verify_version(version)
+            except AssertionError as e:
+                error_list.append("CSC " + str(e))
+            if len(dataframe.otherInfo[0]) > 0:
+                events = dataframe.otherInfo[0].split(",")
+                for event in events:
+                    fq_event = "logevent_" + event
+                    event_df = self.get_recent_samples(csc, fq_event, "*", 1, index)
+                    if event_df.empty:
+                        error_list.append(f"{event} was not published.")
+            # If any errors raised, print them all.
+            if len(error_list) > 0:
+                raise AssertionError("\n".join(error_list))
+
+    @keyword
+    def verify_configurations_available(self, csc: str, index: int = None) -> None:
+        """Fails if ConfigurationsAvailable event was not published properly.
+
+        Parameters
+        ----------
+        csc : `str`
+            The name of the CSC.
+        index : `int`
+            The index of the CSC, if applicable (default is None).
+        """
+        cav_topic = "logevent_configurationsAvailable"
+        cav_fields = [
+            "private_sndStamp",
+            "overrides",
+            "version",
+            "url",
+            "schemaVersion",
+        ]
+        dataframe = self.get_recent_samples(csc, cav_topic, cav_fields, 1, index)
+        print(f"*TRACE*dataframe:\n{dataframe}")
+        if csc in csc_lists.non_config:
+            if not dataframe.empty:
+                raise ValueError("Dataframe should be empty")
+        else:
+            # Get the various field values.
+            version = dataframe.version[0]
+            url = dataframe.url[0]
+            schema_version = dataframe.schemaVersion[0]
+            overrides = dataframe.overrides[0]
+            # Verify field values.
+            print(
+                f"*TRACE*Overrides: '{overrides}', Version: '{version}', URL: '{url}', SchemaVersion: '{schema_version}'"
+            )
+            error_list = []
+            if not schema_version:
+                error_list.append("The schemaVersion field should not be empty.")
+            if "https://" not in str(url) and "file://" not in str(url):
+                error_list.append(
+                    f"The url should start with 'https://' or 'file://' - URL: {url}"
+                )
+            try:
+                self.verify_version(version)
+            except AssertionError as e:
+                error_list.append("CSC " + str(e))
+            # The Camera CSCs handle schemaVersion uniquely, so skip those tests.
+            if csc not in csc_lists.camera:
+                schema_version_expected = url.split("/")[-1]
+                if schema_version != schema_version_expected:
+                    raise AssertionError(
+                        f"The schemaVersion '{schema_version}' does not match the expected value '{schema_version_expected}'"
+                    )
+            # If any errors raised, print them all.
+            if len(error_list) > 0:
+                raise AssertionError("\n".join(error_list))
+
+    @keyword
+    def verify_software_versions(self, csc: str, index: int = None) -> None:
+        """Fails if the dependency versions used to build the package
+        do not match the expected versions.
+
+        Parameters
+        ----------
+        csc : `str`
+            The name of the CSC.
+        index : `int`
+            The index of the CSC, if applicable (default is None).
+        """
+        swv_topic = "logevent_softwareVersions"
+        swv_fields = [
+            "private_sndStamp",
+            "cscVersion",
+            "openSpliceVersion",
+            "salVersion",
+            "xmlVersion",
+        ]
+        dataframe = self.get_recent_samples(csc, swv_topic, swv_fields, 1, index)
+        print(f"*TRACE*dataframe:\n{dataframe}")
+        if dataframe.empty:
+            raise ValueError("Dataframe is empty")
+        # Get the dependency versions.
+        sal_ver = dataframe.salVersion[0]
+        xml_ver = dataframe.xmlVersion[0]
+        ospl_ver = dataframe.openSpliceVersion[0]
+        csc_ver = dataframe.cscVersion[0]
+        print(
+            f"*TRACE*Expected: SALVersion: {self.sal_version}, XMLVersion: {self.xml_version}, OSPLVersion: {self.ospl_version}",
+            f"\n  Actual: SALVersion: {sal_ver}, XMLVersion: {xml_ver}, OSPLVersion: {ospl_ver}, CSCVersion: {csc_ver}",
+        )
+        # Test the various versions, collect error messages in a list,
+        # and print out all errors, if present.
+        error_list = []
+        if sal_ver != self.sal_version:
+            error_list.append(f"Bad SAL Version: {sal_ver}")
+        if xml_ver != self.xml_version:
+            error_list.append(f"Bad XML Version: {sml_ver}")
+        if ospl_ver != self.ospl_version:
+            error_list.append(f"Bad OSPL Version: {ospl_ver}")
+        if not csc_ver:
+            error_list.append("CSC version cannot be blank.")
+        try:
+            self.verify_version(csc_ver)
+        except AssertionError as e:
+            error_list.append("CSC " + str(e))
+        # If any errors raised, print them all.
+        if len(error_list) > 0:
+            raise AssertionError("\n".join(error_list))
+
+    @keyword
+    def verify_topic_attribute(
+        self, csc: str, topic: str, fields: list, expected_values: list
+    ) -> None:
         """Fails if the values of the given field attributes do not match
         the expected_values.
 
@@ -264,8 +519,43 @@ class QueryEfd:
         actual_value = getattr(topic_df, attribute)[0]
         print(f"*TRACE*dataframe:\n{topic_df}")
         if str(actual_value) != str(expected_values[0]):
+            raise AssertionError(f"{actual_value} does not match {expected_values[0]}.")
+
+    @keyword
+    def verify_time_delta(
+        self, csc: str, topic_1: str, topic_2: str, time_window: int, index: int = None
+    ) -> None:
+        """Fails if the difference between the publish times for the two given
+        topics is greater than the given time_window..
+
+        Parameters
+        ----------
+        csc : `str`
+            The name of the CSC.
+        topic_1 : `str`
+            The name of the first topic.
+        topic_2 : `str`
+            The name of the second topic.
+        time_window : `int`
+            The value, in seconds, under which publish times
+            should differ..
+        index : `int`
+            The index of the CSC, if applicable (default is None).
+        """
+        # Get the timestamps for the topics.
+        time_1 = self.get_topic_sent_time(csc, topic_1)
+        time_2 = self.get_topic_sent_time(csc, topic_2)
+        # Get the timedelta, in seconds.
+        delta = (time_1 - time_2).total_seconds()
+        print(
+            f"*TRACE*{topic_1} was sent at {time_1}.\n"
+            f"*TRACE*{topic_2} was sent at {time_2}.\n"
+            f"*TRACE*The time difference is {delta} seconds."
+        )
+        if delta > time_window:
             raise AssertionError(
-                f"{actual_value} does not match {expected_values[0]}."
+                f"{topic_2} was published {delta}s outside "
+                f"the {time_window}s time window from {topic_1}."
             )
 
     @not_keyword

@@ -1,11 +1,10 @@
 *** Settings ***
-Library    QueryEfd
-Library    Collections
-Library    String
-Library    DateTime
-Resource    ../Common_Keywords.resource
 Resource    ../Global_Vars.resource
 Resource    ../CSC_Lists.resource
+Library     QueryEfd    ${SALVersion}    ${XMLVersion}    ${OSPLVersion}
+Library     Collections
+Library     String
+Library     DateTime
 Force Tags    shutdown
 Suite Setup    Log Many    ${STATES}[offline]
 

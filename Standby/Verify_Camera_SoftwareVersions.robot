@@ -1,10 +1,9 @@
 *** Settings ***
-Library    QueryEfd
-Library    Collections
-Library    String
-Resource    ../Common_Keywords.resource
 Resource    ../Global_Vars.resource
 Resource    ../CSC_Lists.resource
+Library     QueryEfd    ${SALVersion}    ${XMLVersion}    ${OSPLVersion}
+Library     Collections
+Library     String
 Force Tags    software_versions
 
 *** Variables ***
