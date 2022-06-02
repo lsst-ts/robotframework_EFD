@@ -150,9 +150,7 @@ class QueryEfd:
             csc=csc, topic=topic, fields=fields, num=num, index=index
         )
         try:
-            event_sent_time = recent_samples.private_sndStamp[0].strftime(
-                self.time_format
-            )
+            event_sent_time = recent_samples.private_sndStamp[0]
         except AttributeError:
             raise AttributeError(
                 "'DataFrame' object has no attribute 'private_sndStamp'"
@@ -432,7 +430,7 @@ class QueryEfd:
                 error_list.append("CSC " + str(e))
             # The Camera CSCs handle schemaVersion uniquely, so skip those tests.
             if csc not in csc_lists.camera:
-                schema_version_expected = dataframe.url[0].split("/")[-1]
+                schema_version_expected = url.split("/")[-1]
                 if schema_version != schema_version_expected:
                     raise AssertionError(
                         f"The schemaVersion '{schema_version}' does not match the expected value '{schema_version_expected}'"
@@ -545,11 +543,8 @@ class QueryEfd:
             The index of the CSC, if applicable (default is None).
         """
         # Get the timestamps for the topics.
-        timestamp1 = self.get_topic_sent_time(csc, topic_1)
-        timestamp2 = self.get_topic_sent_time(csc, topic_2)
-        # Convert timestamps to datetime objects for comparison.
-        time_1 = datetime.datetime.strptime(timestamp1, self.time_format)
-        time_2 = datetime.datetime.strptime(timestamp2, self.time_format)
+        time_1 = self.get_topic_sent_time(csc, topic_1)
+        time_2 = self.get_topic_sent_time(csc, topic_2)
         # Get the timedelta, in seconds.
         delta = (time_1 - time_2).total_seconds()
         print(
