@@ -1,9 +1,9 @@
 *** Settings ***
 Resource    ../Global_Vars.resource
 Resource    ../CSC_Lists.resource
-Library    QueryEfd    ${SALVersion}    ${XMLVersion}    ${OSPLVersion}
-Library    Collections
-Library    String
+Library     QueryEfd    ${SALVersion}    ${XMLVersion}    ${OSPLVersion}
+Library     Collections
+Library     String
 Force Tags    enabled    skipped
 
 *** Variables ***

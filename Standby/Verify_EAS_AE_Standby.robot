@@ -1,10 +1,10 @@
 *** Settings ***
 Resource    ../Global_Vars.resource
 Resource    ../CSC_Lists.resource
-Library    QueryEfd    ${SALVersion}    ${XMLVersion}    ${OSPLVersion}
-Library    Collections
-Library    String
-Library    DateTime
+Library     QueryEfd    ${SALVersion}    ${XMLVersion}    ${OSPLVersion}
+Library     Collections
+Library     String
+Library     DateTime
 Force Tags    standby
 
 *** Variables ***
