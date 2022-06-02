@@ -313,9 +313,7 @@ class QueryEfd:
             raise ValueError("Dataframe is empty")
         # Get the sequence of summaryStates and convert
         # the list to human-readable for the error message.
-        states = []
-        for item in dataframe.summaryState.values.tolist():
-            states.append(state_enums.as_state(item).name.lower())
+        states = [state_enums.as_state(x).name.lower() for x in dataframe.summaryState.values]
         # Assert lists are equal.
         print(
             f"*TRACE*The SummaryState sequence: {states} should match {shutdown_sequence}"
