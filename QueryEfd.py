@@ -371,7 +371,7 @@ class QueryEfd:
             try:
                 self.verify_version(version)
             except AssertionError as e:
-                error_list.append("CSC " + str(e))
+                error_list.append("Config " + str(e))
             if len(dataframe.otherInfo[0]) > 0:
                 events = dataframe.otherInfo[0].split(",")
                 for event in events:
@@ -427,7 +427,7 @@ class QueryEfd:
             try:
                 self.verify_version(version)
             except AssertionError as e:
-                error_list.append("CSC " + str(e))
+                error_list.append("Config " + str(e))
             # The Camera CSCs handle schemaVersion uniquely, so skip those tests.
             if csc not in csc_lists.camera:
                 schema_version_expected = url.split("/")[-1]
