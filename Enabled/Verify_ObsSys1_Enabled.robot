@@ -9,6 +9,10 @@ Force Tags    enabled
 *** Variables ***
 
 *** Test Cases ***
+Verify Authorize Enabled
+    [Tags]    obsys1
+    Verify Summary State    ${STATES}[enabled]    Authorize    True
+
 Verify ScriptQueue:1 Enabled
     [Tags]    obsys1
     Verify Summary State    ${STATES}[enabled]    ScriptQueue:1    True

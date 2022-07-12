@@ -11,6 +11,18 @@ Force Tags    obsys1
 ${time_window}    10
 
 *** Test Cases ***
+Verify Authorize Disabled
+    [Tags]    disabled
+    Verify Summary State    ${STATES}[disabled]    Authorize    True
+
+Verify Authorize ConfigurationApplied Event
+    [Tags]    config_applied
+    Verify ConfigurationApplied    Authorize
+
+Verify Authorize ConfigurationApplied timing
+    [Tags]    config_applied    timing
+    Verify Time Delta    Authorize    logevent_summaryState    logevent_configurationApplied    ${time_window}
+
 Verify ScriptQueue:1 Disabled
     [Tags]    disabled
     Verify Summary State    ${STATES}[disabled]    ScriptQueue:1    True
