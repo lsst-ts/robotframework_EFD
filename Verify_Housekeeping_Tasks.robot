@@ -11,8 +11,8 @@ Force Tags    auxtel_stop
 @{port_field}    selected
 @{instrument_port}    7
 @{position_field}    name
-@{disperser}    emtpy_1
-@{filter_field}    selected
+@{disperser}    empty_1
+@{filter_field}    filterName
 @{filter_name}    r_03
 
 *** Test Cases ***
@@ -22,7 +22,7 @@ Verify ATMCS logevent_m3PortSelected
 
 Verify ATSpectrograph logevent_reportedDisperserPosition
     [Tags]
-    Verify Topic Attribute    ATSpectrograph    logevent_reportedDisperserPosition    ${position_field}    ${disperser}
+    Verify Topic Attribute    ATSpectrograph    logevent_reportedDisperserPosition    ${position_field}    ${disperser}    output=json
 
 Verify CCCamera logevent_endSetFilter
     [Tags]
