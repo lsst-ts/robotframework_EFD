@@ -6,6 +6,7 @@ import pandas
 import re
 import time
 import datetime
+from typing import Any
 from utils import dataframe
 from utils import state_enums
 from utils import csc_lists
@@ -371,7 +372,7 @@ class QueryEfd:
             try:
                 self.verify_version(version)
             except AssertionError as e:
-                error_list.append("CSC " + str(e))
+                error_list.append("Config " + str(e))
             if len(dataframe.otherInfo[0]) > 0:
                 events = dataframe.otherInfo[0].split(",")
                 for event in events:
@@ -427,7 +428,7 @@ class QueryEfd:
             try:
                 self.verify_version(version)
             except AssertionError as e:
-                error_list.append("CSC " + str(e))
+                error_list.append("Config " + str(e))
             # The Camera CSCs handle schemaVersion uniquely, so skip those tests.
             if csc not in csc_lists.camera:
                 schema_version_expected = url.split("/")[-1]
@@ -493,7 +494,7 @@ class QueryEfd:
 
     @keyword
     def verify_topic_attribute(
-        self, csc: str, topic: str, fields: list, expected_values: list
+        self, csc: str, topic: str, fields: list, expected_values: list, output: str = 'dataframe'
     ) -> None:
         """Fails if the values of the given field attributes do not match
         the expected_values.
@@ -515,9 +516,14 @@ class QueryEfd:
         # attributes, simply update these steps to iterate over
         # the lists of fields and respective expected_values.
         attribute = fields[0]
-        topic_df = self.get_recent_samples(csc, topic, fields, 1, index)
-        actual_value = getattr(topic_df, attribute)[0]
-        print(f"*TRACE*dataframe:\n{topic_df}")
+        if output.lower() == "json":
+            json_output = self._influx_query(output.lower(), csc, topic, attribute)
+            print(f"*TRACE*dataframe:\n{json_output}")
+            actual_value = self._get_from_json(attribute, json_output)
+        else:
+            topic_df = self.get_recent_samples(csc, topic, fields, 1, index)
+            print(f"*TRACE*dataframe:\n{topic_df}")
+            actual_value = getattr(topic_df, attribute)[0]
         if str(actual_value) != str(expected_values[0]):
             raise AssertionError(f"{actual_value} does not match {expected_values[0]}.")
 
@@ -626,3 +632,54 @@ class QueryEfd:
             return False
         else:
             return True
+
+    @not_keyword
+    def _get_from_json(self, column: str, info: dict) -> Any:
+        """Simple function to return a specific value from the JSON dictionary
+        returned from the EfdClient influx_client.query function.
+
+        Parameters
+        ----------
+        column : str
+            The field from which to get the value.
+        info : dict
+            The JSON dictionary to query.
+
+        Returns
+        -------
+        result : Any
+            The value of the given column. Could be of any datatype.
+        """
+        series = info["results"][0]["series"][0]
+        index = series["columns"].index(column)
+        result = series["values"][0][index]
+        return result
+
+    @not_keyword
+    def _influx_query(self, output_format: str, csc: str, topic: str, attribute: str) -> str:
+        """Returns the result of the influx_client.query in specified output format.
+
+        Parameters
+        ----------
+        output_format : `str`
+            The requested format of the output.
+            Should either be dataframe or json.
+        csc : `str`
+            The name of the CSC.
+        topic : `str`
+            The name of the topic of which to get the field list.
+        attribute : `str`
+            The name of the field in the InfluxDB to query.
+
+        Returns
+        -------
+        output : `str`
+            The return from the influx_client.query function.
+        """
+        efd_client = EfdClient(self.efd_name)
+        efd_client.influx_client.output = output_format
+        loop = asyncio.get_event_loop()
+        output = loop.run_until_complete(efd_client.influx_client.query(
+                f'''SELECT "{attribute}" FROM "efd"."autogen"."lsst.sal.{csc}.{topic}" GROUP BY * ORDER BY DESC LIMIT 1''')
+            )
+        return output

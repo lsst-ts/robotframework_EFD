@@ -10,7 +10,7 @@ Force Tags    offline
 *** Variables ***
 ${offdet_topic}    logevent_offlineDetailedState
 @{offdet_fields}    "private_sndStamp"    "substate"
-${time_window}    10
+${time_window}    600
 
 *** Test Cases ***
 Verify ATCamera Offline

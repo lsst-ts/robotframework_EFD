@@ -13,6 +13,11 @@ ${topic_2}    command_disable
 ${time_window}    600
 
 *** Test Cases ***
+Verify Authorize Shutdown
+    [Tags]    obsys1
+    Verify Shutdown Process    Authorize
+    Verify Time Delta    Authorize    ${topic_1}    ${topic_2}    ${time_window}
+
 Verify ScriptQueue:1 Shutdown
     [Tags]    obsys1
     Verify Shutdown Process    ScriptQueue    1

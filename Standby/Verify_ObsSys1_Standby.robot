@@ -11,6 +11,18 @@ Force Tags    obsys1
 ${time_window}    10
 
 *** Test Cases ***
+Verify Authorize Standby
+    [Tags]    standby
+    Verify Summary State    ${STATES}[standby]    Authorize    True
+
+Verify Authorize SoftwareVersions
+    [Tags]    software_versions
+    Verify SoftwareVersions    Authorize
+
+Verify Authorize SoftwareVersions timing
+    [Tags]    software_versions    timing
+    Verify Time Delta    Authorize    logevent_summaryState    logevent_softwareVersions    ${time_window}
+
 Verify ScriptQueue:1 Standby
     [Tags]    standby
     Verify Summary State    ${STATES}[standby]    ScriptQueue:1    True

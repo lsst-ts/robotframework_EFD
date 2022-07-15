@@ -1,0 +1,8 @@
+###  Test Suite list ###
+#  Change the title of the test results
+--name Housekeeping
+--output housekeeping
+--skiponfailure skipped
+
+# List of test suites
+Verify_Housekeeping_Tasks.robot

@@ -9,11 +9,12 @@
 
 #  Specify skip tags
 #-e skipped
+#-e at_light_cal
 --skiponfailure skipped
 
 # Report style
 --reportbackground #61C4CD:#61C4CD
 
 #  Redefine default variables
---variable XMLVersion:11.1.1
---variable SALVersion:6.1.0
+--variable XMLVersion:12.0.0
+--variable SALVersion:7.0.0
