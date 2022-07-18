@@ -13,14 +13,30 @@ useradd -r -u 1003 -g ${USER} -G docker -m ${USER} -d ${HOME} && \
 chown ${USER}:docker ${HOME}
 
 RUN dnf -y update
+RUN dnf -y groupinstall "Development Tools"
+RUN dnf -y install wget make
 
-RUN dnf -y install python38-devel gcc-c++ wget git which mlocate && \
+RUN dnf -y install git which mlocate \
+openssl-devel make gcc-c++ bzip2-devel libffi-devel zlib-devel && \
 dnf clean all && \
 rm -rf /var/cache/dnf
 
 RUN updatedb
 
-RUN python3 -m pip install -U pip
+RUN cd /tmp && \
+wget https://www.python.org/ftp/python/3.10.4/Python-3.10.4.tgz && \
+tar xvf Python-3.10.4.tgz
+
+RUN cd /tmp/Python-3.10.4 && \
+./configure --enable-optimizations && \
+make altinstall && \
+ln /usr/local/bin/python3.10 /usr/local/bin/python3 && \
+python3 --version && pip3.10 --version
+
+RUN python3.10 -m pip install --upgrade pip setuptools numpy && \
+python3.10 -m pip install robotframework && \
+python3.10 -m pip install astropy && \
+python3.10 -m pip install pytest
 
 COPY environment.yaml /home/saluser/.environment.yaml
 COPY startup.sh /home/saluser/.startup.sh
@@ -38,6 +54,7 @@ RUN curl https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -
 chmod +x .miniconda.sh && ./.miniconda.sh -b -p miniconda3 && \
 source miniconda3/bin/activate && \
 conda update conda -y && \
+conda install python=3.10.4 -y && \
 conda env create -f .environment.yaml && \
 conda activate test_reporting && \
 pip3 install -U setuptools numpy pytest requests robotframework lsst-efd-client
