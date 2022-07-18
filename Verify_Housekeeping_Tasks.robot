@@ -14,6 +14,8 @@ Force Tags    auxtel_stop
 @{disperser}    empty_1
 @{filter_field}    filterName
 @{filter_name}    r_03
+@{in_position_field}    inPosition
+@{in_position}    True
 
 *** Test Cases ***
 Verify ATMCS logevent_m3PortSelected
@@ -27,3 +29,8 @@ Verify ATSpectrograph logevent_reportedDisperserPosition
 Verify CCCamera logevent_endSetFilter
     [Tags]
     Verify Topic Attribute    CCCamera    logevent_endSetFilter    ${filter_field}    ${filter_name}
+
+Verify MTMount Axes InPosition
+    [Tags]
+    Verify Topic Attribute    MTMount    logevent_elevationInPosition    ${in_position_field}    ${in_position}
+    Verify Topic Attribute    MTMount    logevent_azimuthInPosition    ${in_position_field}    ${in_position}
