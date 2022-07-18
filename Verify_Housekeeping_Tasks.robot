@@ -16,6 +16,7 @@ Force Tags    auxtel_stop
 @{filter_name}    r_03
 @{in_position_field}    inPosition
 @{in_position}    True
+${time_window}    30s
 
 *** Test Cases ***
 Verify ATMCS logevent_m3PortSelected
@@ -33,4 +34,6 @@ Verify CCCamera logevent_endSetFilter
 Verify MTMount Axes InPosition
     [Tags]
     Verify Topic Attribute    MTMount    logevent_elevationInPosition    ${in_position_field}    ${in_position}
+    Verify Time Delta    MTMount    command_homeBothAxes    logevent_elevationInPosition    ${time_window}    None
     Verify Topic Attribute    MTMount    logevent_azimuthInPosition    ${in_position_field}    ${in_position}
+    Verify Time Delta    MTMount    command_homeBothAxes    logevent_azimuthInPosition    ${time_window}    None
