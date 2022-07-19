@@ -16,7 +16,7 @@ Force Tags    auxtel_stop
 @{filter_name}    r_03
 @{in_position_field}    inPosition
 @{in_position}    True
-${time_window}    30s
+${time_window}    10
 
 *** Test Cases ***
 Verify ATMCS logevent_m3PortSelected
