@@ -23,21 +23,6 @@ rm -rf /var/cache/dnf
 
 RUN updatedb
 
-RUN cd /tmp && \
-wget https://www.python.org/ftp/python/3.10.4/Python-3.10.4.tgz && \
-tar xvf Python-3.10.4.tgz
-
-RUN cd /tmp/Python-3.10.4 && \
-./configure --enable-optimizations && \
-make altinstall && \
-ln /usr/local/bin/python3.10 /usr/local/bin/python3 && \
-python3 --version && pip3.10 --version
-
-RUN python3.10 -m pip install --upgrade pip setuptools numpy && \
-python3.10 -m pip install robotframework && \
-python3.10 -m pip install astropy && \
-python3.10 -m pip install pytest
-
 COPY environment.yaml /home/saluser/.environment.yaml
 COPY startup.sh /home/saluser/.startup.sh
 RUN chown saluser:saluser /home/saluser/.environment.yaml && \
@@ -54,10 +39,10 @@ RUN curl https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -
 chmod +x .miniconda.sh && ./.miniconda.sh -b -p miniconda3 && \
 source miniconda3/bin/activate && \
 conda update conda -y && \
-conda install python=3.10.4 -y && \
+conda install python>=3.10 -y && \
 conda env create -f .environment.yaml && \
 conda activate test_reporting && \
-pip3 install -U setuptools numpy pytest requests robotframework lsst-efd-client
+pip3 install -U setuptools numpy pytest astropy requests robotframework lsst-efd-client
 
 ENTRYPOINT ["/bin/bash", "--"]
 CMD ["/home/saluser/.startup.sh"]
