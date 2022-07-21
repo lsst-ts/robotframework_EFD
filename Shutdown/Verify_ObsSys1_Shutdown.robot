@@ -18,11 +18,6 @@ Verify Authorize Shutdown
     Verify Shutdown Process    Authorize
     Verify Time Delta    Authorize    ${topic_1}    ${topic_2}    ${time_window}
 
-Verify Test42 Shutdown
-    [Tags]    obsys1
-    Verify Shutdown Process    Test42
-    Verify Time Delta    Test42    ${topic_1}    ${topic_2}    ${time_window}
-
 Verify ScriptQueue:1 Shutdown
     [Tags]    obsys1
     Verify Shutdown Process    ScriptQueue    1
