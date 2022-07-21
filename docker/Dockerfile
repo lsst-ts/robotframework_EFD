@@ -13,14 +13,11 @@ useradd -r -u 1003 -g ${USER} -G docker -m ${USER} -d ${HOME} && \
 chown ${USER}:docker ${HOME}
 
 RUN dnf -y update
-
-RUN dnf -y install python38-devel gcc-c++ wget git which mlocate && \
+RUN dnf -y install git which mlocate gcc-c++ && \
 dnf clean all && \
 rm -rf /var/cache/dnf
 
 RUN updatedb
-
-RUN python3 -m pip install -U pip
 
 COPY environment.yaml /home/saluser/.environment.yaml
 COPY startup.sh /home/saluser/.startup.sh
@@ -38,9 +35,10 @@ RUN curl https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -
 chmod +x .miniconda.sh && ./.miniconda.sh -b -p miniconda3 && \
 source miniconda3/bin/activate && \
 conda update conda -y && \
+conda install python>=3.10 -y && \
 conda env create -f .environment.yaml && \
 conda activate test_reporting && \
-pip3 install -U setuptools numpy pytest requests robotframework lsst-efd-client
+pip3 install -U setuptools numpy pytest astropy requests robotframework lsst-efd-client
 
 ENTRYPOINT ["/bin/bash", "--"]
 CMD ["/home/saluser/.startup.sh"]

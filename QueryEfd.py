@@ -552,7 +552,7 @@ class QueryEfd:
         time_1 = self.get_topic_sent_time(csc, topic_1)
         time_2 = self.get_topic_sent_time(csc, topic_2)
         # Get the timedelta, in seconds.
-        delta = (time_1 - time_2).total_seconds()
+        delta = (time_2 - time_1).total_seconds()
         print(
             f"*TRACE*{topic_1} was sent at {time_1}.\n"
             f"*TRACE*{topic_2} was sent at {time_2}.\n"

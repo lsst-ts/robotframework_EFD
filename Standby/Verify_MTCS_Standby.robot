@@ -8,12 +8,19 @@ Library     DateTime
 Force Tags    mtcs
 
 *** Variables ***
+@{in_position_field}    inPosition
+@{in_position}    False
 ${time_window}    10
 
 *** Test Cases ***
 Verify MTMount Standby
     [Tags]    standby
     Verify Summary State    ${STATES}[standby]    MTMount
+
+Verify MTMount Axes NOT InPosition
+    [Tags]    standby
+    Verify Topic Attribute    MTMount    logevent_elevationInPosition    ${in_position_field}    ${in_position}
+    Verify Topic Attribute    MTMount    logevent_azimuthInPosition    ${in_position_field}    ${in_position}
 
 Verify MTMount SoftwareVersions
     [Tags]    software_versions
