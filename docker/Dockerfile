@@ -13,11 +13,7 @@ useradd -r -u 1003 -g ${USER} -G docker -m ${USER} -d ${HOME} && \
 chown ${USER}:docker ${HOME}
 
 RUN dnf -y update
-RUN dnf -y groupinstall "Development Tools"
-RUN dnf -y install wget make
-
-RUN dnf -y install git which mlocate \
-openssl-devel make gcc-c++ bzip2-devel libffi-devel zlib-devel && \
+RUN dnf -y install git which mlocate gcc-c++ && \
 dnf clean all && \
 rm -rf /var/cache/dnf
 
