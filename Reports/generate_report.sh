@@ -8,4 +8,4 @@
 #  email:  rbovill@lsst.org
 
 robot_outputs=(offline.xml standby.xml disabled.xml enabled.xml housekeeping.xml at_stop.xml shutdown.xml)
-rebot --name IntegrationTests -r streamlined_report.html -l streamlined_log.html --reportbackground "#61C4CD:#61C4CD" --loglevel FAIL --flattenkeywords TAG:custom -e at_light_cal ${robot_outputs[@]}
+rebot --name IntegrationTests -r streamlined_report.html -l streamlined_log.html --reportbackground "#61C4CD:#61C4CD" --loglevel FAIL --flattenkeywords TAG:custom --tagstatexclude DM* -e at_light_cal ${robot_outputs[@]}
