@@ -1,6 +1,7 @@
 *** Settings ***
-Resource    Global_Vars.resource
-Resource    CSC_Lists.resource
+Resource    ../Global_Vars.resource
+Resource    ../CSC_Lists.resource
+Resource    ../Common_Keywords.resource
 Library     QueryEfd    ${SALVersion}    ${XMLVersion}    ${OSPLVersion}
 Library     Collections
 Library     String
@@ -15,6 +16,10 @@ Force Tags    auxtel_stop
 @{states_expected}      8
 
 *** Test Cases ***
+Get Script Metadata
+    [Tags] 
+    Common_Keywords.Get Script Metadata
+
 Verify ATDome logevent_azimuthInPosition
     [Tags]
     Verify Topic Attribute    ATDome    logevent_azimuthInPosition    ${azimuthInPosition}    ${in_pos_expected}
