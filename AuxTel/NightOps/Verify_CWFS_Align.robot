@@ -48,6 +48,45 @@ Verify ATHexapod Position
     Should Be Equal As Numbers    ${dataframe.positionV.values}[0]    0.22
     Should Be Equal As Numbers    ${dataframe.positionW.values}[0]    0
 
+Verify ATMCS AxesInPosition
+    [Tags]
+    Verify Topic Attribute    ATMCS    logevent_allAxesInPosition    ["inPosition",]    [True,]
+
+Verify ATSpectrograph ChangeFilter
+    [Tags]
+    ${output}=    Get Topic Sent Time    ATSpectrograph    command_changeFilter
+    ${topic_sent}=    Convert Date    ${output}    result_format=datetime
+    ${delta}=    Subtract Date From Date    ${topic_sent}    ${script_start}
+    Should Be True    ${delta} > 0
+    Verify Time Delta    ATSpectrograph    command_changeFilter    logevent_filterInPosition    ${time_window}
+    Verify Time Delta    ATSpectrograph    command_changeFilter    logevent_reportedFilterPosition    ${time_window}
+    Verify Topic Attribute    ATSpectrograph    logevent_filterInPosition    ["inPosition",]    [True,]
+
+Verify ATSpectrograph Filter
+    [Tags]    DM-35582
+    Verify Topic Attribute    ATSpectrograph    logevent_reportedFilterPosition    ["band",]    ["r",]
+    #Verify Topic Attribute    ATSpectrograph    logevent_reportedFilterPosition    ["name",]    ["SDSSr",]    #DM-35582
+
+Verify ATSpectrograph ChangeDisperer
+    [Tags]
+    ${output}=    Get Topic Sent Time    ATSpectrograph    command_changeDisperser
+    ${topic_sent}=    Convert Date    ${output}    result_format=datetime
+    ${delta}=    Subtract Date From Date    ${topic_sent}    ${script_start}
+    Should Be True    ${delta} > 0
+    Verify Time Delta    ATSpectrograph    command_changeDisperser    logevent_disperserInPosition    ${time_window}
+    Verify Time Delta    ATSpectrograph    command_changeDisperser    logevent_reportedDisperserPosition    ${time_window}
+    Verify Topic Attribute    ATSpectrograph    logevent_disperserInPosition    ["inPosition",]    [True,]
+
+Verify ATSpectrograph Disperser
+    [Tags]    DM-35582
+    Verify Topic Attribute    ATSpectrograph    logevent_reportedDisperserPosition    ["band",]    ["EMPTY",]
+    #Verify Topic Attribute    ATSpectrograph    logevent_reportedDisperserPosition    ["name",]    ["empty_1",]    #DM-35582
+
+Verify LinearStage MoveLinearStage
+    [Tags]
+    ${dataframe}=    Get Recent Samples    LinearStage    command_moveLinearStage    ["*",]    1    None
+    Should Be Empty    ${dataframe}
+
 Verify Initial Offset
     [Documentation]    The first offset the script applies each iteration is 0.8 mm to the z-axis.
     ...    The script executes 3 iterations, with 8 ATAOS correctionOffsets events published each iteration.
@@ -127,87 +166,64 @@ Verify Return to InFocus Position
 Verify Final Offset Position
     [Documentation]    The final offset the script applies each iteration is from the result of cwfs analysis.
     [Tags]
-    Comment    First Iteration. Offset: x=-0.086100, y=-0.027342, z=-0.002962
-    @{list}=    Create List    ${-0.0861}    ${-0.0273}    ${-0.0030}
-    Lists Should Be Equal    ${command_dataframe.iloc[0].values.round(4)}    ${list}
-    ${initial_x}=    Set Variable    ${event_dataframe.iloc[1][0]}
-    ${offset_x}=    Set Variable    ${event_dataframe.iloc[0][0]}
-    ${delta}=    Evaluate    ${offset_x} - ${initial_x}
-    Should Be Equal As Numbers    ${delta}    -0.086100    precision=3
-    ${initial_y}=    Set Variable    ${event_dataframe.iloc[1][1]}
-    ${offset_y}=    Set Variable    ${event_dataframe.iloc[0][1]}
-    ${delta}=    Evaluate    ${offset_y} - ${initial_y}
-    Should Be Equal As Numbers    ${delta}    -0.027342    precision=3
-    ${initial_z}=    Set Variable    ${event_dataframe.iloc[1][2]}
-    ${offset_z}=    Set Variable    ${event_dataframe.iloc[0][2]}
-    ${delta}=    Evaluate    ${offset_z} - ${initial_z}
-    Should Be Equal As Numbers    ${delta}    -0.002962    precision=3
-    Comment    Second Iteration. Offset:  x=-0.307060, y=0.034502, z=0.013209
-    @{list}=    Create List    ${-0.3071}    ${0.0345}    ${0.0132}
-    Lists Should Be Equal    ${command_dataframe.iloc[4].values.round(3)}    ${list}
-    ${initial_x}=    Set Variable    ${event_dataframe.iloc[9][0]}
-    ${offset_x}=    Set Variable    ${event_dataframe.iloc[8][0]}
-    ${delta}=    Evaluate    ${offset_x} - ${initial_x}
-    Should Be Equal As Numbers    ${delta}    -0.307060    precision=3
-    ${initial_y}=    Set Variable    ${event_dataframe.iloc[9][1]}
-    ${offset_y}=    Set Variable    ${event_dataframe.iloc[8][1]}
-    ${delta}=    Evaluate    ${offset_y} - ${initial_y}
-    Should Be Equal As Numbers    ${delta}    0.034502    precision=3
-    ${initial_z}=    Set Variable    ${event_dataframe.iloc[9][2]}
-    ${offset_z}=    Set Variable    ${event_dataframe.iloc[8][2]}
-    ${delta}=    Evaluate    ${offset_z} - ${initial_z}
-    Should Be Equal As Numbers    ${delta}    0.013209    precision=3
-    Comment    Third iteration. Offset: x=-0.955054, y=0.176058, z=-0.038303
-    @{list}=    Create List    ${-0.9551}    ${0.1761}    ${-0.0383}
-    Lists Should Be Equal    ${command_dataframe.iloc[8].values.round(3)}    ${list}
+    Comment    First iteration. Expected Offsets: x=-0.957500, y=0.176500, z=-0.038700
+    Set Test Variable    ${tol}    ${0.005}
+    ${index}=    Set Variable    ${0}
+    @{expected}=    Create List    ${-0.957500}    ${0.176500}    ${-0.038700}
+    @{actual}=    Convert To List    ${command_dataframe.iloc[8].values.round(4)}
+    FOR    ${number}    IN    @{actual}
+        Compare Numbers    ${number}    ${expected}[${index}]    ${tol}
+        ${index}=    Evaluate    ${index} + 1
+    END
     ${initial_x}=    Set Variable    ${event_dataframe.iloc[17][0]}
     ${offset_x}=    Set Variable    ${event_dataframe.iloc[16][0]}
     ${delta}=    Evaluate    ${offset_x} - ${initial_x}
-    Should Be Equal As Numbers    ${delta}    -0.955054    precision=3
+    Compare Numbers    ${delta}    ${expected}[0]    ${tol}
     ${initial_y}=    Set Variable    ${event_dataframe.iloc[17][1]}
     ${offset_y}=    Set Variable    ${event_dataframe.iloc[16][1]}
     ${delta}=    Evaluate    ${offset_y} - ${initial_y}
-    Should Be Equal As Numbers    ${delta}    0.176058    precision=3
+    Compare Numbers    ${delta}    ${expected}[1]    ${tol}
     ${initial_z}=    Set Variable    ${event_dataframe.iloc[17][2]}
     ${offset_z}=    Set Variable    ${event_dataframe.iloc[16][2]}
     ${delta}=    Evaluate    ${offset_z} - ${initial_z}
-    Should Be Equal As Numbers    ${delta}    -0.038303    precision=3
-
-Verify ATMCS AxesInPosition
-    [Tags]
-    Verify Topic Attribute    ATMCS    logevent_allAxesInPosition    ["inPosition",]    [True,]
-
-Verify ATSpectrograph ChangeFilter
-    [Tags]
-    ${output}=    Get Topic Sent Time    ATSpectrograph    command_changeFilter
-    ${topic_sent}=    Convert Date    ${output}    result_format=datetime
-    ${delta}=    Subtract Date From Date    ${topic_sent}    ${script_start}
-    Should Be True    ${delta} > 0
-    Verify Time Delta    ATSpectrograph    command_changeFilter    logevent_filterInPosition    ${time_window}
-    Verify Time Delta    ATSpectrograph    command_changeFilter    logevent_reportedFilterPosition    ${time_window}
-    Verify Topic Attribute    ATSpectrograph    logevent_filterInPosition    ["inPosition",]    [True,]
-
-Verify ATSpectrograph Filter
-    [Tags]    DM-35582
-    Verify Topic Attribute    ATSpectrograph    logevent_reportedFilterPosition    ["band",]    ["r",]
-    #Verify Topic Attribute    ATSpectrograph    logevent_reportedFilterPosition    ["name",]    ["SDSSr",]    #DM-35582
-
-Verify ATSpectrograph ChangeDisperer
-    [Tags]
-    ${output}=    Get Topic Sent Time    ATSpectrograph    command_changeDisperser
-    ${topic_sent}=    Convert Date    ${output}    result_format=datetime
-    ${delta}=    Subtract Date From Date    ${topic_sent}    ${script_start}
-    Should Be True    ${delta} > 0
-    Verify Time Delta    ATSpectrograph    command_changeDisperser    logevent_disperserInPosition    ${time_window}
-    Verify Time Delta    ATSpectrograph    command_changeDisperser    logevent_reportedDisperserPosition    ${time_window}
-    Verify Topic Attribute    ATSpectrograph    logevent_disperserInPosition    ["inPosition",]    [True,]
-
-Verify ATSpectrograph Disperser
-    [Tags]    DM-35582
-    Verify Topic Attribute    ATSpectrograph    logevent_reportedDisperserPosition    ["band",]    ["EMPTY",]
-    #Verify Topic Attribute    ATSpectrograph    logevent_reportedDisperserPosition    ["name",]    ["empty_1",]    #DM-35582
-
-Verify LinearStage MoveLinearStage
-    [Tags]
-    ${dataframe}=    Get Recent Samples    LinearStage    command_moveLinearStage    ["*",]    1    None
-    Should Be Empty    ${dataframe}
+    Compare Numbers    ${delta}    ${expected}[2]    ${tol}
+    Comment    Second Iteration. Offset:  x=-0.308500, y=0.023000, z=0.012800
+    ${index}=    Set Variable    ${0}
+    @{expected}=    Create List    ${-0.308500}    ${0.023000}    ${0.012800}
+    @{actual}=    Convert To List    ${command_dataframe.iloc[4].values.round(4)}
+    FOR    ${number}    IN    @{actual}
+        Compare Numbers    ${number}    ${expected}[${index}]    ${tol}
+        ${index}=    Evaluate    ${index} + 1
+    END
+    ${initial_x}=    Set Variable    ${event_dataframe.iloc[9][0]}
+    ${offset_x}=    Set Variable    ${event_dataframe.iloc[8][0]}
+    ${delta}=    Evaluate    ${offset_x} - ${initial_x}
+    Compare Numbers    ${delta}    ${expected}[0]    ${tol}
+    ${initial_y}=    Set Variable    ${event_dataframe.iloc[9][1]}
+    ${offset_y}=    Set Variable    ${event_dataframe.iloc[8][1]}
+    ${delta}=    Evaluate    ${offset_y} - ${initial_y}
+    Compare Numbers    ${delta}    ${expected}[1]    ${tol}
+    ${initial_z}=    Set Variable    ${event_dataframe.iloc[9][2]}
+    ${offset_z}=    Set Variable    ${event_dataframe.iloc[8][2]}
+    ${delta}=    Evaluate    ${offset_z} - ${initial_z}
+    Compare Numbers    ${delta}    ${expected}[2]    ${tol}
+    Comment    Third Iteration. Offset: x=-0.084500, y=-0.031000, z=-0.003100
+    ${index}=    Set Variable    ${0}
+    @{expected}=    Create List    ${-0.084500}    ${-0.031000}    ${-0.003100}
+    @{actual}=    Convert To List    ${command_dataframe.iloc[0].values.round(4)}
+    FOR    ${number}    IN    @{actual}    
+        Compare Numbers    ${number}    ${expected}[${index}]    ${tol}
+        ${index}=    Evaluate    ${index} + 1
+    END
+    ${initial_x}=    Set Variable    ${event_dataframe.iloc[1][0]}
+    ${offset_x}=    Set Variable    ${event_dataframe.iloc[0][0]}
+    ${delta}=    Evaluate    ${offset_x} - ${initial_x}
+    Compare Numbers    ${delta}    ${expected}[0]    ${tol}
+    ${initial_y}=    Set Variable    ${event_dataframe.iloc[1][1]}
+    ${offset_y}=    Set Variable    ${event_dataframe.iloc[0][1]}
+    ${delta}=    Evaluate    ${offset_y} - ${initial_y}
+    Compare Numbers    ${delta}    ${expected}[1]    ${tol}
+    ${initial_z}=    Set Variable    ${event_dataframe.iloc[1][2]}
+    ${offset_z}=    Set Variable    ${event_dataframe.iloc[0][2]}
+    ${delta}=    Evaluate    ${offset_z} - ${initial_z}
+    Compare Numbers    ${delta}    ${expected}[2]    ${tol}
