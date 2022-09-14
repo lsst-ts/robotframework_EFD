@@ -16,4 +16,3 @@ Compare Numbers
     ${lower}=    Evaluate    ${expected} - ${tolerance}
     ${upper}=    Evaluate    ${expected} + ${tolerance}
     Should Be True    ${lower} < ${actual} < ${upper}
-
