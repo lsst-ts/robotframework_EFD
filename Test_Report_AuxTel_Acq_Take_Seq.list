@@ -1,8 +1,8 @@
 ###  Test Suite list ###
 #  Change the title of the test results
---name AT_Stop
---output at_stop
+--name AT_Acq_Take_Seq
+--output at_acq_take_seq
 --skiponfailure skipped
 
 # List of test suites
-AuxTel/Verify_AT_Stop.robot
+AuxTel/NightOps/Verify_LATISS_Acq_Take_Sequence.robot
