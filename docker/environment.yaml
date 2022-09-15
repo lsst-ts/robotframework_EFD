@@ -1,3 +1,0 @@
-name: test_reporting
-dependencies:
-  - python=3.10
