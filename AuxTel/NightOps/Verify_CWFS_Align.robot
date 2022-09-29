@@ -46,9 +46,36 @@ Verify ATPtg Target
     Verify Topic Attribute    ATPtg    logevent_currentTarget    ["raHours",]    [${18.913095}]
     Verify Topic Attribute    ATPtg    logevent_currentTarget    ["decDegs",]    [${-87.605843}]
 
-Verify ATCamera ExposureTime
+Verify ATCamera Image Sequence
+    [Documentation]    Verify the ATCamera images are the correct type, with the correct exposure time.
+    [Tags]    robot:continue-on-failure
+    Set Suite Variable    ${num_images}    ${7}    # Needed by Verify ATOODS ImageInOODS test case.
+    ${seq_length}=    Set Variable    ${7}
+    @{exp_time}=    Set Variable    ${5}    ${5}    ${5}    ${5}    ${5}    ${5}    ${5}
+    @{img_type_seq}=    Set Variable    ACQ    CWFS    CWFS    CWFS    CWFS    CWFS    CWFS    # Sequence is reversed; EFD is in time-descending order.
+    ${cmd_df}=    Get Recent Samples    ATCamera    command_takeImages    ["expTime", "keyValueMap", "numImages", "shutter",]    ${num_images}    None
+    ${evt_df}=    Get Recent Samples    ATCamera    logevent_startIntegration    ["additionalValues", "exposureTime", "imageName"]    ${num_images}    None
+    Set Suite Variable    @{image_names}    ${evt_df.imageName.values}
+    Verify Sequence    ATCamera    command_takeImages    expTime    ${seq_length}    ${exp_time}
+    Verify Sequence    ATCamera    logevent_startIntegration    exposureTime    ${seq_length}    ${exp_time}
+    FOR    ${i}    IN RANGE    ${num_images}
+        ${evt_image_type}=    Fetch From Left    ${evt_df.additionalValues.values}[${i}]    :
+        Should Be Equal As Strings    ${evt_image_type}    ${img_type_seq}[${i}]
+        ${image_type_str}=    Fetch From Left    ${cmd_df.keyValueMap.values}[${i}]    ,
+        ${cmd_image_type}=    Fetch From Right    ${image_type_str}    :${SPACE}
+        Should Be Equal As Strings    ${cmd_image_type}    ${img_type_seq}[${i}]
+        Should Be Equal As Numbers    ${cmd_df.numImages.values}[${i}]    1
+        Should Be True    ${cmd_df.shutter.values}[${i}]
+    END
+
+Verify ATOODS ImageInOODS
     [Tags]
-    Verify Topic Attribute    ATCamera    logevent_startIntegration    ["exposureTime",]    [5,]
+    ${dataframe}=    Get Recent Samples    ATOODS    logevent_imageInOODS    ["camera", "description", "obsid",]    ${num_images}    None
+    FOR    ${i}    IN RANGE    ${num_images}
+        Should Be Equal As Strings    ${dataframe.camera.values}[${i}]    LATISS
+        Should Be Equal As Strings    ${dataframe.description.values}[${i}]    file ingested
+        Should Be Equal As Strings    ${dataframe.obsid.values}[${i}]    ${image_names}[0][${i}]
+    END
 
 Verify ATHexapod Position
     [Documentation]    The CWFS_Align script does not effect the Hexapod [u, v, w] positions.
@@ -177,7 +204,7 @@ Verify Final Offset Position
     [Documentation]    The final offset the script applies each iteration is from the result of cwfs analysis.
     [Tags]    robot:continue-on-failure
     Comment    First iteration. Expected Offsets: x=-0.957500, y=0.187200, z=-0.038000
-    Set Test Variable    ${tol}    ${0.005}
+    Set Test Variable    ${tol}    ${0.05}
     ${index}=    Set Variable    ${0}
     @{expected}=    Create List    ${-0.957500}    ${0.187200}    ${-0.038000}
     @{actual}=    Convert To List    ${command_dataframe.iloc[8].values.round(4)}
