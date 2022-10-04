@@ -4,6 +4,7 @@ import typing
 import asyncio
 import pandas
 import re
+import math
 import time
 import datetime
 from typing import Any
@@ -509,6 +510,8 @@ class QueryEfd:
             The list of fields for the given topic.
         expected_values : `list`
             The list of expected values of the attributes.
+        output : `str`
+            The desired output format from the query.
         """
         csc, index = self._split_indexed_csc(csc)
         # The current use case only checks a single attribute.
@@ -524,8 +527,45 @@ class QueryEfd:
             topic_df = self.get_recent_samples(csc, topic, fields, 1, index)
             print(f"*TRACE*dataframe:\n{topic_df}")
             actual_value = getattr(topic_df, attribute)[0]
-        if str(actual_value) != str(expected_values[0]):
+        failure = False
+        if type(expected_values[0]) == int or type(expected_values[0]) == float:
+            if not math.isclose(actual_value, expected_values[0], abs_tol=0.0001):
+                failure = True
+        else:
+            if str(actual_value) != str(expected_values[0]):
+                failure = True
+        if failure:
             raise AssertionError(f"{actual_value} does not match {expected_values[0]}.")
+
+    @keyword
+    def verify_sequence(
+        self, csc: str, topic: str, field: str, length: int, expected_values: list
+    ) -> None:
+        """Fails if the values of the given field attribute do not match
+        the expected_values. This keyword only works for a single field.
+
+        Parameters
+        ----------
+        csc : `str`
+            The name of the CSC.
+        topic : `str`
+            The name of the topic.
+        field : `list`
+            The field for the given topic.
+        length : `int`
+            The number of iterations in the sequence.
+        expected_values : `list`
+            The list of expected values of the attributes.
+        """
+        if not isinstance(field, str):
+            raise TypeError(f"This keyword only works for a single topic attribute (one field).")
+        csc, index = self._split_indexed_csc(csc)
+        attribute_array = getattr(self.get_recent_samples(csc, topic, [field,], length, index), field).values
+        attribute_list = attribute_array.tolist()
+        attribute_list.reverse()
+        print(f"*TRACE*Attribute sequence: {attribute_list}\nExpected sequence : {expected_values}")
+        if attribute_list != expected_values:
+            raise AssertionError(f"{attribute_list} does not match {expected_values}.")
 
     @keyword
     def verify_time_delta(

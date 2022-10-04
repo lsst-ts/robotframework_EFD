@@ -1,0 +1,9 @@
+###  Test Suite list ###
+#  Change the title of the test results
+--name AT_Acq_Take_Seq_VERIFY
+--output at_acq_take_seq_verify
+--skiponfailure skipped
+--variable playlist:verify
+
+# List of test suites
+AuxTel/NightOps/Verify_LATISS_Acq_Take_Sequence.robot
