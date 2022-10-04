@@ -20,6 +20,10 @@ Get Script Metadata
     [Tags] 
     Common_Keywords.Get Script Metadata
 
+Verify Runtime
+    [Tags]
+    Verify Script Runtime    ${script_start}    ${script_end}
+
 Verify ATDome logevent_azimuthInPosition
     [Tags]
     Verify Topic Attribute    ATDome    logevent_azimuthInPosition    ${azimuthInPosition}    ${in_pos_expected}

@@ -16,6 +16,10 @@ Get Script Metadata
     [Tags]
     Common_Keywords.Get Script Metadata
 
+Verify Runtime
+    [Tags]
+    Verify Script Runtime    ${script_start}    ${script_end}
+
 Verify ATAOS Corrections Enabled
     [Documentation]    Corrections should already be enabled, ensure nothing was changed prior to running this script.
     [Tags]

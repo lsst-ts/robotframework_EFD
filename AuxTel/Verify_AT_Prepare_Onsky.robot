@@ -20,6 +20,10 @@ Get Script Metadata
     [Tags]
     Common_Keywords.Get Script Metadata
 
+Verify Runtime
+    [Tags]
+    Verify Script Runtime    ${script_start}    ${script_end}
+
 Verify ATDome AzimuthInPosition
     [Tags]
     ${output}=    Get Topic Sent Time    ATDome    command_moveAzimuth
