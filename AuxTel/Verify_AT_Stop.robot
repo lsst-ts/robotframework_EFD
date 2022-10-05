@@ -21,7 +21,7 @@ Get Script Metadata
     Common_Keywords.Get Script Metadata
 
 Verify Runtime
-    [Tags]
+    [Tags]    DM-36475
     Verify Script Runtime    ${script_start}    ${script_end}
 
 Verify ATDome logevent_azimuthInPosition
