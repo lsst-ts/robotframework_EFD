@@ -4,8 +4,6 @@ Resource    ../../CSC_Lists.resource
 Resource    ../../Common_Keywords.resource
 Library     QueryEfd    ${SALVersion}    ${XMLVersion}    ${OSPLVersion}
 Library     Collections
-Library     String
-Library     DateTime
 Force Tags    at_night_ops    acq_take_seq
 Suite Setup    Set Variables    ${playlist}
 

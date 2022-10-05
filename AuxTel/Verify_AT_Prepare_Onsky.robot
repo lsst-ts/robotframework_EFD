@@ -4,8 +4,6 @@ Resource    ../CSC_Lists.resource
 Resource    ../Common_Keywords.resource
 Library     QueryEfd    ${SALVersion}    ${XMLVersion}    ${OSPLVersion}
 Library     Collections
-Library     String
-Library     DateTime
 Force Tags    auxtel_prep_onsky
 
 *** Variables ***
