@@ -4,8 +4,6 @@ Resource    ../CSC_Lists.resource
 Resource    ../Common_Keywords.resource
 Library     QueryEfd    ${SALVersion}    ${XMLVersion}    ${OSPLVersion}
 Library     Collections
-Library     String
-Library     DateTime
 Force Tags    auxtel_stop
 
 *** Variables ***
@@ -19,6 +17,10 @@ Force Tags    auxtel_stop
 Get Script Metadata
     [Tags] 
     Common_Keywords.Get Script Metadata
+
+Verify Runtime
+    [Tags]    DM-36475
+    Verify Script Runtime    ${script_start}    ${script_end}
 
 Verify ATDome logevent_azimuthInPosition
     [Tags]

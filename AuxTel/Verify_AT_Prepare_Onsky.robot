@@ -4,8 +4,6 @@ Resource    ../CSC_Lists.resource
 Resource    ../Common_Keywords.resource
 Library     QueryEfd    ${SALVersion}    ${XMLVersion}    ${OSPLVersion}
 Library     Collections
-Library     String
-Library     DateTime
 Force Tags    auxtel_prep_onsky
 
 *** Variables ***
@@ -19,6 +17,10 @@ Force Tags    auxtel_prep_onsky
 Get Script Metadata
     [Tags]
     Common_Keywords.Get Script Metadata
+
+Verify Runtime
+    [Tags]    DM-36474
+    Verify Script Runtime    ${script_start}    ${script_end}
 
 Verify ATDome AzimuthInPosition
     [Tags]

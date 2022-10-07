@@ -4,8 +4,6 @@ Resource    ../../CSC_Lists.resource
 Resource    ../../Common_Keywords.resource
 Library     QueryEfd    ${SALVersion}    ${XMLVersion}    ${OSPLVersion}
 Library     Collections
-Library     String
-Library     DateTime
 Force Tags    at_night_ops    cwfs_align
 
 *** Variables ***
@@ -15,6 +13,10 @@ ${time_window}    10
 Get Script Metadata
     [Tags]
     Common_Keywords.Get Script Metadata
+
+Verify Runtime
+    [Tags]
+    Verify Script Runtime    ${script_start}    ${script_end}
 
 Verify ATAOS Corrections Enabled
     [Documentation]    Corrections should already be enabled, ensure nothing was changed prior to running this script.

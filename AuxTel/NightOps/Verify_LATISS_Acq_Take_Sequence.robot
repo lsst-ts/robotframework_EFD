@@ -4,8 +4,6 @@ Resource    ../../CSC_Lists.resource
 Resource    ../../Common_Keywords.resource
 Library     QueryEfd    ${SALVersion}    ${XMLVersion}    ${OSPLVersion}
 Library     Collections
-Library     String
-Library     DateTime
 Force Tags    at_night_ops    acq_take_seq
 Suite Setup    Set Variables    ${playlist}
 
@@ -17,6 +15,10 @@ ${playlist}    replace_me
 Get Script Metadata
     [Tags]
     Common_Keywords.Get Script Metadata
+
+Verify Runtime
+    [Tags]    DM-36476
+    Verify Script Runtime    ${script_start}    ${script_end}
 
 Verify ATAOS Corrections Enabled
     [Tags]
