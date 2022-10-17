@@ -49,6 +49,10 @@ Verify CCCamera Filter
     Should Be Equal    ${evt_df.filterName.values}[0]    ${filter_name}
     Should Be Equal    ${evt_df.filterType.values}[0]    ${filter_type}
 
+# OCPS command_execute and logevent_job_result ?
+
+
+
 Verify CCCamera Image Sequence
     [Documentation]    Verify the CCCamera images are the correct type, with the correct exposure time.
     [Tags]    robot:continue-on-failure
@@ -65,6 +69,7 @@ Verify CCCamera Image Sequence
         Should Be Equal As Strings    ${cmd_image_type}    ${img_type_seq}[${i}]
         Should Be Equal As Numbers    ${cmd_df.numImages.values}[${i}]    1
     END
+    #imageType (BIAS x10, DARK x10 and FLAT x10)
 
 Verify CCOODS ImageInOODS
     [Tags]
