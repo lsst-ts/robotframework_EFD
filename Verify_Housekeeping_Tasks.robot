@@ -31,7 +31,7 @@ Verify CCCamera logevent_endSetFilter
     Verify Topic Attribute    CCCamera    logevent_endSetFilter    ${filter_field}    ${filter_name}
 
 Verify MTMount Axes InPosition
-    [Tags]
+    [Tags]    robot:continue-on-failure    DM-36886
     Verify Topic Attribute    MTMount    logevent_elevationInPosition    ${in_position_field}    ${in_position}
     Verify Time Delta    MTMount    command_homeBothAxes    logevent_elevationInPosition    ${time_window}    None
     Verify Topic Attribute    MTMount    logevent_azimuthInPosition    ${in_position_field}    ${in_position}
