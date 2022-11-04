@@ -64,11 +64,11 @@ Verify ATAOS Enabled Corrections
     Should Not Be True    ${dataframe.moveWhileExposing.values}[0]    
 
 Verify ATMCS Tracking Disabled
-    [Tags]    DM-36224
+    [Tags]
     ${dataframe}=    Get Recent Samples    ATMCS    logevent_atMountState    ["*",]    1    None
-    Should Be Equal As Integers    ${dataframe.state.values}[0]    1    #TrackingDisabled
+    Should Be Equal As Integers    ${dataframe.state.values}[0]    8    #TrackingDisabled
     
 Verify ATPneumatics m1CoverState
-    [Tags]    DM-36224
+    [Tags]
     ${dataframe}=    Get Recent Samples    ATPneumatics    logevent_m1CoverState    ["*",]    1    None
-    Should Be Equal As Integers    ${dataframe.state.values}[0]    2    #Opened
+    Should Be Equal As Integers    ${dataframe.state.values}[0]    7    #Opened
