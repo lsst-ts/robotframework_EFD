@@ -4,7 +4,7 @@ Resource    CSC_Lists.resource
 Resource    Common_Keywords.resource
 Library     QueryEfd    ${SALVersion}    ${XMLVersion}    ${OSPLVersion}
 Library     Collections
-Force Tags    auxtel_stop
+Force Tags    housekeeping
 
 *** Variables ***
 @{port_field}    selected
