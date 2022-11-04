@@ -181,25 +181,25 @@ Verify Extra-Focal Offset
 Verify Return to InFocus Position
     [Documentation]    The third offset the script applies each iteration is 0.8 mm to the z-axis.
     [Tags]    robot:continue-on-failure
-    @{list}=    Create List    ${0.0}    ${0.0}    ${0.8}
+    @{list}=    Create List    ${0.0}    ${0.0}    ${0.801}
     Comment    First Iteration.  Note: ATAOS publishes 2 intervening correctionOffsets Events.
     Lists Should Be Equal    ${command_dataframe.iloc[1].values.round(3)}    ${list}
     ${initial_z}=    Set Variable    ${event_dataframe.iloc[2][2]}
     ${offset_z}=    Set Variable    ${event_dataframe.iloc[1][2]}
     ${delta}=    Evaluate    ${offset_z} - ${initial_z}
-    Should Be Equal As Numbers    ${delta}    0.8
+    Should Be Equal As Numbers    ${delta}    0.8011
     Comment    Second Iteration.
     Lists Should Be Equal    ${command_dataframe.iloc[5].values.round(3)}    ${list}
     ${initial_z}=    Set Variable    ${event_dataframe.iloc[10][2]}
     ${offset_z}=    Set Variable    ${event_dataframe.iloc[9][2]}
     ${delta}=    Evaluate    ${offset_z} - ${initial_z}
-    Should Be Equal As Numbers    ${delta}    0.8
+    Should Be Equal As Numbers    ${delta}    0.8011
     Comment    Third Iteration.
     Lists Should Be Equal    ${command_dataframe.iloc[9].values.round(3)}    ${list}
     ${initial_z}=    Set Variable    ${event_dataframe.iloc[18][2]}
     ${offset_z}=    Set Variable    ${event_dataframe.iloc[17][2]}
     ${delta}=    Evaluate    ${offset_z} - ${initial_z}
-    Should Be Equal As Numbers    ${delta}    0.8
+    Should Be Equal As Numbers    ${delta}    0.8011
 
 Verify Final Offset Position
     [Documentation]    The final offset the script applies each iteration is from the result of cwfs analysis.
