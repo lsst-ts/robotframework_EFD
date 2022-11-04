@@ -32,7 +32,6 @@ Verify ATCamera Playlist Loaded
     [Tags]
     ${dataframe}=    Get Recent Samples    ATCamera    command_play    ["playlist", "repeat", "private_identity", "private_origin",]    1    None
     Should Be Equal    ${dataframe.playlist.values}[0]    cwfs-test_take_sequence.playlist
-    Should Not Be True    ${dataframe.repeat.values}[0]
 
 Verify ATPtg Target
     [Tags]    robot:continue-on-failure

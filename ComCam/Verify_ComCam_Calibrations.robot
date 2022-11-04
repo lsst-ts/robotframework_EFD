@@ -24,7 +24,6 @@ Verify CCCamera Playlist Loaded
     Log    ${playlist_full_name}
     ${dataframe}=    Get Recent Samples    CCCamera    command_play    ["*",]    1    None
     Should Be Equal    ${dataframe.playlist.values}[0]    ${playlist_full_name}
-    Should Not Be True    ${dataframe.repeat.values}[0]
 
 Verify MTPtg Target
     [Documentation]    Ensure the telescope is pointed at the correct target, in this case at the Az/El of the flat-field screen.

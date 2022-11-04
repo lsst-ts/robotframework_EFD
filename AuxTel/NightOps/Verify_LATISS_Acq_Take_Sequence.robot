@@ -32,7 +32,6 @@ Verify ATCamera Playlist Loaded
     Log    ${playlist_full_name}
     ${dataframe}=    Get Recent Samples    ATCamera    command_play    ["*",]    1    None
     Should Be Equal    ${dataframe.playlist.values}[0]    ${playlist_full_name}
-    Should Not Be True    ${dataframe.repeat.values}[0]
 
 Verify ATDome AzimuthInPosition
     [Tags]
