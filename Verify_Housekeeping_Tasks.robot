@@ -8,7 +8,7 @@ Force Tags    auxtel_stop
 
 *** Variables ***
 @{port_field}    selected
-@{instrument_port}    7
+@{instrument_port}    2
 @{position_field}    name
 @{disperser}    empty_1
 @{filter_field}    filterName
