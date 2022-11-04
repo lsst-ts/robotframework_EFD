@@ -5,7 +5,7 @@
 --loglevel TRACE:INFO
 
 #  Output directory
--d Reports/tts_cycle0027_20221103
+-d Reports/today
 
 #  Specify skip tags
 #-e skipped
