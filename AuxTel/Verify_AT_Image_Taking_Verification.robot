@@ -23,7 +23,6 @@ Verify ATCamera Playlist Loaded
     [Tags]
     ${dataframe}=    Get Recent Samples    ATCamera    command_play    ["playlist", "repeat", "private_identity", "private_origin",]    1    None
     Should Be Equal    ${dataframe.playlist.values}[0]    bias_dark_flat.playlist
-    Should Not Be True    ${dataframe.repeat.values}[0]
 
 Verify ATCamera Image Sequence
     [Documentation]    Verify the ATCamera images are the correct type, with the correct exposure time.
