@@ -21,14 +21,17 @@ ${time_window}    10
 Verify ATMCS logevent_m3PortSelected
     [Tags]
     Verify Topic Attribute    ATMCS    logevent_m3PortSelected    ${port_field}    ${instrument_port}
+    Verify Time Delta    ATMCS    command_setInstrumentPort    logevent_m3PortSelected    ${time_window}
 
 Verify ATSpectrograph logevent_reportedDisperserPosition
     [Tags]
     Verify Topic Attribute    ATSpectrograph    logevent_reportedDisperserPosition    ${position_field}    ${disperser}    output=json
+    Verify Time Delta    ATSpectrograph    command_changeDisperser    logevent_reportedDisperserPosition    ${time_window}
 
 Verify CCCamera logevent_endSetFilter
     [Tags]
     Verify Topic Attribute    CCCamera    logevent_endSetFilter    ${filter_field}    ${filter_name}
+    Verify Time Delta    CCCamera    command_setFilter    logevent_endSetFilter    ${time_window}
 
 Verify MTMount Axes InPosition
     [Tags]    robot:continue-on-failure    DM-36886
