@@ -49,3 +49,10 @@ Verify ATOODS ImageInOODS
     Should Be Equal As Strings    ${dataframe.camera.values}[${0}]    LATISS
     Should Be Equal As Strings    ${dataframe.description.values}[${0}]    file ingested
     Should Be Equal As Strings    ${dataframe.obsid.values}[${0}]    ${image_names}[0][${0}]
+
+Verify ATHeaderService LargeFileObjectAvailable
+    [Tags]
+    ${dataframe}=    Get Recent Samples    ATHeaderService    logevent_largeFileObjectAvailable    ["id", "url",]    ${num_images}    None
+    Should Be Equal As Strings    ${dataframe.id.values}[${0}]    ${image_names}[0][${0}]
+    ${file_name}=    Catenate    SEPARATOR=    ATHeaderService_header_    ${image_names}[0][${0}]    .yaml
+    Should Be Equal As Strings    ${dataframe.url[0].split("/")[-1]}    ${file_name}

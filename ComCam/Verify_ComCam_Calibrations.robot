@@ -58,6 +58,7 @@ Verify CCCamera Image Sequence
     ${cmd_df}=    Get Recent Samples    CCCamera    command_takeImages    ["expTime", "keyValueMap", "numImages", "shutter",]    ${num_images}    None
     ${evt_df}=    Get Recent Samples    CCCamera    logevent_startIntegration    ["additionalValues", "exposureTime", "imageName"]    ${num_images}    None
     Set Suite Variable    @{image_names}    ${evt_df.imageName.values}
+    Log Many    ${image_names}
     Verify Sequence    CCCamera    command_takeImages    expTime    ${seq_length}    ${exp_time}
     Verify Sequence    CCCamera    logevent_startIntegration    exposureTime    ${seq_length}    ${exp_time}
     FOR    ${i}    IN RANGE    ${num_images}
@@ -71,15 +72,28 @@ Verify CCCamera Image Sequence
     #imageType (BIAS x10, DARK x10 and FLAT x10)
 
 Verify CCOODS ImageInOODS
-    [Tags]
+    [Tags]    robot:continue-on-failure
     ${total_images}=    Evaluate    ${num_images} * 9    # ComCam has 9 CCDs, so there are 9 times the images.
+    Set Suite Variable    ${total_images}
     ${dataframe}=    Get Recent Samples    CCOODS    logevent_imageInOODS    ["camera", "description", "obsid",]    ${total_images}    None
     FOR    ${i}    IN RANGE    ${num_images}
         FOR    ${j}    IN RANGE    ${9}    # ComCam has 9 CCDs, so there are 9 times the images.
             ${k}=    Evaluate    ${i} * 9 + ${j}
             Should Be Equal As Strings    ${dataframe.camera.values}[${k}]    LSSTComCam
             Should Be Equal As Strings    ${dataframe.description.values}[${k}]    file ingested
-            Should Be Equal As Strings    ${dataframe.obsid.values}[${k}]    ${image_names}[0][${i}]
+            Should Be Equal As Strings    ${dataframe.obsid.values}[${k}]    ${image_names}[0][${j}]
+        END
+    END
+
+Verify CCHeaderService LargeFileObjectAvailable
+    [Tags]    robot:continue-on-failure
+    ${dataframe}=    Get Recent Samples    CCHeaderService    logevent_largeFileObjectAvailable    ["id", "url",]    ${total_images}    None
+    FOR    ${i}    IN RANGE    ${num_images}
+        FOR    ${j}    IN RANGE    ${9}    # ComCam has 9 CCDs, so there are 9 times the images.
+            ${k}=    Evaluate    ${i} * 9 + ${j}
+            Should Be Equal As Strings    ${dataframe.id.values}[${k}]    ${image_names}[0][${j}]
+            ${file_name}=    Catenate    SEPARATOR=    CCHeaderService_header_    ${image_names}[0][${j}]    .yaml
+            Should Be Equal As Strings    ${dataframe.url[${k}].split("/")[-1]}    ${file_name}
         END
     END
  

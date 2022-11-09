@@ -88,6 +88,15 @@ Verify ATOODS ImageInOODS
         Should Be Equal As Strings    ${dataframe.description.values}[${i}]    file ingested
         Should Be Equal As Strings    ${dataframe.obsid.values}[${i}]    ${image_names}[0][${i}]
     END
+
+Verify ATHeaderService LargeFileObjectAvailable
+    [Tags]
+    ${dataframe}=    Get Recent Samples    ATHeaderService    logevent_largeFileObjectAvailable    ["id", "url",]    ${num_images}    None
+    FOR    ${i}    IN RANGE    ${num_images}
+        Should Be Equal As Strings    ${dataframe.id.values}[${i}]    ${image_names}[0][${i}]
+        ${file_name}=    Catenate    SEPARATOR=    ATHeaderService_header_    ${image_names}[0][${i}]    .yaml
+        Should Be Equal As Strings    ${dataframe.url[${i}].split("/")[-1]}    ${file_name}
+    END
  
 Verify ATSpectrograph ChangeFilter
     [Tags]
