@@ -1,0 +1,8 @@
+###  Test Suite list ###
+#  Change the title of the test results
+--name AT_Shutdown
+--output at_shutdown
+--skiponfailure skipped
+
+# List of test suites
+AuxTel/Verify_AT_Shutdown.robot
