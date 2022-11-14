@@ -160,7 +160,7 @@ Set Variables
         Set Suite Variable    @{disperser_band}    R90    R90    R90
         Set Suite Variable    @{disperser_name}    ronchi90lpmm    ronchi90lpmm    ronchi90lpmm
         Set Suite Variable    @{img_type_seq}    OBJECT    OBJECT    OBJECT
-    ELSE IF    "${playlist}" == "standard"
+    ELSE IF    "${playlist}" == "nominal"
         Set Suite Variable    ${playlist_full_name}    latiss_acquire_and_take_sequence-test_take_acquisition_nominal.playlist
         Set Suite Variable    ${seq_length}    3
         Set Suite Variable    ${num_images}    5
@@ -171,5 +171,5 @@ Set Variables
         Set Suite Variable    @{disperser_name}    ronchi90lpmm    ronchi90lpmm    empty_1
         Set Suite Variable    @{img_type_seq}    OBJECT    OBJECT    OBJECT    ACQ    ACQ
     ELSE
-        Fail    msg="Please set the playlist variable; allowed values are ['pointing', 'verify', 'standard', 'test']"
+        Fail    msg="Please set the playlist variable; allowed values are ['pointing', 'verify', 'nominal', 'test']"
     END
