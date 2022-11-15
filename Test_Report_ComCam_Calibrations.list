@@ -1,0 +1,8 @@
+###  Test Suite list ###
+#  Change the title of the test results
+--name CC_Calibrations
+--output cc_calib
+--skiponfailure skipped
+
+# List of test suites
+ComCam/Verify_ComCam_Calibrations.robot

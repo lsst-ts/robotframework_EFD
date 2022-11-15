@@ -24,7 +24,6 @@ Verify CCCamera Playlist Loaded
     Log    ${playlist_full_name}
     ${dataframe}=    Get Recent Samples    CCCamera    command_play    ["*",]    1    None
     Should Be Equal    ${dataframe.playlist.values}[0]    ${playlist_full_name}
-    Should Not Be True    ${dataframe.repeat.values}[0]
 
 Verify MTPtg Target
     [Documentation]    Ensure the telescope is pointed at the correct target, in this case at the Az/El of the flat-field screen.
@@ -49,12 +48,17 @@ Verify CCCamera Filter
     Should Be Equal    ${evt_df.filterName.values}[0]    ${filter_name}
     Should Be Equal    ${evt_df.filterType.values}[0]    ${filter_type}
 
+# OCPS command_execute and logevent_job_result ?
+
+
+
 Verify CCCamera Image Sequence
     [Documentation]    Verify the CCCamera images are the correct type, with the correct exposure time.
     [Tags]    robot:continue-on-failure
     ${cmd_df}=    Get Recent Samples    CCCamera    command_takeImages    ["expTime", "keyValueMap", "numImages", "shutter",]    ${num_images}    None
     ${evt_df}=    Get Recent Samples    CCCamera    logevent_startIntegration    ["additionalValues", "exposureTime", "imageName"]    ${num_images}    None
     Set Suite Variable    @{image_names}    ${evt_df.imageName.values}
+    Log Many    ${image_names}
     Verify Sequence    CCCamera    command_takeImages    expTime    ${seq_length}    ${exp_time}
     Verify Sequence    CCCamera    logevent_startIntegration    exposureTime    ${seq_length}    ${exp_time}
     FOR    ${i}    IN RANGE    ${num_images}
@@ -65,17 +69,31 @@ Verify CCCamera Image Sequence
         Should Be Equal As Strings    ${cmd_image_type}    ${img_type_seq}[${i}]
         Should Be Equal As Numbers    ${cmd_df.numImages.values}[${i}]    1
     END
+    #imageType (BIAS x10, DARK x10 and FLAT x10)
 
 Verify CCOODS ImageInOODS
-    [Tags]
+    [Tags]    robot:continue-on-failure
     ${total_images}=    Evaluate    ${num_images} * 9    # ComCam has 9 CCDs, so there are 9 times the images.
+    Set Suite Variable    ${total_images}
     ${dataframe}=    Get Recent Samples    CCOODS    logevent_imageInOODS    ["camera", "description", "obsid",]    ${total_images}    None
     FOR    ${i}    IN RANGE    ${num_images}
         FOR    ${j}    IN RANGE    ${9}    # ComCam has 9 CCDs, so there are 9 times the images.
             ${k}=    Evaluate    ${i} * 9 + ${j}
             Should Be Equal As Strings    ${dataframe.camera.values}[${k}]    LSSTComCam
             Should Be Equal As Strings    ${dataframe.description.values}[${k}]    file ingested
-            Should Be Equal As Strings    ${dataframe.obsid.values}[${k}]    ${image_names}[0][${i}]
+            Should Be Equal As Strings    ${dataframe.obsid.values}[${k}]    ${image_names}[0][${j}]
+        END
+    END
+
+Verify CCHeaderService LargeFileObjectAvailable
+    [Tags]    robot:continue-on-failure
+    ${dataframe}=    Get Recent Samples    CCHeaderService    logevent_largeFileObjectAvailable    ["id", "url",]    ${total_images}    None
+    FOR    ${i}    IN RANGE    ${num_images}
+        FOR    ${j}    IN RANGE    ${9}    # ComCam has 9 CCDs, so there are 9 times the images.
+            ${k}=    Evaluate    ${i} * 9 + ${j}
+            Should Be Equal As Strings    ${dataframe.id.values}[${k}]    ${image_names}[0][${j}]
+            ${file_name}=    Catenate    SEPARATOR=    CCHeaderService_header_    ${image_names}[0][${j}]    .yaml
+            Should Be Equal As Strings    ${dataframe.url[${k}].split("/")[-1]}    ${file_name}
         END
     END
  

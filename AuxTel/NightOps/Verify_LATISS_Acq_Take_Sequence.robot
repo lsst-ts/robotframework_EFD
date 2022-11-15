@@ -32,7 +32,6 @@ Verify ATCamera Playlist Loaded
     Log    ${playlist_full_name}
     ${dataframe}=    Get Recent Samples    ATCamera    command_play    ["*",]    1    None
     Should Be Equal    ${dataframe.playlist.values}[0]    ${playlist_full_name}
-    Should Not Be True    ${dataframe.repeat.values}[0]
 
 Verify ATDome AzimuthInPosition
     [Tags]
@@ -88,6 +87,15 @@ Verify ATOODS ImageInOODS
         Should Be Equal As Strings    ${dataframe.camera.values}[${i}]    LATISS
         Should Be Equal As Strings    ${dataframe.description.values}[${i}]    file ingested
         Should Be Equal As Strings    ${dataframe.obsid.values}[${i}]    ${image_names}[0][${i}]
+    END
+
+Verify ATHeaderService LargeFileObjectAvailable
+    [Tags]
+    ${dataframe}=    Get Recent Samples    ATHeaderService    logevent_largeFileObjectAvailable    ["id", "url",]    ${num_images}    None
+    FOR    ${i}    IN RANGE    ${num_images}
+        Should Be Equal As Strings    ${dataframe.id.values}[${i}]    ${image_names}[0][${i}]
+        ${file_name}=    Catenate    SEPARATOR=    ATHeaderService_header_    ${image_names}[0][${i}]    .yaml
+        Should Be Equal As Strings    ${dataframe.url[${i}].split("/")[-1]}    ${file_name}
     END
  
 Verify ATSpectrograph ChangeFilter
@@ -155,7 +163,7 @@ Set Variables
         Set Suite Variable    ${seq_length}    3
         Set Suite Variable    ${num_images}    3
         Set Suite Variable    @{exp_time}    ${5.0}    ${5.0}    ${5.0}
-        Set Suite Variable    @{filter_band}    r    r    r
+        Set Suite Variable    @{filter_band}    i    r    r
         Set Suite Variable    ${filter_name}    "SDSSr"
         Set Suite Variable    @{disperser_band}    R90    R90    R90
         Set Suite Variable    @{disperser_name}    ronchi90lpmm    ronchi90lpmm    ronchi90lpmm

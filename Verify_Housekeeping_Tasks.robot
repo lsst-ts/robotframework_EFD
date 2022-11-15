@@ -4,11 +4,11 @@ Resource    CSC_Lists.resource
 Resource    Common_Keywords.resource
 Library     QueryEfd    ${SALVersion}    ${XMLVersion}    ${OSPLVersion}
 Library     Collections
-Force Tags    auxtel_stop
+Force Tags    housekeeping
 
 *** Variables ***
 @{port_field}    selected
-@{instrument_port}    7
+@{instrument_port}    2
 @{position_field}    name
 @{disperser}    empty_1
 @{filter_field}    filterName
@@ -21,17 +21,20 @@ ${time_window}    10
 Verify ATMCS logevent_m3PortSelected
     [Tags]
     Verify Topic Attribute    ATMCS    logevent_m3PortSelected    ${port_field}    ${instrument_port}
+    Verify Time Delta    ATMCS    command_setInstrumentPort    logevent_m3PortSelected    ${time_window}
 
 Verify ATSpectrograph logevent_reportedDisperserPosition
     [Tags]
     Verify Topic Attribute    ATSpectrograph    logevent_reportedDisperserPosition    ${position_field}    ${disperser}    output=json
+    Verify Time Delta    ATSpectrograph    command_changeDisperser    logevent_reportedDisperserPosition    ${time_window}
 
 Verify CCCamera logevent_endSetFilter
     [Tags]
     Verify Topic Attribute    CCCamera    logevent_endSetFilter    ${filter_field}    ${filter_name}
+    Verify Time Delta    CCCamera    command_setFilter    logevent_endSetFilter    ${time_window}
 
 Verify MTMount Axes InPosition
-    [Tags]
+    [Tags]    robot:continue-on-failure    DM-36886
     Verify Topic Attribute    MTMount    logevent_elevationInPosition    ${in_position_field}    ${in_position}
     Verify Time Delta    MTMount    command_homeBothAxes    logevent_elevationInPosition    ${time_window}    None
     Verify Topic Attribute    MTMount    logevent_azimuthInPosition    ${in_position_field}    ${in_position}
