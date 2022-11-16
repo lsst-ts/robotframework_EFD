@@ -11,16 +11,16 @@ Force Tags    enabled
 *** Test Cases ***
 Verify Authorize Enabled
     [Tags]    obsys1
-    Verify Summary State    ${STATES}[enabled]    Authorize    True
+    Verify Summary State    ${STATES}[enabled]    Authorize
 
 Verify ScriptQueue:1 Enabled
     [Tags]    obsys1
-    Verify Summary State    ${STATES}[enabled]    ScriptQueue:1    True
+    Verify Summary State    ${STATES}[enabled]    ScriptQueue:1
 
 Verify ScriptQueue:2 Enabled
     [Tags]    obsys1
-    Verify Summary State    ${STATES}[enabled]    ScriptQueue:2    True
+    Verify Summary State    ${STATES}[enabled]    ScriptQueue:2
 
 Verify Watcher Enabled
     [Tags]    obsys1
-    Verify Summary State    ${STATES}[enabled]    Watcher    True
+    Verify Summary State    ${STATES}[enabled]    Watcher

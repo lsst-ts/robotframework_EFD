@@ -239,33 +239,36 @@ class QueryEfd:
         if not isinstance(expected_state, int):
             raise TypeError("Expected State must be an integer.")
         csc, index = self._split_indexed_csc(csc_str)
-        # Auto-Enabled CSCs automatically go into the Enabled State.
-        # As such, grab the 3 most recent samples, in order to properly
-        # test the SummaryState.
-        if auto_enable:
-            num = 3
-        else:
-            num = 1
-        ss_df = self.get_recent_samples(
+        # Auto-Enabled CSCs automatically go into the Enabled State,
+        # MTAirCompressors automatically go into the Disabled State,
+        # remaining CSCs go through States manually.
+        # As such, grab the 3 most recent samples and define the
+        # row index, in order to properly test the SummaryState.
+        full_df = self.get_recent_samples(
             csc,
             "logevent_summaryState",
             [
                 "private_sndStamp",
                 "summaryState",
             ],
-            num,
+            3,
             index,
         )
+        # Log the full dataframe.
+        print(f"*TRACE*dataframe:\n{full_df}")
+        # Which row of the DataFrame is needed depends on the expected_state.
+        if auto_enable and csc != "MTAirCompressor":
+            row_index = 2
+        elif auto_enable and csc == "MTAirCompressor" and expected_state == 5:
+            row_index = 1
+        else:
+            row_index = 0
+        ss_df = full_df.iloc[[row_index]]
+        # Log dataframe.
         print(f"*TRACE*dataframe:\n{ss_df}")
         if not self._check_attribute(ss_df, "summaryState"):
             raise AttributeError("SummaryState Event Not Found.")
-        # Which row of the DataFrame is needed depends on the expected_state.
-        if num == 3 and expected_state == 5:
-            ss_df = ss_df.iloc[[2]]
-        if num == 3 and expected_state == 1:
-            ss_df = ss_df.iloc[[1]]
-        if num == 3 and expected_state == 2:
-            ss_df = ss_df.iloc[[0]]
+        # Get the States.
         expected_state_str = state_enums.as_state(int(expected_state)).name
         actual_state_str = state_enums.as_state(int(ss_df.summaryState[0])).name
         event_sent_time = ss_df.private_sndStamp[0].strftime(self.time_format)

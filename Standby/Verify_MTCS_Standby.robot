@@ -35,8 +35,8 @@ Verify MTAlignment ConfigurationsAvailable timing
 
 #MTAirCompressor:1
 Verify MTAirCompressor:1 Standby
-    [Tags]    standby    CAP-926
-    Verify Summary State    ${STATES}[standby]    MTAirCompressor:1
+    [Tags]    standby
+    Verify Summary State    ${STATES}[standby]    MTAirCompressor:1    auto_enable=True
 
 Verify MTAirCompressor:1 SoftwareVersions
     [Tags]    software_versions
@@ -56,8 +56,8 @@ Verify MTAirCompressor:1 ConfigurationsAvailable timing
 
 #MTAirCompressor:2
 Verify MTAirCompressor:2 Standby
-    [Tags]    standby    CAP-926
-    Verify Summary State    ${STATES}[standby]    MTAirCompressor:2
+    [Tags]    standby
+    Verify Summary State    ${STATES}[standby]    MTAirCompressor:2    auto_enable=True
 
 Verify MTAirCompressor:2 SoftwareVersions
     [Tags]    software_versions

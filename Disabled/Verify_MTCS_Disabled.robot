@@ -26,7 +26,7 @@ Verify MTAlignment ConfigurationApplied timing
 #MTAirCompressor:1
 Verify MTAirCompressor:1 Disabled
     [Tags]    disabled
-    Verify Summary State    ${STATES}[disabled]    MTAirCompressor:1
+    Verify Summary State    ${STATES}[disabled]    MTAirCompressor:1    auto_enable=True
 
 Verify MTAirCompressor:1 ConfigurationApplied Event
     [Tags]    config_applied
@@ -39,7 +39,7 @@ Verify MTAirCompressor:1 ConfigurationApplied timing
 #MTAirCompressor:2
 Verify MTAirCompressor:2 Disabled
     [Tags]    disabled
-    Verify Summary State    ${STATES}[disabled]    MTAirCompressor:2
+    Verify Summary State    ${STATES}[disabled]    MTAirCompressor:2    auto_enable=True
 
 Verify MTAirCompressor:2 ConfigurationApplied Event
     [Tags]    config_applied
