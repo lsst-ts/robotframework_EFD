@@ -12,6 +12,21 @@ ${topic_2}    command_disable
 ${time_window}    600
 
 *** Test Cases ***
+Verify MTAlignment Shutdown
+    [Tags]    mtcs
+    Verify Shutdown Process    MTAlignment
+    Verify Time Delta    MTAlignment    ${topic_1}    ${topic_2}    ${time_window}
+
+Verify MTAirCompressor:1 Shutdown
+    [Tags]    mtcs
+    Verify Shutdown Process    MTAirCompressor:1
+    Verify Time Delta    MTAirCompressor:1    ${topic_1}    ${topic_2}    ${time_window}
+
+Verify MTAirCompressor:2 Shutdown
+    [Tags]    mtcs
+    Verify Shutdown Process    MTAirCompressor:2
+    Verify Time Delta    MTAirCompressor:2    ${topic_1}    ${topic_2}    ${time_window}
+
 Verify MTMount Shutdown
     [Tags]    mtcs
     Verify Shutdown Process    MTMount

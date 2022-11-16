@@ -12,6 +12,70 @@ Force Tags    mtcs
 ${time_window}    10
 
 *** Test Cases ***
+#MTAlignment
+Verify MTAlignment Standby
+    [Tags]    standby
+    Verify Summary State    ${STATES}[standby]    MTAlignment
+
+Verify MTAlignment SoftwareVersions
+    [Tags]    software_versions
+    Verify SoftwareVersions    MTAlignment
+
+Verify MTAlignment SoftwareVersions timing
+    [Tags]    software_versions    timing
+    Verify Time Delta    MTAlignment    logevent_summaryState    logevent_softwareVersions    ${time_window}
+
+Verify MTAlignment ConfigurationsAvailable Event
+    [Tags]    config_available
+    Verify ConfigurationsAvailable    MTAlignment
+
+Verify MTAlignment ConfigurationsAvailable timing
+    [Tags]    config_available    timing
+    Verify Time Delta    MTAlignment    logevent_summaryState    logevent_configurationsAvailable    ${time_window}
+
+#MTAirCompressor:1
+Verify MTAirCompressor:1 Standby
+    [Tags]    standby    CAP-926
+    Verify Summary State    ${STATES}[standby]    MTAirCompressor:1
+
+Verify MTAirCompressor:1 SoftwareVersions
+    [Tags]    software_versions
+    Verify SoftwareVersions    MTAirCompressor    1
+
+Verify MTAirCompressor:1 SoftwareVersions timing
+    [Tags]    software_versions    timing
+    Verify Time Delta    MTAirCompressor    logevent_summaryState    logevent_softwareVersions    ${time_window}    1
+
+Verify MTAirCompressor:1 ConfigurationsAvailable Event
+    [Tags]    config_available
+    Verify ConfigurationsAvailable    MTAirCompressor:1
+
+Verify MTAirCompressor:1 ConfigurationsAvailable timing
+    [Tags]    config_available    timing
+    Verify Time Delta    MTAirCompressor:1    logevent_summaryState    logevent_configurationsAvailable    ${time_window}
+
+#MTAirCompressor:2
+Verify MTAirCompressor:2 Standby
+    [Tags]    standby    CAP-926
+    Verify Summary State    ${STATES}[standby]    MTAirCompressor:2
+
+Verify MTAirCompressor:2 SoftwareVersions
+    [Tags]    software_versions
+    Verify SoftwareVersions    MTAirCompressor    2
+
+Verify MTAirCompressor:2 SoftwareVersions timing
+    [Tags]    software_versions    timing
+    Verify Time Delta    MTAirCompressor    logevent_summaryState    logevent_softwareVersions    ${time_window}    2
+
+Verify MTAirCompressor:2 ConfigurationsAvailable Event
+    [Tags]    config_available
+    Verify ConfigurationsAvailable    MTAirCompressor:2
+
+Verify MTAirCompressor:2 ConfigurationsAvailable timing
+    [Tags]    config_available    timing
+    Verify Time Delta    MTAirCompressor:2    logevent_summaryState    logevent_configurationsAvailable    ${time_window}
+
+#MTMount
 Verify MTMount Standby
     [Tags]    standby
     Verify Summary State    ${STATES}[standby]    MTMount

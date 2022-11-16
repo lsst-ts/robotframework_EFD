@@ -9,6 +9,18 @@ Force Tags    enabled
 *** Variables ***
 
 *** Test Cases ***
+Verify MTAlignment Enabled
+    [Tags]    mtcs
+    Verify Summary State    ${STATES}[enabled]    MTAlignment
+
+Verify MTAirCompressor:1 Enabled
+    [Tags]    mtcs
+    Verify Summary State    ${STATES}[enabled]    MTAirCompressor:1
+
+Verify MTAirCompressor:2 Enabled
+    [Tags]    mtcs
+    Verify Summary State    ${STATES}[enabled]    MTAirCompressor:2
+
 Verify MTMount Enabled
     [Tags]    mtcs
     Verify Summary State    ${STATES}[enabled]    MTMount

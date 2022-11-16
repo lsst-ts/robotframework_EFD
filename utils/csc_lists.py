@@ -31,6 +31,9 @@ latiss = [
     "ATSpectrograph",
 ]
 mtcs = [
+    "MTAirCompressor:1",
+    "MTAirCompressor:2",
+    "MTAlignment",
     "MTMount",
     "MTPtg",
     "MTDome",
@@ -63,8 +66,11 @@ non_config = [
     "CCHeaderService",
     "CCOODS",
     "DSM",
+    "GCHeaderService",
     "LinearStage",
     "MTPtg",
+    "MTAirCompressor:1",
+    "MTAirCompressor:2",
     "ScriptQueue",
 ]
 offline = [
