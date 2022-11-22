@@ -79,3 +79,44 @@ cmd: enableCorrection
 parameters:
   enableAll: true
 
+
+
+data:
+    - [ATDome, STANDBY]
+    - [ATDomeTrajectory, STANDBY]
+    - [ATMCS, STANDBY]
+    - [ATPneumatics, STANDBY]
+    - [ATAOS, STANDBY]
+    - [ATHexapod, STANDBY]
+    - [ATPtg, STANDBY]
+
+data:
+    - [ATOODS, STANDBY]
+    - [ATCamera, STANDBY]
+    - [ATHeaderService, STANDBY]
+    - [ATSpectrograph, STANDBY]
+
+data:
+    - [MTAlignment, STANDBY]
+    - [MTMount, STANDBY]
+    - [MTRotator, STANDBY]
+    - [MTHexapod:1, STANDBY]
+    - [MTHexapod:2, STANDBY]
+    - [MTDome, STANDBY]
+    - [MTDomeTrajectory, STANDBY]
+    - [MTM1M3, STANDBY]
+    - [MTM2, STANDBY]
+    - [MTPtg, STANDBY]
+    - [MTAOS, STANDBY]
+
+data:
+    - [CCCamera, STANDBY]
+    - [CCHeaderService, STANDBY]
+    - [CCOODS, STANDBY]
+
+data:
+    - [GenericCamera:1, STANDBY]
+    - [GCHeaderService:1, STANDBY]
+
+
+
