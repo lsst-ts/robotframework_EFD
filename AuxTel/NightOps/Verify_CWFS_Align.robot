@@ -15,7 +15,7 @@ Get Script Metadata
     Common_Keywords.Get Script Metadata
 
 Verify Runtime
-    [Tags]
+    [Tags]    runtime
     Verify Script Runtime    ${script_start}    ${script_end}
 
 Verify ATAOS Corrections Enabled

@@ -257,8 +257,10 @@ class QueryEfd:
         # Log the full dataframe.
         print(f"*TRACE*dataframe:\n{full_df}")
         # Which row of the DataFrame is needed depends on the expected_state.
-        if auto_enable and csc != "MTAirCompressor":
+        if auto_enable and csc != "MTAirCompressor" and expected_state != 1:
             row_index = 2
+        elif auto_enable and csc != "MTAirCompressor" and expected_state == 1:
+            row_index = 1
         elif auto_enable and csc == "MTAirCompressor" and expected_state == 5:
             row_index = 1
         else:
@@ -272,7 +274,7 @@ class QueryEfd:
         expected_state_str = state_enums.as_state(int(expected_state)).name
         actual_state_str = state_enums.as_state(int(ss_df.summaryState[0])).name
         event_sent_time = ss_df.private_sndStamp[0].strftime(self.time_format)
-        # Pass if CSC is in expected_state. Raise AssertionError is not.
+        # Pass if CSC is in expected_state and raise AssertionError if not.
         if str(actual_state_str) == str(expected_state_str):
             print(f"{csc_str} in {expected_state_str} State")
             print(f"Time of Summary State: {event_sent_time}")

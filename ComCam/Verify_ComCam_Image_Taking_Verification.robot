@@ -15,7 +15,7 @@ Get Script Metadata
     Common_Keywords.Get Script Metadata
 
 Verify Runtime
-    [Tags]    DM-36864
+    [Tags]    runtime    DM-36864
     Verify Script Runtime    ${script_start}    ${script_end}
 
 Verify CCCamera Playlist Loaded
@@ -46,7 +46,7 @@ Verify CCCamera Image Sequence
 Verify CCOODS ImageInOODS
     [Tags]
     ${dataframe}=    Get Recent Samples    CCOODS    logevent_imageInOODS    ["camera", "description", "obsid",]    ${num_images}    None
-    Should Be Equal As Strings    ${dataframe.camera.values}[${0}]    LATISS
+    Should Be Equal As Strings    ${dataframe.camera.values}[${0}]    LSSTComCam
     Should Be Equal As Strings    ${dataframe.description.values}[${0}]    file ingested
     Should Be Equal As Strings    ${dataframe.obsid.values}[${0}]    ${image_names}[0][${0}]
 
