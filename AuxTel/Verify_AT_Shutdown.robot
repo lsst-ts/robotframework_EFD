@@ -18,7 +18,7 @@ Get Script Metadata
     Common_Keywords.Get Script Metadata
 
 Verify Runtime
-    [Tags]    DM-36978
+    [Tags]    runtime    DM-36978
     Verify Script Runtime    ${script_start}    ${script_end}
 
 Verify ATAOS Corrections Disabled

@@ -19,13 +19,13 @@ Verify MTAlignment Shutdown
 
 Verify MTAirCompressor:1 Shutdown
     [Tags]    mtcs
-    Verify Shutdown Process    MTAirCompressor:1
-    Verify Time Delta    MTAirCompressor:1    ${topic_1}    ${topic_2}    ${time_window}
+    Verify Shutdown Process    MTAirCompressor    1
+    Verify Time Delta    MTAirCompressor    ${topic_1}    ${topic_2}    ${time_window}    index=1
 
 Verify MTAirCompressor:2 Shutdown
     [Tags]    mtcs
-    Verify Shutdown Process    MTAirCompressor:2
-    Verify Time Delta    MTAirCompressor:2    ${topic_1}    ${topic_2}    ${time_window}
+    Verify Shutdown Process    MTAirCompressor    2
+    Verify Time Delta    MTAirCompressor    ${topic_1}    ${topic_2}    ${time_window}    index=2
 
 Verify MTMount Shutdown
     [Tags]    mtcs
