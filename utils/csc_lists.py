@@ -33,7 +33,7 @@ latiss = [
 mtcs = [
     "MTAirCompressor:1",
     "MTAirCompressor:2",
-    "MTAlignment",
+    "LaserTracker:1",
     "MTMount",
     "MTPtg",
     "MTDome",

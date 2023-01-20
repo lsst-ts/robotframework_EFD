@@ -10,18 +10,18 @@ Force Tags    mtcs
 ${time_window}    10
 
 *** Test Cases ***
-#MTAlignment
-Verify MTAlignment Disabled
+#LaserTracker
+Verify LaserTracker:1 Disabled
     [Tags]    disabled
-    Verify Summary State    ${STATES}[disabled]    MTAlignment
+    Verify Summary State    ${STATES}[disabled]    LaserTracker:1
 
-Verify MTAlignment ConfigurationApplied Event
+Verify LaserTracker:1 ConfigurationApplied Event
     [Tags]    config_applied
-    Verify ConfigurationApplied    MTAlignment
+    Verify ConfigurationApplied    LaserTracker:1
 
-Verify MTAlignment ConfigurationApplied timing
+Verify LaserTracker:1 ConfigurationApplied timing
     [Tags]    config_applied    timing
-    Verify Time Delta    MTAlignment    logevent_summaryState    logevent_configurationApplied    ${time_window}
+    Verify Time Delta    LaserTracker:1    logevent_summaryState    logevent_configurationApplied    ${time_window}
 
 #MTAirCompressor:1
 Verify MTAirCompressor:1 Disabled

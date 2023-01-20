@@ -12,26 +12,26 @@ Force Tags    mtcs
 ${time_window}    10
 
 *** Test Cases ***
-#MTAlignment
-Verify MTAlignment Standby
+#LaserTracker:1
+Verify LaserTracker:1 Standby
     [Tags]    standby
-    Verify Summary State    ${STATES}[standby]    MTAlignment
+    Verify Summary State    ${STATES}[standby]    LaserTracker:1
 
-Verify MTAlignment SoftwareVersions
+Verify LaserTracker:1 SoftwareVersions
     [Tags]    software_versions
-    Verify SoftwareVersions    MTAlignment
+    Verify SoftwareVersions    LaserTracker    index=1
 
-Verify MTAlignment SoftwareVersions timing
+Verify LaserTracker:1 SoftwareVersions timing
     [Tags]    software_versions    timing
-    Verify Time Delta    MTAlignment    logevent_summaryState    logevent_softwareVersions    ${time_window}
+    Verify Time Delta    LaserTracker    logevent_summaryState    logevent_softwareVersions    ${time_window}    index=1
 
-Verify MTAlignment ConfigurationsAvailable Event
+Verify LaserTracker:1 ConfigurationsAvailable Event
     [Tags]    config_available
-    Verify ConfigurationsAvailable    MTAlignment
+    Verify ConfigurationsAvailable    LaserTracker:1
 
-Verify MTAlignment ConfigurationsAvailable timing
+Verify LaserTracker:1 ConfigurationsAvailable timing
     [Tags]    config_available    timing
-    Verify Time Delta    MTAlignment    logevent_summaryState    logevent_configurationsAvailable    ${time_window}
+    Verify Time Delta    LaserTracker:1    logevent_summaryState    logevent_configurationsAvailable    ${time_window}
 
 #MTAirCompressor:1
 Verify MTAirCompressor:1 Standby
@@ -40,11 +40,11 @@ Verify MTAirCompressor:1 Standby
 
 Verify MTAirCompressor:1 SoftwareVersions
     [Tags]    software_versions
-    Verify SoftwareVersions    MTAirCompressor    1
+    Verify SoftwareVersions    MTAirCompressor    index=1
 
 Verify MTAirCompressor:1 SoftwareVersions timing
     [Tags]    software_versions    timing
-    Verify Time Delta    MTAirCompressor    logevent_summaryState    logevent_softwareVersions    ${time_window}    1
+    Verify Time Delta    MTAirCompressor    logevent_summaryState    logevent_softwareVersions    ${time_window}    index=1
 
 Verify MTAirCompressor:1 ConfigurationsAvailable Event
     [Tags]    config_available
@@ -61,11 +61,11 @@ Verify MTAirCompressor:2 Standby
 
 Verify MTAirCompressor:2 SoftwareVersions
     [Tags]    software_versions
-    Verify SoftwareVersions    MTAirCompressor    2
+    Verify SoftwareVersions    MTAirCompressor    index=2
 
 Verify MTAirCompressor:2 SoftwareVersions timing
     [Tags]    software_versions    timing
-    Verify Time Delta    MTAirCompressor    logevent_summaryState    logevent_softwareVersions    ${time_window}    2
+    Verify Time Delta    MTAirCompressor    logevent_summaryState    logevent_softwareVersions    ${time_window}    index=2
 
 Verify MTAirCompressor:2 ConfigurationsAvailable Event
     [Tags]    config_available
@@ -187,15 +187,15 @@ Verify MTHexapod:1 SoftwareVersions
 
 Verify MTHexapod:1 SoftwareVersions timing
     [Tags]    software_versions    timing
-    Verify Time Delta    MTHexapod    logevent_summaryState    logevent_softwareVersions    ${time_window}    1
+    Verify Time Delta    MTHexapod    logevent_summaryState    logevent_softwareVersions    ${time_window}    index=1
 
 Verify MTHexapod:1 ConfigurationsAvailable Event
     [Tags]    config_available
-    Verify ConfigurationsAvailable    MTHexapod    1
+    Verify ConfigurationsAvailable    MTHexapod    index=1
 
 Verify MTHexapod:1 ConfigurationsAvailable timing
     [Tags]    config_available    timing
-    Verify Time Delta    MTHexapod    logevent_summaryState    logevent_configurationsAvailable    ${time_window}    1
+    Verify Time Delta    MTHexapod    logevent_summaryState    logevent_configurationsAvailable    ${time_window}    index=1
 
 Verify MTHexapod:2 Standby
     [Tags]    standby
@@ -203,19 +203,19 @@ Verify MTHexapod:2 Standby
 
 Verify MTHexapod:2 SoftwareVersions
     [Tags]    software_versions
-    Verify SoftwareVersions    MTHexapod    2
+    Verify SoftwareVersions    MTHexapod    index=2
 
 Verify MTHexapod:2 SoftwareVersions timing
     [Tags]    software_versions    timing
-    Verify Time Delta    MTHexapod    logevent_summaryState    logevent_softwareVersions    ${time_window}    2
+    Verify Time Delta    MTHexapod    logevent_summaryState    logevent_softwareVersions    ${time_window}    index=2
 
 Verify MTHexapod:2 ConfigurationsAvailable Event
     [Tags]    config_available
-    Verify ConfigurationsAvailable    MTHexapod    2
+    Verify ConfigurationsAvailable    MTHexapod    index=2
 
 Verify MTHexapod:2 ConfigurationsAvailable timing
     [Tags]    config_available    timing
-    Verify Time Delta    MTHexapod    logevent_summaryState    logevent_configurationsAvailable    ${time_window}    2
+    Verify Time Delta    MTHexapod    logevent_summaryState    logevent_configurationsAvailable    ${time_window}    index=2
 
 Verify MTRotator Standby
     [Tags]    standby

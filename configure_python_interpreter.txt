@@ -97,7 +97,7 @@ data:
     - [ATSpectrograph, STANDBY]
 
 data:
-    - [MTAlignment, STANDBY]
+    - [LaserTracker:1, STANDBY]
     - [MTMount, STANDBY]
     - [MTRotator, STANDBY]
     - [MTHexapod:1, STANDBY]
