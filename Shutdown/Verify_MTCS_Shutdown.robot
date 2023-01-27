@@ -12,10 +12,10 @@ ${topic_2}    command_disable
 ${time_window}    600
 
 *** Test Cases ***
-Verify MTAlignment Shutdown
+Verify LaserTracker:1 Shutdown
     [Tags]    mtcs
-    Verify Shutdown Process    MTAlignment
-    Verify Time Delta    MTAlignment    ${topic_1}    ${topic_2}    ${time_window}
+    Verify Shutdown Process    LaserTracker:1
+    Verify Time Delta    LaserTracker    ${topic_1}    ${topic_2}    ${time_window}    index=1
 
 Verify MTAirCompressor:1 Shutdown
     [Tags]    mtcs

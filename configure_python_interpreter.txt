@@ -80,6 +80,12 @@ parameters:
   enableAll: true
 
 
+component: Authorize
+cmd: requestAuthorization
+parameters:
+  cscsToChange: ["ScriptQueue:1",]
+  authorizedUsers: ["+rbovill@nb-rbovill"]
+
 
 data:
     - [ATDome, STANDBY]
@@ -97,7 +103,7 @@ data:
     - [ATSpectrograph, STANDBY]
 
 data:
-    - [MTAlignment, STANDBY]
+    - [LaserTracker:1, STANDBY]
     - [MTMount, STANDBY]
     - [MTRotator, STANDBY]
     - [MTHexapod:1, STANDBY]

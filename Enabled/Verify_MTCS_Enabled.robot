@@ -9,9 +9,9 @@ Force Tags    enabled
 *** Variables ***
 
 *** Test Cases ***
-Verify MTAlignment Enabled
+Verify LaserTracker:1 Enabled
     [Tags]    mtcs
-    Verify Summary State    ${STATES}[enabled]    MTAlignment
+    Verify Summary State    ${STATES}[enabled]    LaserTracker:1
 
 Verify MTAirCompressor:1 Enabled
     [Tags]    mtcs

@@ -7,6 +7,7 @@ Library     Collections
 Force Tags    housekeeping
 
 *** Variables ***
+@{homed_field}    homed
 @{port_field}    selected
 @{instrument_port}    2
 @{position_field}    name
@@ -18,6 +19,11 @@ Force Tags    housekeeping
 ${time_window}    10
 
 *** Test Cases ***
+Verify ATDome Azimuth Homed
+    [Tags]
+    Verify Topic Attribute    ATDome    logevent_azimuthState    ${homed_field}    True
+    Verify Time Delta    ATDome    command_homeAzimuth    logevent_azimuthState    ${time_window}
+
 Verify ATMCS logevent_m3PortSelected
     [Tags]
     Verify Topic Attribute    ATMCS    logevent_m3PortSelected    ${port_field}    ${instrument_port}
