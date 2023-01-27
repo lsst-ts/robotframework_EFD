@@ -11,8 +11,8 @@ Force Tags    enabled
 *** Test Cases ***
 Verify GenericCamera:1 Enabled
     [Tags]    gc
-    Verify Summary State    ${STATES}[enabled]    DIMM:1
+    Verify Summary State    ${STATES}[enabled]    GenericCamera:1
 
 Verify GCHeaderService:1 Enabled
     [Tags]    gc
-    Verify Summary State    ${STATES}[enabled]    WeatherStation:1
+    Verify Summary State    ${STATES}[enabled]    GCHeaderService:1
