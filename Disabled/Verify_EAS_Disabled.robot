@@ -22,6 +22,18 @@ Verify DIMM:1 ConfigurationApplied timing
     [Tags]    config_applied    timing
     Verify Time Delta    DIMM    logevent_summaryState    logevent_configurationApplied    ${time_window}    1
 
+Verify WeatherForecast Disabled
+    [Tags]    disabled
+    Verify Summary State    ${STATES}[disabled]    WeatherForecast
+
+Verify WeatherForecast ConfigurationApplied Event
+    [Tags]    config_applied
+    Verify ConfigurationApplied    WeatherForecast
+
+Verify WeatherForecast ConfigurationApplied timing
+    [Tags]    config_applied    timing
+    Verify Time Delta    WeatherForecast    logevent_summaryState    logevent_configurationApplied    ${time_window}
+
 Verify WeatherStation:1 Disabled
     [Tags]    disabled
     Verify Summary State    ${STATES}[disabled]    WeatherStation:1

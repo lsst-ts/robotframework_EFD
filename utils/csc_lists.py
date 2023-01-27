@@ -18,6 +18,7 @@ comcam = [
 ]
 eas = [
     "DIMM:1",
+    "WeatherForecst",
     "WeatherStation:1",
 ]
 eas_ae = [
@@ -109,6 +110,7 @@ salobj = [
     "Scheduler:2",
     "ScriptQueue",
     "Watcher",
+    "WeatherForecast",
     "WeatherStation:1",
 ]
 camera = [
