@@ -13,6 +13,10 @@ Verify DIMM:1 Enabled
     [Tags]    eas
     Verify Summary State    ${STATES}[enabled]    DIMM:1
 
+Verify WeatherForecast Enabled
+    [Tags]    eas
+    Verify Summary State    ${STATES}[enabled]    WeatherForecast
+
 Verify WeatherStation:1 Enabled
     [Tags]    eas
     Verify Summary State    ${STATES}[enabled]    WeatherStation:1
