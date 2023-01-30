@@ -1,0 +1,20 @@
+# vi:syntax=cmake 
+##  Arguments file for testing the SAL XML definition files
+
+# Loglevel
+--loglevel TRACE:INFO
+
+#  Output directory
+-d Reports/today
+
+#  Specify skip tags
+#-e skipped
+#-e at_light_cal
+--skiponfailure skipped
+
+# Report style
+--reportbackground #61C4CD:#61C4CD
+
+#  Redefine default variables
+--variable XMLVersion:14.0.0
+--variable SALVersion:7.2.0

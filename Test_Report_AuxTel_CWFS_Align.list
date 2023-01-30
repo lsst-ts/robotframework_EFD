@@ -1,0 +1,8 @@
+###  Test Suite list ###
+#  Change the title of the test results
+--name AT_CWFS_Align
+--output at_cwfs_align
+--skiponfailure skipped
+
+# List of test suites
+AuxTel/NightOps/Verify_CWFS_Align.robot

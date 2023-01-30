@@ -1,0 +1,128 @@
+﻿['ATAOS', 'ATDome', 'ATDomeTrajectory', 'ATHexapod', 'ATCS', 'ATPneumatics', 'ATPtg']
+['ATMonochromator', 'FiberSpectrograph:3']
+['CCArchiver', 'CCCamera', 'CCHeaderService']
+['DIMM:1', 'DIMM:2, 'WeatherStation:1']
+['DSM:1', 'DSM:2']
+['ATArchiver', 'ATCamera', 'ATHeaderService', 'ATSpectrograph']
+['MTMount', 'MTPtg', 'MTDome', 'MTDomeTrajectory', 'MTAOS', 'MTHexapod:1', 'MTHexapod:2', 'MTRotator', 'MTM1M3', 'MTM2']
+['ScriptQueue:1', 'ScriptQueue:2', 'Watcher:1']
+['Scheduler:1', 'Scheduler:2', 'OCPS:1', 'OCPS:2']
+
+
+for csc in cscs:
+    print(csc)
+    if ":" in csc: index = csc.split(":")[1]
+    efd.get_recent_samples(csc.split(":")[0],  "logevent_summaryState", "*", 4, index)
+
+
+
+
+from QueryEfd import QueryEfd
+efd = QueryEfd("7.0.0", "12.0.0", "6.10.4p2")
+
+from utils import dataframe
+
+from lsst_efd_client import EfdClient
+efd_client = EfdClient("tucson_teststand_efd")
+
+import asyncio
+loop = asyncio.get_event_loop()
+
+
+
+
+
+loop.run_until_complete(efd_client.get_topics())
+
+efd.get_recent_samples("Watcher", "logevent_summaryState", "*", 3, None)
+
+
+loop = asyncio.get_event_loop()
+loop.run_until_complete(efd_client.select_top_n("lsst.sal.CCCamera.logevent_summaryState", "*", 3, None))
+
+
+
+======= on the fly script configurations =======
+
+track_target:
+  target_name: HD164461
+rot_type: PhysicalSky
+filter: SDSSr
+grating: empty_1
+exposure_time: 5.0
+reason: IntegrationTesting
+program: IntegrationTesting
+
+
+component: ATAOS
+cmd: enableCorrection
+parameters:
+  m1: true
+  hexapod: true
+  atspectrograph: true
+
+
+component: ATAOS
+cmd: disableCorrection
+parameters:
+  disableAll: true
+
+
+component: ATAOS
+cmd: resetOffset
+parameters:
+  axis: all
+
+
+component: ATAOS
+cmd: enableCorrection
+parameters:
+  enableAll: true
+
+
+component: Authorize
+cmd: requestAuthorization
+parameters:
+  cscsToChange: ["ScriptQueue:1",]
+  authorizedUsers: ["+rbovill@nb-rbovill"]
+
+
+data:
+    - [ATDome, STANDBY]
+    - [ATDomeTrajectory, STANDBY]
+    - [ATMCS, STANDBY]
+    - [ATPneumatics, STANDBY]
+    - [ATAOS, STANDBY]
+    - [ATHexapod, STANDBY]
+    - [ATPtg, STANDBY]
+
+data:
+    - [ATOODS, STANDBY]
+    - [ATCamera, STANDBY]
+    - [ATHeaderService, STANDBY]
+    - [ATSpectrograph, STANDBY]
+
+data:
+    - [LaserTracker:1, STANDBY]
+    - [MTMount, STANDBY]
+    - [MTRotator, STANDBY]
+    - [MTHexapod:1, STANDBY]
+    - [MTHexapod:2, STANDBY]
+    - [MTDome, STANDBY]
+    - [MTDomeTrajectory, STANDBY]
+    - [MTM1M3, STANDBY]
+    - [MTM2, STANDBY]
+    - [MTPtg, STANDBY]
+    - [MTAOS, STANDBY]
+
+data:
+    - [CCCamera, STANDBY]
+    - [CCHeaderService, STANDBY]
+    - [CCOODS, STANDBY]
+
+data:
+    - [GenericCamera:1, STANDBY]
+    - [GCHeaderService:1, STANDBY]
+
+
+

@@ -1,0 +1,8 @@
+###  Test Suite list ###
+#  Change the title of the test results
+--name AT_Prep_Onsky
+--output at_prep_onsky
+--skiponfailure skipped
+
+# List of test suites
+AuxTel/Verify_AT_Prepare_Onsky.robot
