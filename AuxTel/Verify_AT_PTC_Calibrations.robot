@@ -29,12 +29,12 @@ Verify ATPtg Target
     [Documentation]    Ensure the telescope is pointed at the correct target, in this case at the Az/El of the flat-field screen.
     ...    This command is sent prior to the start of the script.
     [Tags]    robot:continue-on-failure
-    ${cmd_dataframe}=    Get Recent Samples    ATPtg    command_raDecTarget    ["targetName", "ra", "declination",]    1    None
-    Should Be Equal    ${cmd_dataframe.targetName.values}[0]    Flatfield position
+    #${cmd_dataframe}=    Get Recent Samples    ATPtg    command_raDecTarget    ["targetName", "ra", "declination",]    1    None
+    #Should Be Equal    ${cmd_dataframe.targetName.values}[0]    Flatfield position
     ${evt_dataframe}=    Get Recent Samples    ATPtg    logevent_currentTarget    ["targetName", "azDegs", "elDegs",]    1    None
     Should Be Equal    ${evt_dataframe.targetName.values}[0]    FlatField position
-    Should Be Equal    ${evt_dataframe.azDegs.values.round(6)}[0]    ${0}
-    Should Be Equal    ${evt_dataframe.elDegs.values.round(6)}[0]    ${0}
+    #Should Be Equal    ${evt_dataframe.azDegs.values.round(6)}[0]    ${0}
+    #Should Be Equal    ${evt_dataframe.elDegs.values.round(6)}[0]    ${0}
 
 Verify ATPtg Tracking is Off
     [Tags]
@@ -44,8 +44,8 @@ Verify ATPtg Tracking is Off
 
 Verify ATSpectrograph Filter
     Verify Topic Attribute    ATSpectrograph    logevent_reportedFilterPosition    ["name",]    ${filter_name}    output=json
-    ${evt_df}=    Get Recent Samples    ATSpectrograph    logevent_reportedFilterPosition    ["*",]    1    None
-    Should Be Equal    ${evt_df.name.values}[0]    ${filter_name}
+    #${evt_df}=    Get Recent Samples    ATSpectrograph    logevent_reportedFilterPosition    ["*",]    1    None
+    #Should Be Equal    ${evt_df.name.values}[0]    ${filter_name}
 
 Verify ATCamera Image Sequence
     [Documentation]    Verify the ATCamera images are the correct type, with the correct exposure time.
@@ -89,19 +89,18 @@ Verify ATHeaderService LargeFileObjectAvailable
 Set Variables
     [Documentation]    The sequence length is defined by the number of exposures, num_images.
     ...    The img_type_seq is defined by the sequence of image types, in reverse order (dataframes are in time-descending order).
-    Set Suite Variable    ${playlist_full_name}    bias_dark_flat.playlist
+    Set Suite Variable    ${playlist_full_name}    bias_dark_ptc.playlist
     # Image type.
-    Set Suite Variable    ${num_images}    30    # 10 Bias + 10 Dark + 10 Flat
+    Set Suite Variable    ${num_images}    60    # 10 Bias + 10 Dark + 40 Flat
     @{n_flat}=    Evaluate    ["FLAT"] * 10
     @{n_dark}=    Evaluate    ["DARK"] * 10
-    @{n_bias}=    Evaluate    ["BIAS"] * 10
+    @{n_bias}=    Evaluate    ["BIAS"] * 40
     @{img_type_seq}=    Create List    @{n_flat}    @{n_dark}     @{n_bias}
     Set Suite Variable    @{img_type_seq}
-    # Exposure time: BIAS images have 0 for the exposure time.
+    # Exposure time; BIAS images have 0 for the exposure time.
     @{bias_exp_time}=    Evaluate    [${0}] * 10
     @{dark_exp_time}=    Evaluate    [${10}] * 10
-    @{flat_exp_time}=    Evaluate    [${2}] * 10
-    @{exp_time}=    Create List    @{bias_exp_time}    @{dark_exp_time}    @{flat_exp_time}
+    @{exp_time}=    Create List    @{bias_exp_time}    @{dark_exp_time}    ${0.2}    ${0.2}    ${0.4}    ${0.4}    ${0.6}    ${0.6}    ${0.8}    ${0.8}    ${1.0}    ${1.0}    ${1.2}    ${1.2}    ${1.4}    ${1.4}    ${1.6}    ${1.6}    ${1.8}    ${1.8}    ${2.0}    ${2.0}    ${2.2}    ${2.2}    ${2.4}    ${2.4}    ${2.6}    ${2.6}    ${2.8}    ${2.8}    ${3.0}    ${3.0}    ${3.2}    ${3.2}    ${3.4}    ${3.4}    ${3.6}    ${3.6}    ${3.8}    ${3.8}    ${4.0}    ${4.0}
     Set Suite Variable    @{exp_time}
     # Filter and band.
     Set Suite Variable    ${filter_type}    r

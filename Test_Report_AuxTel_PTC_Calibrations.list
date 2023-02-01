@@ -1,0 +1,8 @@
+###  Test Suite list ###
+#  Change the title of the test results
+--name AT_PTC_Calibrations
+--output at_ptc_calib
+--skiponfailure skipped
+
+# List of test suites
+AuxTel/Verify_AT_PTC_Calibrations.robot
