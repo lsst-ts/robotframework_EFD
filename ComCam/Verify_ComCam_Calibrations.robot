@@ -48,10 +48,6 @@ Verify CCCamera Filter
     Should Be Equal    ${evt_df.filterName.values}[0]    ${filter_name}
     Should Be Equal    ${evt_df.filterType.values}[0]    ${filter_type}
 
-# OCPS command_execute and logevent_job_result ?
-
-
-
 Verify CCCamera Image Sequence
     [Documentation]    Verify the CCCamera images are the correct type, with the correct exposure time.
     [Tags]    robot:continue-on-failure
@@ -59,8 +55,8 @@ Verify CCCamera Image Sequence
     ${evt_df}=    Get Recent Samples    CCCamera    logevent_startIntegration    ["additionalValues", "exposureTime", "imageName"]    ${num_images}    None
     Set Suite Variable    @{image_names}    ${evt_df.imageName.values}
     Log Many    ${image_names}
-    Verify Sequence    CCCamera    command_takeImages    expTime    ${seq_length}    ${exp_time}
-    Verify Sequence    CCCamera    logevent_startIntegration    exposureTime    ${seq_length}    ${exp_time}
+    Verify Sequence    CCCamera    command_takeImages    expTime    ${num_images}    ${exp_time}
+    Verify Sequence    CCCamera    logevent_startIntegration    exposureTime    ${num_images}    ${exp_time}
     FOR    ${i}    IN RANGE    ${num_images}
         ${evt_image_type}=    Fetch From Left    ${evt_df.additionalValues.values}[${i}]    :
         Should Be Equal As Strings    ${evt_image_type}    ${img_type_seq}[${i}]
@@ -69,46 +65,54 @@ Verify CCCamera Image Sequence
         Should Be Equal As Strings    ${cmd_image_type}    ${img_type_seq}[${i}]
         Should Be Equal As Numbers    ${cmd_df.numImages.values}[${i}]    1
     END
-    #imageType (BIAS x10, DARK x10 and FLAT x10)
 
 Verify CCOODS ImageInOODS
     [Tags]    robot:continue-on-failure
     ${total_images}=    Evaluate    ${num_images} * 9    # ComCam has 9 CCDs, so there are 9 times the images.
     Set Suite Variable    ${total_images}
     ${dataframe}=    Get Recent Samples    CCOODS    logevent_imageInOODS    ["camera", "description", "obsid",]    ${total_images}    None
+    Log    ${image_names}
+    Log    ${dataframe.obsid.values}
     FOR    ${i}    IN RANGE    ${num_images}
         FOR    ${j}    IN RANGE    ${9}    # ComCam has 9 CCDs, so there are 9 times the images.
             ${k}=    Evaluate    ${i} * 9 + ${j}
             Should Be Equal As Strings    ${dataframe.camera.values}[${k}]    LSSTComCam
             Should Be Equal As Strings    ${dataframe.description.values}[${k}]    file ingested
-            Should Be Equal As Strings    ${dataframe.obsid.values}[${k}]    ${image_names}[0][${j}]
+            Should Be Equal As Strings    ${dataframe.obsid.values}[${k}]    ${image_names}[0][${i}]
         END
     END
 
 Verify CCHeaderService LargeFileObjectAvailable
     [Tags]    robot:continue-on-failure
     ${dataframe}=    Get Recent Samples    CCHeaderService    logevent_largeFileObjectAvailable    ["id", "url",]    ${total_images}    None
+    Log    ${image_names}
+    Log    ${dataframe.id.values}
     FOR    ${i}    IN RANGE    ${num_images}
-        FOR    ${j}    IN RANGE    ${9}    # ComCam has 9 CCDs, so there are 9 times the images.
-            ${k}=    Evaluate    ${i} * 9 + ${j}
-            Should Be Equal As Strings    ${dataframe.id.values}[${k}]    ${image_names}[0][${j}]
-            ${file_name}=    Catenate    SEPARATOR=    CCHeaderService_header_    ${image_names}[0][${j}]    .yaml
-            Should Be Equal As Strings    ${dataframe.url[${k}].split("/")[-1]}    ${file_name}
-        END
+        Should Be Equal As Strings    ${dataframe.id.values}[${i}]    ${image_names}[0][${i}]
+        ${file_name}=    Catenate    SEPARATOR=    CCHeaderService_header_    ${image_names}[0][${i}]    .yaml
+        Should Be Equal As Strings    ${dataframe.url[${i}].split("/")[-1]}    ${file_name}
     END
  
 *** Keywords ***
 Set Variables
-    [Documentation]    The seq_length is defined by the number of exposures.
-    ...    The num_images is the sum of the sequence and some number of do_acquire iterations.
+    [Documentation]    The sequence length is defined by the number of exposures, num_images.
     ...    The img_type_seq is defined by the sequence of image types, in reverse order (dataframes are in time-descending order).
     Set Suite Variable    ${playlist_full_name}    bias_dark_flat.playlist
-    Set Suite Variable    ${num_images}    10    # 10 Bias + 10 Dark + 10 Flat
-    Set Suite Variable    ${seq_length}    10
-    # BIAS images have 0 for the exposure time.
-    Set Suite Variable    @{exp_time}    ${0}    ${0}    ${0}    ${0}    ${0}    ${0}    ${0}    ${0}    ${0}    ${0}
+    # Image type.
+    Set Suite Variable    ${num_images}    30    # 10 Bias + 10 Dark + 10 Flat
+    @{n_flat}=    Evaluate    ["FLAT"] * 10
+    @{n_dark}=    Evaluate    ["DARK"] * 10
+    @{n_bias}=    Evaluate    ["BIAS"] * 10
+    @{img_type_seq}=    Create List    @{n_flat}    @{n_dark}     @{n_bias}
+    Set Suite Variable    @{img_type_seq}
+    # Exposure time; BIAS images have 0 for the exposure time.
+    @{bias_exp_time}=    Evaluate    [${0}] * 10
+    @{dark_exp_time}=    Evaluate    [${20}] * 10
+    @{flat_exp_time}=    Evaluate    [${5}] * 10
+    @{exp_time}=    Create List    @{bias_exp_time}    @{dark_exp_time}    @{flat_exp_time}
+    Set Suite Variable    @{exp_time}   
+    # Filter and band.
     Set Suite Variable    ${filter_type}    r
     Set Suite Variable    ${filter_name}    r_03
     Set Suite Variable    @{disperser_band}    EMPTY
     Set Suite Variable    @{disperser_name}    EMPTY
-    Set Suite Variable    @{img_type_seq}    BIAS    BIAS    BIAS    BIAS    BIAS    BIAS    BIAS    BIAS    BIAS    BIAS
