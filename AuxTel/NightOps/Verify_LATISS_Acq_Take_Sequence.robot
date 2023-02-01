@@ -163,7 +163,7 @@ Set Variables
         Set Suite Variable    ${seq_length}    3
         Set Suite Variable    ${num_images}    3
         Set Suite Variable    @{exp_time}    ${5.0}    ${5.0}    ${5.0}
-        Set Suite Variable    @{filter_band}    i    r    r
+        Set Suite Variable    @{filter_band}    r    r    r
         Set Suite Variable    ${filter_name}    "SDSSr"
         Set Suite Variable    @{disperser_band}    R90    R90    R90
         Set Suite Variable    @{disperser_name}    ronchi90lpmm    ronchi90lpmm    ronchi90lpmm
