@@ -29,12 +29,10 @@ Verify ATPtg Target
     [Documentation]    Ensure the telescope is pointed at the correct target, in this case at the Az/El of the flat-field screen.
     ...    This command is sent prior to the start of the script.
     [Tags]    robot:continue-on-failure
-    #${cmd_dataframe}=    Get Recent Samples    ATPtg    command_raDecTarget    ["targetName", "ra", "declination",]    1    None
-    #Should Be Equal    ${cmd_dataframe.targetName.values}[0]    Flatfield position
     ${evt_dataframe}=    Get Recent Samples    ATPtg    logevent_currentTarget    ["targetName", "azDegs", "elDegs",]    1    None
     Should Be Equal    ${evt_dataframe.targetName.values}[0]    FlatField position
-    #Should Be Equal    ${evt_dataframe.azDegs.values.round(6)}[0]    ${0}
-    #Should Be Equal    ${evt_dataframe.elDegs.values.round(6)}[0]    ${0}
+    Should Be Equal    ${evt_dataframe.azDegs.values.round(6)}[0]    ${0}
+    Should Be Equal    ${evt_dataframe.elDegs.values.round(6)}[0]    ${0}
 
 Verify ATPtg Tracking is Off
     [Tags]
