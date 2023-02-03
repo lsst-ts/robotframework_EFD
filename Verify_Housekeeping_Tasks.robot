@@ -8,6 +8,7 @@ Force Tags    housekeeping
 
 *** Variables ***
 @{homed_field}    homed
+@{homed}    True
 @{port_field}    selected
 @{instrument_port}    2
 @{position_field}    name
@@ -21,8 +22,8 @@ ${time_window}    10
 *** Test Cases ***
 Verify ATDome Azimuth Homed
     [Tags]
-    Verify Topic Attribute    ATDome    logevent_azimuthState    ${homed_field}    True
-    Verify Time Delta    ATDome    command_homeAzimuth    logevent_azimuthState    ${time_window}
+    Verify Topic Attribute    ATDome    logevent_azimuthState    ${homed_field}    ${homed}
+    Verify Time Delta    ATDome    command_homeAzimuth    logevent_azimuthState    20
 
 Verify ATMCS logevent_m3PortSelected
     [Tags]
@@ -37,10 +38,10 @@ Verify ATSpectrograph logevent_reportedDisperserPosition
 Verify CCCamera logevent_endSetFilter
     [Tags]
     Verify Topic Attribute    CCCamera    logevent_endSetFilter    ${filter_field}    ${filter_name}
-    Verify Time Delta    CCCamera    command_setFilter    logevent_endSetFilter    ${time_window}
+    Verify Time Delta    CCCamera    command_setFilter    logevent_endSetFilter    45
 
 Verify MTMount Axes InPosition
-    [Tags]    robot:continue-on-failure    DM-36886
+    [Tags]    robot:continue-on-failure
     Verify Topic Attribute    MTMount    logevent_elevationInPosition    ${in_position_field}    ${in_position}
     Verify Time Delta    MTMount    command_homeBothAxes    logevent_elevationInPosition    ${time_window}    None
     Verify Topic Attribute    MTMount    logevent_azimuthInPosition    ${in_position_field}    ${in_position}

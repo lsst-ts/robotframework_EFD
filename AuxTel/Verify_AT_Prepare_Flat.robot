@@ -65,7 +65,7 @@ Verify ATMCS Tracking Disabled
 Verify ATMCS m3State
     [Tags]
     ${dataframe}=    Get Recent Samples    ATMCS    logevent_m3State    ["*",]    1    None
-    Should Be Equal As Integers    ${dataframe.state.values}[0]    6    #NASMYTH1
+    Should Be Equal As Integers    ${dataframe.state.values}[0]    7    #NASMYTH2
     
 Verify ATPneumatics m1CoverState
     [Tags]

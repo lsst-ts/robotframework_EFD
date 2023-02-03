@@ -19,5 +19,5 @@ Verify ATMonochromator Shutdown
 
 Verify FiberSpectrograph:3 Shutdown
     [Tags]    at_light_cal
-    Verify Shutdown Process    FiberSpectrograph    3
+    Verify Shutdown Process    FiberSpectrograph    index=3
     Verify Time Delta    FiberSpectrograph    ${topic_1}    ${topic_2}    ${time_window}    index=3

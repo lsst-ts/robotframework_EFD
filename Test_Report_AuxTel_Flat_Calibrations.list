@@ -1,0 +1,8 @@
+###  Test Suite list ###
+#  Change the title of the test results
+--name AT_Flat_Calibrations
+--output at_flat_calib
+--skiponfailure skipped
+
+# List of test suites
+AuxTel/Verify_AT_Flat_Calibrations.robot

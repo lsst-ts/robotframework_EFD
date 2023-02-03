@@ -485,7 +485,7 @@ class QueryEfd:
         if sal_ver != self.sal_version:
             error_list.append(f"Bad SAL Version: {sal_ver}")
         if xml_ver != self.xml_version:
-            error_list.append(f"Bad XML Version: {sml_ver}")
+            error_list.append(f"Bad XML Version: {xml_ver}")
         if ospl_ver != self.ospl_version:
             error_list.append(f"Bad OSPL Version: {ospl_ver}")
         if not csc_ver:
