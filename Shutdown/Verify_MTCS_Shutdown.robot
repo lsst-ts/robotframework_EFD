@@ -14,17 +14,17 @@ ${time_window}    600
 *** Test Cases ***
 Verify LaserTracker:1 Shutdown
     [Tags]    mtcs
-    Verify Shutdown Process    LaserTracker:1
+    Verify Shutdown Process    LaserTracker    index=1
     Verify Time Delta    LaserTracker    ${topic_1}    ${topic_2}    ${time_window}    index=1
 
 Verify MTAirCompressor:1 Shutdown
     [Tags]    mtcs
-    Verify Shutdown Process    MTAirCompressor    1
+    Verify Shutdown Process    MTAirCompressor    index=1
     Verify Time Delta    MTAirCompressor    ${topic_1}    ${topic_2}    ${time_window}    index=1
 
 Verify MTAirCompressor:2 Shutdown
     [Tags]    mtcs
-    Verify Shutdown Process    MTAirCompressor    2
+    Verify Shutdown Process    MTAirCompressor    index=2
     Verify Time Delta    MTAirCompressor    ${topic_1}    ${topic_2}    ${time_window}    index=2
 
 Verify MTMount Shutdown
@@ -54,12 +54,12 @@ Verify MTAOS Shutdown
 
 Verify MTHexapod:1 Shutdown
     [Tags]    mtcs
-    Verify Shutdown Process    MTHexapod    1
+    Verify Shutdown Process    MTHexapod    index=1
     Verify Time Delta    MTHexapod    ${topic_1}    ${topic_2}    ${time_window}    index=1
 
 Verify MTHexapod:2 Shutdown
     [Tags]    mtcs
-    Verify Shutdown Process    MTHexapod    2
+    Verify Shutdown Process    MTHexapod    index=2
     Verify Time Delta    MTHexapod    ${topic_1}    ${topic_2}    ${time_window}    index=2
 
 Verify MTRotator Shutdown
