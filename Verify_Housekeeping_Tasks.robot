@@ -28,7 +28,10 @@ Verify ATDome Azimuth Homed
 Verify ATMCS logevent_m3PortSelected
     [Tags]
     Verify Topic Attribute    ATMCS    logevent_m3PortSelected    ${port_field}    ${instrument_port}
-    Verify Time Delta    ATMCS    command_setInstrumentPort    logevent_m3PortSelected    ${time_window}
+
+Verify ATPtg in Park Position
+    [Tags]
+    Verify Topic Attribute    ATPtg    logevent_currentTarget    ["targetName",]    ["Park position",]
 
 Verify ATSpectrograph logevent_reportedDisperserPosition
     [Tags]
