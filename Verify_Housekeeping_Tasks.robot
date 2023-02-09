@@ -10,7 +10,7 @@ Force Tags    housekeeping
 @{homed_field}    homed
 @{homed}    True
 @{port_field}    selected
-@{instrument_port}    2
+@{instrument_port}    2    #Nasymth2
 @{position_field}    name
 @{disperser}    empty_1
 @{filter_field}    filterName
@@ -25,7 +25,7 @@ Verify ATDome Azimuth Homed
     Verify Topic Attribute    ATDome    logevent_azimuthState    ${homed_field}    ${homed}
     Verify Time Delta    ATDome    command_homeAzimuth    logevent_azimuthState    20
 
-Verify ATMCS logevent_m3PortSelected
+Verify ATMCS Set to Nasmyth2
     [Tags]
     Verify Topic Attribute    ATMCS    logevent_m3PortSelected    ${port_field}    ${instrument_port}
 
@@ -33,17 +33,17 @@ Verify ATPtg in Park Position
     [Tags]
     Verify Topic Attribute    ATPtg    logevent_currentTarget    ["targetName",]    ["Park position",]
 
-Verify ATSpectrograph logevent_reportedDisperserPosition
+Verify ATSpectrograph Reporting Disperser Band
     [Tags]
     Verify Topic Attribute    ATSpectrograph    logevent_reportedDisperserPosition    ${position_field}    ${disperser}    output=json
     Verify Time Delta    ATSpectrograph    command_changeDisperser    logevent_reportedDisperserPosition    ${time_window}
 
-Verify CCCamera logevent_endSetFilter
+Verify CCCamera has Filter Set
     [Tags]
     Verify Topic Attribute    CCCamera    logevent_endSetFilter    ${filter_field}    ${filter_name}
     Verify Time Delta    CCCamera    command_setFilter    logevent_endSetFilter    45
 
-Verify MTMount Axes InPosition
+Verify MTMount Axes Homed
     [Tags]    robot:continue-on-failure
     Verify Topic Attribute    MTMount    logevent_elevationInPosition    ${in_position_field}    ${in_position}
     Verify Time Delta    MTMount    command_homeBothAxes    logevent_elevationInPosition    ${time_window}    None
