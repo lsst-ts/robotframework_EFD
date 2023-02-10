@@ -88,6 +88,15 @@ parameters:
 
 
 data:
+    - [Authorize, STANDBY]
+    - [ATMCS, STANDBY]
+
+data:
+    - [Authorize, DISABLED]
+    - [ATMCS, DISABLED]
+    - [ATPneumatics, DISABLED]
+
+data:
     - [ATDome, STANDBY]
     - [ATDomeTrajectory, STANDBY]
     - [ATMCS, STANDBY]
