@@ -4,18 +4,31 @@ Resource    CSC_Lists.resource
 Resource    Common_Keywords.resource
 Library     QueryEfd    ${SALVersion}    ${XMLVersion}    ${OSPLVersion}
 Library     Collections
-Force Tags    stress_test
+Library     String
+Force Tags    love_stress_test
 
 *** Variables ***
-${remotes}    22
+${remotes}    26
 ${clients}    50
 ${num_msgs}   5000
 
 *** Test Cases ***
 Verify Script LogMessages
+    [Tags]    robot:continue-on-failure
+    ${dataframe}=    Get Recent Samples    Script    logevent_logMessage    ["message",]    6    None
+    Log    ${dataframe}
+    Should Be Equal As Strings    ${dataframe.message.values}[5]    Configure started
+    Should Be Equal As Strings    ${dataframe.message.values}[4]    Waiting for ${remotes} remotes to be ready
+    Should Be Equal As Strings    ${dataframe.message.values}[3]    Waiting for ${clients} Manager Clients to be ready
+    Should Match Regexp    ${dataframe.message.values}[2]    Received \\d*/${num_msgs} messages
+    Should Match Regexp    ${dataframe.message.values}[1]    LOVE stress test result: mean_latency_ms=\\d*\\.?\\d* num_messages=\\d*
+    Should Be Equal As Strings    ${dataframe.message.values}[0]    Setting final state to <ScriptState.DONE: 8>
+    Set Suite Variable    ${latency_string}    ${dataframe.message.values}[1]
+
+Verify mean_latency is Less than One Second
     [Tags]
-    ${dataframe}=    Get Recent Samples    Script    logevent_logMessage    ["name", "message"]    4    None
-    Should Be Equal As Strings    ${dataframe.message.values}[3]    Configure started
-    Should Be Equal As Strings    ${dataframe.message.values}[2]    Waiting for ${remotes} remotes to be ready
-    Should Be Equal As Strings    ${dataframe.message.values}[1]    Waiting for ${clients} Manager Clients to be ready
-    Should Be Equal As Strings    ${dataframe.message.values}[0]    LOVE stress test result: mean_latency_ms= num_messages=${num_msgs}
+    Set Test Variable    ${latency_threshold}    1000    # 1000ms == 1s
+    Log    ${latency_string}
+    @{words}=    Split String    ${latency_string}    =
+    @{string}=    Split String    ${words}[1]    ${SPACE}
+    Should Be True    ${string}[0] < ${latency_threshold}
