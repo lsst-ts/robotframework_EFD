@@ -16,3 +16,7 @@ Verify DSM:1 Enabled
 Verify DSM:2 Enabled
     [Tags]    eas_ae
     Verify Summary State    ${STATES}[enabled]    DSM:2
+
+Verify WeatherForecast Enabled
+    [Tags]    eas
+    Verify Summary State    ${STATES}[enabled]    WeatherForecast
