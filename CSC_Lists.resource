@@ -4,8 +4,8 @@
 @{ATCS}            ATAOS    ATDome    ATDomeTrajectory    ATHexapod    ATMCS    ATPneumatics    ATPtg
 @{AT_Light_Cal}    ATMonochromator    FiberSpectrograph:3
 @{ComCam}          CCOODS    CCCamera    CCHeaderService
-@{EAS}             DIMM:1    WeatherForecast    WeatherStation:1
-@{EAS_AE}          DSM:1    DSM:2
+@{EAS}             DIMM:1    WeatherStation:1
+@{EAS_AE}          DSM:1    DSM:2    WeatherForecast
 @{LATISS}          ATOODS    ATCamera    ATHeaderService    ATSpectrograph
 @{MTCS}            MTMount    MTPtg    MTDome    MTDomeTrajectory    MTAOS    MTHexapod:1    MTHexapod:2    MTRotator    MTM1M3    MTM2
 @{ObsSys1}         Authorize    ScriptQueue:1    ScriptQueue:2    Watcher

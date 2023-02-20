@@ -18,12 +18,12 @@ comcam = [
 ]
 eas = [
     "DIMM:1",
-    "WeatherForecst",
     "WeatherStation:1",
 ]
 eas_ae = [
     "DSM:1",
     "DSM:2",
+    "WeatherForecst",
 ]
 latiss = [
     "ATOODS",
