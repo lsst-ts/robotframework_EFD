@@ -31,4 +31,5 @@ Verify mean_latency is Less than One Second
     Log    ${latency_string}
     @{words}=    Split String    ${latency_string}    =
     @{string}=    Split String    ${words}[1]    ${SPACE}
-    Should Be True    ${string}[0] < ${latency_threshold}
+    Set Test Variable    ${mean_latency}    ${string}[0]
+    Should Be True    ${mean_latency} < ${latency_threshold}
