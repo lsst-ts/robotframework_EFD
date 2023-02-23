@@ -1,0 +1,8 @@
+###  Test Suite list ###
+#  Change the title of the test results
+--name love_stress_test
+--output love_stress_test
+--skiponfailure skipped
+
+# List of test suites
+Verify_LOVE_Stress_Test.robot
