@@ -4,6 +4,7 @@ Resource    ../CSC_Lists.resource
 Resource    ../Common_Keywords.resource
 Library     QueryEfd    ${SALVersion}    ${XMLVersion}    ${OSPLVersion}
 Library     Collections
+Library     Process
 Force Tags    image_taking_verification
 
 *** Variables ***

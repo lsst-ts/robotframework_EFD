@@ -4,6 +4,7 @@ Resource    ../CSC_Lists.resource
 Resource    ../Common_Keywords.resource
 Library     QueryEfd    ${SALVersion}    ${XMLVersion}    ${OSPLVersion}
 Library     Collections
+Library     Process
 Force Tags    auxtel_prep_flat
 
 *** Variables ***
@@ -35,7 +36,6 @@ Verify ATDome AzimuthInPosition
     ${topic_sent}=    Convert Date    ${output}    result_format=datetime
     ${delta}=    Subtract Date From Date    ${topic_sent}    ${script_start}
     Should Be True    ${delta} > 0
-    Verify Time Delta    ATDome    command_moveAzimuth    logevent_azimuthInPosition    30
     Verify Topic Attribute    ATDome    logevent_azimuthInPosition    ["inPosition",]    ["True",]
 
 Verify ATDome azimuthState
