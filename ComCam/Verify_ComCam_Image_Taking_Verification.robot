@@ -10,6 +10,20 @@ Force Tags    image_taking_verification
 ${time_window}    10
 
 *** Test Cases ***
+Load Camera Playlist
+    [Tags]
+    ${result}=    Run Process    load_camera_playlist    cc    master_flat    --no-repeat
+    Log Many    ${result.rc}    ${result.stdout}    ${result.stderr}
+    Run Keyword If    ${result.rc} == 1    Fatal Error
+    Wait Until Script Completes    run_command.py    1    10
+
+Execute ComCam Image Taking Test
+    [Tags]
+    ${result}=    Run Process    comcam_image_taking
+    Log Many    ${result.rc}    ${result.stdout}    ${result.stderr}
+    Run Keyword If    ${result.rc} == 1    Fatal Error
+    Wait Until Script Completes    maintel/take_image_comcam.py    1    10
+
 Get Script Metadata
     [Tags]
     Common_Keywords.Get Script Metadata

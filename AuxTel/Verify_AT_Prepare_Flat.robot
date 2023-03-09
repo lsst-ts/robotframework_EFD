@@ -14,6 +14,13 @@ Force Tags    auxtel_prep_flat
 @{states_expected}      8
 
 *** Test Cases ***
+Execute AuxTel Prepare for Flat test
+    [Tags]
+    ${result}=    Run Process    auxtel_prepare_for_flat
+    Log Many    ${result.rc}    ${result.stdout}    ${result.stderr}
+    Run Keyword If    ${result.rc} == 1    Fatal Error
+    Wait Until Script Completes    auxtel/prepare_for/flat.py    10    15
+
 Get Script Metadata
     [Tags]
     Common_Keywords.Get Script Metadata

@@ -54,6 +54,7 @@ Wait Until Script Completes
         IF    ${{${state} in ${completed} and ${end_time} > 0}}    BREAK
         Sleep    ${interval}
     END
+    Run Keyword If    ${state} != 8    Fatal Error
 
 Get Script State
     [Documentation]    This keyword returns the value of the ScriptQueue_logevent_script scriptState field.
