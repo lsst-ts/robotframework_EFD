@@ -3,7 +3,6 @@ Resource    Global_Vars.resource
 Resource    CSC_Lists.resource
 Resource    Common_Keywords.resource
 Library     QueryEfd    ${SALVersion}    ${XMLVersion}    ${OSPLVersion}
-Library     Collections
 Force Tags    housekeeping
 
 *** Variables ***
@@ -20,6 +19,16 @@ Force Tags    housekeeping
 ${time_window}    10
 
 *** Test Cases ***
+Execute AuxTel Housekeeping
+    [Tags]
+    @{scripts}    @{states}=    Execute Integration Test    auxtel_housekeeping
+    Verify Scripts Completed Successfully    @{scripts}    @{states}
+
+Execute MainTel Housekeeping
+    [Tags]
+    @{scripts}    @{states}=    Execute Integration Test    maintel_housekeeping
+    Verify Scripts Completed Successfully    @{scripts}    @{states}
+
 Verify ATDome Azimuth Homed
     [Tags]
     Verify Topic Attribute    ATDome    logevent_azimuthState    ${homed_field}    ${homed}
