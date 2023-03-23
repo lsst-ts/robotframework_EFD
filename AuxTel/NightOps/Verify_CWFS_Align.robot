@@ -13,28 +13,19 @@ ${time_window}    10
 *** Test Cases ***
 Execute AuxTel Reset Offsets
     [Tags]
-    ${result}=    Run Process    auxtel_reset_offsets
-    Log Many    ${result.rc}    ${result.stdout}    ${result.stderr}
-    Run Keyword If    ${result.rc} == 1    Fatal Error
-    Wait Until Script Completes    run_command.py    10    5
+    ${scripts}    ${states}=    Execute Integration Test    auxtel_reset_offsets
+    Verify Scripts Completed Successfully    ${scripts}    ${states}
 
 Load Camera Playlist
     [Tags]
     ${result}=    Run Process    load_camera_playlist    at    cwfs    --no-repeat
     Log Many    ${result.rc}    ${result.stdout}    ${result.stderr}
     Run Keyword If    ${result.rc} == 1    Fatal Error
-    Wait Until Script Completes    run_command.py    1    10
 
 Execute AuxTel LATISS CWFS Align test
     [Tags]
-    ${result}=    Run Process    auxtel_latiss_cwfs_align
-    Log Many    ${result.rc}    ${result.stdout}    ${result.stderr}
-    Run Keyword If    ${result.rc} == 1    Fatal Error
-    Wait Until Script Completes    auxtel/latiss_cwfs_align.py    20    20
-
-Get Script Metadata
-    [Tags]
-    Common_Keywords.Get Script Metadata
+    ${scripts}    ${states}=    Execute Integration Test    auxtel_latiss_cwfs_align
+    Verify Scripts Completed Successfully    ${scripts}    ${states}
 
 Verify Runtime
     [Tags]    runtime

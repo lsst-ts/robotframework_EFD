@@ -19,14 +19,8 @@ Load Camera Playlist
 
 Execute ComCam Image Taking Test
     [Tags]
-    ${result}=    Run Process    comcam_image_taking
-    Log Many    ${result.rc}    ${result.stdout}    ${result.stderr}
-    Run Keyword If    ${result.rc} == 1    Fatal Error
-    Wait Until Script Completes    maintel/take_image_comcam.py    1    10
-
-Get Script Metadata
-    [Tags]
-    Common_Keywords.Get Script Metadata
+    ${scripts}    ${states}=    Execute Integration Test    comcam_image_taking
+    Verify Scripts Completed Successfully    ${scripts}    ${states}
 
 Verify Runtime
     [Tags]    runtime    DM-36864

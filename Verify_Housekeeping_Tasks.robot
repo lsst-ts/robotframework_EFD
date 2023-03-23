@@ -19,15 +19,15 @@ Force Tags    housekeeping
 ${time_window}    10
 
 *** Test Cases ***
-Execute AuxTel Housekeeping
-    [Tags]
-    @{scripts}    @{states}=    Execute Integration Test    auxtel_housekeeping
-    Verify Scripts Completed Successfully    @{scripts}    @{states}
-
 Execute MainTel Housekeeping
     [Tags]
-    @{scripts}    @{states}=    Execute Integration Test    maintel_housekeeping
-    Verify Scripts Completed Successfully    @{scripts}    @{states}
+    ${scripts}    ${states}=    Execute Integration Test    maintel_housekeeping
+    Verify Scripts Completed Successfully    ${scripts}    ${states}
+
+Execute AuxTel Housekeeping
+    [Tags]
+    ${scripts}    ${states}=    Execute Integration Test    auxtel_housekeeping
+    Verify Scripts Completed Successfully    ${scripts}    ${states}
 
 Verify ATDome Azimuth Homed
     [Tags]

@@ -15,18 +15,11 @@ Load Camera Playlist
     ${result}=    Run Process    load_camera_playlist    at    master_flat    --no-repeat
     Log Many    ${result.rc}    ${result.stdout}    ${result.stderr}
     Run Keyword If    ${result.rc} == 1    Fatal Error
-    Wait Until Script Completes    run_command.py    1    10
 
 Execute AuxTel Image Taking Test
     [Tags]
-    ${result}=    Run Process    auxtel_image_taking
-    Log Many    ${result.rc}    ${result.stdout}    ${result.stderr}
-    Run Keyword If    ${result.rc} == 1    Fatal Error
-    Wait Until Script Completes    auxtel/take_image_latiss.py    1    10
-
-Get Script Metadata
-    [Tags]
-    Common_Keywords.Get Script Metadata
+    ${scripts}    ${states}=    Execute Integration Test    auxtel_image_taking
+    Verify Scripts Completed Successfully    ${scripts}    ${states}
 
 Verify Runtime
     [Tags]    runtime    DM-36864

@@ -15,7 +15,8 @@ Force Tags    auxtel_prep_flat
 *** Test Cases ***
 Execute AuxTel Prepare for Flat
     [Tags]
-    Execute Integration Test    auxtel_prepare_for_flat    10x,15s
+    ${scripts}    ${states}=    Execute Integration Test    auxtel_prepare_for_flat
+    Verify Scripts Completed Successfully    ${scripts}    ${states}
 
 Verify Runtime
     [Tags]    runtime    DM-36956
