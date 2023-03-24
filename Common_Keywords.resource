@@ -4,28 +4,21 @@ Library    Collections
 Library    String
 Library    DateTime
 
-*** Variables ***
-@{completed}    ${8}    ${9}    ${10}
-
-*** Variables ***
-@{completed}    ${8}    ${9}    ${10}
-
 *** Keywords ***
 Execute Integration Test
     [Documentation]    This keyword executes the given integration test `inttest_script` and waits for all the child scripts to complete.
-    ...    The `count_interval` argument should be a list of 2-tuples, where each tuple is the number of retries and the duration of the retry
-    ...    for the child script.
+    ...    It returns the `script_indexes` and `script_states` as lists.
     [Arguments]    ${inttest_script}
     ${result}=    Run Process    ${inttest_script}
     Log Many    ${result.rc}    ${result.stdout}    ${result.stderr}
     Run Keyword If    ${result.rc} == 1    Fatal Error
     ${indexes}=    Get Line    ${result.stdout}   -2
     ${string}=    Strip String    ${indexes}    characters=[]
-    @{scripts}=    Split String    ${string}    separator=,${SPACE}
+    @{script_indexes}=    Split String    ${string}    separator=,${SPACE}
     ${states}=    Get Line    ${result.stdout}   -1
     ${string}=    Strip String    ${states}    characters=[]
-    @{states}=    Split String    ${string}    separator=,${SPACE}
-    RETURN    ${scripts}    ${states}
+    @{script_states}=    Split String    ${string}    separator=,${SPACE}
+    RETURN    ${script_indexes}    ${script_states}
 
 Get Script Metadata
     [Documentation]    Capture script metadata, like script index and start time. Ensure script finished successfully.
@@ -67,11 +60,9 @@ Verify Script Runtime
     Should Be True    ${lower_limit} < ${runtime} < ${upper_limit}
 
 Verify Scripts Completed Successfully
-    [Documentation]    This keyword monitors the ScriptQueue_logevent_script scriptState field for one of
-    ...    DONE = 8, STOPPED = 9 or FAILED = 10.
-    ...    The keyword requires three arguments, the `path` of the script, as returned by the
-    ...    ScriptQueue_logevent_script path field, the `interval` in seconds to wait between checks, and
-    ...    the number of `retries` before stopping.
+    [Documentation]    The keyword requires two arguments, the list of `script_indexes` for each script, 
+    ...    and the list of associated `script_states` for each script. It then iterates over the lists to 
+    ...    retrieve script metadata and verify each script completed as DONE (enum value 8).  
     [Arguments]    ${script_indexes}    ${script_states}
     ${num_scripts}=    Get Length    ${script_indexes}
     ${num_states}=    Get Length    ${script_states}
@@ -79,5 +70,4 @@ Verify Scripts Completed Successfully
     FOR    ${i}    IN RANGE    ${num_scripts}
         Get Script Metadata    ${script_indexes}[${i}]
         Should Be Equal As Integers    ${script_states}[${i}]    8    values=True    msg=Script index ${script_indexes}[${i}]
-        Run Keyword If    ${script_states}[${i}] != 8    Fatal Error
     END
