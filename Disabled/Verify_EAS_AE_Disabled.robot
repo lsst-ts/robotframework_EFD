@@ -25,3 +25,11 @@ Verify DSM:2 Disabled
 Verify DSM:2 ConfigurationApplied Event
     [Tags]    config_applied
     Verify ConfigurationApplied    DSM    2
+
+Verify WeatherForecast Disabled
+    [Tags]    disabled
+    Verify Summary State    ${STATES}[disabled]    WeatherForecast    auto_enable=True
+
+Verify WeatherForecast ConfigurationApplied Event
+    [Tags]    config_applied
+    Verify ConfigurationApplied    WeatherForecast

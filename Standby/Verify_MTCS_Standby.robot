@@ -27,11 +27,11 @@ Verify LaserTracker:1 SoftwareVersions timing
 
 Verify LaserTracker:1 ConfigurationsAvailable Event
     [Tags]    config_available
-    Verify ConfigurationsAvailable    LaserTracker:1
+    Verify ConfigurationsAvailable    LaserTracker    index=1
 
 Verify LaserTracker:1 ConfigurationsAvailable timing
     [Tags]    config_available    timing
-    Verify Time Delta    LaserTracker:1    logevent_summaryState    logevent_configurationsAvailable    ${time_window}
+    Verify Time Delta    LaserTracker    logevent_summaryState    logevent_configurationsAvailable    ${time_window}    index=1
 
 #MTAirCompressor:1
 Verify MTAirCompressor:1 Standby
@@ -48,11 +48,11 @@ Verify MTAirCompressor:1 SoftwareVersions timing
 
 Verify MTAirCompressor:1 ConfigurationsAvailable Event
     [Tags]    config_available
-    Verify ConfigurationsAvailable    MTAirCompressor:1
+    Verify ConfigurationsAvailable    MTAirCompressor    index=1
 
 Verify MTAirCompressor:1 ConfigurationsAvailable timing
     [Tags]    config_available    timing
-    Verify Time Delta    MTAirCompressor:1    logevent_summaryState    logevent_configurationsAvailable    ${time_window}
+    Verify Time Delta    MTAirCompressor    logevent_summaryState    logevent_configurationsAvailable    ${time_window}    index=1
 
 #MTAirCompressor:2
 Verify MTAirCompressor:2 Standby
@@ -69,11 +69,11 @@ Verify MTAirCompressor:2 SoftwareVersions timing
 
 Verify MTAirCompressor:2 ConfigurationsAvailable Event
     [Tags]    config_available
-    Verify ConfigurationsAvailable    MTAirCompressor:2
+    Verify ConfigurationsAvailable    MTAirCompressor    index=2
 
 Verify MTAirCompressor:2 ConfigurationsAvailable timing
     [Tags]    config_available    timing
-    Verify Time Delta    MTAirCompressor:2    logevent_summaryState    logevent_configurationsAvailable    ${time_window}
+    Verify Time Delta    MTAirCompressor    logevent_summaryState    logevent_configurationsAvailable    ${time_window}    index=2
 
 #MTMount
 Verify MTMount Standby
@@ -183,7 +183,7 @@ Verify MTHexapod:1 Standby
 
 Verify MTHexapod:1 SoftwareVersions
     [Tags]    software_versions
-    Verify SoftwareVersions    MTHexapod    1
+    Verify SoftwareVersions    MTHexapod    index=1
 
 Verify MTHexapod:1 SoftwareVersions timing
     [Tags]    software_versions    timing

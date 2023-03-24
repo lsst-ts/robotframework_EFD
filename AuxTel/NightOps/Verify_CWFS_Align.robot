@@ -4,15 +4,28 @@ Resource    ../../CSC_Lists.resource
 Resource    ../../Common_Keywords.resource
 Library     QueryEfd    ${SALVersion}    ${XMLVersion}    ${OSPLVersion}
 Library     Collections
+Library     Process
 Force Tags    at_night_ops    cwfs_align
 
 *** Variables ***
 ${time_window}    10
 
 *** Test Cases ***
-Get Script Metadata
+Execute AuxTel Reset Offsets
     [Tags]
-    Common_Keywords.Get Script Metadata
+    ${scripts}    ${states}=    Execute Integration Test    auxtel_reset_offsets
+    Verify Scripts Completed Successfully    ${scripts}    ${states}
+
+Load Camera Playlist
+    [Tags]
+    ${result}=    Run Process    load_camera_playlist    at    cwfs    --no-repeat
+    Log Many    ${result.rc}    ${result.stdout}    ${result.stderr}
+    Run Keyword If    ${result.rc} == 1    Fatal Error
+
+Execute AuxTel LATISS CWFS Align test
+    [Tags]
+    ${scripts}    ${states}=    Execute Integration Test    auxtel_latiss_cwfs_align
+    Verify Scripts Completed Successfully    ${scripts}    ${states}
 
 Verify Runtime
     [Tags]    runtime

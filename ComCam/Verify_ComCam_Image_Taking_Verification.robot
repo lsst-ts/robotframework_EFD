@@ -3,16 +3,24 @@ Resource    ../Global_Vars.resource
 Resource    ../CSC_Lists.resource
 Resource    ../Common_Keywords.resource
 Library     QueryEfd    ${SALVersion}    ${XMLVersion}    ${OSPLVersion}
-Library     Collections
+Library     Process
 Force Tags    image_taking_verification
 
 *** Variables ***
 ${time_window}    10
 
 *** Test Cases ***
-Get Script Metadata
+Load Camera Playlist
     [Tags]
-    Common_Keywords.Get Script Metadata
+    ${result}=    Run Process    load_camera_playlist    cc    master_flat    --no-repeat
+    Log Many    ${result.rc}    ${result.stdout}    ${result.stderr}
+    Run Keyword If    ${result.rc} == 1    Fatal Error
+    Wait Until Script Completes    run_command.py    1    10
+
+Execute ComCam Image Taking Test
+    [Tags]
+    ${scripts}    ${states}=    Execute Integration Test    comcam_image_taking
+    Verify Scripts Completed Successfully    ${scripts}    ${states}
 
 Verify Runtime
     [Tags]    runtime    DM-36864

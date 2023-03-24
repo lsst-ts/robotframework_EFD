@@ -3,7 +3,6 @@ Resource    ../Global_Vars.resource
 Resource    ../CSC_Lists.resource
 Resource    ../Common_Keywords.resource
 Library     QueryEfd    ${SALVersion}    ${XMLVersion}    ${OSPLVersion}
-Library     Collections
 Force Tags    auxtel_prep_onsky
 
 *** Variables ***
@@ -14,9 +13,10 @@ Force Tags    auxtel_prep_onsky
 @{states_expected}      8
 
 *** Test Cases ***
-Get Script Metadata
+Execute AuxTel Prepare for OnSky test
     [Tags]
-    Common_Keywords.Get Script Metadata
+    ${scripts}    ${states}=    Execute Integration Test    auxtel_prepare_for_onsky
+    Verify Scripts Completed Successfully    ${scripts}    ${states}
 
 Verify Runtime
     [Tags]    runtime    DM-36474

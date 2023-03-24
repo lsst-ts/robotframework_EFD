@@ -1,0 +1,8 @@
+###  Test Suite list ###
+#  Change the title of the test results
+--name AT_Prep_Flat
+--output at_prep_flat
+--skiponfailure skipped
+
+# List of test suites
+AuxTel/Verify_AT_Prepare_Flat.robot

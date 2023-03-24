@@ -3,16 +3,23 @@ Resource    ../Global_Vars.resource
 Resource    ../CSC_Lists.resource
 Resource    ../Common_Keywords.resource
 Library     QueryEfd    ${SALVersion}    ${XMLVersion}    ${OSPLVersion}
-Library     Collections
+Library     Process
 Force Tags    image_taking_verification
 
 *** Variables ***
 ${time_window}    10
 
 *** Test Cases ***
-Get Script Metadata
+Load Camera Playlist
     [Tags]
-    Common_Keywords.Get Script Metadata
+    ${result}=    Run Process    load_camera_playlist    at    master_flat    --no-repeat
+    Log Many    ${result.rc}    ${result.stdout}    ${result.stderr}
+    Run Keyword If    ${result.rc} == 1    Fatal Error
+
+Execute AuxTel Image Taking Test
+    [Tags]
+    ${scripts}    ${states}=    Execute Integration Test    auxtel_image_taking
+    Verify Scripts Completed Successfully    ${scripts}    ${states}
 
 Verify Runtime
     [Tags]    runtime    DM-36864

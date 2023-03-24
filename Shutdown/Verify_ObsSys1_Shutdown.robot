@@ -24,7 +24,7 @@ Verify ScriptQueue:1 Shutdown
 
 Verify ScriptQueue:2 Shutdown
     [Tags]    obsys1
-    Verify Shutdown Process    ScriptQueue    2
+    Verify Shutdown Process    ScriptQueue    index=2
     Verify Time Delta    ScriptQueue    ${topic_1}    ${topic_2}    ${time_window}    index=2
 
 Verify Watcher Shutdown
