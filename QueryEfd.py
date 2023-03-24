@@ -525,7 +525,11 @@ class QueryEfd:
         # the lists of fields and respective expected_values.
         attribute = fields[0]
         if output.lower() == "json":
-            json_output = self._influx_query(output.lower(), csc, topic, attribute)
+            if attribute == "name":
+                query_attribute = '"{}"'.format(attribute)
+            else:
+                query_attribute = attribute
+            json_output = self.influxdb_query(csc, topic, query_attribute, limit=1, output_format=output.lower())
             print(f"*TRACE*dataframe:\n{json_output}")
             actual_value = self._get_from_json(attribute, json_output)
         else:
@@ -608,6 +612,40 @@ class QueryEfd:
                 f"{topic_2} was published {delta}s outside "
                 f"the {time_window}s time window from {topic_1}."
             )
+
+    @keyword
+    def influxdb_query(self, csc: str, topic: str, fields: str, limit: int = 1, where_clause: str = "", output_format: str = "dataframe") -> str:
+        """Returns the result of the influx_client.query in specified output format.
+
+        Parameters
+        ----------
+        csc : `str`
+            The name of the CSC.
+        topic : `str`
+            The name of the topic of which to get the field list.
+        fields : `str`
+            The names of the fields in the InfluxDB to query.
+            Should be a single, comma-separated string.
+        limit : `int`
+            The number of records to return (default is 1).
+        where_clause : `str`
+            An optional WHERE clause to filter the records.
+        output_format : `str`
+            The requested format of the output.
+            Should either be dataframe (default) or json.
+
+        Returns
+        -------
+        output : `str`
+            The return from the influx_client.query function.
+        """
+        efd_client = EfdClient(self.efd_name)
+        efd_client.influx_client.output = output_format
+        loop = asyncio.get_event_loop()
+        output = loop.run_until_complete(efd_client.influx_client.query(
+                f'''SELECT {fields} FROM "efd"."autogen"."lsst.sal.{csc}.{topic}" {where_clause} GROUP BY * ORDER BY DESC LIMIT {limit}''')
+            )
+        return output
 
     @not_keyword
     def _efd_topic(self, csc: str, topic: str) -> str:
@@ -699,32 +737,3 @@ class QueryEfd:
         index = series["columns"].index(column)
         result = series["values"][0][index]
         return result
-
-    @not_keyword
-    def _influx_query(self, output_format: str, csc: str, topic: str, attribute: str) -> str:
-        """Returns the result of the influx_client.query in specified output format.
-
-        Parameters
-        ----------
-        output_format : `str`
-            The requested format of the output.
-            Should either be dataframe or json.
-        csc : `str`
-            The name of the CSC.
-        topic : `str`
-            The name of the topic of which to get the field list.
-        attribute : `str`
-            The name of the field in the InfluxDB to query.
-
-        Returns
-        -------
-        output : `str`
-            The return from the influx_client.query function.
-        """
-        efd_client = EfdClient(self.efd_name)
-        efd_client.influx_client.output = output_format
-        loop = asyncio.get_event_loop()
-        output = loop.run_until_complete(efd_client.influx_client.query(
-                f'''SELECT "{attribute}" FROM "efd"."autogen"."lsst.sal.{csc}.{topic}" GROUP BY * ORDER BY DESC LIMIT 1''')
-            )
-        return output

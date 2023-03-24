@@ -3,7 +3,6 @@ Resource    ../Global_Vars.resource
 Resource    ../CSC_Lists.resource
 Resource    ../Common_Keywords.resource
 Library     QueryEfd    ${SALVersion}    ${XMLVersion}    ${OSPLVersion}
-Library     Process
 Force Tags    auxtel_prep_onsky
 
 *** Variables ***
@@ -16,14 +15,8 @@ Force Tags    auxtel_prep_onsky
 *** Test Cases ***
 Execute AuxTel Prepare for OnSky test
     [Tags]
-    ${result}=    Run Process    auxtel_prepare_for_onsky
-    Log Many    ${result.rc}    ${result.stdout}    ${result.stderr}
-    Run Keyword If    ${result.rc} == 1    Fatal Error
-    Wait Until Script Completes    auxtel/prepare_for/onsky.py    10    15
-
-Get Script Metadata
-    [Tags]
-    Common_Keywords.Get Script Metadata
+    ${scripts}    ${states}=    Execute Integration Test    auxtel_prepare_for_onsky
+    Verify Scripts Completed Successfully    ${scripts}    ${states}
 
 Verify Runtime
     [Tags]    runtime    DM-36474
