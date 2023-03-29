@@ -11,19 +11,26 @@ Suite Setup    Set Variables
 ${time_window}    10
 
 *** Test Cases ***
-Get Script Metadata
+Load Camera Playlist
     [Tags]
-    Common_Keywords.Get Script Metadata
-
-Verify Runtime
-    [Tags]    runtime    DM-36476
-    Verify Script Runtime    ${script_start}    ${script_end}
+    ${result}=    Run Process    load_camera_playlist    cc    master_flat    --no-repeat
+    Log Many    ${result.rc}    ${result.stdout}    ${result.stderr}
+    Run Keyword If    ${result.rc} == 1    Fatal Error
 
 Verify CCCamera Playlist Loaded
     [Tags]
     Log    ${playlist_full_name}
     ${dataframe}=    Get Recent Samples    CCCamera    command_play    ["*",]    1    None
     Should Be Equal    ${dataframe.playlist.values}[0]    ${playlist_full_name}
+
+Execute ComCam Flat Calibrations
+    [Tags]
+    ${scripts}    ${states}=    Execute Integration Test    comcam_calibrations    --calib_type flat
+    Verify Scripts Completed Successfully    ${scripts}    ${states}
+
+Verify Runtime
+    [Tags]    runtime    DM-36476
+    Verify Script Runtime    ${script_start}    ${script_end}
 
 Verify MTPtg Target
     [Documentation]    Ensure the telescope is pointed at the correct target, in this case at the Az/El of the flat-field screen.

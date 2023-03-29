@@ -9,6 +9,11 @@ Force Tags    enabled
 *** Variables ***
 
 *** Test Cases ***
+Execute ObsSys2 Disabled to Enabled
+    [Tags]    
+    ${scripts}    ${states}=    Execute Integration Test    obssys2_disabled_enabled
+    Verify Scripts Completed Successfully    ${scripts}    ${states}
+
 Verify Scheduler:1 Enabled
     [Tags]    obsys2
     Verify Summary State    ${STATES}[enabled]    Scheduler:1

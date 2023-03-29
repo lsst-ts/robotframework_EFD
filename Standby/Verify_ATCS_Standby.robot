@@ -11,6 +11,16 @@ Suite Setup    Log Many    ${STATES}[standby]
 ${time_window}    10
 
 *** Test Cases ***
+Execute AuxTel Offline to Standby
+    [Tags]
+    ${scripts}    ${states}=    Execute Integration Test    auxtel_offline_standby
+    Verify Scripts Completed Successfully    ${scripts}    ${states}
+
+Execute Standby to Disabled
+    [Tags]
+    ${scripts}    ${states}=    Execute Integration Test    auxtel_standby_disabled
+    Verify Scripts Completed Successfully    ${scripts}    ${states}
+
 Verify ATAOS Standby
     [Tags]    standby
     Verify Summary State    ${STATES}[standby]    ATAOS

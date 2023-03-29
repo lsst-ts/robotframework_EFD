@@ -9,6 +9,11 @@ Force Tags    enabled
 *** Variables ***
 
 *** Test Cases ***
+Execute EAS Disabled to Enabled
+    [Tags]
+    ${scripts}    ${states}=    Execute Integration Test    eas_disabled_enabled
+    Verify Scripts Completed Successfully    ${scripts}    ${states}
+
 Verify DIMM:1 Enabled
     [Tags]    eas
     Verify Summary State    ${STATES}[enabled]    DIMM:1

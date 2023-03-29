@@ -3,13 +3,17 @@ Resource    ../Global_Vars.resource
 Resource    ../CSC_Lists.resource
 Resource    ../Common_Keywords.resource
 Library     QueryEfd    ${SALVersion}    ${XMLVersion}    ${OSPLVersion}
-Library     Collections
 Force Tags    eas
 
 *** Variables ***
 ${time_window}    10
 
 *** Test Cases ***
+Execute EAS Standby to Disabled
+    [Tags]
+    ${scripts}    ${states}=    Execute Integration Test    eas_standby_disabled
+    Verify Scripts Completed Successfully    ${scripts}    ${states}
+
 Verify DIMM:1 Disabled
     [Tags]    disabled
     Verify Summary State    ${STATES}[disabled]    DIMM:1

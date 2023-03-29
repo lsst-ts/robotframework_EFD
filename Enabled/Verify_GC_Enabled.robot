@@ -9,6 +9,11 @@ Force Tags    enabled
 *** Variables ***
 
 *** Test Cases ***
+Execute GenCam Disabled to Enabled
+    [Tags]
+    ${scripts}    ${states}=    Execute Integration Test    gencam_disabled_enabled.py
+    Verify Scripts Completed Successfully    ${scripts}    ${states}
+
 Verify GenericCamera:1 Enabled
     [Tags]    gc
     Verify Summary State    ${STATES}[enabled]    GenericCamera:1

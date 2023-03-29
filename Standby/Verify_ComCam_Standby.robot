@@ -10,6 +10,11 @@ Force Tags    comcam
 ${time_window}    10
 
 *** Test Cases ***
+Execute MainTel Offline to Standby
+    [Tags]
+    ${scripts}    ${states}=    Execute Integration Test    maintel_offline_standby
+    Verify Scripts Completed Successfully    ${scripts}    ${states}
+
 Verify CCOODS Standby
     [Tags]    standby
     Verify Summary State    ${STATES}[standby]    CCOODS

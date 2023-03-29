@@ -12,14 +12,6 @@ ${time_window}    10
 ${playlist}    replace_me
 
 *** Test Cases ***
-Get Script Metadata
-    [Tags]
-    Common_Keywords.Get Script Metadata
-
-Verify Runtime
-    [Tags]    runtime    DM-36476
-    Verify Script Runtime    ${script_start}    ${script_end}
-
 Verify ATAOS Corrections Enabled
     [Tags]
     ${dataframe}=    Get Recent Samples    ATAOS    logevent_correctionEnabled    ["*",]    1    None
@@ -27,11 +19,26 @@ Verify ATAOS Corrections Enabled
     Should Be True    $dataframe.hexapod.values
     Should Be True    $dataframe.m1.values
 
+Load Camera Playlist
+    [Tags]
+    ${result}=    Run Process    load_camera_playlist    at    ${playlist}    --no-repeat
+    Log Many    ${result.rc}    ${result.stdout}    ${result.stderr}
+    Run Keyword If    ${result.rc} == 1    Fatal Error
+
 Verify ATCamera Playlist Loaded
     [Tags]
     Log    ${playlist_full_name}
     ${dataframe}=    Get Recent Samples    ATCamera    command_play    ["*",]    1    None
     Should Be Equal    ${dataframe.playlist.values}[0]    ${playlist_full_name}
+
+Execute AuxTel LATISS Acquire and Take Sequence
+    [Tags]
+    ${scripts}    ${states}=    Execute Integration Test    auxtel_latiss_acquire_and_take_sequence    --sequence ${playlist}
+    Verify Scripts Completed Successfully    ${scripts}    ${states}
+
+Verify Runtime
+    [Tags]    runtime    DM-36476
+    Verify Script Runtime    ${script_start}    ${script_end}
 
 Verify ATDome AzimuthInPosition
     [Tags]

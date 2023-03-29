@@ -9,6 +9,11 @@ Force Tags    enabled
 *** Variables ***
 
 *** Test Cases ***
+Execute AuxTel Disabled to Enabled
+    [Tags]
+    ${scripts}    ${states}=    Execute Integration Test    auxtel_disabled_enabled
+    Verify Scripts Completed Successfully    ${scripts}    ${states}
+
 Verify ATAOS Enabled
     [Tags]    atcs
     Verify Summary State    ${STATES}[enabled]    ATAOS

@@ -16,6 +16,12 @@ Load Camera Playlist
     Log Many    ${result.rc}    ${result.stdout}    ${result.stderr}
     Run Keyword If    ${result.rc} == 1    Fatal Error
 
+Verify ATCamera Playlist Loaded
+    [Documentation]    Playlist should already be loaded, ensure nothing was changed prior to running this script.
+    [Tags]
+    ${dataframe}=    Get Recent Samples    ATCamera    command_play    ["playlist", "repeat", "private_identity", "private_origin",]    1    None
+    Should Be Equal    ${dataframe.playlist.values}[0]    bias_dark_flat.playlist
+
 Execute AuxTel Image Taking Test
     [Tags]
     ${scripts}    ${states}=    Execute Integration Test    auxtel_image_taking
@@ -24,12 +30,6 @@ Execute AuxTel Image Taking Test
 Verify Runtime
     [Tags]    runtime    DM-36864
     Verify Script Runtime    ${script_start}    ${script_end}
-
-Verify ATCamera Playlist Loaded
-    [Documentation]    Playlist should already be loaded, ensure nothing was changed prior to running this script.
-    [Tags]
-    ${dataframe}=    Get Recent Samples    ATCamera    command_play    ["playlist", "repeat", "private_identity", "private_origin",]    1    None
-    Should Be Equal    ${dataframe.playlist.values}[0]    bias_dark_flat.playlist
 
 Verify ATCamera Image Sequence
     [Documentation]    Verify the ATCamera images are the correct type, with the correct exposure time.
