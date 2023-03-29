@@ -1,4 +1,5 @@
 *** Settings ***
+Library    QueryEfd    ${SALVersion}    ${XMLVersion}    ${OSPLVersion}
 Library    Process
 Library    Collections
 Library    String
@@ -20,6 +21,21 @@ Execute Integration Test
     ${string}=    Strip String    ${states}    characters=[]
     @{script_states}=    Split String    ${string}    separator=,${SPACE}
     RETURN    ${script_indexes}    ${script_states}
+
+Verify Scripts Completed Successfully
+    [Documentation]    The keyword requires two arguments, the list of `script_indexes` for each script, 
+    ...    and the list of associated `script_states` for each script. It then iterates over the lists to 
+    ...    retrieve script metadata and verify each script completed as DONE (enum value 8).  
+    [Arguments]    ${script_indexes}    ${script_states}
+    ${num_scripts}=    Get Length    ${script_indexes}
+    ${num_states}=    Get Length    ${script_states}
+    Should Be Equal    ${num_scripts}    ${num_states}
+    # There is a ~0.03s delay before the very last event is sent; it populates the timestampProcessEnd field. 
+    # So wait for 'Get Script Metadata' to succeed.
+    FOR    ${i}    IN RANGE    ${num_scripts}
+        Wait Until Keyword Succeeds    3x    1 sec    Get Script Metadata    ${script_indexes}[${i}]
+        Should Be Equal As Integers    ${script_states}[${i}]    8    values=True    msg=Script index ${script_indexes}[${i}]
+    END
 
 Get Script Metadata
     [Documentation]    Capture script metadata, like script index and start time. Ensure script finished successfully.
@@ -59,16 +75,3 @@ Verify Script Runtime
     # Compare runtime to expected duration.
     ${runtime}=    Subtract Date From Date    ${end_time}    ${start_time}    result_format=number
     Should Be True    ${lower_limit} < ${runtime} < ${upper_limit}
-
-Verify Scripts Completed Successfully
-    [Documentation]    The keyword requires two arguments, the list of `script_indexes` for each script, 
-    ...    and the list of associated `script_states` for each script. It then iterates over the lists to 
-    ...    retrieve script metadata and verify each script completed as DONE (enum value 8).  
-    [Arguments]    ${script_indexes}    ${script_states}
-    ${num_scripts}=    Get Length    ${script_indexes}
-    ${num_states}=    Get Length    ${script_states}
-    Should Be Equal    ${num_scripts}    ${num_states}
-    FOR    ${i}    IN RANGE    ${num_scripts}
-        Get Script Metadata    ${script_indexes}[${i}]
-        Should Be Equal As Integers    ${script_states}[${i}]    8    values=True    msg=Script index ${script_indexes}[${i}]
-    END
