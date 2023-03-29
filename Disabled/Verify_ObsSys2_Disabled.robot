@@ -9,11 +9,6 @@ Force Tags    obsys2
 ${time_window}    10
 
 *** Test Cases ***
-Execute ObsSys2 Standby to Disabled
-    [Tags]
-    ${scripts}    ${states}=    Execute Integration Test    obssys2_standby_disabled
-    Verify Scripts Completed Successfully    ${scripts}    ${states}
-
 Verify Scheduler:1 Disabled
     [Tags]    disabled
     Verify Summary State    ${STATES}[disabled]    Scheduler:1

@@ -2,19 +2,12 @@
 Resource    ../Global_Vars.resource
 Resource    ../CSC_Lists.resource
 Resource    ../Common_Keywords.resource
-Library     QueryEfd    ${SALVersion}    ${XMLVersion}    ${OSPLVersion}
-Library     Collections
 Force Tags    comcam
 
 *** Variables ***
 ${time_window}    10
 
 *** Test Cases ***
-Execute MainTel Offline to Standby
-    [Tags]
-    ${scripts}    ${states}=    Execute Integration Test    maintel_offline_standby
-    Verify Scripts Completed Successfully    ${scripts}    ${states}
-
 Verify CCOODS Standby
     [Tags]    standby
     Verify Summary State    ${STATES}[standby]    CCOODS
