@@ -6,10 +6,11 @@ Library    DateTime
 
 *** Keywords ***
 Execute Integration Test
-    [Documentation]    This keyword executes the given integration test `inttest_script` and waits for all the child scripts to complete.
+    [Documentation]    This keyword executes the given integration test `inttest_script` with the given, optional,
+    ...    script arguments `script_args` and waits for all the child scripts to complete.
     ...    It returns the `script_indexes` and `script_states` as lists.
-    [Arguments]    ${inttest_script}
-    ${result}=    Run Process    ${inttest_script}
+    [Arguments]    ${inttest_script}    @{script_args}
+    ${result}=    Run Process    ${inttest_script}    @{script_args}
     Log Many    ${result.rc}    ${result.stdout}    ${result.stderr}
     Run Keyword If    ${result.rc} == 1    Fatal Error
     ${indexes}=    Get Line    ${result.stdout}   -2
