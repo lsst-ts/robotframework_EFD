@@ -1,0 +1,8 @@
+###  Test Suite list ###
+#  Change the title of the test results
+--name AT_Enable_ATCS
+--output at_enable_atcs
+--skiponfailure skipped
+
+# List of test suites
+AuxTel/Verify_AT_Enable_ATCS.robot
