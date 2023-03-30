@@ -25,7 +25,7 @@ Verify ATCamera Playlist Loaded
 
 Execute AuxTel Flat Calibrations
     [Tags]
-    ${scripts}    ${states}=    Execute Integration Test    auxtel_latiss_calibrations    --calib_type flat
+    ${scripts}    ${states}=    Execute Integration Test    auxtel_latiss_calibrations    --calib_type    flat
     Verify Scripts Completed Successfully    ${scripts}    ${states}
 
 Verify Runtime

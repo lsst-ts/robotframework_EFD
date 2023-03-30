@@ -15,7 +15,6 @@ Load Camera Playlist
     ${result}=    Run Process    load_camera_playlist    cc    master_flat    --no-repeat
     Log Many    ${result.rc}    ${result.stdout}    ${result.stderr}
     Run Keyword If    ${result.rc} == 1    Fatal Error
-    Wait Until Script Completes    run_command.py    1    10
 
 Verify CCCamera Playlist Loaded
     [Documentation]    Playlist should already be loaded, ensure nothing was changed prior to running this script.
@@ -25,7 +24,7 @@ Verify CCCamera Playlist Loaded
 
 Execute ComCam Image Taking Test
     [Tags]
-    ${scripts}    ${states}=    Execute Integration Test    comcam_image_taking    --calib_type flat
+    ${scripts}    ${states}=    Execute Integration Test    comcam_image_taking    --calib_type    flat
     Verify Scripts Completed Successfully    ${scripts}    ${states}
 
 Verify Runtime
