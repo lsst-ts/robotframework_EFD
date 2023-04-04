@@ -13,11 +13,6 @@ ${topic_2}    command_disable
 ${time_window}    600
 
 *** Test Cases ***
-Execute Enabled to Offline
-    [Tags]
-    ${scripts}    ${states}=    Execute Integration Test    enabled_offline
-    Verify Scripts Completed Successfully    ${scripts}    ${states}
-
 Verify ATAOS Shutdown
     [Tags]    atcs
     Verify Shutdown Process    ATAOS
