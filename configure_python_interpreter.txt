@@ -88,13 +88,67 @@ parameters:
 
 
 data:
-    - [Authorize, STANDBY]
-    - [ATMCS, STANDBY]
-
-data:
     - [Authorize, DISABLED]
     - [ATMCS, DISABLED]
     - [ATPneumatics, DISABLED]
+
+data:
+    - [ATMCS, DISABLED]
+    - [ATDome, DISABLED]
+    - [ATDomeTrajectory, DISABLED]
+    - [ATMCS, DISABLED]
+    - [ATPneumatics, DISABLED]
+    - [ATAOS, DISABLED]
+    - [ATHexapod, DISABLED]
+    - [ATPtg, DISABLED]
+
+data:
+    - [ATOODS, DISABLED]
+    - [ATCamera, DISABLED]
+    - [ATHeaderService, DISABLED]
+    - [ATSpectrograph, DISABLED]
+
+data:
+    - [LaserTracker:1, DISABLED]
+    - [MTMount, DISABLED]
+    - [MTRotator, DISABLED]
+    - [MTHexapod:1, DISABLED]
+    - [MTHexapod:2, DISABLED]
+    - [MTDome, DISABLED]
+    - [MTDomeTrajectory, DISABLED]
+    - [MTM1M3, DISABLED]
+    - [MTPtg, DISABLED]
+    - [MTAOS, DISABLED]
+    - [MTM2, DISABLED]
+
+data:
+    - [CCCamera, DISABLED]
+    - [CCHeaderService, DISABLED]
+    - [CCOODS, DISABLED]
+    - [GenericCamera:1, DISABLED]
+    - [GCHeaderService:1, DISABLED]
+
+data:
+    - [DIMM:1, Disabled]
+    - [WeatherStation:1, Disabled]
+    - [Scheduler:1, Disabled]
+    - [Scheduler:2, Disabled]
+    - [OCPS:1, Disabled]
+    - [OCPS:2, Disabled]
+    - [Watcher, Disabled]
+
+data:
+    - [MTAirCompressor:1, Disabled]
+    - [MTAirCompressor:2, Disabled]
+    - [DSM:1, Disabled]
+    - [DSM:2, Disabled]
+
+data:
+    - [ScriptQueue:1, Disabled]
+
+data:
+    - [Authorize, STANDBY]
+    - [ATMCS, STANDBY]
 
 data:
     - [ATDome, STANDBY]

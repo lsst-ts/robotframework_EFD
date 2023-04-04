@@ -5,6 +5,7 @@
 --skiponfailure skipped
 
 # List of test suites
+Shutdown/Execute_Enabled_Offline.robot
 Shutdown/Verify_ATCS_Shutdown.robot
 Shutdown/Verify_AT_Light_Cal_Shutdown.robot
 Shutdown/Verify_ComCam_Shutdown.robot

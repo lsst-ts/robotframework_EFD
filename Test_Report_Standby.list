@@ -5,6 +5,7 @@
 --skiponfailure skipped
 
 # List of test suites
+Standby/Execute_Offline_Standby.robot
 Standby/Verify_ATCS_Standby.robot
 Standby/Verify_AT_Light_Cal_Standby.robot
 Standby/Verify_ComCam_Standby.robot

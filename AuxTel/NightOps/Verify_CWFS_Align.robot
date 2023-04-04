@@ -3,7 +3,6 @@ Resource    ../../Global_Vars.resource
 Resource    ../../CSC_Lists.resource
 Resource    ../../Common_Keywords.resource
 Library     QueryEfd    ${SALVersion}    ${XMLVersion}    ${OSPLVersion}
-Library     Collections
 Library     Process
 Force Tags    at_night_ops    cwfs_align
 
@@ -16,21 +15,6 @@ Execute AuxTel Reset Offsets
     ${scripts}    ${states}=    Execute Integration Test    auxtel_reset_offsets
     Verify Scripts Completed Successfully    ${scripts}    ${states}
 
-Load Camera Playlist
-    [Tags]
-    ${result}=    Run Process    load_camera_playlist    at    cwfs    --no-repeat
-    Log Many    ${result.rc}    ${result.stdout}    ${result.stderr}
-    Run Keyword If    ${result.rc} == 1    Fatal Error
-
-Execute AuxTel LATISS CWFS Align test
-    [Tags]
-    ${scripts}    ${states}=    Execute Integration Test    auxtel_latiss_cwfs_align
-    Verify Scripts Completed Successfully    ${scripts}    ${states}
-
-Verify Runtime
-    [Tags]    runtime
-    Verify Script Runtime    ${script_start}    ${script_end}
-
 Verify ATAOS Corrections Enabled
     [Documentation]    Corrections should already be enabled, ensure nothing was changed prior to running this script.
     [Tags]
@@ -40,11 +24,26 @@ Verify ATAOS Corrections Enabled
     Should Be True    $dataframe.hexapod.values
     Should Be True    $dataframe.m1.values
 
+Load Camera Playlist
+    [Tags]
+    ${result}=    Run Process    load_camera_playlist    at    cwfs    --no-repeat
+    Log Many    ${result.rc}    ${result.stdout}    ${result.stderr}
+    Run Keyword If    ${result.rc} == 1    Fatal Error
+
 Verify ATCamera Playlist Loaded
     [Documentation]    Playlist should already be loaded, ensure nothing was changed prior to running this script.
     [Tags]
     ${dataframe}=    Get Recent Samples    ATCamera    command_play    ["playlist", "repeat", "private_identity", "private_origin",]    1    None
     Should Be Equal    ${dataframe.playlist.values}[0]    cwfs-test_take_sequence.playlist
+
+Execute AuxTel LATISS CWFS Align test
+    [Tags]
+    ${scripts}    ${states}=    Execute Integration Test    auxtel_latiss_cwfs_align
+    Verify Scripts Completed Successfully    ${scripts}    ${states}
+
+Verify Runtime
+    [Tags]    runtime
+    Verify Script Runtime    ${script_start}    ${script_end}
 
 Verify ATPtg Target
     [Tags]    robot:continue-on-failure

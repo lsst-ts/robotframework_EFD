@@ -11,19 +11,26 @@ Suite Setup    Set Variables
 ${time_window}    10
 
 *** Test Cases ***
-Get Script Metadata
+Load Camera Playlist
     [Tags]
-    Common_Keywords.Get Script Metadata
+    ${result}=    Run Process    load_camera_playlist    at    master_flat    --no-repeat
+    Log Many    ${result.rc}    ${result.stdout}    ${result.stderr}
+    Run Keyword If    ${result.rc} == 1    Fatal Error
 
-Verify Runtime
-    [Tags]    runtime    DM-37818
-    Verify Script Runtime    ${script_start}    ${script_end}
-
-Verify ATCamera Playlist Loaded
+Verify ATCamera Playlist Loaded 
     [Tags]
     Log    ${playlist_full_name}
     ${dataframe}=    Get Recent Samples    ATCamera    command_play    ["*",]    1    None
     Should Be Equal    ${dataframe.playlist.values}[0]    ${playlist_full_name}
+
+Execute AuxTel Flat Calibrations
+    [Tags]
+    ${scripts}    ${states}=    Execute Integration Test    auxtel_latiss_calibrations    --calib_type    flat
+    Verify Scripts Completed Successfully    ${scripts}    ${states}
+
+Verify Runtime
+    [Tags]    runtime    DM-37818
+    Verify Script Runtime    ${script_start}    ${script_end}
 
 Verify ATPtg Target
     [Documentation]    Ensure the telescope is pointed at the correct target, in this case at the Az/El of the flat-field screen.

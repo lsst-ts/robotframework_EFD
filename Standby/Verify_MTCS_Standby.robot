@@ -101,6 +101,7 @@ Verify MTMount ConfigurationsAvailable timing
     [Tags]    config_available    timing
     Verify Time Delta    MTMount    logevent_summaryState    logevent_configurationsAvailable    ${time_window}
 
+# MTPtg
 Verify MTPtg Standby
     [Tags]    standby
     Verify Summary State    ${STATES}[standby]    MTPtg
@@ -117,6 +118,7 @@ Verify MTPtg ConfigurationsAvailable Event
     [Tags]    config_available
     Verify ConfigurationsAvailable    MTPtg
 
+# MTDome
 Verify MTDome Standby
     [Tags]    standby
     Verify Summary State    ${STATES}[standby]    MTDome
@@ -157,6 +159,7 @@ Verify MTDomeTrajectory ConfigurationsAvailable timing
     [Tags]    config_available    timing
     Verify Time Delta    MTDomeTrajectory    logevent_summaryState    logevent_configurationsAvailable    ${time_window}
 
+# MTAOS
 Verify MTAOS Standby
     [Tags]    standby
     Verify Summary State    ${STATES}[standby]    MTAOS
@@ -177,6 +180,7 @@ Verify MTAOS ConfigurationsAvailable timing
     [Tags]    config_available    timing
     Verify Time Delta    MTAOS    logevent_summaryState    logevent_configurationsAvailable    ${time_window}
 
+# MTHexapod:1
 Verify MTHexapod:1 Standby
     [Tags]    standby
     Verify Summary State    ${STATES}[standby]    MTHexapod:1
@@ -197,6 +201,7 @@ Verify MTHexapod:1 ConfigurationsAvailable timing
     [Tags]    config_available    timing
     Verify Time Delta    MTHexapod    logevent_summaryState    logevent_configurationsAvailable    ${time_window}    index=1
 
+# MTHexapod:2
 Verify MTHexapod:2 Standby
     [Tags]    standby
     Verify Summary State    ${STATES}[standby]    MTHexapod:2
@@ -217,6 +222,7 @@ Verify MTHexapod:2 ConfigurationsAvailable timing
     [Tags]    config_available    timing
     Verify Time Delta    MTHexapod    logevent_summaryState    logevent_configurationsAvailable    ${time_window}    index=2
 
+# MTRotator
 Verify MTRotator Standby
     [Tags]    standby
     Verify Summary State    ${STATES}[standby]    MTRotator
@@ -237,6 +243,7 @@ Verify MTRotator ConfigurationsAvailable timing
     [Tags]    config_available    timing
     Verify Time Delta    MTRotator    logevent_summaryState    logevent_configurationsAvailable    ${time_window}
 
+# MTM1M3
 Verify MTM1M3 Standby
     [Tags]    standby
     Verify Summary State    ${STATES}[standby]    MTM1M3
@@ -257,6 +264,7 @@ Verify MTM1M3 ConfigurationsAvailable timing
     [Tags]    config_available    timing
     Verify Time Delta    MTM1M3    logevent_summaryState    logevent_configurationsAvailable    ${time_window}
 
+# MTM2
 Verify MTM2 Standby
     [Tags]    standby
     Verify Summary State    ${STATES}[standby]    MTM2

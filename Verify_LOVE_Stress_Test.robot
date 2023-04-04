@@ -13,6 +13,11 @@ ${clients}    50
 ${num_msgs}   5000
 
 *** Test Cases ***
+Execute LOVE Stress Test
+    [Tags]
+    ${scripts}    ${states}=    Execute Integration Test    love_stress_test
+    Verify Scripts Completed Successfully    ${scripts}    ${states}
+
 Verify Script LogMessages
     [Tags]    robot:continue-on-failure
     ${dataframe}=    Get Recent Samples    Script    logevent_logMessage    ["message",]    6    None

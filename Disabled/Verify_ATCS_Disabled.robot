@@ -10,6 +10,11 @@ Force Tags    atcs
 ${time_window}    10
 
 *** Test Cases ***
+Execute AuxTel Standby to Disabled 
+    [Tags]
+    ${scripts}    ${states}=    Execute Integration Test    auxtel_standby_disabled
+    Verify Scripts Completed Successfully    ${scripts}    ${states}
+
 Verify ATAOS Disabled
     [Tags]    disabled
     Verify Summary State    ${STATES}[disabled]    ATAOS
