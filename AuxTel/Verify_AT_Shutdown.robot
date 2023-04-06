@@ -13,9 +13,10 @@ Force Tags    auxtel_stop
 ${time_window}          10
 
 *** Test Cases ***
-Get Script Metadata
-    [Tags] 
-    Common_Keywords.Get Script Metadata
+Execute AuxTel Shutdown
+    [Tags]
+    ${scripts}    ${states}=    Execute Integration Test    auxtel_shutdown
+    Verify Scripts Completed Successfully    ${scripts}    ${states}
 
 Verify Runtime
     [Tags]    runtime    DM-36978

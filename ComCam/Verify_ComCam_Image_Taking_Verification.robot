@@ -15,22 +15,21 @@ Load Camera Playlist
     ${result}=    Run Process    load_camera_playlist    cc    master_flat    --no-repeat
     Log Many    ${result.rc}    ${result.stdout}    ${result.stderr}
     Run Keyword If    ${result.rc} == 1    Fatal Error
-    Wait Until Script Completes    run_command.py    1    10
-
-Execute ComCam Image Taking Test
-    [Tags]
-    ${scripts}    ${states}=    Execute Integration Test    comcam_image_taking
-    Verify Scripts Completed Successfully    ${scripts}    ${states}
-
-Verify Runtime
-    [Tags]    runtime    DM-36864
-    Verify Script Runtime    ${script_start}    ${script_end}
 
 Verify CCCamera Playlist Loaded
     [Documentation]    Playlist should already be loaded, ensure nothing was changed prior to running this script.
     [Tags]
     ${dataframe}=    Get Recent Samples    CCCamera    command_play    ["playlist", "repeat", "private_identity", "private_origin",]    1    None
     Should Be Equal    ${dataframe.playlist.values}[0]    bias_dark_flat.playlist
+
+Execute ComCam Image Taking Test
+    [Tags]
+    ${scripts}    ${states}=    Execute Integration Test    comcam_image_taking    --calib_type    flat
+    Verify Scripts Completed Successfully    ${scripts}    ${states}
+
+Verify Runtime
+    [Tags]    runtime    DM-36864
+    Verify Script Runtime    ${script_start}    ${script_end}
 
 Verify CCCamera Image Sequence
     [Documentation]    Verify the CCCamera images are the correct type, with the correct exposure time.

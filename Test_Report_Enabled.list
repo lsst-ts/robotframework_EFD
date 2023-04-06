@@ -5,6 +5,7 @@
 --skiponfailure skipped
 
 # List of test suites
+Enabled/Execute_Disabled_Enabled.robot
 Enabled/Verify_ATCS_Enabled.robot
 Enabled/Verify_AT_Light_Cal_Enabled.robot
 Enabled/Verify_ComCam_Enabled.robot
