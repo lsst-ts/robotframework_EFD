@@ -5,7 +5,8 @@
 --loglevel TRACE:INFO
 
 #  Output directory
--d Reports
+-d Reports/today
+
 #  Specify skip tags
 #-e skipped
 #-e at_light_cal
