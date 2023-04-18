@@ -33,14 +33,14 @@ Verify Scripts Completed Successfully
     # There is a ~0.03s delay before the very last event is sent; it populates the timestampProcessEnd field. 
     # So wait for 'Get Script Metadata' to succeed.
     FOR    ${i}    IN RANGE    ${num_scripts}
-        Wait Until Keyword Succeeds    3x    1 sec    Get Script Metadata    ${script_indexes}[${i}]
+        Wait Until Keyword Succeeds    5x    1 sec    Get Script Metadata    ${script_indexes}[${i}]
         Should Be Equal As Integers    ${script_states}[${i}]    8    values=True    msg=Script index ${script_indexes}[${i}]
     END
 
 Get Script Metadata
     [Documentation]    Capture script metadata, like script index and start time. Ensure script finished successfully.
     [Arguments]    ${script_index}
-    ${dataframe}=    Influxdb Query    ScriptQueue    logevent_script    isStandard,path,scriptSalIndex,timestampProcessStart,timestampProcessEnd,scriptState    where_clause=WHERE scriptSalIndex=${script_index}
+    ${dataframe}=    Influxdb Query    ScriptQueue    logevent_script    isStandard,path,scriptSalIndex,timestampProcessStart,timestampProcessEnd,scriptState    where_clause=WHERE scriptSalIndex=${script_index} AND timestampProcessEnd>0
     Log Many    ${dataframe.isStandard.values}[0]    ${dataframe.path.values}[0]    ${dataframe.scriptSalIndex.values}[0]    ${dataframe.timestampProcessStart.values}[0]    ${dataframe.timestampProcessEnd.values}[0]    ${dataframe.scriptState.values}[0]
     # Convert start and end times to the proper format.
     ${script_start}=    Convert Date    ${dataframe.timestampProcessStart.values}[0]    result_format=datetime
