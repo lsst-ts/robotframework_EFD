@@ -10,7 +10,3 @@ Force Tags    enabled
 Verify DIMM:1 Enabled
     [Tags]    eas
     Verify Summary State    ${STATES}[enabled]    DIMM:1
-
-Verify WeatherStation:1 Enabled
-    [Tags]    eas
-    Verify Summary State    ${STATES}[enabled]    WeatherStation:1

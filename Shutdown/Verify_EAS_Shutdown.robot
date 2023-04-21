@@ -16,8 +16,3 @@ Verify DIMM:1 Shutdown
     [Tags]    eas
     Verify Shutdown Process    DIMM    index=1
     Verify Time Delta    DIMM    ${topic_1}    ${topic_2}    ${time_window}    index=1
-
-Verify WeatherStation:1 Shutdown
-    [Tags]    eas
-    Verify Shutdown Process    WeatherStation    index=1
-    Verify Time Delta    WeatherStation    ${topic_1}    ${topic_2}    ${time_window}    index=1
