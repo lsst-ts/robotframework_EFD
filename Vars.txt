@@ -5,7 +5,7 @@
 --loglevel TRACE:INFO
 
 #  Output directory
--d Reports/today
+-d Reports
 
 #  Specify skip tags
 #-e skipped
