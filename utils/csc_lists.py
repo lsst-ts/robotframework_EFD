@@ -18,6 +18,16 @@ comcam = [
 ]
 eas = [
     "DIMM:1",
+    "ESS:1",
+    "ESS:101",
+    "ESS:102",
+    "ESS:103",
+    "ESS:104",
+    "ESS:201",
+    "ESS:202",
+    "ESS:203",
+    "ESS:204",
+    "ESS:301",
 ]
 eas_ae = [
     "DSM:1",
