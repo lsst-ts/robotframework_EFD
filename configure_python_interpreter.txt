@@ -1,7 +1,7 @@
 ﻿['ATAOS', 'ATDome', 'ATDomeTrajectory', 'ATHexapod', 'ATCS', 'ATPneumatics', 'ATPtg']
 ['ATMonochromator', 'FiberSpectrograph:3']
 ['CCArchiver', 'CCCamera', 'CCHeaderService']
-['DIMM:1', 'DIMM:2, 'WeatherStation:1']
+['DIMM:1', 'DIMM:2,]
 ['DSM:1', 'DSM:2']
 ['ATArchiver', 'ATCamera', 'ATHeaderService', 'ATSpectrograph']
 ['MTMount', 'MTPtg', 'MTDome', 'MTDomeTrajectory', 'MTAOS', 'MTHexapod:1', 'MTHexapod:2', 'MTRotator', 'MTM1M3', 'MTM2']
@@ -130,7 +130,6 @@ data:
 
 data:
     - [DIMM:1, Disabled]
-    - [WeatherStation:1, Disabled]
     - [Scheduler:1, Disabled]
     - [Scheduler:2, Disabled]
     - [OCPS:1, Disabled]
