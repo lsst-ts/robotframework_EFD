@@ -18,7 +18,18 @@ comcam = [
 ]
 eas = [
     "DIMM:1",
-    "WeatherStation:1",
+    "DIMM:2",
+    "ESS:1",
+    "ESS:101",
+    "ESS:102",
+    "ESS:103",
+    "ESS:104",
+    "ESS:105",
+    "ESS:201",
+    "ESS:202",
+    "ESS:203",
+    "ESS:204",
+    "ESS:301",
 ]
 eas_ae = [
     "DSM:1",
@@ -97,6 +108,17 @@ salobj = [
     "DIMM:2",
     "DSM:1",
     "DSM:2",
+    "ESS:1",
+    "ESS:101",
+    "ESS:102",
+    "ESS:103",
+    "ESS:104",
+    "ESS:105",
+    "ESS:201",
+    "ESS:202",
+    "ESS:203",
+    "ESS:204",
+    "ESS:301",
     "FiberSpectrograph:3",
     "LinearStage",
     "MTAOS",
@@ -111,7 +133,6 @@ salobj = [
     "ScriptQueue",
     "Watcher",
     "WeatherForecast",
-    "WeatherStation:1",
 ]
 camera = [
     "ATCamera",
