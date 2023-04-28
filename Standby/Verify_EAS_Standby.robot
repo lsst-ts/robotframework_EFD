@@ -10,26 +10,47 @@ Force Tags    eas
 ${time_window}    10
 
 *** Test Cases ***
-# DIMM
+# DIMM:1
 Verify DIMM:1 Standby
     [Tags]    standby
     Verify Summary State    ${STATES}[standby]    DIMM:1
 
 Verify DIMM:1 SoftwareVersions
     [Tags]    software_versions
-    Verify SoftwareVersions    DIMM    1
+    Verify SoftwareVersions    DIMM    index=1
 
 Verify DIMM:1 SoftwareVersions timing
     [Tags]    software_versions    timing
-    Verify Time Delta    DIMM    logevent_summaryState    logevent_softwareVersions    ${time_window}    1
+    Verify Time Delta    DIMM    logevent_summaryState    logevent_softwareVersions    ${time_window}    index=1
 
 Verify DIMM:1 ConfigurationsAvailable Event
     [Tags]    config_available
-    Verify ConfigurationsAvailable    DIMM    1
+    Verify ConfigurationsAvailable    DIMM    index=1
 
 Verify DIMM:1 ConfigurationsAvailable timing
     [Tags]    config_available    timing
-    Verify Time Delta    DIMM    logevent_summaryState    logevent_configurationsAvailable    ${time_window}    1
+    Verify Time Delta    DIMM    logevent_summaryState    logevent_configurationsAvailable    ${time_window}    index=1
+
+# DIMM:2
+Verify DIMM:2 Standby
+    [Tags]    standby
+    Verify Summary State    ${STATES}[standby]    DIMM:2
+
+Verify DIMM:2 SoftwareVersions
+    [Tags]    software_versions
+    Verify SoftwareVersions    DIMM    index=2
+
+Verify DIMM:2 SoftwareVersions timing
+    [Tags]    software_versions    timing
+    Verify Time Delta    DIMM    logevent_summaryState    logevent_softwareVersions    ${time_window}    index=2
+
+Verify DIMM:2 ConfigurationsAvailable Event
+    [Tags]    config_available
+    Verify ConfigurationsAvailable    DIMM    index=2
+
+Verify DIMM:2 ConfigurationsAvailable timing
+    [Tags]    config_available    timing
+    Verify Time Delta    DIMM    logevent_summaryState    logevent_configurationsAvailable    ${time_window}    index=2
 
 # ESS:1
 Verify ESS:1 Standby
@@ -38,19 +59,19 @@ Verify ESS:1 Standby
 
 Verify ESS:1 SoftwareVersions
     [Tags]    software_versions
-    Verify SoftwareVersions    ESS    1
+    Verify SoftwareVersions    ESS    index=1
 
 Verify ESS:1 SoftwareVersions timing
     [Tags]    software_versions    timing
-    Verify Time Delta    ESS    logevent_summaryState    logevent_softwareVersions    ${time_window}    1
+    Verify Time Delta    ESS    logevent_summaryState    logevent_softwareVersions    ${time_window}    index=1
 
 Verify ESS:1 ConfigurationsAvailable Event
     [Tags]    config_available
-    Verify ConfigurationsAvailable    ESS    1
+    Verify ConfigurationsAvailable    ESS    index=1
 
 Verify ESS:1 ConfigurationsAvailable timing
     [Tags]    config_available    timing
-    Verify Time Delta    ESS    logevent_summaryState    logevent_configurationsAvailable    ${time_window}    1
+    Verify Time Delta    ESS    logevent_summaryState    logevent_configurationsAvailable    ${time_window}    index=1
 
 # ESS:101
 Verify ESS:101 Standby
@@ -59,19 +80,19 @@ Verify ESS:101 Standby
 
 Verify ESS:101 SoftwareVersions
     [Tags]    software_versions
-    Verify SoftwareVersions    ESS    101
+    Verify SoftwareVersions    ESS    index=101
     
 Verify ESS:101 SoftwareVersions timing
     [Tags]    software_versions    timing
-    Verify Time Delta    ESS    logevent_summaryState    logevent_softwareVersions    ${time_window}    101
+    Verify Time Delta    ESS    logevent_summaryState    logevent_softwareVersions    ${time_window}    index=101
 
 Verify ESS:101 ConfigurationsAvailable Event
     [Tags]    config_available
-    Verify ConfigurationsAvailable    ESS    101
+    Verify ConfigurationsAvailable    ESS    index=101
 
 Verify ESS:101 ConfigurationsAvailable timing
     [Tags]    config_available    timing
-    Verify Time Delta    ESS    logevent_summaryState    logevent_configurationsAvailable    ${time_window}    101
+    Verify Time Delta    ESS    logevent_summaryState    logevent_configurationsAvailable    ${time_window}    index=101
 
 # ESS:102
 Verify ESS:102 Standby
@@ -80,19 +101,19 @@ Verify ESS:102 Standby
 
 Verify ESS:102 SoftwareVersions
     [Tags]    software_versions
-    Verify SoftwareVersions    ESS    102
+    Verify SoftwareVersions    ESS    index=102
     
 Verify ESS:102 SoftwareVersions timing
     [Tags]    software_versions    timing
-    Verify Time Delta    ESS    logevent_summaryState    logevent_softwareVersions    ${time_window}    102
+    Verify Time Delta    ESS    logevent_summaryState    logevent_softwareVersions    ${time_window}    index=102
 
 Verify ESS:102 ConfigurationsAvailable Event
     [Tags]    config_available
-    Verify ConfigurationsAvailable    ESS    102
+    Verify ConfigurationsAvailable    ESS    index=102
 
 Verify ESS:102 ConfigurationsAvailable timing
     [Tags]    config_available    timing
-    Verify Time Delta    ESS    logevent_summaryState    logevent_configurationsAvailable    ${time_window}    102
+    Verify Time Delta    ESS    logevent_summaryState    logevent_configurationsAvailable    ${time_window}    index=102
 
 # ESS:103
 Verify ESS:103 Standby
@@ -101,19 +122,19 @@ Verify ESS:103 Standby
 
 Verify ESS:103 SoftwareVersions
     [Tags]    software_versions
-    Verify SoftwareVersions    ESS    103
+    Verify SoftwareVersions    ESS    index=103
     
 Verify ESS:103 SoftwareVersions timing
     [Tags]    software_versions    timing
-    Verify Time Delta    ESS    logevent_summaryState    logevent_softwareVersions    ${time_window}    103
+    Verify Time Delta    ESS    logevent_summaryState    logevent_softwareVersions    ${time_window}    index=103
 
 Verify ESS:103 ConfigurationsAvailable Event
     [Tags]    config_available
-    Verify ConfigurationsAvailable    ESS    103
+    Verify ConfigurationsAvailable    ESS    index=103
 
 Verify ESS:103 ConfigurationsAvailable timing
     [Tags]    config_available    timing
-    Verify Time Delta    ESS    logevent_summaryState    logevent_configurationsAvailable    ${time_window}    103
+    Verify Time Delta    ESS    logevent_summaryState    logevent_configurationsAvailable    ${time_window}    index=103
 
 # ESS:104
 Verify ESS:104 Standby
@@ -122,19 +143,19 @@ Verify ESS:104 Standby
 
 Verify ESS:104 SoftwareVersions
     [Tags]    software_versions
-    Verify SoftwareVersions    ESS    104
+    Verify SoftwareVersions    ESS    index=104
     
 Verify ESS:104 SoftwareVersions timing
     [Tags]    software_versions    timing
-    Verify Time Delta    ESS    logevent_summaryState    logevent_softwareVersions    ${time_window}    104
+    Verify Time Delta    ESS    logevent_summaryState    logevent_softwareVersions    ${time_window}    index=104
 
 Verify ESS:104 ConfigurationsAvailable Event
     [Tags]    config_available
-    Verify ConfigurationsAvailable    ESS    104
+    Verify ConfigurationsAvailable    ESS    index=104
 
 Verify ESS:104 ConfigurationsAvailable timing
     [Tags]    config_available    timing
-    Verify Time Delta    ESS    logevent_summaryState    logevent_configurationsAvailable    ${time_window}    104
+    Verify Time Delta    ESS    logevent_summaryState    logevent_configurationsAvailable    ${time_window}    index=104
 
 # ESS:105
 Verify ESS:105 Standby
@@ -143,19 +164,19 @@ Verify ESS:105 Standby
     
 Verify ESS:105 SoftwareVersions
     [Tags]    software_versions
-    Verify SoftwareVersions    ESS    105
+    Verify SoftwareVersions    ESS    index=105
     
 Verify ESS:105 SoftwareVersions timing
     [Tags]    software_versions    timing
-    Verify Time Delta    ESS    logevent_summaryState    logevent_softwareVersions    ${time_window}    105
+    Verify Time Delta    ESS    logevent_summaryState    logevent_softwareVersions    ${time_window}    index=105
     
 Verify ESS:105 ConfigurationsAvailable Event
     [Tags]    config_available
-    Verify ConfigurationsAvailable    ESS    105
+    Verify ConfigurationsAvailable    ESS    index=105
     
 Verify ESS:105 ConfigurationsAvailable timing
     [Tags]    config_available    timing
-    Verify Time Delta    ESS    logevent_summaryState    logevent_configurationsAvailable    ${time_window}    105
+    Verify Time Delta    ESS    logevent_summaryState    logevent_configurationsAvailable    ${time_window}    index=105
 
 # ESS:201
 Verify ESS:201 Standby
@@ -164,19 +185,19 @@ Verify ESS:201 Standby
 
 Verify ESS:201 SoftwareVersions
     [Tags]    software_versions
-    Verify SoftwareVersions    ESS    201
+    Verify SoftwareVersions    ESS    index=201
 
 Verify ESS:201 SoftwareVersions timing
     [Tags]    software_versions    timing
-    Verify Time Delta    ESS    logevent_summaryState    logevent_softwareVersions    ${time_window}    201
+    Verify Time Delta    ESS    logevent_summaryState    logevent_softwareVersions    ${time_window}    index=201
 
 Verify ESS:201 ConfigurationsAvailable Event
     [Tags]    config_available
-    Verify ConfigurationsAvailable    ESS    201
+    Verify ConfigurationsAvailable    ESS    index=201
 
 Verify ESS:201 ConfigurationsAvailable timing
     [Tags]    config_available    timing
-    Verify Time Delta    ESS    logevent_summaryState    logevent_configurationsAvailable    ${time_window}    201
+    Verify Time Delta    ESS    logevent_summaryState    logevent_configurationsAvailable    ${time_window}    index=201
 
 # ESS:202
 Verify ESS:202 Standby
@@ -185,19 +206,19 @@ Verify ESS:202 Standby
 
 Verify ESS:202 SoftwareVersions
     [Tags]    software_versions
-    Verify SoftwareVersions    ESS    202
+    Verify SoftwareVersions    ESS    index=202
 
 Verify ESS:202 SoftwareVersions timing
     [Tags]    software_versions    timing
-    Verify Time Delta    ESS    logevent_summaryState    logevent_softwareVersions    ${time_window}    202
+    Verify Time Delta    ESS    logevent_summaryState    logevent_softwareVersions    ${time_window}    index=202
 
 Verify ESS:202 ConfigurationsAvailable Event
     [Tags]    config_available
-    Verify ConfigurationsAvailable    ESS    202
+    Verify ConfigurationsAvailable    ESS    index=202
 
 Verify ESS:202 ConfigurationsAvailable timing
     [Tags]    config_available    timing
-    Verify Time Delta    ESS    logevent_summaryState    logevent_configurationsAvailable    ${time_window}    202
+    Verify Time Delta    ESS    logevent_summaryState    logevent_configurationsAvailable    ${time_window}    index=202
 
 # ESS:203
 Verify ESS:203 Standby
@@ -206,19 +227,19 @@ Verify ESS:203 Standby
 
 Verify ESS:203 SoftwareVersions
     [Tags]    software_versions
-    Verify SoftwareVersions    ESS    203
+    Verify SoftwareVersions    ESS    index=203
 
 Verify ESS:203 SoftwareVersions timing
     [Tags]    software_versions    timing
-    Verify Time Delta    ESS    logevent_summaryState    logevent_softwareVersions    ${time_window}    203
+    Verify Time Delta    ESS    logevent_summaryState    logevent_softwareVersions    ${time_window}    index=203
 
 Verify ESS:203 ConfigurationsAvailable Event
     [Tags]    config_available
-    Verify ConfigurationsAvailable    ESS    203
+    Verify ConfigurationsAvailable    ESS    index=203
 
 Verify ESS:203 ConfigurationsAvailable timing
     [Tags]    config_available    timing
-    Verify Time Delta    ESS    logevent_summaryState    logevent_configurationsAvailable    ${time_window}    203
+    Verify Time Delta    ESS    logevent_summaryState    logevent_configurationsAvailable    ${time_window}    index=203
 
 # ESS:204
 Verify ESS:204 Standby
@@ -227,19 +248,19 @@ Verify ESS:204 Standby
 
 Verify ESS:204 SoftwareVersions
     [Tags]    software_versions
-    Verify SoftwareVersions    ESS    204
+    Verify SoftwareVersions    ESS    index=204
 
 Verify ESS:204 SoftwareVersions timing
     [Tags]    software_versions    timing
-    Verify Time Delta    ESS    logevent_summaryState    logevent_softwareVersions    ${time_window}    204
+    Verify Time Delta    ESS    logevent_summaryState    logevent_softwareVersions    ${time_window}    index=204
 
 Verify ESS:204 ConfigurationsAvailable Event
     [Tags]    config_available
-    Verify ConfigurationsAvailable    ESS    204
+    Verify ConfigurationsAvailable    ESS    index=204
 
 Verify ESS:204 ConfigurationsAvailable timing
     [Tags]    config_available    timing
-    Verify Time Delta    ESS    logevent_summaryState    logevent_configurationsAvailable    ${time_window}    204
+    Verify Time Delta    ESS    logevent_summaryState    logevent_configurationsAvailable    ${time_window}    index=204
 
 # ESS:301
 Verify ESS:301 Standby
@@ -248,16 +269,16 @@ Verify ESS:301 Standby
 
 Verify ESS:301 SoftwareVersions
     [Tags]    software_versions
-    Verify SoftwareVersions    ESS    301
+    Verify SoftwareVersions    ESS    index=301
 
 Verify ESS:301 SoftwareVersions timing
     [Tags]    software_versions    timing
-    Verify Time Delta    ESS    logevent_summaryState    logevent_softwareVersions    ${time_window}    301
+    Verify Time Delta    ESS    logevent_summaryState    logevent_softwareVersions    ${time_window}    index=301
 
 Verify ESS:301 ConfigurationsAvailable Event
     [Tags]    config_available
-    Verify ConfigurationsAvailable    ESS    301
+    Verify ConfigurationsAvailable    ESS    index=301
 
 Verify ESS:301 ConfigurationsAvailable timing
     [Tags]    config_available    timing
-    Verify Time Delta    ESS    logevent_summaryState    logevent_configurationsAvailable    ${time_window}    301
+    Verify Time Delta    ESS    logevent_summaryState    logevent_configurationsAvailable    ${time_window}    index=301

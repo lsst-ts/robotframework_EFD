@@ -18,6 +18,7 @@ comcam = [
 ]
 eas = [
     "DIMM:1",
+    "DIMM:2",
     "ESS:1",
     "ESS:101",
     "ESS:102",
