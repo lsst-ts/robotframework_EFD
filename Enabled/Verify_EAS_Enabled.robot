@@ -32,6 +32,10 @@ Verify ESS:104 Enabled
     [Tags]    eas
     Verify Summary State    ${STATES}[enabled]    ESS:104
 
+Verify ESS:105 Enabled
+    [Tags]    eas
+    Verify Summary State    ${STATES}[enabled]    ESS:105
+
 # ESS:20x
 Verify ESS:201 Enabled
     [Tags]    eas

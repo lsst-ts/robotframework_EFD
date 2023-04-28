@@ -87,6 +87,19 @@ Verify ESS:104 ConfigurationApplied timing
     [Tags]    config_applied    timing
     Verify Time Delta    ESS    logevent_summaryState    logevent_configurationApplied    ${time_window}    104
 
+# ESS:105
+Verify ESS:105 Disabled
+    [Tags]    disabled
+    Verify Summary State    ${STATES}[disabled]    ESS:105
+    
+Verify ESS:105 ConfigurationApplied Event
+    [Tags]    config_applied
+    Verify ConfigurationApplied    ESS    105
+    
+Verify ESS:105 ConfigurationApplied timing
+    [Tags]    config_applied    timing
+    Verify Time Delta    ESS    logevent_summaryState    logevent_configurationApplied    ${time_window}    105
+
 # ESS:201
 Verify ESS:201 Disabled
     [Tags]    disabled

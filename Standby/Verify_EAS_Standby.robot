@@ -136,6 +136,27 @@ Verify ESS:104 ConfigurationsAvailable timing
     [Tags]    config_available    timing
     Verify Time Delta    ESS    logevent_summaryState    logevent_configurationsAvailable    ${time_window}    104
 
+# ESS:105
+Verify ESS:105 Standby
+    [Tags]    standby
+    Verify Summary State    ${STATES}[standby]    ESS:105
+    
+Verify ESS:105 SoftwareVersions
+    [Tags]    software_versions
+    Verify SoftwareVersions    ESS    105
+    
+Verify ESS:105 SoftwareVersions timing
+    [Tags]    software_versions    timing
+    Verify Time Delta    ESS    logevent_summaryState    logevent_softwareVersions    ${time_window}    105
+    
+Verify ESS:105 ConfigurationsAvailable Event
+    [Tags]    config_available
+    Verify ConfigurationsAvailable    ESS    105
+    
+Verify ESS:105 ConfigurationsAvailable timing
+    [Tags]    config_available    timing
+    Verify Time Delta    ESS    logevent_summaryState    logevent_configurationsAvailable    ${time_window}    105
+
 # ESS:201
 Verify ESS:201 Standby
     [Tags]    standby
