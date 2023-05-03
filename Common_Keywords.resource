@@ -64,3 +64,19 @@ Compare Numbers
     ${lower}=    Evaluate    ${expected} - ${tolerance}
     ${upper}=    Evaluate    ${expected} + ${tolerance}
     Should Be True    ${lower} < ${actual} < ${upper}
+
+Verify Telescope Parked
+    [Documentation]    Verify the given telescope is in the appropriate parked position.
+    [Arguments]    ${telescope}
+    IF    "${telescope}" == "auxtel"
+        Verify Topic Attribute    ATPtg    logevent_currentTarget    ["targetName",]    ["Park position",]
+        Verify Topic Attribute    ATMCS    logevent_allAxesInPosition    ["inPosition",]    ["True",]
+        Verify Topic Attribute    ATMCS    logevent_azimuthInPosition    ["inPosition",]    ["True",]
+        Verify Topic Attribute    ATMCS    logevent_elevationInPosition    ["inPosition",]    ["True",]
+        Verify Topic Attribute    ATMCS    logevent_target    ["azimuth",]    ["0",]
+        Verify Topic Attribute    ATMCS    logevent_target    ["elevation",]    ["80",]
+    ELSE IF    "${telescope}" == "maintel"
+        Log    "Pending"
+    ELSE
+        Log    "AttributeError: expecting one of [auxtel, maintel]."
+    END
