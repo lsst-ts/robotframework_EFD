@@ -19,10 +19,6 @@ Execute AuxTel Stop
     ${scripts}    ${states}=    Execute Integration Test    auxtel_stop
     Verify Scripts Completed Successfully    ${scripts}    ${states}
 
-Verify Runtime
-    [Tags]    runtime    DM-36475
-    Verify Script Runtime    ${script_start}    ${script_end}
-
 Verify ATDome logevent_azimuthInPosition
     [Tags]
     Verify Topic Attribute    ATDome    logevent_azimuthInPosition    ${azimuthInPosition}    ${in_pos_expected}

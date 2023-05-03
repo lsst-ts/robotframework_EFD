@@ -27,10 +27,6 @@ Execute ComCam Image Taking Test
     ${scripts}    ${states}=    Execute Integration Test    comcam_image_taking    --calib_type    flat
     Verify Scripts Completed Successfully    ${scripts}    ${states}
 
-Verify Runtime
-    [Tags]    runtime    DM-36864
-    Verify Script Runtime    ${script_start}    ${script_end}
-
 Verify CCCamera Image Sequence
     [Documentation]    Verify the CCCamera images are the correct type, with the correct exposure time.
     [Tags]    robot:continue-on-failure

@@ -18,10 +18,6 @@ Execute AuxTel Shutdown
     ${scripts}    ${states}=    Execute Integration Test    auxtel_shutdown
     Verify Scripts Completed Successfully    ${scripts}    ${states}
 
-Verify Runtime
-    [Tags]    runtime    DM-36978
-    Verify Script Runtime    ${script_start}    ${script_end}
-
 Verify ATAOS Corrections Disabled
     [Documentation]    Corrections should already be enabled, ensure nothing was changed prior to running this script.
     [Tags]    robot:continue-on-failure

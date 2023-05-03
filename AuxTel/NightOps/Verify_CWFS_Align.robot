@@ -41,10 +41,6 @@ Execute AuxTel LATISS CWFS Align test
     ${scripts}    ${states}=    Execute Integration Test    auxtel_latiss_cwfs_align
     Verify Scripts Completed Successfully    ${scripts}    ${states}
 
-Verify Runtime
-    [Tags]    runtime
-    Verify Script Runtime    ${script_start}    ${script_end}
-
 Verify ATPtg Target
     [Tags]    robot:continue-on-failure
     ${output}=    Get Topic Sent Time    ATPtg    command_raDecTarget

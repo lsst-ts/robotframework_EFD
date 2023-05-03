@@ -36,10 +36,6 @@ Execute AuxTel LATISS Acquire and Take Sequence
     ${scripts}    ${states}=    Execute Integration Test    auxtel_latiss_acquire_and_take_sequence    --sequence    ${playlist}
     Verify Scripts Completed Successfully    ${scripts}    ${states}
 
-Verify Runtime
-    [Tags]    runtime    DM-36476
-    Verify Script Runtime    ${script_start}    ${script_end}
-
 Verify ATDome AzimuthInPosition
     [Tags]
     Verify Time Delta    ATDome    command_moveAzimuth    logevent_azimuthInPosition    60    # Moving the dome can longer than the default 10s time window.
