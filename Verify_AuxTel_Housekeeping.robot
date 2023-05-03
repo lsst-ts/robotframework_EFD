@@ -31,9 +31,9 @@ Verify ATMCS Set to Nasmyth2
     [Tags]
     Verify Topic Attribute    ATMCS    logevent_m3PortSelected    ${port_field}    ${instrument_port}
 
-Verify ATPtg in Park Position
+Verify AuxTel is Parked
     [Tags]
-    Verify Topic Attribute    ATPtg    logevent_currentTarget    ["targetName",]    ["Park position",]
+    Verify Telescope Parked    auxtel
 
 Verify ATSpectrograph Reporting Disperser Band
     [Tags]

@@ -62,13 +62,9 @@ Verify ATMCS logevent_atMountState
     [Tags]
     Verify Topic Attribute    ATMCS    logevent_atMountState    ["state",]    ["8",]    #TRACKINGDISABLED
 
-Verify ATMCS In Park Position
+Verify AuxTel Is Parked
     [Tags]    robot:continue-on-failure
-    Verify Topic Attribute    ATMCS    logevent_allAxesInPosition    ["inPosition",]    ["False",]
-    Verify Topic Attribute    ATMCS    logevent_azimuthInPosition    ["inPosition",]    ["False",]
-    Verify Topic Attribute    ATMCS    logevent_elevationInPosition    ["inPosition",]    ["False",]
-    Verify Topic Attribute    ATMCS    logevent_target    ["azimuth",]    ["0",]
-    Verify Topic Attribute    ATMCS    logevent_target    ["elevation",]    ["80",]
+    Verify Telescope Parked    auxtel
 
 Verify AuxTel CSCs Standby
     [Tags]    robot:continue-on-failure
