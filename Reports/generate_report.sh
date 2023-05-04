@@ -28,7 +28,7 @@ at_acq_take_seq_pointing.xml
 at_acq_take_seq_verify.xml 
 at_acq_take_seq_test.xml 
 at_acq_take_seq_nominal.xml 
-love_stress_test
+love_stress_test.xml
 at_stop.xml 
 shutdown.xml 
 )

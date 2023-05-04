@@ -1,6 +1,6 @@
 ###  Test Suite list ###
 #  Change the title of the test results
---name love_stress_test
+--name LOVE_Stress_Test
 --output love_stress_test
 --skiponfailure skipped
 
