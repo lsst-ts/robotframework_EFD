@@ -25,7 +25,7 @@ Execute Integration Test
 Verify Scripts Completed Successfully
     [Documentation]    The keyword requires two arguments, the list of `script_indexes` for each script, 
     ...    and the list of associated `script_states` for each script. It then iterates over the lists to 
-    ...    retrieve script metadata and verify each script completed as DONE (enum value 8).  
+    ...    retrieve script metadata and verify each script completed as DONE (enum value 4).  
     [Arguments]    ${script_indexes}    ${script_states}
     ${num_scripts}=    Get Length    ${script_indexes}
     ${num_states}=    Get Length    ${script_states}
@@ -33,8 +33,8 @@ Verify Scripts Completed Successfully
     # There is a ~0.03s delay before the very last event is sent; it populates the timestampProcessEnd field. 
     # So wait for 'Get Script Metadata' to succeed.
     FOR    ${i}    IN RANGE    ${num_scripts}
-        Wait Until Keyword Succeeds    5x    1 sec    Get Script Metadata    ${script_indexes}[${i}]
-        Should Be Equal As Integers    ${script_states}[${i}]    8    values=True    msg=Script index ${script_indexes}[${i}]
+        Get Script Metadata    ${script_indexes}[${i}]
+        Should Be Equal As Integers    ${script_states}[${i}]    4    values=True    msg=Script index ${script_indexes}[${i}]
     END
 
 Get Script Metadata
