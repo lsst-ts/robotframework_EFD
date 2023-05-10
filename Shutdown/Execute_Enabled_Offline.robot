@@ -11,4 +11,4 @@ Suite Setup    Log Many    ${STATES}[offline]
 Execute Enabled to Offline
     [Tags]
     ${scripts}    ${states}=    Execute Integration Test    enabled_offline
-    Verify Scripts Completed Successfully    ${scripts}    ${states}
+    Verify Scripts Completed Successfully    ${scripts}    ${states}    shutdown=${True}
