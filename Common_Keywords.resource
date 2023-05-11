@@ -25,16 +25,22 @@ Execute Integration Test
 Verify Scripts Completed Successfully
     [Documentation]    The keyword requires two arguments, the list of `script_indexes` for each script, 
     ...    and the list of associated `script_states` for each script. It then iterates over the lists to 
-    ...    retrieve script metadata and verify each script completed as DONE (enum value 4).  
-    [Arguments]    ${script_indexes}    ${script_states}
+    ...    retrieve script metadata and verify each script completed as DONE (Script.ScriptState enum value 8).  
+    ...    If checking on the `shutdown` test, the very last script is TERMINATED (Script.ScriptState enum value 7).
+    [Arguments]    ${script_indexes}    ${script_states}    ${shutdown}=${False}
     ${num_scripts}=    Get Length    ${script_indexes}
     ${num_states}=    Get Length    ${script_states}
     Should Be Equal    ${num_scripts}    ${num_states}
     # There is a ~0.03s delay before the very last event is sent; it populates the timestampProcessEnd field. 
     # So wait for 'Get Script Metadata' to succeed.
+    Run Keyword If    ${shutdown}    Log    This is the Shutdown test.
     FOR    ${i}    IN RANGE    ${num_scripts}
         Get Script Metadata    ${script_indexes}[${i}]
-        Should Be Equal As Integers    ${script_states}[${i}]    4    values=True    msg=Script index ${script_indexes}[${i}]
+        IF    ${shutdown} and ${i + 1} == ${num_scripts}    # Only for the last script of the Shutdown process.
+            Should Be Equal As Integers    ${script_states}[${i}]    7    values=True    msg=Script index ${script_indexes}[${i}]
+        ELSE
+            Should Be Equal As Integers    ${script_states}[${i}]    8    values=True    msg=Script index ${script_indexes}[${i}]
+        END
     END
 
 Get Script Metadata

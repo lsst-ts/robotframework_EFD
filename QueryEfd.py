@@ -318,7 +318,9 @@ class QueryEfd:
             raise ValueError("Dataframe is empty")
         # Get the sequence of summaryStates and convert
         # the list to human-readable for the error message.
-        states = [state_enums.as_state(x).name.lower() for x in dataframe.summaryState.values]
+        states = [
+            state_enums.as_state(x).name.lower() for x in dataframe.summaryState.values
+        ]
         # Assert lists are equal.
         print(
             f"*TRACE*The SummaryState sequence: {states} should match {shutdown_sequence}"
@@ -500,7 +502,12 @@ class QueryEfd:
 
     @keyword
     def verify_topic_attribute(
-        self, csc: str, topic: str, fields: list, expected_values: list, output: str = 'dataframe'
+        self,
+        csc: str,
+        topic: str,
+        fields: list,
+        expected_values: list,
+        output: str = "dataframe",
     ) -> None:
         """Fails if the values of the given field attributes do not match
         the expected_values.
@@ -529,7 +536,9 @@ class QueryEfd:
                 query_attribute = '"{}"'.format(attribute)
             else:
                 query_attribute = attribute
-            json_output = self.influxdb_query(csc, topic, query_attribute, limit=1, output_format=output.lower())
+            json_output = self.influxdb_query(
+                csc, topic, query_attribute, limit=1, output_format=output.lower()
+            )
             print(f"*TRACE*dataframe:\n{json_output}")
             actual_value = self._get_from_json(attribute, json_output)
         else:
@@ -567,12 +576,27 @@ class QueryEfd:
             The list of expected values of the attributes.
         """
         if not isinstance(field, str):
-            raise TypeError(f"This keyword only works for a single topic attribute (one field).")
+            raise TypeError(
+                f"This keyword only works for a single topic attribute (one field)."
+            )
         csc, index = self._split_indexed_csc(csc)
-        attribute_array = getattr(self.get_recent_samples(csc, topic, [field,], length, index), field).values
+        attribute_array = getattr(
+            self.get_recent_samples(
+                csc,
+                topic,
+                [
+                    field,
+                ],
+                length,
+                index,
+            ),
+            field,
+        ).values
         attribute_list = attribute_array.tolist()
         attribute_list.reverse()
-        print(f"*TRACE*Attribute sequence: {attribute_list}\nExpected sequence : {expected_values}")
+        print(
+            f"*TRACE*Attribute sequence: {attribute_list}\nExpected sequence : {expected_values}"
+        )
         if attribute_list != expected_values:
             raise AssertionError(f"{attribute_list} does not match {expected_values}.")
 
@@ -614,7 +638,15 @@ class QueryEfd:
             )
 
     @keyword
-    def influxdb_query(self, csc: str, topic: str, fields: str, limit: int = 1, where_clause: str = "", output_format: str = "dataframe") -> str:
+    def influxdb_query(
+        self,
+        csc: str,
+        topic: str,
+        fields: str,
+        limit: int = 1,
+        where_clause: str = "",
+        output_format: str = "dataframe",
+    ) -> str:
         """Returns the result of the influx_client.query in specified output format.
 
         Parameters
@@ -642,9 +674,11 @@ class QueryEfd:
         efd_client = EfdClient(self.efd_name)
         efd_client.influx_client.output = output_format
         loop = asyncio.get_event_loop()
-        output = loop.run_until_complete(efd_client.influx_client.query(
-                f'''SELECT {fields} FROM "efd"."autogen"."lsst.sal.{csc}.{topic}" {where_clause} GROUP BY * ORDER BY DESC LIMIT {limit}''')
+        output = loop.run_until_complete(
+            efd_client.influx_client.query(
+                f"""SELECT {fields} FROM "efd"."autogen"."lsst.sal.{csc}.{topic}" {where_clause} GROUP BY * ORDER BY DESC LIMIT {limit}"""
             )
+        )
         return output
 
     @not_keyword
