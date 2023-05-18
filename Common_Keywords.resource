@@ -68,6 +68,7 @@ Compare Numbers
 Verify Telescope Parked
     [Documentation]    Verify the given telescope is in the appropriate parked position.
     [Arguments]    ${telescope}
+    [Tags]    robot:continue-on-failure
     IF    "${telescope}" == "auxtel"
         Verify Topic Attribute    ATPtg    logevent_currentTarget    ["targetName",]    ["Park position",]
         Verify Topic Attribute    ATMCS    logevent_allAxesInPosition    ["inPosition",]    ["True",]
@@ -75,6 +76,27 @@ Verify Telescope Parked
         Verify Topic Attribute    ATMCS    logevent_elevationInPosition    ["inPosition",]    ["True",]
         Verify Topic Attribute    ATMCS    logevent_target    ["azimuth",]    ["0",]
         Verify Topic Attribute    ATMCS    logevent_target    ["elevation",]    ["80",]
+        ${dataframe}=    Get Recent Samples    ATMCS    mount_AzEl_Encoders    ["azimuthCalculatedAngle0", "elevationCalculatedAngle0",]    1    None
+        Compare Numbers    ${dataframe.azimuthCalculatedAngle0.values}[0]    0    0.5
+        Compare Numbers    ${dataframe.elevationCalculatedAngle0.values}[0]    80    0.5
+    ELSE IF    "${telescope}" == "maintel"
+        Log    "Pending"
+    ELSE
+        Log    "AttributeError: expecting one of [auxtel, maintel]."
+    END
+
+Verify Dome Parked
+    [Documentation]    Verify the dome for the given telescope is in the appropriate parked position.
+    [Arguments]    ${telescope}
+    [Tags]    robot:continue-on-failure
+    IF    "${telescope}" == "auxtel"
+        Verify Topic Attribute    ATDome    logevent_mainDoorState    ["state",]    ["1",]    #CLOSED
+        Verify Topic Attribute    ATDome    logevent_dropoutDoorState    ["state",]    ["1",]    #CLOSED
+        ${dataframe}=    Get Recent Samples    ATDome    position    ["azimuthPosition",]    1    None
+        Compare Numbers    ${dataframe.azimuthPosition.values}[0]    285    0.5
+        ${dataframe}=    Get Recent Samples    ATDome    logevent_azimuthState    ["homed", "homeSwitch",]    1    None
+        Should Be True    ${dataframe.homed.values}[0]
+        Log    ${dataframe.homeSwitch.values}[0]
     ELSE IF    "${telescope}" == "maintel"
         Log    "Pending"
     ELSE
