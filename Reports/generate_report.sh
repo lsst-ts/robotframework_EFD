@@ -19,11 +19,12 @@ cc_image_verify.xml
 cc_calib.xml
 at_shutdown.xml 
 enable_atcs.xml 
+at_tel_dome_checkout.xml
 at_prep_flat.xml
 at_flat_calib.xml
 at_ptc_calib.xml
 at_prep_onsky.xml 
-at_cwfs_align.xml 
+at_wep_align.xml 
 at_acq_take_seq_pointing.xml 
 at_acq_take_seq_verify.xml 
 at_acq_take_seq_test.xml 
