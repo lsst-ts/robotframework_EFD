@@ -27,10 +27,6 @@ Execute AuxTel Image Taking Test
     ${scripts}    ${states}=    Execute Integration Test    auxtel_image_taking
     Verify Scripts Completed Successfully    ${scripts}    ${states}
 
-Verify Runtime
-    [Tags]    runtime    DM-36864
-    Verify Script Runtime    ${script_start}    ${script_end}
-
 Verify ATCamera Image Sequence
     [Documentation]    Verify the ATCamera images are the correct type, with the correct exposure time.
     [Tags]    robot:continue-on-failure

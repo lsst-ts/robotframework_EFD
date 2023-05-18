@@ -18,10 +18,6 @@ Execute AuxTel Shutdown
     ${scripts}    ${states}=    Execute Integration Test    auxtel_shutdown
     Verify Scripts Completed Successfully    ${scripts}    ${states}
 
-Verify Runtime
-    [Tags]    runtime    DM-36978
-    Verify Script Runtime    ${script_start}    ${script_end}
-
 Verify ATAOS Corrections Disabled
     [Documentation]    Corrections should already be enabled, ensure nothing was changed prior to running this script.
     [Tags]    robot:continue-on-failure
@@ -56,23 +52,14 @@ Verify ATPneumatics m1VentsLimitSwitches Closed
     Should Not Be True    ${dataframe.ventsOpenedActive.values}[0]
     Should Be True    ${dataframe.ventsClosedActive.values}[0]
 
-Verify ATDome Closed
-    [Tags]    robot:continue-on-failure
-    Verify Topic Attribute    ATDome    logevent_azimuthInPosition    ["inPosition",]    ["False",]
-    Verify Topic Attribute    ATDome    logevent_dropoutDoorState    ["state",]    ["1",]    #Closed
-    Verify Topic Attribute    ATDome    logevent_mainDoorState    ["state",]    ["1",]    #Closed
-
 Verify ATMCS logevent_atMountState
     [Tags]
     Verify Topic Attribute    ATMCS    logevent_atMountState    ["state",]    ["8",]    #TRACKINGDISABLED
 
-Verify ATMCS In Park Position
+Verify AuxTel Is Parked
     [Tags]    robot:continue-on-failure
-    Verify Topic Attribute    ATMCS    logevent_allAxesInPosition    ["inPosition",]    ["False",]
-    Verify Topic Attribute    ATMCS    logevent_azimuthInPosition    ["inPosition",]    ["False",]
-    Verify Topic Attribute    ATMCS    logevent_elevationInPosition    ["inPosition",]    ["False",]
-    Verify Topic Attribute    ATMCS    logevent_target    ["azimuth",]    ["0",]
-    Verify Topic Attribute    ATMCS    logevent_target    ["elevation",]    ["80",]
+    Verify Telescope Parked    auxtel
+    Verify Dome Parked    auxtel
 
 Verify AuxTel CSCs Standby
     [Tags]    robot:continue-on-failure

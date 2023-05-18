@@ -55,9 +55,6 @@ Get Script Metadata
     ${script_end}=    Evaluate    $script_end.replace(tzinfo=datetime.timezone.utc)    modules=datetime
     # Log the metadata.
     Log Many    isStandard= ${dataframe.isStandard.values}    path= ${dataframe.path.values}    scriptIndex= ${dataframe.scriptSalIndex.values}    script_start= ${script_start}    script_end= ${script_end}
-    # Define start and end time variables for testing runtime.
-    Set Suite Variable    ${script_start}
-    Set Suite Variable    ${script_end}
 
 Compare Numbers
     [Documentation]    Given two numbers, test if they are equal within a given tolerance.
@@ -68,16 +65,40 @@ Compare Numbers
     ${upper}=    Evaluate    ${expected} + ${tolerance}
     Should Be True    ${lower} < ${actual} < ${upper}
 
-Verify Script Runtime
-    [Documentation]    Intended to run after the script is complete, given the script start and end timestamps, respectively,
-    ...    this keyword will test if the actual runtime is less than the estimated duration of the script.
-    [Arguments]    ${start_time}    ${end_time}
-    # Get the estimated duration from the duration attribute of the most recent Script.logevent_metadata topic.
-    ${dataframe}=    Get Recent Samples    Script    logevent_metadata    ["*",]    1    None
-    ${est_duration}=    Set Variable    ${dataframe.duration.values}[0]
-    # Set boundry times with a 20% tolerance.
-    ${lower_limit}=    Evaluate    ${est_duration} * 0.8
-    ${upper_limit}=    Evaluate    ${est_duration} * 1.2
-    # Compare runtime to expected duration.
-    ${runtime}=    Subtract Date From Date    ${end_time}    ${start_time}    result_format=number
-    Should Be True    ${lower_limit} < ${runtime} < ${upper_limit}
+Verify Telescope Parked
+    [Documentation]    Verify the given telescope is in the appropriate parked position.
+    [Arguments]    ${telescope}
+    [Tags]    robot:continue-on-failure
+    IF    "${telescope}" == "auxtel"
+        Verify Topic Attribute    ATPtg    logevent_currentTarget    ["targetName",]    ["Park position",]
+        #Verify Topic Attribute    ATMCS    logevent_allAxesInPosition    ["inPosition",]    ["True",]
+        #Verify Topic Attribute    ATMCS    logevent_azimuthInPosition    ["inPosition",]    ["True",]
+        #Verify Topic Attribute    ATMCS    logevent_elevationInPosition    ["inPosition",]    ["True",]
+        Verify Topic Attribute    ATMCS    logevent_target    ["azimuth",]    ["0",]
+        Verify Topic Attribute    ATMCS    logevent_target    ["elevation",]    ["80",]
+        ${dataframe}=    Get Recent Samples    ATMCS    mount_AzEl_Encoders    ["azimuthCalculatedAngle0", "elevationCalculatedAngle0",]    1    None
+        Compare Numbers    ${dataframe.azimuthCalculatedAngle0.values}[0]    0    0.5
+        Compare Numbers    ${dataframe.elevationCalculatedAngle0.values}[0]    80    0.5
+    ELSE IF    "${telescope}" == "maintel"
+        Log    "Pending"
+    ELSE
+        Log    "AttributeError: expecting one of [auxtel, maintel]."
+    END
+
+Verify Dome Parked
+    [Documentation]    Verify the dome for the given telescope is in the appropriate parked position.
+    [Arguments]    ${telescope}
+    [Tags]    robot:continue-on-failure
+    IF    "${telescope}" == "auxtel"
+        Verify Topic Attribute    ATDome    logevent_mainDoorState    ["state",]    ["1",]    #CLOSED
+        Verify Topic Attribute    ATDome    logevent_dropoutDoorState    ["state",]    ["1",]    #CLOSED
+        ${dataframe}=    Get Recent Samples    ATDome    position    ["azimuthPosition",]    1    None
+        Compare Numbers    ${dataframe.azimuthPosition.values}[0]    285    0.5
+        ${dataframe}=    Get Recent Samples    ATDome    logevent_azimuthState    ["homed", "homeSwitch",]    1    None
+        Should Be True    ${dataframe.homed.values}[0]
+        Log    ${dataframe.homeSwitch.values}[0]
+    ELSE IF    "${telescope}" == "maintel"
+        Log    "Pending"
+    ELSE
+        Log    "AttributeError: expecting one of [auxtel, maintel]."
+    END

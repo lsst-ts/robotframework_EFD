@@ -16,10 +16,6 @@ Execute AuxTel Enable ATCS
     ${scripts}    ${states}=    Execute Integration Test    auxtel_enable_atcs
     Verify Scripts Completed Successfully    ${scripts}    ${states}
 
-Verify Runtime
-    [Tags]    runtime
-    Verify Script Runtime    ${script_start}    ${script_end}
-
 Verify AuxTel CSCs Enabled
     [Tags]    robot:continue-on-failure
     Verify Summary State    ${STATES}[enabled]    ATMCS

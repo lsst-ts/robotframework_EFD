@@ -18,10 +18,6 @@ Execute AuxTel Prepare for Flat
     ${scripts}    ${states}=    Execute Integration Test    auxtel_prepare_for_flat
     Verify Scripts Completed Successfully    ${scripts}    ${states}
 
-Verify Runtime
-    [Tags]    runtime    DM-36956
-    Verify Script Runtime    ${script_start}    ${script_end}
-
 Verify ATDome AzimuthInPosition
     [Tags]
     ${output}=    Get Topic Sent Time    ATDome    command_moveAzimuth

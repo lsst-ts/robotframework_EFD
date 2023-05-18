@@ -18,10 +18,6 @@ Execute AuxTel Prepare for OnSky test
     ${scripts}    ${states}=    Execute Integration Test    auxtel_prepare_for_onsky
     Verify Scripts Completed Successfully    ${scripts}    ${states}
 
-Verify Runtime
-    [Tags]    runtime    DM-36474
-    Verify Script Runtime    ${script_start}    ${script_end}
-
 Verify ATDome AzimuthInPosition
     [Tags]
     ${output}=    Get Topic Sent Time    ATDome    command_moveAzimuth

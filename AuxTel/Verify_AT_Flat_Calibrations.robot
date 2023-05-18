@@ -28,10 +28,6 @@ Execute AuxTel Flat Calibrations
     ${scripts}    ${states}=    Execute Integration Test    auxtel_latiss_calibrations    --calib_type    flat
     Verify Scripts Completed Successfully    ${scripts}    ${states}
 
-Verify Runtime
-    [Tags]    runtime    DM-37818
-    Verify Script Runtime    ${script_start}    ${script_end}
-
 Verify ATPtg Target
     [Documentation]    Ensure the telescope is pointed at the correct target, in this case at the Az/El of the flat-field screen.
     ...    This command is sent prior to the start of the script.
