@@ -18,7 +18,7 @@ ${time_window}    10
 
 *** Test Cases ***
 Execute AuxTel Housekeeping
-    [Tags]
+    [Tags]    execute
     ${scripts}    ${states}=    Execute Integration Test    auxtel_housekeeping
     Verify Scripts Completed Successfully    ${scripts}    ${states}
 
@@ -27,7 +27,7 @@ Verify ATMCS Set to Nasmyth2
     Verify Topic Attribute    ATMCS    logevent_m3PortSelected    ${port_field}    ${instrument_port}
 
 Verify AuxTel is Parked
-    [Tags]
+    [Tags]    robot:continue-on-failure
     Verify Telescope Parked    auxtel
     Verify Dome Parked    auxtel
 
