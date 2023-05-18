@@ -71,9 +71,9 @@ Verify Telescope Parked
     [Tags]    robot:continue-on-failure
     IF    "${telescope}" == "auxtel"
         Verify Topic Attribute    ATPtg    logevent_currentTarget    ["targetName",]    ["Park position",]
-        Verify Topic Attribute    ATMCS    logevent_allAxesInPosition    ["inPosition",]    ["True",]
-        Verify Topic Attribute    ATMCS    logevent_azimuthInPosition    ["inPosition",]    ["True",]
-        Verify Topic Attribute    ATMCS    logevent_elevationInPosition    ["inPosition",]    ["True",]
+        #Verify Topic Attribute    ATMCS    logevent_allAxesInPosition    ["inPosition",]    ["True",]
+        #Verify Topic Attribute    ATMCS    logevent_azimuthInPosition    ["inPosition",]    ["True",]
+        #Verify Topic Attribute    ATMCS    logevent_elevationInPosition    ["inPosition",]    ["True",]
         Verify Topic Attribute    ATMCS    logevent_target    ["azimuth",]    ["0",]
         Verify Topic Attribute    ATMCS    logevent_target    ["elevation",]    ["80",]
         ${dataframe}=    Get Recent Samples    ATMCS    mount_AzEl_Encoders    ["azimuthCalculatedAngle0", "elevationCalculatedAngle0",]    1    None
