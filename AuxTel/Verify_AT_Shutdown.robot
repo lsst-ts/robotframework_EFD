@@ -52,12 +52,6 @@ Verify ATPneumatics m1VentsLimitSwitches Closed
     Should Not Be True    ${dataframe.ventsOpenedActive.values}[0]
     Should Be True    ${dataframe.ventsClosedActive.values}[0]
 
-Verify ATDome Closed
-    [Tags]    robot:continue-on-failure
-    Verify Topic Attribute    ATDome    logevent_azimuthInPosition    ["inPosition",]    ["False",]
-    Verify Topic Attribute    ATDome    logevent_dropoutDoorState    ["state",]    ["1",]    #Closed
-    Verify Topic Attribute    ATDome    logevent_mainDoorState    ["state",]    ["1",]    #Closed
-
 Verify ATMCS logevent_atMountState
     [Tags]
     Verify Topic Attribute    ATMCS    logevent_atMountState    ["state",]    ["8",]    #TRACKINGDISABLED
@@ -65,6 +59,7 @@ Verify ATMCS logevent_atMountState
 Verify AuxTel Is Parked
     [Tags]    robot:continue-on-failure
     Verify Telescope Parked    auxtel
+    Verify Dome Parked    auxtel
 
 Verify AuxTel CSCs Standby
     [Tags]    robot:continue-on-failure

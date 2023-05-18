@@ -22,11 +22,6 @@ Execute AuxTel Housekeeping
     ${scripts}    ${states}=    Execute Integration Test    auxtel_housekeeping
     Verify Scripts Completed Successfully    ${scripts}    ${states}
 
-Verify ATDome Azimuth Homed
-    [Tags]
-    Verify Topic Attribute    ATDome    logevent_azimuthState    ${homed_field}    ${homed}
-    Verify Time Delta    ATDome    command_homeAzimuth    logevent_azimuthState    20
-
 Verify ATMCS Set to Nasmyth2
     [Tags]
     Verify Topic Attribute    ATMCS    logevent_m3PortSelected    ${port_field}    ${instrument_port}
@@ -34,6 +29,7 @@ Verify ATMCS Set to Nasmyth2
 Verify AuxTel is Parked
     [Tags]
     Verify Telescope Parked    auxtel
+    Verify Dome Parked    auxtel
 
 Verify ATSpectrograph Reporting Disperser Band
     [Tags]

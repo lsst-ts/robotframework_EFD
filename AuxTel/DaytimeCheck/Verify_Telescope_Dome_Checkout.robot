@@ -17,12 +17,8 @@ Execute AuxTel Telescope and Dome Checkout Test
 
 Verify AuxTel is Parked
     [Tags]    robot:continue-on-failure
-    # ATMCS
     Verify Telescope Parked    auxtel
-    # ATDome
-    ${dataframe}=    Get Recent Samples    ATDome    logevent_azimuthState    ["homed", "homeSwitch",]    1    None
-    Should Be True    ${dataframe.homed.values}[0]
-    Log    ${dataframe.homeSwitch.values}[0]
+    Verify Dome Parked    auxtel
 
 Verify ATMCS Tracking is Enabled
     [Tags]
