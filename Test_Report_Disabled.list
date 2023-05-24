@@ -11,6 +11,7 @@ Disabled/Verify_AT_Light_Cal_Disabled.robot
 Disabled/Verify_ComCam_Disabled.robot
 Disabled/Verify_EAS_AE_Disabled.robot
 Disabled/Verify_EAS_Disabled.robot
+Disabled/Verify_GC_Disabled.robot
 Disabled/Verify_LATISS_Disabled.robot
 Disabled/Verify_MTCS_Disabled.robot
 Disabled/Verify_ObsSys1_Disabled.robot
