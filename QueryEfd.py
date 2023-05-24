@@ -11,6 +11,7 @@ from typing import Any
 from utils import dataframe
 from utils import state_enums
 from utils import csc_lists
+from utils import config_applied_event_subset
 
 from robot.api.deco import library, keyword, not_keyword
 from lsst_efd_client import EfdClient
@@ -384,10 +385,24 @@ class QueryEfd:
             if len(dataframe.otherInfo[0]) > 0:
                 events = dataframe.otherInfo[0].split(",")
                 for event in events:
-                    fq_event = "logevent_" + event
-                    event_df = self.get_recent_samples(csc, fq_event, "*", 1, index)
-                    if event_df.empty:
-                        error_list.append(f"{event} was not published.")
+                    if (
+                        csc.lower() in ("atcamera", "cccamera", "mtcamera")
+                        and self.efd_name != "summit_efd"
+                        and event
+                        not in config_applied_event_subset.config_applied_subset
+                    ):
+                        # The ATCamera, CCCamera and MTCamera CSCs only send a subset of the
+                        # total number of configurationApplied.otherInfo Events for the test stands.
+                        # Ignore the Events that are not expected.
+                        pass
+                    else:
+                        # Only make this query if the Event is expected.
+                        fq_event = "logevent_" + event
+                        event_df = self.get_recent_samples(csc, fq_event, "*", 1, index)
+                        if event_df.empty:
+                            error_list.append(
+                                f"Expected Event {event} was not published."
+                            )
             # If any errors raised, print them all.
             if len(error_list) > 0:
                 raise AssertionError("\n".join(error_list))
