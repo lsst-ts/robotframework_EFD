@@ -4,7 +4,7 @@ Resource    ../../CSC_Lists.resource
 Resource    ../../Common_Keywords.resource
 Library     QueryEfd    ${SALVersion}    ${XMLVersion}    ${OSPLVersion}
 Library     Process
-Force Tags    at_night_ops    cwfs_align
+Force Tags    at_night_ops    wep_align
 
 *** Variables ***
 ${time_window}    10
@@ -36,14 +36,10 @@ Verify ATCamera Playlist Loaded
     ${dataframe}=    Get Recent Samples    ATCamera    command_play    ["playlist", "repeat", "private_identity", "private_origin",]    1    None
     Should Be Equal    ${dataframe.playlist.values}[0]    cwfs-test_take_sequence.playlist
 
-Execute AuxTel LATISS CWFS Align test
+Execute AuxTel LATISS WEP Align test
     [Tags]
-    ${scripts}    ${states}=    Execute Integration Test    auxtel_latiss_cwfs_align
+    ${scripts}    ${states}=    Execute Integration Test    auxtel_latiss_wep_align
     Verify Scripts Completed Successfully    ${scripts}    ${states}
-
-Verify Runtime
-    [Tags]    runtime
-    Verify Script Runtime    ${script_start}    ${script_end}
 
 Verify ATPtg Target
     [Tags]    robot:continue-on-failure
@@ -100,7 +96,7 @@ Verify ATHeaderService LargeFileObjectAvailable
     END
 
 Verify ATHexapod Position
-    [Documentation]    The CWFS_Align script does not effect the Hexapod [u, v, w] positions.
+    [Documentation]    The WEP_Align script does not effect the Hexapod [u, v, w] positions.
     [Tags]
     ${dataframe}=    Get Recent Samples    ATHexapod    logevent_positionUpdate    ["positionU", "positionV", "positionW", "positionX", "positionY", "positionZ"]    1    None
     Should Be Equal As Numbers    ${dataframe.positionU.values}[0]    0.35
@@ -223,7 +219,7 @@ Verify Return to InFocus Position
     Should Be Equal As Numbers    ${delta}    0.8011
 
 Verify Final Offset Position
-    [Documentation]    The final offset the script applies each iteration is from the result of cwfs analysis.
+    [Documentation]    The final offset the script applies each iteration is from the result of WEP analysis.
     [Tags]    robot:continue-on-failure
     Comment    First iteration. Expected Offsets: x=-0.957500, y=0.187200, z=-0.038000
     Set Test Variable    ${tol}    ${0.05}

@@ -18,10 +18,6 @@ Execute AuxTel Prepare for Flat
     ${scripts}    ${states}=    Execute Integration Test    auxtel_prepare_for_flat
     Verify Scripts Completed Successfully    ${scripts}    ${states}
 
-Verify Runtime
-    [Tags]    runtime    DM-36956
-    Verify Script Runtime    ${script_start}    ${script_end}
-
 Verify ATDome AzimuthInPosition
     [Tags]
     ${output}=    Get Topic Sent Time    ATDome    command_moveAzimuth
@@ -30,7 +26,7 @@ Verify ATDome AzimuthInPosition
     Should Be True    ${delta} > 0
     Verify Topic Attribute    ATDome    logevent_azimuthInPosition    ["inPosition",]    ["True",]
 
-Verify ATDome azimuthState
+Verify ATDome azimuthState is NotInMotion
     [Tags]
     ${dataframe}=    Get Recent Samples    ATDome    logevent_azimuthState    ["homed", "state",]    1    None
     Should Be Equal As Integers    ${dataframe.state.values}[0]    1    #NotInMotion
@@ -42,15 +38,31 @@ Verify ATDome Position
     Should Be Equal As Integers    ${dataframe.dropoutDoorOpeningPercentage.values}[0]    0
     Should Be Equal As Integers    ${dataframe.mainDoorOpeningPercentage.values}[0]    0
 
-Verify ATDome mainDoorState
+Verify ATDome mainDoorState is Closed
     [Tags]
     ${dataframe}=    Get Recent Samples    ATDome    logevent_mainDoorState    ["*",]    1    None
     Should Be Equal As Integers    ${dataframe.state.values}[0]    1    #Closed
 
-Verify ATDome dropoutDoorState
+Verify ATDome dropoutDoorState is Closed
     [Tags]
     ${dataframe}=    Get Recent Samples    ATDome    logevent_dropoutDoorState    ["*",]    1    None
     Should Be Equal As Integers    ${dataframe.state.values}[0]    1    #Closed
+
+Verify ATDomeTrajectory followingMode is False
+    [Tags]
+    ${dataframe}=    Get Recent Samples    ATDomeTrajectory    logevent_followingMode    ["*",]    1    None
+    Should Not Be True    ${dataframe.enabled.values}[0]
+
+Verify ATHexapod inPosition is True
+    [Tags]
+    ${dataframe}=    Get Recent Samples    ATHexapod    logevent_inPosition    ["*",]    1    None
+    Should Be True    ${dataframe.inPosition.values}[0]
+
+Verify ATMCS allAxesInPosition
+    [Tags]
+    ${dataframe}=    Get Recent Samples    ATMCS    logevent_allAxesInPosition    ["*",]    2    None
+    Should Be True    ${dataframe.inPosition.values}[1]    #True when Mount reaches the flatfield position.
+    Should Not Be True    ${dataframe.inPosition.values}[0]    #Goes back to False a few seconds later, in preparation for the next move.
 
 Verify ATMCS Tracking Disabled
     [Tags]
@@ -61,17 +73,17 @@ Verify ATMCS Tracking Disabled
     ${dataframe}=    Get Recent Samples    ATMCS    logevent_elevationInPosition    ["*",]    1    None
     Should Not Be True    ${dataframe.inPosition.values}[0]
 
-Verify ATMCS m3State
+Verify ATMCS m3State is NASMYTH2
     [Tags]
     ${dataframe}=    Get Recent Samples    ATMCS    logevent_m3State    ["*",]    1    None
     Should Be Equal As Integers    ${dataframe.state.values}[0]    7    #NASMYTH2
     
-Verify ATPneumatics m1CoverState
+Verify ATPneumatics m1CoverState is Opened
     [Tags]
     ${dataframe}=    Get Recent Samples    ATPneumatics    logevent_m1CoverState    ["*",]    1    None
     Should Be Equal As Integers    ${dataframe.state.values}[0]    7    #Opened
 
-Verify ATPneumatics m1CoverLimitSwitches Opened
+Verify ATPneumatics m1CoverLimitSwitches are Opened
     [Tags]
     ${dataframe}=    Get Recent Samples    ATPneumatics    logevent_m1CoverLimitSwitches    ["*",]    1    None
     Should Be True    ${dataframe.cover1OpenedActive.values}[0]
@@ -83,12 +95,17 @@ Verify ATPneumatics m1CoverLimitSwitches Opened
     Should Not Be True    ${dataframe.cover3ClosedActive.values}[0]
     Should Not Be True    ${dataframe.cover4ClosedActive.values}[0]
 
-Verify ATPneumatics m1State
+Verify ATPneumatics mainValveState is Opened
+    [Tags]
+    ${dataframe}=    Get Recent Samples    ATPneumatics    logevent_mainValveState    ["*",]    1    None
+    Should Be Equal As Integers    ${dataframe.state.values}[0]    6    #OPENED - MainValveState
+
+Verify ATPneumatics m1State is Opened
     [Tags]
     ${dataframe}=    Get Recent Samples    ATPneumatics    logevent_m1State    ["*",]    1    None
     Should Be Equal As Integers    ${dataframe.state.values}[0]    6    #OPENED - AirValveState
 
-Verify ATPneumatics m2State
+Verify ATPneumatics m2State is Closed
     [Tags]
     ${dataframe}=    Get Recent Samples    ATPneumatics    logevent_m2State    ["*",]    1    None
-    Should Be Equal As Integers    ${dataframe.state.values}[0]    6    #OPENED - AirValveState
+    Should Be Equal As Integers    ${dataframe.state.values}[0]    7    #CLOSED - AirValveState

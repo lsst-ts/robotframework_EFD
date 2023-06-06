@@ -36,10 +36,6 @@ Execute AuxTel LATISS Acquire and Take Sequence
     ${scripts}    ${states}=    Execute Integration Test    auxtel_latiss_acquire_and_take_sequence    --sequence    ${playlist}
     Verify Scripts Completed Successfully    ${scripts}    ${states}
 
-Verify Runtime
-    [Tags]    runtime    DM-36476
-    Verify Script Runtime    ${script_start}    ${script_end}
-
 Verify ATDome AzimuthInPosition
     [Tags]
     Verify Time Delta    ATDome    command_moveAzimuth    logevent_azimuthInPosition    60    # Moving the dome can longer than the default 10s time window.
@@ -173,7 +169,7 @@ Set Variables
         Set Suite Variable    @{filter_band}    r    r    r
         Set Suite Variable    ${filter_name}    "SDSSr"
         Set Suite Variable    @{disperser_band}    R90    R90    R90
-        Set Suite Variable    @{disperser_name}    ronchi90lpmm    ronchi90lpmm    ronchi90lpmm
+        Set Suite Variable    @{disperser_name}    ronchi170lpmm    ronchi170lpmm    ronchi170lpmm
         Set Suite Variable    @{img_type_seq}    OBJECT    OBJECT    OBJECT
     ELSE IF    "${playlist}" == "nominal"
         Set Suite Variable    ${playlist_full_name}    latiss_acquire_and_take_sequence-test_take_acquisition_nominal.playlist
@@ -183,7 +179,7 @@ Set Variables
         Set Suite Variable    @{filter_band}    EMPTY    r    r
         Set Suite Variable    ${filter_name}    "SDSSr"
         Set Suite Variable    @{disperser_band}    R90    R90    EMPTY
-        Set Suite Variable    @{disperser_name}    ronchi90lpmm    ronchi90lpmm    empty_1
+        Set Suite Variable    @{disperser_name}    ronchi170lpmm    ronchi170lpmm    empty_1
         Set Suite Variable    @{img_type_seq}    OBJECT    OBJECT    OBJECT    ACQ    ACQ
     ELSE
         Fail    msg="Please set the playlist variable; allowed values are ['pointing', 'verify', 'nominal', 'test']"

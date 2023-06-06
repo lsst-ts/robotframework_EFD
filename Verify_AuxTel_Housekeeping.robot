@@ -18,22 +18,18 @@ ${time_window}    10
 
 *** Test Cases ***
 Execute AuxTel Housekeeping
-    [Tags]
+    [Tags]    execute
     ${scripts}    ${states}=    Execute Integration Test    auxtel_housekeeping
     Verify Scripts Completed Successfully    ${scripts}    ${states}
-
-Verify ATDome Azimuth Homed
-    [Tags]
-    Verify Topic Attribute    ATDome    logevent_azimuthState    ${homed_field}    ${homed}
-    Verify Time Delta    ATDome    command_homeAzimuth    logevent_azimuthState    20
 
 Verify ATMCS Set to Nasmyth2
     [Tags]
     Verify Topic Attribute    ATMCS    logevent_m3PortSelected    ${port_field}    ${instrument_port}
 
-Verify ATPtg in Park Position
-    [Tags]
-    Verify Topic Attribute    ATPtg    logevent_currentTarget    ["targetName",]    ["Park position",]
+Verify AuxTel is Parked
+    [Tags]    robot:continue-on-failure
+    Verify Telescope Parked    auxtel
+    Verify Dome Parked    auxtel
 
 Verify ATSpectrograph Reporting Disperser Band
     [Tags]

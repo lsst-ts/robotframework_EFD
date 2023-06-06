@@ -11,6 +11,7 @@ Standby/Verify_AT_Light_Cal_Standby.robot
 Standby/Verify_ComCam_Standby.robot
 Standby/Verify_EAS_AE_Standby.robot
 Standby/Verify_EAS_Standby.robot
+Standby/Verify_GC_Standby.robot
 Standby/Verify_LATISS_Standby.robot
 Standby/Verify_MTCS_Standby.robot
 Standby/Verify_ObsSys1_Standby.robot
