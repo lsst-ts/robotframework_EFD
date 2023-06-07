@@ -1,0 +1,8 @@
+###  Test Suite list ###
+#  Change the title of the test results
+--name AT_LATISS_Checkout
+--output at_latiss_checkout
+--skiponfailure skipped
+
+# List of test suites
+AuxTel/Daytime/Verify_LATISS_Checkout.robot
