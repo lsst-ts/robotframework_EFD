@@ -54,6 +54,13 @@ reason: IntegrationTesting
 program: IntegrationTesting
 
 
+component: ATCamera
+cmd: play
+parameters:
+  playlist: bias_dark_flat.playlist
+  repeat: False
+
+
 component: ATAOS
 cmd: enableCorrection
 parameters:
