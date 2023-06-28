@@ -11,7 +11,7 @@ ${time_window}    10
 
 *** Test Cases ***
 Execute AuxTel Reset Offsets
-    [Tags]
+    [Tags]    execute
     ${scripts}    ${states}=    Execute Integration Test    auxtel_reset_offsets
     Verify Scripts Completed Successfully    ${scripts}    ${states}
 
@@ -25,7 +25,7 @@ Verify ATAOS Corrections Enabled
     Should Be True    $dataframe.m1.values
 
 Load Camera Playlist
-    [Tags]
+    [Tags]    execute
     ${result}=    Run Process    load_camera_playlist    at    cwfs    --no-repeat
     Log Many    ${result.rc}    ${result.stdout}    ${result.stderr}
     Run Keyword If    ${result.rc} == 1    Fatal Error
@@ -37,7 +37,7 @@ Verify ATCamera Playlist Loaded
     Should Be Equal    ${dataframe.playlist.values}[0]    cwfs-test_take_sequence.playlist
 
 Execute AuxTel LATISS WEP Align test
-    [Tags]
+    [Tags]    execute
     ${scripts}    ${states}=    Execute Integration Test    auxtel_latiss_wep_align
     Verify Scripts Completed Successfully    ${scripts}    ${states}
 

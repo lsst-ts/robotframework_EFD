@@ -14,7 +14,7 @@ ${num_msgs}   5000
 
 *** Test Cases ***
 Execute LOVE Stress Test
-    [Tags]
+    [Tags]    execute
     ${scripts}    ${states}=    Execute Integration Test    love_stress_test
     Verify Scripts Completed Successfully    ${scripts}    ${states}
 

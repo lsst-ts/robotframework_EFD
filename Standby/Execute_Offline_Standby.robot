@@ -2,7 +2,7 @@
 Resource    ../Global_Vars.resource
 Resource    ../CSC_Lists.resource
 Resource    ../Common_Keywords.resource
-Force Tags    standby
+Force Tags    standby    execute
 
 *** Variables ***
 ${time_window}    10

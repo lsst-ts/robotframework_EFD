@@ -2,7 +2,7 @@
 Resource    ../Global_Vars.resource
 Resource    ../CSC_Lists.resource
 Resource    ../Common_Keywords.resource
-Force Tags    shutdown
+Force Tags    shutdown    execute
 Suite Setup    Log Many    ${STATES}[offline]
 
 *** Variables ***

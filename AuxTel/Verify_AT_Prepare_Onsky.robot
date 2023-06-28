@@ -14,7 +14,7 @@ Force Tags    auxtel_prep_onsky
 
 *** Test Cases ***
 Execute AuxTel Prepare for OnSky test
-    [Tags]
+    [Tags]    execute
     ${scripts}    ${states}=    Execute Integration Test    auxtel_prepare_for_onsky
     Verify Scripts Completed Successfully    ${scripts}    ${states}
 
