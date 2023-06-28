@@ -5,4 +5,4 @@
 --skiponfailure skipped
 
 # List of test suites
-AuxTel/Daytime/Verify_Telescope_Dome_Checkout.robot
+AuxTel/DaytimeCheck/Verify_Telescope_Dome_Checkout.robot
