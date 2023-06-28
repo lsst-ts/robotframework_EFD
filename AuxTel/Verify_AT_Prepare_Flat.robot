@@ -14,7 +14,7 @@ Force Tags    auxtel_prep_flat
 
 *** Test Cases ***
 Execute AuxTel Prepare for Flat
-    [Tags]
+    [Tags]    execute
     ${scripts}    ${states}=    Execute Integration Test    auxtel_prepare_for_flat
     Verify Scripts Completed Successfully    ${scripts}    ${states}
 

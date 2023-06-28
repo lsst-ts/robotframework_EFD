@@ -14,7 +14,7 @@ ${time_window}          10
 
 *** Test Cases ***
 Execute AuxTel Shutdown
-    [Tags]
+    [Tags]    execute
     ${scripts}    ${states}=    Execute Integration Test    auxtel_shutdown
     Verify Scripts Completed Successfully    ${scripts}    ${states}
 

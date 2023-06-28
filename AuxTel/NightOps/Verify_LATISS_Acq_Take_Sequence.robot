@@ -20,7 +20,7 @@ Verify ATAOS Corrections Enabled
     Should Be True    $dataframe.m1.values
 
 Load Camera Playlist
-    [Tags]
+    [Tags]    execute
     ${result}=    Run Process    load_camera_playlist    at    ${playlist}    --no-repeat
     Log Many    ${result.rc}    ${result.stdout}    ${result.stderr}
     Run Keyword If    ${result.rc} == 1    Fatal Error
@@ -32,7 +32,7 @@ Verify ATCamera Playlist Loaded
     Should Be Equal    ${dataframe.playlist.values}[0]    ${playlist_full_name}
 
 Execute AuxTel LATISS Acquire and Take Sequence
-    [Tags]
+    [Tags]    execute
     ${scripts}    ${states}=    Execute Integration Test    auxtel_latiss_acquire_and_take_sequence    --sequence    ${playlist}
     Verify Scripts Completed Successfully    ${scripts}    ${states}
 

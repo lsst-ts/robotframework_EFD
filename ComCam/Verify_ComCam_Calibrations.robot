@@ -12,7 +12,7 @@ ${time_window}    10
 
 *** Test Cases ***
 Load Camera Playlist
-    [Tags]
+    [Tags]    execute
     ${result}=    Run Process    load_camera_playlist    cc    master_flat    --no-repeat
     Log Many    ${result.rc}    ${result.stdout}    ${result.stderr}
     Run Keyword If    ${result.rc} == 1    Fatal Error
@@ -24,7 +24,7 @@ Verify CCCamera Playlist Loaded
     Should Be Equal    ${dataframe.playlist.values}[0]    ${playlist_full_name}
 
 Execute ComCam Flat Calibrations
-    [Tags]
+    [Tags]    execute
     ${scripts}    ${states}=    Execute Integration Test    comcam_calibrations    --calib_type    flat
     Verify Scripts Completed Successfully    ${scripts}    ${states}
 
