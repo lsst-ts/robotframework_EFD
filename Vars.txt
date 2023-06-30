@@ -1,6 +1,9 @@
 # vi:syntax=cmake 
 ##  Arguments file for testing the SAL XML definition files
 
+# Pythonpath
+--pythonpath .
+
 # Loglevel
 --loglevel TRACE:INFO
 
