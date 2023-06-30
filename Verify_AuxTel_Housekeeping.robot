@@ -29,7 +29,8 @@ Verify ATMCS Set to Nasmyth2
 Verify AuxTel is Parked
     [Tags]    robot:continue-on-failure
     Verify Telescope Parked    auxtel
-    Verify Dome Parked    auxtel
+    Comment    The Dome park process can take several seconds to finish, even though the command is complete.
+    Wait Until Keyword Succeeds    5x    strict: 2s    Verify Dome Parked    auxtel
 
 Verify ATSpectrograph Reporting Disperser Band
     [Tags]

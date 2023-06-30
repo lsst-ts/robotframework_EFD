@@ -12,7 +12,7 @@ ${time_window}          10
 
 *** Test Cases ***
 Execute AuxTel Enable ATCS
-    [Tags]
+    [Tags]    execute
     ${scripts}    ${states}=    Execute Integration Test    auxtel_enable_atcs
     Verify Scripts Completed Successfully    ${scripts}    ${states}
 

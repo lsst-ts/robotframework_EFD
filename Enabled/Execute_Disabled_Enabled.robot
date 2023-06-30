@@ -2,7 +2,7 @@
 Resource    ../Global_Vars.resource
 Resource    ../CSC_Lists.resource
 Resource    ../Common_Keywords.resource
-Force Tags    enabled
+Force Tags    enabled    execute
 
 *** Variables ***
 

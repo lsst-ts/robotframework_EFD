@@ -15,7 +15,7 @@ Force Tags    auxtel_stop
 
 *** Test Cases ***
 Execute AuxTel Stop
-    [Tags]
+    [Tags]    execute
     ${scripts}    ${states}=    Execute Integration Test    auxtel_stop
     Verify Scripts Completed Successfully    ${scripts}    ${states}
 

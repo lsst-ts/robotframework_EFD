@@ -37,9 +37,9 @@ Verify ATCamera OfflineDetailedStates
     @{second_event}=    Split String    ${second}
     Log Many    ${second_event}
     Log Many    First Substate: ${first_event}[4]
-    Should Be Equal    ${first_event}[4]    1
+    Should Be Equal    ${first_event}[4]    1    # AVAILABLE
     Log Many    Second Substate: ${second_event}[4]
-    Should Be Equal    ${second_event}[4]    2
+    Should Be Equal    ${second_event}[4]    2    # PUBLISH_ONLY
 
 Verify ATCamera OfflineDetailedStates timing
     [Tags]    latiss    detailed_states    timing
@@ -71,9 +71,9 @@ Verify CCCamera OfflineDetailedStates
     @{second_event}=    Split String    ${second}
     Log Many    ${second_event}
     Log    First Substate: ${first_event}[4]
-    Should Be Equal    ${first_event}[4]    1
+    Should Be Equal    ${first_event}[4]    1    # AVAILABLE
     Log    Second Substate: ${second_event}[4]
-    Should Be Equal    ${second_event}[4]    2
+    Should Be Equal    ${second_event}[4]    2    # PUBLISH_ONLY
 
 Verify CCCamera OfflineDetailedStates timing
     [Tags]    comcam    detailed_states    timing

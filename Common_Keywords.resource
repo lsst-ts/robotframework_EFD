@@ -55,6 +55,8 @@ Get Script Metadata
     ${script_end}=    Evaluate    $script_end.replace(tzinfo=datetime.timezone.utc)    modules=datetime
     # Log the metadata.
     Log Many    isStandard= ${dataframe.isStandard.values}    path= ${dataframe.path.values}    scriptIndex= ${dataframe.scriptSalIndex.values}    script_start= ${script_start}    script_end= ${script_end}
+    Set Suite Variable    ${script_start}
+    Set Suite Variable    ${script_end}
 
 Compare Numbers
     [Documentation]    Given two numbers, test if they are equal within a given tolerance.

@@ -12,7 +12,7 @@ ${time_window}    10
 
 *** Test Cases ***
 Execute MainTel Housekeeping
-    [Tags]
+    [Tags]    execute
     ${scripts}    ${states}=    Execute Integration Test    maintel_housekeeping
     Verify Scripts Completed Successfully    ${scripts}    ${states}
 
