@@ -24,7 +24,7 @@ Verify CCCamera Playlist Loaded
 
 Execute ComCam Image Taking Test
     [Tags]    execute
-    ${scripts}    ${states}=    Execute Integration Test    comcam_image_taking    --calib_type    flat
+    ${scripts}    ${states}=    Execute Integration Test    comcam_image_taking    flat
     Verify Scripts Completed Successfully    ${scripts}    ${states}
 
 Verify CCCamera Image Sequence
