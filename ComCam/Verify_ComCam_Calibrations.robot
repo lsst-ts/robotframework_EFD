@@ -25,7 +25,7 @@ Verify CCCamera Playlist Loaded
 
 Execute ComCam Flat Calibrations
     [Tags]    execute
-    ${scripts}    ${states}=    Execute Integration Test    comcam_calibrations    --calib_type    flat
+    ${scripts}    ${states}=    Execute Integration Test    comcam_calibrations    flat
     Verify Scripts Completed Successfully    ${scripts}    ${states}
 
 Verify MTPtg Target
