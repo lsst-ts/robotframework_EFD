@@ -15,10 +15,6 @@ Verify ATCamera Offline
     [Tags]    latiss
     Verify Summary State    ${STATES}[offline]    ATCamera
 
-Verify ATCamera SoftwareVersions
-    [Tags]    latiss    software_versions
-    Verify SoftwareVersions    ATCamera
-
 Verify ATCamera SoftwareVersions timing
     [Tags]    latiss    software_versions    timing
     Verify Time Delta    ATCamera    logevent_summaryState    logevent_softwareVersions    ${time_window}
@@ -48,10 +44,6 @@ Verify ATCamera OfflineDetailedStates timing
 Verify CCCamera Offline
     [Tags]    comcam
     Verify Summary State    ${STATES}[offline]    CCCamera
-
-Verify CCCamera SoftwareVersions
-    [Tags]    comcam    software_versions
-    Verify SoftwareVersions    CCCamera
 
 Verify CCCamera SoftwareVersions timing
     [Tags]    comcam    software_versions    timing
