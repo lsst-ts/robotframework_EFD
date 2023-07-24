@@ -464,7 +464,13 @@ class QueryEfd:
                 raise AssertionError("\n".join(error_list))
 
     @keyword
-    def verify_software_versions(self, csc: str, index: int = None) -> None:
+    def verify_software_versions(
+        self,
+        csc: str,
+        index: int = None,
+        csc_salver: str = None,
+        csc_xmlver: str = None,
+    ) -> None:
         """Fails if the dependency versions used to build the package
         do not match the expected versions.
 
@@ -474,7 +480,15 @@ class QueryEfd:
             The name of the CSC.
         index : `int`
             The index of the CSC, if applicable (default is None).
+        csc_salver : `str`
+            OPTIONAL: The SAL version used to build the CSC. Only needed if different from the default value.
+        csc_xmlver : `str`
+            OPTIONAL: The XML version used to build the CSC. Only needed if different from the default value.
         """
+        if csc_salver is None:
+            csc_salver = self.sal_version
+        if csc_xmlver is None:
+            csc_xmlver = self.xml_version
         swv_topic = "logevent_softwareVersions"
         swv_fields = [
             "private_sndStamp",

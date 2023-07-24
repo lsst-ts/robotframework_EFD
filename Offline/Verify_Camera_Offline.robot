@@ -17,7 +17,7 @@ Verify ATCamera Offline
 
 Verify ATCamera SoftwareVersions
     [Tags]    latiss    software_versions
-    Verify SoftwareVersions    ATCamera
+    Verify Software Versions    ATCamera
 
 Verify ATCamera SoftwareVersions timing
     [Tags]    latiss    software_versions    timing
@@ -51,7 +51,7 @@ Verify CCCamera Offline
 
 Verify CCCamera SoftwareVersions
     [Tags]    comcam    software_versions
-    Verify SoftwareVersions    CCCamera
+    Verify Software Versions    CCCamera
 
 Verify CCCamera SoftwareVersions timing
     [Tags]    comcam    software_versions    timing
