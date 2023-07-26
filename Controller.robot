@@ -10,13 +10,13 @@ Library     Process
 *** Test Cases ***
 # STANDBY
 Execute auxtel_offline_standby.py
-    [Tags]    auxtel    standby
+    [Tags]    auxtel    standby    execute
     ${result}=    Run Process    auxtel_offline_standby
     Log Many    ${result.rc}    ${result.stdout}    ${result.stderr}
     Wait Until Script Completes    set_summary_state.py    1    5
 
 Execute maintel_offline_standby.py
-    [Tags]    maintel    standby
+    [Tags]    maintel    standby    execute
     ${result}=    Run Process    maintel_offline_standby
     Log Many    ${result.rc}    ${result.stdout}    ${result.stderr}
     Wait Until Script Completes    set_summary_state.py    1    5
@@ -29,7 +29,7 @@ Generate Standby Report
 
 # DISABLED
 Execute auxtel_standby_disabled.py
-    [Tags]    auxtel    disabled
+    [Tags]    auxtel    disabled    execute
     ${result}=    Run Process    auxtel_standby_disabled
     Log Many    ${result.rc}    ${result.stdout}    ${result.stderr}
     # auxtel_standby_disabled runs two scripts.
@@ -37,19 +37,19 @@ Execute auxtel_standby_disabled.py
     Wait Until Script Completes    set_summary_state.py    1    5
 
 Execute eas_standby_disabled.py
-    [Tags]    eas    disabled
+    [Tags]    eas    disabled    execute
     ${result}=    Run Process    eas_standby_disabled
     Log Many    ${result.rc}    ${result.stdout}    ${result.stderr}
     Wait Until Script Completes    set_summary_state.py    1    5
 
 Execute gencam_standby_disabled.py
-    [Tags]    gencam    disabled
+    [Tags]    gencam    disabled    execute
     ${result}=    Run Process    gencam_standby_disabled
     Log Many    ${result.rc}    ${result.stdout}    ${result.stderr}
     Wait Until Script Completes    set_summary_state.py    1    5
 
 Execute maintel_standby_disabled.py
-    [Tags]    maintel    disabled
+    [Tags]    maintel    disabled    execute
     ${result}=    Run Process    maintel_standby_disabled
     Log Many    ${result.rc}    ${result.stdout}    ${result.stderr}
     # maintel_standby_disabled runs two scripts.
@@ -57,7 +57,7 @@ Execute maintel_standby_disabled.py
     Wait Until Script Completes    set_summary_state.py    1    5
 
 Execute obssys2_standby_disabled.py
-    [Tags]    disabled
+    [Tags]    disabled    execute
     ${result}=    Run Process    obssys2_standby_disabled
     Log Many    ${result.rc}    ${result.stdout}    ${result.stderr}
     Wait Until Script Completes    set_summary_state.py    1    5
@@ -70,7 +70,7 @@ Generate Disabled Report
 
 # ENABLED
 Execute auxtel_disabled_enabled.py
-    [Tags]    auxtel    enabled
+    [Tags]    auxtel    enabled    execute
     ${result}=    Run Process    auxtel_disabled_enabled
     Log Many    ${result.rc}    ${result.stdout}    ${result.stderr}
     # auxtel_disabled_enabled runs two scripts.
@@ -78,19 +78,19 @@ Execute auxtel_disabled_enabled.py
     Wait Until Script Completes    set_summary_state.py    1    5
 
 Execute eas_disabled_enabled.py
-    [Tags]    eas    enabled
+    [Tags]    eas    enabled    execute
     ${result}=    Run Process    eas_disabled_enabled
     Log Many    ${result.rc}    ${result.stdout}    ${result.stderr}
     Wait Until Script Completes    set_summary_state.py    1    5
 
 Execute gencam_disabled_enabled.py
-    [Tags]    gencam    enabled
+    [Tags]    gencam    enabled    execute
     ${result}=    Run Process    gencam_disabled_enabled
     Log Many    ${result.rc}    ${result.stdout}    ${result.stderr}
     Wait Until Script Completes    set_summary_state.py    1    5
 
 Execute maintel_disabled_enabled.py
-    [Tags]    maintel    enabled
+    [Tags]    maintel    enabled    execute
     ${result}=    Run Process    maintel_disabled_enabled
     Log Many    ${result.rc}    ${result.stdout}    ${result.stderr}
     # maintel_disabled_enabled runs two scripts.
@@ -98,7 +98,7 @@ Execute maintel_disabled_enabled.py
     Wait Until Script Completes    set_summary_state.py    1    5
 
 Execute obssys2_disabled_enabled.py
-    [Tags]    enabled
+    [Tags]    enabled    execute
     ${result}=    Run Process    obssys2_disabled_enabled
     Log Many    ${result.rc}    ${result.stdout}    ${result.stderr}
     Wait Until Script Completes    set_summary_state.py    1    5

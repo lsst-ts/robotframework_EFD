@@ -7,6 +7,32 @@ Library     Collections
 Force Tags    eas
 
 *** Variables ***
+${dimm1_salver}    ${SALVersion}
+${dimm1_xmlver}    ${XMLVersion}
+${dimm2_salver}    ${SALVersion}
+${dimm2_xmlver}    ${XMLVersion}
+${ess1_salver}     ${SALVersion}
+${ess1_xmlver}     ${XMLVersion}
+${ess101_salver}    ${SALVersion}
+${ess101_xmlver}    ${XMLVersion}
+${ess102_salver}    ${SALVersion}
+${ess102_xmlver}    ${XMLVersion}
+${ess103_salver}    ${SALVersion}
+${ess103_xmlver}    ${XMLVersion}
+${ess104_salver}    ${SALVersion}
+${ess104_xmlver}    ${XMLVersion}
+${ess105_salver}    ${SALVersion}
+${ess105_xmlver}    ${XMLVersion}
+${ess201_salver}    ${SALVersion}
+${ess201_xmlver}    ${XMLVersion}
+${ess202_salver}    ${SALVersion}
+${ess202_xmlver}    ${XMLVersion}
+${ess203_salver}    ${SALVersion}
+${ess203_xmlver}    ${XMLVersion}
+${ess204_salver}    ${SALVersion}
+${ess204_xmlver}    ${XMLVersion}
+${ess301_salver}    ${SALVersion}
+${ess301_xmlver}    ${XMLVersion}
 ${time_window}    10
 
 *** Test Cases ***
@@ -17,7 +43,7 @@ Verify DIMM:1 Standby
 
 Verify DIMM:1 SoftwareVersions
     [Tags]    software_versions
-    Verify SoftwareVersions    DIMM    index=1
+    Verify Software Versions    DIMM    index=1    csc_salver=${dimm1_salver}    csc_xmlver=${dimm1_xmlver}
 
 Verify DIMM:1 SoftwareVersions timing
     [Tags]    software_versions    timing
@@ -38,7 +64,7 @@ Verify DIMM:2 Standby
 
 Verify DIMM:2 SoftwareVersions
     [Tags]    software_versions
-    Verify SoftwareVersions    DIMM    index=2
+    Verify Software Versions    DIMM    index=2    csc_salver=${dimm2_salver}    csc_xmlver=${dimm2_xmlver}
 
 Verify DIMM:2 SoftwareVersions timing
     [Tags]    software_versions    timing
@@ -59,7 +85,7 @@ Verify ESS:1 Standby
 
 Verify ESS:1 SoftwareVersions
     [Tags]    software_versions
-    Verify SoftwareVersions    ESS    index=1
+    Verify Software Versions    ESS    index=1    csc_salver=${ess1_salver}    csc_xmlver=${ess1_xmlver}
 
 Verify ESS:1 SoftwareVersions timing
     [Tags]    software_versions    timing
@@ -80,7 +106,7 @@ Verify ESS:101 Standby
 
 Verify ESS:101 SoftwareVersions
     [Tags]    software_versions
-    Verify SoftwareVersions    ESS    index=101
+    Verify Software Versions    ESS    index=101    csc_salver=${ess101_salver}    csc_xmlver=${ess101_xmlver}
     
 Verify ESS:101 SoftwareVersions timing
     [Tags]    software_versions    timing
@@ -101,7 +127,7 @@ Verify ESS:102 Standby
 
 Verify ESS:102 SoftwareVersions
     [Tags]    software_versions
-    Verify SoftwareVersions    ESS    index=102
+    Verify Software Versions    ESS    index=102    csc_salver=${ess102_salver}    csc_xmlver=${ess102_xmlver}
     
 Verify ESS:102 SoftwareVersions timing
     [Tags]    software_versions    timing
@@ -122,7 +148,7 @@ Verify ESS:103 Standby
 
 Verify ESS:103 SoftwareVersions
     [Tags]    software_versions
-    Verify SoftwareVersions    ESS    index=103
+    Verify Software Versions    ESS    index=103    csc_salver=${ess103_salver}    csc_xmlver=${ess103_xmlver}
     
 Verify ESS:103 SoftwareVersions timing
     [Tags]    software_versions    timing
@@ -143,7 +169,7 @@ Verify ESS:104 Standby
 
 Verify ESS:104 SoftwareVersions
     [Tags]    software_versions
-    Verify SoftwareVersions    ESS    index=104
+    Verify Software Versions    ESS    index=104    csc_salver=${ess104_salver}    csc_xmlver=${ess104_xmlver}
     
 Verify ESS:104 SoftwareVersions timing
     [Tags]    software_versions    timing
@@ -164,7 +190,7 @@ Verify ESS:105 Standby
     
 Verify ESS:105 SoftwareVersions
     [Tags]    software_versions
-    Verify SoftwareVersions    ESS    index=105
+    Verify Software Versions    ESS    index=105    csc_salver=${ess105_salver}    csc_xmlver=${ess105_xmlver}
     
 Verify ESS:105 SoftwareVersions timing
     [Tags]    software_versions    timing
@@ -185,7 +211,7 @@ Verify ESS:201 Standby
 
 Verify ESS:201 SoftwareVersions
     [Tags]    software_versions
-    Verify SoftwareVersions    ESS    index=201
+    Verify Software Versions    ESS    index=201    csc_salver=${ess201_salver}    csc_xmlver=${ess201_xmlver}
 
 Verify ESS:201 SoftwareVersions timing
     [Tags]    software_versions    timing
@@ -206,7 +232,7 @@ Verify ESS:202 Standby
 
 Verify ESS:202 SoftwareVersions
     [Tags]    software_versions
-    Verify SoftwareVersions    ESS    index=202
+    Verify Software Versions    ESS    index=202    csc_salver=${ess202_salver}    csc_xmlver=${ess202_xmlver}
 
 Verify ESS:202 SoftwareVersions timing
     [Tags]    software_versions    timing
@@ -227,7 +253,7 @@ Verify ESS:203 Standby
 
 Verify ESS:203 SoftwareVersions
     [Tags]    software_versions
-    Verify SoftwareVersions    ESS    index=203
+    Verify Software Versions    ESS    index=203    csc_salver=${ess203_salver}    csc_xmlver=${ess203_xmlver}
 
 Verify ESS:203 SoftwareVersions timing
     [Tags]    software_versions    timing
@@ -248,7 +274,7 @@ Verify ESS:204 Standby
 
 Verify ESS:204 SoftwareVersions
     [Tags]    software_versions
-    Verify SoftwareVersions    ESS    index=204
+    Verify Software Versions    ESS    index=204    csc_salver=${ess204_salver}    csc_xmlver=${ess204_xmlver}
 
 Verify ESS:204 SoftwareVersions timing
     [Tags]    software_versions    timing
@@ -269,7 +295,7 @@ Verify ESS:301 Standby
 
 Verify ESS:301 SoftwareVersions
     [Tags]    software_versions
-    Verify SoftwareVersions    ESS    index=301
+    Verify Software Versions    ESS    index=301    csc_salver=${ess301_salver}    csc_xmlver=${ess301_xmlver}
 
 Verify ESS:301 SoftwareVersions timing
     [Tags]    software_versions    timing

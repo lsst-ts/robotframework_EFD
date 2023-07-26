@@ -29,7 +29,13 @@ Verify ATMCS Set to Nasmyth2
 Verify AuxTel is Parked
     [Tags]    robot:continue-on-failure
     Verify Telescope Parked    auxtel
-    Verify Dome Parked    auxtel
+    Comment    The Dome park process can take several seconds to finish, even though the command is complete.
+    Wait Until Keyword Succeeds    5x    strict: 2s    Verify Dome Parked    auxtel
+
+Verify Tracking is Disabled
+    [Tags]
+    ${dataframe}=    Get Recent Samples    ATMCS    logevent_atMountState    ["*",]    1    None
+    Should Be Equal As Integers    ${dataframe.state.values}[0]    8    #TrackingDisabled
 
 Verify ATSpectrograph Reporting Disperser Band
     [Tags]

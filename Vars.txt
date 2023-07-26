@@ -1,6 +1,9 @@
 # vi:syntax=cmake 
 ##  Arguments file for testing the SAL XML definition files
 
+# Pythonpath
+--pythonpath .
+
 # Loglevel
 --loglevel TRACE:INFO
 
@@ -16,5 +19,5 @@
 --reportbackground #61C4CD:#61C4CD
 
 #  Redefine default variables
---variable XMLVersion:17.0.0
---variable SALVersion:7.3.0
+--variable XMLVersion:18.0.0
+--variable SALVersion:7.4.0
