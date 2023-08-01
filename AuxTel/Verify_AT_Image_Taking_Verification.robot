@@ -20,7 +20,7 @@ Verify ATCamera Playlist Loaded
     [Documentation]    Playlist should already be loaded, ensure nothing was changed prior to running this script.
     [Tags]
     ${dataframe}=    Get Recent Samples    ATCamera    command_play    ["playlist", "repeat", "private_identity", "private_origin",]    1    None
-    Should Be Equal    ${dataframe.playlist.values}[0]    bias_dark_flat.playlist
+    Should Be Equal    ${dataframe.playlist.values}[0]    bias_dark_flat
 
 Execute AuxTel Image Taking Test
     [Tags]    execute

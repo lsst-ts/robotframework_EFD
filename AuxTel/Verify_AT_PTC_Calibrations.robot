@@ -90,7 +90,7 @@ Verify ATHeaderService LargeFileObjectAvailable
 Set Variables
     [Documentation]    The sequence length is defined by the number of exposures, num_images.
     ...    The img_type_seq is defined by the sequence of image types, in reverse order (dataframes are in time-descending order).
-    Set Suite Variable    ${playlist_full_name}    bias_dark_ptc.playlist
+    Set Suite Variable    ${playlist_full_name}    bias_dark_ptc
     # Image type.
     Set Suite Variable    ${num_images}    60    # 10 Bias + 10 Dark + 40 Flat
     @{n_flat}=    Evaluate    ["FLAT"] * 10
