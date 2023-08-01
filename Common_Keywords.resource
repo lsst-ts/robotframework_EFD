@@ -43,6 +43,12 @@ Verify Scripts Completed Successfully
         END
     END
 
+Check If Failed
+    [Documentation]    This keyword checks if the ${state_failed} variable is True, meaning that some number of CSCs failed
+    ...    the State transitions tests. Since this is the case, the remaining tests are unlikely to succeed, so just stop 
+    ...    any further test execution.
+    Run Keyword If    ${state_failed}    Fatal Error    msg="One or more CSCs failed the State transitions."
+
 Get Script Metadata
     [Documentation]    Capture script metadata, like script index and start time. Ensure script finished successfully.
     [Arguments]    ${script_index}
