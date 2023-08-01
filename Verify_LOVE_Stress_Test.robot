@@ -6,6 +6,7 @@ Library     QueryEfd    ${SALVersion}    ${XMLVersion}    ${OSPLVersion}
 Library     Collections
 Library     String
 Force Tags    love_stress_test
+Suite Setup    Check If Failed
 
 *** Variables ***
 ${remotes}    26

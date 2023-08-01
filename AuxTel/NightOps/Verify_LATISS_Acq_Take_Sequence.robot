@@ -5,7 +5,7 @@ Resource    ../../Common_Keywords.resource
 Library     QueryEfd    ${SALVersion}    ${XMLVersion}    ${OSPLVersion}
 Library     Collections
 Force Tags    at_night_ops    acq_take_seq
-Suite Setup    Set Variables    ${playlist}
+Suite Setup    Run Keywords    Check If Failed    Set Variables    ${playlist}
 
 *** Variables ***
 ${time_window}    10

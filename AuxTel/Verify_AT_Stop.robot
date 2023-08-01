@@ -5,6 +5,7 @@ Resource    ../Common_Keywords.resource
 Library     QueryEfd    ${SALVersion}    ${XMLVersion}    ${OSPLVersion}
 Library     Collections
 Force Tags    auxtel_stop
+Suite Setup    Check If Failed
 
 *** Variables ***
 @{azimuthInPosition}    inPosition

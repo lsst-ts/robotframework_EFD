@@ -4,6 +4,7 @@ Resource    CSC_Lists.resource
 Resource    Common_Keywords.resource
 Library     QueryEfd    ${SALVersion}    ${XMLVersion}    ${OSPLVersion}
 Force Tags    athousekeeping
+Suite Setup    Check If Failed
 
 *** Variables ***
 @{homed_field}    homed

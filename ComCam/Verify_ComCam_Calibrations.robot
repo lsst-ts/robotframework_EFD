@@ -5,7 +5,7 @@ Resource    ../Common_Keywords.resource
 Library     QueryEfd    ${SALVersion}    ${XMLVersion}    ${OSPLVersion}
 Library     Collections
 Force Tags    cc_calibrations
-Suite Setup    Set Variables
+Suite Setup    Run Keywords    Check If Failed    Set Variables
 
 *** Variables ***
 ${time_window}    10
