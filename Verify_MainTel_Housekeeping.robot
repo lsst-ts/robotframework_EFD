@@ -4,6 +4,7 @@ Resource    CSC_Lists.resource
 Resource    Common_Keywords.resource
 Library     QueryEfd    ${SALVersion}    ${XMLVersion}    ${OSPLVersion}
 Force Tags    mthousekeeping
+Suite Setup    Check If Failed
 
 *** Variables ***
 @{in_position_field}    inPosition

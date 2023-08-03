@@ -5,6 +5,7 @@ Resource    ../../Common_Keywords.resource
 Library     QueryEfd    ${SALVersion}    ${XMLVersion}    ${OSPLVersion}
 Library     Process
 Force Tags    at_telescope_dome_checkout
+Suite Setup    Check If Failed
 
 *** Variables ***
 ${time_window}    10

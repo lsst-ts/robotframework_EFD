@@ -5,6 +5,7 @@ Resource    ../Common_Keywords.resource
 Library     QueryEfd    ${SALVersion}    ${XMLVersion}    ${OSPLVersion}
 Library     Process
 Force Tags    image_taking_verification
+Suite Setup    Check If Failed
 
 *** Variables ***
 ${time_window}    10
