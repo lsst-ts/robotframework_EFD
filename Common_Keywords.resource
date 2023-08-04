@@ -1,5 +1,6 @@
 *** Settings ***
-Library    QueryEfd    ${SALVersion}    ${XMLVersion}    ${OSPLVersion}
+Library    QueryEfd    ${SALVersion}    ${XMLVersion}    ${OSPLVersion}    ${env_efd}
+Library    Process
 Library    Collections
 Library    DateTime
 Library    OperatingSystem
