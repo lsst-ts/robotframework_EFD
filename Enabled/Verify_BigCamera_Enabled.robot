@@ -9,15 +9,15 @@ Suite Setup   Set Environment Values
 
 *** Test Cases ***
 Verify BigCamera Enabled
-    [Tags]    comcam
+    [Tags]    bigcamera
     Verify Summary State    ${STATES}[enabled]    ${BigCamera}
 
 Verify OODS Enabled
-    [Tags]    comcam
+    [Tags]    bigcamera
     Verify Summary State    ${STATES}[enabled]    ${OODS}
 
 Verify HeaderService Enabled
-    [Tags]    comcam
+    [Tags]    bigcamera
     Verify Summary State    ${STATES}[enabled]    ${HeadServ}
 
 *** Keywords ***

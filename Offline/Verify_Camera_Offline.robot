@@ -46,19 +46,19 @@ Verify ATCamera OfflineDetailedStates timing
     Verify Time Delta    ATCamera    logevent_summaryState    ${offdet_topic}    ${time_window}
 
 Verify CCCamera Offline
-    [Tags]    comcam
+    [Tags]    bigcamera
     Verify Summary State    ${STATES}[offline]    CCCamera
 
 Verify CCCamera SoftwareVersions
-    [Tags]    comcam    software_versions
+    [Tags]    bigcamera    software_versions
     Verify Software Versions    CCCamera
 
 Verify CCCamera SoftwareVersions timing
-    [Tags]    comcam    software_versions    timing
+    [Tags]    bigcamera    software_versions    timing
     Verify Time Delta    CCCamera    logevent_summaryState    logevent_softwareVersions    ${time_window}
 
 Verify CCCamera OfflineDetailedStates
-    [Tags]    comcam
+    [Tags]    bigcamera
     Log Many    CCCamera    ${offdet_topic}   ${offdet_fields}
     ${output}=    Get Recent Samples    CCCamera    ${offdet_topic}   ${offdet_fields}    2
     ${output}=    Convert to String    ${output}
@@ -76,5 +76,5 @@ Verify CCCamera OfflineDetailedStates
     Should Be Equal    ${second_event}[4]    2    # PUBLISH_ONLY
 
 Verify CCCamera OfflineDetailedStates timing
-    [Tags]    comcam    detailed_states    timing
+    [Tags]    bigcamera    detailed_states    timing
     Verify Time Delta    CCCamera    logevent_summaryState    ${offdet_topic}    ${time_window}
