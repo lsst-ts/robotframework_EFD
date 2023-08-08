@@ -2,8 +2,6 @@
 Resource    ../Global_Vars.resource
 Resource    ../CSC_Lists.resource
 Resource    ../Common_Keywords.resource
-Library     QueryEfd    ${SALVersion}    ${XMLVersion}    ${OSPLVersion}
-Library     Collections
 Force Tags    enabled
 
 *** Variables ***
