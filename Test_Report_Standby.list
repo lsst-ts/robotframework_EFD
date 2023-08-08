@@ -8,7 +8,7 @@
 Standby/Execute_Offline_Standby.robot
 Standby/Verify_ATCS_Standby.robot
 Standby/Verify_AT_Light_Cal_Standby.robot
-Standby/Verify_ComCam_Standby.robot
+Standby/Verify_BigCamera_Standby.robot
 Standby/Verify_EAS_AE_Standby.robot
 Standby/Verify_EAS_Standby.robot
 Standby/Verify_GC_Standby.robot
