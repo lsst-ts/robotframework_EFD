@@ -507,15 +507,15 @@ class QueryEfd:
         ospl_ver = dataframe.openSpliceVersion[0]
         csc_ver = dataframe.cscVersion[0]
         print(
-            f"*TRACE*Expected: SALVersion: {self.sal_version}, XMLVersion: {self.xml_version}, OSPLVersion: {self.ospl_version}",
+            f"*TRACE*Expected: SALVersion: {csc_salver}, XMLVersion: {csc_xmlver}, OSPLVersion: {self.ospl_version}",
             f"\n  Actual: SALVersion: {sal_ver}, XMLVersion: {xml_ver}, OSPLVersion: {ospl_ver}, CSCVersion: {csc_ver}",
         )
         # Test the various versions, collect error messages in a list,
         # and print out all errors, if present.
         error_list = []
-        if sal_ver != self.sal_version:
+        if sal_ver != csc_salver:
             error_list.append(f"Bad SAL Version: {sal_ver}")
-        if xml_ver != self.xml_version:
+        if xml_ver != csc_xmlver:
             error_list.append(f"Bad XML Version: {xml_ver}")
         if ospl_ver != self.ospl_version:
             error_list.append(f"Bad OSPL Version: {ospl_ver}")
