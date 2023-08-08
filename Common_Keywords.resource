@@ -127,3 +127,39 @@ Verify Dome Parked
     ELSE
         Log    "AttributeError: expecting one of [auxtel, maintel]."
     END
+
+Set EFD Values
+    [Documentation]    Define the BigCamera specific variable values.
+    IF    "${env_efd}" == "tucson_teststand_efd"
+        Set Suite Variable    \${BigCamera}    ComCam
+        Set Suite Variable    \${OODS}    CCOODS
+        Set Suite Variable    \${HeadServ}    CCHeaderService
+        Set Suite Variable    \${OcpsIndex}    2
+        IF    "Standby" in "${SUITE NAME}"
+            Set Suite Variable    \${camera_salver}    ${cccamera_salver}
+            Set Suite Variable    \${camera_xmlver}    ${cccamera_xmlver}
+            Set Suite Variable    \${headerservice_salver}    ${ccheaderservice_salver}
+            Set Suite Variable    \${headerservice_xmlver}    ${ccheaderservice_xmlver}
+            Set Suite Variable    \${ocps_salver}    ${ocps2_salver}
+            Set Suite Variable    \${ocps_xmlver}    ${ocps2_xmlver}
+            Set Suite Variable    \${oods_salver}    ${ccoods_salver}
+            Set Suite Variable    \${oods_xmlver}    ${ccoods_xmlver}
+        END
+    ELSE IF    "${env_efd}" == "base_efd"
+        Set Suite Variable    \${BigCamera}    LSSTCam
+        Set Suite Variable    \${OODS}    MTOODS
+        Set Suite Variable    \${HeadServ}    MTHeaderService
+        Set Suite Variable    \${OcpsIndex}    3
+        IF    "Standby" in "${SUITE NAME}"
+            Set Suite Variable    \${camera_salver}    ${mtcamera_salver}
+            Set Suite Variable    \${camera_xmlver}    ${mtcamera_xmlver}
+            Set Suite Variable    \${oods_salver}    ${mtoods_salver}
+            Set Suite Variable    \${oods_xmlver}    ${mtoods_xmlver}
+            Set Suite Variable    \${headerservice_salver}    ${mtheaderservice_salver}
+            Set Suite Variable    \${headerservice_xmlver}    ${mtheaderservice_xmlver}
+            Set Suite Variable    \${ocps_salver}    ${ocps3_salver}
+            Set Suite Variable    \${ocps_xmlver}    ${ocps3_xmlver}
+        END
+    ELSE
+        Fail    msg="Please set the env_efd variable; allowed values are ['tucson_teststand_efd', 'base_efd']"
+    END
