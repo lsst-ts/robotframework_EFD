@@ -2,8 +2,8 @@
 Resource    ../Global_Vars.resource
 Resource    ../CSC_Lists.resource
 Resource    ../Common_Keywords.resource
-Force Tags    bigcam
-Suite Setup   Set Environment Values
+Force Tags    disabled    bigcamera
+Suite Setup   Set EFD Values
 
 *** Variables ***
 ${time_window}    10
@@ -11,7 +11,7 @@ ${time_window}    10
 *** Test Cases ***
 #BigCamera
 Verify BigCamera Disabled
-    [Tags]    disabled
+    [Tags]
     Verify Summary State    ${STATES}[disabled]    BigCamera
 
 Verify BigCamera ConfigurationApplied Event
@@ -24,7 +24,7 @@ Verify BigCamera ConfigurationApplied timing
 
 #OODS
 Verify OODS Disabled
-    [Tags]    disabled
+    [Tags]
     Verify Summary State    ${STATES}[disabled]    ${OODS}
 
 Verify OODS ConfigurationApplied Event
@@ -33,24 +33,22 @@ Verify OODS ConfigurationApplied Event
 
 #HeaderService
 Verify HeaderService Disabled
-    [Tags]    disabled
+    [Tags]
     Verify Summary State    ${STATES}[disabled]    ${HeadServ}
 
 Verify HeaderService ConfigurationApplied Event
     [Tags]    config_applied
     Verify ConfigurationApplied    ${HeadServ}
 
-*** Keywords ***
-Set Environment Values
-    [Documentation]    Define the BigCamera specific variable values.  ComCam for TTS and LSSTCam for BTS.
-    IF    "${env_efd}" == "tucson_teststand_efd"
-        Set Suite Variable    \${BigCamera}    ComCam
-        Set Suite Variable    \${OODS}    CCOODS
-        Set Suite Variable    \${HeadServ}    CCHeaderService
-    ELSE IF    "${env_efd}" == "base_efd"
-        Set Suite Variable    \${BigCamera}    LSSTCam
-        Set Suite Variable    \${OODS}    MTOODS
-        Set Suite Variable    \${HeadServ}    MTHeaderService
-    ELSE
-        Fail    msg="Please set the env_efd variable; allowed values are ['tucson_teststand_efd', 'base_efd']"
-    END
+#OCPS:2||3
+Verify OCPS:2||3 Disabled
+    [Tags]
+    Verify Summary State    ${STATES}[disabled]    OCPS:${OcpsIndex}
+
+Verify OCPS:2||3 ConfigurationApplied Event
+    [Tags]    config_applied
+    Verify ConfigurationApplied    OCPS    index=${OcpsIndex}
+
+Verify OCPS:2||3 ConfigurationApplied timing
+    [Tags]    config_applied    timing
+    Verify Time Delta    OCPS    logevent_summaryState    logevent_configurationApplied    ${time_window}    index=${OcpsIndex}

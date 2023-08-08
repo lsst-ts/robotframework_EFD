@@ -24,8 +24,3 @@ Verify OCPS:1 Shutdown
     [Tags]    obsys2
     Verify Shutdown Process    OCPS    index=1
     Verify Time Delta    OCPS    ${topic_1}    ${topic_2}    ${time_window}    index=1
-
-Verify OCPS:2 Shutdown
-    [Tags]    obsys2
-    Verify Shutdown Process    OCPS    index=2
-    Verify Time Delta    OCPS    ${topic_1}    ${topic_2}    ${time_window}    index=2

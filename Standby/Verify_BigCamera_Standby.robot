@@ -2,8 +2,8 @@
 Resource    ../Global_Vars.resource
 Resource    ../CSC_Lists.resource
 Resource    ../Common_Keywords.resource
-Force Tags    bigcam
-Suite Setup   Set Environment Values
+Force Tags    standby    bigcamera
+Suite Setup   Set EFD Values
 
 *** Variables ***
 ${cccamera_salver}    ${SALVersion}
@@ -18,12 +18,16 @@ ${mtoods_salver}    ${SALVersion}
 ${mtoods_xmlver}    ${XMLVersion}
 ${mtheaderservice_salver}    ${SALVersion}
 ${mtheaderservice_xmlver}    ${XMLVersion}
+${ocps2_salver}    ${SALVersion}
+${ocps2_xmlver}    ${XMLVersion}
+${ocps3_salver}    ${SALVersion}
+${ocps3_xmlver}    ${XMLVersion}
 ${time_window}    10
 
 *** Test Cases ***
 #BigCamera
 Verify BigCamera Standby
-    [Tags]    standby
+    [Tags]
     Verify Summary State    ${STATES}[standby]    ${BigCamera}
     
 Verify BigCamera SoftwareVersions
@@ -44,7 +48,7 @@ Verify BigCamera ConfigurationsAvailable timing
 
 #OODS
 Verify OODS Standby
-    [Tags]    standby
+    [Tags]
     Verify Summary State    ${STATES}[standby]    ${OODS}
 
 Verify OODS SoftwareVersions
@@ -61,7 +65,7 @@ Verify OODS ConfigurationsAvailable Event
 
 #HeaderService
 Verify HeaderService Standby
-    [Tags]    standby
+    [Tags]
     Verify Summary State    ${STATES}[standby]    ${HeadServ}
 
 Verify HeaderService ConfigurationsAvailable Event
@@ -76,29 +80,23 @@ Verify HeaderService SoftwareVersions timing
     [Tags]    software_versions    timing
     Verify Time Delta    ${HeadServ}    logevent_summaryState    logevent_softwareVersions    ${time_window}
 
-*** Keywords ***
-Set Environment Values
-    [Documentation]    Define the BigCamera specific variable values.  ComCam for TTS and LSSTCam for BTS.
-    IF    "${env_efd}" == "tucson_teststand_efd"
-        Set Suite Variable    \${BigCamera}    ComCam
-        Set Suite Variable    \${camera_salver}    ${cccamera_salver}
-        Set Suite Variable    \${camera_xmlver}    ${cccamera_xmlver}
-        Set Suite Variable    \${OODS}    CCOODS
-        Set Suite Variable    \${oods_salver}    ${ccoods_salver}
-        Set Suite Variable    \${oods_xmlver}    ${ccoods_xmlver}
-        Set Suite Variable    \${HeadServ}    CCHeaderService
-        Set Suite Variable    \${headerservice_salver}    ${ccheaderservice_salver}
-        Set Suite Variable    \${headerservice_xmlver}    ${ccheaderservice_xmlver}
-    ELSE IF    "${env_efd}" == "base_efd"
-        Set Suite Variable    \${BigCamera}    LSSTCam
-        Set Suite Variable    \${camera_salver}    ${mtcamera_salver}
-        Set Suite Variable    \${camera_xmlver}    ${mtcamera_xmlver}
-        Set Suite Variable    \${OODS}    MTOODS
-        Set Suite Variable    \${oods_salver}    ${mtoods_salver}
-        Set Suite Variable    \${oods_xmlver}    ${mtoods_xmlver}
-        Set Suite Variable    \${HeadServ}    MTHeaderService
-        Set Suite Variable    \${headerservice_salver}    ${mtheaderservice_salver}
-        Set Suite Variable    \${headerservice_xmlver}    ${mtheaderservice_xmlver}
-    ELSE
-        Fail    msg="Please set the env_efd variable; allowed values are ['tucson_teststand_efd', 'base_efd']"
-    END
+#OCPS:2||3
+Verify OCPS:2||3 Standby
+    [Tags]
+    Verify Summary State    ${STATES}[standby]    OCPS:${OcpsIndex}
+
+Verify OCPS:2||3 SoftwareVersions
+    [Tags]    software_versions
+    Verify SoftwareVersions    OCPS    index=${OcpsIndex}    csc_salver=${ocps_salver}    csc_xmlver=${ocps_xmlver}
+
+Verify OCPS:2||3 SoftwareVersions timing
+    [Tags]    software_versions    timing
+    Verify Time Delta    OCPS    logevent_summaryState    logevent_softwareVersions    ${time_window}    index=${OcpsIndex}
+
+Verify OCPS:2||3 ConfigurationsAvailable Event
+    [Tags]    config_available
+    Verify ConfigurationsAvailable    OCPS    index=${OcpsIndex}
+
+Verify OCPS:2||3 ConfigurationsAvailable timing
+    [Tags]    config_available    timing
+    Verify Time Delta    OCPS    logevent_summaryState    logevent_configurationsAvailable    ${time_window}    index=${OcpsIndex}
