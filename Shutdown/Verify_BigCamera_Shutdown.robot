@@ -23,8 +23,8 @@ Verify OODS Shutdown
 
 Verify HeaderService Shutdown
     [Tags]
-    Verify Shutdown Process    ${HeadServ}
-    Verify Time Delta    ${HeadServ}    ${topic_1}    ${topic_2}    ${time_window}
+    Verify Shutdown Process    ${HeaderService}
+    Verify Time Delta    ${HeaderService}    ${topic_1}    ${topic_2}    ${time_window}
 
 Verify OCPS:2||3 Shutdown
     [Tags]

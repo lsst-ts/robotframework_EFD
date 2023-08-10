@@ -34,11 +34,11 @@ Verify OODS ConfigurationApplied Event
 #HeaderService
 Verify HeaderService Disabled
     [Tags]
-    Verify Summary State    ${STATES}[disabled]    ${HeadServ}
+    Verify Summary State    ${STATES}[disabled]    ${HeaderService}
 
 Verify HeaderService ConfigurationApplied Event
     [Tags]    config_applied
-    Verify ConfigurationApplied    ${HeadServ}
+    Verify ConfigurationApplied    ${HeaderService}
 
 #OCPS:2||3
 Verify OCPS:2||3 Disabled

@@ -66,19 +66,19 @@ Verify OODS ConfigurationsAvailable Event
 #HeaderService
 Verify HeaderService Standby
     [Tags]
-    Verify Summary State    ${STATES}[standby]    ${HeadServ}
+    Verify Summary State    ${STATES}[standby]    ${HeaderService}
 
 Verify HeaderService ConfigurationsAvailable Event
     [Tags]    config_available
-    Verify ConfigurationsAvailable    ${HeadServ}
+    Verify ConfigurationsAvailable    ${HeaderService}
 
 Verify HeaderService SoftwareVersions
     [Tags]    software_versions
-    Verify Software Versions    ${HeadServ}    csc_salver=${headerservice_salver}    csc_xmlver=${headerservice_xmlver}
+    Verify Software Versions    ${HeaderService}    csc_salver=${headerservice_salver}    csc_xmlver=${headerservice_xmlver}
 
 Verify HeaderService SoftwareVersions timing
     [Tags]    software_versions    timing
-    Verify Time Delta    ${HeadServ}    logevent_summaryState    logevent_softwareVersions    ${time_window}
+    Verify Time Delta    ${HeaderService}    logevent_summaryState    logevent_softwareVersions    ${time_window}
 
 #OCPS:2||3
 Verify OCPS:2||3 Standby

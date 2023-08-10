@@ -56,7 +56,7 @@ Verify OODS ImageInOODS
 
 Verify HeaderService LargeFileObjectAvailable
     [Tags]
-    ${dataframe}=    Get Recent Samples    ${HeadServ}    logevent_largeFileObjectAvailable    ["id", "url",]    ${num_images}    None
+    ${dataframe}=    Get Recent Samples    ${HeaderService}    logevent_largeFileObjectAvailable    ["id", "url",]    ${num_images}    None
     Should Be Equal As Strings    ${dataframe.id.values}[${0}]    ${image_names}[0][${0}]
-    ${file_name}=    Catenate    SEPARATOR=    ${HeadServ}_header_    ${image_names}[0][${0}]    .yaml
+    ${file_name}=    Catenate    SEPARATOR=    ${HeaderService}_header_    ${image_names}[0][${0}]    .yaml
     Should Be Equal As Strings    ${dataframe.url[0].split("/")[-1]}    ${file_name}

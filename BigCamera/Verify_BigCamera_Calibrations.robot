@@ -87,12 +87,12 @@ Verify OODS ImageInOODS
 
 Verify HeaderService LargeFileObjectAvailable
     [Tags]    robot:continue-on-failure
-    ${dataframe}=    Get Recent Samples    ${HeadServ}    logevent_largeFileObjectAvailable    ["id", "url",]    ${total_images}    None
+    ${dataframe}=    Get Recent Samples    ${HeaderService}    logevent_largeFileObjectAvailable    ["id", "url",]    ${total_images}    None
     Log    ${image_names}
     Log    ${dataframe.id.values}
     FOR    ${i}    IN RANGE    ${num_images}
         Should Be Equal As Strings    ${dataframe.id.values}[${i}]    ${image_names}[0][${i}]
-        ${file_name}=    Catenate    SEPARATOR=    ${HeadServ}    ${image_names}[0][${i}]    .yaml
+        ${file_name}=    Catenate    SEPARATOR=    ${HeaderService}    ${image_names}[0][${i}]    .yaml
         Should Be Equal As Strings    ${dataframe.url[${i}].split("/")[-1]}    ${file_name}
     END
  

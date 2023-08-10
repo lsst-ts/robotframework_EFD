@@ -133,7 +133,7 @@ Set EFD Values
     IF    "${env_efd}" == "tucson_teststand_efd"
         Set Suite Variable    \${BigCamera}    ComCam
         Set Suite Variable    \${OODS}    CCOODS
-        Set Suite Variable    \${HeadServ}    CCHeaderService
+        Set Suite Variable    \${HeaderService}    CCHeaderService
         Set Suite Variable    \${OcpsIndex}    2
         IF    "Standby" in "${SUITE NAME}"
             Set Suite Variable    \${camera_salver}    ${cccamera_salver}
@@ -148,7 +148,7 @@ Set EFD Values
     ELSE IF    "${env_efd}" == "base_efd"
         Set Suite Variable    \${BigCamera}    LSSTCam
         Set Suite Variable    \${OODS}    MTOODS
-        Set Suite Variable    \${HeadServ}    MTHeaderService
+        Set Suite Variable    \${HeaderService}    MTHeaderService
         Set Suite Variable    \${OcpsIndex}    3
         IF    "Standby" in "${SUITE NAME}"
             Set Suite Variable    \${camera_salver}    ${mtcamera_salver}

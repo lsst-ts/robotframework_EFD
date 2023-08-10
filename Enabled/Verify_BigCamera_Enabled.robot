@@ -18,7 +18,7 @@ Verify OODS Enabled
 
 Verify HeaderService Enabled
     [Tags]
-    Verify Summary State    ${STATES}[enabled]    ${HeadServ}
+    Verify Summary State    ${STATES}[enabled]    ${HeaderService}
 
 Verify OCPS:2||3 Enabled
     [Tags]
