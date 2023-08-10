@@ -5,4 +5,4 @@
 --skiponfailure skipped
 
 # List of test suites
-Offline/Verify_Camera_Offline.robot
+Offline/Verify_Cameras_Offline.robot

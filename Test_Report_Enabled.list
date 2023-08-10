@@ -8,7 +8,7 @@
 Enabled/Execute_Disabled_Enabled.robot
 Enabled/Verify_ATCS_Enabled.robot
 Enabled/Verify_AT_Light_Cal_Enabled.robot
-Enabled/Verify_ComCam_Enabled.robot
+Enabled/Verify_BigCamera_Enabled.robot
 Enabled/Verify_EAS_AE_Enabled.robot
 Enabled/Verify_EAS_Enabled.robot
 Enabled/Verify_GC_Enabled.robot
