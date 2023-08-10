@@ -7,10 +7,6 @@ Force Tags    enabled
 *** Variables ***
 
 *** Test Cases ***
-Verify OCPS:1 Enabled
-    [Tags]    obsys2
-    Verify Summary State    ${STATES}[enabled]    OCPS:1
-
 Verify Scheduler:1 Enabled
     [Tags]    obsys2
     Verify Summary State    ${STATES}[enabled]    Scheduler:1

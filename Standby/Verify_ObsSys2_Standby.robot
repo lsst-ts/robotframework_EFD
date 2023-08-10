@@ -5,8 +5,6 @@ Resource    ../Common_Keywords.resource
 Force Tags    obsys2
 
 *** Variables ***
-${ocps1_salver}    ${SALVersion}
-${ocps1_xmlver}    ${XMLVersion}
 ${scheduler1_salver}    ${SALVersion}
 ${scheduler1_xmlver}    ${XMLVersion}
 ${scheduler2_salver}    ${SALVersion}

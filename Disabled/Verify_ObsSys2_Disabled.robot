@@ -8,19 +8,6 @@ Force Tags    obsys2
 ${time_window}    10
 
 *** Test Cases ***
-#OCPS:1
-Verify OCPS:1 Disabled
-    [Tags]    disabled
-    Verify Summary State    ${STATES}[disabled]    OCPS:1
-
-Verify OCPS:1 ConfigurationApplied Event
-    [Tags]    config_applied
-    Verify ConfigurationApplied    OCPS    index=1
-
-Verify OCPS:1 ConfigurationApplied timing
-    [Tags]    config_applied    timing
-    Verify Time Delta    OCPS    logevent_summaryState    logevent_configurationApplied    ${time_window}    index=1
-
 #Scheduler:1
 Verify Scheduler:1 Disabled
     [Tags]    disabled
