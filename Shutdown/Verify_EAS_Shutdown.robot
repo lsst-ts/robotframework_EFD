@@ -63,6 +63,11 @@ Verify ESS:105 Shutdown
     Verify Shutdown Process    ESS    index=105
     Verify Time Delta    ESS    ${topic_1}    ${topic_2}    ${time_window}    index=105
 
+Verify ESS:106 Shutdown
+    [Tags]    eas
+    Verify Shutdown Process    ESS    index=106
+    Verify Time Delta    ESS    ${topic_1}    ${topic_2}    ${time_window}    index=106
+
 Verify ESS:201 Shutdown
     [Tags]    eas
     Verify Shutdown Process    ESS    index=201
