@@ -4,6 +4,7 @@ Resource    ../CSC_Lists.resource
 Resource    ../Common_Keywords.resource
 Library     QueryEfd    ${SALVersion}    ${XMLVersion}    ${OSPLVersion}
 Force Tags    offline
+Suite Setup    Set EFD Values
 
 *** Variables ***
 ${offdet_topic}    logevent_offlineDetailedState
@@ -11,6 +12,7 @@ ${offdet_topic}    logevent_offlineDetailedState
 ${time_window}    600
 
 *** Test Cases ***
+#ATCamera
 Verify ATCamera Offline
     [Tags]    latiss
     Verify Summary State    ${STATES}[offline]    ATCamera
@@ -45,22 +47,23 @@ Verify ATCamera OfflineDetailedStates timing
     [Tags]    latiss    detailed_states    timing
     Verify Time Delta    ATCamera    logevent_summaryState    ${offdet_topic}    ${time_window}
 
-Verify CCCamera Offline
-    [Tags]    comcam
-    Verify Summary State    ${STATES}[offline]    CCCamera
+#BigCamera
+Verify BigCamera Offline
+    [Tags]    bigcamera
+    Verify Summary State    ${STATES}[offline]    ${BigCamera}
 
-Verify CCCamera SoftwareVersions
-    [Tags]    comcam    software_versions
-    Verify Software Versions    CCCamera
+Verify BigCamera SoftwareVersions
+    [Tags]    bigcamera    software_versions
+    Verify Software Versions    ${BigCamera}
 
-Verify CCCamera SoftwareVersions timing
-    [Tags]    comcam    software_versions    timing
-    Verify Time Delta    CCCamera    logevent_summaryState    logevent_softwareVersions    ${time_window}
+Verify BigCamera SoftwareVersions timing
+    [Tags]    bigcamera    software_versions    timing
+    Verify Time Delta    ${BigCamera}    logevent_summaryState    logevent_softwareVersions    ${time_window}
 
-Verify CCCamera OfflineDetailedStates
-    [Tags]    comcam
-    Log Many    CCCamera    ${offdet_topic}   ${offdet_fields}
-    ${output}=    Get Recent Samples    CCCamera    ${offdet_topic}   ${offdet_fields}    2
+Verify BigCamera OfflineDetailedStates
+    [Tags]    bigcamera
+    Log Many    ${BigCamera}    ${offdet_topic}   ${offdet_fields}
+    ${output}=    Get Recent Samples    ${BigCamera}    ${offdet_topic}   ${offdet_fields}    2
     ${output}=    Convert to String    ${output}
     Log    ${output}
     Should Not Contain    ${output}    Empty DataFrame
@@ -75,6 +78,6 @@ Verify CCCamera OfflineDetailedStates
     Log    Second Substate: ${second_event}[4]
     Should Be Equal    ${second_event}[4]    2    # PUBLISH_ONLY
 
-Verify CCCamera OfflineDetailedStates timing
-    [Tags]    comcam    detailed_states    timing
-    Verify Time Delta    CCCamera    logevent_summaryState    ${offdet_topic}    ${time_window}
+Verify BigCamera OfflineDetailedStates timing
+    [Tags]    bigcamera    detailed_states    timing
+    Verify Time Delta    ${BigCamera}    logevent_summaryState    ${offdet_topic}    ${time_window}

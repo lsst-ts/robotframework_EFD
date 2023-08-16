@@ -5,6 +5,7 @@ Resource    ../../Common_Keywords.resource
 Library     QueryEfd    ${SALVersion}    ${XMLVersion}    ${OSPLVersion}
 Library     Process
 Force Tags    at_night_ops    wep_align
+Suite Setup    Check If Failed
 
 *** Variables ***
 ${time_window}    10
@@ -34,7 +35,7 @@ Verify ATCamera Playlist Loaded
     [Documentation]    Playlist should already be loaded, ensure nothing was changed prior to running this script.
     [Tags]
     ${dataframe}=    Get Recent Samples    ATCamera    command_play    ["playlist", "repeat", "private_identity", "private_origin",]    1    None
-    Should Be Equal    ${dataframe.playlist.values}[0]    cwfs-test_take_sequence.playlist
+    Should Be Equal    ${dataframe.playlist.values}[0]    cwfs-test_take_sequence
 
 Execute AuxTel LATISS WEP Align test
     [Tags]    execute

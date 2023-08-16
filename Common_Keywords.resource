@@ -1,9 +1,11 @@
 *** Settings ***
-Library    QueryEfd    ${SALVersion}    ${XMLVersion}    ${OSPLVersion}
+Library    QueryEfd    ${SALVersion}    ${XMLVersion}    ${OSPLVersion}    ${env_efd}
 Library    Process
 Library    Collections
-Library    String
 Library    DateTime
+Library    OperatingSystem
+Library    Process
+Library    String
 
 *** Keywords ***
 Execute Integration Test
@@ -37,11 +39,32 @@ Verify Scripts Completed Successfully
     FOR    ${i}    IN RANGE    ${num_scripts}
         Get Script Metadata    ${script_indexes}[${i}]
         IF    ${shutdown} and ${i + 1} == ${num_scripts}    # Only for the last script of the Shutdown process.
-            Should Be Equal As Integers    ${script_states}[${i}]    7    values=True    msg=Script index ${script_indexes}[${i}]
+            Run Keyword And Continue On Failure    Should Be Equal As Integers    ${script_states}[${i}]    7    values=True    msg=Script index ${script_indexes}[${i}]
         ELSE
-            Should Be Equal As Integers    ${script_states}[${i}]    8    values=True    msg=Script index ${script_indexes}[${i}]
+            Run Keyword And Continue On Failure    Should Be Equal As Integers    ${script_states}[${i}]    8    values=True    msg=Script index ${script_indexes}[${i}]
         END
     END
+
+Report If Failed
+    [Documentation]    This keyword creates or updates the `STATE_FAILED` file that is used in the `Check if Failed` keyword.
+    [Arguments]    ${script_indexes}    ${script_states}
+    # See if the STATE_FAILED file exists.
+    ${exists}=    Run Process    ls     ${EXECDIR}/STATE_FAILED
+    # If a script failed, either create or update the STATE_FAILED file accordingly.
+    IF    '10' in ${script_states} or '11' in ${script_states}
+        Run Keyword If    ${exists.rc} != 0    Create File    ${EXECDIR}/STATE_FAILED    Failure in scripts: ${script_indexes} states: ${script_states}\n
+        Run Keyword IF    ${exists.rc} == 0    Append To File    ${EXECDIR}/STATE_FAILED    Failure in scripts: ${script_indexes} states: ${script_states}\n
+    END
+
+Check If Failed
+    [Documentation]    This keyword checks if the `STATE_FAILED` file contains the word `Failure`, meaning that some number of CSCs failed
+    ...    the State transitions tests. Since this is the case, the remaining tests are unlikely to succeed, so this stops 
+    ...    any further test execution.
+    # If the STATE_FAILED file exists, get the contents.
+    ${exists}=    Run Process    ls     ${EXECDIR}/STATE_FAILED
+    ${state_failed}=    Run Keyword If    ${exists.rc} == 0    Get File    ${EXECDIR}/STATE_FAILED
+    # If the STATE_FAILED file contains the word 'Failure' halt any further test execution.
+    Run Keyword If    "Failure" in """${state_failed}"""    Fatal Error    msg="One or more CSCs failed the State transitions."
 
 Get Script Metadata
     [Documentation]    Capture script metadata, like script index and start time. Ensure script finished successfully.
@@ -103,4 +126,40 @@ Verify Dome Parked
         Log    "Pending"
     ELSE
         Log    "AttributeError: expecting one of [auxtel, maintel]."
+    END
+
+Set EFD Values
+    [Documentation]    Define the BigCamera specific variable values.
+    IF    "${env_efd}" == "tucson_teststand_efd"
+        Set Suite Variable    \${BigCamera}    ComCam
+        Set Suite Variable    \${OODS}    CCOODS
+        Set Suite Variable    \${HeaderService}    CCHeaderService
+        Set Suite Variable    \${OcpsIndex}    2
+        IF    "Standby" in "${SUITE NAME}"
+            Set Suite Variable    \${camera_salver}    ${cccamera_salver}
+            Set Suite Variable    \${camera_xmlver}    ${cccamera_xmlver}
+            Set Suite Variable    \${headerservice_salver}    ${ccheaderservice_salver}
+            Set Suite Variable    \${headerservice_xmlver}    ${ccheaderservice_xmlver}
+            Set Suite Variable    \${ocps_salver}    ${ocps2_salver}
+            Set Suite Variable    \${ocps_xmlver}    ${ocps2_xmlver}
+            Set Suite Variable    \${oods_salver}    ${ccoods_salver}
+            Set Suite Variable    \${oods_xmlver}    ${ccoods_xmlver}
+        END
+    ELSE IF    "${env_efd}" == "base_efd"
+        Set Suite Variable    \${BigCamera}    LSSTCam
+        Set Suite Variable    \${OODS}    MTOODS
+        Set Suite Variable    \${HeaderService}    MTHeaderService
+        Set Suite Variable    \${OcpsIndex}    3
+        IF    "Standby" in "${SUITE NAME}"
+            Set Suite Variable    \${camera_salver}    ${mtcamera_salver}
+            Set Suite Variable    \${camera_xmlver}    ${mtcamera_xmlver}
+            Set Suite Variable    \${oods_salver}    ${mtoods_salver}
+            Set Suite Variable    \${oods_xmlver}    ${mtoods_xmlver}
+            Set Suite Variable    \${headerservice_salver}    ${mtheaderservice_salver}
+            Set Suite Variable    \${headerservice_xmlver}    ${mtheaderservice_xmlver}
+            Set Suite Variable    \${ocps_salver}    ${ocps3_salver}
+            Set Suite Variable    \${ocps_xmlver}    ${ocps3_xmlver}
+        END
+    ELSE
+        Fail    msg="Please set the env_efd variable; allowed values are ['tucson_teststand_efd', 'base_efd']"
     END

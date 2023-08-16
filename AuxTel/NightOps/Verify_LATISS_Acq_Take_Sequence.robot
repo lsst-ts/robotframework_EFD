@@ -5,7 +5,7 @@ Resource    ../../Common_Keywords.resource
 Library     QueryEfd    ${SALVersion}    ${XMLVersion}    ${OSPLVersion}
 Library     Collections
 Force Tags    at_night_ops    acq_take_seq
-Suite Setup    Set Variables    ${playlist}
+Suite Setup    Run Keywords    Check If Failed    Set Variables    ${playlist}
 
 *** Variables ***
 ${time_window}    10
@@ -142,7 +142,7 @@ Set Variables
     ...    The img_type_seq is defined by the sequence of image types, in reverse order (dataframes are in time-descending order).
     [Arguments]    ${playlist}
     IF    "${playlist}" == "pointing"
-        Set Suite Variable    ${playlist_full_name}    latiss_acquire_and_take_sequence-test_take_acquisition_pointing.playlist
+        Set Suite Variable    ${playlist_full_name}    latiss_acquire_and_take_sequence-test_take_acquisition_pointing
         Set Suite Variable    ${seq_length}    1
         Set Suite Variable    ${num_images}    3
         Set Suite Variable    @{exp_time}    ${2}
@@ -152,7 +152,7 @@ Set Variables
         Set Suite Variable    @{disperser_name}    EMPTY
         Set Suite Variable    @{img_type_seq}    ACQ    ACQ    ACQ
     ELSE IF    "${playlist}" == "verify"
-        Set Suite Variable    ${playlist_full_name}    latiss_acquire_and_take_sequence-test_take_acquisition_with_verification.playlist
+        Set Suite Variable    ${playlist_full_name}    latiss_acquire_and_take_sequence-test_take_acquisition_with_verification
         Set Suite Variable    ${seq_length}    1
         Set Suite Variable    ${num_images}    3
         Set Suite Variable    @{exp_time}    ${0.4}
@@ -162,7 +162,7 @@ Set Variables
         Set Suite Variable    @{disperser_name}    EMPTY
         Set Suite Variable    @{img_type_seq}    ACQ    ACQ    ACQ
     ELSE IF    "${playlist}" == "test"
-        Set Suite Variable    ${playlist_full_name}    latiss_acquire_and_take_sequence-test_take_sequence.playlist
+        Set Suite Variable    ${playlist_full_name}    latiss_acquire_and_take_sequence-test_take_sequence
         Set Suite Variable    ${seq_length}    3
         Set Suite Variable    ${num_images}    3
         Set Suite Variable    @{exp_time}    ${5.0}    ${5.0}    ${5.0}
@@ -172,7 +172,7 @@ Set Variables
         Set Suite Variable    @{disperser_name}    ronchi170lpmm    ronchi170lpmm    ronchi170lpmm
         Set Suite Variable    @{img_type_seq}    OBJECT    OBJECT    OBJECT
     ELSE IF    "${playlist}" == "nominal"
-        Set Suite Variable    ${playlist_full_name}    latiss_acquire_and_take_sequence-test_take_acquisition_nominal.playlist
+        Set Suite Variable    ${playlist_full_name}    latiss_acquire_and_take_sequence-test_take_acquisition_nominal
         Set Suite Variable    ${seq_length}    3
         Set Suite Variable    ${num_images}    5
         Set Suite Variable    @{exp_time}    ${4.0}    ${4.0}    ${1.0}

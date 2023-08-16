@@ -2,7 +2,6 @@
 Resource    ../Global_Vars.resource
 Resource    ../CSC_Lists.resource
 Resource    ../Common_Keywords.resource
-Library     QueryEfd    ${SALVersion}    ${XMLVersion}    ${OSPLVersion}
 Force Tags    eas
 
 *** Variables ***
@@ -112,6 +111,19 @@ Verify ESS:105 ConfigurationApplied Event
 Verify ESS:105 ConfigurationApplied timing
     [Tags]    config_applied    timing
     Verify Time Delta    ESS    logevent_summaryState    logevent_configurationApplied    ${time_window}    index=105
+
+# ESS:106
+Verify ESS:106 Disabled
+    [Tags]    disabled
+    Verify Summary State    ${STATES}[disabled]    ESS:106
+   
+Verify ESS:106 ConfigurationApplied Event
+    [Tags]    config_applied
+    Verify ConfigurationApplied    ESS    index=106
+    
+Verify ESS:106 ConfigurationApplied timing
+    [Tags]    config_applied    timing
+    Verify Time Delta    ESS    logevent_summaryState    logevent_configurationApplied    ${time_window}    index=106
 
 # ESS:201
 Verify ESS:201 Disabled

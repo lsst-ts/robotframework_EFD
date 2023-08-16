@@ -4,8 +4,8 @@ Resource    ../CSC_Lists.resource
 Resource    ../Common_Keywords.resource
 Library     QueryEfd    ${SALVersion}    ${XMLVersion}    ${OSPLVersion}
 Library     Collections
-Force Tags    cc_calibrations
-Suite Setup    Set Variables
+Force Tags    bigcamera    calibrations
+Suite Setup    Run Keywords    Check If Failed    Set EFD Values    Set Variables
 
 *** Variables ***
 ${time_window}    10
@@ -17,10 +17,10 @@ Load Camera Playlist
     Log Many    ${result.rc}    ${result.stdout}    ${result.stderr}
     Run Keyword If    ${result.rc} == 1    Fatal Error
 
-Verify CCCamera Playlist Loaded
+Verify Camera Playlist Loaded
     [Tags]
     Log    ${playlist_full_name}
-    ${dataframe}=    Get Recent Samples    CCCamera    command_play    ["*",]    1    None
+    ${dataframe}=    Get Recent Samples    ${BigCamera}    command_play    ["*",]    1    None
     Should Be Equal    ${dataframe.playlist.values}[0]    ${playlist_full_name}
 
 Execute ComCam Flat Calibrations
@@ -46,20 +46,20 @@ Verify MTPtg Tracking is Off
     Should Not Be True    ${evt_df.status.values}[0]
     Verify Time Delta    MTPtg    command_stopTracking    logevent_trackPosting    ${time_window}    
 
-Verify CCCamera Filter
-    ${evt_df}=    Get Recent Samples    CCCamera    logevent_startSetFilter    ["filterName", "filterType"]    1    None
+Verify Camera Filter
+    ${evt_df}=    Get Recent Samples    ${BigCamera}    logevent_startSetFilter    ["filterName", "filterType"]    1    None
     Should Be Equal    ${evt_df.filterName.values}[0]    ${filter_name}
     Should Be Equal    ${evt_df.filterType.values}[0]    ${filter_type}
 
-Verify CCCamera Image Sequence
-    [Documentation]    Verify the CCCamera images are the correct type, with the correct exposure time.
+Verify Camera Image Sequence
+    [Documentation]    Verify the Camera images are the correct type, with the correct exposure time.
     [Tags]    robot:continue-on-failure
-    ${cmd_df}=    Get Recent Samples    CCCamera    command_takeImages    ["expTime", "keyValueMap", "numImages", "shutter",]    ${num_images}    None
-    ${evt_df}=    Get Recent Samples    CCCamera    logevent_startIntegration    ["additionalValues", "exposureTime", "imageName"]    ${num_images}    None
+    ${cmd_df}=    Get Recent Samples    ${BigCamera}    command_takeImages    ["expTime", "keyValueMap", "numImages", "shutter",]    ${num_images}    None
+    ${evt_df}=    Get Recent Samples    ${BigCamera}    logevent_startIntegration    ["additionalValues", "exposureTime", "imageName"]    ${num_images}    None
     Set Suite Variable    @{image_names}    ${evt_df.imageName.values}
     Log Many    ${image_names}
-    Verify Sequence    CCCamera    command_takeImages    expTime    ${num_images}    ${exp_time}
-    Verify Sequence    CCCamera    logevent_startIntegration    exposureTime    ${num_images}    ${exp_time}
+    Verify Sequence    ${BigCamera}    command_takeImages    expTime    ${num_images}    ${exp_time}
+    Verify Sequence    ${BigCamera}    logevent_startIntegration    exposureTime    ${num_images}    ${exp_time}
     FOR    ${i}    IN RANGE    ${num_images}
         ${evt_image_type}=    Fetch From Left    ${evt_df.additionalValues.values}[${i}]    :
         Should Be Equal As Strings    ${evt_image_type}    ${img_type_seq}[${i}]
@@ -69,11 +69,11 @@ Verify CCCamera Image Sequence
         Should Be Equal As Numbers    ${cmd_df.numImages.values}[${i}]    1
     END
 
-Verify CCOODS ImageInOODS
+Verify OODS ImageInOODS
     [Tags]    robot:continue-on-failure
     ${total_images}=    Evaluate    ${num_images} * 9    # ComCam has 9 CCDs, so there are 9 times the images.
     Set Suite Variable    ${total_images}
-    ${dataframe}=    Get Recent Samples    CCOODS    logevent_imageInOODS    ["camera", "description", "obsid",]    ${total_images}    None
+    ${dataframe}=    Get Recent Samples    ${OODS}    logevent_imageInOODS    ["camera", "description", "obsid",]    ${total_images}    None
     Log    ${image_names}
     Log    ${dataframe.obsid.values}
     FOR    ${i}    IN RANGE    ${num_images}
@@ -85,14 +85,14 @@ Verify CCOODS ImageInOODS
         END
     END
 
-Verify CCHeaderService LargeFileObjectAvailable
+Verify HeaderService LargeFileObjectAvailable
     [Tags]    robot:continue-on-failure
-    ${dataframe}=    Get Recent Samples    CCHeaderService    logevent_largeFileObjectAvailable    ["id", "url",]    ${total_images}    None
+    ${dataframe}=    Get Recent Samples    ${HeaderService}    logevent_largeFileObjectAvailable    ["id", "url",]    ${total_images}    None
     Log    ${image_names}
     Log    ${dataframe.id.values}
     FOR    ${i}    IN RANGE    ${num_images}
         Should Be Equal As Strings    ${dataframe.id.values}[${i}]    ${image_names}[0][${i}]
-        ${file_name}=    Catenate    SEPARATOR=    CCHeaderService_header_    ${image_names}[0][${i}]    .yaml
+        ${file_name}=    Catenate    SEPARATOR=    ${HeaderService}    ${image_names}[0][${i}]    .yaml
         Should Be Equal As Strings    ${dataframe.url[${i}].split("/")[-1]}    ${file_name}
     END
  
@@ -100,7 +100,7 @@ Verify CCHeaderService LargeFileObjectAvailable
 Set Variables
     [Documentation]    The sequence length is defined by the number of exposures, num_images.
     ...    The img_type_seq is defined by the sequence of image types, in reverse order (dataframes are in time-descending order).
-    Set Suite Variable    ${playlist_full_name}    bias_dark_flat.playlist
+    Set Suite Variable    ${playlist_full_name}    bias_dark_flat
     # Image type.
     Set Suite Variable    ${num_images}    30    # 10 Bias + 10 Dark + 10 Flat
     @{n_flat}=    Evaluate    ["FLAT"] * 10

@@ -2,8 +2,6 @@
 Resource    ../Global_Vars.resource
 Resource    ../CSC_Lists.resource
 Resource    ../Common_Keywords.resource
-Library     QueryEfd    ${SALVersion}    ${XMLVersion}    ${OSPLVersion}
-Library     Collections
 Force Tags    eas
 
 *** Variables ***
@@ -23,6 +21,8 @@ ${ess104_salver}    ${SALVersion}
 ${ess104_xmlver}    ${XMLVersion}
 ${ess105_salver}    ${SALVersion}
 ${ess105_xmlver}    ${XMLVersion}
+${ess106_salver}    ${SALVersion}
+${ess106_xmlver}    ${XMLVersion}
 ${ess201_salver}    ${SALVersion}
 ${ess201_xmlver}    ${XMLVersion}
 ${ess202_salver}    ${SALVersion}
@@ -203,6 +203,27 @@ Verify ESS:105 ConfigurationsAvailable Event
 Verify ESS:105 ConfigurationsAvailable timing
     [Tags]    config_available    timing
     Verify Time Delta    ESS    logevent_summaryState    logevent_configurationsAvailable    ${time_window}    index=105
+
+# ESS:106
+Verify ESS:106 Standby
+    [Tags]    standby
+    Verify Summary State    ${STATES}[standby]    ESS:106
+    
+Verify ESS:106 SoftwareVersions   
+    [Tags]    software_versions  
+    Verify Software Versions    ESS    index=106    csc_salver=${ess106_salver}    csc_xmlver=${ess106_xmlver}
+    
+Verify ESS:106 SoftwareVersions timing
+    [Tags]    software_versions    timing
+    Verify Time Delta    ESS    logevent_summaryState    logevent_softwareVersions    ${time_window}    index=106
+   
+Verify ESS:106 ConfigurationsAvailable Event
+    [Tags]    config_available
+    Verify ConfigurationsAvailable    ESS    index=106
+   
+Verify ESS:106 ConfigurationsAvailable timing
+    [Tags]    config_available    timing
+    Verify Time Delta    ESS    logevent_summaryState    logevent_configurationsAvailable    ${time_window}    index=106
 
 # ESS:201
 Verify ESS:201 Standby

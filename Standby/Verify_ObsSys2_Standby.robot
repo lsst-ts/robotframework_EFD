@@ -2,15 +2,9 @@
 Resource    ../Global_Vars.resource
 Resource    ../CSC_Lists.resource
 Resource    ../Common_Keywords.resource
-Library     QueryEfd    ${SALVersion}    ${XMLVersion}    ${OSPLVersion}
-Library     Collections
 Force Tags    obsys2
 
 *** Variables ***
-${ocps1_salver}    ${SALVersion}
-${ocps1_xmlver}    ${XMLVersion}
-${ocps2_salver}    ${SALVersion}
-${ocps2_xmlver}    ${XMLVersion}
 ${scheduler1_salver}    ${SALVersion}
 ${scheduler1_xmlver}    ${XMLVersion}
 ${scheduler2_salver}    ${SALVersion}
@@ -18,48 +12,6 @@ ${scheduler2_xmlver}    ${XMLVersion}
 ${time_window}    10
 
 *** Test Cases ***
-#OCPS:1
-Verify OCPS:1 Standby
-    [Tags]    standby
-    Verify Summary State    ${STATES}[standby]    OCPS:1
-
-Verify OCPS:1 SoftwareVersions
-    [Tags]    software_versions
-    Verify Software Versions    OCPS    index=1    csc_salver=${ocps1_salver}    csc_xmlver=${ocps1_xmlver}
-
-Verify OCPS:1 SoftwareVersions timing
-    [Tags]    software_versions    timing
-    Verify Time Delta    OCPS    logevent_summaryState    logevent_softwareVersions    ${time_window}    index=1
-
-Verify OCPS:1 ConfigurationsAvailable Event
-    [Tags]    config_available
-    Verify ConfigurationsAvailable    OCPS    index=1
-
-Verify OCPS:1 ConfigurationsAvailable timing
-    [Tags]    config_available    timing
-    Verify Time Delta    OCPS    logevent_summaryState    logevent_configurationsAvailable    ${time_window}    1
-
-#OCPS:2
-Verify OCPS:2 Standby
-    [Tags]    standby
-    Verify Summary State    ${STATES}[standby]    OCPS:2
-
-Verify OCPS:2 SoftwareVersions
-    [Tags]    software_versions
-    Verify Software Versions    OCPS    index=2    csc_salver=${ocps2_salver}    csc_xmlver=${ocps2_xmlver}
-
-Verify OCPS:2 SoftwareVersions timing
-    [Tags]    software_versions    timing
-    Verify Time Delta    OCPS    logevent_summaryState    logevent_softwareVersions    ${time_window}    index=2
-
-Verify OCPS:2 ConfigurationsAvailable Event
-    [Tags]    config_available
-    Verify ConfigurationsAvailable    OCPS    index=2
-
-Verify OCPS:2 ConfigurationsAvailable timing
-    [Tags]    config_available    timing
-    Verify Time Delta    OCPS    logevent_summaryState    logevent_configurationsAvailable    ${time_window}    index=2
-
 #Scheduler:1
 Verify Scheduler:1 Standby
     [Tags]    standby
