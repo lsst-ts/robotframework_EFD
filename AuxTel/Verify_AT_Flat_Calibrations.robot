@@ -2,7 +2,6 @@
 Resource    ../Global_Vars.resource
 Resource    ../CSC_Lists.resource
 Resource    ../Common_Keywords.resource
-Library     QueryEfd    ${SALVersion}    ${XMLVersion}    ${OSPLVersion}
 Library     Collections
 Force Tags    at_calibrations
 Suite Setup    Run Keywords    Check If Failed    Set Variables

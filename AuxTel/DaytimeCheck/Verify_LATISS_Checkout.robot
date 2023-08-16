@@ -2,13 +2,9 @@
 Resource    ../../Global_Vars.resource
 Resource    ../../CSC_Lists.resource
 Resource    ../../Common_Keywords.resource
-Library     QueryEfd    ${SALVersion}    ${XMLVersion}    ${OSPLVersion}
 Library     Process
 Force Tags    latiss_checkout
-<<<<<<< HEAD
 Suite Setup    Check If Failed
-=======
->>>>>>> main
 
 *** Variables ***
 ${time_window}    10
@@ -24,11 +20,7 @@ Verify ATCamera Playlist Loaded
     [Documentation]    Playlist should already be loaded, ensure nothing was changed prior to running this script.
     [Tags]
     ${dataframe}=    Get Recent Samples    ATCamera    command_play    ["playlist", "repeat", "private_identity", "private_origin",]    1    None
-<<<<<<< HEAD
     Should Be Equal    ${dataframe.playlist.values}[0]    bias_dark_flat
-=======
-    Should Be Equal    ${dataframe.playlist.values}[0]    bias_dark_flat.playlist
->>>>>>> main
 
 Execute LATISS Checkout
     [Tags]    execute

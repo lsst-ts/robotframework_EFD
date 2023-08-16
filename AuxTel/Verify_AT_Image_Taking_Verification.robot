@@ -2,7 +2,6 @@
 Resource    ../Global_Vars.resource
 Resource    ../CSC_Lists.resource
 Resource    ../Common_Keywords.resource
-Library     QueryEfd    ${SALVersion}    ${XMLVersion}    ${OSPLVersion}
 Library     Process
 Force Tags    image_taking_verification
 Suite Setup    Check If Failed
