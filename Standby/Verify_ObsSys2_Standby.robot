@@ -12,27 +12,6 @@ ${scheduler2_xmlver}    ${XMLVersion}
 ${time_window}    10
 
 *** Test Cases ***
-#OCPS:1
-Verify OCPS:1 Standby
-    [Tags]    standby
-    Verify Summary State    ${STATES}[standby]    OCPS:1
-
-Verify OCPS:1 SoftwareVersions
-    [Tags]    software_versions
-    Verify Software Versions    OCPS    index=1    csc_salver=${ocps1_salver}    csc_xmlver=${ocps1_xmlver}
-
-Verify OCPS:1 SoftwareVersions timing
-    [Tags]    software_versions    timing
-    Verify Time Delta    OCPS    logevent_summaryState    logevent_softwareVersions    ${time_window}    index=1
-
-Verify OCPS:1 ConfigurationsAvailable Event
-    [Tags]    config_available
-    Verify ConfigurationsAvailable    OCPS    index=1
-
-Verify OCPS:1 ConfigurationsAvailable timing
-    [Tags]    config_available    timing
-    Verify Time Delta    OCPS    logevent_summaryState    logevent_configurationsAvailable    ${time_window}    1
-
 #Scheduler:1
 Verify Scheduler:1 Standby
     [Tags]    standby

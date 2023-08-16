@@ -39,6 +39,23 @@ Verify ATCamera ConfigurationsAvailable timing
     [Tags]    config_available    timing
     Verify Time Delta    ATCamera    logevent_summaryState    logevent_configurationsAvailable    ${time_window}
 
+#ATOODS
+Verify ATOODS Standby
+    [Tags]    standby
+    Verify Summary State    ${STATES}[standby]    ATOODS
+
+Verify ATOODS SoftwareVersions
+    [Tags]    software_versions
+    Verify Software Versions    ATOODS      csc_salver=${atoods_salver}    csc_xmlver=${atoods_xmlver}
+
+Verify ATOODS SoftwareVersions timing
+    [Tags]    software_versions    timing
+    Verify Time Delta    ATOODS    logevent_summaryState    logevent_softwareVersions    ${time_window}
+
+Verify ATOODS ConfigurationsAvailable Event
+    [Tags]    config_available
+    Verify ConfigurationsAvailable    ATOODS
+
 #ATHeaderService
 Verify ATHeaderService Standby
     [Tags]    standby
@@ -76,23 +93,6 @@ Verify OCPS:1 ConfigurationsAvailable Event
 Verify OCPS:1 ConfigurationsAvailable timing
     [Tags]    config_available    timing
     Verify Time Delta    OCPS    logevent_summaryState    logevent_configurationsAvailable    ${time_window}    1
-
-#ATOODS
-Verify ATOODS Standby
-    [Tags]    standby
-    Verify Summary State    ${STATES}[standby]    ATOODS
-
-Verify ATOODS SoftwareVersions
-    [Tags]    software_versions
-    Verify Software Versions    ATOODS      csc_salver=${atoods_salver}    csc_xmlver=${atoods_xmlver}
-
-Verify ATOODS SoftwareVersions timing
-    [Tags]    software_versions    timing
-    Verify Time Delta    ATOODS    logevent_summaryState    logevent_softwareVersions    ${time_window}
-
-Verify ATOODS ConfigurationsAvailable Event
-    [Tags]    config_available
-    Verify ConfigurationsAvailable    ATOODS
 
 #ATSpectrograph
 Verify ATSpectrograph Standby
