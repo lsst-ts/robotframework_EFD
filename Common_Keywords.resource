@@ -131,7 +131,7 @@ Verify Dome Parked
 Set EFD Values
     [Documentation]    Define the BigCamera specific variable values.
     IF    "${env_efd}" == "tucson_teststand_efd"
-        Set Suite Variable    \${BigCamera}    ComCam
+        Set Suite Variable    \${BigCamera}    CCCamera
         Set Suite Variable    \${OODS}    CCOODS
         Set Suite Variable    \${HeaderService}    CCHeaderService
         Set Suite Variable    \${OcpsIndex}    2
@@ -146,7 +146,7 @@ Set EFD Values
             Set Suite Variable    \${oods_xmlver}    ${ccoods_xmlver}
         END
     ELSE IF    "${env_efd}" == "base_efd"
-        Set Suite Variable    \${BigCamera}    LSSTCam
+        Set Suite Variable    \${BigCamera}    MTCamera
         Set Suite Variable    \${OODS}    MTOODS
         Set Suite Variable    \${HeaderService}    MTHeaderService
         Set Suite Variable    \${OcpsIndex}    3
