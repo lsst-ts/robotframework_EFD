@@ -12,7 +12,7 @@ ${time_window}    10
 #BigCamera
 Verify BigCamera Disabled
     [Tags]
-    Verify Summary State    ${STATES}[disabled]    BigCamera
+    Verify Summary State    ${STATES}[disabled]    ${BigCamera}
 
 Verify BigCamera ConfigurationApplied Event
     [Tags]    config_applied
