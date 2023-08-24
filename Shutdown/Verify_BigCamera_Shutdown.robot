@@ -3,7 +3,7 @@ Resource    ../Global_Vars.resource
 Resource    ../CSC_Lists.resource
 Resource    ../Common_Keywords.resource
 Force Tags    shutdown    bigcamera
-Suite Setup   Set Environment Values
+Suite Setup   Set EFD Values
 
 *** Variables ***
 ${topic_1}    logevent_summaryState
