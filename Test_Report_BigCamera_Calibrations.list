@@ -1,0 +1,8 @@
+###  Test Suite list ###
+#  Change the title of the test results
+--name BigCam_Calibrations
+--output bigcam_calib
+--skiponfailure skipped
+
+# List of test suites
+BigCamera/Verify_BigCamera_Calibrations.robot
