@@ -48,21 +48,21 @@ Verify Scripts Completed Successfully
 Report If Failed
     [Documentation]    This keyword creates or updates the `STATE_FAILED` file that is used in the `Check if Failed` keyword.
     [Arguments]    ${script_indexes}    ${script_states}
-    # See if the STATE_FAILED file exists.
-    ${exists}=    Run Process    ls     ${EXECDIR}/STATE_FAILED
+    # See if the STATE_FAILED file exists. It is stored in the ${EXECDIR}/Reports folder, as that is persistent across ArgoCD Workflows.
+    ${exists}=    Run Process    ls     ${EXECDIR}/Reports/STATE_FAILED
     # If a script failed, either create or update the STATE_FAILED file accordingly.
     IF    '10' in ${script_states} or '11' in ${script_states}
-        Run Keyword If    ${exists.rc} != 0    Create File    ${EXECDIR}/STATE_FAILED    Failure in scripts: ${script_indexes} states: ${script_states}\n
-        Run Keyword IF    ${exists.rc} == 0    Append To File    ${EXECDIR}/STATE_FAILED    Failure in scripts: ${script_indexes} states: ${script_states}\n
+        Run Keyword If    ${exists.rc} != 0    Create File    ${EXECDIR}/Reports/STATE_FAILED    Failure in scripts: ${script_indexes} states: ${script_states}\n
+        Run Keyword IF    ${exists.rc} == 0    Append To File    ${EXECDIR}/Reports/STATE_FAILED    Failure in scripts: ${script_indexes} states: ${script_states}\n
     END
 
 Check If Failed
     [Documentation]    This keyword checks if the `STATE_FAILED` file contains the word `Failure`, meaning that some number of CSCs failed
     ...    the State transitions tests. Since this is the case, the remaining tests are unlikely to succeed, so this stops 
     ...    any further test execution.
-    # If the STATE_FAILED file exists, get the contents.
-    ${exists}=    Run Process    ls     ${EXECDIR}/STATE_FAILED
-    ${state_failed}=    Run Keyword If    ${exists.rc} == 0    Get File    ${EXECDIR}/STATE_FAILED
+    # If the STATE_FAILED file exists, get the contents. The file is stored in the ${EXECDIR}/Reports folder, as that is persistent across ArgoCD Workflows.
+    ${exists}=    Run Process    ls     ${EXECDIR}/Reports/STATE_FAILED
+    ${state_failed}=    Run Keyword If    ${exists.rc} == 0    Get File    ${EXECDIR}/Reports/STATE_FAILED
     # If the STATE_FAILED file contains the word 'Failure' halt any further test execution.
     Run Keyword If    "Failure" in """${state_failed}"""    Fatal Error    msg="One or more CSCs failed the State transitions."
 

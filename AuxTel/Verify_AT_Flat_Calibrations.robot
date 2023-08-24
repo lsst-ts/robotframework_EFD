@@ -4,7 +4,7 @@ Resource    ../CSC_Lists.resource
 Resource    ../Common_Keywords.resource
 Library     Collections
 Force Tags    at_calibrations
-Suite Setup    Run Keywords    Check If Failed    Set Variables
+Suite Setup    Run Keywords    Check If Failed    AND    Set Variables
 
 *** Variables ***
 ${time_window}    10

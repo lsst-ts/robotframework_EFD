@@ -1,0 +1,8 @@
+###  Test Suite list ###
+#  Change the title of the test results
+--name BigCam_Image_Verification
+--output bigcam_image_verify
+--skiponfailure skipped
+
+# List of test suites
+BigCamera/Verify_BigCamera_Image_Taking_Verification.robot
