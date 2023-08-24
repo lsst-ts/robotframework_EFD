@@ -4,7 +4,7 @@ Resource    ../../CSC_Lists.resource
 Resource    ../../Common_Keywords.resource
 Library     Collections
 Force Tags    at_night_ops    acq_take_seq
-Suite Setup    Run Keywords    Check If Failed    Set Variables    ${playlist}
+Suite Setup    Run Keywords    Check If Failed    AND    Set Variables    ${playlist}
 
 *** Variables ***
 ${time_window}    10

@@ -15,8 +15,8 @@ enabled.xml
 athousekeeping.xml 
 mthousekeeping.xml 
 at_image_verify.xml 
-cc_image_verify.xml 
-cc_calib.xml
+bigcam_image_verify.xml 
+bigcam_calib.xml
 at_shutdown.xml 
 enable_atcs.xml 
 at_latiss_checkout.xml

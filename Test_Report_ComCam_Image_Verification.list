@@ -1,8 +1,0 @@
-###  Test Suite list ###
-#  Change the title of the test results
---name CC_Image_Verification
---output cc_image_verify
---skiponfailure skipped
-
-# List of test suites
-ComCam/Verify_ComCam_Image_Taking_Verification.robot

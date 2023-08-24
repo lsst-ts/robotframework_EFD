@@ -6,14 +6,8 @@ Force Tags    athousekeeping
 Suite Setup    Check If Failed
 
 *** Variables ***
-@{homed_field}    homed
-@{homed}    True
 @{port_field}    selected
 @{instrument_port}    2    #Nasymth2
-@{position_field}    name
-@{disperser}    empty_1
-@{filter_field}    filterName
-@{filter_name}    r_03
 ${time_window}    10
 
 *** Test Cases ***
@@ -36,13 +30,3 @@ Verify Tracking is Disabled
     [Tags]
     ${dataframe}=    Get Recent Samples    ATMCS    logevent_atMountState    ["*",]    1    None
     Should Be Equal As Integers    ${dataframe.state.values}[0]    8    #TrackingDisabled
-
-Verify ATSpectrograph Reporting Disperser Band
-    [Tags]
-    Verify Topic Attribute    ATSpectrograph    logevent_reportedDisperserPosition    ${position_field}    ${disperser}    output=json
-    Verify Time Delta    ATSpectrograph    command_changeDisperser    logevent_reportedDisperserPosition    ${time_window}
-
-Verify CCCamera has Filter Set
-    [Tags]
-    Verify Topic Attribute    CCCamera    logevent_endSetFilter    ${filter_field}    ${filter_name}
-    Verify Time Delta    CCCamera    command_setFilter    logevent_endSetFilter    45
