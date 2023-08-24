@@ -4,7 +4,7 @@ Resource    ../CSC_Lists.resource
 Resource    ../Common_Keywords.resource
 Library     Process
 Force Tags    bigcamera    image_taking_verification
-Suite Setup    Check If Failed    AND    Set EFD Values
+Suite Setup    Run Keywords    Check If Failed    AND    Set EFD Values
 
 *** Variables ***
 ${time_window}    10
