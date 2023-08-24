@@ -91,7 +91,7 @@ Verify HeaderService LargeFileObjectAvailable
     Log    ${dataframe.id.values}
     FOR    ${i}    IN RANGE    ${num_images}
         Should Be Equal As Strings    ${dataframe.id.values}[${i}]    ${image_names}[0][${i}]
-        ${file_name}=    Catenate    SEPARATOR=    ${HeaderService}    ${image_names}[0][${i}]    .yaml
+        ${file_name}=    Catenate    SEPARATOR=    ${HeaderService}_header_    ${image_names}[0][${i}]    .yaml
         Should Be Equal As Strings    ${dataframe.url[${i}].split("/")[-1]}    ${file_name}
     END
  
