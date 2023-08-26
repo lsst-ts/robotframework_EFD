@@ -28,5 +28,9 @@ Verify AuxTel is Parked
 
 Verify Tracking is Disabled
     [Tags]
+    # ATMCS
     ${dataframe}=    Get Recent Samples    ATMCS    logevent_atMountState    ["*",]    1    None
     Should Be Equal As Integers    ${dataframe.state.values}[0]    8    #TrackingDisabled
+    # ATPtg
+    ${dataframe}=    Get Recent Samples    ATPtg    logevent_detailedState    ["detailedState",]    1    None
+    Should Be Equal As Integers    ${dataframe.detailedState.values}[0]    1    #NOTTRACKING
