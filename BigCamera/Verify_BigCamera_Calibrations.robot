@@ -70,6 +70,7 @@ Verify Camera Image Sequence
 
 Verify OODS ImageInOODS
     [Tags]    robot:continue-on-failure
+    Wait Until Keyword Succeeds    60 sec    10 sec    Verify Image in OODS    ${OODS}    ${image_names}[0][0]
     ${total_images}=    Evaluate    ${num_images} * 9    # ComCam has 9 CCDs, so there are 9 times the images.
     Set Suite Variable    ${total_images}
     ${dataframe}=    Get Recent Samples    ${OODS}    logevent_imageInOODS    ["camera", "description", "obsid",]    ${total_images}    None

@@ -48,6 +48,7 @@ Verify Camera Image Sequence
 
 Verify OODS ImageInOODS
     [Tags]
+    Wait Until Keyword Succeeds    60 sec    10 sec    Verify Image in OODS    ${OODS}    ${image_names}[0][0]
     ${dataframe}=    Get Recent Samples    ${OODS}    logevent_imageInOODS    ["camera", "description", "obsid",]    ${num_images}    None
     Should Be Equal As Strings    ${dataframe.camera.values}[${0}]    LSSTComCam
     Should Be Equal As Strings    ${dataframe.description.values}[${0}]    file ingested
