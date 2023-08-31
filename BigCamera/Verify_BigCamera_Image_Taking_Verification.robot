@@ -4,7 +4,7 @@ Resource    ../CSC_Lists.resource
 Resource    ../Common_Keywords.resource
 Library     Process
 Force Tags    bigcamera    image_taking_verification
-Suite Setup    Check If Failed    AND    Set EFD Values
+Suite Setup    Run Keywords    Check If Failed    AND    Set EFD Values
 
 *** Variables ***
 ${time_window}    10
@@ -48,6 +48,7 @@ Verify Camera Image Sequence
 
 Verify OODS ImageInOODS
     [Tags]
+    Wait Until Keyword Succeeds    60 sec    10 sec    Verify Image in OODS    ${OODS}    ${image_names}[0][0]
     ${dataframe}=    Get Recent Samples    ${OODS}    logevent_imageInOODS    ["camera", "description", "obsid",]    ${num_images}    None
     Should Be Equal As Strings    ${dataframe.camera.values}[${0}]    LSSTComCam
     Should Be Equal As Strings    ${dataframe.description.values}[${0}]    file ingested

@@ -142,6 +142,12 @@ Verify Dome Parked
         Log    "AttributeError: expecting one of [auxtel, maintel]."
     END
 
+Verify Image in OODS
+    [Documentation]    To give the `OODS` time to ingest all the images, this compound keyword verifies the given `last_image` is present in the EFD.
+    [Arguments]    ${OODS}    ${last_image}
+    ${dataframe}=    Get Recent Samples    ${OODS}    logevent_imageInOODS    ["camera", "description", "obsid",]    1    None
+    Should Be Equal As Strings    ${dataframe.obsid.values}[0]    ${last_image}
+
 Set EFD Values
     [Documentation]    Define the BigCamera specific variable values.
     IF    "${env_efd}" == "tucson_teststand_efd"
