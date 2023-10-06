@@ -57,7 +57,7 @@ program: IntegrationTesting
 component: ATCamera
 cmd: play
 parameters:
-  playlist: bias_dark_flat.playlist
+  playlist: bias_dark_flat
   repeat: False
 
 

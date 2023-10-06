@@ -19,5 +19,6 @@
 --reportbackground #61C4CD:#61C4CD
 
 #  Redefine default variables
+--variable env_efd:base_efd
 --variable XMLVersion:19.0.0
 --variable SALVersion:7.4.0
