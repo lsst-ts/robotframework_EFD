@@ -105,7 +105,21 @@ Verify Telescope Parked
         Compare Numbers    ${dataframe.azimuthCalculatedAngle0.values}[0]    0    0.5
         Compare Numbers    ${dataframe.elevationCalculatedAngle0.values}[0]    80    0.5
     ELSE IF    "${telescope}" == "maintel"
-        Log    "Pending"
+        Verify Topic Attribute    MTPtg    logevent_currentTarget    ["targetName",]    ["Park position",]
+        Verify Topic Attribute    MTMount    logevent_target    ["azimuth",]    ["0",]
+        Verify Topic Attribute    MTMount    logevent_target    ["elevation",]    ["80",]
+        ${dataframe}=    Get Recent Samples    MTMount    azimuth    ["actualPosition", "demandPosition", "actualTorque", "actualVelocity", "demandVelocity",]    1    None
+        Compare Numbers    ${dataframe.actualPosition.values}[0]    0    0.5
+        Compare Numbers    ${dataframe.actualTorque.values}[0]    0    0.5
+        Compare Numbers    ${dataframe.actualVelocity.values}[0]    0    0.5
+        Verify Topic Attribute    MTMount    azimuth    ["demandPosition",]    ["0",]
+        Verify Topic Attribute    MTMount    azimuth    ["demandVelocity",]    ["0",]
+        ${dataframe}=    Get Recent Samples    MTMount    elevation    ["actualPosition", "demandPosition", "actualTorque", "actualVelocity", "demandVelocity",]    1    None
+        Compare Numbers    ${dataframe.actualPosition.values}[0]    80    0.5
+        Compare Numbers    ${dataframe.actualTorque.values}[0]    0    0.5
+        Compare Numbers    ${dataframe.actualVelocity.values}[0]    0    0.5
+        Verify Topic Attribute    MTMount    elevation    ["demandPosition",]    ["80",]
+        Verify Topic Attribute    MTMount    elevation    ["demandVelocity",]    ["0",]
     ELSE
         Log    "AttributeError: expecting one of [auxtel, maintel]."
     END
@@ -127,6 +141,12 @@ Verify Dome Parked
     ELSE
         Log    "AttributeError: expecting one of [auxtel, maintel]."
     END
+
+Verify Image in OODS
+    [Documentation]    To give the `OODS` time to ingest all the images, this compound keyword verifies the given `last_image` is present in the EFD.
+    [Arguments]    ${OODS}    ${last_image}
+    ${dataframe}=    Get Recent Samples    ${OODS}    logevent_imageInOODS    ["camera", "description", "obsid",]    1    None
+    Should Be Equal As Strings    ${dataframe.obsid.values}[0]    ${last_image}
 
 Set EFD Values
     [Documentation]    Define the BigCamera specific variable values.

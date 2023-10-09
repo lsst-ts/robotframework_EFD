@@ -31,12 +31,12 @@ Verify ATPtg Target
     [Documentation]    Ensure the telescope is pointed at the correct target, in this case at the Az/El of the flat-field screen.
     ...    This command is sent prior to the start of the script.
     [Tags]    robot:continue-on-failure
-    ${cmd_dataframe}=    Get Recent Samples    ATPtg    command_raDecTarget    ["targetName", "ra", "declination",]    1    None
-    Should Be Equal    ${cmd_dataframe.targetName.values}[0]    Flatfield position
+    ${cmd_dataframe}=    Get Recent Samples    ATPtg    command_azElTarget    ["targetName", "azDegs", "elDegs",]    1    None
+    Should Be Equal    ${cmd_dataframe.targetName.values}[0]    FlatField position
     ${evt_dataframe}=    Get Recent Samples    ATPtg    logevent_currentTarget    ["targetName", "azDegs", "elDegs",]    1    None
     Should Be Equal    ${evt_dataframe.targetName.values}[0]    FlatField position
-    Should Be Equal    ${evt_dataframe.azDegs.values.round(6)}[0]    ${0}
-    Should Be Equal    ${evt_dataframe.elDegs.values.round(6)}[0]    ${0}
+    Should Be Equal    ${evt_dataframe.azDegs.values.round(6)}[0]    ${181.7}
+    Should Be Equal    ${evt_dataframe.elDegs.values.round(6)}[0]    ${39}
 
 Verify ATPtg Tracking is Off
     [Tags]
@@ -45,9 +45,11 @@ Verify ATPtg Tracking is Off
     Verify Time Delta    ATPtg    command_stopTracking    logevent_trackPosting    ${time_window}    
 
 Verify ATSpectrograph Filter
+    [Tags]    DM-35582
     Verify Topic Attribute    ATSpectrograph    logevent_reportedFilterPosition    ["name",]    ${filter_name}    output=json
-    ${evt_df}=    Get Recent Samples    ATSpectrograph    logevent_reportedFilterPosition    ["*",]    1    None
-    Should Be Equal    ${evt_df.name.values}[0]    ${filter_name}
+    # The next tests are broken until DM-35582 is fixed.
+    #${evt_df}=    Get Recent Samples    ATSpectrograph    logevent_reportedFilterPosition    ["*",]    1    None
+    #Should Be Equal    ${evt_df.name.values}[0]    ${filter_name}
 
 Verify ATCamera Image Sequence
     [Documentation]    Verify the ATCamera images are the correct type, with the correct exposure time.
@@ -69,6 +71,7 @@ Verify ATCamera Image Sequence
 
 Verify ATOODS ImageInOODS
     [Tags]    robot:continue-on-failure
+    Wait Until Keyword Succeeds    60 sec    10 sec    Verify Image in OODS    ATOODS    ${image_names}[0][0]
     ${total_images}=    Evaluate    ${num_images} * 1
     Set Suite Variable    ${total_images}
     ${dataframe}=    Get Recent Samples    ATOODS    logevent_imageInOODS    ["camera", "description", "obsid",]    ${total_images}    None

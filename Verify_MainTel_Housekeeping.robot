@@ -18,6 +18,19 @@ Execute MainTel Housekeeping
     ${scripts}    ${states}=    Execute Integration Test    maintel_housekeeping
     Verify Scripts Completed Successfully    ${scripts}    ${states}
 
+Verify MainTel is Parked
+    [Tags]    robot:continue-on-failure
+    # MTMount
+    Verify Telescope Parked    maintel
+    # MTDome
+    Comment    The Dome park process can take several seconds to finish, even though the command is complete.
+    Wait Until Keyword Succeeds    5x    strict: 2s    Verify Dome Parked    maintel
+
+Verify Tracking is Disabled
+    [Tags]
+    ${dataframe}=    Get Recent Samples    MTPtg    logevent_detailedState    ["detailedState",]    1    None
+    Should Be Equal As Integers    ${dataframe.detailedState.values}[0]    1    #NOTTRACKING
+
 Verify MTMount Axes Homed
     [Tags]    robot:continue-on-failure
     Verify Topic Attribute    MTMount    logevent_elevationInPosition    ${in_position_field}    ${in_position}

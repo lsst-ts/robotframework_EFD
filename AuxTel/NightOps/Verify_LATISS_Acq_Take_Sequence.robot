@@ -84,6 +84,7 @@ Verify ATCamera Image Sequence
 
 Verify ATOODS ImageInOODS
     [Tags]
+    Wait Until Keyword Succeeds    60 sec    10 sec    Verify Image in OODS    ATOODS    ${image_names}[0][0]
     ${dataframe}=    Get Recent Samples    ATOODS    logevent_imageInOODS    ["camera", "description", "obsid",]    ${num_images}    None
     FOR    ${i}    IN RANGE    ${num_images}
         Should Be Equal As Strings    ${dataframe.camera.values}[${i}]    LATISS
@@ -167,7 +168,7 @@ Set Variables
         Set Suite Variable    @{exp_time}    ${5.0}    ${5.0}    ${5.0}
         Set Suite Variable    @{filter_band}    r    r    r
         Set Suite Variable    ${filter_name}    "SDSSr"
-        Set Suite Variable    @{disperser_band}    R90    R90    R90
+        Set Suite Variable    @{disperser_band}    R170    R170    R170
         Set Suite Variable    @{disperser_name}    ronchi170lpmm    ronchi170lpmm    ronchi170lpmm
         Set Suite Variable    @{img_type_seq}    OBJECT    OBJECT    OBJECT
     ELSE IF    "${playlist}" == "nominal"
@@ -177,7 +178,7 @@ Set Variables
         Set Suite Variable    @{exp_time}    ${4.0}    ${4.0}    ${1.0}
         Set Suite Variable    @{filter_band}    EMPTY    r    r
         Set Suite Variable    ${filter_name}    "SDSSr"
-        Set Suite Variable    @{disperser_band}    R90    R90    EMPTY
+        Set Suite Variable    @{disperser_band}    R170    R170    EMPTY
         Set Suite Variable    @{disperser_name}    ronchi170lpmm    ronchi170lpmm    empty_1
         Set Suite Variable    @{img_type_seq}    OBJECT    OBJECT    OBJECT    ACQ    ACQ
     ELSE

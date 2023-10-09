@@ -33,8 +33,8 @@ Verify ATPtg Target
     [Tags]    robot:continue-on-failure
     ${evt_dataframe}=    Get Recent Samples    ATPtg    logevent_currentTarget    ["targetName", "azDegs", "elDegs",]    1    None
     Should Be Equal    ${evt_dataframe.targetName.values}[0]    FlatField position
-    Should Be Equal    ${evt_dataframe.azDegs.values.round(6)}[0]    ${0}
-    Should Be Equal    ${evt_dataframe.elDegs.values.round(6)}[0]    ${0}
+    Should Be Equal    ${evt_dataframe.azDegs.values.round(6)}[0]    ${181.7}
+    Should Be Equal    ${evt_dataframe.elDegs.values.round(6)}[0]    ${39}
 
 Verify ATPtg Tracking is Off
     [Tags]
@@ -43,7 +43,9 @@ Verify ATPtg Tracking is Off
     Verify Time Delta    ATPtg    command_stopTracking    logevent_trackPosting    ${time_window}    
 
 Verify ATSpectrograph Filter
+    [Tags]    DM-35582
     Verify Topic Attribute    ATSpectrograph    logevent_reportedFilterPosition    ["name",]    ${filter_name}    output=json
+    # The next tests are broken until DM-35582 is fixed.
     #${evt_df}=    Get Recent Samples    ATSpectrograph    logevent_reportedFilterPosition    ["*",]    1    None
     #Should Be Equal    ${evt_df.name.values}[0]    ${filter_name}
 
@@ -67,6 +69,7 @@ Verify ATCamera Image Sequence
 
 Verify ATOODS ImageInOODS
     [Tags]    robot:continue-on-failure
+    Wait Until Keyword Succeeds    60 sec    10 sec    Verify Image in OODS    ATOODS    ${image_names}[0][0]
     ${total_images}=    Evaluate    ${num_images} * 1
     Set Suite Variable    ${total_images}
     ${dataframe}=    Get Recent Samples    ATOODS    logevent_imageInOODS    ["camera", "description", "obsid",]    ${total_images}    None
@@ -91,10 +94,10 @@ Set Variables
     ...    The img_type_seq is defined by the sequence of image types, in reverse order (dataframes are in time-descending order).
     Set Suite Variable    ${playlist_full_name}    bias_dark_ptc
     # Image type.
-    Set Suite Variable    ${num_images}    60    # 10 Bias + 10 Dark + 40 Flat
-    @{n_flat}=    Evaluate    ["FLAT"] * 10
+    Set Suite Variable    ${num_images}    60    # 40 Flat + 10 Dark + 10 Bias
+    @{n_flat}=    Evaluate    ["FLAT"] * 40
     @{n_dark}=    Evaluate    ["DARK"] * 10
-    @{n_bias}=    Evaluate    ["BIAS"] * 40
+    @{n_bias}=    Evaluate    ["BIAS"] * 10
     @{img_type_seq}=    Create List    @{n_flat}    @{n_dark}     @{n_bias}
     Set Suite Variable    @{img_type_seq}
     # Exposure time; BIAS images have 0 for the exposure time.

@@ -79,6 +79,7 @@ Verify ATCamera Image Sequence
 
 Verify ATOODS ImageInOODS
     [Tags]
+    Wait Until Keyword Succeeds    60 sec    10 sec    Verify Image in OODS    ATOODS    ${image_names}[0][0]
     ${dataframe}=    Get Recent Samples    ATOODS    logevent_imageInOODS    ["camera", "description", "obsid",]    ${num_images}    None
     FOR    ${i}    IN RANGE    ${num_images}
         Should Be Equal As Strings    ${dataframe.camera.values}[${i}]    LATISS
