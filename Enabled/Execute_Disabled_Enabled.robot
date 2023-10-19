@@ -32,7 +32,7 @@ Execute GenCam Disabled to Enabled
     Report If Failed    ${scripts}    ${states}
 
 Execute ObsSys2 Disabled to Enabled
-    [Tags]    obsys2
-    ${scripts}    ${states}=    Execute Integration Test    obssys2_disabled_enabled
+    [Tags]    obssys2
+    ${scripts}    ${states}=    Execute Integration Test    obssys_disabled_enabled
     Verify Scripts Completed Successfully    ${scripts}    ${states}
     Report If Failed    ${scripts}    ${states}

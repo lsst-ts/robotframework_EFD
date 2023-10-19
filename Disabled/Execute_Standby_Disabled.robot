@@ -34,6 +34,6 @@ Execute MainTel Standby to Disabled
 
 Execute ObsSys2 Standby to Disabled
     [Tags]    obssys2
-    ${scripts}    ${states}=    Execute Integration Test    obssys2_standby_disabled
+    ${scripts}    ${states}=    Execute Integration Test    obssys_standby_disabled
     Verify Scripts Completed Successfully    ${scripts}    ${states}
     Report If Failed    ${scripts}    ${states}
