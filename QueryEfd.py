@@ -631,10 +631,10 @@ class QueryEfd:
 
     @keyword
     def verify_time_delta(
-        self, csc: str, topic_1: str, topic_2: str, time_window: int, index: int = None
+        self, csc: str, topic_1: str, topic_2: str, index: int = None
     ) -> None:
         """Fails if the difference between the publish times for the two given
-        topics is greater than the given time_window..
+        topics is negative, indicating the second occurred BEFORE the first.
 
         Parameters
         ----------
@@ -644,9 +644,6 @@ class QueryEfd:
             The name of the first topic.
         topic_2 : `str`
             The name of the second topic.
-        time_window : `int`
-            The value, in seconds, under which publish times
-            should differ..
         index : `int`
             The index of the CSC, if applicable (default is None).
         """
@@ -654,16 +651,15 @@ class QueryEfd:
         time_1 = self.get_topic_sent_time(csc, topic_1)
         time_2 = self.get_topic_sent_time(csc, topic_2)
         # Get the timedelta, in seconds.
-        delta = abs((time_2 - time_1).total_seconds())
+        delta = (time_2 - time_1).total_seconds()
         print(
             f"*TRACE*{topic_1} was sent at {time_1}.\n"
             f"*TRACE*{topic_2} was sent at {time_2}.\n"
             f"*TRACE*The time difference is {delta} seconds."
         )
-        if delta > time_window:
+        if delta < 0:
             raise AssertionError(
-                f"{topic_2} was published {delta}s outside "
-                f"the {time_window}s time window from {topic_1}."
+                f"{topic_2} was published {abs(delta)} seconds BEFORE {topic_1}."
             )
 
     @keyword
