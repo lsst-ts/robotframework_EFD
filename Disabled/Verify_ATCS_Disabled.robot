@@ -4,9 +4,6 @@ Resource    ../CSC_Lists.resource
 Resource    ../Common_Keywords.resource
 Force Tags    atcs
 
-*** Variables ***
-${time_window}    10
-
 *** Test Cases ***
 Verify ATAOS Disabled
     [Tags]    disabled
@@ -18,7 +15,7 @@ Verify ATAOS ConfigurationApplied Event
 
 Verify ATAOS ConfigurationApplied Event timing
     [Tags]    config_applied    timing
-    Verify Time Delta    ATAOS    logevent_summaryState    logevent_configurationApplied    ${time_window}
+    Verify Time Delta    ATAOS    logevent_summaryState    logevent_configurationApplied
 
 Verify ATDome Disabled
     [Tags]    disabled
@@ -30,7 +27,7 @@ Verify ATDome ConfigurationApplied Event
 
 Verify ATDome ConfigurationApplied Event timing
     [Tags]    config_applied    timing
-    Verify Time Delta    ATDome    logevent_summaryState    logevent_configurationApplied    ${time_window}
+    Verify Time Delta    ATDome    logevent_summaryState    logevent_configurationApplied
 
 Verify ATDomeTrajectory Disabled
     [Tags]    disabled
@@ -42,7 +39,7 @@ Verify ATDomeTrajectory ConfigurationApplied Event
 
 Verify ATDomeTrajectory ConfigurationApplied Event timing
     [Tags]    config_applied    timing
-    Verify Time Delta    ATDomeTrajectory    logevent_summaryState    logevent_configurationApplied    ${time_window}
+    Verify Time Delta    ATDomeTrajectory    logevent_summaryState    logevent_configurationApplied
 
 Verify ATHexapod Disabled
     [Tags]    disabled
@@ -54,7 +51,7 @@ Verify ATHexapod ConfigurationApplied Event
 
 Verify ATHexapod ConfigurationApplied Event timing 
     [Tags]    config_applied    timing
-    Verify Time Delta    ATHexapod    logevent_summaryState    logevent_configurationApplied    ${time_window}
+    Verify Time Delta    ATHexapod    logevent_summaryState    logevent_configurationApplied
 
 Verify ATMCS Disabled
     [Tags]    disabled

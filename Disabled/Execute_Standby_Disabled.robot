@@ -5,7 +5,6 @@ Resource    ../Common_Keywords.resource
 Force Tags    disabled    execute
 
 *** Variables ***
-${time_window}    10
 
 *** Test Cases ***
 Execute AuxTel Standby to Disabled 

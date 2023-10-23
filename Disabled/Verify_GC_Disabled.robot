@@ -4,9 +4,6 @@ Resource    ../CSC_Lists.resource
 Resource    ../Common_Keywords.resource
 Force Tags    gc
 
-*** Variables ***
-${time_window}    10
-
 *** Test Cases ***
 Verify GenericCamera:1 Disabled
     [Tags]    disabled
@@ -18,7 +15,7 @@ Verify GenericCamera:1 ConfigurationApplied Event
 
 Verify GenericCamera:1 ConfigurationApplied timing
     [Tags]    config_applied    timing
-    Verify Time Delta    GenericCamera    logevent_summaryState    logevent_configurationApplied    ${time_window}    1
+    Verify Time Delta    GenericCamera    logevent_summaryState    logevent_configurationApplied    1
 
 Verify GCHeaderService:1 Disabled
     [Tags]    disabled

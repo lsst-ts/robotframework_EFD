@@ -8,7 +8,6 @@ Suite Setup    Check If Failed
 *** Variables ***
 @{port_field}    selected
 @{instrument_port}    2    #Nasymth2
-${time_window}    10
 
 *** Test Cases ***
 Execute AuxTel Housekeeping

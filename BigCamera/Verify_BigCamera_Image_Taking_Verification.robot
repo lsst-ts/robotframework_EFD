@@ -7,7 +7,6 @@ Force Tags    bigcamera    image_taking_verification
 Suite Setup    Run Keywords    Check If Failed    AND    Set EFD Values
 
 *** Variables ***
-${time_window}    10
 
 *** Test Cases ***
 Load Camera Playlist

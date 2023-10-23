@@ -7,7 +7,6 @@ Force Tags    bigcamera    calibrations
 Suite Setup    Run Keywords    Check If Failed    AND    Set EFD Values    AND    Set Variables
 
 *** Variables ***
-${time_window}    10
 
 *** Test Cases ***
 Load Camera Playlist
@@ -31,7 +30,7 @@ Verify MTPtg Target
     [Documentation]    Ensure the telescope is pointed at the correct target, in this case at the Az/El of the flat-field screen.
     ...    This command is sent prior to the start of the script.
     [Tags]    robot:continue-on-failure
-    Verify Time Delta    MTPtg    command_raDecTarget    logevent_currentTarget    ${time_window}
+    Verify Time Delta    MTPtg    command_raDecTarget    logevent_currentTarget
     ${cmd_dataframe}=    Get Recent Samples    MTPtg    command_raDecTarget    ["targetName", "ra", "declination",]    1    None
     Should Be Equal    ${cmd_dataframe.targetName.values}[0]    Flatfield position
     ${evt_dataframe}=    Get Recent Samples    MTPtg    logevent_currentTarget    ["targetName", "azDegs", "elDegs",]    1    None
@@ -43,7 +42,7 @@ Verify MTPtg Tracking is Off
     [Tags]
     ${evt_df}=    Get Recent Samples    MTPtg    logevent_trackPosting    ["status"]    1    None
     Should Not Be True    ${evt_df.status.values}[0]
-    Verify Time Delta    MTPtg    command_stopTracking    logevent_trackPosting    ${time_window}    
+    Verify Time Delta    MTPtg    command_stopTracking    logevent_trackPosting    
 
 Verify Camera Filter
     ${evt_df}=    Get Recent Samples    ${BigCamera}    logevent_startSetFilter    ["filterName", "filterType"]    1    None

@@ -8,25 +8,24 @@ Suite Setup   Set EFD Values
 *** Variables ***
 ${topic_1}    logevent_summaryState
 ${topic_2}    command_disable
-${time_window}    600
 
 *** Test Cases ***
 Verify Camera Shutdown
     [Tags]
     Verify Shutdown Process    ${BigCamera}
-    Verify Time Delta    ${BigCamera}    ${topic_1}    ${topic_2}    ${time_window}
+    Verify Time Delta    ${BigCamera}    ${topic_1}    ${topic_2}
 
 Verify OODS Shutdown
     [Tags]
     Verify Shutdown Process    ${OODS}
-    Verify Time Delta    ${OODS}    ${topic_1}    ${topic_2}    ${time_window}
+    Verify Time Delta    ${OODS}    ${topic_1}    ${topic_2}
 
 Verify HeaderService Shutdown
     [Tags]
     Verify Shutdown Process    ${HeaderService}
-    Verify Time Delta    ${HeaderService}    ${topic_1}    ${topic_2}    ${time_window}
+    Verify Time Delta    ${HeaderService}    ${topic_1}    ${topic_2}
 
 Verify OCPS:2||3 Shutdown
     [Tags]
     Verify Shutdown Process    OCPS    index=${OcpsIndex}
-    Verify Time Delta    OCPS    ${topic_1}    ${topic_2}    ${time_window}    index=2
+    Verify Time Delta    OCPS    ${topic_1}    ${topic_2}    index=2

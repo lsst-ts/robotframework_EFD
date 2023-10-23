@@ -13,7 +13,6 @@ ${scriptqueue2_salver}    ${SALVersion}
 ${scriptqueue2_xmlver}    ${XMLVersion}
 ${watcher_salver}    ${SALVersion}
 ${watcher_xmlver}    ${XMLVersion}
-${time_window}    10
 
 *** Test Cases ***
 #Authorize
@@ -27,7 +26,7 @@ Verify Authorize SoftwareVersions
 
 Verify Authorize SoftwareVersions timing
     [Tags]    software_versions    timing
-    Verify Time Delta    Authorize    logevent_summaryState    logevent_softwareVersions    ${time_window}
+    Verify Time Delta    Authorize    logevent_summaryState    logevent_softwareVersions
 
 #ScriptQueue:1
 Verify ScriptQueue:1 Standby
@@ -40,7 +39,7 @@ Verify ScriptQueue:1 SoftwareVersions
 
 Verify ScriptQueue:1 SoftwareVersions timing
     [Tags]    software_versions    timing
-    Verify Time Delta    ScriptQueue    logevent_summaryState    logevent_softwareVersions    ${time_window}    index=1
+    Verify Time Delta    ScriptQueue    logevent_summaryState    logevent_softwareVersions    index=1
 
 Verify ScriptQueue:1 ConfigurationsAvailable Event
     [Tags]    config_available
@@ -57,7 +56,7 @@ Verify ScriptQueue:2 SoftwareVersions
 
 Verify ScriptQueue:2 SoftwareVersions timing
     [Tags]    software_versions    timing
-    Verify Time Delta    ScriptQueue    logevent_summaryState    logevent_softwareVersions    ${time_window}    index=2
+    Verify Time Delta    ScriptQueue    logevent_summaryState    logevent_softwareVersions    index=2
 
 Verify ScriptQueue:2 ConfigurationsAvailable Event
     [Tags]    config_available
@@ -74,7 +73,7 @@ Verify Watcher SoftwareVersions
 
 Verify Watcher SoftwareVersions timing
     [Tags]    software_versions    timing
-    Verify Time Delta    Watcher    logevent_summaryState    logevent_softwareVersions    ${time_window}
+    Verify Time Delta    Watcher    logevent_summaryState    logevent_softwareVersions
 
 Verify Watcher ConfigurationsAvailable Event
     [Tags]    config_available
@@ -82,4 +81,4 @@ Verify Watcher ConfigurationsAvailable Event
 
 Verify Watcher ConfigurationsAvailable timing
     [Tags]    config_available    timing
-    Verify Time Delta    Watcher    logevent_summaryState    logevent_configurationsAvailable    ${time_window}
+    Verify Time Delta    Watcher    logevent_summaryState    logevent_configurationsAvailable

@@ -8,7 +8,6 @@ Suite Setup    Set EFD Values
 *** Variables ***
 ${offdet_topic}    logevent_offlineDetailedState
 @{offdet_fields}    "private_sndStamp"    "substate"
-${time_window}    600
 
 *** Test Cases ***
 #ATCamera
@@ -22,7 +21,7 @@ Verify ATCamera SoftwareVersions
 
 Verify ATCamera SoftwareVersions timing
     [Tags]    latiss    software_versions    timing
-    Verify Time Delta    ATCamera    logevent_summaryState    logevent_softwareVersions    ${time_window}
+    Verify Time Delta    ATCamera    logevent_summaryState    logevent_softwareVersions
 
 Verify ATCamera OfflineDetailedStates
     [Tags]    latiss    detailed_states
@@ -44,7 +43,7 @@ Verify ATCamera OfflineDetailedStates
 
 Verify ATCamera OfflineDetailedStates timing
     [Tags]    latiss    detailed_states    timing
-    Verify Time Delta    ATCamera    logevent_summaryState    ${offdet_topic}    ${time_window}
+    Verify Time Delta    ATCamera    logevent_summaryState    ${offdet_topic}
 
 #BigCamera
 Verify BigCamera Offline
@@ -57,7 +56,7 @@ Verify BigCamera SoftwareVersions
 
 Verify BigCamera SoftwareVersions timing
     [Tags]    bigcamera    software_versions    timing
-    Verify Time Delta    ${BigCamera}    logevent_summaryState    logevent_softwareVersions    ${time_window}
+    Verify Time Delta    ${BigCamera}    logevent_summaryState    logevent_softwareVersions
 
 Verify BigCamera OfflineDetailedStates
     [Tags]    bigcamera
@@ -79,4 +78,4 @@ Verify BigCamera OfflineDetailedStates
 
 Verify BigCamera OfflineDetailedStates timing
     [Tags]    bigcamera    detailed_states    timing
-    Verify Time Delta    ${BigCamera}    logevent_summaryState    ${offdet_topic}    ${time_window}
+    Verify Time Delta    ${BigCamera}    logevent_summaryState    ${offdet_topic}

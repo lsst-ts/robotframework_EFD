@@ -15,7 +15,6 @@ ${atoods_salver}    ${SALVersion}
 ${atoods_xmlver}    ${XMLVersion}
 ${atspectrograph_salver}    ${SALVersion}
 ${atspectrograph_xmlver}    ${XMLVersion}
-${time_window}    10
 
 *** Test Cases ***
 #ATCamera
@@ -29,7 +28,7 @@ Verify ATCamera SoftwareVersions
 
 Verify ATCamera SoftwareVersions timing
     [Tags]    software_versions    timing
-    Verify Time Delta    ATCamera    logevent_summaryState    logevent_softwareVersions    ${time_window}
+    Verify Time Delta    ATCamera    logevent_summaryState    logevent_softwareVersions
 
 Verify ATCamera ConfigurationsAvailable Event
     [Tags]    config_available
@@ -37,7 +36,7 @@ Verify ATCamera ConfigurationsAvailable Event
 
 Verify ATCamera ConfigurationsAvailable timing
     [Tags]    config_available    timing
-    Verify Time Delta    ATCamera    logevent_summaryState    logevent_configurationsAvailable    ${time_window}
+    Verify Time Delta    ATCamera    logevent_summaryState    logevent_configurationsAvailable
 
 #ATOODS
 Verify ATOODS Standby
@@ -50,7 +49,7 @@ Verify ATOODS SoftwareVersions
 
 Verify ATOODS SoftwareVersions timing
     [Tags]    software_versions    timing
-    Verify Time Delta    ATOODS    logevent_summaryState    logevent_softwareVersions    ${time_window}
+    Verify Time Delta    ATOODS    logevent_summaryState    logevent_softwareVersions
 
 Verify ATOODS ConfigurationsAvailable Event
     [Tags]    config_available
@@ -67,7 +66,7 @@ Verify ATHeaderService SoftwareVersions
 
 Verify ATHeaderService SoftwareVersions timing
     [Tags]    software_versions    timing
-    Verify Time Delta    ATHeaderService    logevent_summaryState    logevent_softwareVersions    ${time_window}
+    Verify Time Delta    ATHeaderService    logevent_summaryState    logevent_softwareVersions
 
 Verify ATHeaderService ConfigurationsAvailable Event
     [Tags]    config_available
@@ -84,7 +83,7 @@ Verify OCPS:1 SoftwareVersions
 
 Verify OCPS:1 SoftwareVersions timing
     [Tags]    software_versions    timing
-    Verify Time Delta    OCPS    logevent_summaryState    logevent_softwareVersions    ${time_window}    index=1
+    Verify Time Delta    OCPS    logevent_summaryState    logevent_softwareVersions    index=1
 
 Verify OCPS:1 ConfigurationsAvailable Event
     [Tags]    config_available
@@ -92,7 +91,7 @@ Verify OCPS:1 ConfigurationsAvailable Event
 
 Verify OCPS:1 ConfigurationsAvailable timing
     [Tags]    config_available    timing
-    Verify Time Delta    OCPS    logevent_summaryState    logevent_configurationsAvailable    ${time_window}    1
+    Verify Time Delta    OCPS    logevent_summaryState    logevent_configurationsAvailable    1
 
 #ATSpectrograph
 Verify ATSpectrograph Standby
@@ -105,7 +104,7 @@ Verify ATSpectrograph SoftwareVersions
 
 Verify ATSpectrograph SoftwareVersions timing
     [Tags]    software_versions    timing
-    Verify Time Delta    ATSpectrograph    logevent_summaryState    logevent_softwareVersions    ${time_window}
+    Verify Time Delta    ATSpectrograph    logevent_summaryState    logevent_softwareVersions
 
 Verify ATSpectrograph ConfigurationsAvailable Event
     [Tags]    config_available
@@ -113,4 +112,4 @@ Verify ATSpectrograph ConfigurationsAvailable Event
 
 Verify ATSpectrograph ConfigurationsAvailable timing
     [Tags]    config_available    timing
-    Verify Time Delta    ATSpectrograph    logevent_summaryState    logevent_configurationsAvailable    ${time_window}
+    Verify Time Delta    ATSpectrograph    logevent_summaryState    logevent_configurationsAvailable
