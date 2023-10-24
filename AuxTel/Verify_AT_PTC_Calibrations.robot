@@ -7,7 +7,6 @@ Force Tags    at_calibrations
 Suite Setup    Run Keywords    Check If Failed    AND    Set Variables
 
 *** Variables ***
-${time_window}    10
 
 *** Test Cases ***
 Load Camera Playlist
@@ -40,7 +39,7 @@ Verify ATPtg Tracking is Off
     [Tags]
     ${evt_df}=    Get Recent Samples    ATPtg    logevent_trackPosting    ["status"]    1    None
     Should Not Be True    ${evt_df.status.values}[0]
-    Verify Time Delta    ATPtg    command_stopTracking    logevent_trackPosting    ${time_window}    
+    Verify Time Delta    ATPtg    command_stopTracking    logevent_trackPosting    
 
 Verify ATSpectrograph Filter
     [Tags]    DM-35582

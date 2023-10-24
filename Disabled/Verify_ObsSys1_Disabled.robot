@@ -4,9 +4,6 @@ Resource    ../CSC_Lists.resource
 Resource    ../Common_Keywords.resource
 Force Tags    obssys1
 
-*** Variables ***
-${time_window}    10
-
 *** Test Cases ***
 Verify Authorize Disabled
     [Tags]    disabled
@@ -18,7 +15,7 @@ Verify Authorize ConfigurationApplied Event
 
 Verify Authorize ConfigurationApplied timing
     [Tags]    config_applied    timing
-    Verify Time Delta    Authorize    logevent_summaryState    logevent_configurationApplied    ${time_window}
+    Verify Time Delta    Authorize    logevent_summaryState    logevent_configurationApplied
 
 Verify ScriptQueue:1 Disabled
     [Tags]    disabled
@@ -46,4 +43,4 @@ Verify Watcher ConfigurationApplied Event
 
 Verify Watcher ConfigurationApplied timing
     [Tags]    config_applied    timing
-    Verify Time Delta    Watcher    logevent_summaryState    logevent_configurationApplied    ${time_window}
+    Verify Time Delta    Watcher    logevent_summaryState    logevent_configurationApplied

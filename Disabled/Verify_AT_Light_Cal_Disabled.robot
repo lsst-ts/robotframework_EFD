@@ -4,9 +4,6 @@ Resource    ../CSC_Lists.resource
 Resource    ../Common_Keywords.resource
 Force Tags    at_light_cal    skipped
 
-*** Variables ***
-${time_window}    10
-
 *** Test Cases ***
 Verify ATMonochromator Disabled
     [Tags]    disabled
@@ -18,7 +15,7 @@ Verify ATMonochromator ConfigurationApplied Event
 
 Verify ATMonochromator ConfigurationApplied timing
     [Tags]    config_applied    timing
-    Verify Time Delta    ATMonochromator    logevent_summaryState    logevent_configurationApplied    ${time_window}
+    Verify Time Delta    ATMonochromator    logevent_summaryState    logevent_configurationApplied
 
 Verify FiberSpectrograph:3 Disabled
     [Tags]    disabled
@@ -30,4 +27,4 @@ Verify FiberSpectrograph:3 ConfigurationApplied Event
 
 Verify FiberSpectrograph:3 ConfigurationApplied timing
     [Tags]    config_applied    timing
-    Verify Time Delta    FiberSpectrograph    logevent_summaryState    logevent_configurationApplied    ${time_window}    3
+    Verify Time Delta    FiberSpectrograph    logevent_summaryState    logevent_configurationApplied    3

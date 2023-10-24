@@ -4,9 +4,6 @@ Resource    ../CSC_Lists.resource
 Resource    ../Common_Keywords.resource
 Force Tags    latiss
 
-*** Variables ***
-${time_window}    10
-
 *** Test Cases ***
 #ATCamera
 Verify ATCamera Disabled
@@ -19,7 +16,7 @@ Verify ATCamera ConfigurationApplied Event
 
 Verify ATCamera ConfigurationApplied timing
     [Tags]    config_applied    timing
-    Verify Time Delta    ATCamera    logevent_summaryState    logevent_configurationApplied    ${time_window}
+    Verify Time Delta    ATCamera    logevent_summaryState    logevent_configurationApplied
 
 #ATHeaderService
 Verify ATHeaderService Disabled
@@ -41,7 +38,7 @@ Verify OCPS:1 ConfigurationApplied Event
 
 Verify OCPS:1 ConfigurationApplied timing
     [Tags]    config_applied    timing
-    Verify Time Delta    OCPS    logevent_summaryState    logevent_configurationApplied    ${time_window}    index=1
+    Verify Time Delta    OCPS    logevent_summaryState    logevent_configurationApplied    index=1
 
 #ATOODS
 Verify ATOODS Disabled
@@ -63,4 +60,4 @@ Verify ATSpectrograph ConfigurationApplied Event
 
 Verify ATSpectrograph ConfigurationApplied timing
     [Tags]    config_applied    timing
-    Verify Time Delta    ATSpectrograph    logevent_summaryState    logevent_configurationApplied    ${time_window}
+    Verify Time Delta    ATSpectrograph    logevent_summaryState    logevent_configurationApplied

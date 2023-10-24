@@ -35,7 +35,7 @@ RUN curl https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -
 chmod +x .miniconda.sh && ./.miniconda.sh -b -p miniconda3 && \
 source miniconda3/bin/activate && \
 conda update conda -y && \
-conda install python>=3.10 -y && \
+conda install -c conda-forge python>=3.11 -y && \
 conda env create -f .environment.yaml && \
 conda activate test_reporting && \
 pip3 install -U setuptools numpy pytest astropy requests robotframework lsst-efd-client

@@ -7,7 +7,6 @@ Force Tags    latiss_checkout
 Suite Setup    Check If Failed
 
 *** Variables ***
-${time_window}    10
 
 *** Test Cases ***
 Load Camera Playlist

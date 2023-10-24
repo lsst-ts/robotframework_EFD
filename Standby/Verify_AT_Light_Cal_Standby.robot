@@ -9,7 +9,6 @@ ${atmonochromator_salver}    ${SALVersion}
 ${atmonochromator_xmlver}    ${XMLVersion}
 ${fiberspectrograph_salver}    ${SALVersion}
 ${fiberspectrograph_xmlver}    ${XMLVersion}
-${time_window}    10
 
 *** Test Cases ***
 #ATMonochromator
@@ -23,7 +22,7 @@ Verify ATMonochromator SoftwareVersions
 
 Verify ATMonochromator SoftwareVersions timing
     [Tags]    software_versions    timing
-    Verify Time Delta    ATMonochromator    logevent_summaryState    logevent_softwareVersions    ${time_window}
+    Verify Time Delta    ATMonochromator    logevent_summaryState    logevent_softwareVersions
 
 Verify ATMonochromator ConfigurationsAvailable Event
     [Tags]    config_available
@@ -31,7 +30,7 @@ Verify ATMonochromator ConfigurationsAvailable Event
 
 Verify ATMonochromator ConfigurationsAvailable timing
     [Tags]    config_available    timing
-    Verify Time Delta    ATMonochromator    logevent_summaryState    logevent_configurationsAvailable    ${time_window}
+    Verify Time Delta    ATMonochromator    logevent_summaryState    logevent_configurationsAvailable
 
 #FiberSpectrograph:3
 Verify FiberSpectrograph:3 Standby
@@ -44,7 +43,7 @@ Verify FiberSpectrograph:3 SoftwareVersions
 
 Verify FiberSpectrograph:3 SoftwareVersions timing
     [Tags]    software_versions    timing
-    Verify Time Delta    ATMonochromator    logevent_summaryState    logevent_softwareVersions    ${time_window}    3
+    Verify Time Delta    ATMonochromator    logevent_summaryState    logevent_softwareVersions    3
 
 Verify FiberSpectrograph:3 ConfigurationsAvailable Event
     [Tags]    config_available
@@ -52,4 +51,4 @@ Verify FiberSpectrograph:3 ConfigurationsAvailable Event
 
 Verify FiberSpectrograph:3 ConfigurationsAvailable timing
     [Tags]    config_available    timing
-    Verify Time Delta    FiberSpectrograph    logevent_summaryState    logevent_configurationsAvailable    ${time_window}    3
+    Verify Time Delta    FiberSpectrograph    logevent_summaryState    logevent_configurationsAvailable    3

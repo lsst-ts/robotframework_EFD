@@ -153,7 +153,7 @@ class QueryEfd:
             csc=csc, topic=topic, fields=fields, num=num, index=index
         )
         try:
-            event_sent_time = recent_samples.private_sndStamp[0]
+            event_sent_time = recent_samples.private_sndStamp.iloc[0]
         except AttributeError:
             raise AttributeError(
                 "'DataFrame' object has no attribute 'private_sndStamp'"
@@ -273,8 +273,8 @@ class QueryEfd:
             raise AttributeError("SummaryState Event Not Found.")
         # Get the States.
         expected_state_str = state_enums.as_state(int(expected_state)).name
-        actual_state_str = state_enums.as_state(int(ss_df.summaryState[0])).name
-        event_sent_time = ss_df.private_sndStamp[0].strftime(self.time_format)
+        actual_state_str = state_enums.as_state(int(ss_df.summaryState.iloc[0])).name
+        event_sent_time = ss_df.private_sndStamp.iloc[0].strftime(self.time_format)
         # Pass if CSC is in expected_state and raise AssertionError if not.
         if str(actual_state_str) == str(expected_state_str):
             print(f"{csc_str} in {expected_state_str} State")
@@ -359,9 +359,9 @@ class QueryEfd:
                 raise ValueError("Dataframe should be empty")
         else:
             # Get the various field values.
-            configurations = dataframe.configurations[0]
-            version = dataframe.version[0].strip("tags/")
-            url = dataframe.url[0]
+            configurations = dataframe.configurations.iloc[0]
+            version = dataframe.version.iloc[0].strip("tags/")
+            url = dataframe.url.iloc[0]
             print(
                 f"*TRACE*Configurations: {configurations}, Version: {version}, URL: {url}"
             )
@@ -382,8 +382,8 @@ class QueryEfd:
                 self.verify_version(version)
             except AssertionError as e:
                 error_list.append("Config " + str(e))
-            if len(dataframe.otherInfo[0]) > 0:
-                events = dataframe.otherInfo[0].split(",")
+            if len(dataframe.otherInfo.iloc[0]) > 0:
+                events = dataframe.otherInfo.iloc[0].split(",")
                 for event in events:
                     if (
                         csc.lower() in ("atcamera", "cccamera", "mtcamera")
@@ -433,10 +433,10 @@ class QueryEfd:
                 raise ValueError("Dataframe should be empty")
         else:
             # Get the various field values.
-            version = dataframe.version[0].strip("tags/")
-            url = dataframe.url[0]
-            schema_version = dataframe.schemaVersion[0]
-            overrides = dataframe.overrides[0]
+            version = dataframe.version.iloc[0].strip("tags/")
+            url = dataframe.url.iloc[0]
+            schema_version = dataframe.schemaVersion.iloc[0]
+            overrides = dataframe.overrides.iloc[0]
             # Verify field values.
             print(
                 f"*TRACE*Overrides: '{overrides}', Version: '{version}', URL: '{url}', SchemaVersion: '{schema_version}'"
@@ -502,10 +502,10 @@ class QueryEfd:
         if dataframe.empty:
             raise ValueError("Dataframe is empty")
         # Get the dependency versions.
-        sal_ver = dataframe.salVersion[0]
-        xml_ver = dataframe.xmlVersion[0]
-        ospl_ver = dataframe.openSpliceVersion[0]
-        csc_ver = dataframe.cscVersion[0]
+        sal_ver = dataframe.salVersion.iloc[0]
+        xml_ver = dataframe.xmlVersion.iloc[0]
+        ospl_ver = dataframe.openSpliceVersion.iloc[0]
+        csc_ver = dataframe.cscVersion.iloc[0]
         print(
             f"*TRACE*Expected: SALVersion: {csc_salver}, XMLVersion: {csc_xmlver}, OSPLVersion: {self.ospl_version}",
             f"\n  Actual: SALVersion: {sal_ver}, XMLVersion: {xml_ver}, OSPLVersion: {ospl_ver}, CSCVersion: {csc_ver}",
@@ -573,7 +573,7 @@ class QueryEfd:
         else:
             topic_df = self.get_recent_samples(csc, topic, fields, 1, index)
             print(f"*TRACE*dataframe:\n{topic_df}")
-            actual_value = getattr(topic_df, attribute)[0]
+            actual_value = getattr(topic_df, attribute).iloc[0]
         failure = False
         if type(expected_values[0]) == int or type(expected_values[0]) == float:
             if not math.isclose(actual_value, expected_values[0], abs_tol=0.0001):
@@ -631,10 +631,10 @@ class QueryEfd:
 
     @keyword
     def verify_time_delta(
-        self, csc: str, topic_1: str, topic_2: str, time_window: int, index: int = None
+        self, csc: str, topic_1: str, topic_2: str, index: int = None
     ) -> None:
         """Fails if the difference between the publish times for the two given
-        topics is greater than the given time_window..
+        topics is negative, indicating the second occurred BEFORE the first.
 
         Parameters
         ----------
@@ -644,9 +644,6 @@ class QueryEfd:
             The name of the first topic.
         topic_2 : `str`
             The name of the second topic.
-        time_window : `int`
-            The value, in seconds, under which publish times
-            should differ..
         index : `int`
             The index of the CSC, if applicable (default is None).
         """
@@ -654,16 +651,15 @@ class QueryEfd:
         time_1 = self.get_topic_sent_time(csc, topic_1)
         time_2 = self.get_topic_sent_time(csc, topic_2)
         # Get the timedelta, in seconds.
-        delta = abs((time_2 - time_1).total_seconds())
+        delta = (time_2 - time_1).total_seconds()
         print(
             f"*TRACE*{topic_1} was sent at {time_1}.\n"
             f"*TRACE*{topic_2} was sent at {time_2}.\n"
             f"*TRACE*The time difference is {delta} seconds."
         )
-        if delta > time_window:
+        if delta < 0:
             raise AssertionError(
-                f"{topic_2} was published {delta}s outside "
-                f"the {time_window}s time window from {topic_1}."
+                f"{topic_2} was published {abs(delta)} seconds BEFORE {topic_1}."
             )
 
     @keyword

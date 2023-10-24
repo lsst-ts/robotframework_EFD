@@ -7,7 +7,6 @@ Force Tags    at_telescope_dome_checkout
 Suite Setup    Check If Failed
 
 *** Variables ***
-${time_window}    10
 
 *** Test Cases ***
 Execute AuxTel Telescope and Dome Checkout Test

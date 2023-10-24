@@ -7,7 +7,6 @@ Force Tags    at_night_ops    acq_take_seq
 Suite Setup    Run Keywords    Check If Failed    AND    Set Variables    ${playlist}
 
 *** Variables ***
-${time_window}    10
 ${playlist}    replace_me
 
 *** Test Cases ***
@@ -51,7 +50,7 @@ Verify ATPtg Target
         ${topic_sent}=    Convert Date    ${output}    result_format=datetime
         ${delta}=    Subtract Date From Date    ${topic_sent}    ${script_start}
         Should Be True    ${delta} > 0
-        Verify Time Delta    ATPtg    command_raDecTarget    logevent_currentTarget    ${time_window}
+        Verify Time Delta    ATPtg    command_raDecTarget    logevent_currentTarget
         ${cmd_dataframe}=    Get Recent Samples    ATPtg    command_raDecTarget    ["targetName", "ra", "declination",]    1    None
         Should Be Equal    ${cmd_dataframe.targetName.values}[0]    HD164461
         Should Be Equal    ${cmd_dataframe.ra.values.round(6)}[0]    ${18.913095}
@@ -107,8 +106,8 @@ Verify ATSpectrograph ChangeFilter
     ${topic_sent}=    Convert Date    ${output}    result_format=datetime
     ${delta}=    Subtract Date From Date    ${topic_sent}    ${script_start}
     Should Be True    ${delta} > 0
-    Verify Time Delta    ATSpectrograph    command_changeFilter    logevent_filterInPosition    ${time_window}
-    Verify Time Delta    ATSpectrograph    command_changeFilter    logevent_reportedFilterPosition    ${time_window}
+    Verify Time Delta    ATSpectrograph    command_changeFilter    logevent_filterInPosition
+    Verify Time Delta    ATSpectrograph    command_changeFilter    logevent_reportedFilterPosition
     Verify Topic Attribute    ATSpectrograph    logevent_filterInPosition    ["inPosition",]    [True,]
 
 Verify ATSpectrograph Filter
@@ -122,8 +121,8 @@ Verify ATSpectrograph ChangeDisperser
     ${topic_sent}=    Convert Date    ${output}    result_format=datetime
     ${delta}=    Subtract Date From Date    ${topic_sent}    ${script_start}
     Should Be True    ${delta} > 0
-    Verify Time Delta    ATSpectrograph    command_changeDisperser    logevent_disperserInPosition    ${time_window}
-    Verify Time Delta    ATSpectrograph    command_changeDisperser    logevent_reportedDisperserPosition    ${time_window}
+    Verify Time Delta    ATSpectrograph    command_changeDisperser    logevent_disperserInPosition
+    Verify Time Delta    ATSpectrograph    command_changeDisperser    logevent_reportedDisperserPosition
     Verify Topic Attribute    ATSpectrograph    logevent_disperserInPosition    ["inPosition",]    [True,]
 
 Verify ATSpectrograph Disperser

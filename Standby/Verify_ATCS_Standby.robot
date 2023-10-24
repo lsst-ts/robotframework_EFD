@@ -19,7 +19,6 @@ ${atpneumatics_salver}    ${SALVersion}
 ${atpneumatics_xmlver}    ${XMLVersion}
 ${atptg_salver}    ${SALVersion}
 ${atptg_xmlver}    ${XMLVersion}
-${time_window}    10
 
 *** Test Cases ***
 #ATAOS
@@ -33,7 +32,7 @@ Verify ATAOS SoftwareVersions
 
 Verify ATAOS SoftwareVersions timing
     [Tags]    software_versions    timing
-    Verify Time Delta    ATAOS    logevent_summaryState    logevent_softwareVersions    ${time_window}
+    Verify Time Delta    ATAOS    logevent_summaryState    logevent_softwareVersions
 
 Verify ATAOS ConfigurationsAvailable Event
     [Tags]    config_available
@@ -41,7 +40,7 @@ Verify ATAOS ConfigurationsAvailable Event
 
 Verify ATAOS ConfigurationsAvailable timing
     [Tags]    config_available    timing
-    Verify Time Delta    ATAOS    logevent_summaryState    logevent_configurationsAvailable    ${time_window}
+    Verify Time Delta    ATAOS    logevent_summaryState    logevent_configurationsAvailable
 
 #ATDome
 Verify ATDome Standby
@@ -54,7 +53,7 @@ Verify ATDome SoftwareVersions
 
 Verify ATDome SoftwareVersions timing
     [Tags]    software_versions    timing
-    Verify Time Delta    ATDome    logevent_summaryState    logevent_softwareVersions    ${time_window}
+    Verify Time Delta    ATDome    logevent_summaryState    logevent_softwareVersions
 
 Verify ATDome ConfigurationsAvailable Event
     [Tags]    config_available
@@ -62,7 +61,7 @@ Verify ATDome ConfigurationsAvailable Event
 
 Verify ATDome ConfigurationsAvailable timing
     [Tags]    config_available    timing
-    Verify Time Delta    ATDome    logevent_summaryState    logevent_configurationsAvailable    ${time_window}
+    Verify Time Delta    ATDome    logevent_summaryState    logevent_configurationsAvailable
 
 Verify ATDomeTrajectory Standby
     [Tags]    standby
@@ -75,7 +74,7 @@ Verify ATDomeTrajectory SoftwareVersions
 
 Verify ATDomeTrajectory SoftwareVersions timing
     [Tags]    software_versions    timing
-    Verify Time Delta    ATDomeTrajectory    logevent_summaryState    logevent_softwareVersions    ${time_window}
+    Verify Time Delta    ATDomeTrajectory    logevent_summaryState    logevent_softwareVersions
 
 Verify ATDomeTrajectory ConfigurationsAvailable Event
     [Tags]    config_available
@@ -83,7 +82,7 @@ Verify ATDomeTrajectory ConfigurationsAvailable Event
 
 Verify ATDomeTrajectory ConfigurationsAvailable timing
     [Tags]    config_available    timing
-    Verify Time Delta    ATDomeTrajectory    logevent_summaryState    logevent_configurationsAvailable    ${time_window}
+    Verify Time Delta    ATDomeTrajectory    logevent_summaryState    logevent_configurationsAvailable
 
 #ATHexapod
 Verify ATHexapod Standby
@@ -96,7 +95,7 @@ Verify ATHexapod SoftwareVersions
 
 Verify ATHexapod SoftwareVersions timing
     [Tags]    software_versions    timing
-    Verify Time Delta    ATHexapod    logevent_summaryState    logevent_softwareVersions    ${time_window}
+    Verify Time Delta    ATHexapod    logevent_summaryState    logevent_softwareVersions
 
 Verify ATHexapod ConfigurationsAvailable Event
     [Tags]    config_available
@@ -104,7 +103,7 @@ Verify ATHexapod ConfigurationsAvailable Event
 
 Verify ATHexapod ConfigurationsAvailable timing
     [Tags]    config_available    timing
-    Verify Time Delta    ATHexapod    logevent_summaryState    logevent_configurationsAvailable    ${time_window}
+    Verify Time Delta    ATHexapod    logevent_summaryState    logevent_configurationsAvailable
 
 #ATMCS
 Verify ATMCS Standby
@@ -117,7 +116,7 @@ Verify ATMCS SoftwareVersions
 
 Verify ATMCS SoftwareVersions timing
     [Tags]    software_versions    timing
-    Verify Time Delta    ATMCS    logevent_summaryState    logevent_softwareVersions    ${time_window}
+    Verify Time Delta    ATMCS    logevent_summaryState    logevent_softwareVersions
 
 Verify ATMCS ConfigurationsAvailable Event
     [Tags]    config_available
@@ -134,7 +133,7 @@ Verify ATPneumatics SoftwareVersions
 
 Verify ATPneumatics SoftwareVersions timing
     [Tags]    software_versions    timing
-    Verify Time Delta    ATPneumatics    logevent_summaryState    logevent_softwareVersions    ${time_window}
+    Verify Time Delta    ATPneumatics    logevent_summaryState    logevent_softwareVersions
 
 Verify ATPneumatics ConfigurationsAvailable Event
     [Tags]    config_available
@@ -151,7 +150,7 @@ Verify ATPtg SoftwareVersions
 
 Verify ATPtg SoftwareVersions timing
     [Tags]    software_versions    timing
-    Verify Time Delta    ATPtg    logevent_summaryState    logevent_softwareVersions    ${time_window}
+    Verify Time Delta    ATPtg    logevent_summaryState    logevent_softwareVersions
 
 Verify ATPtg ConfigurationsAvailable Event
     [Tags]    config_available

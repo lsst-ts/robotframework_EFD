@@ -10,7 +10,6 @@ Suite Setup    Run Keywords    Check If Failed    AND    Set EFD Values
 @{in_position}    True
 @{filter_field}   filterName
 @{filter_name}    r_03
-${time_window}    10
 
 *** Test Cases ***
 Execute MainTel Housekeeping
@@ -34,9 +33,9 @@ Verify Tracking is Disabled
 Verify MTMount Axes Homed
     [Tags]    robot:continue-on-failure
     Verify Topic Attribute    MTMount    logevent_elevationInPosition    ${in_position_field}    ${in_position}
-    Verify Time Delta    MTMount    command_homeBothAxes    logevent_elevationInPosition    ${time_window}    None
+    Verify Time Delta    MTMount    command_homeBothAxes    logevent_elevationInPosition    index=None
     Verify Topic Attribute    MTMount    logevent_azimuthInPosition    ${in_position_field}    ${in_position}
-    Verify Time Delta    MTMount    command_homeBothAxes    logevent_azimuthInPosition    ${time_window}    None
+    Verify Time Delta    MTMount    command_homeBothAxes    logevent_azimuthInPosition    index=None
 
 Verify BigCamera has Filter Set
     [Tags]

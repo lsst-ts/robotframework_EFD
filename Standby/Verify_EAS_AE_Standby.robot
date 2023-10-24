@@ -11,7 +11,6 @@ ${dsm2_salver}    ${SALVersion}
 ${dsm2_xmlver}    ${XMLVersion}
 ${weatherforecast_salver}    ${SALVersion}
 ${weatherforecast_xmlver}    ${XMLVersion}
-${time_window}    10
 
 *** Test Cases ***
 # DSM:1
@@ -25,7 +24,7 @@ Verify DSM:1 SoftwareVersions
 
 Verify DSM:1 SoftwareVersions timing
     [Tags]    eas_ae    software_versions    timing
-    Verify Time Delta    DSM    logevent_summaryState    logevent_softwareVersions    ${time_window}    index=1
+    Verify Time Delta    DSM    logevent_summaryState    logevent_softwareVersions    index=1
 
 Verify DSM:1 ConfigurationsAvailable Event
     [Tags]    eas_ae    config_available
@@ -42,7 +41,7 @@ Verify DSM:2 SoftwareVersions
 
 Verify DSM:2 SoftwareVersions timing
     [Tags]    eas_ae    software_versions    timing
-    Verify Time Delta    DSM    logevent_summaryState    logevent_softwareVersions    ${time_window}    index=2
+    Verify Time Delta    DSM    logevent_summaryState    logevent_softwareVersions    index=2
 
 Verify DSM:2 ConfigurationsAvailable Event
     [Tags]    eas_ae    config_available
@@ -59,7 +58,7 @@ Verify WeatherForecast SoftwareVersions
 
 Verify WeatherForecast SoftwareVersions timing
     [Tags]    eas_ae    software_versions    timing
-    Verify Time Delta    WeatherForecast    logevent_summaryState    logevent_softwareVersions    ${time_window}
+    Verify Time Delta    WeatherForecast    logevent_summaryState    logevent_softwareVersions
 
 Verify WeatherForecast ConfigurationsAvailable Event
     [Tags]    eas_ae    config_available

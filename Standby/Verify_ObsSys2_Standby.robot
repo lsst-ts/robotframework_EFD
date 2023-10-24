@@ -9,7 +9,6 @@ ${scheduler1_salver}    ${SALVersion}
 ${scheduler1_xmlver}    ${XMLVersion}
 ${scheduler2_salver}    ${SALVersion}
 ${scheduler2_xmlver}    ${XMLVersion}
-${time_window}    10
 
 *** Test Cases ***
 #Scheduler:1
@@ -23,7 +22,7 @@ Verify Scheduler:1 SoftwareVersions
 
 Verify Scheduler:1 SoftwareVersions timing
     [Tags]    software_versions    timing
-    Verify Time Delta    Scheduler    logevent_summaryState    logevent_softwareVersions    ${time_window}    index=1
+    Verify Time Delta    Scheduler    logevent_summaryState    logevent_softwareVersions    index=1
 
 Verify Scheduler:1 ConfigurationsAvailable Event
     [Tags]    config_available
@@ -31,7 +30,7 @@ Verify Scheduler:1 ConfigurationsAvailable Event
 
 Verify Scheduler:1 ConfigurationsAvailable timing
     [Tags]    software_versions    timing
-    Verify Time Delta    Scheduler    logevent_summaryState    logevent_configurationsAvailable    ${time_window}    index=1
+    Verify Time Delta    Scheduler    logevent_summaryState    logevent_configurationsAvailable    index=1
 
 #Scheduler:2
 Verify Scheduler:2 Standby
@@ -44,7 +43,7 @@ Verify Scheduler:2 SoftwareVersions
 
 Verify Scheduler:2 SoftwareVersions timing
     [Tags]    software_versions    timing
-    Verify Time Delta    Scheduler    logevent_summaryState    logevent_softwareVersions    ${time_window}    index=2
+    Verify Time Delta    Scheduler    logevent_summaryState    logevent_softwareVersions    index=2
 
 Verify Scheduler:2 ConfigurationsAvailable Event
     [Tags]    config_available
@@ -52,4 +51,4 @@ Verify Scheduler:2 ConfigurationsAvailable Event
 
 Verify Scheduler:2 ConfigurationsAvailable timing
     [Tags]    config_available    timing
-    Verify Time Delta    Scheduler    logevent_summaryState    logevent_configurationsAvailable    ${time_window}    index=2
+    Verify Time Delta    Scheduler    logevent_summaryState    logevent_configurationsAvailable    index=2

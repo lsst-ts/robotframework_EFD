@@ -10,7 +10,6 @@ Suite Setup    Check If Failed
 *** Variables ***
 @{atMountState}         state
 @{states_expected}      8
-${time_window}          10
 
 *** Test Cases ***
 Execute AuxTel Shutdown
