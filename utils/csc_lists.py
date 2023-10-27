@@ -12,9 +12,10 @@ at_light_cal = [
     "FiberSpectrograph:3",
 ]
 comcam = [
-    "CCOODS",
     "CCCamera",
     "CCHeaderService",
+    "CCOODS",
+    "OCPS:2",
 ]
 eas = [
     "DIMM:1",
@@ -38,10 +39,17 @@ eas_ae = [
     "WeatherForecst",
 ]
 latiss = [
-    "ATOODS",
     "ATCamera",
     "ATHeaderService",
+    "ATOODS",
     "ATSpectrograph",
+    "OCPS:1",
+]
+mtcamera = [
+    "MTCamera",
+    "MTHeaderService",
+    "MTOODS",
+    "OCPS:3",
 ]
 mtcs = [
     "MTAirCompressor:1",
@@ -58,17 +66,13 @@ mtcs = [
     "MTM1M3",
     "MTM2",
 ]
-obssys1 = [
+obssys = [
     "Authorize",
+    "Scheduler:1",
+    "Scheduler:2",
     "ScriptQueue:1",
     "ScriptQueue:2",
     "Watcher",
-]
-obssys2 = [
-    "Scheduler:1",
-    "Scheduler:2",
-    "OCPS:1",
-    "OCPS:2",
 ]
 non_config = [
     "ATHeaderService",
@@ -139,4 +143,5 @@ salobj = [
 camera = [
     "ATCamera",
     "CCCamera",
+    "MTCamera",
 ]
