@@ -14,5 +14,4 @@ Enabled/Verify_EAS_Enabled.robot
 Enabled/Verify_GC_Enabled.robot
 Enabled/Verify_LATISS_Enabled.robot
 Enabled/Verify_MTCS_Enabled.robot
-Enabled/Verify_ObsSys1_Enabled.robot
-Enabled/Verify_ObsSys2_Enabled.robot
+Enabled/Verify_ObsSys_Enabled.robot
