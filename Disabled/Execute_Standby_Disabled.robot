@@ -33,6 +33,8 @@ Execute MainTel Standby to Disabled
 
 Execute ObsSys2 Standby to Disabled
     [Tags]    obssys2
-    ${scripts}    ${states}=    Execute Integration Test    obssys_standby_disabled
+    # Set the 'test_env' variable to 'bts' if running on the BTS, otherwise, set it to 'tts'.
+    ${test_env}=    Set Variable If    "${env_efd}" == "base_efd"    "bts"    "tts"
+    ${scripts}    ${states}=    Execute Integration Test    obssys_standby_disabled    ${test_env}
     Verify Scripts Completed Successfully    ${scripts}    ${states}
     Report If Failed    ${scripts}    ${states}
