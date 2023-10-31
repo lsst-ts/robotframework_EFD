@@ -2,7 +2,7 @@
 Resource    ../Global_Vars.resource
 Resource    ../CSC_Lists.resource
 Resource    ../Common_Keywords.resource
-Force Tags    obssys1
+Force Tags    obssys
 
 *** Variables ***
 ${authorize_salver}    ${SALVersion}
@@ -27,6 +27,48 @@ Verify Authorize SoftwareVersions
 Verify Authorize SoftwareVersions timing
     [Tags]    software_versions    timing
     Verify Time Delta    Authorize    logevent_summaryState    logevent_softwareVersions
+
+#Scheduler:1
+Verify Scheduler:1 Standby
+    [Tags]    standby
+    Verify Summary State    ${STATES}[standby]    Scheduler:1
+
+Verify Scheduler:1 SoftwareVersions
+    [Tags]    software_versions
+    Verify Software Versions    Scheduler    index=1    csc_salver=${scheduler1_salver}    csc_xmlver=${scheduler1_xmlver}
+
+Verify Scheduler:1 SoftwareVersions timing
+    [Tags]    software_versions    timing
+    Verify Time Delta    Scheduler    logevent_summaryState    logevent_softwareVersions    index=1
+
+Verify Scheduler:1 ConfigurationsAvailable Event
+    [Tags]    config_available
+    Verify ConfigurationsAvailable    Scheduler    index=1
+
+Verify Scheduler:1 ConfigurationsAvailable timing
+    [Tags]    software_versions    timing
+    Verify Time Delta    Scheduler    logevent_summaryState    logevent_configurationsAvailable    index=1
+
+#Scheduler:2
+Verify Scheduler:2 Standby
+    [Tags]    standby
+    Verify Summary State    ${STATES}[standby]    Scheduler:2
+
+Verify Scheduler:2 SoftwareVersions
+    [Tags]    software_versions
+    Verify Software Versions    Scheduler    index=2    csc_salver=${scheduler2_salver}    csc_xmlver=${scheduler2_xmlver}
+
+Verify Scheduler:2 SoftwareVersions timing
+    [Tags]    software_versions    timing
+    Verify Time Delta    Scheduler    logevent_summaryState    logevent_softwareVersions    index=2
+
+Verify Scheduler:2 ConfigurationsAvailable Event
+    [Tags]    config_available
+    Verify ConfigurationsAvailable    Scheduler    index=2
+
+Verify Scheduler:2 ConfigurationsAvailable timing
+    [Tags]    config_available    timing
+    Verify Time Delta    Scheduler    logevent_summaryState    logevent_configurationsAvailable    index=2
 
 #ScriptQueue:1
 Verify ScriptQueue:1 Standby
