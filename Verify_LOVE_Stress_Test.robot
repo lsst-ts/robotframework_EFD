@@ -15,7 +15,9 @@ ${num_msgs}   5000
 *** Test Cases ***
 Execute LOVE Stress Test
     [Tags]    execute
-    ${scripts}    ${states}=    Execute Integration Test    love_stress_test
+    # Set the 'test_env' variable to 'bts' if running on the BTS, otherwise, set it to 'tts'.
+    ${test_env}=    Set Variable If    "${env_efd}" == "base_efd"    "bts"    "tts"
+    ${scripts}    ${states}=    Execute Integration Test    love_stress_test    ${test_env}
     Verify Scripts Completed Successfully    ${scripts}    ${states}
 
 Verify Script LogMessages
