@@ -119,8 +119,8 @@ Verify ATSpectrograph ChangeFilter
 
 Verify ATSpectrograph Filter
     [Tags]    DM-35582
-    Verify Topic Attribute    ATSpectrograph    logevent_reportedFilterPosition    ["band",]    ["r",]
-    #Verify Topic Attribute    ATSpectrograph    logevent_reportedFilterPosition    ["name",]    ["SDSSr",]    #DM-35582
+    Verify Topic Attribute    ATSpectrograph    logevent_reportedFilterPosition    ["band",]    ["g",]
+    Verify Topic Attribute    ATSpectrograph    logevent_reportedFilterPosition    ["name",]    ["SDSSg_65mm",]    json    #DM-35582
 
 Verify ATSpectrograph ChangeDisperer
     [Tags]
@@ -135,7 +135,7 @@ Verify ATSpectrograph ChangeDisperer
 Verify ATSpectrograph Disperser
     [Tags]    DM-35582
     Verify Topic Attribute    ATSpectrograph    logevent_reportedDisperserPosition    ["band",]    ["EMPTY",]
-    #Verify Topic Attribute    ATSpectrograph    logevent_reportedDisperserPosition    ["name",]    ["empty_1",]    #DM-35582
+    Verify Topic Attribute    ATSpectrograph    logevent_reportedDisperserPosition    ["name",]    ["empty_1",]    json    #DM-35582
 
 Verify LinearStage MoveLinearStage
     [Tags]
