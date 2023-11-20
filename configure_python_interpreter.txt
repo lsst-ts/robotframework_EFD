@@ -17,22 +17,23 @@ for csc in cscs:
 
 
 
+import asyncio
+
 from QueryEfd import QueryEfd
-efd = QueryEfd("7.4.0", "18.0.0", "6.10.4p2", "tucson_teststand_efd")
+efd = QueryEfd("7.4.0", "20.0.0", "6.10.4p2", "base_efd")
 
 from utils import dataframe
 
 from lsst_efd_client import EfdClient
-efd_client = EfdClient("tucson_teststand_efd")
+efd_client = EfdClient("base_efd")
 
-import asyncio
+
+
+
 loop = asyncio.get_event_loop()
-
-
-
-
-
 loop.run_until_complete(efd_client.get_topics())
+
+
 
 efd.get_recent_samples("Watcher", "logevent_summaryState", "*", 3, None)
 
