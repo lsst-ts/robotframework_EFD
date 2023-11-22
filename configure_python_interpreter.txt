@@ -42,6 +42,31 @@ loop = asyncio.get_event_loop()
 loop.run_until_complete(efd_client.select_top_n("lsst.sal.CCCamera.logevent_summaryState", "*", 3, None))
 
 
+======= Butler configuration =======
+
+from astropy.time import Time, TimeDelta
+import numpy as np
+import lsst.daf.butler as dafButler
+from lsst_efd_client import EfdClient
+efd_client = EfdClient("base_efd")
+
+collections = ["LATISS/raw/all"]
+instrument = "LATISS"
+butler = dafButler.Butler(instrument, collections=collections, instrument=instrument)
+
+
+
+obs_date = 20231106
+seq_num = 7
+dataId = {"instrument": instrument, "detector": 0,
+          "exposure.day_obs": obs_date, "exposure.seq_num": seq_num}
+raw = butler.get('raw.metadata', dataId)
+
+header = raw.toDict()
+print(header)
+
+header["FILTER"]
+
 
 ======= on the fly script configurations =======
 
