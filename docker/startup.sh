@@ -15,6 +15,15 @@ term_handler() {
 # on callback, kill the last background process and execute term_handler
 trap 'kill ${!}; term_handler' SIGTERM
 
-source miniconda3/bin/activate
-conda activate test_reporting
+# Setup the LSST Science Pipeline
+source /opt/lsst/software/stack/loadLSST.bash
+
+# Setup the SAL DDS environment
+source .setup_sal_env.sh 
+source /opt/lsst/software/stack/ospl_env.sh
+
+# Setup the DM Stack 
+setup lsst_distrib
+eups list lsst_distrib
+
 /bin/bash --rcfile /home/saluser/.bashrc
