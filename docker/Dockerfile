@@ -1,4 +1,4 @@
-FROM almalinux:latest
+FROM ts-dockerhub.lsst.org/deploy-sqre:c0034
 MAINTAINER Rob Bovill (trekkie2@gmail.com)
 ARG USER=saluser
 ARG HOME=/home/${USER}
@@ -7,9 +7,8 @@ ENV PATH $PATH:${HOME}/bin:${HOME}/.local/bin
 
 USER root
 
-RUN groupadd -r -g 1003 ${USER} && \
-groupadd -r -g 993 docker && \
-useradd -r -u 1003 -g ${USER} -G docker -m ${USER} -d ${HOME} && \
+RUN groupadd -r -g 993 docker && \
+usermod -a -G docker ${USER} && \
 chown ${USER}:docker ${HOME}
 
 RUN dnf -y update
@@ -31,14 +30,10 @@ WORKDIR ${HOME}
 RUN mkdir bin && mkdir repos && mkdir Reports
 
 # Create the environment:
-RUN curl https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -o .miniconda.sh && \
-chmod +x .miniconda.sh && ./.miniconda.sh -b -p miniconda3 && \
-source miniconda3/bin/activate && \
+RUN source /opt/lsst/software/stack/conda/bin/activate && \
 conda update conda -y && \
-conda install -c conda-forge python>=3.11 -y && \
-conda env create -f .environment.yaml && \
-conda activate test_reporting && \
-pip3 install -U setuptools numpy pytest astropy requests robotframework lsst-efd-client
+conda activate /opt/lsst/software/stack/conda/envs/lsst-scipipe-7.0.1 && \
+conda env update -f .environment.yaml --prune
 
 ENTRYPOINT ["/bin/bash", "--"]
 CMD ["/home/saluser/.startup.sh"]
