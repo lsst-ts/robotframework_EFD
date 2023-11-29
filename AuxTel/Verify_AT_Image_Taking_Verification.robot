@@ -7,7 +7,6 @@ Force Tags    image_taking_verification
 Suite Setup    Check If Failed
 
 *** Variables ***
-${time_window}    10
 
 *** Test Cases ***
 Load Camera Playlist

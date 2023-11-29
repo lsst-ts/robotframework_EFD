@@ -8,7 +8,6 @@ Suite Setup    Check If Failed
 
 *** Variables ***
 @{states_expected}      8
-${time_window}          10
 
 *** Test Cases ***
 Execute AuxTel Enable ATCS

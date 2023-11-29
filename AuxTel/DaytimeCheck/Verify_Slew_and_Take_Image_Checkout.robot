@@ -7,7 +7,6 @@ Force Tags    slew_take_image_checkout
 Suite Setup    Check If Failed
 
 *** Variables ***
-${time_window}    10
 
 *** Test Cases ***
 Load Camera Playlist

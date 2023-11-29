@@ -4,9 +4,6 @@ Resource    ../CSC_Lists.resource
 Resource    ../Common_Keywords.resource
 Force Tags    eas_ae
 
-*** Variables ***
-${time_window}    10
-
 *** Test Cases ***
 Verify DSM:1 Disabled
     [Tags]    disabled

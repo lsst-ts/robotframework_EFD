@@ -14,5 +14,4 @@ Shutdown/Verify_EAS_Shutdown.robot
 Shutdown/Verify_GC_Shutdown.robot
 Shutdown/Verify_LATISS_Shutdown.robot
 Shutdown/Verify_MTCS_Shutdown.robot
-Shutdown/Verify_ObsSys1_Shutdown.robot
-Shutdown/Verify_ObsSys2_Shutdown.robot
+Shutdown/Verify_ObsSys_Shutdown.robot

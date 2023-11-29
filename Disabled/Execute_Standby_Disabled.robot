@@ -5,7 +5,6 @@ Resource    ../Common_Keywords.resource
 Force Tags    disabled    execute
 
 *** Variables ***
-${time_window}    10
 
 *** Test Cases ***
 Execute AuxTel Standby to Disabled 
@@ -32,8 +31,10 @@ Execute MainTel Standby to Disabled
     Verify Scripts Completed Successfully    ${scripts}    ${states}
     Report If Failed    ${scripts}    ${states}
 
-Execute ObsSys2 Standby to Disabled
-    [Tags]    obssys2
-    ${scripts}    ${states}=    Execute Integration Test    obssys2_standby_disabled
+Execute ObsSys Standby to Disabled
+    [Tags]    obssys
+    # Set the 'test_env' variable to 'bts' if running on the BTS, otherwise, set it to 'tts'.
+    ${test_env}=    Set Variable If    "${env_efd}" == "base_efd"    "bts"    "tts"
+    ${scripts}    ${states}=    Execute Integration Test    obssys_standby_disabled    ${test_env}
     Verify Scripts Completed Successfully    ${scripts}    ${states}
     Report If Failed    ${scripts}    ${states}
