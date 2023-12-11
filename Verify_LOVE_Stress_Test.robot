@@ -16,7 +16,7 @@ ${num_msgs}   5000
 Execute LOVE Stress Test
     [Tags]    execute
     # Set the 'test_env' variable to 'bts' if running on the BTS, otherwise, set it to 'tts'.
-    ${test_env}=    Set Variable If    "${env_efd}" == "base_efd"    "bts"    "tts"
+    ${test_env}=    Set Variable If    "${env_efd}" == "base_efd"    bts    tts
     ${scripts}    ${states}=    Execute Integration Test    love_stress_test    ${test_env}
     Verify Scripts Completed Successfully    ${scripts}    ${states}
 
@@ -44,7 +44,7 @@ Verify mean_latency is Less than One Second
 Execute LOVE Stress Test on Kubernetes
     [Tags]    execute    k8s
     # Set the 'test_env' variable to 'bts' if running on the BTS, otherwise, set it to 'tts'.
-    ${test_env}=    Set Variable If    "${env_efd}" == "base_efd"    "bts"    "tts"
+    ${test_env}=    Set Variable If    "${env_efd}" == "base_efd"    bts    tts
     ${scripts}    ${states}=    Execute Integration Test    love_stress_test    ${test_env}    --k8s
     Verify Scripts Completed Successfully    ${scripts}    ${states}
 
