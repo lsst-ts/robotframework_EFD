@@ -22,7 +22,7 @@ Verify ATMonochromator SoftwareVersions
 
 Verify ATMonochromator SoftwareVersions timing
     [Tags]    software_versions    timing
-    Verify Time Delta    ATMonochromator    logevent_summaryState    logevent_softwareVersions
+    Verify Time Delta    ATMonochromator    logevent_softwareVersions    logevent_summaryState
 
 Verify ATMonochromator ConfigurationsAvailable Event
     [Tags]    config_available
@@ -30,7 +30,7 @@ Verify ATMonochromator ConfigurationsAvailable Event
 
 Verify ATMonochromator ConfigurationsAvailable timing
     [Tags]    config_available    timing
-    Verify Time Delta    ATMonochromator    logevent_summaryState    logevent_configurationsAvailable
+    Verify Time Delta    ATMonochromator    logevent_configurationsAvailable    logevent_summaryState
 
 #FiberSpectrograph:3
 Verify FiberSpectrograph:3 Standby
@@ -43,12 +43,12 @@ Verify FiberSpectrograph:3 SoftwareVersions
 
 Verify FiberSpectrograph:3 SoftwareVersions timing
     [Tags]    software_versions    timing
-    Verify Time Delta    ATMonochromator    logevent_summaryState    logevent_softwareVersions    3
+    Verify Time Delta    ATMonochromator    logevent_softwareVersions    logevent_summaryState    index=3
 
 Verify FiberSpectrograph:3 ConfigurationsAvailable Event
     [Tags]    config_available
-    Verify ConfigurationsAvailable    FiberSpectrograph    3
+    Verify ConfigurationsAvailable    FiberSpectrograph    index=3
 
 Verify FiberSpectrograph:3 ConfigurationsAvailable timing
     [Tags]    config_available    timing
-    Verify Time Delta    FiberSpectrograph    logevent_summaryState    logevent_configurationsAvailable    3
+    Verify Time Delta    FiberSpectrograph    logevent_configurationsAvailable    logevent_summaryState    index=3

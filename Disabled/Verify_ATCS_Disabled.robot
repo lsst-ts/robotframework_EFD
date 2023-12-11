@@ -15,7 +15,7 @@ Verify ATAOS ConfigurationApplied Event
 
 Verify ATAOS ConfigurationApplied Event timing
     [Tags]    config_applied    timing
-    Verify Time Delta    ATAOS    logevent_summaryState    logevent_configurationApplied
+    Verify Time Delta    ATAOS    logevent_configurationApplied    logevent_summaryState
 
 Verify ATDome Disabled
     [Tags]    disabled
@@ -27,7 +27,7 @@ Verify ATDome ConfigurationApplied Event
 
 Verify ATDome ConfigurationApplied Event timing
     [Tags]    config_applied    timing
-    Verify Time Delta    ATDome    logevent_summaryState    logevent_configurationApplied
+    Verify Time Delta    ATDome    logevent_configurationApplied    logevent_summaryState
 
 Verify ATDomeTrajectory Disabled
     [Tags]    disabled
@@ -39,7 +39,7 @@ Verify ATDomeTrajectory ConfigurationApplied Event
 
 Verify ATDomeTrajectory ConfigurationApplied Event timing
     [Tags]    config_applied    timing
-    Verify Time Delta    ATDomeTrajectory    logevent_summaryState    logevent_configurationApplied
+    Verify Time Delta    ATDomeTrajectory    logevent_configurationApplied    logevent_summaryState
 
 Verify ATHexapod Disabled
     [Tags]    disabled
@@ -51,7 +51,7 @@ Verify ATHexapod ConfigurationApplied Event
 
 Verify ATHexapod ConfigurationApplied Event timing 
     [Tags]    config_applied    timing
-    Verify Time Delta    ATHexapod    logevent_summaryState    logevent_configurationApplied
+    Verify Time Delta    ATHexapod    logevent_configurationApplied    logevent_summaryState
 
 Verify ATMCS Disabled
     [Tags]    disabled

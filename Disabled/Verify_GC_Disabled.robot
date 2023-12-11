@@ -15,7 +15,7 @@ Verify GenericCamera:1 ConfigurationApplied Event
 
 Verify GenericCamera:1 ConfigurationApplied timing
     [Tags]    config_applied    timing
-    Verify Time Delta    GenericCamera    logevent_summaryState    logevent_configurationApplied    1
+    Verify Time Delta    GenericCamera    logevent_configurationApplied    logevent_summaryState    1
 
 Verify GCHeaderService:1 Disabled
     [Tags]    disabled

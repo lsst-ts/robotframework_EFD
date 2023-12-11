@@ -26,7 +26,7 @@ Verify Authorize SoftwareVersions
 
 Verify Authorize SoftwareVersions timing
     [Tags]    software_versions    timing
-    Verify Time Delta    Authorize    logevent_summaryState    logevent_softwareVersions
+    Verify Time Delta    Authorize    logevent_softwareVersions    logevent_summaryState
 
 #Scheduler:1
 Verify Scheduler:1 Standby
@@ -39,7 +39,7 @@ Verify Scheduler:1 SoftwareVersions
 
 Verify Scheduler:1 SoftwareVersions timing
     [Tags]    software_versions    timing
-    Verify Time Delta    Scheduler    logevent_summaryState    logevent_softwareVersions    index=1
+    Verify Time Delta    Scheduler    logevent_softwareVersions    logevent_summaryState    index=1
 
 Verify Scheduler:1 ConfigurationsAvailable Event
     [Tags]    config_available
@@ -47,7 +47,7 @@ Verify Scheduler:1 ConfigurationsAvailable Event
 
 Verify Scheduler:1 ConfigurationsAvailable timing
     [Tags]    software_versions    timing
-    Verify Time Delta    Scheduler    logevent_summaryState    logevent_configurationsAvailable    index=1
+    Verify Time Delta    Scheduler    logevent_configurationsAvailable    logevent_summaryState    index=1
 
 #Scheduler:2
 Verify Scheduler:2 Standby
@@ -60,7 +60,7 @@ Verify Scheduler:2 SoftwareVersions
 
 Verify Scheduler:2 SoftwareVersions timing
     [Tags]    software_versions    timing
-    Verify Time Delta    Scheduler    logevent_summaryState    logevent_softwareVersions    index=2
+    Verify Time Delta    Scheduler    logevent_softwareVersions    logevent_summaryState    index=2
 
 Verify Scheduler:2 ConfigurationsAvailable Event
     [Tags]    config_available
@@ -68,7 +68,7 @@ Verify Scheduler:2 ConfigurationsAvailable Event
 
 Verify Scheduler:2 ConfigurationsAvailable timing
     [Tags]    config_available    timing
-    Verify Time Delta    Scheduler    logevent_summaryState    logevent_configurationsAvailable    index=2
+    Verify Time Delta    Scheduler    logevent_configurationsAvailable    logevent_summaryState    index=2
 
 #ScriptQueue:1
 Verify ScriptQueue:1 Standby
@@ -81,7 +81,7 @@ Verify ScriptQueue:1 SoftwareVersions
 
 Verify ScriptQueue:1 SoftwareVersions timing
     [Tags]    software_versions    timing
-    Verify Time Delta    ScriptQueue    logevent_summaryState    logevent_softwareVersions    index=1
+    Verify Time Delta    ScriptQueue    logevent_softwareVersions    logevent_summaryState    index=1
 
 Verify ScriptQueue:1 ConfigurationsAvailable Event
     [Tags]    config_available
@@ -98,7 +98,7 @@ Verify ScriptQueue:2 SoftwareVersions
 
 Verify ScriptQueue:2 SoftwareVersions timing
     [Tags]    software_versions    timing
-    Verify Time Delta    ScriptQueue    logevent_summaryState    logevent_softwareVersions    index=2
+    Verify Time Delta    ScriptQueue    logevent_softwareVersions    logevent_summaryState    index=2
 
 Verify ScriptQueue:2 ConfigurationsAvailable Event
     [Tags]    config_available
@@ -115,7 +115,7 @@ Verify Watcher SoftwareVersions
 
 Verify Watcher SoftwareVersions timing
     [Tags]    software_versions    timing
-    Verify Time Delta    Watcher    logevent_summaryState    logevent_softwareVersions
+    Verify Time Delta    Watcher    logevent_softwareVersions    logevent_summaryState
 
 Verify Watcher ConfigurationsAvailable Event
     [Tags]    config_available
@@ -123,4 +123,4 @@ Verify Watcher ConfigurationsAvailable Event
 
 Verify Watcher ConfigurationsAvailable timing
     [Tags]    config_available    timing
-    Verify Time Delta    Watcher    logevent_summaryState    logevent_configurationsAvailable
+    Verify Time Delta    Watcher    logevent_configurationsAvailable    logevent_summaryState
