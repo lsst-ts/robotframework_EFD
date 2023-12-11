@@ -5,8 +5,8 @@ Resource    ../Common_Keywords.resource
 Force Tags    shutdown
 
 *** Variables ***
-${topic_1}    logevent_summaryState
-${topic_2}    command_disable
+${topic_1}    command_disable
+${topic_2}    logevent_summaryState
 
 *** Test Cases ***
 Verify GenericCamera:1 Shutdown
