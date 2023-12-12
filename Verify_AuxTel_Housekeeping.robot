@@ -23,7 +23,7 @@ Verify AuxTel is Parked
     [Tags]    robot:continue-on-failure
     Verify Telescope Parked    auxtel
     Comment    The Dome park process can take several seconds to finish, even though the command is complete.
-    Wait Until Keyword Succeeds    5x    strict: 2s    Verify Dome Parked    auxtel
+    Wait Until Keyword Succeeds    5x    2s    Verify Dome Parked    auxtel
 
 Verify Tracking is Disabled
     [Tags]
