@@ -175,7 +175,7 @@ Set Variables
         Set Suite Variable    ${seq_length}    3
         Set Suite Variable    ${num_images}    5
         Set Suite Variable    @{exp_time}    ${4.0}    ${4.0}    ${1.0}
-        Set Suite Variable    @{filter_band}    EMPTY    r    r
+        Set Suite Variable    @{filter_band}    r    r    r
         Set Suite Variable    ${filter_name}    "SDSSr"
         Set Suite Variable    @{disperser_band}    H4-003    H4-003    EMPTY
         Set Suite Variable    @{disperser_name}    holo4_003    holo4_003    empty_1
