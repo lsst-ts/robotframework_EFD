@@ -65,7 +65,7 @@ Verify ScriptQueue:2 ConfigurationApplied Event
 #Watcher
 Verify Watcher Disabled
     [Tags]    disabled
-    Verify Summary State    ${STATES}[disabled]    Watcher    auto_enable=True
+    Verify Summary State    ${STATES}[disabled]    Watcher
 
 Verify Watcher ConfigurationApplied Event
     [Tags]    config_applied
