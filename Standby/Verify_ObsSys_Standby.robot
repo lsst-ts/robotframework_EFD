@@ -7,9 +7,9 @@ Force Tags    obssys
 *** Variables ***
 ${authorize_salver}    ${SALVersion}
 ${authorize_xmlver}    ${XMLVersion}
-${scriptqueue1_salver}    ${SALVersion}
+${scheduler1_salver}    ${SALVersion}
+${scheduler2_salver}    ${SALVersion}
 ${scriptqueue1_xmlver}    ${XMLVersion}
-${scriptqueue2_salver}    ${SALVersion}
 ${scriptqueue2_xmlver}    ${XMLVersion}
 ${watcher_salver}    ${SALVersion}
 ${watcher_xmlver}    ${XMLVersion}
