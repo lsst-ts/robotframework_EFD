@@ -16,7 +16,7 @@ Verify Authorize ConfigurationApplied Event
 
 Verify Authorize ConfigurationApplied timing
     [Tags]    config_applied    timing
-    Verify Time Delta    Authorize    logevent_summaryState    logevent_configurationApplied
+    Verify Time Delta    Authorize    logevent_configurationApplied    logevent_summaryState
 
 #Scheduler:1
 Verify Scheduler:1 Disabled
@@ -29,7 +29,7 @@ Verify Scheduler:1 ConfigurationApplied Event
 
 Verify Scheduler:1 ConfigurationApplied timing
     [Tags]    config_applied    timing
-    Verify Time Delta    Scheduler    logevent_summaryState    logevent_configurationApplied    index=1
+    Verify Time Delta    Scheduler    logevent_configurationApplied    logevent_summaryState    index=1
 
 #Scheduler:2
 Verify Scheduler:2 Disabled
@@ -42,7 +42,7 @@ Verify Scheduler:2 ConfigurationApplied Event
 
 Verify Scheduler:2 ConfigurationApplied timing
     [Tags]    config_applied    timing
-    Verify Time Delta    Scheduler    logevent_summaryState    logevent_configurationApplied    index=2
+    Verify Time Delta    Scheduler    logevent_configurationApplied    logevent_summaryState    index=2
 
 #ScriptQueue1
 Verify ScriptQueue:1 Disabled
@@ -65,7 +65,7 @@ Verify ScriptQueue:2 ConfigurationApplied Event
 #Watcher
 Verify Watcher Disabled
     [Tags]    disabled
-    Verify Summary State    ${STATES}[disabled]    Watcher    auto_enable=True
+    Verify Summary State    ${STATES}[disabled]    Watcher
 
 Verify Watcher ConfigurationApplied Event
     [Tags]    config_applied
@@ -73,4 +73,4 @@ Verify Watcher ConfigurationApplied Event
 
 Verify Watcher ConfigurationApplied timing
     [Tags]    config_applied    timing
-    Verify Time Delta    Watcher    logevent_summaryState    logevent_configurationApplied
+    Verify Time Delta    Watcher    logevent_configurationApplied    logevent_summaryState

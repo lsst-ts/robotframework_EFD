@@ -24,7 +24,7 @@ Verify DSM:1 SoftwareVersions
 
 Verify DSM:1 SoftwareVersions timing
     [Tags]    eas_ae    software_versions    timing
-    Verify Time Delta    DSM    logevent_summaryState    logevent_softwareVersions    index=1
+    Verify Time Delta    DSM    logevent_softwareVersions    logevent_summaryState    index=1
 
 Verify DSM:1 ConfigurationsAvailable Event
     [Tags]    eas_ae    config_available
@@ -41,7 +41,7 @@ Verify DSM:2 SoftwareVersions
 
 Verify DSM:2 SoftwareVersions timing
     [Tags]    eas_ae    software_versions    timing
-    Verify Time Delta    DSM    logevent_summaryState    logevent_softwareVersions    index=2
+    Verify Time Delta    DSM    logevent_softwareVersions    logevent_summaryState    index=2
 
 Verify DSM:2 ConfigurationsAvailable Event
     [Tags]    eas_ae    config_available
@@ -58,7 +58,7 @@ Verify WeatherForecast SoftwareVersions
 
 Verify WeatherForecast SoftwareVersions timing
     [Tags]    eas_ae    software_versions    timing
-    Verify Time Delta    WeatherForecast    logevent_summaryState    logevent_softwareVersions
+    Verify Time Delta    WeatherForecast    logevent_softwareVersions    logevent_summaryState
 
 Verify WeatherForecast ConfigurationsAvailable Event
     [Tags]    eas_ae    config_available

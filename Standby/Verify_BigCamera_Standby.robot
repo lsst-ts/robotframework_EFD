@@ -35,7 +35,7 @@ Verify BigCamera SoftwareVersions
 
 Verify BigCamera SoftwareVersions timing
     [Tags]    software_versions    timing
-    Verify Time Delta    ${BigCamera}    logevent_summaryState    logevent_softwareVersions
+    Verify Time Delta    ${BigCamera}    logevent_softwareVersions    logevent_summaryState
 
 Verify BigCamera ConfigurationsAvailable Event
     [Tags]    config_available
@@ -43,7 +43,7 @@ Verify BigCamera ConfigurationsAvailable Event
 
 Verify BigCamera ConfigurationsAvailable timing
     [Tags]    config_available    timing
-    Verify Time Delta    ${BigCamera}    logevent_summaryState    logevent_configurationsAvailable
+    Verify Time Delta    ${BigCamera}    logevent_configurationsAvailable    logevent_summaryState
 
 #OODS
 Verify OODS Standby
@@ -56,7 +56,7 @@ Verify OODS SoftwareVersions
 
 Verify OODS SoftwareVersions timing
     [Tags]    software_versions    timing
-    Verify Time Delta    ${OODS}    logevent_summaryState    logevent_softwareVersions
+    Verify Time Delta    ${OODS}    logevent_softwareVersions    logevent_summaryState
 
 Verify OODS ConfigurationsAvailable Event
     [Tags]    config_available
@@ -77,7 +77,7 @@ Verify HeaderService SoftwareVersions
 
 Verify HeaderService SoftwareVersions timing
     [Tags]    software_versions    timing
-    Verify Time Delta    ${HeaderService}    logevent_summaryState    logevent_softwareVersions
+    Verify Time Delta    ${HeaderService}    logevent_softwareVersions    logevent_summaryState
 
 #OCPS:2||3
 Verify OCPS:2||3 Standby
@@ -90,7 +90,7 @@ Verify OCPS:2||3 SoftwareVersions
 
 Verify OCPS:2||3 SoftwareVersions timing
     [Tags]    software_versions    timing
-    Verify Time Delta    OCPS    logevent_summaryState    logevent_softwareVersions    index=${OcpsIndex}
+    Verify Time Delta    OCPS    logevent_softwareVersions    logevent_summaryState    index=${OcpsIndex}
 
 Verify OCPS:2||3 ConfigurationsAvailable Event
     [Tags]    config_available
@@ -98,4 +98,4 @@ Verify OCPS:2||3 ConfigurationsAvailable Event
 
 Verify OCPS:2||3 ConfigurationsAvailable timing
     [Tags]    config_available    timing
-    Verify Time Delta    OCPS    logevent_summaryState    logevent_configurationsAvailable    index=${OcpsIndex}
+    Verify Time Delta    OCPS    logevent_configurationsAvailable    logevent_summaryState    index=${OcpsIndex}

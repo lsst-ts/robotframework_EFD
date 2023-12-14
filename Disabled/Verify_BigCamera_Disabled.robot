@@ -17,7 +17,7 @@ Verify BigCamera ConfigurationApplied Event
 
 Verify BigCamera ConfigurationApplied timing
     [Tags]    config_applied    timing
-    Verify Time Delta    ${BigCamera}    logevent_summaryState    logevent_configurationApplied
+    Verify Time Delta    ${BigCamera}    logevent_configurationApplied    logevent_summaryState
 
 #OODS
 Verify OODS Disabled
@@ -48,4 +48,4 @@ Verify OCPS:2||3 ConfigurationApplied Event
 
 Verify OCPS:2||3 ConfigurationApplied timing
     [Tags]    config_applied    timing
-    Verify Time Delta    OCPS    logevent_summaryState    logevent_configurationApplied    index=${OcpsIndex}
+    Verify Time Delta    OCPS    logevent_configurationApplied    logevent_summaryState    index=${OcpsIndex}

@@ -6,8 +6,8 @@ Force Tags    shutdown    bigcamera
 Suite Setup   Set EFD Values
 
 *** Variables ***
-${topic_1}    logevent_summaryState
-${topic_2}    command_disable
+${topic_1}    command_disable
+${topic_2}    logevent_summaryState
 
 *** Test Cases ***
 Verify Camera Shutdown
