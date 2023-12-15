@@ -21,15 +21,17 @@ Verify Camera Playlist Loaded
     ${dataframe}=    Get Recent Samples    ${BigCamera}    command_play    ["playlist", "repeat", "private_identity", "private_origin",]    1    None
     Should Be Equal    ${dataframe.playlist.values}[0]    bias_dark_flat
 
-Execute ComCam Image Taking Test
+Execute BigCamera Image Taking Test
     [Tags]    execute
+    # Use the correct script, based on which TestStand is being used.
+    ${integration_script}=    Set Variable If    "${env_efd}" == "base_efd"    lsstcam_image_taking    comcam_image_taking
     ${scripts}    ${states}=    Execute Integration Test    comcam_image_taking
     Verify Scripts Completed Successfully    ${scripts}    ${states}
 
 Verify Camera Image Sequence
     [Documentation]    Verify the Camera images are the correct type, with the correct exposure time.
     [Tags]    robot:continue-on-failure
-    Set Suite Variable    ${num_images}    ${1}    # Needed by Verify CCOODS ImageInOODS test case.
+    Set Suite Variable    ${num_images}    ${1}    # Needed by Verify OODS ImageInOODS test case.
     ${seq_length}=    Set Variable    ${1}
     ${exp_time}=    Set Variable    ${0}
     ${img_type_seq}=    Set Variable    BIAS    # Sequence is reversed; EFD is in time-descending order.
@@ -49,7 +51,8 @@ Verify OODS ImageInOODS
     [Tags]
     Wait Until Keyword Succeeds    60 sec    10 sec    Verify Image in OODS    ${OODS}    ${image_names}[0][0]
     ${dataframe}=    Get Recent Samples    ${OODS}    logevent_imageInOODS    ["camera", "description", "obsid",]    ${num_images}    None
-    Should Be Equal As Strings    ${dataframe.camera.values}[${0}]    LSSTComCam
+    ${camera}=    Set Variable If    "${env_efd}" == "base_efd"    LSSTCam    LSSTComCam
+    Should Be Equal As Strings    ${dataframe.camera.values}[${0}]    ${camera}
     Should Be Equal As Strings    ${dataframe.description.values}[${0}]    file ingested
     Should Be Equal As Strings    ${dataframe.obsid.values}[${0}]    ${image_names}[0][${0}]
 

@@ -21,9 +21,11 @@ Verify Camera Playlist Loaded
     ${dataframe}=    Get Recent Samples    ${BigCamera}    command_play    ["*",]    1    None
     Should Be Equal    ${dataframe.playlist.values}[0]    ${playlist_full_name}
 
-Execute ComCam Flat Calibrations
-    [Tags]    execute
-    ${scripts}    ${states}=    Execute Integration Test    comcam_calibrations    flat
+Execute BigCamera Flat Calibrations
+    [Tags]    execute    bigcamera
+    # Set the 'test_env' variable to 'bts' if running on the BTS, otherwise, set it to 'tts'.
+    ${integration_script}=    Set Variable If    "${env_efd}" == "base_efd"    lsstcam_calibrations    comcam_calibrations
+    ${scripts}    ${states}=    Execute Integration Test    ${integration_script}    flat
     Verify Scripts Completed Successfully    ${scripts}    ${states}
 
 Verify MTPtg Target
@@ -78,7 +80,8 @@ Verify OODS ImageInOODS
     FOR    ${i}    IN RANGE    ${num_images}
         FOR    ${j}    IN RANGE    ${9}    # ComCam has 9 CCDs, so there are 9 times the images.
             ${k}=    Evaluate    ${i} * 9 + ${j}
-            Should Be Equal As Strings    ${dataframe.camera.values}[${k}]    LSSTComCam
+            ${camera}=    Set Variable If    "${env_efd}" == "base_efd"    LSSTCam    LSSTComCam
+            Should Be Equal As Strings    ${dataframe.camera.values}[${k}]    ${camera}
             Should Be Equal As Strings    ${dataframe.description.values}[${k}]    file ingested
             Should Be Equal As Strings    ${dataframe.obsid.values}[${k}]    ${image_names}[0][${i}]
         END
