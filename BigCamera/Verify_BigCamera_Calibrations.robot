@@ -22,7 +22,7 @@ Verify Camera Playlist Loaded
     Should Be Equal    ${dataframe.playlist.values}[0]    ${playlist_full_name}
 
 Execute BigCamera Flat Calibrations
-    [Tags]    execute    bigcamera
+    [Tags]    execute
     # Set the 'test_env' variable to 'bts' if running on the BTS, otherwise, set it to 'tts'.
     ${integration_script}=    Set Variable If    "${env_efd}" == "base_efd"    lsstcam_calibrations    comcam_calibrations
     ${scripts}    ${states}=    Execute Integration Test    ${integration_script}    flat
@@ -46,7 +46,8 @@ Verify MTPtg Tracking is Off
     Should Not Be True    ${evt_df.status.values}[0]
     Verify Time Delta    MTPtg    command_stopTracking    logevent_trackPosting    
 
-Verify Camera Filter
+Verify BigCamera Filter
+    [Tags]
     ${evt_df}=    Get Recent Samples    ${BigCamera}    logevent_startSetFilter    ["filterName", "filterType"]    1    None
     Should Be Equal    ${evt_df.filterName.values}[0]    ${filter_name}
     Should Be Equal    ${evt_df.filterType.values}[0]    ${filter_type}
