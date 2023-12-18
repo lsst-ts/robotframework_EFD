@@ -12,6 +12,13 @@ Suite Setup    Run Keywords    Check If Failed    AND    Set EFD Values
 @{filter_name}    r_03
 
 *** Test Cases ***
+Execute BigCamera Housekeeping
+    [Tags]    execute    bigcamera
+    # Set the 'test_env' variable to 'bts' if running on the BTS, otherwise, set it to 'tts'.
+    ${integration_script}=    Set Variable If    "${env_efd}" == "base_efd"    lsstcam_housekeeping    comcam_housekeeping
+    ${scripts}    ${states}=    Execute Integration Test    ${integration_script}
+    Verify Scripts Completed Successfully    ${scripts}    ${states}
+
 Execute MainTel Housekeeping
     [Tags]    execute
     ${scripts}    ${states}=    Execute Integration Test    maintel_housekeeping
@@ -38,6 +45,6 @@ Verify MTMount Axes Homed
     Verify Time Delta    MTMount    command_homeBothAxes    logevent_azimuthInPosition    index=None
 
 Verify BigCamera has Filter Set
-    [Tags]
+    [Tags]    bigcamera
     Verify Topic Attribute    ${BigCamera}    logevent_endSetFilter    ${filter_field}    ${filter_name}
     Verify Time Delta    ${BigCamera}    command_setFilter    logevent_endSetFilter    45
