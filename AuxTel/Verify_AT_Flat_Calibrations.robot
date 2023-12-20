@@ -34,7 +34,7 @@ Verify ATPtg Target
     Should Be Equal    ${cmd_dataframe.targetName.values}[0]    FlatField position
     ${evt_dataframe}=    Get Recent Samples    ATPtg    logevent_currentTarget    ["targetName", "azDegs", "elDegs",]    1    None
     Should Be Equal    ${evt_dataframe.targetName.values}[0]    FlatField position
-    Should Be Equal    ${evt_dataframe.azDegs.values.round(6)}[0]    ${181.7}
+    Should Be Equal    ${evt_dataframe.azDegs.values.round(6)}[0]    ${188.7}
     Should Be Equal    ${evt_dataframe.elDegs.values.round(6)}[0]    ${39}
 
 Verify ATPtg Tracking is Off

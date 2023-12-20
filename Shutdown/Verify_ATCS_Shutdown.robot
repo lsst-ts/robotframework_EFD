@@ -6,8 +6,8 @@ Force Tags    shutdown
 Suite Setup    Log Many    ${STATES}[offline]
 
 *** Variables ***
-${topic_1}    logevent_summaryState
-${topic_2}    command_disable
+${topic_1}    command_disable
+${topic_2}    logevent_summaryState
 
 *** Test Cases ***
 Verify ATAOS Shutdown

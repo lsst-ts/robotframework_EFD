@@ -15,7 +15,7 @@ Verify ATMonochromator ConfigurationApplied Event
 
 Verify ATMonochromator ConfigurationApplied timing
     [Tags]    config_applied    timing
-    Verify Time Delta    ATMonochromator    logevent_summaryState    logevent_configurationApplied
+    Verify Time Delta    ATMonochromator    logevent_configurationApplied    logevent_summaryState
 
 Verify FiberSpectrograph:3 Disabled
     [Tags]    disabled
@@ -27,4 +27,4 @@ Verify FiberSpectrograph:3 ConfigurationApplied Event
 
 Verify FiberSpectrograph:3 ConfigurationApplied timing
     [Tags]    config_applied    timing
-    Verify Time Delta    FiberSpectrograph    logevent_summaryState    logevent_configurationApplied    3
+    Verify Time Delta    FiberSpectrograph    logevent_configurationApplied    logevent_summaryState    3

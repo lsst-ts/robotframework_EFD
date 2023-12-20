@@ -34,7 +34,7 @@ Verify ATDome azimuthState is NotInMotion
 Verify ATDome Position
     [Tags]
     ${dataframe}=    Get Recent Samples    ATDome    position    ["azimuthPosition", "dropoutDoorOpeningPercentage", "mainDoorOpeningPercentage",]    1    None
-    Should Be Equal As Integers    ${dataframe.azimuthPosition.values}[0]    355
+    Should Be Equal As Integers    ${dataframe.azimuthPosition.values}[0]    3
     Should Be Equal As Integers    ${dataframe.dropoutDoorOpeningPercentage.values}[0]    0
     Should Be Equal As Integers    ${dataframe.mainDoorOpeningPercentage.values}[0]    0
 
