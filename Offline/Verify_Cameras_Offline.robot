@@ -43,7 +43,7 @@ Verify ATCamera OfflineDetailedStates
 
 Verify ATCamera OfflineDetailedStates timing
     [Tags]    latiss    detailed_states    timing
-    Verify Time Delta    ATCamera    logevent_summaryState    ${offdet_topic}
+    Verify Time Delta    ATCamera   ${offdet_topic}    logevent_summaryState
 
 #BigCamera
 Verify BigCamera Offline
