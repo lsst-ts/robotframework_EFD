@@ -13,6 +13,12 @@ Execute AuxTel Standby to Disabled
     Verify Scripts Completed Successfully    ${scripts}    ${states}
     Report If Failed    ${scripts}    ${states}
 
+Execute BigCamera Standby to Disabled
+    [Tags]    bigcamera
+    # Set the 'test_env' variable to 'bts' if running on the BTS, otherwise, set it to 'tts'.
+    ${big_camera}=    Set Variable If    "${env_efd}" == "base_efd"    MTCamera    CCCamera
+    ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    ${big_camera}    Disabled
+    
 Execute EAS Standby to Disabled
     [Tags]    eas
     ${scripts}    ${states}=    Execute Integration Test    eas_standby_disabled
