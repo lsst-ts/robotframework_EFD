@@ -13,10 +13,10 @@ Execute AuxTel Offline to Standby
     Verify Scripts Completed Successfully    ${scripts}    ${states}
     Report If Failed    ${scripts}    ${states}
 
-Execute MainTel Offline to Standby
+Execute BigCamera Offline to Standby
     [Tags]    maintel    bigcamera
     # Set the 'test_env' variable to 'bts' if running on the BTS, otherwise, set it to 'tts'.
-    ${integration_script}=    Set Variable If    "${env_efd}" == "base_efd"    lsstcam_offline_standby    comcam_offline_standby
-    ${scripts}    ${states}=    Execute Integration Test    ${integration_script}
+    ${big_camera}=    Set Variable If    "${env_efd}" == "base_efd"    MTCamera    CCCamera
+    ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    ${big_camera}    Standby
     Verify Scripts Completed Successfully    ${scripts}    ${states}
     Report If Failed    ${scripts}    ${states}
