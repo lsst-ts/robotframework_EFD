@@ -48,7 +48,7 @@ Execute ObsSys Disabled to Enabled
     Report If Failed    ${scripts}    ${states}
 
 Execute OCPS2||3 Disabled to Enabled
-    [Tags]    mt_ocps
+    [Tags]    mtocps
     # Set the OCPS name based on running on the BTS or TTS.
     ${big_ocps}=    Set Variable If    "${env_efd}" == "base_efd"    OCPS:3    OCPS:2
     ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    ${big_ocps}    Enabled
