@@ -16,7 +16,7 @@ Execute BigCamera Enabled to Offline
     Verify Scripts Completed Successfully    ${scripts}    ${states}
 
 Execute OCPS2||3 Standby to Disabled
-    [Tags]    mt_ocps
+    [Tags]    mtocps
     # Set the OCPS name based on running on the BTS or TTS.
     ${big_ocps}=    Set Variable If    "${env_efd}" == "base_efd"    OCPS:3    OCPS:2
     ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    ${big_ocps}    Offline
