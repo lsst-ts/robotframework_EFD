@@ -27,7 +27,7 @@ Verify ATCamera Playlist Loaded
     [Tags]
     Log    ${playlist_full_name}
     ${dataframe}=    Get Recent Samples    ATCamera    command_play    ["*",]    1    None
-    Should Be Equal    ${dataframe.playlist.values}[0]    ${playlist_full_name}
+    Should Be Equal    ${dataframe.iloc[0].playlist}    ${playlist_full_name}
 
 Execute AuxTel LATISS Acquire and Take Sequence
     [Tags]    execute
@@ -52,14 +52,14 @@ Verify ATPtg Target
         Should Be True    ${delta} > 0
         Verify Time Delta    ATPtg    command_raDecTarget    logevent_currentTarget
         ${cmd_dataframe}=    Get Recent Samples    ATPtg    command_raDecTarget    ["targetName", "ra", "declination",]    1    None
-        Should Be Equal    ${cmd_dataframe.targetName.values}[0]    HD164461
-        Should Be Equal    ${cmd_dataframe.ra.values.round(6)}[0]    ${18.913095}
-        Should Be Equal    ${cmd_dataframe.declination.values.round(6)}[0]    ${-87.605843}
+        Should Be Equal    ${cmd_dataframe.iloc[0].targetName}    HD164461
+        Should Be Equal    ${cmd_dataframe.iloc[0].ra.round(6)}    ${18.913095}
+        Should Be Equal    ${cmd_dataframe.iloc[0].declination.round(6)}    ${-87.605843}
     END
     ${evt_dataframe}=    Get Recent Samples    ATPtg    logevent_currentTarget    ["targetName", "raHours", "decDegs",]    1    None
-    Should Be Equal    ${evt_dataframe.targetName.values}[0]    HD164461
-    Should Be Equal    ${evt_dataframe.raHours.values.round(6)}[0]    ${18.913095}
-    Should Be Equal    ${evt_dataframe.decDegs.values.round(6)}[0]    ${-87.605843}
+    Should Be Equal    ${evt_dataframe.iloc[0].targetName}    HD164461
+    Should Be Equal    ${evt_dataframe.iloc[0].raHours.round(6)}    ${18.913095}
+    Should Be Equal    ${evt_dataframe.iloc[0].decDegs.round(6)}    ${-87.605843}
 
 Verify ATCamera Image Sequence
     [Documentation]    Verify the ATCamera images are the correct type, with the correct exposure time.
@@ -70,13 +70,13 @@ Verify ATCamera Image Sequence
     Verify Sequence    ATCamera    command_takeImages    expTime    ${seq_length}    ${exp_time}
     Verify Sequence    ATCamera    logevent_startIntegration    exposureTime    ${seq_length}    ${exp_time}
     FOR    ${i}    IN RANGE    ${num_images}
-        ${evt_image_type}=    Fetch From Left    ${evt_df.additionalValues.values}[${i}]    :
+        ${evt_image_type}=    Fetch From Left    ${evt_df.iloc[${i}].additionalValues}    :
         Should Be Equal As Strings    ${evt_image_type}    ${img_type_seq}[${i}]
-        ${image_type_str}=    Fetch From Left    ${cmd_df.keyValueMap.values}[${i}]    ,
+        ${image_type_str}=    Fetch From Left    ${cmd_df.iloc[${i}].keyValueMap}    ,
         ${cmd_image_type}=    Fetch From Right    ${image_type_str}    :${SPACE}
         Should Be Equal As Strings    ${cmd_image_type}    ${img_type_seq}[${i}]
-        Should Be Equal As Numbers    ${cmd_df.numImages.values}[${i}]    1
-        Should Be True    ${cmd_df.shutter.values}[${i}]
+        Should Be Equal As Numbers    ${cmd_df.iloc[${i}].numImages}    1
+        Should Be True    ${cmd_df.iloc[${i}].shutter}
     END
     #imageType (ACQ, OBJECT)
     # if do_aqcquire==True, extra images, up to max_iter, are taken beyond the seq, to verify.
@@ -86,18 +86,18 @@ Verify ATOODS ImageInOODS
     Wait Until Keyword Succeeds    60 sec    10 sec    Verify Image in OODS    ATOODS    ${image_names}[0][0]
     ${dataframe}=    Get Recent Samples    ATOODS    logevent_imageInOODS    ["camera", "description", "obsid",]    ${num_images}    None
     FOR    ${i}    IN RANGE    ${num_images}
-        Should Be Equal As Strings    ${dataframe.camera.values}[${i}]    LATISS
-        Should Be Equal As Strings    ${dataframe.description.values}[${i}]    file ingested
-        Should Be Equal As Strings    ${dataframe.obsid.values}[${i}]    ${image_names}[0][${i}]
+        Should Be Equal As Strings    ${dataframe.iloc[${i}].camera}    LATISS
+        Should Be Equal As Strings    ${dataframe.iloc[${i}].description}    file ingested
+        Should Be Equal As Strings    ${dataframe.iloc[${i}].obsid}    ${image_names}[0][${i}]
     END
 
 Verify ATHeaderService LargeFileObjectAvailable
     [Tags]
     ${dataframe}=    Get Recent Samples    ATHeaderService    logevent_largeFileObjectAvailable    ["id", "url",]    ${num_images}    None
     FOR    ${i}    IN RANGE    ${num_images}
-        Should Be Equal As Strings    ${dataframe.id.values}[${i}]    ${image_names}[0][${i}]
+        Should Be Equal As Strings    ${dataframe.iloc[${i}].id}    ${image_names}[0][${i}]
         ${file_name}=    Catenate    SEPARATOR=    ATHeaderService_header_    ${image_names}[0][${i}]    .yaml
-        Should Be Equal As Strings    ${dataframe.url[${i}].split("/")[-1]}    ${file_name}
+        Should Be Equal As Strings    ${dataframe.iloc[${i}].url.split("/")[-1]}    ${file_name}
     END
  
 Verify ATSpectrograph ChangeFilter

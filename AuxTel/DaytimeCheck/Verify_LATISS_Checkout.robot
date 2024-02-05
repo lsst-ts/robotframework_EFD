@@ -19,7 +19,7 @@ Verify ATCamera Playlist Loaded
     [Documentation]    Playlist should already be loaded, ensure nothing was changed prior to running this script.
     [Tags]
     ${dataframe}=    Get Recent Samples    ATCamera    command_play    ["playlist", "repeat", "private_identity", "private_origin",]    1    None
-    Should Be Equal    ${dataframe.playlist.values}[0]    bias_dark_flat
+    Should Be Equal    ${dataframe.iloc[0].playlist}    bias_dark_flat
 
 Execute LATISS Checkout
     [Tags]    execute
@@ -36,28 +36,28 @@ Verify ATCamera Bias Frame Image Sequence
     ${cmd_df}=    Get Recent Samples    ATCamera    command_takeImages    ["expTime", "keyValueMap", "numImages", "shutter",]    2    None
     ${evt_df}=    Get Recent Samples    ATCamera    logevent_startIntegration    ["additionalValues", "exposureTime", "imageName"]    2    None
     Set Suite Variable    @{image_names}    ${evt_df.imageName.values}
-    Should Be Equal As Numbers    ${cmd_df.expTime.values}[1]    ${exp_time}
-    Should Be Equal As Numbers    ${evt_df.exposureTime.values}[1]    ${exp_time}
-    ${evt_image_type}=    Fetch From Left    ${evt_df.additionalValues.values}[1]    :
+    Should Be Equal As Numbers    ${cmd_df.iloc[1].expTime}    ${exp_time}
+    Should Be Equal As Numbers    ${evt_df.iloc[1].exposureTime}    ${exp_time}
+    ${evt_image_type}=    Fetch From Left    ${evt_df.iloc[1].additionalValues}    :
     Should Be Equal As Strings    ${evt_image_type}    ${img_type_seq}
-    ${image_type_str}=    Fetch From Left    ${cmd_df.keyValueMap.values}[1]    ,
+    ${image_type_str}=    Fetch From Left    ${cmd_df.iloc[1].keyValueMap}    ,
     ${cmd_image_type}=    Fetch From Right    ${image_type_str}    :${SPACE}
     Should Be Equal As Strings    ${cmd_image_type}    ${img_type_seq}
-    Should Be Equal As Numbers    ${cmd_df.numImages.values}[1]    ${1}
+    Should Be Equal As Numbers    ${cmd_df.iloc[1].numImages}    ${1}
 
 Verify ATOODS Bias Frame ImageInOODS
     [Tags]
     ${dataframe}=    Get Recent Samples    ATOODS    logevent_imageInOODS    ["camera", "description", "obsid",]    2    None
-    Should Be Equal As Strings    ${dataframe.camera.values}[0]    LATISS
-    Should Be Equal As Strings    ${dataframe.description.values}[0]    file ingested
-    Should Be Equal As Strings    ${dataframe.obsid.values}[0]    ${image_names}[0][0]
+    Should Be Equal As Strings    ${dataframe.camera.iloc[0]}    LATISS
+    Should Be Equal As Strings    ${dataframe.iloc[0].description}    file ingested
+    Should Be Equal As Strings    ${dataframe.iloc[0].obsid}    ${image_names}[0][0]
 
 Verify ATHeaderService Bias Frame LargeFileObjectAvailable
     [Tags]
     ${dataframe}=    Get Recent Samples    ATHeaderService    logevent_largeFileObjectAvailable    ["id", "url",]    2    None
-    Should Be Equal As Strings    ${dataframe.id.values}[1]    ${image_names}[0][1]
+    Should Be Equal As Strings    ${dataframe.iloc[1].id}    ${image_names}[0][1]
     ${file_name}=    Catenate    SEPARATOR=    ATHeaderService_header_    ${image_names}[0][1]    .yaml
-    Should Be Equal As Strings    ${dataframe.url[1].split("/")[-1]}    ${file_name}
+    Should Be Equal As Strings    ${dataframe.iloc[1].url.split("/")[-1]}    ${file_name}
 
 # Engineering Frame
 Verify ATCamera Engineering Frame Image Sequence
@@ -68,26 +68,26 @@ Verify ATCamera Engineering Frame Image Sequence
     ${img_type_seq}=    Set Variable    ENGTEST    # Sequence is reversed; EFD is in time-descending order.
     ${cmd_df}=    Get Recent Samples    ATCamera    command_takeImages    ["expTime", "keyValueMap", "numImages", "shutter",]    1    None
     ${evt_df}=    Get Recent Samples    ATCamera    logevent_startIntegration    ["additionalValues", "exposureTime", "imageName"]    1    None
-    Set Suite Variable    @{image_names}    ${evt_df.imageName.values}[0]
-    Should Be Equal As Numbers    ${cmd_df.expTime.values}[0]    ${exp_time}
-    Should Be Equal As Numbers    ${evt_df.exposureTime.values}[0]    ${exp_time}
-    ${evt_image_type}=    Fetch From Left    ${evt_df.additionalValues.values}[0]    :
+    Set Suite Variable    @{image_names}    ${evt_df.iloc[0].imageName}
+    Should Be Equal As Numbers    ${cmd_df.iloc[0].expTime}    ${exp_time}
+    Should Be Equal As Numbers    ${evt_df.iloc[0].exposureTime}    ${exp_time}
+    ${evt_image_type}=    Fetch From Left    ${evt_df.iloc[0].additionalValues}    :
     Should Be Equal As Strings    ${evt_image_type}    ${img_type_seq}
-    ${image_type_str}=    Fetch From Left    ${cmd_df.keyValueMap.values}[0]    ,
+    ${image_type_str}=    Fetch From Left    ${cmd_df.iloc[0].keyValueMap}    ,
     ${cmd_image_type}=    Fetch From Right    ${image_type_str}    :${SPACE}
     Should Be Equal As Strings    ${cmd_image_type}    ${img_type_seq}
-    Should Be Equal As Numbers    ${cmd_df.numImages.values}[0]    ${1}
+    Should Be Equal As Numbers    ${cmd_df.iloc[0].numImages}    ${1}
 
 Verify ATOODS Engineering Frame ImageInOODS
     [Tags]
     ${dataframe}=    Get Recent Samples    ATOODS    logevent_imageInOODS    ["camera", "description", "obsid",]    1    None
-    Should Be Equal As Strings    ${dataframe.camera.values}[0]    LATISS
-    Should Be Equal As Strings    ${dataframe.description.values}[0]    file ingested
-    Should Be Equal As Strings    ${dataframe.obsid.values}[0]    ${image_names}[0]
+    Should Be Equal As Strings    ${dataframe.iloc[0].camera}    LATISS
+    Should Be Equal As Strings    ${dataframe.iloc[0].description}    file ingested
+    Should Be Equal As Strings    ${dataframe.iloc[0].obsid}    ${image_names}[0]
 
 Verify ATHeaderService Engineering Frame LargeFileObjectAvailable
     [Tags]
     ${dataframe}=    Get Recent Samples    ATHeaderService    logevent_largeFileObjectAvailable    ["id", "url",]    1    None
-    Should Be Equal As Strings    ${dataframe.id.values}[0]    ${image_names}[0]
+    Should Be Equal As Strings    ${dataframe.iloc[0].id}    ${image_names}
     ${file_name}=    Catenate    SEPARATOR=    ATHeaderService_header_    ${image_names}[0]    .yaml
     Should Be Equal As Strings    ${dataframe.url[0].split("/")[-1]}    ${file_name}
