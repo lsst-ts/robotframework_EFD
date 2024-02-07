@@ -25,6 +25,7 @@ Execute LATISS Checkout
     [Tags]    execute
     ${scripts}    ${states}=    Execute Integration Test    auxtel_latiss_checkout
     Verify Scripts Completed Successfully    ${scripts}    ${states}
+    Check If Script Failed    ${states}
 
 # Bias Frame
 Verify ATCamera Bias Frame Image Sequence

@@ -25,6 +25,7 @@ Execute AuxTel Slew and Take Image
     [Tags]    execute
     ${scripts}    ${states}=    Execute Integration Test    auxtel_slew_and_take_image_checkout
     Verify Scripts Completed Successfully    ${scripts}    ${states}
+    Check If Script Failed    ${states}
 
 ## Tests
 Verify ATAOS Corrections Enabled

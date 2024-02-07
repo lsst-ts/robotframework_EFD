@@ -33,6 +33,7 @@ Execute AuxTel LATISS Acquire and Take Sequence
     [Tags]    execute
     ${scripts}    ${states}=    Execute Integration Test    auxtel_latiss_acquire_and_take_sequence    ${playlist}
     Verify Scripts Completed Successfully    ${scripts}    ${states}
+    Check If Script Failed    ${states}
 
 Verify ATDome AzimuthInPosition
     [Tags]

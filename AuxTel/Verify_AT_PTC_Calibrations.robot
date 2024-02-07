@@ -25,6 +25,7 @@ Execute AuxTel PTC Calibrations
     [Tags]    execute
     ${scripts}    ${states}=    Execute Integration Test    auxtel_latiss_calibrations    ptc
     Verify Scripts Completed Successfully    ${scripts}    ${states}
+    Check If Script Failed    ${states}
 
 Verify ATPtg Target
     [Documentation]    Ensure the telescope is pointed at the correct target, in this case at the Az/El of the flat-field screen.

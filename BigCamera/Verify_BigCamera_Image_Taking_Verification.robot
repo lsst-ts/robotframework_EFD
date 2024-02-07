@@ -27,6 +27,7 @@ Execute BigCamera Image Taking Test
     ${integration_script}=    Set Variable If    "${env_efd}" == "base_efd"    lsstcam_image_taking    comcam_image_taking
     ${scripts}    ${states}=    Execute Integration Test    comcam_image_taking
     Verify Scripts Completed Successfully    ${scripts}    ${states}
+    Check If Script Failed    ${states}
 
 Verify Camera Image Sequence
     [Documentation]    Verify the Camera images are the correct type, with the correct exposure time.

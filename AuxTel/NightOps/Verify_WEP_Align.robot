@@ -39,6 +39,7 @@ Execute AuxTel LATISS WEP Align test
     [Tags]    execute
     ${scripts}    ${states}=    Execute Integration Test    auxtel_latiss_wep_align
     Verify Scripts Completed Successfully    ${scripts}    ${states}
+    Check If Script Failed    ${states}
 
 Verify ATPtg Target
     [Tags]    robot:continue-on-failure

@@ -13,6 +13,7 @@ Execute AuxTel Telescope and Dome Checkout Test
     [Tags]    execute
     ${scripts}    ${states}=    Execute Integration Test    auxtel_telescope_dome_checkout
     Verify Scripts Completed Successfully    ${scripts}    ${states}
+    Check If Script Failed    ${states}
 
 Verify AuxTel is Parked
     [Tags]    robot:continue-on-failure
