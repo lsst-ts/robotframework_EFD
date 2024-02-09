@@ -7,6 +7,9 @@ Library    OperatingSystem
 Library    Process
 Library    String
 
+*** Variables ***
+@{failed_script_states}      9    10    11
+
 *** Keywords ***
 Execute Integration Test
     [Documentation]    This keyword executes the given integration test `inttest_script` with the given, optional,
@@ -65,6 +68,12 @@ Check If Failed
     ${state_failed}=    Run Keyword If    ${exists.rc} == 0    Get File    ${EXECDIR}/Reports/STATE_FAILED
     # If the STATE_FAILED file contains the word 'Failure' halt any further test execution.
     Run Keyword If    "Failure" in """${state_failed}"""    Fatal Error    msg="One or more CSCs failed the State transitions."
+
+Check If Script Failed
+    [Documentation]    This keyword checks if any of the scripts failed.  The keyword takes the list of `script_states` and checks if any of values
+    ...    match those in the `failed_script_states` list defined here in the Common_Keywords.robot library.
+    [Arguments]    ${script_states}
+    Run Keyword If    any(x in ${failed_script_states} for x in ${script_states})    Fatal Error    msg="Imaging script failed; skipping remaining tests."
 
 Get Script Metadata
     [Documentation]    Capture script metadata, like script index and start time. Ensure script finished successfully.
