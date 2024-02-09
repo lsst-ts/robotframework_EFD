@@ -14,9 +14,10 @@ disabled.xml
 enabled.xml 
 athousekeeping.xml 
 mthousekeeping.xml 
-at_image_verify.xml 
 bigcam_image_verify.xml 
 bigcam_calib.xml
+at_image_verify.xml 
+at_stop.xml 
 at_shutdown.xml 
 enable_atcs.xml 
 at_latiss_checkout.xml
@@ -31,7 +32,6 @@ at_acq_take_seq_verify.xml
 at_acq_take_seq_test.xml 
 at_acq_take_seq_nominal.xml 
 love_stress_test.xml
-at_stop.xml 
 shutdown.xml 
 )
 rebot --name IntegrationTests -r full_report.html -l full_log.html --reportbackground "#61C4CD:#61C4CD" --loglevel TRACE:INFO --flattenkeywords TAG:custom -e at_light_cal ${robot_outputs[@]}
