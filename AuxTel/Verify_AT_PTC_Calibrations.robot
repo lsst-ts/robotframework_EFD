@@ -74,18 +74,18 @@ Verify ATOODS ImageInOODS
     Set Suite Variable    ${total_images}
     ${dataframe}=    Get Recent Samples    ATOODS    logevent_imageInOODS    ["camera", "description", "obsid",]    ${total_images}    None
     FOR    ${i}    IN RANGE    ${num_images}
-        Should Be Equal As Strings    ${dataframe.camera.values}[${i}]    LATISS
-        Should Be Equal As Strings    ${dataframe.description.values}[${i}]    file ingested
-        Should Be Equal As Strings    ${dataframe.obsid.values}[${i}]    ${image_names}[0][${i}]
+        Should Be Equal As Strings    ${dataframe.iloc[${i}].camera}    LATISS
+        Should Be Equal As Strings    ${dataframe.iloc[${i}].description}    file ingested
+        Should Be Equal As Strings    ${dataframe.iloc[${i}].obsid}    ${image_names}[0][${i}]
     END
 
 Verify ATHeaderService LargeFileObjectAvailable
     [Tags]    robot:continue-on-failure
     ${dataframe}=    Get Recent Samples    ATHeaderService    logevent_largeFileObjectAvailable    ["id", "url",]    ${total_images}    None
     FOR    ${i}    IN RANGE    ${num_images}
-        Should Be Equal As Strings    ${dataframe.id.values}[${i}]    ${image_names}[0][${i}]
+        Should Be Equal As Strings    ${dataframe.iloc[${i}].id}    ${image_names}[0][${i}]
         ${file_name}=    Catenate    SEPARATOR=    ATHeaderService_header_    ${image_names}[0][${i}]    .yaml
-        Should Be Equal As Strings    ${dataframe.url[${i}].split("/")[-1]}    ${file_name}
+        Should Be Equal As Strings    ${dataframe.iloc[${i}].url.split("/")[-1]}    ${file_name}
     END
  
 *** Keywords ***
