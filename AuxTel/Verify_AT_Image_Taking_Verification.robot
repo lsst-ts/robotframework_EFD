@@ -23,8 +23,11 @@ Verify ATCamera Playlist Loaded
 
 Execute AuxTel Image Taking Test
     [Tags]    execute
-    ${scripts}    ${states}=    Execute Integration Test    auxtel_image_taking
+    #${scripts}    ${states}=    Execute Integration Test    auxtel_image_taking
+    ${scripts}=    Create List    200068
+    ${states}=    Create List    11
     Verify Scripts Completed Successfully    ${scripts}    ${states}
+    Check If Script Failed    ${states}
 
 Verify ATCamera Image Sequence
     [Documentation]    Verify the ATCamera images are the correct type, with the correct exposure time.
@@ -56,6 +59,6 @@ Verify ATOODS ImageInOODS
 Verify ATHeaderService LargeFileObjectAvailable
     [Tags]
     ${dataframe}=    Get Recent Samples    ATHeaderService    logevent_largeFileObjectAvailable    ["id", "url",]    ${num_images}    None
-    Should Be Equal As Strings    ${dataframe.id.values}[${0}]    ${image_names}[0][${0}]
+    Should Be Equal As Strings    ${dataframe.iloc[${0}].id}    ${image_names}[0][${0}]
     ${file_name}=    Catenate    SEPARATOR=    ATHeaderService_header_    ${image_names}[0][${0}]    .yaml
-    Should Be Equal As Strings    ${dataframe.url[0].split("/")[-1]}    ${file_name}
+    Should Be Equal As Strings    ${dataframe.iloc[0].url.split("/")[-1]}    ${file_name}

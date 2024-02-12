@@ -27,6 +27,7 @@ Execute BigCamera Flat Calibrations
     ${integration_script}=    Set Variable If    "${env_efd}" == "base_efd"    lsstcam_calibrations    comcam_calibrations
     ${scripts}    ${states}=    Execute Integration Test    ${integration_script}    flat
     Verify Scripts Completed Successfully    ${scripts}    ${states}
+    Check If Script Failed    ${states}
 
 Verify MTPtg Target
     [Documentation]    Ensure the telescope is pointed at the correct target, in this case at the Az/El of the flat-field screen.
