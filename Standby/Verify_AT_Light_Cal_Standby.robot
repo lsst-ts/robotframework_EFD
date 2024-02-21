@@ -16,13 +16,17 @@ Verify ATMonochromator Standby
     [Tags]    standby
     Verify Summary State    ${STATES}[standby]    ATMonochromator
 
+Verify ATMonochromator SummaryState timing
+    [Tags]    software_versions    timing
+    Verify Time Delta    ATMonochromator    command_standby    logevent_summaryState
+
 Verify ATMonochromator SoftwareVersions
     [Tags]    software_versions
     Verify Software Versions    ATMonochromator    csc_salver=${atmonochromator_salver}    csc_xmlver=${atmonochromator_xmlver}
 
 Verify ATMonochromator SoftwareVersions timing
     [Tags]    software_versions    timing
-    Verify Time Delta    ATMonochromator    logevent_softwareVersions    logevent_summaryState
+    Verify Time Delta    ATMonochromator    command_standby    logevent_softwareVersions
 
 Verify ATMonochromator ConfigurationsAvailable Event
     [Tags]    config_available
@@ -30,20 +34,24 @@ Verify ATMonochromator ConfigurationsAvailable Event
 
 Verify ATMonochromator ConfigurationsAvailable timing
     [Tags]    config_available    timing
-    Verify Time Delta    ATMonochromator    logevent_configurationsAvailable    logevent_summaryState
+    Verify Time Delta    ATMonochromator    command_standby    logevent_configurationsAvailable
 
 #FiberSpectrograph:3
 Verify FiberSpectrograph:3 Standby
     [Tags]    standby
     Verify Summary State    ${STATES}[standby]    FiberSpectrograph:3
     
+Verify FiberSpectrograph:3 SummaryState timing
+    [Tags]    software_versions    timing
+    Verify Time Delta    FiberSpectrograph:3    command_standby    logevent_summaryState
+
 Verify FiberSpectrograph:3 SoftwareVersions
     [Tags]    software_versions
     Verify Software Versions    FiberSpectrograph    index=3    csc_salver=${fiberspectrograph_salver}    csc_xmlver=${fiberspectrograph_xmlver}
 
 Verify FiberSpectrograph:3 SoftwareVersions timing
     [Tags]    software_versions    timing
-    Verify Time Delta    ATMonochromator    logevent_softwareVersions    logevent_summaryState    index=3
+    Verify Time Delta    ATMonochromator    command_standby    logevent_softwareVersions    index=3
 
 Verify FiberSpectrograph:3 ConfigurationsAvailable Event
     [Tags]    config_available
@@ -51,4 +59,4 @@ Verify FiberSpectrograph:3 ConfigurationsAvailable Event
 
 Verify FiberSpectrograph:3 ConfigurationsAvailable timing
     [Tags]    config_available    timing
-    Verify Time Delta    FiberSpectrograph    logevent_configurationsAvailable    logevent_summaryState    index=3
+    Verify Time Delta    FiberSpectrograph    command_standby    logevent_configurationsAvailable    index=3

@@ -18,12 +18,12 @@ for csc in cscs:
 
 
 from QueryEfd import QueryEfd
-efd = QueryEfd("7.5.0", "20.1.0", "6.10.4p2", "base_efd")
+efd = QueryEfd("7.5.0", "20.2.0", "6.10.4p2", "base_efd")
 
 from utils import dataframe
 
 from lsst_efd_client import EfdClient
-efd_client = EfdClient("tucson_teststand_efd")
+efd_client = EfdClient("base_efd")
 
 import asyncio
 loop = asyncio.get_event_loop()

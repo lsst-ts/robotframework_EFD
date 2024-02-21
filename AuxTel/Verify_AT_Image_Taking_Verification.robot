@@ -23,9 +23,7 @@ Verify ATCamera Playlist Loaded
 
 Execute AuxTel Image Taking Test
     [Tags]    execute
-    #${scripts}    ${states}=    Execute Integration Test    auxtel_image_taking
-    ${scripts}=    Create List    200068
-    ${states}=    Create List    11
+    ${scripts}    ${states}=    Execute Integration Test    auxtel_image_taking
     Verify Scripts Completed Successfully    ${scripts}    ${states}
     Check If Script Failed    ${states}
 

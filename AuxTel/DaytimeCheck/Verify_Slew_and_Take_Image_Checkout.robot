@@ -58,7 +58,7 @@ Verify ATMCS Tracking was True
 Verify ATPneumatics m1CoverState is Closed
     [Tags]
     ${dataframe}=    Get Recent Samples    ATPneumatics    logevent_m1CoverState    ["*",]    1    None
-    Should Be Equal As Integers    ${dataframe.iloc[2]0state}    6    # Closed
+    Should Be Equal As Integers    ${dataframe.iloc[0].state}    6    # Closed
 
 Verify ATPneumatics m1CoverLimitSwitches are Closed
     [Tags]
@@ -96,13 +96,13 @@ Verify ATOODS First Engineering Frame ImageInOODS
     ${dataframe}=    Get Recent Samples    ATOODS    logevent_imageInOODS    ["camera", "description", "obsid",]    2    None
     Should Be Equal As Strings    ${dataframe.iloc[0].camera}    LATISS
     Should Be Equal As Strings    ${dataframe.iloc[0].description}    file ingested
-    Should Be Equal As Strings    ${dataframe.iloc[0].obsid}    ${image_names}[0][0]
+    Should Be Equal As Strings    ${dataframe.iloc[0].obsid}    ${image_names}[0]
 
 Verify ATHeaderService First Engineering Frame LargeFileObjectAvailable
     [Tags]
     ${dataframe}=    Get Recent Samples    ATHeaderService    logevent_largeFileObjectAvailable    ["id", "url",]    2    None
-    Should Be Equal As Strings    ${dataframe.iloc[1].id}    ${image_names}[0][1]
-    ${file_name}=    Catenate    SEPARATOR=    ATHeaderService_header_    ${image_names}[0][1]    .yaml
+    Should Be Equal As Strings    ${dataframe.iloc[1].id}    ${image_names}[0]
+    ${file_name}=    Catenate    SEPARATOR=    ATHeaderService_header_    ${image_names}[0]    .yaml
     Should Be Equal As Strings    ${dataframe.iloc[1].url.split("/")[-1]}    ${file_name}
 
 # Second Engineering Frame
@@ -127,16 +127,16 @@ Verify ATCamera Second Engineering Frame Image Sequence
 Verify ATOODS Second Engineering Frame ImageInOODS
     [Tags]
     ${dataframe}=    Get Recent Samples    ATOODS    logevent_imageInOODS    ["camera", "description", "obsid",]    1    None
-    Should Be Equal As Strings    ${dataframe.iloc.camera}    LATISS
-    Should Be Equal As Strings    ${dataframe.iloc.description}    file ingested
-    Should Be Equal As Strings    ${dataframe.iloc.obsid}    ${image_names}[0]
+    Should Be Equal As Strings    ${dataframe.iloc[0].camera}    LATISS
+    Should Be Equal As Strings    ${dataframe.iloc[0].description}    file ingested
+    Should Be Equal As Strings    ${dataframe.iloc[0].obsid}    ${image_names}[0]
 
 Verify ATHeaderService Second Engineering Frame LargeFileObjectAvailable
     [Tags]
     ${dataframe}=    Get Recent Samples    ATHeaderService    logevent_largeFileObjectAvailable    ["id", "url",]    1    None
     Should Be Equal As Strings    ${dataframe.iloc[0].id}    ${image_names}[0]
     ${file_name}=    Catenate    SEPARATOR=    ATHeaderService_header_    ${image_names}[0]    .yaml
-    Should Be Equal As Strings    ${dataframe.url[0].split("/")[-1]}    ${file_name}
+    Should Be Equal As Strings    ${dataframe.iloc[0].url.split("/")[-1]}    ${file_name}
 
 # Cleanup
 Verify AuxTel is Parked
@@ -152,5 +152,5 @@ Verify ATMCS Tracking is False
 Verify ATDomeTrajectory followingMode is False
     [Tags]
     ${dataframe}=    Get Recent Samples    ATDomeTrajectory    logevent_followingMode    ["*",]    1    None
-    Should Not Be True    ${dataframe.iloc[0].enabled}]
+    Should Not Be True    ${dataframe.iloc[0].enabled}
 
