@@ -11,7 +11,7 @@ Suite Setup    Check If Failed
 *** Test Cases ***
 Execute AuxTel Telescope and Dome Checkout Test
     [Tags]    execute
-    ${scripts}    ${states}=    Execute Integration Test    auxtel_telescope_dome_checkout
+    ${scripts}    ${states}=    Execute Integration Test    auxtel_telescope_and_dome_checkout
     Verify Scripts Completed Successfully    ${scripts}    ${states}
     Check If Script Failed    ${states}
 

@@ -68,13 +68,13 @@ Verify ATCamera Image Sequence
     Verify Sequence    ATCamera    command_takeImages    expTime    ${seq_length}    ${exp_time}
     Verify Sequence    ATCamera    logevent_startIntegration    exposureTime    ${seq_length}    ${exp_time}
     FOR    ${i}    IN RANGE    ${num_images}
-        ${evt_image_type}=    Fetch From Left    ${evt_df.iloc[${i}].additionalValues}[${i}]    :
+        ${evt_image_type}=    Fetch From Left    ${evt_df.iloc[${i}].additionalValues}    :
         Should Be Equal As Strings    ${evt_image_type}    ${img_type_seq}[${i}]
-        ${image_type_str}=    Fetch From Left    ${cmd_df.iloc[${i}].keyValueMap}[${i}]    ,
+        ${image_type_str}=    Fetch From Left    ${cmd_df.iloc[${i}].keyValueMap}    ,
         ${cmd_image_type}=    Fetch From Right    ${image_type_str}    :${SPACE}
         Should Be Equal As Strings    ${cmd_image_type}    ${img_type_seq}[${i}]
-        Should Be Equal As Numbers    ${cmd_df.iloc[${i}].numImages}[${i}]    1
-        Should Be True    ${cmd_df.iloc[${i}].shutter}[${i}]
+        Should Be Equal As Numbers    ${cmd_df.iloc[${i}].numImages}    1
+        Should Be True    ${cmd_df.iloc[${i}].shutter}
     END
 
 Verify ATOODS ImageInOODS
@@ -82,9 +82,9 @@ Verify ATOODS ImageInOODS
     Wait Until Keyword Succeeds    60 sec    10 sec    Verify Image in OODS    ATOODS    ${image_names}[0][0]
     ${dataframe}=    Get Recent Samples    ATOODS    logevent_imageInOODS    ["camera", "description", "obsid",]    ${num_images}    None
     FOR    ${i}    IN RANGE    ${num_images}
-        Should Be Equal As Strings    ${dataframe..iloc[${i}]camera}    LATISS
-        Should Be Equal As Strings    ${dataframe..iloc[${i}]description}    file ingested
-        Should Be Equal As Strings    ${dataframe..iloc[${i}]obsid}    ${image_names}[0][${i}]
+        Should Be Equal As Strings    ${dataframe.iloc[${i}].camera}    LATISS
+        Should Be Equal As Strings    ${dataframe.iloc[${i}].description}    file ingested
+        Should Be Equal As Strings    ${dataframe.iloc[${i}].obsid}    ${image_names}[0][${i}]
     END
 
 Verify ATHeaderService LargeFileObjectAvailable
@@ -101,7 +101,7 @@ Verify ATHexapod Position
     [Tags]
     ${dataframe}=    Get Recent Samples    ATHexapod    logevent_positionUpdate    ["positionU", "positionV", "positionW", "positionX", "positionY", "positionZ"]    1    None
     Should Be Equal As Numbers    ${dataframe.iloc[0].positionU}    0.35
-    Should Be Equal As Numbers    ${dataframe.iloc[0].positionVs}   0.22
+    Should Be Equal As Numbers    ${dataframe.iloc[0].positionV}    0.22
     Should Be Equal As Numbers    ${dataframe.iloc[0].positionW}    0
 
 Verify ATMCS AxesInPosition
@@ -155,21 +155,21 @@ Verify Initial Offset
     Set Suite Variable    ${event_dataframe}
     @{list}=    Create List    ${0.0}    ${0.0}    ${0.8}
     Comment    First Iteration.
-    Lists Should Be Equal    ${command_dataframe.iloc[3].values.round(3)}    ${list}
-    ${initial_z}=    Set Variable    ${event_dataframe.iloc[8][2]}
-    ${offset_z}=    Set Variable    ${event_dataframe.iloc[7][2]}
+    Lists Should Be Equal    ${command_dataframe.iloc[3].round(3)}    ${list}
+    ${initial_z}=    Set Variable    ${event_dataframe.iloc[8].iloc[2]}
+    ${offset_z}=    Set Variable    ${event_dataframe.iloc[7].iloc[2]}
     ${delta}=    Evaluate    ${offset_z} - ${initial_z}
     Should Be Equal As Numbers    ${delta}    0.8
     Comment    Second Iteration.
-    Lists Should Be Equal    ${command_dataframe.iloc[7].values.round(3)}    ${list}
-    ${initial_z}=    Set Variable    ${event_dataframe.iloc[16][2]}
-    ${offset_z}=    Set Variable    ${event_dataframe.iloc[15][2]}
+    Lists Should Be Equal    ${command_dataframe.iloc[7].round(3)}    ${list}
+    ${initial_z}=    Set Variable    ${event_dataframe.iloc[16].iloc[2]}
+    ${offset_z}=    Set Variable    ${event_dataframe.iloc[15].iloc[2]}
     ${delta}=    Evaluate    ${offset_z} - ${initial_z}
     Should Be Equal As Numbers    ${delta}    0.8
     Comment    Third Iteration.
-    Lists Should Be Equal    ${command_dataframe.iloc[11].values.round(3)}    ${list}
-    ${initial_z}=    Set Variable    ${event_dataframe.iloc[24][2]}
-    ${offset_z}=    Set Variable    ${event_dataframe.iloc[23][2]}
+    Lists Should Be Equal    ${command_dataframe.iloc[11].round(3)}    ${list}
+    ${initial_z}=    Set Variable    ${event_dataframe.iloc[24].iloc[2]}
+    ${offset_z}=    Set Variable    ${event_dataframe.iloc[23].iloc[2]}
     ${delta}=    Evaluate    ${offset_z} - ${initial_z}
     Should Be Equal As Numbers    ${delta}    0.8
 
@@ -178,21 +178,21 @@ Verify Extra-Focal Offset
     [Tags]    robot:continue-on-failure
     @{list}=    Create List    ${0.0}    ${0.0}    ${-1.6011}
     Comment    First Iteration.  Note: ATAOS publishes 2 intervening correctionOffsets Events.
-    Lists Should Be Equal    ${command_dataframe.iloc[2].values.round(4)}    ${list}
-    ${initial_z}=    Set Variable    ${event_dataframe.iloc[5][2]}
-    ${offset_z}=    Set Variable    ${event_dataframe.iloc[4][2]}
+    Lists Should Be Equal    ${command_dataframe.iloc[2].round(4)}    ${list}
+    ${initial_z}=    Set Variable    ${event_dataframe.iloc[5].iloc[2]}
+    ${offset_z}=    Set Variable    ${event_dataframe.iloc[4].iloc[2]}
     ${delta}=    Evaluate    ${offset_z} - ${initial_z}
     Should Be Equal As Numbers    ${delta}    -1.6011
     Comment    Second Iteration.
-    Lists Should Be Equal    ${command_dataframe.iloc[6].values.round(4)}    ${list}
-    ${initial_z}=    Set Variable    ${event_dataframe.iloc[13][2]}
-    ${offset_z}=    Set Variable    ${event_dataframe.iloc[12][2]}
+    Lists Should Be Equal    ${command_dataframe.iloc[6].round(4)}    ${list}
+    ${initial_z}=    Set Variable    ${event_dataframe.iloc[13].iloc[2]}
+    ${offset_z}=    Set Variable    ${event_dataframe.iloc[12].iloc[2]}
     ${delta}=    Evaluate    ${offset_z} - ${initial_z}
     Should Be Equal As Numbers    ${delta}    -1.6011
     Comment    Third Iteration.
-    Lists Should Be Equal    ${command_dataframe.iloc[10].values.round(4)}    ${list}
-    ${initial_z}=    Set Variable    ${event_dataframe.iloc[21][2]}
-    ${offset_z}=    Set Variable    ${event_dataframe.iloc[20][2]}
+    Lists Should Be Equal    ${command_dataframe.iloc[10].round(4)}    ${list}
+    ${initial_z}=    Set Variable    ${event_dataframe.iloc[21].iloc[2]}
+    ${offset_z}=    Set Variable    ${event_dataframe.iloc[20].iloc[2]}
     ${delta}=    Evaluate    ${offset_z} - ${initial_z}
     Should Be Equal As Numbers    ${delta}    -1.6011
 
@@ -201,21 +201,21 @@ Verify Return to InFocus Position
     [Tags]    robot:continue-on-failure
     @{list}=    Create List    ${0.0}    ${0.0}    ${0.801}
     Comment    First Iteration.  Note: ATAOS publishes 2 intervening correctionOffsets Events.
-    Lists Should Be Equal    ${command_dataframe.iloc[1].values.round(3)}    ${list}
-    ${initial_z}=    Set Variable    ${event_dataframe.iloc[2][2]}
-    ${offset_z}=    Set Variable    ${event_dataframe.iloc[1][2]}
+    Lists Should Be Equal    ${command_dataframe.iloc[1].round(3)}    ${list}
+    ${initial_z}=    Set Variable    ${event_dataframe.iloc[2].iloc[2]}
+    ${offset_z}=    Set Variable    ${event_dataframe.iloc[1].iloc[2]}
     ${delta}=    Evaluate    ${offset_z} - ${initial_z}
     Should Be Equal As Numbers    ${delta}    0.8011
     Comment    Second Iteration.
-    Lists Should Be Equal    ${command_dataframe.iloc[5].values.round(3)}    ${list}
-    ${initial_z}=    Set Variable    ${event_dataframe.iloc[10][2]}
-    ${offset_z}=    Set Variable    ${event_dataframe.iloc[9][2]}
+    Lists Should Be Equal    ${command_dataframe.iloc[5].round(3)}    ${list}
+    ${initial_z}=    Set Variable    ${event_dataframe.iloc[10].iloc[2]}
+    ${offset_z}=    Set Variable    ${event_dataframe.iloc[9].iloc[2]}
     ${delta}=    Evaluate    ${offset_z} - ${initial_z}
     Should Be Equal As Numbers    ${delta}    0.8011
     Comment    Third Iteration.
-    Lists Should Be Equal    ${command_dataframe.iloc[9].values.round(3)}    ${list}
-    ${initial_z}=    Set Variable    ${event_dataframe.iloc[18][2]}
-    ${offset_z}=    Set Variable    ${event_dataframe.iloc[17][2]}
+    Lists Should Be Equal    ${command_dataframe.iloc[9].round(3)}    ${list}
+    ${initial_z}=    Set Variable    ${event_dataframe.iloc[18].iloc[2]}
+    ${offset_z}=    Set Variable    ${event_dataframe.iloc[17].iloc[2]}
     ${delta}=    Evaluate    ${offset_z} - ${initial_z}
     Should Be Equal As Numbers    ${delta}    0.8011
 
@@ -226,60 +226,60 @@ Verify Final Offset Position
     Set Test Variable    ${tol}    ${0.05}
     ${index}=    Set Variable    ${0}
     @{expected}=    Create List    ${-0.957500}    ${0.187200}    ${-0.038000}
-    @{actual}=    Convert To List    ${command_dataframe.iloc[8].values.round(4)}
+    @{actual}=    Convert To List    ${command_dataframe.iloc[8].round(4)}
     FOR    ${number}    IN    @{actual}
         Compare Numbers    ${number}    ${expected}[${index}]    ${tol}
         ${index}=    Evaluate    ${index} + 1
     END
-    ${initial_x}=    Set Variable    ${event_dataframe.iloc[17][0]}
-    ${offset_x}=    Set Variable    ${event_dataframe.iloc[16][0]}
+    ${initial_x}=    Set Variable    ${event_dataframe.iloc[17].iloc[0]}
+    ${offset_x}=    Set Variable    ${event_dataframe.iloc[16].iloc[0]}
     ${delta}=    Evaluate    ${offset_x} - ${initial_x}
     Compare Numbers    ${delta}    ${expected}[0]    ${tol}
-    ${initial_y}=    Set Variable    ${event_dataframe.iloc[17][1]}
-    ${offset_y}=    Set Variable    ${event_dataframe.iloc[16][1]}
+    ${initial_y}=    Set Variable    ${event_dataframe.iloc[17].iloc[1]}
+    ${offset_y}=    Set Variable    ${event_dataframe.iloc[16].iloc[1]}
     ${delta}=    Evaluate    ${offset_y} - ${initial_y}
     Compare Numbers    ${delta}    ${expected}[1]    ${tol}
-    ${initial_z}=    Set Variable    ${event_dataframe.iloc[17][2]}
-    ${offset_z}=    Set Variable    ${event_dataframe.iloc[16][2]}
+    ${initial_z}=    Set Variable    ${event_dataframe.iloc[17].iloc[2]}
+    ${offset_z}=    Set Variable    ${event_dataframe.iloc[16].iloc[2]}
     ${delta}=    Evaluate    ${offset_z} - ${initial_z}
     Compare Numbers    ${delta}    ${expected}[2]    ${tol}
     Comment    Second Iteration. Offset:  x=-0.308000, y=0.025900, z=0.013000
     ${index}=    Set Variable    ${0}
     @{expected}=    Create List    ${-0.308000}    ${0.025900}    ${0.013000}
-    @{actual}=    Convert To List    ${command_dataframe.iloc[4].values.round(4)}
+    @{actual}=    Convert To List    ${command_dataframe.iloc[4].round(4)}
     FOR    ${number}    IN    @{actual}
         Compare Numbers    ${number}    ${expected}[${index}]    ${tol}
         ${index}=    Evaluate    ${index} + 1
     END
-    ${initial_x}=    Set Variable    ${event_dataframe.iloc[9][0]}
-    ${offset_x}=    Set Variable    ${event_dataframe.iloc[8][0]}
+    ${initial_x}=    Set Variable    ${event_dataframe.iloc[9].iloc[0]}
+    ${offset_x}=    Set Variable    ${event_dataframe.iloc[8].iloc[0]}
     ${delta}=    Evaluate    ${offset_x} - ${initial_x}
     Compare Numbers    ${delta}    ${expected}[0]    ${tol}
-    ${initial_y}=    Set Variable    ${event_dataframe.iloc[9][1]}
-    ${offset_y}=    Set Variable    ${event_dataframe.iloc[8][1]}
+    ${initial_y}=    Set Variable    ${event_dataframe.iloc[9].iloc[1]}
+    ${offset_y}=    Set Variable    ${event_dataframe.iloc[8].iloc[1]}
     ${delta}=    Evaluate    ${offset_y} - ${initial_y}
     Compare Numbers    ${delta}    ${expected}[1]    ${tol}
-    ${initial_z}=    Set Variable    ${event_dataframe.iloc[9][2]}
-    ${offset_z}=    Set Variable    ${event_dataframe.iloc[8][2]}
+    ${initial_z}=    Set Variable    ${event_dataframe.iloc[9].iloc[2]}
+    ${offset_z}=    Set Variable    ${event_dataframe.iloc[8].iloc[2]}
     ${delta}=    Evaluate    ${offset_z} - ${initial_z}
     Compare Numbers    ${delta}    ${expected}[2]    ${tol}
     Comment    Third Iteration. Offset: x=-0.085300, y=-0.030000, z=-0.003100
     ${index}=    Set Variable    ${0}
     @{expected}=    Create List    ${-0.084500}    ${-0.031000}    ${-0.003100}
-    @{actual}=    Convert To List    ${command_dataframe.iloc[0].values.round(4)}
+    @{actual}=    Convert To List    ${command_dataframe.iloc[0].round(4)}
     FOR    ${number}    IN    @{actual}    
         Compare Numbers    ${number}    ${expected}[${index}]    ${tol}
         ${index}=    Evaluate    ${index} + 1
     END
-    ${initial_x}=    Set Variable    ${event_dataframe.iloc[1][0]}
-    ${offset_x}=    Set Variable    ${event_dataframe.iloc[0][0]}
+    ${initial_x}=    Set Variable    ${event_dataframe.iloc[1].iloc[0]}
+    ${offset_x}=    Set Variable    ${event_dataframe.iloc[0].iloc[0]}
     ${delta}=    Evaluate    ${offset_x} - ${initial_x}
     Compare Numbers    ${delta}    ${expected}[0]    ${tol}
-    ${initial_y}=    Set Variable    ${event_dataframe.iloc[1][1]}
-    ${offset_y}=    Set Variable    ${event_dataframe.iloc[0][1]}
+    ${initial_y}=    Set Variable    ${event_dataframe.iloc[1].iloc[1]}
+    ${offset_y}=    Set Variable    ${event_dataframe.iloc[0].iloc[1]}
     ${delta}=    Evaluate    ${offset_y} - ${initial_y}
     Compare Numbers    ${delta}    ${expected}[1]    ${tol}
-    ${initial_z}=    Set Variable    ${event_dataframe.iloc[1][2]}
-    ${offset_z}=    Set Variable    ${event_dataframe.iloc[0][2]}
+    ${initial_z}=    Set Variable    ${event_dataframe.iloc[1].iloc[2]}
+    ${offset_z}=    Set Variable    ${event_dataframe.iloc[0].iloc[2]}
     ${delta}=    Evaluate    ${offset_z} - ${initial_z}
     Compare Numbers    ${delta}    ${expected}[2]    ${tol}

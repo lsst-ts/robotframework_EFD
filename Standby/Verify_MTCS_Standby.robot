@@ -40,13 +40,17 @@ Verify LaserTracker:1 Standby
     [Tags]    standby
     Verify Summary State    ${STATES}[standby]    LaserTracker:1
 
+Verify LaserTracker:1 SummaryState timing
+    [Tags]    software_versions    timing
+    Verify Time Delta    LaserTracker:1    command_standby    logevent_summaryState
+
 Verify LaserTracker:1 SoftwareVersions
     [Tags]    software_versions
     Verify Software Versions    LaserTracker    index=1    csc_salver=${lasertracker_salver}    csc_xmlver=${lasertracker_xmlver}
 
 Verify LaserTracker:1 SoftwareVersions timing
     [Tags]    software_versions    timing
-    Verify Time Delta    LaserTracker    logevent_softwareVersions    logevent_summaryState    index=1
+    Verify Time Delta    LaserTracker    command_standby    logevent_softwareVersions    index=1
 
 Verify LaserTracker:1 ConfigurationsAvailable Event
     [Tags]    config_available
@@ -54,12 +58,16 @@ Verify LaserTracker:1 ConfigurationsAvailable Event
 
 Verify LaserTracker:1 ConfigurationsAvailable timing
     [Tags]    config_available    timing
-    Verify Time Delta    LaserTracker    logevent_configurationsAvailable    logevent_summaryState    index=1
+    Verify Time Delta    LaserTracker    command_standby    logevent_configurationsAvailable    index=1
 
 #MTAirCompressor:1
 Verify MTAirCompressor:1 Standby
     [Tags]    standby
     Verify Summary State    ${STATES}[standby]    MTAirCompressor:1    auto_enable=True
+
+Verify MTAirCompressor:1 SummaryState timing
+    [Tags]    software_versions    timing
+    Verify Time Delta    MTAirCompressor:1    command_standby    logevent_summaryState
 
 Verify MTAirCompressor:1 SoftwareVersions
     [Tags]    software_versions
@@ -67,7 +75,7 @@ Verify MTAirCompressor:1 SoftwareVersions
 
 Verify MTAirCompressor:1 SoftwareVersions timing
     [Tags]    software_versions    timing
-    Verify Time Delta    MTAirCompressor    logevent_softwareVersions    logevent_summaryState    index=1
+    Verify Time Delta    MTAirCompressor    command_standby    logevent_softwareVersions    index=1
 
 Verify MTAirCompressor:1 ConfigurationsAvailable Event
     [Tags]    config_available
@@ -75,12 +83,16 @@ Verify MTAirCompressor:1 ConfigurationsAvailable Event
 
 Verify MTAirCompressor:1 ConfigurationsAvailable timing
     [Tags]    config_available    timing
-    Verify Time Delta    MTAirCompressor    logevent_configurationsAvailable    logevent_summaryState    index=1
+    Verify Time Delta    MTAirCompressor    command_standby    logevent_configurationsAvailable    index=1
 
 #MTAirCompressor:2
 Verify MTAirCompressor:2 Standby
     [Tags]    standby
     Verify Summary State    ${STATES}[standby]    MTAirCompressor:2    auto_enable=True
+
+Verify MTAirCompressor:2 SummaryState timing
+    [Tags]    software_versions    timing
+    Verify Time Delta    MTAirCompressor:2    command_standby    logevent_summaryState
 
 Verify MTAirCompressor:2 SoftwareVersions
     [Tags]    software_versions
@@ -88,7 +100,7 @@ Verify MTAirCompressor:2 SoftwareVersions
 
 Verify MTAirCompressor:2 SoftwareVersions timing
     [Tags]    software_versions    timing
-    Verify Time Delta    MTAirCompressor    logevent_softwareVersions    logevent_summaryState    index=2
+    Verify Time Delta    MTAirCompressor    command_standby    logevent_softwareVersions    index=2
 
 Verify MTAirCompressor:2 ConfigurationsAvailable Event
     [Tags]    config_available
@@ -96,12 +108,16 @@ Verify MTAirCompressor:2 ConfigurationsAvailable Event
 
 Verify MTAirCompressor:2 ConfigurationsAvailable timing
     [Tags]    config_available    timing
-    Verify Time Delta    MTAirCompressor    logevent_configurationsAvailable    logevent_summaryState    index=2
+    Verify Time Delta    MTAirCompressor    command_standby    logevent_configurationsAvailable    index=2
 
 #MTMount
 Verify MTMount Standby
     [Tags]    standby
     Verify Summary State    ${STATES}[standby]    MTMount
+
+Verify MTMount SummaryState timing
+    [Tags]    software_versions    timing
+    Verify Time Delta    MTMount    command_standby    logevent_summaryState
 
 Verify MTMount Axes NOT InPosition
     [Tags]    standby
@@ -114,7 +130,7 @@ Verify MTMount SoftwareVersions
 
 Verify MTMount SoftwareVersions timing
     [Tags]    software_versions    timing
-    Verify Time Delta    MTMount    logevent_softwareVersions    logevent_summaryState
+    Verify Time Delta    MTMount    command_standby    logevent_softwareVersions
 
 Verify MTMount ConfigurationsAvailable Event
     [Tags]    config_available
@@ -122,12 +138,16 @@ Verify MTMount ConfigurationsAvailable Event
 
 Verify MTMount ConfigurationsAvailable timing
     [Tags]    config_available    timing
-    Verify Time Delta    MTMount    logevent_configurationsAvailable    logevent_summaryState
+    Verify Time Delta    MTMount    command_standby    logevent_configurationsAvailable
 
 # MTPtg
 Verify MTPtg Standby
     [Tags]    standby
     Verify Summary State    ${STATES}[standby]    MTPtg
+
+Verify MTPtg SummaryState timing
+    [Tags]    software_versions    timing
+    Verify Time Delta    MTPtg    command_standby    logevent_summaryState
 
 Verify MTPtg SoftwareVersions
     [Tags]    software_versions
@@ -135,7 +155,7 @@ Verify MTPtg SoftwareVersions
 
 Verify MTPtg SoftwareVersions timing
     [Tags]    software_versions    timing
-    Verify Time Delta    MTPtg    logevent_softwareVersions    logevent_summaryState
+    Verify Time Delta    MTPtg    command_standby    logevent_softwareVersions
 
 Verify MTPtg ConfigurationsAvailable Event
     [Tags]    config_available
@@ -146,13 +166,17 @@ Verify MTDome Standby
     [Tags]    standby
     Verify Summary State    ${STATES}[standby]    MTDome
 
+Verify MTDome SummaryState timing
+    [Tags]    software_versions    timing
+    Verify Time Delta    MTDome    command_standby    logevent_summaryState
+
 Verify MTDome SoftwareVersions
     [Tags]    software_versions
     Verify Software Versions    MTDome    csc_salver=${mtdome_salver}    csc_xmlver=${mtdome_xmlver}
 
 Verify MTDome SoftwareVersions timing
     [Tags]    software_versions    timing
-    Verify Time Delta    MTDome    logevent_softwareVersions    logevent_summaryState
+    Verify Time Delta    MTDome    command_standby    logevent_softwareVersions
 
 Verify MTDome ConfigurationsAvailable Event
     [Tags]    config_available
@@ -160,12 +184,16 @@ Verify MTDome ConfigurationsAvailable Event
 
 Verify MTDome ConfigurationsAvailable timing
     [Tags]    config_available    timing
-    Verify Time Delta    MTDome    logevent_configurationsAvailable    logevent_summaryState
+    Verify Time Delta    MTDome    command_standby    logevent_configurationsAvailable
 
 #MTDomeTrajectory
 Verify MTDomeTrajectory Standby
     [Tags]    standby
     Verify Summary State    ${STATES}[standby]    MTDomeTrajectory
+
+Verify MTDomeTrajectory SummaryState timing
+    [Tags]    software_versions    timing
+    Verify Time Delta    MTDomeTrajectory    command_standby    logevent_summaryState
 
 Verify MTDomeTrajectory SoftwareVersions
     [Tags]    software_versions
@@ -173,7 +201,7 @@ Verify MTDomeTrajectory SoftwareVersions
 
 Verify MTDomeTrajectory SoftwareVersions timing
     [Tags]    software_versions    timing
-    Verify Time Delta    MTDomeTrajectory    logevent_softwareVersions    logevent_summaryState
+    Verify Time Delta    MTDomeTrajectory    command_standby    logevent_softwareVersions
 
 Verify MTDomeTrajectory ConfigurationsAvailable Event
     [Tags]    config_available
@@ -181,12 +209,16 @@ Verify MTDomeTrajectory ConfigurationsAvailable Event
 
 Verify MTDomeTrajectory ConfigurationsAvailable timing
     [Tags]    config_available    timing
-    Verify Time Delta    MTDomeTrajectory    logevent_configurationsAvailable    logevent_summaryState
+    Verify Time Delta    MTDomeTrajectory    command_standby    logevent_configurationsAvailable
 
 # MTAOS
 Verify MTAOS Standby
     [Tags]    standby
     Verify Summary State    ${STATES}[standby]    MTAOS
+
+Verify MTAOS SummaryState timing
+    [Tags]    software_versions    timing
+    Verify Time Delta    MTAOS    command_standby    logevent_summaryState
 
 Verify MTAOS SoftwareVersions
     [Tags]    software_versions
@@ -194,7 +226,7 @@ Verify MTAOS SoftwareVersions
 
 Verify MTAOS SoftwareVersions timing
     [Tags]    software_versions    timing
-    Verify Time Delta    MTAOS    logevent_softwareVersions    logevent_summaryState
+    Verify Time Delta    MTAOS    command_standby    logevent_softwareVersions
 
 Verify MTAOS ConfigurationsAvailable Event
     [Tags]    config_available
@@ -202,12 +234,16 @@ Verify MTAOS ConfigurationsAvailable Event
 
 Verify MTAOS ConfigurationsAvailable timing
     [Tags]    config_available    timing
-    Verify Time Delta    MTAOS    logevent_configurationsAvailable    logevent_summaryState
+    Verify Time Delta    MTAOS    command_standby    logevent_configurationsAvailable
 
 # MTHexapod:1
 Verify MTHexapod:1 Standby
     [Tags]    standby
     Verify Summary State    ${STATES}[standby]    MTHexapod:1
+
+Verify MTHexapod:1 SummaryState timing
+    [Tags]    software_versions    timing
+    Verify Time Delta    MTHexapod:1    command_standby    logevent_summaryState
 
 Verify MTHexapod:1 SoftwareVersions
     [Tags]    software_versions
@@ -215,7 +251,7 @@ Verify MTHexapod:1 SoftwareVersions
 
 Verify MTHexapod:1 SoftwareVersions timing
     [Tags]    software_versions    timing
-    Verify Time Delta    MTHexapod    logevent_softwareVersions    logevent_summaryState    index=1
+    Verify Time Delta    MTHexapod    command_standby    logevent_softwareVersions    index=1
 
 Verify MTHexapod:1 ConfigurationsAvailable Event
     [Tags]    config_available
@@ -223,12 +259,16 @@ Verify MTHexapod:1 ConfigurationsAvailable Event
 
 Verify MTHexapod:1 ConfigurationsAvailable timing
     [Tags]    config_available    timing
-    Verify Time Delta    MTHexapod    logevent_configurationsAvailable    logevent_summaryState    index=1
+    Verify Time Delta    MTHexapod    command_standby    logevent_configurationsAvailable    index=1
 
 # MTHexapod:2
 Verify MTHexapod:2 Standby
     [Tags]    standby
     Verify Summary State    ${STATES}[standby]    MTHexapod:2
+
+Verify MTHexapod:2 SummaryState timing
+    [Tags]    software_versions    timing
+    Verify Time Delta    MTHexapod:2    command_standby    logevent_summaryState
 
 Verify MTHexapod:2 SoftwareVersions
     [Tags]    software_versions
@@ -236,7 +276,7 @@ Verify MTHexapod:2 SoftwareVersions
 
 Verify MTHexapod:2 SoftwareVersions timing
     [Tags]    software_versions    timing
-    Verify Time Delta    MTHexapod    logevent_softwareVersions    logevent_summaryState    index=2
+    Verify Time Delta    MTHexapod    command_standby    logevent_softwareVersions    index=2
 
 Verify MTHexapod:2 ConfigurationsAvailable Event
     [Tags]    config_available
@@ -244,12 +284,16 @@ Verify MTHexapod:2 ConfigurationsAvailable Event
 
 Verify MTHexapod:2 ConfigurationsAvailable timing
     [Tags]    config_available    timing
-    Verify Time Delta    MTHexapod    logevent_configurationsAvailable    logevent_summaryState    index=2
+    Verify Time Delta    MTHexapod    command_standby    logevent_configurationsAvailable    index=2
 
 # MTRotator
 Verify MTRotator Standby
     [Tags]    standby
     Verify Summary State    ${STATES}[standby]    MTRotator
+
+Verify MTRotator SummaryState timing
+    [Tags]    software_versions    timing
+    Verify Time Delta    MTRotator    command_standby    logevent_summaryState
 
 Verify MTRotator SoftwareVersions
     [Tags]    software_versions
@@ -257,7 +301,7 @@ Verify MTRotator SoftwareVersions
 
 Verify MTRotator SoftwareVersions timing
     [Tags]    software_versions    timing
-    Verify Time Delta    MTRotator    logevent_softwareVersions    logevent_summaryState
+    Verify Time Delta    MTRotator    command_standby    logevent_softwareVersions
 
 Verify MTRotator ConfigurationsAvailable Event
     [Tags]    config_available
@@ -265,12 +309,16 @@ Verify MTRotator ConfigurationsAvailable Event
 
 Verify MTRotator ConfigurationsAvailable timing
     [Tags]    config_available    timing
-    Verify Time Delta    MTRotator    logevent_configurationsAvailable    logevent_summaryState
+    Verify Time Delta    MTRotator    command_standby    logevent_configurationsAvailable
 
 # MTM1M3
 Verify MTM1M3 Standby
     [Tags]    standby
     Verify Summary State    ${STATES}[standby]    MTM1M3
+
+Verify MTM1M3 SummaryState timing
+    [Tags]    software_versions    timing
+    Verify Time Delta    MTM1M3    command_standby    logevent_summaryState
 
 Verify MTM1M3 SoftwareVersions
     [Tags]    software_versions
@@ -278,7 +326,7 @@ Verify MTM1M3 SoftwareVersions
 
 Verify MTM1M3 SoftwareVersions timing
     [Tags]    software_versions    timing
-    Verify Time Delta    MTM1M3    logevent_softwareVersions    logevent_summaryState
+    Verify Time Delta    MTM1M3    command_standby    logevent_softwareVersions
 
 Verify MTM1M3 ConfigurationsAvailable Event
     [Tags]    config_available
@@ -286,12 +334,16 @@ Verify MTM1M3 ConfigurationsAvailable Event
 
 Verify MTM1M3 ConfigurationsAvailable timing
     [Tags]    config_available    timing
-    Verify Time Delta    MTM1M3    logevent_configurationsAvailable    logevent_summaryState
+    Verify Time Delta    MTM1M3    command_standby    logevent_configurationsAvailable
 
 # MTM2
 Verify MTM2 Standby
     [Tags]    standby
     Verify Summary State    ${STATES}[standby]    MTM2
+
+Verify MTM2 SummaryState timing
+    [Tags]    software_versions    timing
+    Verify Time Delta    MTM2    command_standby    logevent_summaryState
 
 Verify MTM2 SoftwareVersions
     [Tags]    software_versions
@@ -299,7 +351,7 @@ Verify MTM2 SoftwareVersions
 
 Verify MTM2 SoftwareVersions timing
     [Tags]    software_versions    timing
-    Verify Time Delta    MTM2    logevent_softwareVersions    logevent_summaryState
+    Verify Time Delta    MTM2    command_standby    logevent_softwareVersions
 
 Verify MTM2 ConfigurationsAvailable Event
     [Tags]    config_available
@@ -307,4 +359,4 @@ Verify MTM2 ConfigurationsAvailable Event
 
 Verify MTM2 ConfigurationsAvailable timing
     [Tags]    config_available    timing
-    Verify Time Delta    MTM2    logevent_configurationsAvailable    logevent_summaryState
+    Verify Time Delta    MTM2    command_standby    logevent_configurationsAvailable

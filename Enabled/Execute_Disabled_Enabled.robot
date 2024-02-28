@@ -35,6 +35,12 @@ Execute MainTel Disabled to Enabled
     Verify Scripts Completed Successfully    ${scripts}    ${states}
     Report If Failed    ${scripts}    ${states}
 
+Execute MTM1M3 Disabled to Enabled
+    [Tags]    maintel    mtm1m3
+    ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    MTM1M3    Enabled
+    Verify Scripts Completed Successfully    ${scripts}    ${states}
+    Report If Failed    ${scripts}    ${states}
+
 Execute GenCam Disabled to Enabled
     [Tags]    gc
     ${scripts}    ${states}=    Execute Integration Test    gencam_disabled_enabled

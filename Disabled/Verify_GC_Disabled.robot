@@ -5,22 +5,36 @@ Resource    ../Common_Keywords.resource
 Force Tags    gc
 
 *** Test Cases ***
+#GenericCamera:1
 Verify GenericCamera:1 Disabled
     [Tags]    disabled
     Verify Summary State    ${STATES}[disabled]    GenericCamera:1
 
+Verify GenericCamera:1 SummaryState timing
+    [Tags]    software_versions    timing
+    Verify Time Delta    GenericCamera    command_disabled    logevent_summaryState    index=1
+
 Verify GenericCamera:1 ConfigurationApplied Event
     [Tags]    config_applied
-    Verify ConfigurationApplied    GenericCamera    1
+    Verify ConfigurationApplied    GenericCamera    index=1
 
-Verify GenericCamera:1 ConfigurationApplied timing
+Verify GenericCamera:1 ConfigurationApplied Event timing
     [Tags]    config_applied    timing
-    Verify Time Delta    GenericCamera    logevent_configurationApplied    logevent_summaryState    1
+    Verify Time Delta    GenericCamera    command_disabled    logevent_configurationApplied    index=1
 
+#GCHeaderService:1
 Verify GCHeaderService:1 Disabled
     [Tags]    disabled
     Verify Summary State    ${STATES}[disabled]    GCHeaderService:1
 
+Verify GCHeaderService:1 SummaryState timing
+    [Tags]    software_versions    timing
+    Verify Time Delta    GCHeaderService    command_disabled    logevent_summaryState    index=1
+
 Verify GCHeaderService:1 ConfigurationApplied Event
     [Tags]    config_applied
-    Verify ConfigurationApplied    GCHeaderService    1
+    Verify ConfigurationApplied    GCHeaderService    index=1
+
+Verify GCHeaderService:1 ConfigurationApplied Event timing
+    [Tags]    config_applied    timing
+    Verify Time Delta    GCHeaderService    command_disabled    logevent_configurationApplied    index=1
