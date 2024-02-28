@@ -15,11 +15,16 @@ Execute BigCamera Enabled to Offline
     ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    ${big_camera}    Offline
     Verify Scripts Completed Successfully    ${scripts}    ${states}
 
-Execute OCPS2||3 Standby to Disabled
+Execute OCPS2||3 Enabled to Offline
     [Tags]    mtocps
     # Set the OCPS name based on running on the BTS or TTS.
     ${big_ocps}=    Set Variable If    "${env_efd}" == "base_efd"    OCPS:3    OCPS:2
     ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    ${big_ocps}    Offline
+    Verify Scripts Completed Successfully    ${scripts}    ${states}
+
+Execute MTM1M3 Enabled to Offline
+    [Tags]    maintel    mtm1m3
+    ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    MTM1M3    Offline
     Verify Scripts Completed Successfully    ${scripts}    ${states}
 
 Execute Enabled to Offline
