@@ -13,7 +13,7 @@ Verify BigCamera Disabled
 
 Verify BigCamera SummaryState timing
     [Tags]    software_versions    timing
-    Verify Time Delta    ${BigCamera}    command_disabled    logevent_summaryState
+    Verify Time Delta    ${BigCamera}    command_disable    logevent_summaryState
 
 Verify BigCamera ConfigurationApplied Event
     [Tags]    config_applied
@@ -21,7 +21,7 @@ Verify BigCamera ConfigurationApplied Event
 
 Verify BigCamera ConfigurationApplied timing
     [Tags]    config_applied    timing
-    Verify Time Delta    ${BigCamera}    command_disabled    logevent_configurationApplied
+    Verify Time Delta    ${BigCamera}    command_disable    logevent_configurationApplied
 
 #OODS
 Verify OODS Disabled
@@ -30,7 +30,7 @@ Verify OODS Disabled
 
 Verify OODS SummaryState timing
     [Tags]    software_versions    timing
-    Verify Time Delta    ${OODS}    command_disabled    logevent_summaryState
+    Verify Time Delta    ${OODS}    command_disable    logevent_summaryState
 
 Verify OODS ConfigurationApplied Event
     [Tags]    config_applied
@@ -38,7 +38,7 @@ Verify OODS ConfigurationApplied Event
 
 Verify OODS ConfigurationApplied timing
     [Tags]    config_applied    timing
-    Verify Time Delta    ${OODS}    command_disabled    logevent_configurationApplied
+    Verify Time Delta    ${OODS}    command_disable    logevent_configurationApplied
 
 #HeaderService
 Verify HeaderService Disabled
@@ -47,7 +47,7 @@ Verify HeaderService Disabled
 
 Verify HeaderService SummaryState timing
     [Tags]    software_versions    timing
-    Verify Time Delta    ${HeaderService}    command_disabled    logevent_summaryState
+    Verify Time Delta    ${HeaderService}    command_disable    logevent_summaryState
 
 Verify HeaderService ConfigurationApplied Event
     [Tags]    config_applied
@@ -55,7 +55,7 @@ Verify HeaderService ConfigurationApplied Event
 
 Verify HeaderService ConfigurationApplied timing
     [Tags]    config_applied    timing
-    Verify Time Delta    ${HeaderService}    command_disabled    logevent_configurationApplied
+    Verify Time Delta    ${HeaderService}    command_disable    logevent_configurationApplied
 
 #OCPS:2||3
 Verify OCPS:2||3 Disabled
@@ -64,7 +64,7 @@ Verify OCPS:2||3 Disabled
 
 Verify OCPS:2||3 SummaryState timing
     [Tags]    software_versions    timing
-    Verify Time Delta    OCPS    command_disabled    logevent_summaryState    index=${OcpsIndex}
+    Verify Time Delta    OCPS    command_disable    logevent_summaryState    index=${OcpsIndex}
 
 Verify OCPS:2||3 ConfigurationApplied Event
     [Tags]    config_applied
@@ -72,4 +72,4 @@ Verify OCPS:2||3 ConfigurationApplied Event
 
 Verify OCPS:2||3 ConfigurationApplied timing
     [Tags]    config_applied    timing
-    Verify Time Delta    OCPS    command_disabled    logevent_configurationApplied    index=${OcpsIndex}
+    Verify Time Delta    OCPS    command_disable    logevent_configurationApplied    index=${OcpsIndex}

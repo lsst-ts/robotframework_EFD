@@ -43,7 +43,7 @@ Execute MainTel Standby to Disabled
 
 Execute MTM1M3 Standby to Disabled
     [Tags]    maintel    mtm1m3
-    ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    MTM1M3    Disabled    Default
+    ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    MTM1M3    Disabled    -a Default
     Verify Scripts Completed Successfully    ${scripts}    ${states}
     Report If Failed    ${scripts}    ${states}
 
