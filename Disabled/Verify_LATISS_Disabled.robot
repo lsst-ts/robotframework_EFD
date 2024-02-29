@@ -12,7 +12,7 @@ Verify ATCamera Disabled
 
 Verify ATCamera SummaryState timing
     [Tags]    software_versions    timing
-    Verify Time Delta    ATCamera    command_disabled    logevent_summaryState
+    Verify Time Delta    ATCamera    command_disable    logevent_summaryState
 
 Verify ATCamera ConfigurationApplied Event
     [Tags]    config_applied
@@ -20,7 +20,7 @@ Verify ATCamera ConfigurationApplied Event
 
 Verify ATCamera ConfigurationApplied Event timing
     [Tags]    config_applied    timing
-    Verify Time Delta    ATCamera    command_disabled    logevent_configurationApplied
+    Verify Time Delta    ATCamera    command_disable    logevent_configurationApplied
 
 #ATHeaderService
 Verify ATHeaderService Disabled
@@ -29,7 +29,7 @@ Verify ATHeaderService Disabled
 
 Verify ATHeaderService SummaryState timing
     [Tags]    software_versions    timing
-    Verify Time Delta    ATHeaderService    command_disabled    logevent_summaryState
+    Verify Time Delta    ATHeaderService    command_disable    logevent_summaryState
 
 Verify ATHeaderService ConfigurationApplied Event
     [Tags]    config_applied
@@ -37,7 +37,7 @@ Verify ATHeaderService ConfigurationApplied Event
 
 Verify ATHeaderService ConfigurationApplied Event timing
     [Tags]    config_applied    timing
-    Verify Time Delta    ATHeaderService    command_disabled    logevent_configurationApplied
+    Verify Time Delta    ATHeaderService    command_disable    logevent_configurationApplied
 
 #OCPS:1
 Verify OCPS:1 Disabled
@@ -46,7 +46,7 @@ Verify OCPS:1 Disabled
 
 Verify OCPS:1 SummaryState timing
     [Tags]    software_versions    timing
-    Verify Time Delta    OCPS    command_disabled    logevent_summaryState    index=1
+    Verify Time Delta    OCPS    command_disable    logevent_summaryState    index=1
 
 Verify OCPS:1 ConfigurationApplied Event
     [Tags]    config_applied
@@ -54,7 +54,7 @@ Verify OCPS:1 ConfigurationApplied Event
 
 Verify OCPS:1 ConfigurationApplied Event timing
     [Tags]    config_applied    timing
-    Verify Time Delta    OCPS    command_disabled    logevent_configurationApplied    index=1
+    Verify Time Delta    OCPS    command_disable    logevent_configurationApplied    index=1
 
 #ATOODS
 Verify ATOODS Disabled
@@ -63,7 +63,7 @@ Verify ATOODS Disabled
 
 Verify ATOODS SummaryState timing
     [Tags]    software_versions    timing
-    Verify Time Delta    ATOODS    command_disabled    logevent_summaryState
+    Verify Time Delta    ATOODS    command_disable    logevent_summaryState
 
 Verify ATOODS ConfigurationApplied Event
     [Tags]    config_applied
@@ -71,7 +71,7 @@ Verify ATOODS ConfigurationApplied Event
 
 Verify ATOODS ConfigurationApplied Event timing
     [Tags]    config_applied    timing
-    Verify Time Delta    ATOODS    command_disabled    logevent_configurationApplied
+    Verify Time Delta    ATOODS    command_disable    logevent_configurationApplied
 
 #ATSpectrograph
 Verify ATSpectrograph Disabled
@@ -80,7 +80,7 @@ Verify ATSpectrograph Disabled
 
 Verify ATSpectrograph SummaryState timing
     [Tags]    software_versions    timing
-    Verify Time Delta    ATSpectrograph    command_disabled    logevent_summaryState
+    Verify Time Delta    ATSpectrograph    command_disable    logevent_summaryState
 
 Verify ATSpectrograph ConfigurationApplied Event
     [Tags]    config_applied
@@ -88,4 +88,4 @@ Verify ATSpectrograph ConfigurationApplied Event
 
 Verify ATSpectrograph ConfigurationApplied Event timing
     [Tags]    config_applied    timing
-    Verify Time Delta    ATSpectrograph    command_disabled    logevent_configurationApplied
+    Verify Time Delta    ATSpectrograph    command_disable    logevent_configurationApplied

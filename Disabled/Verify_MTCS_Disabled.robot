@@ -12,7 +12,7 @@ Verify LaserTracker:1 Disabled
 
 Verify LaserTracker:1 SummaryState timing
     [Tags]    software_versions    timing
-    Verify Time Delta    LaserTracker    command_disabled    logevent_summaryState    index=1
+    Verify Time Delta    LaserTracker    command_disable    logevent_summaryState    index=1
 
 Verify LaserTracker:1 ConfigurationApplied Event
     [Tags]    config_applied
@@ -20,7 +20,7 @@ Verify LaserTracker:1 ConfigurationApplied Event
 
 Verify LaserTracker:1 ConfigurationApplied Event timing
     [Tags]    config_applied    timing
-    Verify Time Delta    LaserTracker    command_disabled    logevent_configurationApplied    index=1
+    Verify Time Delta    LaserTracker    command_disable    logevent_configurationApplied    index=1
 
 #MTAirCompressor:1
 Verify MTAirCompressor:1 Disabled
@@ -29,7 +29,7 @@ Verify MTAirCompressor:1 Disabled
 
 Verify MTAirCompressor:1 SummaryState timing
     [Tags]    software_versions    timing
-    Verify Time Delta    MTAirCompressor    command_disabled    logevent_summaryState    index=2
+    Verify Time Delta    MTAirCompressor    command_disable    logevent_summaryState    index=2
 
 Verify MTAirCompressor:1 ConfigurationApplied Event
     [Tags]    config_applied
@@ -37,7 +37,7 @@ Verify MTAirCompressor:1 ConfigurationApplied Event
 
 Verify MTAirCompressor:1 ConfigurationApplied Event timing
     [Tags]    config_applied    timing
-    Verify Time Delta    MTAirCompressor    command_disabled    logevent_configurationApplied    index=1
+    Verify Time Delta    MTAirCompressor    command_disable    logevent_configurationApplied    index=1
 
 #MTAirCompressor:2
 Verify MTAirCompressor:2 Disabled
@@ -46,7 +46,7 @@ Verify MTAirCompressor:2 Disabled
 
 Verify MTAirCompressor:2 SummaryState timing
     [Tags]    software_versions    timing
-    Verify Time Delta    MTAirCompressor    command_disabled    logevent_summaryState    index=2
+    Verify Time Delta    MTAirCompressor    command_disable    logevent_summaryState    index=2
 
 Verify MTAirCompressor:2 ConfigurationApplied Event
     [Tags]    config_applied
@@ -54,7 +54,7 @@ Verify MTAirCompressor:2 ConfigurationApplied Event
 
 Verify MTAirCompressor:2 ConfigurationApplied Event timing   
     [Tags]    config_applied    timing
-    Verify Time Delta    MTAirCompressor    command_disabled    logevent_configurationApplied    index=1
+    Verify Time Delta    MTAirCompressor    command_disable    logevent_configurationApplied    index=1
 
 #MTMount
 Verify MTMount Disabled
@@ -63,7 +63,7 @@ Verify MTMount Disabled
 
 Verify MTMount SummaryState timing
     [Tags]    software_versions    timing
-    Verify Time Delta    MTMount    command_disabled    logevent_summaryState
+    Verify Time Delta    MTMount    command_disable    logevent_summaryState
 
 Verify MTMount ConfigurationApplied Event 
     [Tags]    config_applied
@@ -71,7 +71,7 @@ Verify MTMount ConfigurationApplied Event
 
 Verify MTMount ConfigurationApplied Event timing
     [Tags]    config_applied    timing
-    Verify Time Delta    MTMount    command_disabled    logevent_configurationApplied 
+    Verify Time Delta    MTMount    command_disable    logevent_configurationApplied 
 
 #MTPtg
 Verify MTPtg Disabled
@@ -80,7 +80,7 @@ Verify MTPtg Disabled
 
 Verify MTPtg SummaryState timing
     [Tags]    software_versions    timing
-    Verify Time Delta    MTPtg    command_disabled    logevent_summaryState
+    Verify Time Delta    MTPtg    command_disable    logevent_summaryState
 
 Verify MTPtg ConfigurationApplied Event
     [Tags]    config_applied
@@ -93,7 +93,7 @@ Verify MTDome Disabled
 
 Verify MTDome SummaryState timing
     [Tags]    software_versions    timing
-    Verify Time Delta    MTDome    command_disabled    logevent_summaryState
+    Verify Time Delta    MTDome    command_disable    logevent_summaryState
 
 Verify MTDome ConfigurationApplied Event
     [Tags]    config_applied
@@ -101,7 +101,7 @@ Verify MTDome ConfigurationApplied Event
 
 Verify MTDome ConfigurationApplied Event timing
     [Tags]    config_applied    timing
-    Verify Time Delta    MTDome    command_disabled    logevent_configurationApplied
+    Verify Time Delta    MTDome    command_disable    logevent_configurationApplied
 
 #MTDomeTrajectory
 Verify MTDomeTrajectory Disabled
@@ -110,7 +110,7 @@ Verify MTDomeTrajectory Disabled
 
 Verify MTDomeTrajectory SummaryState timing
     [Tags]    software_versions    timing
-    Verify Time Delta    MTDomeTrajectory    command_disabled    logevent_summaryState
+    Verify Time Delta    MTDomeTrajectory    command_disable    logevent_summaryState
 
 Verify MTDomeTrajectory ConfigurationApplied Event
     [Tags]    config_applied
@@ -118,7 +118,7 @@ Verify MTDomeTrajectory ConfigurationApplied Event
 
 Verify MTDomeTrajectory ConfigurationApplied Event timing
     [Tags]    config_applied    timing
-    Verify Time Delta    MTDomeTrajectory    command_disabled    logevent_configurationApplied
+    Verify Time Delta    MTDomeTrajectory    command_disable    logevent_configurationApplied
 
 #MTAOS
 Verify MTAOS Disabled
@@ -127,7 +127,7 @@ Verify MTAOS Disabled
 
 Verify mTAOS SummaryState timing
     [Tags]    software_versions    timing
-    Verify Time Delta    mTAOS    command_disabled    logevent_summaryState
+    Verify Time Delta    mTAOS    command_disable    logevent_summaryState
 
 Verify MTAOS ConfigurationApplied Event
     [Tags]    config_applied
@@ -135,7 +135,7 @@ Verify MTAOS ConfigurationApplied Event
 
 Verify MTAOS ConfigurationApplied Event timing
     [Tags]    config_applied    timing
-    Verify Time Delta    MTAOS    command_disabled    logevent_configurationApplied
+    Verify Time Delta    MTAOS    command_disable    logevent_configurationApplied
 
 #MTHexapod:1
 Verify MTHexapod:1 Disabled
@@ -144,7 +144,7 @@ Verify MTHexapod:1 Disabled
 
 Verify MTHexapod:1 SummaryState timing
     [Tags]    software_versions    timing
-    Verify Time Delta    MTHexapod    command_disabled    logevent_summaryState    index=1
+    Verify Time Delta    MTHexapod    command_disable    logevent_summaryState    index=1
 
 Verify MTHexapod:1 ConfigurationApplied Event
     [Tags]    config_applied
@@ -152,7 +152,7 @@ Verify MTHexapod:1 ConfigurationApplied Event
 
 Verify MTHexapod:1 ConfigurationApplied Event timing
     [Tags]    config_applied    timing
-    Verify Time Delta    MTHexapod    command_disabled    logevent_configurationApplied    index=1
+    Verify Time Delta    MTHexapod    command_disable    logevent_configurationApplied    index=1
 
 #MTHexapod:2
 Verify MTHexapod:2 Disabled
@@ -161,7 +161,7 @@ Verify MTHexapod:2 Disabled
 
 Verify MTHexapod:2 SummaryState timing
     [Tags]    software_versions    timing
-    Verify Time Delta    MTHexapod    command_disabled    logevent_summaryState    index=2
+    Verify Time Delta    MTHexapod    command_disable    logevent_summaryState    index=2
 
 Verify MTHexapod:2 ConfigurationApplied Event
     [Tags]    config_applied
@@ -169,7 +169,7 @@ Verify MTHexapod:2 ConfigurationApplied Event
 
 Verify MTHexapod:2 ConfigurationApplied Event timing
     [Tags]    config_applied    timing
-    Verify Time Delta    MTHexapod    command_disabled    logevent_configurationApplied    index=2
+    Verify Time Delta    MTHexapod    command_disable    logevent_configurationApplied    index=2
 
 #MTRotator
 Verify MTRotator Disabled
@@ -178,7 +178,7 @@ Verify MTRotator Disabled
 
 Verify MTRotator SummaryState timing
     [Tags]    software_versions    timing
-    Verify Time Delta    MTRotator    command_disabled    logevent_summaryState
+    Verify Time Delta    MTRotator    command_disable    logevent_summaryState
 
 Verify MTRotator ConfigurationApplied Event
     [Tags]    config_applied
@@ -186,7 +186,7 @@ Verify MTRotator ConfigurationApplied Event
 
 Verify MTRotator ConfigurationApplied Event timing
     [Tags]    config_applied    timing
-    Verify Time Delta    MTRotator    command_disabled    logevent_configurationApplied
+    Verify Time Delta    MTRotator    command_disable    logevent_configurationApplied
 
 #MTM1M3
 Verify MTM1M3 Disabled
@@ -195,7 +195,7 @@ Verify MTM1M3 Disabled
 
 Verify MTM1M3 SummaryState timing
     [Tags]    software_versions    timing
-    Verify Time Delta    MTM1M3    command_disabled    logevent_summaryState
+    Verify Time Delta    MTM1M3    command_disable    logevent_summaryState
 
 Verify MTM1M3 ConfigurationApplied Event
     [Tags]    config_applied
@@ -203,7 +203,7 @@ Verify MTM1M3 ConfigurationApplied Event
 
 Verify MTM1M3 ConfigurationApplied Event timing
     [Tags]    config_applied    timing
-    Verify Time Delta    MTM1M3    command_disabled    logevent_configurationApplied
+    Verify Time Delta    MTM1M3    command_disable    logevent_configurationApplied
 
 #MTM2
 Verify MTM2 Disabled
@@ -212,7 +212,7 @@ Verify MTM2 Disabled
 
 Verify MTM2 SummaryState timing
     [Tags]    software_versions    timing
-    Verify Time Delta    MTM2    command_disabled    logevent_summaryState
+    Verify Time Delta    MTM2    command_disable    logevent_summaryState
 
 Verify MTM2 ConfigurationApplied Event
     [Tags]    config_applied
@@ -220,4 +220,4 @@ Verify MTM2 ConfigurationApplied Event
 
 Verify MTM2 ConfigurationApplied Event timing
     [Tags]    config_applied    timing
-    Verify Time Delta    MTM2    command_disabled    logevent_configurationApplied
+    Verify Time Delta    MTM2    command_disable    logevent_configurationApplied

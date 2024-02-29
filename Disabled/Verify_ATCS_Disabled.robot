@@ -12,7 +12,7 @@ Verify ATAOS Disabled
 
 Verify ATAOS SummaryState timing
     [Tags]    software_versions    timing
-    Verify Time Delta    ATAOS    command_disabled    logevent_summaryState
+    Verify Time Delta    ATAOS    command_disable    logevent_summaryState
 
 Verify ATAOS ConfigurationApplied Event
     [Tags]    config_applied
@@ -20,7 +20,7 @@ Verify ATAOS ConfigurationApplied Event
 
 Verify ATAOS ConfigurationApplied Event timing
     [Tags]    config_applied    timing
-    Verify Time Delta    ATAOS    command_disabled    logevent_configurationApplied
+    Verify Time Delta    ATAOS    command_disable    logevent_configurationApplied
 
 #ATDome
 Verify ATDome Disabled
@@ -29,7 +29,7 @@ Verify ATDome Disabled
 
 Verify ATDome SummaryState timing
     [Tags]    software_versions    timing
-    Verify Time Delta    ATDome    command_disabled    logevent_summaryState
+    Verify Time Delta    ATDome    command_disable    logevent_summaryState
 
 Verify ATDome ConfigurationApplied Event
     [Tags]    config_applied
@@ -37,7 +37,7 @@ Verify ATDome ConfigurationApplied Event
 
 Verify ATDome ConfigurationApplied Event timing
     [Tags]    config_applied    timing
-    Verify Time Delta    ATDome    command_disabled    logevent_configurationApplied
+    Verify Time Delta    ATDome    command_disable    logevent_configurationApplied
 
 #ATDomeTrajectory
 Verify ATDomeTrajectory Disabled
@@ -46,7 +46,7 @@ Verify ATDomeTrajectory Disabled
 
 Verify ATDomeTrajectory SummaryState timing
     [Tags]    software_versions    timing
-    Verify Time Delta    ATDomeTrajectory    command_disabled    logevent_summaryState
+    Verify Time Delta    ATDomeTrajectory    command_disable    logevent_summaryState
 
 Verify ATDomeTrajectory ConfigurationApplied Event
     [Tags]    config_applied
@@ -54,7 +54,7 @@ Verify ATDomeTrajectory ConfigurationApplied Event
 
 Verify ATDomeTrajectory ConfigurationApplied Event timing
     [Tags]    config_applied    timing
-    Verify Time Delta    ATDomeTrajectory    command_disabled    logevent_configurationApplied
+    Verify Time Delta    ATDomeTrajectory    command_disable    logevent_configurationApplied
 
 #ATHexapod
 Verify ATHexapod Disabled
@@ -63,7 +63,7 @@ Verify ATHexapod Disabled
 
 Verify ATHexapod SummaryState timing
     [Tags]    software_versions    timing
-    Verify Time Delta    ATHexapod    command_disabled    logevent_summaryState
+    Verify Time Delta    ATHexapod    command_disable    logevent_summaryState
 
 Verify ATHexapod ConfigurationApplied Event
     [Tags]    config_applied
@@ -71,7 +71,7 @@ Verify ATHexapod ConfigurationApplied Event
 
 Verify ATHexapod ConfigurationApplied Event timing 
     [Tags]    config_applied    timing
-    Verify Time Delta    ATHexapod    command_disabled    logevent_configurationApplied
+    Verify Time Delta    ATHexapod    command_disable    logevent_configurationApplied
 
 #ATMCS
 Verify ATMCS Disabled
@@ -80,7 +80,7 @@ Verify ATMCS Disabled
 
 Verify ATMCS SummaryState timing
     [Tags]    software_versions    timing
-    Verify Time Delta    ATMCS    command_disabled    logevent_summaryState
+    Verify Time Delta    ATMCS    command_disable    logevent_summaryState
     
 Verify ATMCS ConfigurationApplied Event
     [Tags]    config_applied
@@ -88,7 +88,7 @@ Verify ATMCS ConfigurationApplied Event
 
 Verify ATMCS ConfigurationApplied Event timing
     [Tags]    config_applied    timing
-    Verify Time Delta    ATMCS    command_disabled    logevent_configurationApplied
+    Verify Time Delta    ATMCS    command_disable    logevent_configurationApplied
 
 #ATPneumatics
 Verify ATPneumatics Disabled
@@ -97,7 +97,7 @@ Verify ATPneumatics Disabled
 
 Verify ATPneumatics SummaryState timing
     [Tags]    software_versions    timing
-    Verify Time Delta    ATPneumatics    command_disabled    logevent_summaryState
+    Verify Time Delta    ATPneumatics    command_disable    logevent_summaryState
     
 Verify ATPneumatics ConfigurationApplied Event
     [Tags]    config_applied
@@ -105,7 +105,7 @@ Verify ATPneumatics ConfigurationApplied Event
 
 Verify ATPneumatics ConfigurationApplied Event timing
     [Tags]    config_applied    timing
-    Verify Time Delta    ATPneumatics    command_disabled    logevent_configurationApplied
+    Verify Time Delta    ATPneumatics    command_disable    logevent_configurationApplied
 
 #ATPtg
 Verify ATPtg Disabled
@@ -114,7 +114,7 @@ Verify ATPtg Disabled
 
 Verify ATPtg SummaryState timing
     [Tags]    software_versions    timing
-    Verify Time Delta    ATPtg    command_disabled    logevent_summaryState
+    Verify Time Delta    ATPtg    command_disable    logevent_summaryState
     
 Verify ATPtg ConfigurationApplied Event
     [Tags]    config_applied
@@ -122,4 +122,4 @@ Verify ATPtg ConfigurationApplied Event
 
 Verify ATPtg ConfigurationApplied Event timing
     [Tags]    config_applied    timing
-    Verify Time Delta    ATPtg    command_disabled    logevent_configurationApplied
+    Verify Time Delta    ATPtg    command_disable    logevent_configurationApplied
