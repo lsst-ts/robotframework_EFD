@@ -14,7 +14,7 @@ Verify Authorize Enabled
 
 Verify Authorize SummaryState timing
     [Tags]    software_versions    timing
-    Verify Time Delta    Authorize    command_enabled    logevent_summaryState
+    Verify Time Delta    Authorize    command_enable    logevent_summaryState
 
 #Scheduler:1
 Verify Scheduler:1 Enabled
@@ -23,7 +23,7 @@ Verify Scheduler:1 Enabled
 
 Verify Scheduler:1 SummaryState timing
     [Tags]    software_versions    timing
-    Verify Time Delta    Scheduler    command_enabled    logevent_summaryState    index=1
+    Verify Time Delta    Scheduler    command_enable    logevent_summaryState    index=1
 
 #Scheduler:2
 Verify Scheduler:2 Enabled
@@ -32,7 +32,7 @@ Verify Scheduler:2 Enabled
 
 Verify Scheduler:2 SummaryState timing
     [Tags]    software_versions    timing
-    Verify Time Delta    Scheduler    command_enabled    logevent_summaryState    index=2
+    Verify Time Delta    Scheduler    command_enable    logevent_summaryState    index=2
 
 #ScriptQueue:1
 Verify ScriptQueue:1 Enabled
@@ -50,4 +50,4 @@ Verify Watcher Enabled
 
 Verify Watcher SummaryState timing
     [Tags]    software_versions    timing
-    Verify Time Delta    Watcher    command_enabled    logevent_summaryState
+    Verify Time Delta    Watcher    command_enable    logevent_summaryState

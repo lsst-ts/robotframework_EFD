@@ -14,7 +14,7 @@ Verify ATCamera Enabled
 
 Verify ATCamera SummaryState timing
     [Tags]    software_versions    timing
-    Verify Time Delta    ATCamera    command_enabled    logevent_summaryState
+    Verify Time Delta    ATCamera    command_enable    logevent_summaryState
 
 #ATHeaderService
 Verify ATHeaderService Enabled
@@ -23,7 +23,7 @@ Verify ATHeaderService Enabled
 
 Verify ATHeaderService SummaryState timing
     [Tags]    software_versions    timing
-    Verify Time Delta    ATHeaderService    command_enabled    logevent_summaryState
+    Verify Time Delta    ATHeaderService    command_enable    logevent_summaryState
 
 #OCPS:1
 Verify OCPS:1 Enabled
@@ -32,7 +32,7 @@ Verify OCPS:1 Enabled
 
 Verify OCPS:1 SummaryState timing
     [Tags]    software_versions    timing
-    Verify Time Delta    OCPS    command_enabled    logevent_summaryState    index=1
+    Verify Time Delta    OCPS    command_enable    logevent_summaryState    index=1
 
 #ATOODS
 Verify ATOODS Enabled
@@ -41,7 +41,7 @@ Verify ATOODS Enabled
 
 Verify ATOODS SummaryState timing
     [Tags]    software_versions    timing
-    Verify Time Delta    ATOODS    command_enabled    logevent_summaryState
+    Verify Time Delta    ATOODS    command_enable    logevent_summaryState
 
 #ATSpectrograph
 Verify ATSpectrograph Enabled
@@ -50,4 +50,4 @@ Verify ATSpectrograph Enabled
 
 Verify ATSpectrograph SummaryState timing
     [Tags]    software_versions    timing
-    Verify Time Delta    ATSpectrograph    command_enabled    logevent_summaryState
+    Verify Time Delta    ATSpectrograph    command_enable    logevent_summaryState

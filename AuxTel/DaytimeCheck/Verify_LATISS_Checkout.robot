@@ -91,4 +91,4 @@ Verify ATHeaderService Engineering Frame LargeFileObjectAvailable
     ${dataframe}=    Get Recent Samples    ATHeaderService    logevent_largeFileObjectAvailable    ["id", "url",]    1    None
     Should Be Equal As Strings    ${dataframe.iloc[0].id}    ${image_names}[0]
     ${file_name}=    Catenate    SEPARATOR=    ATHeaderService_header_    ${image_names}[0]    .yaml
-    Should Be Equal As Strings    ${dataframe.url[0].split("/")[-1]}    ${file_name}
+    Should Be Equal As Strings    ${dataframe.iloc[0].url.split("/")[-1]}    ${file_name}

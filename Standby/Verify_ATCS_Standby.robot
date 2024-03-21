@@ -140,11 +140,8 @@ Verify ATMCS SoftwareVersions timing
 
 Verify ATMCS ConfigurationsAvailable Event
     [Tags]    config_available
+    # Non-configurable: dataframe empty, no timing test.
     Verify ConfigurationsAvailable    ATMCS
-
-Verify ATMCS ConfigurationsAvailable timing
-    [Tags]    config_available    timing
-    Verify Time Delta    ATMCS    command_standby    logevent_configurationsAvailable
 
 #ATPneumatics
 Verify ATPneumatics Standby
@@ -165,11 +162,8 @@ Verify ATPneumatics SoftwareVersions timing
 
 Verify ATPneumatics ConfigurationsAvailable Event
     [Tags]    config_available
+    # Non-configurable: dataframe empty, no timing test.
     Verify ConfigurationsAvailable    ATPneumatics
-
-Verify ATPneumatics ConfigurationsAvailable timing
-    [Tags]    config_available    timing
-    Verify Time Delta    ATPneumatics    command_standby    logevent_configurationsAvailable
 
 #ATPtg
 Verify ATPtg Standby
@@ -190,8 +184,5 @@ Verify ATPtg SoftwareVersions timing
 
 Verify ATPtg ConfigurationsAvailable Event
     [Tags]    config_available
+    # Non-configurable: dataframe empty, no timing test.
     Verify ConfigurationsAvailable    ATPtg
-
-Verify ATPtg ConfigurationsAvailable timing
-    [Tags]    config_available    timing
-    Verify Time Delta    ATPtg    command_standby    logevent_configurationsAvailable

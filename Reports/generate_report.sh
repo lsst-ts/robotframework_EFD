@@ -22,6 +22,7 @@ at_shutdown.xml
 enable_atcs.xml 
 at_latiss_checkout.xml
 at_tel_dome_checkout.xml
+at_slew_take_image_checkout.xml
 at_prep_flat.xml
 at_flat_calib.xml
 at_ptc_calib.xml

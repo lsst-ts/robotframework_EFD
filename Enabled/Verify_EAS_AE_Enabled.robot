@@ -14,7 +14,7 @@ Verify DSM:1 Enabled
 
 Verify DSM:1 SummaryState timing
     [Tags]    software_versions    timing
-    Verify Time Delta    DSM    command_enabled    logevent_summaryState    index=1
+    Verify Time Delta    DSM    command_enable    logevent_summaryState    index=1
 
 #DSM:2
 Verify DSM:2 Enabled
@@ -23,7 +23,7 @@ Verify DSM:2 Enabled
 
 Verify DSM:2 SummaryState timing
     [Tags]    software_versions    timing
-    Verify Time Delta    DSM    command_enabled    logevent_summaryState    index=2
+    Verify Time Delta    DSM    command_enable    logevent_summaryState    index=2
 
 #WeatherForecast
 Verify WeatherForecast Enabled
@@ -32,4 +32,4 @@ Verify WeatherForecast Enabled
 
 Verify WeatherForecast SummaryState timing
     [Tags]    software_versions    timing
-    Verify Time Delta    WeatherForecast    command_enabled    logevent_summaryState
+    Verify Time Delta    WeatherForecast    command_enable    logevent_summaryState
