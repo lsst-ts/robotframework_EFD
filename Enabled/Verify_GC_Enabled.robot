@@ -13,7 +13,7 @@ Verify GenericCamera:1 Enabled
     Verify Summary State    ${STATES}[enabled]    GenericCamera:1
 
 Verify GenericCamera:1 SummaryState timing
-    [Tags]    software_versions    timing
+    [Tags]    timing
     Verify Time Delta    GenericCamera    command_enable    logevent_summaryState    index=1
 
 # GCHeaderService:1
@@ -22,5 +22,5 @@ Verify GCHeaderService:1 Enabled
     Verify Summary State    ${STATES}[enabled]    GCHeaderService:1
 
 Verify GCHeaderService:1 SummaryState timing
-    [Tags]    software_versions    timing
+    [Tags]    timing
     Verify Time Delta    GCHeaderService    command_enable    logevent_summaryState    index=1

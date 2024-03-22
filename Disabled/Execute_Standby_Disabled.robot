@@ -60,3 +60,9 @@ Execute OCPS2||3 Standby to Disabled
     ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    ${big_ocps}    Disabled
     Verify Scripts Completed Successfully    ${scripts}    ${states}
     Report If Failed    ${scripts}    ${states}
+
+Execute Test:42 Standby to Disabled
+    [Tags]    
+    ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    Test:42    Disabled
+    Verify Scripts Completed Successfully    ${scripts}    ${states}
+    Report If Failed    ${scripts}    ${states}
