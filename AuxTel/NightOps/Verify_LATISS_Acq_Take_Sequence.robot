@@ -29,9 +29,15 @@ Verify ATCamera Playlist Loaded
     ${dataframe}=    Get Recent Samples    ATCamera    command_play    ["*",]    1    None
     Should Be Equal    ${dataframe.iloc[0].playlist}    ${playlist_full_name}
 
-Execute AuxTel LATISS Acquire and Take Sequence
+Execute AuxTel LATISS Acquire
     [Tags]    execute
-    ${scripts}    ${states}=    Execute Integration Test    auxtel_latiss_acquire_and_take_sequence    ${playlist}
+    ${scripts}    ${states}=    Execute Integration Test    auxtel_latiss_acquire    ${playlist}
+    Verify Scripts Completed Successfully    ${scripts}    ${states}
+    Check If Script Failed    ${states}
+
+Execute AuxTel LATISS Take Sequence
+    [Tags]    execute
+    ${scripts}    ${states}=    Execute Integration Test    auxtel_latiss_take_sequence    ${playlist}
     Verify Scripts Completed Successfully    ${scripts}    ${states}
     Check If Script Failed    ${states}
 
@@ -141,17 +147,7 @@ Set Variables
     ...    The num_images is the sum of the sequence and some number of do_acquire iterations.
     ...    The img_type_seq is defined by the sequence of image types, in reverse order (dataframes are in time-descending order).
     [Arguments]    ${playlist}
-    IF    "${playlist}" == "pointing"
-        Set Suite Variable    ${playlist_full_name}    latiss_acquire_and_take_sequence-test_take_acquisition_pointing
-        Set Suite Variable    ${seq_length}    1
-        Set Suite Variable    ${num_images}    3
-        Set Suite Variable    @{exp_time}    ${2}
-        Set Suite Variable    @{filter_band}    EMPTY
-        Set Suite Variable    ${filter_name}    empty_1
-        Set Suite Variable    @{disperser_band}    EMPTY
-        Set Suite Variable    @{disperser_name}    EMPTY
-        Set Suite Variable    @{img_type_seq}    ACQ    ACQ    ACQ
-    ELSE IF    "${playlist}" == "verify"
+    IF    "${playlist}" == "verify"
         Set Suite Variable    ${playlist_full_name}    latiss_acquire_and_take_sequence-test_take_acquisition_with_verification
         Set Suite Variable    ${seq_length}    1
         Set Suite Variable    ${num_images}    3
@@ -182,5 +178,5 @@ Set Variables
         Set Suite Variable    @{disperser_name}    holo4_003    holo4_003    empty_1
         Set Suite Variable    @{img_type_seq}    OBJECT    OBJECT    OBJECT    ACQ    ACQ
     ELSE
-        Fail    msg="Please set the playlist variable; allowed values are ['pointing', 'verify', 'nominal', 'test']"
+        Fail    msg="Please set the playlist variable; allowed values are ['verify', 'nominal', 'test']"
     END
