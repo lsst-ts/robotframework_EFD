@@ -60,3 +60,9 @@ Execute OCPS2||3 Disabled to Enabled
     ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    ${big_ocps}    Enabled
     Verify Scripts Completed Successfully    ${scripts}    ${states}
     Report If Failed    ${scripts}    ${states}
+
+Execute Test:42 Disabled to Enabled
+    [Tags]
+    ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    Test:42    Enabled
+    Verify Scripts Completed Successfully    ${scripts}    ${states}
+    Report If Failed    ${scripts}    ${states}

@@ -27,6 +27,11 @@ Execute MTM1M3 Enabled to Offline
     ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    MTM1M3    Offline
     Verify Scripts Completed Successfully    ${scripts}    ${states}
 
+Execute Test:42 Enabled to Offline
+    [Tags] 
+    ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    Test:42    Offline
+    Verify Scripts Completed Successfully    ${scripts}    ${states}
+
 Execute Enabled to Offline
     [Tags]
     # Set the 'test_env' variable to 'bts' if running on the BTS, otherwise, set it to 'tts'.
