@@ -159,6 +159,7 @@ Set Variables
         Set Suite Variable    ${seq_length}    3
         Set Suite Variable    ${num_images}    3
         Set Suite Variable    @{exp_time}    ${5.0}    ${5.0}    ${5.0}
+        Set Suite Variable    @{exp_time}    ${5.0}    ${5.0}    ${5.0}
         Set Suite Variable    @{filter_band}    r    r    r
         Set Suite Variable    ${filter_name}    "SDSSr"
         Set Suite Variable    @{disperser_band}    H4-003    H4-003    H4-003
@@ -168,7 +169,8 @@ Set Variables
         Set Suite Variable    ${playlist_full_name}    latiss_acquire_and_take_sequence-test_take_acquisition_nominal
         Set Suite Variable    ${seq_length}    3
         Set Suite Variable    ${num_images}    5
-        Set Suite Variable    @{exp_time}    ${4.0}    ${4.0}    ${1.0}
+        Set Suite Variable    @{acq_exp_time}    ${2.0}    ${2.0}    ${2.0}
+        Set Suite Variable    @{seq_exp_time}    ${4.0}    ${4.0}    ${1.0}
         Set Suite Variable    @{filter_band}    EMPTY    r    r
         Set Suite Variable    ${filter_name}    "SDSSr"
         Set Suite Variable    @{disperser_band}    H4-003    H4-003    EMPTY
