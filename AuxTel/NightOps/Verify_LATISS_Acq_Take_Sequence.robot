@@ -35,38 +35,33 @@ Execute AuxTel LATISS Acquire
     Verify Scripts Completed Successfully    ${scripts}    ${states}
     Check If Script Failed    ${states}
 
-Execute AuxTel LATISS Take Sequence
-    [Tags]    execute
-    ${scripts}    ${states}=    Execute Integration Test    auxtel_latiss_take_sequence    ${playlist}
-    Verify Scripts Completed Successfully    ${scripts}    ${states}
-    Check If Script Failed    ${states}
-
 Verify ATDome AzimuthInPosition
     [Tags]
     Verify Time Delta    ATDome    command_moveAzimuth    logevent_azimuthInPosition    60    # Moving the dome can longer than the default 10s time window.
     Verify Topic Attribute    ATDome    logevent_azimuthInPosition    ["inPosition",]    ["True",]
 
 Verify ATPtg Target
-    [Documentation]    Ensure the telescope is pointed at the correct target. If the do_acquire config is set to false,
-    ...    the system assumes the telescope is already pointing at the intended target, so no movement command is issued.
+    [Documentation]    Ensure the telescope is pointed at the correct target.
     [Tags]    robot:continue-on-failure
-    IF    "${playlist}" == "test"
-        Log    "With do_acquire set to false, the telescope is not commanded to a target."
-    ELSE
-        ${output}=    Get Topic Sent Time    ATPtg    command_raDecTarget
-        ${topic_sent}=    Convert Date    ${output}    result_format=datetime
-        ${delta}=    Subtract Date From Date    ${topic_sent}    ${script_start}
-        Should Be True    ${delta} > 0
-        Verify Time Delta    ATPtg    command_raDecTarget    logevent_currentTarget
-        ${cmd_dataframe}=    Get Recent Samples    ATPtg    command_raDecTarget    ["targetName", "ra", "declination",]    1    None
-        Should Be Equal    ${cmd_dataframe.iloc[0].targetName}    HD164461
-        Should Be Equal    ${cmd_dataframe.iloc[0].ra.round(6)}    ${18.913095}
-        Should Be Equal    ${cmd_dataframe.iloc[0].declination.round(6)}    ${-87.605843}
-    END
+    ${output}=    Get Topic Sent Time    ATPtg    command_raDecTarget
+    ${topic_sent}=    Convert Date    ${output}    result_format=datetime
+    ${delta}=    Subtract Date From Date    ${topic_sent}    ${script_start}
+    Should Be True    ${delta} > 0
+    Verify Time Delta    ATPtg    command_raDecTarget    logevent_currentTarget
+    ${cmd_dataframe}=    Get Recent Samples    ATPtg    command_raDecTarget    ["targetName", "ra", "declination",]    1    None
+    Should Be Equal    ${cmd_dataframe.iloc[0].targetName}    HD164461
+    Should Be Equal    ${cmd_dataframe.iloc[0].ra.round(6)}    ${18.913095}
+    Should Be Equal    ${cmd_dataframe.iloc[0].declination.round(6)}    ${-87.605843}
     ${evt_dataframe}=    Get Recent Samples    ATPtg    logevent_currentTarget    ["targetName", "raHours", "decDegs",]    1    None
     Should Be Equal    ${evt_dataframe.iloc[0].targetName}    HD164461
     Should Be Equal    ${evt_dataframe.iloc[0].raHours.round(6)}    ${18.913095}
     Should Be Equal    ${evt_dataframe.iloc[0].decDegs.round(6)}    ${-87.605843}
+
+Execute AuxTel LATISS Take Sequence
+    [Tags]    execute
+    ${scripts}    ${states}=    Execute Integration Test    auxtel_latiss_take_sequence    ${playlist}
+    Verify Scripts Completed Successfully    ${scripts}    ${states}
+    Check If Script Failed    ${states}
 
 Verify ATCamera Image Sequence
     [Documentation]    Verify the ATCamera images are the correct type, with the correct exposure time.
@@ -172,7 +167,7 @@ Set Variables
         Set Suite Variable    ${seq_length}    3
         Set Suite Variable    ${num_images}    5
         Set Suite Variable    @{exp_time}    ${4.0}    ${4.0}    ${1.0}
-        Set Suite Variable    @{filter_band}    r    r    r
+        Set Suite Variable    @{filter_band}    EMPTY    r    r
         Set Suite Variable    ${filter_name}    "SDSSr"
         Set Suite Variable    @{disperser_band}    H4-003    H4-003    EMPTY
         Set Suite Variable    @{disperser_name}    holo4_003    holo4_003    empty_1
