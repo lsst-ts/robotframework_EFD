@@ -158,11 +158,11 @@ Verify Watcher ConfigurationsAvailable timing
 #Test:42
 Verify Test:42 Standby
     [Tags]    standby
-    Verify Summary State    ${STATES}[standby]    Test:42    True
+    Verify Summary State    ${STATES}[standby]    Test:42
 
 Verify Test:42 SummaryState timing
     [Tags]    software_versions    timing
-    Verify Time Delta    Test:42    command_standby    logevent_summaryState
+    Verify Time Delta    Test    command_standby    logevent_summaryState    index=42
 
 Verify Test:42 SoftwareVersions
     [Tags]    software_versions
