@@ -84,11 +84,8 @@ Verify ATMCS SummaryState timing
     
 Verify ATMCS ConfigurationApplied Event
     [Tags]    config_applied
+    # Non-configurable: dataframe empty, no timing test.
     Verify ConfigurationApplied    ATMCS
-
-Verify ATMCS ConfigurationApplied Event timing
-    [Tags]    config_applied    timing
-    Verify Time Delta    ATMCS    command_disable    logevent_configurationApplied
 
 #ATPneumatics
 Verify ATPneumatics Disabled
@@ -101,11 +98,8 @@ Verify ATPneumatics SummaryState timing
     
 Verify ATPneumatics ConfigurationApplied Event
     [Tags]    config_applied
+    # Non-configurable: dataframe empty, no timing test.
     Verify ConfigurationApplied    ATPneumatics
-
-Verify ATPneumatics ConfigurationApplied Event timing
-    [Tags]    config_applied    timing
-    Verify Time Delta    ATPneumatics    command_disable    logevent_configurationApplied
 
 #ATPtg
 Verify ATPtg Disabled
@@ -118,8 +112,5 @@ Verify ATPtg SummaryState timing
     
 Verify ATPtg ConfigurationApplied Event
     [Tags]    config_applied
+    # Non-configurable: dataframe empty, no timing test.
     Verify ConfigurationApplied    ATPtg
-
-Verify ATPtg ConfigurationApplied Event timing
-    [Tags]    config_applied    timing
-    Verify Time Delta    ATPtg    command_disable    logevent_configurationApplied

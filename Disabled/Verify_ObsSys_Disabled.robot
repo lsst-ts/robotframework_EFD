@@ -98,3 +98,20 @@ Verify Watcher ConfigurationApplied Event
 Verify Watcher ConfigurationApplied Event timing
     [Tags]    config_applied    timing
     Verify Time Delta    Watcher    command_disable    logevent_configurationApplied
+
+#Test:42
+Verify Test:42 Disabled
+    [Tags]    disabled
+    Verify Summary State    ${STATES}[disabled]    Test:42
+
+Verify Test:42 SummaryState timing
+    [Tags]    software_versions    timing
+    Verify Time Delta    Test    command_disable    logevent_summaryState    index=42
+
+Verify Test:42 ConfigurationApplied Event
+    [Tags]    config_applied
+    Verify ConfigurationApplied    Test    index=42
+
+Verify Test:42 ConfigurationApplied Event timing
+    [Tags]    config_applied    timing
+    Verify Time Delta    Test    command_disable    logevent_configurationApplied    index=42

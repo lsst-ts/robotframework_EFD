@@ -6,4 +6,4 @@
 --variable playlist:pointing
 
 # List of test suites
-AuxTel/NightOps/Verify_LATISS_Acq_Take_Sequence.robot
+AuxTel/NightOps/Verify_LATISS_Acq_and_Take_Sequence.robot

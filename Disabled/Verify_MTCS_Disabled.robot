@@ -125,9 +125,9 @@ Verify MTAOS Disabled
     [Tags]    disabled
     Verify Summary State    ${STATES}[disabled]    MTAOS
 
-Verify mTAOS SummaryState timing
+Verify MTAOS SummaryState timing
     [Tags]    software_versions    timing
-    Verify Time Delta    mTAOS    command_disable    logevent_summaryState
+    Verify Time Delta    MTAOS    command_disable    logevent_summaryState
 
 Verify MTAOS ConfigurationApplied Event
     [Tags]    config_applied

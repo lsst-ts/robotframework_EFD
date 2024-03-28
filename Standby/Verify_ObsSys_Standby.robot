@@ -17,6 +17,8 @@ ${scriptqueue2_salver}    ${SALVersion}
 ${scriptqueue2_xmlver}    ${XMLVersion}
 ${watcher_salver}    ${SALVersion}
 ${watcher_xmlver}    ${XMLVersion}
+${test42_salver}    ${SALVersion}
+${test42_xmlver}    ${XMLVersion}
 
 *** Test Cases ***
 #Authorize
@@ -59,7 +61,7 @@ Verify Scheduler:1 ConfigurationsAvailable Event
 
 Verify Scheduler:1 ConfigurationsAvailable timing
     [Tags]    software_versions    timing
-    Verify Time Delta    Scheduler    command_standby    command_standby    logevent_configurationsAvailable    index=1
+    Verify Time Delta    Scheduler    command_standby    logevent_configurationsAvailable    index=1
 
 #Scheduler:2
 Verify Scheduler:2 Standby
@@ -152,3 +154,24 @@ Verify Watcher ConfigurationsAvailable Event
 Verify Watcher ConfigurationsAvailable timing
     [Tags]    config_available    timing
     Verify Time Delta    Watcher    command_standby    logevent_configurationsAvailable
+
+#Test:42
+Verify Test:42 Standby
+    [Tags]    standby
+    Verify Summary State    ${STATES}[standby]    Test:42
+
+Verify Test:42 SummaryState timing
+    [Tags]    software_versions    timing
+    Verify Time Delta    Test    command_standby    logevent_summaryState    index=42
+
+Verify Test:42 SoftwareVersions
+    [Tags]    software_versions
+    Verify Software Versions    Test    index=42    csc_salver=${test42_salver}    csc_xmlver=${test42_xmlver}
+
+Verify Test:42 SoftwareVersions timing
+    [Tags]    software_versions    timing
+    Verify Time Delta    Test    command_standby    logevent_softwareVersions    index=42
+
+Verify Test:42 ConfigurationsAvailable Event
+    [Tags]    config_available
+    Verify ConfigurationsAvailable    Test    index=42

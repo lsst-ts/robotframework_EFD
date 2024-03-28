@@ -14,8 +14,8 @@ Verify ATMonochromator Enabled
     Verify Summary State    ${STATES}[enabled]    ATMonochromator
 
 Verify ATMonochromator SummaryState timing
-    [Tags]    software_versions    timing
-    Verify Time Delta    ATMonochromator    command_enabled    logevent_summaryState
+    [Tags]    timing
+    Verify Time Delta    ATMonochromator    command_enable    logevent_summaryState
 
 #FiberSpectrograph:3
 Verify FiberSpectrograph:3 Enabled
@@ -23,5 +23,5 @@ Verify FiberSpectrograph:3 Enabled
     Verify Summary State    ${STATES}[enabled]    FiberSpectrograph:3
 
 Verify FiberSpectrograph:3 SummaryState timing
-    [Tags]    software_versions    timing
-    Verify Time Delta    FiberSpectrograph    command_enabled    logevent_summaryState    index=3
+    [Tags]    timing
+    Verify Time Delta    FiberSpectrograph    command_enable    logevent_summaryState    index=3

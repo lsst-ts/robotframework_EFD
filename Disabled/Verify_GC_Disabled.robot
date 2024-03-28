@@ -33,8 +33,5 @@ Verify GCHeaderService:1 SummaryState timing
 
 Verify GCHeaderService:1 ConfigurationApplied Event
     [Tags]    config_applied
+    # Non-configurable: dataframe empty, no timing test.
     Verify ConfigurationApplied    GCHeaderService    index=1
-
-Verify GCHeaderService:1 ConfigurationApplied Event timing
-    [Tags]    config_applied    timing
-    Verify Time Delta    GCHeaderService    command_disable    logevent_configurationApplied    index=1

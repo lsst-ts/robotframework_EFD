@@ -14,8 +14,8 @@ Verify BigCamera Enabled
     Verify Summary State    ${STATES}[enabled]    ${BigCamera}
 
 Verify BigCamera SummaryState timing
-    [Tags]    software_versions    timing
-    Verify Time Delta    ${BigCamera}    command_enabled    logevent_summaryState
+    [Tags]    timing
+    Verify Time Delta    ${BigCamera}    command_enable    logevent_summaryState
 
 #OODS
 Verify OODS Enabled
@@ -23,8 +23,8 @@ Verify OODS Enabled
     Verify Summary State    ${STATES}[enabled]    ${OODS}
 
 Verify OODS SummaryState timing
-    [Tags]    software_versions    timing
-    Verify Time Delta    ${OODS}    command_enabled    logevent_summaryState
+    [Tags]    timing
+    Verify Time Delta    ${OODS}    command_enable    logevent_summaryState
 
 #HeaderService
 Verify HeaderService Enabled
@@ -32,8 +32,8 @@ Verify HeaderService Enabled
     Verify Summary State    ${STATES}[enabled]    ${HeaderService}
 
 Verify HeaderService SummaryState timing
-    [Tags]    software_versions    timing
-    Verify Time Delta    ${HeaderService}    command_enabled    logevent_summaryState
+    [Tags]    timing
+    Verify Time Delta    ${HeaderService}    command_enable    logevent_summaryState
 
 #OCPS:2||3
 Verify OCPS:2||3 Enabled
@@ -41,5 +41,5 @@ Verify OCPS:2||3 Enabled
     Verify Summary State    ${STATES}[enabled]    OCPS:${OcpsIndex}
 
 Verify OCPS SummaryState timing
-    [Tags]    software_versions    timing
-    Verify Time Delta    ${OCPS}    command_enabled    logevent_summaryState    index=${OcpsIndex}
+    [Tags]    timing
+    Verify Time Delta    ${OCPS}    command_enable    logevent_summaryState    index=${OcpsIndex}

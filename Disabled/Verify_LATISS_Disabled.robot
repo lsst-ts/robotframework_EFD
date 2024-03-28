@@ -33,11 +33,8 @@ Verify ATHeaderService SummaryState timing
 
 Verify ATHeaderService ConfigurationApplied Event
     [Tags]    config_applied
+    # Non-configurable: dataframe empty, no timing test.
     Verify ConfigurationApplied    ATHeaderService
-
-Verify ATHeaderService ConfigurationApplied Event timing
-    [Tags]    config_applied    timing
-    Verify Time Delta    ATHeaderService    command_disable    logevent_configurationApplied
 
 #OCPS:1
 Verify OCPS:1 Disabled
@@ -67,11 +64,8 @@ Verify ATOODS SummaryState timing
 
 Verify ATOODS ConfigurationApplied Event
     [Tags]    config_applied
+    # Non-configurable: dataframe empty, no timing test.
     Verify ConfigurationApplied    ATOODS  
-
-Verify ATOODS ConfigurationApplied Event timing
-    [Tags]    config_applied    timing
-    Verify Time Delta    ATOODS    command_disable    logevent_configurationApplied
 
 #ATSpectrograph
 Verify ATSpectrograph Disabled
