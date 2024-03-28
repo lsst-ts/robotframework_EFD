@@ -64,7 +64,7 @@ Verify Watcher SummaryState timing
 #Test:42
 Verify Test:42 Enabled
     [Tags]
-    Verify Summary State    ${STATES}[enabled]    Test    index=42
+    Verify Summary State    ${STATES}[enabled]    Test:42
 
 Verify Test:42 SummaryState timing
     [Tags]    timing

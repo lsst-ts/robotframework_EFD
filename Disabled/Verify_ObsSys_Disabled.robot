@@ -102,7 +102,7 @@ Verify Watcher ConfigurationApplied Event timing
 #Test:42
 Verify Test:42 Disabled
     [Tags]    disabled
-    Verify Summary State    ${STATES}[disabled]    Test    index=42
+    Verify Summary State    ${STATES}[disabled]    Test:42
 
 Verify Test:42 SummaryState timing
     [Tags]    software_versions    timing
