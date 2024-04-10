@@ -3,7 +3,7 @@ Resource    ../Global_Vars.resource
 Resource    ../CSC_Lists.resource
 Resource    ../Common_Keywords.resource
 Library     Collections
-Force Tags    bigcamera    calibrations
+Force Tags    calibrations
 Suite Setup    Run Keywords    Check If Failed    AND    Set EFD Values    AND    Set Variables
 
 *** Variables ***
