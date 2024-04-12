@@ -87,6 +87,11 @@ Verify ESS:204 Shutdown
     Verify Shutdown Process    ESS    index=204
     Verify Time Delta    ESS    ${topic_1}    ${topic_2}    index=204
 
+Verify ESS:205 Shutdown
+    [Tags]    eas
+    Verify Shutdown Process    ESS    index=205
+    Verify Time Delta    ESS    ${topic_1}    ${topic_2}    index=205
+
 Verify ESS:301 Shutdown
     [Tags]    eas
     Verify Shutdown Process    ESS    index=301
