@@ -26,26 +26,18 @@ Verify Authorize Standby
     [Tags]    standby
     Verify Summary State    ${STATES}[standby]    Authorize    True
 
-Verify Authorize SummaryState timing
-    [Tags]    software_versions    timing
-    Verify Time Delta    Authorize    command_standby    logevent_summaryState
-
 Verify Authorize SoftwareVersions
     [Tags]    software_versions
     Verify Software Versions    Authorize    csc_salver=${authorize_salver}    csc_xmlver=${authorize_xmlver}
 
 Verify Authorize SoftwareVersions timing
     [Tags]    software_versions    timing
-    Verify Time Delta    Authorize    command_standby    logevent_softwareVersions
+    Verify Time Delta    Authorize    logevent_softwareVersions    logevent_summaryState
 
 #Scheduler:1
 Verify Scheduler:1 Standby
     [Tags]    standby
     Verify Summary State    ${STATES}[standby]    Scheduler:1
-
-Verify Scheduler:1 SummaryState timing
-    [Tags]    software_versions    timing
-    Verify Time Delta    Scheduler:1    command_standby    logevent_summaryState
 
 Verify Scheduler:1 SoftwareVersions
     [Tags]    software_versions
@@ -53,7 +45,7 @@ Verify Scheduler:1 SoftwareVersions
 
 Verify Scheduler:1 SoftwareVersions timing
     [Tags]    software_versions    timing
-    Verify Time Delta    Scheduler    command_standby    logevent_softwareVersions    index=1
+    Verify Time Delta    Scheduler    logevent_softwareVersions    logevent_summaryState    index=1
 
 Verify Scheduler:1 ConfigurationsAvailable Event
     [Tags]    config_available
@@ -61,16 +53,12 @@ Verify Scheduler:1 ConfigurationsAvailable Event
 
 Verify Scheduler:1 ConfigurationsAvailable timing
     [Tags]    software_versions    timing
-    Verify Time Delta    Scheduler    command_standby    logevent_configurationsAvailable    index=1
+    Verify Time Delta    Scheduler    logevent_configurationsAvailable    logevent_summaryState    index=1
 
 #Scheduler:2
 Verify Scheduler:2 Standby
     [Tags]    standby
     Verify Summary State    ${STATES}[standby]    Scheduler:2
-
-Verify Scheduler:2 SummaryState timing
-    [Tags]    software_versions    timing
-    Verify Time Delta    Scheduler:2    command_standby    logevent_summaryState
 
 Verify Scheduler:2 SoftwareVersions
     [Tags]    software_versions
@@ -78,7 +66,7 @@ Verify Scheduler:2 SoftwareVersions
 
 Verify Scheduler:2 SoftwareVersions timing
     [Tags]    software_versions    timing
-    Verify Time Delta    Scheduler    command_standby    logevent_softwareVersions    index=2
+    Verify Time Delta    Scheduler    logevent_softwareVersions    logevent_summaryState    index=2
 
 Verify Scheduler:2 ConfigurationsAvailable Event
     [Tags]    config_available
@@ -86,16 +74,12 @@ Verify Scheduler:2 ConfigurationsAvailable Event
 
 Verify Scheduler:2 ConfigurationsAvailable timing
     [Tags]    config_available    timing
-    Verify Time Delta    Scheduler    command_standby    logevent_configurationsAvailable    index=2
+    Verify Time Delta    Scheduler    logevent_configurationsAvailable    logevent_summaryState    index=2
 
 #ScriptQueue:1
 Verify ScriptQueue:1 Standby
     [Tags]    standby
     Verify Summary State    ${STATES}[standby]    ScriptQueue:1    True
-
-Verify ScriptQueue:1 SummaryState timing
-    [Tags]    software_versions    timing
-    Verify Time Delta    ScriptQueue:1    command_standby    logevent_summaryState
 
 Verify ScriptQueue:1 SoftwareVersions
     [Tags]    software_versions
@@ -103,7 +87,7 @@ Verify ScriptQueue:1 SoftwareVersions
 
 Verify ScriptQueue:1 SoftwareVersions timing
     [Tags]    software_versions    timing
-    Verify Time Delta    ScriptQueue    command_standby    logevent_softwareVersions    index=1
+    Verify Time Delta    ScriptQueue    logevent_softwareVersions    logevent_summaryState    index=1
 
 Verify ScriptQueue:1 ConfigurationsAvailable Event
     [Tags]    config_available
@@ -114,17 +98,13 @@ Verify ScriptQueue:2 Standby
     [Tags]    standby
     Verify Summary State    ${STATES}[standby]    ScriptQueue:2    True
 
-Verify ScriptQueue:2 SummaryState timing
-    [Tags]    software_versions    timing
-    Verify Time Delta    ScriptQueue:2    command_standby    logevent_summaryState
-
 Verify ScriptQueue:2 SoftwareVersions
     [Tags]    software_versions
     Verify Software Versions    ScriptQueue    index=2    csc_salver=${scriptqueue2_salver}    csc_xmlver=${scriptqueue2_xmlver}
 
 Verify ScriptQueue:2 SoftwareVersions timing
     [Tags]    software_versions    timing
-    Verify Time Delta    ScriptQueue    command_standby    logevent_softwareVersions    index=2
+    Verify Time Delta    ScriptQueue    logevent_softwareVersions    logevent_summaryState    index=2
 
 Verify ScriptQueue:2 ConfigurationsAvailable Event
     [Tags]    config_available
@@ -135,17 +115,13 @@ Verify Watcher Standby
     [Tags]    standby
     Verify Summary State    ${STATES}[standby]    Watcher    True
 
-Verify Watcher SummaryState timing
-    [Tags]    software_versions    timing
-    Verify Time Delta    Watcher    command_standby    logevent_summaryState
-
 Verify Watcher SoftwareVersions
     [Tags]    software_versions
     Verify Software Versions    Watcher    csc_salver=${watcher_salver}    csc_xmlver=${watcher_xmlver}
 
 Verify Watcher SoftwareVersions timing
     [Tags]    software_versions    timing
-    Verify Time Delta    Watcher    command_standby    logevent_softwareVersions
+    Verify Time Delta    Watcher    logevent_softwareVersions    logevent_summaryState
 
 Verify Watcher ConfigurationsAvailable Event
     [Tags]    config_available
@@ -153,16 +129,12 @@ Verify Watcher ConfigurationsAvailable Event
 
 Verify Watcher ConfigurationsAvailable timing
     [Tags]    config_available    timing
-    Verify Time Delta    Watcher    command_standby    logevent_configurationsAvailable
+    Verify Time Delta    Watcher    logevent_configurationsAvailable    logevent_summaryState
 
 #Test:42
 Verify Test:42 Standby
     [Tags]    standby
     Verify Summary State    ${STATES}[standby]    Test:42
-
-Verify Test:42 SummaryState timing
-    [Tags]    software_versions    timing
-    Verify Time Delta    Test    command_standby    logevent_summaryState    index=42
 
 Verify Test:42 SoftwareVersions
     [Tags]    software_versions
@@ -170,7 +142,7 @@ Verify Test:42 SoftwareVersions
 
 Verify Test:42 SoftwareVersions timing
     [Tags]    software_versions    timing
-    Verify Time Delta    Test    command_standby    logevent_softwareVersions    index=42
+    Verify Time Delta    Test    logevent_softwareVersions    logevent_summaryState    index=42
 
 Verify Test:42 ConfigurationsAvailable Event
     [Tags]    config_available

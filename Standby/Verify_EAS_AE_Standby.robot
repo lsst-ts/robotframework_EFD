@@ -18,17 +18,13 @@ Verify DSM:1 Standby
     [Tags]    eas_ae
     Verify Summary State    ${STATES}[standby]    DSM:1    auto_enable=True
 
-Verify DSM:1 SummaryState timing
-    [Tags]    software_versions    timing
-    Verify Time Delta    DSM    command_standby    logevent_summaryState    index=1
-
 Verify DSM:1 SoftwareVersions
     [Tags]    eas_ae    software_versions
     Verify Software Versions    DSM    index=1    csc_salver=${dsm1_salver}    csc_xmlver=${dsm1_xmlver}
 
 Verify DSM:1 SoftwareVersions timing
     [Tags]    eas_ae    software_versions    timing
-    Verify Time Delta    DSM    command_standby    logevent_softwareVersions    index=1
+    Verify Time Delta    DSM    logevent_softwareVersions    logevent_summaryState    index=1
 
 Verify DSM:1 ConfigurationsAvailable Event
     [Tags]    eas_ae    config_available
@@ -39,17 +35,13 @@ Verify DSM:2 Standby
     [Tags]    eas_ae
     Verify Summary State    ${STATES}[standby]    DSM:2    auto_enable=True
     
-Verify DSM:2 SummaryState timing
-    [Tags]    software_versions    timing
-    Verify Time Delta    DSM    command_standby    logevent_summaryState    index=2
-
 Verify DSM:2 SoftwareVersions
     [Tags]    eas_ae    software_versions
     Verify Software Versions    DSM    index=2    csc_salver=${dsm2_salver}    csc_xmlver=${dsm2_xmlver}
 
 Verify DSM:2 SoftwareVersions timing
     [Tags]    eas_ae    software_versions    timing
-    Verify Time Delta    DSM    command_standby    logevent_softwareVersions    index=2
+    Verify Time Delta    DSM    logevent_softwareVersions    logevent_summaryState    index=2
 
 Verify DSM:2 ConfigurationsAvailable Event
     [Tags]    eas_ae    config_available
@@ -60,17 +52,13 @@ Verify WeatherForecast Standby
     [Tags]    eas_ae
     Verify Summary State    ${STATES}[standby]    WeatherForecast    auto_enable=True
 
-Verify WeatherForecast SummaryState timing
-    [Tags]    software_versions    timing
-    Verify Time Delta    WeatherForecast    command_standby    logevent_summaryState
-
 Verify WeatherForecast SoftwareVersions
     [Tags]    eas_ae    software_versions
     Verify Software Versions    WeatherForecast    csc_salver=${weatherforecast_salver}    csc_xmlver=${weatherforecast_xmlver}
 
 Verify WeatherForecast SoftwareVersions timing
     [Tags]    eas_ae    software_versions    timing
-    Verify Time Delta    WeatherForecast    command_standby    logevent_softwareVersions
+    Verify Time Delta    WeatherForecast    logevent_softwareVersions    logevent_summaryState
 
 Verify WeatherForecast ConfigurationsAvailable Event
     [Tags]    eas_ae    config_available
