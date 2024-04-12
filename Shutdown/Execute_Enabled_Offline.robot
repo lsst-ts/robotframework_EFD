@@ -29,7 +29,7 @@ Execute MTM1M3 Enabled to Offline
 
 Execute Test:42 Enabled to Offline
     [Tags] 
-    ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    Test:42    Offline
+    ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    Test    Offline    -x 42
     Verify Scripts Completed Successfully    ${scripts}    ${states}
 
 Execute Enabled to Offline
