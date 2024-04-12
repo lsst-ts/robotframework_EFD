@@ -124,6 +124,15 @@ Verify ESS:204 SummaryState timing
     [Tags]    timing
     Verify Time Delta    ESS    command_enable    logevent_summaryState    index=204
 
+# ESS:205
+Verify ESS:205 Enabled
+    [Tags]    eas
+    Verify Summary State    ${STATES}[enabled]    ESS:205
+
+Verify ESS:205 SummaryState timing
+    [Tags]    timing
+    Verify Time Delta    ESS    command_enable    logevent_summaryState    index=205
+
 #ESS:301
 Verify ESS:301 Enabled
     [Tags]    eas

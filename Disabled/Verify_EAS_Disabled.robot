@@ -226,6 +226,23 @@ Verify ESS:204 ConfigurationApplied Event timing
     [Tags]    config_applied    timing
     Verify Time Delta    ESS    command_start    logevent_configurationApplied    index=204
 
+# ESS:205
+Verify ESS:205 Disabled
+    [Tags]    disabled
+    Verify Summary State    ${STATES}[disabled]    ESS:205
+    
+Verify ESS:205 SummaryState timing
+    [Tags]    software_versions    timing
+    Verify Time Delta    ESS    command_start    logevent_summaryState    index=205
+
+Verify ESS:205 ConfigurationApplied Event
+    [Tags]    config_applied
+    Verify ConfigurationApplied    ESS    index=205
+
+Verify ESS:205 ConfigurationApplied Event timing
+    [Tags]    config_applied    timing
+    Verify Time Delta    ESS    command_start    logevent_configurationApplied    index=205
+
 # ESS:301
 Verify ESS:301 Disabled
     [Tags]    disabled
