@@ -9,10 +9,14 @@ ${scheduler1_salver}    ${SALVersion}
 ${scheduler1_xmlver}    ${XMLVersion}
 ${scheduler2_salver}    ${SALVersion}
 ${scheduler2_xmlver}    ${XMLVersion}
+${scheduler3_salver}    ${SALVersion}
+${scheduler3_xmlver}    ${XMLVersion}
 ${scriptqueue1_salver}    ${SALVersion}
 ${scriptqueue1_xmlver}    ${XMLVersion}
 ${scriptqueue2_salver}    ${SALVersion}
 ${scriptqueue2_xmlver}    ${XMLVersion}
+${scriptqueue3_salver}    ${SALVersion}
+${scriptqueue3_xmlver}    ${XMLVersion}
 ${watcher_salver}    ${SALVersion}
 ${watcher_xmlver}    ${XMLVersion}
 ${test42_salver}    ${SALVersion}
@@ -61,6 +65,27 @@ Verify Scheduler:2 ConfigurationsAvailable timing
     [Tags]    config_available    timing
     Verify Time Delta    Scheduler    logevent_configurationsAvailable    logevent_summaryState    index=2
 
+#Scheduler:3
+Verify Scheduler:3 Standby
+    [Tags]    standby
+    Verify Summary State    ${STATES}[standby]    Scheduler:3
+
+Verify Scheduler:3 SoftwareVersions
+    [Tags]    software_versions
+    Verify Software Versions    Scheduler    index=3    csc_salver=${scheduler2_salver}    csc_xmlver=${scheduler2_xmlver}
+
+Verify Scheduler:3 SoftwareVersions timing
+    [Tags]    software_versions    timing
+    Verify Time Delta    Scheduler    logevent_softwareVersions    logevent_summaryState    index=3
+
+Verify Scheduler:3 ConfigurationsAvailable Event
+    [Tags]    config_available
+    Verify ConfigurationsAvailable    Scheduler    index=3
+
+Verify Scheduler:3 ConfigurationsAvailable timing
+    [Tags]    config_available    timing
+    Verify Time Delta    Scheduler    logevent_configurationsAvailable    logevent_summaryState    index=3
+
 #ScriptQueue:1
 Verify ScriptQueue:1 Standby
     [Tags]    standby
@@ -94,6 +119,23 @@ Verify ScriptQueue:2 SoftwareVersions timing
 Verify ScriptQueue:2 ConfigurationsAvailable Event
     [Tags]    config_available
     Verify ConfigurationsAvailable    ScriptQueue    index=2
+
+#ScriptQueue:3
+Verify ScriptQueue:3 Standby
+    [Tags]    standby
+    Verify Summary State    ${STATES}[standby]    ScriptQueue:3    True
+
+Verify ScriptQueue:3 SoftwareVersions
+    [Tags]    software_versions
+    Verify Software Versions    ScriptQueue    index=3    csc_salver=${scriptqueue3_salver}    csc_xmlver=${scriptqueue3_xmlver}
+
+Verify ScriptQueue:3 SoftwareVersions timing
+    [Tags]    software_versions    timing
+    Verify Time Delta    ScriptQueue    logevent_softwareVersions    logevent_summaryState    index=3
+
+Verify ScriptQueue:3 ConfigurationsAvailable Event
+    [Tags]    config_available
+    Verify ConfigurationsAvailable    ScriptQueue    index=3
 
 #Watcher
 Verify Watcher Standby

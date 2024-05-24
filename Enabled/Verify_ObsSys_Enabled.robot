@@ -25,6 +25,15 @@ Verify Scheduler:2 SummaryState timing
     [Tags]    timing
     Verify Time Delta    Scheduler    command_enable    logevent_summaryState    index=2
 
+#Scheduler:3
+Verify Scheduler:3 Enabled
+    [Tags]
+    Verify Summary State    ${STATES}[enabled]    Scheduler:3
+
+Verify Scheduler:3 SummaryState timing
+    [Tags]    timing
+    Verify Time Delta    Scheduler    command_enable    logevent_summaryState    index=3
+
 #ScriptQueue:1
 Verify ScriptQueue:1 Enabled
     [Tags]
@@ -42,6 +51,15 @@ Verify ScriptQueue:2 Enabled
 Verify ScriptQueue:2 SummaryState timing
     [Tags]    timing
     Verify Time Delta    ScriptQueue    command_enable    logevent_summaryState    index=2
+
+#ScriptQueue:3
+Verify ScriptQueue:3 Enabled
+    [Tags]
+    Verify Summary State    ${STATES}[enabled]    ScriptQueue:3
+
+Verify ScriptQueue:3 SummaryState timing
+    [Tags]    timing
+    Verify Time Delta    ScriptQueue    command_enable    logevent_summaryState    index=3
 
 #Watcher
 Verify Watcher Enabled

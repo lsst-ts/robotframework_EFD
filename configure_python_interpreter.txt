@@ -5,8 +5,8 @@
 ['DSM:1', 'DSM:2']
 ['ATArchiver', 'ATCamera', 'ATHeaderService', 'ATSpectrograph']
 ['MTMount', 'MTPtg', 'MTDome', 'MTDomeTrajectory', 'MTAOS', 'MTHexapod:1', 'MTHexapod:2', 'MTRotator', 'MTM1M3', 'MTM2']
-['ScriptQueue:1', 'ScriptQueue:2', 'Watcher:1']
-['Scheduler:1', 'Scheduler:2', 'OCPS:1', 'OCPS:2']
+['ScriptQueue:1', 'ScriptQueue:2', 'ScriptQueue:3', 'Watcher:1']
+['Scheduler:1', 'Scheduler:2', 'Scheduler:3', 'OCPS:1', 'OCPS:2']
 
 
 for csc in cscs:
@@ -132,6 +132,7 @@ data:
     - [DIMM:1, Disabled]
     - [Scheduler:1, Disabled]
     - [Scheduler:2, Disabled]
+    - [Scheduler:3, Disabled]
     - [OCPS:1, Disabled]
     - [OCPS:2, Disabled]
     - [Watcher, Disabled]
@@ -144,6 +145,8 @@ data:
 
 data:
     - [ScriptQueue:1, Disabled]
+    - [ScriptQueue:2, Disabled]
+    - [ScriptQueue:3, Disabled]
 
 data:
     - [ATMCS, STANDBY]
