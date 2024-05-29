@@ -71,7 +71,7 @@ Verify Scheduler:3 Standby
     Verify Summary State    ${STATES}[standby]    Scheduler:3
 
 Verify Scheduler:3 SoftwareVersions
-    [Tags]    software_versions
+    [Tags]    software_versions    CAP-1044
     Verify Software Versions    Scheduler    index=3    csc_salver=${scheduler2_salver}    csc_xmlver=${scheduler2_xmlver}
 
 Verify Scheduler:3 SoftwareVersions timing
@@ -79,7 +79,7 @@ Verify Scheduler:3 SoftwareVersions timing
     Verify Time Delta    Scheduler    logevent_softwareVersions    logevent_summaryState    index=3
 
 Verify Scheduler:3 ConfigurationsAvailable Event
-    [Tags]    config_available
+    [Tags]    config_available    CAP-1033
     Verify ConfigurationsAvailable    Scheduler    index=3
 
 Verify Scheduler:3 ConfigurationsAvailable timing
