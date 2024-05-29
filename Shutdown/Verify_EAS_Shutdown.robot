@@ -31,6 +31,12 @@ Verify DSM:2 Shutdown
     Verify Shutdown Process    DSM    index=2
     Verify Time Delta    DSM    ${topic_1}    ${topic_2}    index=2
 
+# EPM:1
+Verify EPM:1 Shutdown
+    [Tags]    eas
+    Verify Shutdown Process    EPM    index=1
+    Verify Time Delta    EPM    ${topic_1}    ${topic_2}    index=1
+
 # ESS
 Verify ESS:1 Shutdown
     [Tags]    eas

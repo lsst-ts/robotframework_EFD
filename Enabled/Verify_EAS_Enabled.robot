@@ -25,6 +25,15 @@ Verify DIMM:2 SummaryState timing
     [Tags]    timing
     Verify Time Delta    DIMM    command_enable    logevent_summaryState    index=2
 
+#EPM:1
+Verify EPM:1 Enabled
+    [Tags]    eas
+    Verify Summary State    ${STATES}[enabled]    EPM:1
+
+Verify EPM:1 SummaryState timing
+    [Tags]    timing
+    Verify Time Delta    EPM    command_enable    logevent_summaryState    index=1
+
 #ESS:1
 Verify ESS:1 Enabled
     [Tags]    eas
