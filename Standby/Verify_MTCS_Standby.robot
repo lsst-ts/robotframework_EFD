@@ -281,7 +281,7 @@ Verify MTM1M3 SoftwareVersions timing
     Verify Time Delta    MTM1M3    logevent_softwareVersions    logevent_summaryState
 
 Verify MTM1M3 ConfigurationsAvailable Event
-    [Tags]    config_available
+    [Tags]    config_available    CAP-872
     Verify ConfigurationsAvailable    MTM1M3
 
 Verify MTM1M3 ConfigurationsAvailable timing

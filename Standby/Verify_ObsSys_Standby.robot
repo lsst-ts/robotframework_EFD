@@ -40,7 +40,7 @@ Verify Scheduler:1 Standby
     Verify Summary State    ${STATES}[standby]    Scheduler:1
 
 Verify Scheduler:1 SoftwareVersions
-    [Tags]    software_versions
+    [Tags]    software_versions    CAP-1044
     Verify Software Versions    Scheduler    index=1    csc_salver=${scheduler1_salver}    csc_xmlver=${scheduler1_xmlver}
 
 Verify Scheduler:1 SoftwareVersions timing
@@ -48,7 +48,7 @@ Verify Scheduler:1 SoftwareVersions timing
     Verify Time Delta    Scheduler    logevent_softwareVersions    logevent_summaryState    index=1
 
 Verify Scheduler:1 ConfigurationsAvailable Event
-    [Tags]    config_available
+    [Tags]    config_available    CAP-1033
     Verify ConfigurationsAvailable    Scheduler    index=1
 
 Verify Scheduler:1 ConfigurationsAvailable timing
@@ -61,7 +61,7 @@ Verify Scheduler:2 Standby
     Verify Summary State    ${STATES}[standby]    Scheduler:2
 
 Verify Scheduler:2 SoftwareVersions
-    [Tags]    software_versions
+    [Tags]    software_versions    CAP-1044
     Verify Software Versions    Scheduler    index=2    csc_salver=${scheduler2_salver}    csc_xmlver=${scheduler2_xmlver}
 
 Verify Scheduler:2 SoftwareVersions timing
@@ -69,7 +69,7 @@ Verify Scheduler:2 SoftwareVersions timing
     Verify Time Delta    Scheduler    logevent_softwareVersions    logevent_summaryState    index=2
 
 Verify Scheduler:2 ConfigurationsAvailable Event
-    [Tags]    config_available
+    [Tags]    config_available    CAP-1033
     Verify ConfigurationsAvailable    Scheduler    index=2
 
 Verify Scheduler:2 ConfigurationsAvailable timing

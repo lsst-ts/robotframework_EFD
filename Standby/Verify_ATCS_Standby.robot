@@ -111,7 +111,7 @@ Verify ATMCS Standby
     Verify Summary State    ${STATES}[standby]    ATMCS
 
 Verify ATMCS SoftwareVersions
-    [Tags]    software_versions
+    [Tags]    software_versions    DM-39357
     Verify Software Versions    ATMCS    csc_salver=${atmcs_salver}    csc_xmlver=${atmcs_xmlver}
 
 Verify ATMCS SoftwareVersions timing
