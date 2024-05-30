@@ -9,6 +9,8 @@ ${dimm1_salver}    ${SALVersion}
 ${dimm1_xmlver}    ${XMLVersion}
 ${dimm2_salver}    ${SALVersion}
 ${dimm2_xmlver}    ${XMLVersion}
+${epm1_salver}     ${SALVersion}
+${epm1_xmlver}     ${XMLVersion}
 ${ess1_salver}     ${SALVersion}
 ${ess1_xmlver}     ${XMLVersion}
 ${ess101_salver}    ${SALVersion}
@@ -78,6 +80,27 @@ Verify DIMM:2 ConfigurationsAvailable Event
 Verify DIMM:2 ConfigurationsAvailable timing
     [Tags]    config_available    timing
     Verify Time Delta    DIMM    logevent_configurationsAvailable    logevent_summaryState    index=2
+
+# EPM:1
+Verify EPM:1 Standby
+    [Tags]    standby
+    Verify Summary State    ${STATES}[standby]    EPM:1
+
+Verify EPM:1 SoftwareVersions
+    [Tags]    software_versions
+    Verify Software Versions    EPM    csc_salver=${epm1_salver}    csc_xmlver=${epm1_xmlver}    index=1
+
+Verify EPM:1 SoftwareVersions timing
+    [Tags]    software_versions    timing
+    Verify Time Delta    EPM    logevent_softwareVersions    logevent_summaryState    index=1
+
+Verify EPM:1 ConfigurationsAvailable Event
+    [Tags]    config_available
+    Verify ConfigurationsAvailable    EPM    index=1
+
+Verify EPM:1 ConfigurationsAvailable timing
+    [Tags]    config_available    timing
+    Verify Time Delta    EPM    logevent_configurationsAvailable    logevent_summaryState    index=1
 
 # ESS:1
 Verify ESS:1 Standby

@@ -20,6 +20,7 @@ comcam = [
 eas = [
     "DIMM:1",
     "DIMM:2",
+    "EPM:1",
     "ESS:1",
     "ESS:101",
     "ESS:102",
@@ -114,6 +115,7 @@ salobj = [
     "DIMM:2",
     "DSM:1",
     "DSM:2",
+    "EPM:1",
     "ESS:1",
     "ESS:101",
     "ESS:102",
