@@ -7,15 +7,6 @@ Force Tags    enabled    obssys
 *** Variables ***
 
 *** Test Cases ***
-#Authorize
-Verify Authorize Enabled
-    [Tags]
-    Verify Summary State    ${STATES}[enabled]    Authorize
-
-Verify Authorize SummaryState timing
-    [Tags]    timing
-    Verify Time Delta    Authorize    command_enable    logevent_summaryState
-
 #Scheduler:1
 Verify Scheduler:1 Enabled
     [Tags]

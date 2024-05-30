@@ -5,23 +5,6 @@ Resource    ../Common_Keywords.resource
 Force Tags    obssys
 
 *** Test Cases ***
-#Authorize
-Verify Authorize Disabled
-    [Tags]    disabled
-    Verify Summary State    ${STATES}[disabled]    Authorize    auto_enable=True
-
-Verify Authorize SummaryState timing
-    [Tags]    software_versions    timing
-    Verify Time Delta    Authorize    command_start    logevent_summaryState
-
-Verify Authorize ConfigurationApplied Event
-    [Tags]    config_applied
-    Verify ConfigurationApplied    Authorize
-
-Verify Authorize ConfigurationApplied Event timing
-    [Tags]    config_applied    timing
-    Verify Time Delta    Authorize    command_start    logevent_configurationApplied
-
 #Scheduler:1
 Verify Scheduler:1 Disabled
     [Tags]    disabled

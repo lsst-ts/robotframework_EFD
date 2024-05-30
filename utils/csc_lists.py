@@ -69,7 +69,6 @@ mtcs = [
     "MTM2",
 ]
 obssys = [
-    "Authorize",
     "Scheduler:1",
     "Scheduler:2",
     "ScriptQueue:1",
@@ -108,7 +107,6 @@ salobj = [
     "ATPneumatics",
     "ATSpectrograph",
     "ATWhiteLight",
-    "Authorize",
     "CCHeaderService",
     "CCOODS",
     "DIMM:1",

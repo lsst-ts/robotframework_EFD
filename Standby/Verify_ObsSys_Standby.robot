@@ -5,8 +5,6 @@ Resource    ../Common_Keywords.resource
 Force Tags    obssys
 
 *** Variables ***
-${authorize_salver}    ${SALVersion}
-${authorize_xmlver}    ${XMLVersion}
 ${scheduler1_salver}    ${SALVersion}
 ${scheduler1_xmlver}    ${XMLVersion}
 ${scheduler2_salver}    ${SALVersion}
@@ -21,19 +19,6 @@ ${test42_salver}    ${SALVersion}
 ${test42_xmlver}    ${XMLVersion}
 
 *** Test Cases ***
-#Authorize
-Verify Authorize Standby
-    [Tags]    standby
-    Verify Summary State    ${STATES}[standby]    Authorize    True
-
-Verify Authorize SoftwareVersions
-    [Tags]    software_versions
-    Verify Software Versions    Authorize    csc_salver=${authorize_salver}    csc_xmlver=${authorize_xmlver}
-
-Verify Authorize SoftwareVersions timing
-    [Tags]    software_versions    timing
-    Verify Time Delta    Authorize    logevent_softwareVersions    logevent_summaryState
-
 #Scheduler:1
 Verify Scheduler:1 Standby
     [Tags]    standby

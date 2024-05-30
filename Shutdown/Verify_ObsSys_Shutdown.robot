@@ -9,11 +9,6 @@ ${topic_1}    command_disable
 ${topic_2}    logevent_summaryState
 
 *** Test Cases ***
-Verify Authorize Shutdown
-    [Tags]
-    Verify Shutdown Process    Authorize
-    Verify Time Delta    Authorize    ${topic_1}    ${topic_2}
-
 Verify Scheduler:1 Shutdown
     [Tags]
     Verify Shutdown Process    Scheduler    index=1

@@ -87,15 +87,8 @@ parameters:
   enableAll: true
 
 
-component: Authorize
-cmd: requestAuthorization
-parameters:
-  cscsToChange: ["ScriptQueue:1",]
-  authorizedUsers: ["+rbovill@nb-rbovill"]
-
 
 data:
-    - [Authorize, DISABLED]
     - [ATMCS, DISABLED]
     - [ATPneumatics, DISABLED]
 
@@ -153,7 +146,6 @@ data:
     - [ScriptQueue:1, Disabled]
 
 data:
-    - [Authorize, STANDBY]
     - [ATMCS, STANDBY]
 
 data:
