@@ -14,7 +14,7 @@
 @{OFFLINE}         ATCamera    CCCamera
 @{SALOBJ}          ATAOS   ATDome   ATDomeTrajectory   ATHeaderService   ATHexapod   ATMCS   ATMonochromator   ATOODS   ATPneumatics   ATSpectrograph   ATWhiteLight
 ...    CCHeaderService   CCOODS   DIMM:1    DIMM:2   DIMM:2   DSM:1   DSM:2   EPM:1
-...    ESS:1    ESS:101    ESS:102    ESS:103    ESS:104    ESS:105    ESS:106    ESS:201    ESS:202    ESS:203    ESS:204    ESS:205    ESS:301
+...    ESS:1    ESS:101    ESS:102    ESS:103    ESS:104    ESS:105    ESS:106    ESS:107    ESS:108    ESS:201    ESS:202    ESS:203    ESS:204    ESS:205    ESS:301
 ...    FiberSpectrograph:3   LinearStage   MTAOS   MTDome   MTDomeTrajectory   MTHexapod MTRotator
 ...    OCPS:1   OCPS:2   Scheduler:1   Scheduler:2   ScriptQueue   Watcher   WeatherForecast
 @{Camera}       ATCamera    CCCamera

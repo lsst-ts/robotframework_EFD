@@ -97,6 +97,24 @@ Verify ESS:106 SummaryState timing
     [Tags]    timing
     Verify Time Delta    ESS    command_enable    logevent_summaryState    index=106
 
+# ESS:107
+Verify ESS:107 Enabled
+    [Tags]    eas
+    Verify Summary State    ${STATES}[enabled]    ESS:107
+
+Verify ESS:107 SummaryState timing
+    [Tags]    timing
+    Verify Time Delta    ESS    command_enable    logevent_summaryState    index=107
+
+# ESS:108
+Verify ESS:108 Enabled
+    [Tags]    eas
+    Verify Summary State    ${STATES}[enabled]    ESS:108
+
+Verify ESS:108 SummaryState timing
+    [Tags]    timing
+    Verify Time Delta    ESS    command_enable    logevent_summaryState    index=108
+
 # ESS:201
 Verify ESS:201 Enabled
     [Tags]    eas
