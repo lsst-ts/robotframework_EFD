@@ -9,7 +9,7 @@ ${dimm1_salver}    ${SALVersion}
 ${dimm1_xmlver}    ${XMLVersion}
 ${dimm2_salver}    ${SALVersion}
 ${dimm2_xmlver}    ${XMLVersion}
-${epm_salver}     ${SALVersion}
+${epm1_salver}     ${SALVersion}
 ${epm1_xmlver}     ${XMLVersion}
 ${ess1_salver}     ${SALVersion}
 ${ess1_xmlver}     ${XMLVersion}
@@ -88,7 +88,7 @@ Verify EPM:1 Standby
 
 Verify EPM:1 SoftwareVersions
     [Tags]    software_versions
-    Verify Software Versions    EPM    csc_salver=${ess1_salver}    csc_xmlver=${ess1_xmlver}    index=1
+    Verify Software Versions    EPM    csc_salver=${epm1_salver}    csc_xmlver=${epm1_xmlver}    index=1
 
 Verify EPM:1 SoftwareVersions timing
     [Tags]    software_versions    timing
