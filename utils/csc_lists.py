@@ -73,29 +73,33 @@ mtcs = [
 obssys = [
     "Scheduler:1",
     "Scheduler:2",
+    "Scheduler:3",
     "ScriptQueue:1",
     "ScriptQueue:2",
+    "ScriptQueue:3",
     "Watcher",
 ]
 non_config = [
     "ATHeaderService",
-    "ATMCS",
     "ATOODS",
-    "ATPneumatics",
     "ATPtg",
     "CCHeaderService",
     "CCOODS",
     "DSM",
     "GCHeaderService",
-    "LinearStage",
+    "HVAC",
+    "LOVE",
+    "MTHeaderService",
+    "MTOODS",
     "MTPtg",
-    "MTAirCompressor:1",
-    "MTAirCompressor:2",
+    "Script",
     "ScriptQueue",
+    "SummitFacility",
 ]
 offline = [
     "ATCamera",
     "CCCamera",
+    "MTCamera",
 ]
 salobj = [
     "ATAOS",
