@@ -25,6 +25,10 @@ ${ess105_salver}    ${SALVersion}
 ${ess105_xmlver}    ${XMLVersion}
 ${ess106_salver}    ${SALVersion}
 ${ess106_xmlver}    ${XMLVersion}
+${ess107_salver}    ${SALVersion}
+${ess107_xmlver}    ${XMLVersion}
+${ess108_salver}    ${SALVersion}
+${ess108_xmlver}    ${XMLVersion}
 ${ess201_salver}    ${SALVersion}
 ${ess201_xmlver}    ${XMLVersion}
 ${ess202_salver}    ${SALVersion}
@@ -248,6 +252,48 @@ Verify ESS:106 ConfigurationsAvailable Event
 Verify ESS:106 ConfigurationsAvailable timing
     [Tags]    config_available    timing
     Verify Time Delta    ESS    logevent_configurationsAvailable    logevent_summaryState    index=106
+
+# ESS:107
+Verify ESS:107 Standby
+    [Tags]    standby
+    Verify Summary State    ${STATES}[standby]    ESS:107
+    
+Verify ESS:107 SoftwareVersions  
+    [Tags]    software_versions  
+    Verify Software Versions    ESS    index=107    csc_salver=${ess107_salver}    csc_xmlver=${ess107_xmlver}
+    
+Verify ESS:107 SoftwareVersions timing
+    [Tags]    software_versions    timing
+    Verify Time Delta    ESS    logevent_softwareVersions    logevent_summaryState    index=107
+   
+Verify ESS:107 ConfigurationsAvailable Event
+    [Tags]    config_available
+    Verify ConfigurationsAvailable    ESS    index=107
+   
+Verify ESS:107 ConfigurationsAvailable timing
+    [Tags]    config_available    timing
+    Verify Time Delta    ESS    logevent_configurationsAvailable    logevent_summaryState    index=107
+
+# ESS:108
+Verify ESS:108 Standby
+    [Tags]    standby
+    Verify Summary State    ${STATES}[standby]    ESS:108
+    
+Verify ESS:108 SoftwareVersions  
+    [Tags]    software_versions  
+    Verify Software Versions    ESS    index=108    csc_salver=${ess108_salver}    csc_xmlver=${ess108_xmlver}
+    
+Verify ESS:108 SoftwareVersions timing
+    [Tags]    software_versions    timing
+    Verify Time Delta    ESS    logevent_softwareVersions    logevent_summaryState    index=108
+   
+Verify ESS:108 ConfigurationsAvailable Event
+    [Tags]    config_available
+    Verify ConfigurationsAvailable    ESS    index=108
+   
+Verify ESS:108 ConfigurationsAvailable timing
+    [Tags]    config_available    timing
+    Verify Time Delta    ESS    logevent_configurationsAvailable    logevent_summaryState    index=108
 
 # ESS:201
 Verify ESS:201 Standby

@@ -9,15 +9,21 @@ Suite Setup    Run Keywords    Check If Failed    AND    Set EFD Values
 *** Variables ***
 
 *** Test Cases ***
+Set Camera Variables
+    [Tags]
+    Comment    This test case is runs all the time, regardless of environment. If running on the BTS, the following test cases will be skipped, until the MTCamera simulator is deployed.
+    ${bigcam}=    Set Variable If    "${env_efd}" == "base_efd"    mt    cc
+    Set Suite Variable    ${bigcam}
+
 Load Camera Playlist
-    [Tags]    execute    playlist
-    ${result}=    Run Process    load_camera_playlist    cc    master_flat    --no-repeat
+    [Tags]    execute    playlist    bigcamera
+    ${result}=    Run Process    load_camera_playlist    ${bigcam}    master_flat    --no-repeat
     Log Many    ${result.rc}    ${result.stdout}    ${result.stderr}
     Run Keyword If    ${result.rc} == 1    Fatal Error
 
 Verify Camera Playlist Loaded
     [Documentation]    Playlist should already be loaded, ensure nothing was changed prior to running this script.
-    [Tags]    playlist
+    [Tags]    playlist    bigcamera
     ${dataframe}=    Get Recent Samples    ${BigCamera}    command_play    ["playlist", "repeat", "private_identity", "private_origin",]    1    None
     Should Be Equal    ${dataframe.playlist.values}[0]    bias_dark_flat
 

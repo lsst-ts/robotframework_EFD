@@ -175,6 +175,40 @@ Verify ESS:106 ConfigurationApplied Event timing
     [Tags]    config_applied    timing
     Verify Time Delta    ESS    command_start    logevent_configurationApplied    index=106
 
+# ESS:107
+Verify ESS:107 Disabled
+    [Tags]    disabled
+    Verify Summary State    ${STATES}[disabled]    ESS:107
+    
+Verify ESS:107 SummaryState timing
+    [Tags]    software_versions    timing
+    Verify Time Delta    ESS    command_start    logevent_summaryState    index=107
+    
+Verify ESS:107 ConfigurationApplied Event
+    [Tags]    config_applied
+    Verify ConfigurationApplied    ESS    index=107
+    
+Verify ESS:107 ConfigurationApplied Event timing
+    [Tags]    config_applied    timing
+    Verify Time Delta    ESS    command_start    logevent_configurationApplied    index=107
+
+# ESS:108
+Verify ESS:108 Disabled
+    [Tags]    disabled
+    Verify Summary State    ${STATES}[disabled]    ESS:108
+    
+Verify ESS:108 SummaryState timing
+    [Tags]    software_versions    timing
+    Verify Time Delta    ESS    command_start    logevent_summaryState    index=108
+    
+Verify ESS:108 ConfigurationApplied Event
+    [Tags]    config_applied
+    Verify ConfigurationApplied    ESS    index=108
+    
+Verify ESS:108 ConfigurationApplied Event timing
+    [Tags]    config_applied    timing
+    Verify Time Delta    ESS    command_start    logevent_configurationApplied    index=108
+
 # ESS:201
 Verify ESS:201 Disabled
     [Tags]    disabled
