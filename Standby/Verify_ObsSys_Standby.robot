@@ -72,7 +72,7 @@ Verify Scheduler:3 Standby
 
 Verify Scheduler:3 SoftwareVersions
     [Tags]    software_versions    CAP-1044
-    Verify Software Versions    Scheduler    index=3    csc_salver=${scheduler2_salver}    csc_xmlver=${scheduler2_xmlver}
+    Verify Software Versions    Scheduler    index=3    csc_salver=${scheduler3_salver}    csc_xmlver=${scheduler3_xmlver}
 
 Verify Scheduler:3 SoftwareVersions timing
     [Tags]    software_versions    timing

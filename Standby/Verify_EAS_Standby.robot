@@ -260,7 +260,7 @@ Verify ESS:107 Standby
     
 Verify ESS:107 SoftwareVersions  
     [Tags]    software_versions  
-    Verify Software Versions    ESS    index=107    csc_salver=${ess106_salver}    csc_xmlver=${ess106_xmlver}
+    Verify Software Versions    ESS    index=107    csc_salver=${ess107_salver}    csc_xmlver=${ess107_xmlver}
     
 Verify ESS:107 SoftwareVersions timing
     [Tags]    software_versions    timing
@@ -281,7 +281,7 @@ Verify ESS:108 Standby
     
 Verify ESS:108 SoftwareVersions  
     [Tags]    software_versions  
-    Verify Software Versions    ESS    index=108    csc_salver=${ess106_salver}    csc_xmlver=${ess106_xmlver}
+    Verify Software Versions    ESS    index=108    csc_salver=${ess108_salver}    csc_xmlver=${ess108_xmlver}
     
 Verify ESS:108 SoftwareVersions timing
     [Tags]    software_versions    timing
