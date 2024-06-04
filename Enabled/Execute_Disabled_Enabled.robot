@@ -36,7 +36,7 @@ Execute MainTel Disabled to Enabled
     Report If Failed    ${scripts}    ${states}
 
 Execute MTM1M3 Disabled to Enabled
-    [Tags]    maintel    mtm1m3
+    [Tags]    mtm1m3
     ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    MTM1M3    Enabled
     Verify Scripts Completed Successfully    ${scripts}    ${states}
     Report If Failed    ${scripts}    ${states}
@@ -53,6 +53,18 @@ Execute ObsSys Disabled to Enabled
     Verify Scripts Completed Successfully    ${scripts}    ${states}
     Report If Failed    ${scripts}    ${states}
 
+Execute EPM:1 Disabled to Enabled
+    [Tags]    epm:1
+    ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    EPM    Enabled    -x 1
+    Verify Scripts Completed Successfully    ${scripts}    ${states}
+    Report If Failed    ${scripts}    ${states}
+
+Execute MTPtg Disabled to Enabled
+    [Tags]    mtptg
+    ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    MTPtg    Enabled
+    Verify Scripts Completed Successfully    ${scripts}    ${states}
+    Report If Failed    ${scripts}    ${states}
+
 Execute OCPS2||3 Disabled to Enabled
     [Tags]    mtocps
     # Set the OCPS name based on running on the BTS or TTS.
@@ -62,7 +74,7 @@ Execute OCPS2||3 Disabled to Enabled
     Report If Failed    ${scripts}    ${states}
 
 Execute Test:42 Disabled to Enabled
-    [Tags]
+    [Tags]    test:42
     ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    Test    Enabled    -x 42
     Verify Scripts Completed Successfully    ${scripts}    ${states}
     Report If Failed    ${scripts}    ${states}

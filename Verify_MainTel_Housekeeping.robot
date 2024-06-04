@@ -20,25 +20,26 @@ Execute BigCamera Housekeeping
     Verify Scripts Completed Successfully    ${scripts}    ${states}
 
 Execute MainTel Housekeeping
-    [Tags]    execute
+    [Tags]    execute    maintel
     ${scripts}    ${states}=    Execute Integration Test    maintel_housekeeping
     Verify Scripts Completed Successfully    ${scripts}    ${states}
 
-Verify MainTel is Parked
-    [Tags]    robot:continue-on-failure
-    # MTMount
+Verify MTMount is Parked
+    [Tags]    mtmount    mtptg
     Verify Telescope Parked    maintel
-    # MTDome
+
+Verify MTDome
+    [Tags]    mtdome
     Comment    The Dome park process can take several seconds to finish, even though the command is complete.
     Wait Until Keyword Succeeds    5x    strict: 2s    Verify Dome Parked    maintel
 
 Verify Tracking is Disabled
-    [Tags]
+    [Tags]    mtptg
     ${dataframe}=    Get Recent Samples    MTPtg    logevent_detailedState    ["detailedState",]    1    None
     Should Be Equal As Integers    ${dataframe.detailedState.values}[0]    1    #NOTTRACKING
 
 Verify MTMount Axes Homed
-    [Tags]    robot:continue-on-failure
+    [Tags]    robot:continue-on-failure    mtmount
     Verify Topic Attribute    MTMount    logevent_elevationInPosition    ${in_position_field}    ${in_position}
     Verify Time Delta    MTMount    command_homeBothAxes    logevent_elevationInPosition    index=None
     Verify Topic Attribute    MTMount    logevent_azimuthInPosition    ${in_position_field}    ${in_position}

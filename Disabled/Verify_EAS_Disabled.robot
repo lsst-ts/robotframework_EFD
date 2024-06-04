@@ -41,19 +41,19 @@ Verify DIMM:2 ConfigurationApplied Event timing
 
 # EPM:1
 Verify EPM:1 Disabled
-    [Tags]    disabled
+    [Tags]    epm:1    disabled
     Verify Summary State    ${STATES}[disabled]    EPM:1
 
 Verify EPM:1 SummaryState timing
-    [Tags]    software_versions    timing
+    [Tags]    epm:1    software_versions    timing
     Verify Time Delta    EPM    command_start    logevent_summaryState    index=1
 
 Verify EPM:1 ConfigurationApplied Event
-    [Tags]    config_applied
+    [Tags]    epm:1    config_applied
     Verify ConfigurationApplied    EPM    index=1
 
 Verify EPM:1 ConfigurationApplied Event timing
-    [Tags]    config_applied    timing
+    [Tags]    epm:1    config_applied    timing
     Verify Time Delta    EPM    command_start    logevent_configurationApplied    index=1
 
 # ESS:1

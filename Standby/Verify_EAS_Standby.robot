@@ -87,23 +87,23 @@ Verify DIMM:2 ConfigurationsAvailable timing
 
 # EPM:1
 Verify EPM:1 Standby
-    [Tags]    standby
+    [Tags]    epm:1    standby
     Verify Summary State    ${STATES}[standby]    EPM:1
 
 Verify EPM:1 SoftwareVersions
-    [Tags]    software_versions
+    [Tags]    epm:1    software_versions
     Verify Software Versions    EPM    csc_salver=${epm1_salver}    csc_xmlver=${epm1_xmlver}    index=1
 
 Verify EPM:1 SoftwareVersions timing
-    [Tags]    software_versions    timing
+    [Tags]    epm:1    software_versions    timing
     Verify Time Delta    EPM    logevent_softwareVersions    logevent_summaryState    index=1
 
 Verify EPM:1 ConfigurationsAvailable Event
-    [Tags]    config_available
+    [Tags]    epm:1    config_available
     Verify ConfigurationsAvailable    EPM    index=1
 
 Verify EPM:1 ConfigurationsAvailable timing
-    [Tags]    config_available    timing
+    [Tags]    epm:1    config_available    timing
     Verify Time Delta    EPM    logevent_configurationsAvailable    logevent_summaryState    index=1
 
 # ESS:1

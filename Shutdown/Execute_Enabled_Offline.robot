@@ -15,6 +15,18 @@ Execute BigCamera Enabled to Offline
     ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    ${big_camera}    Offline
     Verify Scripts Completed Successfully    ${scripts}    ${states}
 
+Execute EPM:1 Enabled to Offline
+    [Tags]    epm:1
+    ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    EPM    Disabled    -x 1
+    Verify Scripts Completed Successfully    ${scripts}    ${states}
+    Report If Failed    ${scripts}    ${states}
+
+Execute MTPtg Enabled to Offline
+    [Tags]    mtptg 
+    ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    MTPtg    Disabled
+    Verify Scripts Completed Successfully    ${scripts}    ${states}
+    Report If Failed    ${scripts}    ${states}
+
 Execute OCPS2||3 Enabled to Offline
     [Tags]    mtocps
     # Set the OCPS name based on running on the BTS or TTS.
@@ -23,12 +35,12 @@ Execute OCPS2||3 Enabled to Offline
     Verify Scripts Completed Successfully    ${scripts}    ${states}
 
 Execute MTM1M3 Enabled to Offline
-    [Tags]    maintel    mtm1m3
+    [Tags]    mtm1m3
     ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    MTM1M3    Offline
     Verify Scripts Completed Successfully    ${scripts}    ${states}
 
 Execute Test:42 Enabled to Offline
-    [Tags] 
+    [Tags]    test:42
     ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    Test    Offline    -x 42
     Verify Scripts Completed Successfully    ${scripts}    ${states}
 

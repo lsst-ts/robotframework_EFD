@@ -75,15 +75,15 @@ Verify MTMount ConfigurationApplied Event timing
 
 #MTPtg
 Verify MTPtg Disabled
-    [Tags]    disabled
+    [Tags]    mtptg    disabled
     Verify Summary State    ${STATES}[disabled]    MTPtg
 
 Verify MTPtg SummaryState timing
-    [Tags]    software_versions    timing
+    [Tags]    mtptg    software_versions    timing
     Verify Time Delta    MTPtg    command_start    logevent_summaryState
 
 Verify MTPtg ConfigurationApplied Event
-    [Tags]    config_applied
+    [Tags]    mtptg    config_applied
     Verify ConfigurationApplied    MTPtg
 
 #MTDome
