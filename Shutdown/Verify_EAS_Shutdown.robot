@@ -31,6 +31,12 @@ Verify DSM:2 Shutdown
     Verify Shutdown Process    DSM    index=2
     Verify Time Delta    DSM    ${topic_1}    ${topic_2}    index=2
 
+# EPM:1
+Verify EPM:1 Shutdown
+    [Tags]    eas
+    Verify Shutdown Process    EPM    index=1
+    Verify Time Delta    EPM    ${topic_1}    ${topic_2}    index=1
+
 # ESS
 Verify ESS:1 Shutdown
     [Tags]    eas
@@ -67,6 +73,16 @@ Verify ESS:106 Shutdown
     Verify Shutdown Process    ESS    index=106
     Verify Time Delta    ESS    ${topic_1}    ${topic_2}    index=106
 
+Verify ESS:107 Shutdown
+    [Tags]    eas
+    Verify Shutdown Process    ESS    index=107
+    Verify Time Delta    ESS    ${topic_1}    ${topic_2}    index=107
+
+Verify ESS:108 Shutdown
+    [Tags]    eas
+    Verify Shutdown Process    ESS    index=108
+    Verify Time Delta    ESS    ${topic_1}    ${topic_2}    index=108
+
 Verify ESS:201 Shutdown
     [Tags]    eas
     Verify Shutdown Process    ESS    index=201
@@ -86,6 +102,11 @@ Verify ESS:204 Shutdown
     [Tags]    eas
     Verify Shutdown Process    ESS    index=204
     Verify Time Delta    ESS    ${topic_1}    ${topic_2}    index=204
+
+Verify ESS:205 Shutdown
+    [Tags]    eas
+    Verify Shutdown Process    ESS    index=205
+    Verify Time Delta    ESS    ${topic_1}    ${topic_2}    index=205
 
 Verify ESS:301 Shutdown
     [Tags]    eas

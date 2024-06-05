@@ -2,14 +2,14 @@
 Resource    ../Global_Vars.resource
 Resource    ../CSC_Lists.resource
 Resource    ../Common_Keywords.resource
-Force Tags    enabled
+Force Tags    mtcs
 
 *** Variables ***
 
 *** Test Cases ***
 #LaserTracker:1
 Verify LaserTracker:1 Enabled
-    [Tags]    mtcs
+    [Tags]    enabled
     Verify Summary State    ${STATES}[enabled]    LaserTracker:1
 
 Verify LaserTracker:1 SummaryState timing
@@ -18,7 +18,7 @@ Verify LaserTracker:1 SummaryState timing
 
 #MTAirCompressor:1
 Verify MTAirCompressor:1 Enabled
-    [Tags]    mtcs
+    [Tags]    enabled
     Verify Summary State    ${STATES}[enabled]    MTAirCompressor:1
 
 Verify MTAirCompressor:1 SummaryState timing
@@ -27,7 +27,7 @@ Verify MTAirCompressor:1 SummaryState timing
 
 #MTAirCompressor:2
 Verify MTAirCompressor:2 Enabled
-    [Tags]    mtcs
+    [Tags]    enabled
     Verify Summary State    ${STATES}[enabled]    MTAirCompressor:2
 
 Verify MTAirCompressor:2 SummaryState timing
@@ -36,7 +36,7 @@ Verify MTAirCompressor:2 SummaryState timing
 
 #MTMount
 Verify MTMount Enabled
-    [Tags]    mtcs
+    [Tags]    enabled
     Verify Summary State    ${STATES}[enabled]    MTMount
 
 Verify MTMount SummaryState timing
@@ -45,16 +45,16 @@ Verify MTMount SummaryState timing
 
 #MTPtg
 Verify MTPtg Enabled
-    [Tags]    mtcs
+    [Tags]    mtptg    enabled
     Verify Summary State    ${STATES}[enabled]    MTPtg
 
 Verify MTPtg SummaryState timing
-    [Tags]    timing
+    [Tags]    mtptg    timing
     Verify Time Delta    MTPtg    command_enable    logevent_summaryState
 
 #MTDome
 Verify MTDome Enabled
-    [Tags]    mtcs
+    [Tags]    enabled
     Verify Summary State    ${STATES}[enabled]    MTDome
 
 Verify MTDome SummaryState timing
@@ -63,7 +63,7 @@ Verify MTDome SummaryState timing
 
 #MTDomeTrajectory
 Verify MTDomeTrajectory Enabled
-    [Tags]    mtcs
+    [Tags]    enabled
     Verify Summary State    ${STATES}[enabled]    MTDomeTrajectory
 
 Verify MTDomeTrajectory SummaryState timing
@@ -72,7 +72,7 @@ Verify MTDomeTrajectory SummaryState timing
 
 #MTAOS
 Verify MTAOS Enabled
-    [Tags]    mtcs
+    [Tags]    enabled
     Verify Summary State    ${STATES}[enabled]    MTAOS
 
 Verify MTAOS SummaryState timing
@@ -81,7 +81,7 @@ Verify MTAOS SummaryState timing
 
 #MTHexapod:1
 Verify MTHexapod:1 Enabled
-    [Tags]    mtcs
+    [Tags]    enabled
     Verify Summary State    ${STATES}[enabled]    MTHexapod:1
 
 Verify MTHexapod:1 SummaryState timing
@@ -90,7 +90,7 @@ Verify MTHexapod:1 SummaryState timing
 
 #MTHexapod:2
 Verify MTHexapod:2 Enabled
-    [Tags]    mtcs
+    [Tags]    enabled
     Verify Summary State    ${STATES}[enabled]    MTHexapod:2
 
 Verify MTHexapod:2 SummaryState timing
@@ -99,7 +99,7 @@ Verify MTHexapod:2 SummaryState timing
 
 #MTRotator
 Verify MTRotator Enabled
-    [Tags]    mtcs
+    [Tags]    enabled
     Verify Summary State    ${STATES}[enabled]    MTRotator
 
 Verify MTRotator SummaryState timing
@@ -108,7 +108,7 @@ Verify MTRotator SummaryState timing
 
 #MTM1M3
 Verify MTM1M3 Enabled
-    [Tags]    mtcs
+    [Tags]    enabled
     Verify Summary State    ${STATES}[enabled]    MTM1M3
 
 Verify MTM1M3 SummaryState timing
@@ -117,7 +117,7 @@ Verify MTM1M3 SummaryState timing
 
 #MTM2
 Verify MTM2 Enabled
-    [Tags]    mtcs
+    [Tags]    enabled
     Verify Summary State    ${STATES}[enabled]    MTM2
 
 Verify MTM2 SummaryState timing

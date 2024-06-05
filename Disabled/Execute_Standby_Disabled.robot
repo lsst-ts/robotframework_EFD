@@ -42,7 +42,7 @@ Execute MainTel Standby to Disabled
     Report If Failed    ${scripts}    ${states}
 
 Execute MTM1M3 Standby to Disabled
-    [Tags]    maintel    mtm1m3
+    [Tags]    mtm1m3
     ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    MTM1M3    Disabled    -a Default
     Verify Scripts Completed Successfully    ${scripts}    ${states}
     Report If Failed    ${scripts}    ${states}
@@ -50,6 +50,18 @@ Execute MTM1M3 Standby to Disabled
 Execute ObsSys Standby to Disabled
     [Tags]    obssys
     ${scripts}    ${states}=    Execute Integration Test    obssys_standby_disabled
+    Verify Scripts Completed Successfully    ${scripts}    ${states}
+    Report If Failed    ${scripts}    ${states}
+
+Execute EPM:1 Standby to Disabled 
+    [Tags]    epm:1
+    ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    EPM    Disabled    -x 1
+    Verify Scripts Completed Successfully    ${scripts}    ${states}
+    Report If Failed    ${scripts}    ${states}
+
+Execute MTPtg Standby to Disabled
+    [Tags]    mtptg
+    ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    MTPtg    Disabled
     Verify Scripts Completed Successfully    ${scripts}    ${states}
     Report If Failed    ${scripts}    ${states}
 
@@ -62,7 +74,7 @@ Execute OCPS2||3 Standby to Disabled
     Report If Failed    ${scripts}    ${states}
 
 Execute Test:42 Standby to Disabled
-    [Tags]    
+    [Tags]    test:42
     ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    Test    Disabled    -x 42
     Verify Scripts Completed Successfully    ${scripts}    ${states}
     Report If Failed    ${scripts}    ${states}

@@ -43,7 +43,7 @@ Verify ATCamera OfflineDetailedStates
 
 Verify ATCamera OfflineDetailedStates timing
     [Tags]    latiss    detailed_states    timing
-    Verify Time Delta    ATCamera   ${offdet_topic}    logevent_summaryState
+    Verify Time Delta    ATCamera    logevent_summaryState   ${offdet_topic}
 
 #BigCamera
 Verify BigCamera Offline
@@ -78,4 +78,4 @@ Verify BigCamera OfflineDetailedStates
 
 Verify BigCamera OfflineDetailedStates timing
     [Tags]    bigcamera    detailed_states    timing
-    Verify Time Delta    ${BigCamera}    logevent_summaryState    ${offdet_topic}
+    Verify Time Delta    ${BigCamera}    ${offdet_topic}    logevent_summaryState

@@ -29,17 +29,13 @@ Verify BigCamera Standby
     [Tags]
     Verify Summary State    ${STATES}[standby]    ${BigCamera}
     
-Verify BigCamera SummaryState timing
-    [Tags]    software_versions    timing
-    Verify Time Delta    ${BigCamera}    command_standby    logevent_summaryState
-
 Verify BigCamera SoftwareVersions Event
     [Tags]    software_versions
     Verify Software Versions    ${BigCamera}    csc_salver=${camera_salver}    csc_xmlver=${camera_xmlver}
 
 Verify BigCamera SoftwareVersions Event timing
     [Tags]    software_versions    timing
-    Verify Time Delta    ${BigCamera}    command_standby    logevent_softwareVersions
+    Verify Time Delta    ${BigCamera}    logevent_softwareVersions    logevent_summaryState
 
 Verify BigCamera ConfigurationsAvailable Event
     [Tags]    config_available
@@ -47,16 +43,12 @@ Verify BigCamera ConfigurationsAvailable Event
 
 Verify BigCamera ConfigurationsAvailable Event timing
     [Tags]    config_available    timing
-    Verify Time Delta    ${BigCamera}    command_standby    logevent_configurationsAvailable
+    Verify Time Delta    ${BigCamera}    logevent_configurationsAvailable    logevent_summaryState
 
 #OODS
 Verify OODS Standby
     [Tags]
     Verify Summary State    ${STATES}[standby]    ${OODS}
-
-Verify OODS SummaryState timing
-    [Tags]    software_versions    timing
-    Verify Time Delta    ${OODS}    command_standby    logevent_summaryState
 
 Verify OODS SoftwareVersions
     [Tags]    software_versions
@@ -64,7 +56,7 @@ Verify OODS SoftwareVersions
 
 Verify OODS SoftwareVersions timing
     [Tags]    software_versions    timing
-    Verify Time Delta    ${OODS}    command_standby    logevent_softwareVersions
+    Verify Time Delta    ${OODS}    logevent_softwareVersions    logevent_summaryState
 
 Verify OODS ConfigurationsAvailable Event
     [Tags]    config_available
@@ -74,10 +66,6 @@ Verify OODS ConfigurationsAvailable Event
 Verify HeaderService Standby
     [Tags]
     Verify Summary State    ${STATES}[standby]    ${HeaderService}
-
-Verify HeaderService SummaryState timing
-    [Tags]    software_versions    timing
-    Verify Time Delta    ${HeaderService}    command_standby    logevent_summaryState
 
 Verify HeaderService ConfigurationsAvailable Event
     [Tags]    config_available
@@ -89,16 +77,12 @@ Verify HeaderService SoftwareVersions
 
 Verify HeaderService SoftwareVersions Event timing
     [Tags]    software_versions    timing
-    Verify Time Delta    ${HeaderService}    command_standby    logevent_softwareVersions
+    Verify Time Delta    ${HeaderService}    logevent_softwareVersions    logevent_summaryState
 
 #OCPS:2||3
 Verify OCPS:2||3 Standby
     [Tags]
     Verify Summary State    ${STATES}[standby]    OCPS:${OcpsIndex}
-
-Verify OCPS:2||3 SummaryState timing
-    [Tags]    software_versions    timing
-    Verify Time Delta    OCPS    command_standby    logevent_summaryState    index=${OcpsIndex}
 
 Verify OCPS:2||3 SoftwareVersions
     [Tags]    software_versions
@@ -106,7 +90,7 @@ Verify OCPS:2||3 SoftwareVersions
 
 Verify OCPS:2||3 SoftwareVersions Event timing
     [Tags]    software_versions    timing
-    Verify Time Delta    OCPS    command_standby    logevent_softwareVersions    index=${OcpsIndex}
+    Verify Time Delta    OCPS    logevent_softwareVersions    logevent_summaryState    index=${OcpsIndex}
 
 Verify OCPS:2||3 ConfigurationsAvailable Event
     [Tags]    config_available
@@ -114,4 +98,4 @@ Verify OCPS:2||3 ConfigurationsAvailable Event
 
 Verify OCPS:2||3 ConfigurationsAvailable Event timing
     [Tags]    config_available    timing
-    Verify Time Delta    OCPS    command_standby    logevent_configurationsAvailable    index=${OcpsIndex}
+    Verify Time Delta    OCPS    logevent_configurationsAvailable    logevent_summaryState    index=${OcpsIndex}
