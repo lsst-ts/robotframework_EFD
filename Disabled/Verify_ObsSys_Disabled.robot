@@ -57,39 +57,30 @@ Verify Scheduler:3 ConfigurationApplied Event timing
     Verify Time Delta    Scheduler    command_start    logevent_configurationApplied    index=3
 
 #ScriptQueue:1
+##Auto-Enabled: no timing tests
 Verify ScriptQueue:1 Disabled
     [Tags]    disabled
     Verify Summary State    ${STATES}[disabled]    ScriptQueue:1    auto_enable=True
-
-Verify ScriptQueue:1 SummaryState timing
-    [Tags]    software_versions    timing
-    Verify Time Delta    ScriptQueue    command_start    logevent_summaryState    index=1
 
 Verify ScriptQueue:1 ConfigurationApplied Event
     [Tags]    config_applied
     Verify ConfigurationApplied    ScriptQueue    index=1
 
 #ScriptQueue:2
+##Auto-Enabled: no timing tests
 Verify ScriptQueue:2 Disabled
     [Tags]    disabled
     Verify Summary State    ${STATES}[disabled]    ScriptQueue:2    auto_enable=True
-
-Verify ScriptQueue:2 SummaryState timing
-    [Tags]    software_versions    timing
-    Verify Time Delta    ScriptQueue    command_start    logevent_summaryState    index=2
 
 Verify ScriptQueue:2 ConfigurationApplied Event
     [Tags]    config_applied
     Verify ConfigurationApplied    ScriptQueue    index=2
 
 #ScriptQueue:3
+##Auto-Enabled: no timing tests
 Verify ScriptQueue:3 Disabled
     [Tags]    disabled
     Verify Summary State    ${STATES}[disabled]    ScriptQueue:3    auto_enable=True
-
-Verify ScriptQueue:3 SummaryState timing
-    [Tags]    software_versions    timing
-    Verify Time Delta    ScriptQueue    command_start    logevent_summaryState    index=3
 
 Verify ScriptQueue:3 ConfigurationApplied Event
     [Tags]    config_applied
