@@ -16,19 +16,19 @@ Set Camera Variables
     Set Suite Variable    ${bigcam}
 
 Load Camera Playlist
-    [Tags]    execute    playlist    bigcamera
+    [Tags]    execute    playlist    bigcamera_imaging
     ${result}=    Run Process    load_camera_playlist    ${bigcam}    master_flat    --no-repeat
     Log Many    ${result.rc}    ${result.stdout}    ${result.stderr}
     Run Keyword If    ${result.rc} == 1    Fatal Error
 
 Verify Camera Playlist Loaded
     [Documentation]    Playlist should already be loaded, ensure nothing was changed prior to running this script.
-    [Tags]    playlist    bigcamera
+    [Tags]    playlist    bigcamera_imaging
     ${dataframe}=    Get Recent Samples    ${BigCamera}    command_play    ["playlist", "repeat", "private_identity", "private_origin",]    1    None
     Should Be Equal    ${dataframe.playlist.values}[0]    bias_dark_flat
 
 Execute BigCamera Image Taking Test
-    [Tags]    execute    bigcamera
+    [Tags]    execute    bigcamera_imaging
     # Use the correct script, based on which TestStand is being used.
     ${integration_script}=    Set Variable If    "${env_efd}" == "base_efd"    lsstcam_image_taking    comcam_image_taking
     ${scripts}    ${states}=    Execute Integration Test    comcam_image_taking
@@ -37,7 +37,7 @@ Execute BigCamera Image Taking Test
 
 Verify Camera Image Sequence
     [Documentation]    Verify the Camera images are the correct type, with the correct exposure time.
-    [Tags]    bigcamera    robot:continue-on-failure
+    [Tags]    bigcamera_imaging    robot:continue-on-failure
     Set Suite Variable    ${num_images}    ${1}    # Needed by Verify OODS ImageInOODS test case.
     ${seq_length}=    Set Variable    ${1}
     ${exp_time}=    Set Variable    ${0}
@@ -55,7 +55,7 @@ Verify Camera Image Sequence
     Should Be Equal As Numbers    ${cmd_df.numImages.values}[${0}]    1
 
 Verify OODS ImageInOODS
-    [Tags]    bigcamera
+    [Tags]    bigcamera_imaging
     Wait Until Keyword Succeeds    60 sec    10 sec    Verify Image in OODS    ${OODS}    ${image_names}[0][0]
     ${dataframe}=    Get Recent Samples    ${OODS}    logevent_imageInOODS    ["camera", "description", "obsid",]    ${num_images}    None
     ${camera}=    Set Variable If    "${env_efd}" == "base_efd"    LSSTCam    LSSTComCam
@@ -64,7 +64,7 @@ Verify OODS ImageInOODS
     Should Be Equal As Strings    ${dataframe.obsid.values}[${0}]    ${image_names}[0][${0}]
 
 Verify HeaderService LargeFileObjectAvailable
-    [Tags]    bigcamera
+    [Tags]    bigcamera_imaging
     ${dataframe}=    Get Recent Samples    ${HeaderService}    logevent_largeFileObjectAvailable    ["id", "url",]    ${num_images}    None
     Should Be Equal As Strings    ${dataframe.id.values}[${0}]    ${image_names}[0][${0}]
     ${file_name}=    Catenate    SEPARATOR=    ${HeaderService}_header_    ${image_names}[0][${0}]    .yaml

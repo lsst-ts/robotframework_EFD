@@ -13,6 +13,8 @@
 #  Specify skip tags
 #-e skipped
 #-e at_light_cal
+-e bigcamera_imaging
+-e mtocps
 --skiponfailure skipped
 
 # Report style
