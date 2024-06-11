@@ -72,20 +72,20 @@ Verify HeaderService ConfigurationApplied timing
 #OCPS:2||3
 Verify OCPS:2||3 Disabled
     [Tags]
-    Set Tags    ${OCPS}
+    Set Tags    OCPS:${OcpsIndex}
     Verify Summary State    ${STATES}[disabled]    OCPS:${OcpsIndex}
 
 Verify OCPS:2||3 SummaryState timing
     [Tags]    software_versions    timing
-    Set Tags    ${OCPS}
+    Set Tags    OCPS:${OcpsIndex}
     Verify Time Delta    OCPS    command_start    logevent_summaryState    index=${OcpsIndex}
 
 Verify OCPS:2||3 ConfigurationApplied Event
     [Tags]    config_applied
-    Set Tags    ${OCPS}
+    Set Tags    OCPS:${OcpsIndex}
     Verify ConfigurationApplied    OCPS    index=${OcpsIndex}
 
 Verify OCPS:2||3 ConfigurationApplied timing
     [Tags]    config_applied    timing
-    Set Tags    ${OCPS}
+    Set Tags    OCPS:${OcpsIndex}
     Verify Time Delta    OCPS    command_start    logevent_configurationApplied    index=${OcpsIndex}

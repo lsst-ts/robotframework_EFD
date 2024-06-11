@@ -66,7 +66,8 @@ Execute MTPtg Disabled to Enabled
     Report If Failed    ${scripts}    ${states}
 
 Execute OCPS2||3 Disabled to Enabled
-    [Tags]    mtocps
+    [Tags]
+    Set Tag    OCPS:${OcpsIndex}
     ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    OCPS    Enabled    -x ${OcpsIndex}
     Verify Scripts Completed Successfully    ${scripts}    ${states}
     Report If Failed    ${scripts}    ${states}

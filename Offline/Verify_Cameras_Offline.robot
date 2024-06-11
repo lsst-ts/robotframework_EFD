@@ -82,4 +82,5 @@ Verify BigCamera OfflineDetailedStates
 
 Verify BigCamera OfflineDetailedStates timing
     [Tags]    detailed_states    timing
+    Set Tags    ${BigCamera}
     Verify Time Delta    ${BigCamera}    ${offdet_topic}    logevent_summaryState

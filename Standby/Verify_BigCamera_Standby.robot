@@ -95,25 +95,25 @@ Verify HeaderService SoftwareVersions Event timing
 #OCPS:2||3
 Verify OCPS:2||3 Standby
     [Tags]
-    Set Tags    ${OCPS}
+    Set Tags    OCPS:${OcpsIndex}
     Verify Summary State    ${STATES}[standby]    OCPS:${OcpsIndex}
 
 Verify OCPS:2||3 SoftwareVersions
     [Tags]    software_versions
-    Set Tags    ${OCPS}
+    Set Tags    OCPS:${OcpsIndex}
     Verify SoftwareVersions    OCPS    index=${OcpsIndex}    csc_salver=${ocps_salver}    csc_xmlver=${ocps_xmlver}
 
 Verify OCPS:2||3 SoftwareVersions Event timing
     [Tags]    software_versions    timing
-    Set Tags    ${OCPS}
+    Set Tags    OCPS:${OcpsIndex}
     Verify Time Delta    OCPS    logevent_softwareVersions    logevent_summaryState    index=${OcpsIndex}
 
 Verify OCPS:2||3 ConfigurationsAvailable Event
     [Tags]    config_available
-    Set Tags    ${OCPS}
+    Set Tags    OCPS:${OcpsIndex}
     Verify ConfigurationsAvailable    OCPS    index=${OcpsIndex}
 
 Verify OCPS:2||3 ConfigurationsAvailable Event timing
     [Tags]    config_available    timing
-    Set Tags    ${OCPS}
+    Set Tags    OCPS:${OcpsIndex}
     Verify Time Delta    OCPS    logevent_configurationsAvailable    logevent_summaryState    index=${OcpsIndex}

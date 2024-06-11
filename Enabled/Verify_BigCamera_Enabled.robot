@@ -44,10 +44,10 @@ Verify HeaderService SummaryState timing
 #OCPS:2||3
 Verify OCPS:2||3 Enabled
     [Tags]
-    Set Tags    ${OCPS}
+    Set Tags    OCPS:${OcpsIndex}
     Verify Summary State    ${STATES}[enabled]    OCPS:${OcpsIndex}
 
 Verify OCPS SummaryState timing
     [Tags]    timing
-    Set Tags    ${OCPS}
-    Verify Time Delta    ${OCPS}    command_enable    logevent_summaryState    index=${OcpsIndex}
+    Set Tags    OCPS:${OcpsIndex}
+    Verify Time Delta    OCPS    command_enable    logevent_summaryState    index=${OcpsIndex}

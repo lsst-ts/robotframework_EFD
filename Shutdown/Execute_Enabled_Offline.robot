@@ -27,7 +27,8 @@ Execute MTPtg Enabled to Offline
     Report If Failed    ${scripts}    ${states}
 
 Execute OCPS2||3 Enabled to Offline
-    [Tags]    mtocps
+    [Tags]
+    Set Tag    OCPS:${OcpsIndex}
     ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    OCPS    Offline    -x ${OcpsIndex}
     Verify Scripts Completed Successfully    ${scripts}    ${states}
 
