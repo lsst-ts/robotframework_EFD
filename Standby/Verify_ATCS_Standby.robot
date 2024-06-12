@@ -119,9 +119,12 @@ Verify ATMCS SoftwareVersions timing
     Verify Time Delta    ATMCS    logevent_softwareVersions    logevent_summaryState
 
 Verify ATMCS ConfigurationsAvailable Event
-    [Tags]    config_available
-    # Non-configurable: dataframe empty, no timing test.
+    [Tags]    config_available    DM-44733
     Verify ConfigurationsAvailable    ATMCS
+
+Verify ATMCS ConfigurationsAvailable timing
+    [Tags]    config_available    timing    DM-44733
+    Verify Time Delta    ATMCS    logevent_configurationsAvailable
 
 #ATPneumatics
 Verify ATPneumatics Standby
@@ -137,9 +140,12 @@ Verify ATPneumatics SoftwareVersions timing
     Verify Time Delta    ATPneumatics    logevent_softwareVersions    logevent_summaryState
 
 Verify ATPneumatics ConfigurationsAvailable Event
-    [Tags]    config_available
-    # Non-configurable: dataframe empty, no timing test.
+    [Tags]    config_available    DM-44734
     Verify ConfigurationsAvailable    ATPneumatics
+
+Verify ATMCS ConfigurationsAvailable timing
+    [Tags]    config_available    timing    DM-44734
+    Verify Time Delta    ATMCS    logevent_configurationsAvailable
 
 #ATPtg
 Verify ATPtg Standby

@@ -47,19 +47,23 @@ Verify ATCamera OfflineDetailedStates timing
 
 #BigCamera
 Verify BigCamera Offline
-    [Tags]    bigcamera
+    [Tags]
+    Set Tags    ${BigCamera}
     Verify Summary State    ${STATES}[offline]    ${BigCamera}
 
 Verify BigCamera SoftwareVersions
-    [Tags]    bigcamera    software_versions
+    [Tags]    software_versions
+    Set Tags    ${BigCamera}
     Verify Software Versions    ${BigCamera}
 
 Verify BigCamera SoftwareVersions timing
-    [Tags]    bigcamera    software_versions    timing
+    [Tags]    software_versions    timing
+    Set Tags    ${BigCamera}
     Verify Time Delta    ${BigCamera}    logevent_summaryState    logevent_softwareVersions
 
 Verify BigCamera OfflineDetailedStates
-    [Tags]    bigcamera
+    [Tags]
+    Set Tags    ${BigCamera}
     Log Many    ${BigCamera}    ${offdet_topic}   ${offdet_fields}
     ${output}=    Get Recent Samples    ${BigCamera}    ${offdet_topic}   ${offdet_fields}    2
     ${output}=    Convert to String    ${output}
@@ -77,5 +81,6 @@ Verify BigCamera OfflineDetailedStates
     Should Be Equal    ${second_event}[4]    2    # PUBLISH_ONLY
 
 Verify BigCamera OfflineDetailedStates timing
-    [Tags]    bigcamera    detailed_states    timing
+    [Tags]    detailed_states    timing
+    Set Tags    ${BigCamera}
     Verify Time Delta    ${BigCamera}    ${offdet_topic}    logevent_summaryState

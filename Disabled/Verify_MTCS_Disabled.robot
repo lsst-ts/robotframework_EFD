@@ -23,38 +23,24 @@ Verify LaserTracker:1 ConfigurationApplied Event timing
     Verify Time Delta    LaserTracker    command_start    logevent_configurationApplied    index=1
 
 #MTAirCompressor:1
+##Auto-Enabled: no timing tests
 Verify MTAirCompressor:1 Disabled
     [Tags]    disabled
     Verify Summary State    ${STATES}[disabled]    MTAirCompressor:1    auto_enable=True
-
-Verify MTAirCompressor:1 SummaryState timing
-    [Tags]    software_versions    timing
-    Verify Time Delta    MTAirCompressor    command_start    logevent_summaryState    index=2
 
 Verify MTAirCompressor:1 ConfigurationApplied Event
     [Tags]    config_applied
     Verify ConfigurationApplied    MTAirCompressor    index=1
 
-Verify MTAirCompressor:1 ConfigurationApplied Event timing
-    [Tags]    config_applied    timing
-    Verify Time Delta    MTAirCompressor    command_start    logevent_configurationApplied    index=1
-
 #MTAirCompressor:2
+##Auto-Enabled: no timing tests
 Verify MTAirCompressor:2 Disabled
     [Tags]    disabled
     Verify Summary State    ${STATES}[disabled]    MTAirCompressor:2    auto_enable=True
 
-Verify MTAirCompressor:2 SummaryState timing
-    [Tags]    software_versions    timing
-    Verify Time Delta    MTAirCompressor    command_start    logevent_summaryState    index=2
-
 Verify MTAirCompressor:2 ConfigurationApplied Event
     [Tags]    config_applied
     Verify ConfigurationApplied    MTAirCompressor    index=2
-
-Verify MTAirCompressor:2 ConfigurationApplied Event timing   
-    [Tags]    config_applied    timing
-    Verify Time Delta    MTAirCompressor    command_start    logevent_configurationApplied    index=1
 
 #MTMount
 Verify MTMount Disabled
