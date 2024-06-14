@@ -28,26 +28,30 @@ Verify Scheduler:1 Standby
     [Tags]    standby
     Verify Summary State    ${STATES}[standby]    Scheduler:1
 
+Verify Scheduler:1 SummaryState timing
+    [Tags]    standby    timing
+    Verify Time Delta    Scheduler:1    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
 Verify Scheduler:1 SoftwareVersions
     [Tags]    software_versions    CAP-1044
     Verify Software Versions    Scheduler    index=1    csc_salver=${scheduler1_salver}    csc_xmlver=${scheduler1_xmlver}
 
 Verify Scheduler:1 SoftwareVersions timing
     [Tags]    software_versions    timing
-    Verify Time Delta    Scheduler    logevent_softwareVersions    logevent_summaryState    index=1
+    Verify Time Delta    Scheduler:1    logevent_softwareVersions    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify Scheduler:1 ConfigurationsAvailable Event
     [Tags]    config_available    CAP-1033
     Verify ConfigurationsAvailable    Scheduler    index=1
 
-Verify Scheduler:1 ConfigurationsAvailable timing
-    [Tags]    software_versions    timing
-    Verify Time Delta    Scheduler    logevent_configurationsAvailable    logevent_summaryState    index=1
-
 #Scheduler:2
 Verify Scheduler:2 Standby
     [Tags]    standby
     Verify Summary State    ${STATES}[standby]    Scheduler:2
+
+Verify Scheduler:2 SummaryState timing
+    [Tags]    standby    timing
+    Verify Time Delta    Scheduler:2    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify Scheduler:2 SoftwareVersions
     [Tags]    software_versions    CAP-1044
@@ -55,20 +59,20 @@ Verify Scheduler:2 SoftwareVersions
 
 Verify Scheduler:2 SoftwareVersions timing
     [Tags]    software_versions    timing
-    Verify Time Delta    Scheduler    logevent_softwareVersions    logevent_summaryState    index=2
+    Verify Time Delta    Scheduler:2    logevent_softwareVersions    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify Scheduler:2 ConfigurationsAvailable Event
     [Tags]    config_available    CAP-1033
     Verify ConfigurationsAvailable    Scheduler    index=2
 
-Verify Scheduler:2 ConfigurationsAvailable timing
-    [Tags]    config_available    timing
-    Verify Time Delta    Scheduler    logevent_configurationsAvailable    logevent_summaryState    index=2
-
 #Scheduler:3
 Verify Scheduler:3 Standby
     [Tags]    standby
     Verify Summary State    ${STATES}[standby]    Scheduler:3
+
+Verify Scheduler:3 SummaryState timing
+    [Tags]    standby    timing
+    Verify Time Delta    Scheduler:3    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify Scheduler:3 SoftwareVersions
     [Tags]    software_versions    CAP-1044
@@ -76,20 +80,20 @@ Verify Scheduler:3 SoftwareVersions
 
 Verify Scheduler:3 SoftwareVersions timing
     [Tags]    software_versions    timing
-    Verify Time Delta    Scheduler    logevent_softwareVersions    logevent_summaryState    index=3
+    Verify Time Delta    Scheduler:3    logevent_softwareVersions    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify Scheduler:3 ConfigurationsAvailable Event
     [Tags]    config_available    CAP-1033
     Verify ConfigurationsAvailable    Scheduler    index=3
 
-Verify Scheduler:3 ConfigurationsAvailable timing
-    [Tags]    config_available    timing
-    Verify Time Delta    Scheduler    logevent_configurationsAvailable    logevent_summaryState    index=3
-
 #ScriptQueue:1
 Verify ScriptQueue:1 Standby
     [Tags]    standby
     Verify Summary State    ${STATES}[standby]    ScriptQueue:1    True
+
+Verify ScriptQueue:1 SummaryState timing
+    [Tags]    standby    timing
+    Verify Time Delta    ScriptQueue:1    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify ScriptQueue:1 SoftwareVersions
     [Tags]    software_versions
@@ -97,7 +101,7 @@ Verify ScriptQueue:1 SoftwareVersions
 
 Verify ScriptQueue:1 SoftwareVersions timing
     [Tags]    software_versions    timing
-    Verify Time Delta    ScriptQueue    logevent_softwareVersions    logevent_summaryState    index=1
+    Verify Time Delta    ScriptQueue    logevent_softwareVersions    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify ScriptQueue:1 ConfigurationsAvailable Event
     [Tags]    config_available
@@ -108,13 +112,17 @@ Verify ScriptQueue:2 Standby
     [Tags]    standby
     Verify Summary State    ${STATES}[standby]    ScriptQueue:2    True
 
+Verify ScriptQueue:2 SummaryState timing
+    [Tags]    standby    timing
+    Verify Time Delta    ScriptQueue:2    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
 Verify ScriptQueue:2 SoftwareVersions
     [Tags]    software_versions
     Verify Software Versions    ScriptQueue    index=2    csc_salver=${scriptqueue2_salver}    csc_xmlver=${scriptqueue2_xmlver}
 
 Verify ScriptQueue:2 SoftwareVersions timing
     [Tags]    software_versions    timing
-    Verify Time Delta    ScriptQueue    logevent_softwareVersions    logevent_summaryState    index=2
+    Verify Time Delta    ScriptQueue:2    logevent_softwareVersions    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify ScriptQueue:2 ConfigurationsAvailable Event
     [Tags]    config_available
@@ -125,13 +133,17 @@ Verify ScriptQueue:3 Standby
     [Tags]    standby
     Verify Summary State    ${STATES}[standby]    ScriptQueue:3    True
 
+Verify ScriptQueue:3 SummaryState timing
+    [Tags]    standby    timing
+    Verify Time Delta    ScriptQueue:3    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
 Verify ScriptQueue:3 SoftwareVersions
     [Tags]    software_versions
     Verify Software Versions    ScriptQueue    index=3    csc_salver=${scriptqueue3_salver}    csc_xmlver=${scriptqueue3_xmlver}
 
 Verify ScriptQueue:3 SoftwareVersions timing
     [Tags]    software_versions    timing
-    Verify Time Delta    ScriptQueue    logevent_softwareVersions    logevent_summaryState    index=3
+    Verify Time Delta    ScriptQueue:3    logevent_softwareVersions    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify ScriptQueue:3 ConfigurationsAvailable Event
     [Tags]    config_available
@@ -142,13 +154,17 @@ Verify Watcher Standby
     [Tags]    standby
     Verify Summary State    ${STATES}[standby]    Watcher    True
 
+Verify Watcher SummaryState timing
+    [Tags]    standby    timing
+    Verify Time Delta    Watcher  logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
 Verify Watcher SoftwareVersions
     [Tags]    software_versions
     Verify Software Versions    Watcher    csc_salver=${watcher_salver}    csc_xmlver=${watcher_xmlver}
 
 Verify Watcher SoftwareVersions timing
     [Tags]    software_versions    timing
-    Verify Time Delta    Watcher    logevent_softwareVersions    logevent_summaryState
+    Verify Time Delta    Watcher    logevent_softwareVersions    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify Watcher ConfigurationsAvailable Event
     [Tags]    config_available
@@ -156,12 +172,16 @@ Verify Watcher ConfigurationsAvailable Event
 
 Verify Watcher ConfigurationsAvailable timing
     [Tags]    config_available    timing
-    Verify Time Delta    Watcher    logevent_configurationsAvailable    logevent_summaryState
+    Verify Time Delta    Watcher    logevent_configurationsAvailable    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 #Test:42
 Verify Test:42 Standby
     [Tags]    standby
     Verify Summary State    ${STATES}[standby]    Test:42
+
+Verify Test:42 SummaryState timing
+    [Tags]    standby    timing
+    Verify Time Delta    Test:42    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify Test:42 SoftwareVersions
     [Tags]    software_versions
@@ -169,8 +189,12 @@ Verify Test:42 SoftwareVersions
 
 Verify Test:42 SoftwareVersions timing
     [Tags]    software_versions    timing
-    Verify Time Delta    Test    logevent_softwareVersions    logevent_summaryState    index=42
+    Verify Time Delta    Test:42    logevent_softwareVersions    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify Test:42 ConfigurationsAvailable Event
     [Tags]    config_available
     Verify ConfigurationsAvailable    Test    index=42
+
+Verify Test:42 ConfigurationsAvailable Event timing
+    [Tags]    config_available    timing
+    Verify Time Delta    Test:42    logevent_configurationsAvailable    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}

@@ -631,35 +631,54 @@ class QueryEfd:
 
     @keyword
     def verify_time_delta(
-        self, csc: str, topic_1: str, topic_2: str, index: int = None
+         self, csc: str, topic: str, hour: int = None, day: int = None, week: int = 0
     ) -> None:
-        """Fails if the difference between the publish times for the two given
-        topics is negative, indicating the second occurred BEFORE the first.
+        """Fails if the publish time for the given topic is older than
+           the Monday of the deployment week. A deployment will reset
+           all the publish times, and the earliest it will occur is on
+           a Monday. Therefore, if publish times are too old or
+           non-existent, there is a problem.
 
         Parameters
         ----------
         csc : `str`
-            The name of the CSC.
+            The name of the CSC, in index format, i.e <CSC>[:<index>].
         topic_1 : `str`
             The name of the first topic.
-        topic_2 : `str`
-            The name of the second topic.
-        index : `int`
-            The index of the CSC, if applicable (default is None).
+        hour : `int`
+            The number of hours to go back. Default of None gets
+            set to 4, meaning four hours prior to 'now'.
+        day : `int`
+            The number day of the week. Default of None gets set
+            to the current number day of the week.
+        week : `int`
+            The number of weeks to go back. Default is 0, meaning
+            the current week, i.e. the most recent Monday.
         """
-        # Get the timestamps for the topics.
-        time_1 = self.get_topic_sent_time(csc, topic_1)
-        time_2 = self.get_topic_sent_time(csc, topic_2)
+        # Define `today` as the execution time.
+        today = datetime.datetime.now(tz=datetime.timezone.utc)
+        # If `day` is not defined, set it to the current
+        # day number of the week (Monday is day 0).
+        if day is None:
+              day = today.weekday()
+        # If `hour` is not defined, set to 4 hours, which
+        # assumes the testing starts about four hours later in
+        # the day than the deployment happened.
+        if hour is None:
+              hour = 4       
+        # Define the target datetime.
+        time0 = today - datetime.timedelta(hours=hour, days=day, weeks=week)
+        # Get the timestamp for the topic.
+        pub_time = self.get_topic_sent_time(f"{csc}", topic)
         # Get the timedelta, in seconds.
-        delta = (time_2 - time_1).total_seconds()
+        delta = (pub_time - time0).total_seconds()
         print(
-            f"*TRACE*{topic_1} was sent at {time_1}.\n"
-            f"*TRACE*{topic_2} was sent at {time_2}.\n"
+            f"*TRACE*{csc} {topic} was sent at {pub_time}.\n"
             f"*TRACE*The time difference is {delta} seconds."
         )
         if delta < 0:
             raise AssertionError(
-                f"{topic_2} was published {abs(delta)} seconds BEFORE {topic_1}."
+                f"{topic} was published {abs(delta)} seconds BEFORE {time0}."
             )
 
     @keyword
