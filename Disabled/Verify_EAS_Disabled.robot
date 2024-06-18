@@ -12,7 +12,7 @@ Verify DIMM:1 Disabled
 
 Verify DIMM:1 SummaryState timing
     [Tags]    software_versions    timing
-    Verify Time Delta    DIMM    command_start    logevent_summaryState    index=1
+    Verify Time Delta    DIMM:1    logevent_summaryState    index=1    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify DIMM:1 ConfigurationApplied Event
     [Tags]    config_applied
@@ -20,7 +20,7 @@ Verify DIMM:1 ConfigurationApplied Event
 
 Verify DIMM:1 ConfigurationApplied Event timing
     [Tags]    config_applied    timing
-    Verify Time Delta    DIMM    command_start    logevent_configurationApplied    index=1
+    Verify Time Delta    DIMM:1    logevent_configurationApplied    index=1    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 # DIMM:2
 Verify DIMM:2 Disabled
@@ -29,7 +29,7 @@ Verify DIMM:2 Disabled
 
 Verify DIMM:2 SummaryState timing
     [Tags]    software_versions    timing
-    Verify Time Delta    DIMM    command_start    logevent_summaryState    index=2
+    Verify Time Delta    DIMM:2    logevent_summaryState    index=2    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify DIMM:2 ConfigurationApplied Event
     [Tags]    config_applied
@@ -37,7 +37,7 @@ Verify DIMM:2 ConfigurationApplied Event
 
 Verify DIMM:2 ConfigurationApplied Event timing
     [Tags]    config_applied    timing
-    Verify Time Delta    DIMM    command_start    logevent_configurationApplied    index=2
+    Verify Time Delta    DIMM    l:2ogevent_configurationApplied    index=2    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 # EPM:1
 Verify EPM:1 Disabled
@@ -46,7 +46,7 @@ Verify EPM:1 Disabled
 
 Verify EPM:1 SummaryState timing
     [Tags]    epm:1    software_versions    timing
-    Verify Time Delta    EPM    command_start    logevent_summaryState    index=1
+    Verify Time Delta    EPM:1    logevent_summaryState    index=1    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify EPM:1 ConfigurationApplied Event
     [Tags]    epm:1    config_applied
@@ -54,7 +54,7 @@ Verify EPM:1 ConfigurationApplied Event
 
 Verify EPM:1 ConfigurationApplied Event timing
     [Tags]    epm:1    config_applied    timing
-    Verify Time Delta    EPM    command_start    logevent_configurationApplied    index=1
+    Verify Time Delta    EPM:1    logevent_configurationApplied    index=1    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 # ESS:1
 Verify ESS:1 Disabled
@@ -63,7 +63,7 @@ Verify ESS:1 Disabled
 
 Verify ESS:1 SummaryState timing
     [Tags]    software_versions    timing
-    Verify Time Delta    ESS    command_start    logevent_summaryState    index=1
+    Verify Time Delta    ESS:1    logevent_summaryState    index=1    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify ESS:1 ConfigurationApplied Event
     [Tags]    config_applied
@@ -71,7 +71,7 @@ Verify ESS:1 ConfigurationApplied Event
 
 Verify ESS:1 ConfigurationApplied Event timing
     [Tags]    config_applied    timing
-    Verify Time Delta    ESS    command_start    logevent_configurationApplied   index=1
+    Verify Time Delta    ESS:1    logevent_configurationApplied   index=1    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 # ESS:101
 Verify ESS:101 Disabled
@@ -80,7 +80,7 @@ Verify ESS:101 Disabled
 
 Verify ESS:101 SummaryState timing
     [Tags]    software_versions    timing
-    Verify Time Delta    ESS    command_start    logevent_summaryState    index=101
+    Verify Time Delta    ESS:101    logevent_summaryState    index=101    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify ESS:101 ConfigurationApplied Event
     [Tags]    config_applied
@@ -88,7 +88,7 @@ Verify ESS:101 ConfigurationApplied Event
 
 Verify ESS:101 ConfigurationApplied Event timing
     [Tags]    config_applied    timing
-    Verify Time Delta    ESS    command_start    logevent_configurationApplied    index=101
+    Verify Time Delta    ESS:101    logevent_configurationApplied    index=101    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 # ESS:102
 Verify ESS:102 Disabled
@@ -97,7 +97,7 @@ Verify ESS:102 Disabled
 
 Verify ESS:102 SummaryState timing
     [Tags]    software_versions    timing
-    Verify Time Delta    ESS    command_start    logevent_summaryState    index=102
+    Verify Time Delta    ESS:102    logevent_summaryState    index=102    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify ESS:102 ConfigurationApplied Event
     [Tags]    config_applied
@@ -105,7 +105,7 @@ Verify ESS:102 ConfigurationApplied Event
 
 Verify ESS:102 ConfigurationApplied Event timing
     [Tags]    config_applied    timing
-    Verify Time Delta    ESS    command_start    logevent_configurationApplied    index=102
+    Verify Time Delta    ESS:102    logevent_configurationApplied    index=102    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 # ESS:103
 Verify ESS:103 Disabled
@@ -114,7 +114,7 @@ Verify ESS:103 Disabled
 
 Verify ESS:103 SummaryState timing
     [Tags]    software_versions    timing
-    Verify Time Delta    ESS    command_start    logevent_summaryState    index=103
+    Verify Time Delta    ESS:103    logevent_summaryState    index=103    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify ESS:103 ConfigurationApplied Event
     [Tags]    config_applied
@@ -122,7 +122,7 @@ Verify ESS:103 ConfigurationApplied Event
 
 Verify ESS:103 ConfigurationApplied Event timing
     [Tags]    config_applied    timing
-    Verify Time Delta    ESS    command_start    logevent_configurationApplied    index=103
+    Verify Time Delta    ESS:103    logevent_configurationApplied    index=103    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 # ESS:104
 Verify ESS:104 Disabled
@@ -131,7 +131,7 @@ Verify ESS:104 Disabled
 
 Verify ESS:104 SummaryState timing
     [Tags]    software_versions    timing
-    Verify Time Delta    ESS    command_start    logevent_summaryState    index=104
+    Verify Time Delta    ESS:104    logevent_summaryState    index=104    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify ESS:104 ConfigurationApplied Event
     [Tags]    config_applied
@@ -139,7 +139,7 @@ Verify ESS:104 ConfigurationApplied Event
 
 Verify ESS:104 ConfigurationApplied Event timing
     [Tags]    config_applied    timing
-    Verify Time Delta    ESS    command_start    logevent_configurationApplied    index=104
+    Verify Time Delta    ESS:104    logevent_configurationApplied    index=104    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 # ESS:105
 Verify ESS:105 Disabled
@@ -148,7 +148,7 @@ Verify ESS:105 Disabled
  
 Verify ESS:105 SummaryState timing
     [Tags]    software_versions    timing
-    Verify Time Delta    ESS    command_start    logevent_summaryState    index=105
+    Verify Time Delta    ESS:105    logevent_summaryState    index=105    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify ESS:105 ConfigurationApplied Event
     [Tags]    config_applied
@@ -156,7 +156,7 @@ Verify ESS:105 ConfigurationApplied Event
     
 Verify ESS:105 ConfigurationApplied Event timing
     [Tags]    config_applied    timing
-    Verify Time Delta    ESS    command_start    logevent_configurationApplied    index=105
+    Verify Time Delta    ESS:105    logevent_configurationApplied    index=105    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 # ESS:106
 Verify ESS:106 Disabled
@@ -165,7 +165,7 @@ Verify ESS:106 Disabled
    
 Verify ESS:106 SummaryState timing
     [Tags]    software_versions    timing
-    Verify Time Delta    ESS    command_start    logevent_summaryState    index=106
+    Verify Time Delta    ESS:106    logevent_summaryState    index=106    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify ESS:106 ConfigurationApplied Event
     [Tags]    config_applied
@@ -173,7 +173,7 @@ Verify ESS:106 ConfigurationApplied Event
     
 Verify ESS:106 ConfigurationApplied Event timing
     [Tags]    config_applied    timing
-    Verify Time Delta    ESS    command_start    logevent_configurationApplied    index=106
+    Verify Time Delta    ESS:106    logevent_configurationApplied    index=106    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 # ESS:107
 Verify ESS:107 Disabled
@@ -182,7 +182,7 @@ Verify ESS:107 Disabled
     
 Verify ESS:107 SummaryState timing
     [Tags]    software_versions    timing
-    Verify Time Delta    ESS    command_start    logevent_summaryState    index=107
+    Verify Time Delta    ESS:107    logevent_summaryState    index=107    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
     
 Verify ESS:107 ConfigurationApplied Event
     [Tags]    config_applied
@@ -190,7 +190,7 @@ Verify ESS:107 ConfigurationApplied Event
     
 Verify ESS:107 ConfigurationApplied Event timing
     [Tags]    config_applied    timing
-    Verify Time Delta    ESS    command_start    logevent_configurationApplied    index=107
+    Verify Time Delta    ESS:107    logevent_configurationApplied    index=107    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 # ESS:108
 Verify ESS:108 Disabled
@@ -199,7 +199,7 @@ Verify ESS:108 Disabled
     
 Verify ESS:108 SummaryState timing
     [Tags]    software_versions    timing
-    Verify Time Delta    ESS    command_start    logevent_summaryState    index=108
+    Verify Time Delta    ESS:108    logevent_summaryState    index=108    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
     
 Verify ESS:108 ConfigurationApplied Event
     [Tags]    config_applied
@@ -207,7 +207,7 @@ Verify ESS:108 ConfigurationApplied Event
     
 Verify ESS:108 ConfigurationApplied Event timing
     [Tags]    config_applied    timing
-    Verify Time Delta    ESS    command_start    logevent_configurationApplied    index=108
+    Verify Time Delta    ESS:108    logevent_configurationApplied    index=108    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 # ESS:201
 Verify ESS:201 Disabled
@@ -216,7 +216,7 @@ Verify ESS:201 Disabled
 
 Verify ESS:201 SummaryState timing
     [Tags]    software_versions    timing
-    Verify Time Delta    ESS    command_start    logevent_summaryState    index=201
+    Verify Time Delta    ESS:201    logevent_summaryState    index=201    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify ESS:201 ConfigurationApplied Event
     [Tags]    config_applied
@@ -224,7 +224,7 @@ Verify ESS:201 ConfigurationApplied Event
 
 Verify ESS:201 ConfigurationApplied Event timing
     [Tags]    config_applied    timing
-    Verify Time Delta    ESS    command_start    logevent_configurationApplied    index=201
+    Verify Time Delta    ESS:201    logevent_configurationApplied    index=201    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 # ESS:202
 Verify ESS:202 Disabled
@@ -233,7 +233,7 @@ Verify ESS:202 Disabled
 
 Verify ESS:202 SummaryState timing
     [Tags]    software_versions    timing
-    Verify Time Delta    ESS    command_start    logevent_summaryState    index=202
+    Verify Time Delta    ESS:202    logevent_summaryState    index=202    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify ESS:202 ConfigurationApplied Event
     [Tags]    config_applied
@@ -241,7 +241,7 @@ Verify ESS:202 ConfigurationApplied Event
 
 Verify ESS:202 ConfigurationApplied Event timing
     [Tags]    config_applied    timing
-    Verify Time Delta    ESS    command_start    logevent_configurationApplied    index=202
+    Verify Time Delta    ESS:202    logevent_configurationApplied    index=202    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 # ESS:203
 Verify ESS:203 Disabled
@@ -250,7 +250,7 @@ Verify ESS:203 Disabled
 
 Verify ESS:203 SummaryState timing
     [Tags]    software_versions    timing
-    Verify Time Delta    ESS    command_start    logevent_summaryState    index=203
+    Verify Time Delta    ESS:203    logevent_summaryState    index=203    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify ESS:203 ConfigurationApplied Event
     [Tags]    config_applied
@@ -258,7 +258,7 @@ Verify ESS:203 ConfigurationApplied Event
 
 Verify ESS:203 ConfigurationApplied Event timing
     [Tags]    config_applied    timing
-    Verify Time Delta    ESS    command_start    logevent_configurationApplied    index=203
+    Verify Time Delta    ESS:203    logevent_configurationApplied    index=203    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 # ESS:204
 Verify ESS:204 Disabled
@@ -267,7 +267,7 @@ Verify ESS:204 Disabled
 
 Verify ESS:204 SummaryState timing
     [Tags]    software_versions    timing
-    Verify Time Delta    ESS    command_start    logevent_summaryState    index=204
+    Verify Time Delta    ESS:204    logevent_summaryState    index=204    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify ESS:204 ConfigurationApplied Event
     [Tags]    config_applied
@@ -275,7 +275,7 @@ Verify ESS:204 ConfigurationApplied Event
 
 Verify ESS:204 ConfigurationApplied Event timing
     [Tags]    config_applied    timing
-    Verify Time Delta    ESS    command_start    logevent_configurationApplied    index=204
+    Verify Time Delta    ESS:204    logevent_configurationApplied    index=204    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 # ESS:205
 Verify ESS:205 Disabled
@@ -284,7 +284,7 @@ Verify ESS:205 Disabled
     
 Verify ESS:205 SummaryState timing
     [Tags]    software_versions    timing
-    Verify Time Delta    ESS    command_start    logevent_summaryState    index=205
+    Verify Time Delta    ESS:205    logevent_summaryState    index=205    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify ESS:205 ConfigurationApplied Event
     [Tags]    config_applied
@@ -292,7 +292,7 @@ Verify ESS:205 ConfigurationApplied Event
 
 Verify ESS:205 ConfigurationApplied Event timing
     [Tags]    config_applied    timing
-    Verify Time Delta    ESS    command_start    logevent_configurationApplied    index=205
+    Verify Time Delta    ESS:205    logevent_configurationApplied    index=205    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 # ESS:301
 Verify ESS:301 Disabled
@@ -301,7 +301,7 @@ Verify ESS:301 Disabled
 
 Verify ESS:301 SummaryState timing
     [Tags]    software_versions    timing
-    Verify Time Delta    ESS    command_start    logevent_summaryState    index=301
+    Verify Time Delta    ESS:301    logevent_summaryState    index=301    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify ESS:301 ConfigurationApplied Event
     [Tags]    config_applied
@@ -309,4 +309,4 @@ Verify ESS:301 ConfigurationApplied Event
 
 Verify ESS:301 ConfigurationApplied Event timing
     [Tags]    config_applied    timing
-    Verify Time Delta    ESS    command_start    logevent_configurationApplied    index=301
+    Verify Time Delta    ESS:301    logevent_configurationApplied    index=301    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}

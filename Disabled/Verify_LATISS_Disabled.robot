@@ -12,7 +12,7 @@ Verify ATCamera Disabled
 
 Verify ATCamera SummaryState timing
     [Tags]    software_versions    timing
-    Verify Time Delta    ATCamera    command_start    logevent_summaryState
+    Verify Time Delta    ATCamera    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify ATCamera ConfigurationApplied Event
     [Tags]    config_applied
@@ -20,7 +20,7 @@ Verify ATCamera ConfigurationApplied Event
 
 Verify ATCamera ConfigurationApplied Event timing
     [Tags]    config_applied    timing
-    Verify Time Delta    ATCamera    command_start    logevent_configurationApplied
+    Verify Time Delta    ATCamera    logevent_configurationApplied    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 #ATHeaderService
 Verify ATHeaderService Disabled
@@ -29,7 +29,7 @@ Verify ATHeaderService Disabled
 
 Verify ATHeaderService SummaryState timing
     [Tags]    software_versions    timing
-    Verify Time Delta    ATHeaderService    command_start    logevent_summaryState
+    Verify Time Delta    ATHeaderService    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify ATHeaderService ConfigurationApplied Event
     [Tags]    config_applied
@@ -43,7 +43,7 @@ Verify OCPS:1 Disabled
 
 Verify OCPS:1 SummaryState timing
     [Tags]    software_versions    timing
-    Verify Time Delta    OCPS    command_start    logevent_summaryState    index=1
+    Verify Time Delta    OCPS:1    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify OCPS:1 ConfigurationApplied Event
     [Tags]    config_applied
@@ -51,7 +51,7 @@ Verify OCPS:1 ConfigurationApplied Event
 
 Verify OCPS:1 ConfigurationApplied Event timing
     [Tags]    config_applied    timing
-    Verify Time Delta    OCPS    command_start    logevent_configurationApplied    index=1
+    Verify Time Delta    OCPS:1    logevent_configurationApplied    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 #ATOODS
 Verify ATOODS Disabled
@@ -60,7 +60,7 @@ Verify ATOODS Disabled
 
 Verify ATOODS SummaryState timing
     [Tags]    software_versions    timing
-    Verify Time Delta    ATOODS    command_start    logevent_summaryState
+    Verify Time Delta    ATOODS    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify ATOODS ConfigurationApplied Event
     [Tags]    config_applied
@@ -74,7 +74,7 @@ Verify ATSpectrograph Disabled
 
 Verify ATSpectrograph SummaryState timing
     [Tags]    software_versions    timing
-    Verify Time Delta    ATSpectrograph    command_start    logevent_summaryState
+    Verify Time Delta    ATSpectrograph    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify ATSpectrograph ConfigurationApplied Event
     [Tags]    config_applied
@@ -82,4 +82,4 @@ Verify ATSpectrograph ConfigurationApplied Event
 
 Verify ATSpectrograph ConfigurationApplied Event timing
     [Tags]    config_applied    timing
-    Verify Time Delta    ATSpectrograph    command_start    logevent_configurationApplied
+    Verify Time Delta    ATSpectrograph    logevent_configurationApplied    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
