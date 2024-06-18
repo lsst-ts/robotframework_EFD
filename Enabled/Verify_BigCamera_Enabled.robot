@@ -17,7 +17,7 @@ Verify BigCamera Enabled
 Verify BigCamera SummaryState timing
     [Tags]    timing
     Set Tags    ${BigCamera}
-    Verify Time Delta    ${BigCamera}    command_enable    logevent_summaryState
+    Verify Time Delta    ${BigCamera}    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 #OODS
 Verify OODS Enabled
@@ -28,7 +28,7 @@ Verify OODS Enabled
 Verify OODS SummaryState timing
     [Tags]    timing
     Set Tags    ${OODS}
-    Verify Time Delta    ${OODS}    command_enable    logevent_summaryState
+    Verify Time Delta    ${OODS}    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 #HeaderService
 Verify HeaderService Enabled
@@ -39,7 +39,7 @@ Verify HeaderService Enabled
 Verify HeaderService SummaryState timing
     [Tags]    timing
     Set Tags    ${HeaderService}
-    Verify Time Delta    ${HeaderService}    command_enable    logevent_summaryState
+    Verify Time Delta    ${HeaderService}    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 #OCPS:2||3
 Verify OCPS:2||3 Enabled
@@ -50,4 +50,4 @@ Verify OCPS:2||3 Enabled
 Verify OCPS SummaryState timing
     [Tags]    timing
     Set Tags    OCPS:${OcpsIndex}
-    Verify Time Delta    OCPS    command_enable    logevent_summaryState    index=${OcpsIndex}
+    Verify Time Delta    OCPS:${OcpsIndex}    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
