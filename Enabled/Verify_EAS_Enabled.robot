@@ -14,7 +14,7 @@ Verify DIMM:1 Enabled
 
 Verify DIMM:1 SummaryState timing
     [Tags]    enabled    timing
-    Verify Time Delta    DIMM    command_enable    logevent_summaryState    index=1
+    Verify Time Delta    DIMM:1    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 #DIMM:2
 Verify DIMM:2 Enabled
@@ -23,7 +23,7 @@ Verify DIMM:2 Enabled
 
 Verify DIMM:2 SummaryState timing
     [Tags]    enabled    timing
-    Verify Time Delta    DIMM    command_enable    logevent_summaryState    index=2
+    Verify Time Delta    DIMM:2    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 #EPM:1
 Verify EPM:1 Enabled
@@ -32,7 +32,7 @@ Verify EPM:1 Enabled
 
 Verify EPM:1 SummaryState timing
     [Tags]    epm:1    enabled    timing
-    Verify Time Delta    EPM    command_enable    logevent_summaryState    index=1
+    Verify Time Delta    EPM:1    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 #ESS:1
 Verify ESS:1 Enabled
@@ -41,7 +41,7 @@ Verify ESS:1 Enabled
 
 Verify ESS:1 SummaryState timing
     [Tags]    enabled    timing
-    Verify Time Delta    ESS    command_enable    logevent_summaryState    index=1
+    Verify Time Delta    ESS:1    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 # ESS:101
 Verify ESS:101 Enabled
@@ -50,7 +50,7 @@ Verify ESS:101 Enabled
 
 Verify ESS:101 SummaryState timing
     [Tags]    enabled    timing
-    Verify Time Delta    ESS    command_enable    logevent_summaryState    index=101
+    Verify Time Delta    ESS:101    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 # ESS:102
 Verify ESS:102 Enabled
@@ -59,7 +59,7 @@ Verify ESS:102 Enabled
 
 Verify ESS:102 SummaryState timing
     [Tags]    enabled    timing
-    Verify Time Delta    ESS    command_enable    logevent_summaryState    index=102
+    Verify Time Delta    ESS:102    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 # ESS:103
 Verify ESS:103 Enabled
@@ -68,7 +68,7 @@ Verify ESS:103 Enabled
 
 Verify ESS:103 SummaryState timing
     [Tags]    enabled    timing
-    Verify Time Delta    ESS    command_enable    logevent_summaryState    index=103
+    Verify Time Delta    ESS:103    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 # ESS:104
 Verify ESS:104 Enabled
@@ -77,7 +77,7 @@ Verify ESS:104 Enabled
 
 Verify ESS:104 SummaryState timing
     [Tags]    enabled    timing
-    Verify Time Delta    ESS    command_enable    logevent_summaryState    index=104
+    Verify Time Delta    ESS:104    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 # ESS:105
 Verify ESS:105 Enabled
@@ -86,7 +86,7 @@ Verify ESS:105 Enabled
 
 Verify ESS:105 SummaryState timing
     [Tags]    enabled    timing
-    Verify Time Delta    ESS    command_enable    logevent_summaryState    index=105
+    Verify Time Delta    ESS:105    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 # ESS:106
 Verify ESS:106 Enabled
@@ -95,7 +95,7 @@ Verify ESS:106 Enabled
 
 Verify ESS:106 SummaryState timing
     [Tags]    enabled    timing
-    Verify Time Delta    ESS    command_enable    logevent_summaryState    index=106
+    Verify Time Delta    ESS:106    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 # ESS:107
 Verify ESS:107 Enabled
@@ -104,7 +104,7 @@ Verify ESS:107 Enabled
 
 Verify ESS:107 SummaryState timing
     [Tags]    enabled    timing
-    Verify Time Delta    ESS    command_enable    logevent_summaryState    index=107
+    Verify Time Delta    ESS:107    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 # ESS:108
 Verify ESS:108 Enabled
@@ -113,7 +113,7 @@ Verify ESS:108 Enabled
 
 Verify ESS:108 SummaryState timing
     [Tags]    enabled    timing
-    Verify Time Delta    ESS    command_enable    logevent_summaryState    index=108
+    Verify Time Delta    ESS:108    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 # ESS:201
 Verify ESS:201 Enabled
@@ -122,7 +122,7 @@ Verify ESS:201 Enabled
 
 Verify ESS:201 SummaryState timing
     [Tags]    enabled    timing
-    Verify Time Delta    ESS    command_enable    logevent_summaryState    index=201
+    Verify Time Delta    ESS:201    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 # ESS:202
 Verify ESS:202 Enabled
@@ -131,7 +131,7 @@ Verify ESS:202 Enabled
 
 Verify ESS:202 SummaryState timing
     [Tags]    enabled    timing
-    Verify Time Delta    ESS    command_enable    logevent_summaryState    index=202
+    Verify Time Delta    ESS:202    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 # ESS:203
 Verify ESS:203 Enabled
@@ -140,7 +140,7 @@ Verify ESS:203 Enabled
 
 Verify ESS:203 SummaryState timing
     [Tags]    enabled    timing
-    Verify Time Delta    ESS    command_enable    logevent_summaryState    index=203
+    Verify Time Delta    ESS:203    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 # ESS:204
 Verify ESS:204 Enabled
@@ -149,7 +149,7 @@ Verify ESS:204 Enabled
 
 Verify ESS:204 SummaryState timing
     [Tags]    enabled    timing
-    Verify Time Delta    ESS    command_enable    logevent_summaryState    index=204
+    Verify Time Delta    ESS:204    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 # ESS:205
 Verify ESS:205 Enabled
@@ -158,7 +158,7 @@ Verify ESS:205 Enabled
 
 Verify ESS:205 SummaryState timing
     [Tags]    enabled    timing
-    Verify Time Delta    ESS    command_enable    logevent_summaryState    index=205
+    Verify Time Delta    ESS:205    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 #ESS:301
 Verify ESS:301 Enabled
@@ -167,4 +167,4 @@ Verify ESS:301 Enabled
 
 Verify ESS:301 SummaryState timing
     [Tags]    enabled    timing
-    Verify Time Delta    ESS    command_enable    logevent_summaryState    index=301
+    Verify Time Delta    ESS:301    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}

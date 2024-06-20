@@ -38,7 +38,7 @@ Verify BigCamera SoftwareVersions Event
 Verify BigCamera SoftwareVersions Event timing
     [Tags]    software_versions    timing
     Set Tags    ${BigCamera}
-    Verify Time Delta    ${BigCamera}    logevent_softwareVersions    logevent_summaryState
+    Verify Time Delta    ${BigCamera}    logevent_softwareVersions    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify BigCamera ConfigurationsAvailable Event
     [Tags]    config_available
@@ -48,7 +48,7 @@ Verify BigCamera ConfigurationsAvailable Event
 Verify BigCamera ConfigurationsAvailable Event timing
     [Tags]    config_available    timing
     Set Tags    ${BigCamera}
-    Verify Time Delta    ${BigCamera}    logevent_configurationsAvailable    logevent_summaryState
+    Verify Time Delta    ${BigCamera}    logevent_configurationsAvailable    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 #OODS
 Verify OODS Standby
@@ -64,7 +64,7 @@ Verify OODS SoftwareVersions
 Verify OODS SoftwareVersions timing
     [Tags]    software_versions    timing
     Set Tags    ${OODS}
-    Verify Time Delta    ${OODS}    logevent_softwareVersions    logevent_summaryState
+    Verify Time Delta    ${OODS}    logevent_softwareVersions    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify OODS ConfigurationsAvailable Event
     [Tags]    config_available
@@ -90,7 +90,7 @@ Verify HeaderService SoftwareVersions
 Verify HeaderService SoftwareVersions Event timing
     [Tags]    software_versions    timing
     Set Tags    ${HeaderService}
-    Verify Time Delta    ${HeaderService}    logevent_softwareVersions    logevent_summaryState
+    Verify Time Delta    ${HeaderService}    logevent_softwareVersions    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 #OCPS:2||3
 Verify OCPS:2||3 Standby
@@ -106,7 +106,7 @@ Verify OCPS:2||3 SoftwareVersions
 Verify OCPS:2||3 SoftwareVersions Event timing
     [Tags]    software_versions    timing
     Set Tags    OCPS:${OcpsIndex}
-    Verify Time Delta    OCPS    logevent_softwareVersions    logevent_summaryState    index=${OcpsIndex}
+    Verify Time Delta    OCPS:${OcpsIndex}    logevent_softwareVersions    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify OCPS:2||3 ConfigurationsAvailable Event
     [Tags]    config_available
@@ -116,4 +116,4 @@ Verify OCPS:2||3 ConfigurationsAvailable Event
 Verify OCPS:2||3 ConfigurationsAvailable Event timing
     [Tags]    config_available    timing
     Set Tags    OCPS:${OcpsIndex}
-    Verify Time Delta    OCPS    logevent_configurationsAvailable    logevent_summaryState    index=${OcpsIndex}
+    Verify Time Delta    OCPS:${OcpsIndex}    logevent_configurationsAvailable    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}

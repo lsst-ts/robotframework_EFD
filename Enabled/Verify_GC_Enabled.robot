@@ -14,7 +14,7 @@ Verify GenericCamera:1 Enabled
 
 Verify GenericCamera:1 SummaryState timing
     [Tags]    timing
-    Verify Time Delta    GenericCamera    command_enable    logevent_summaryState    index=1
+    Verify Time Delta    GenericCamera:1    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 # GCHeaderService:1
 Verify GCHeaderService:1 Enabled
@@ -23,4 +23,4 @@ Verify GCHeaderService:1 Enabled
 
 Verify GCHeaderService:1 SummaryState timing
     [Tags]    timing
-    Verify Time Delta    GCHeaderService    command_enable    logevent_summaryState    index=1
+    Verify Time Delta    GCHeaderService:1    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}

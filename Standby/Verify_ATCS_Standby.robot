@@ -32,7 +32,7 @@ Verify ATAOS SoftwareVersions
 
 Verify ATAOS SoftwareVersions timing
     [Tags]    software_versions    timing
-    Verify Time Delta    ATAOS    logevent_softwareVersions    logevent_summaryState
+    Verify Time Delta    ATAOS    logevent_softwareVersions    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify ATAOS ConfigurationsAvailable Event
     [Tags]    config_available
@@ -40,7 +40,7 @@ Verify ATAOS ConfigurationsAvailable Event
 
 Verify ATAOS ConfigurationsAvailable timing
     [Tags]    config_available    timing
-    Verify Time Delta    ATAOS    logevent_configurationsAvailable
+    Verify Time Delta    ATAOS    logevent_configurationsAvailable    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 #ATDome
 Verify ATDome Standby
@@ -53,7 +53,7 @@ Verify ATDome SoftwareVersions
 
 Verify ATDome SoftwareVersions timing
     [Tags]    software_versions    timing
-    Verify Time Delta    ATDome    logevent_softwareVersions    logevent_summaryState
+    Verify Time Delta    ATDome    logevent_softwareVersions    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify ATDome ConfigurationsAvailable Event
     [Tags]    config_available
@@ -61,7 +61,7 @@ Verify ATDome ConfigurationsAvailable Event
 
 Verify ATDome ConfigurationsAvailable timing
     [Tags]    config_available    timing
-    Verify Time Delta    ATDome    logevent_configurationsAvailable
+    Verify Time Delta    ATDome    logevent_configurationsAvailable    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 #ATDomeTrajectory
 Verify ATDomeTrajectory Standby
@@ -74,7 +74,7 @@ Verify ATDomeTrajectory SoftwareVersions
 
 Verify ATDomeTrajectory SoftwareVersions timing
     [Tags]    software_versions    timing
-    Verify Time Delta    ATDomeTrajectory    logevent_softwareVersions    logevent_summaryState
+    Verify Time Delta    ATDomeTrajectory    logevent_softwareVersions    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify ATDomeTrajectory ConfigurationsAvailable Event
     [Tags]    config_available
@@ -82,7 +82,7 @@ Verify ATDomeTrajectory ConfigurationsAvailable Event
 
 Verify ATDomeTrajectory ConfigurationsAvailable timing
     [Tags]    config_available    timing
-    Verify Time Delta    ATDomeTrajectory    logevent_configurationsAvailable
+    Verify Time Delta    ATDomeTrajectory    logevent_configurationsAvailable    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 #ATHexapod
 Verify ATHexapod Standby
@@ -95,7 +95,7 @@ Verify ATHexapod SoftwareVersions
 
 Verify ATHexapod SoftwareVersions timing
     [Tags]    software_versions    timing
-    Verify Time Delta    ATHexapod    logevent_softwareVersions    logevent_summaryState
+    Verify Time Delta    ATHexapod    logevent_softwareVersions    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify ATHexapod ConfigurationsAvailable Event
     [Tags]    config_available
@@ -103,7 +103,7 @@ Verify ATHexapod ConfigurationsAvailable Event
 
 Verify ATHexapod ConfigurationsAvailable timing
     [Tags]    config_available    timing
-    Verify Time Delta    ATHexapod    logevent_configurationsAvailable
+    Verify Time Delta    ATHexapod    logevent_configurationsAvailable    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 #ATMCS
 Verify ATMCS Standby
@@ -115,8 +115,8 @@ Verify ATMCS SoftwareVersions
     Verify Software Versions    ATMCS    csc_salver=${atmcs_salver}    csc_xmlver=${atmcs_xmlver}
 
 Verify ATMCS SoftwareVersions timing
-    [Tags]    software_versions    timing
-    Verify Time Delta    ATMCS    logevent_softwareVersions    logevent_summaryState
+    [Tags]    software_versions    timing    DM-39357
+    Verify Time Delta    ATMCS    logevent_softwareVersions    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify ATMCS ConfigurationsAvailable Event
     [Tags]    config_available    DM-44733
@@ -124,7 +124,7 @@ Verify ATMCS ConfigurationsAvailable Event
 
 Verify ATMCS ConfigurationsAvailable timing
     [Tags]    config_available    timing    DM-44733
-    Verify Time Delta    ATMCS    logevent_configurationsAvailable
+    Verify Time Delta    ATMCS    logevent_configurationsAvailable    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 #ATPneumatics
 Verify ATPneumatics Standby
@@ -137,15 +137,15 @@ Verify ATPneumatics SoftwareVersions
 
 Verify ATPneumatics SoftwareVersions timing
     [Tags]    software_versions    timing
-    Verify Time Delta    ATPneumatics    logevent_softwareVersions    logevent_summaryState
+    Verify Time Delta    ATPneumatics    logevent_softwareVersions    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify ATPneumatics ConfigurationsAvailable Event
     [Tags]    config_available    DM-44734
     Verify ConfigurationsAvailable    ATPneumatics
 
-Verify ATMCS ConfigurationsAvailable timing
+Verify ATPneumatics ConfigurationsAvailable timing
     [Tags]    config_available    timing    DM-44734
-    Verify Time Delta    ATMCS    logevent_configurationsAvailable
+    Verify Time Delta    ATMCS    logevent_configurationsAvailable    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 #ATPtg
 Verify ATPtg Standby
@@ -158,7 +158,7 @@ Verify ATPtg SoftwareVersions
 
 Verify ATPtg SoftwareVersions timing
     [Tags]    software_versions    timing
-    Verify Time Delta    ATPtg    logevent_softwareVersions    logevent_summaryState
+    Verify Time Delta    ATPtg    logevent_softwareVersions    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify ATPtg ConfigurationsAvailable Event
     [Tags]    config_available

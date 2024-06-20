@@ -14,7 +14,7 @@ Verify ATCamera Enabled
 
 Verify ATCamera SummaryState timing
     [Tags]    timing
-    Verify Time Delta    ATCamera    command_enable    logevent_summaryState
+    Verify Time Delta    ATCamera    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 #ATHeaderService
 Verify ATHeaderService Enabled
@@ -23,7 +23,7 @@ Verify ATHeaderService Enabled
 
 Verify ATHeaderService SummaryState timing
     [Tags]    timing
-    Verify Time Delta    ATHeaderService    command_enable    logevent_summaryState
+    Verify Time Delta    ATHeaderService    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 #OCPS:1
 Verify OCPS:1 Enabled
@@ -32,7 +32,7 @@ Verify OCPS:1 Enabled
 
 Verify OCPS:1 SummaryState timing
     [Tags]    timing
-    Verify Time Delta    OCPS    command_enable    logevent_summaryState    index=1
+    Verify Time Delta    OCPS:1    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 #ATOODS
 Verify ATOODS Enabled
@@ -41,7 +41,7 @@ Verify ATOODS Enabled
 
 Verify ATOODS SummaryState timing
     [Tags]    timing
-    Verify Time Delta    ATOODS    command_enable    logevent_summaryState
+    Verify Time Delta    ATOODS    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 #ATSpectrograph
 Verify ATSpectrograph Enabled
@@ -50,4 +50,4 @@ Verify ATSpectrograph Enabled
 
 Verify ATSpectrograph SummaryState timing
     [Tags]    timing
-    Verify Time Delta    ATSpectrograph    command_enable    logevent_summaryState
+    Verify Time Delta    ATSpectrograph    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}

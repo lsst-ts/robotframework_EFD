@@ -15,7 +15,7 @@ Verify BigCamera Disabled
 Verify BigCamera SummaryState timing
     [Tags]    software_versions    timing
     Set Tags    ${BigCamera}
-    Verify Time Delta    ${BigCamera}    command_start    logevent_summaryState
+    Verify Time Delta    ${BigCamera}    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify BigCamera ConfigurationApplied Event
     [Tags]    config_applied
@@ -25,7 +25,7 @@ Verify BigCamera ConfigurationApplied Event
 Verify BigCamera ConfigurationApplied timing
     [Tags]    config_applied    timing
     Set Tags    ${BigCamera}
-    Verify Time Delta    ${BigCamera}    command_start    logevent_configurationApplied
+    Verify Time Delta    ${BigCamera}    logevent_configurationApplied    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 #OODS
 Verify OODS Disabled
@@ -36,7 +36,7 @@ Verify OODS Disabled
 Verify OODS SummaryState timing
     [Tags]    software_versions    timing
     Set Tags    ${OODS}
-    Verify Time Delta    ${OODS}    command_start    logevent_summaryState
+    Verify Time Delta    ${OODS}    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify OODS ConfigurationApplied Event
     [Tags]    config_applied
@@ -46,7 +46,7 @@ Verify OODS ConfigurationApplied Event
 Verify OODS ConfigurationApplied timing
     [Tags]    config_applied    timing
     Set Tags    ${OODS}
-    Verify Time Delta    ${OODS}    command_start    logevent_configurationApplied
+    Verify Time Delta    ${OODS}    logevent_configurationApplied    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 #HeaderService
 Verify HeaderService Disabled
@@ -57,7 +57,7 @@ Verify HeaderService Disabled
 Verify HeaderService SummaryState timing
     [Tags]    software_versions    timing
     Set Tags    ${HeaderService}
-    Verify Time Delta    ${HeaderService}    command_start    logevent_summaryState
+    Verify Time Delta    ${HeaderService}    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify HeaderService ConfigurationApplied Event
     [Tags]    config_applied
@@ -67,7 +67,7 @@ Verify HeaderService ConfigurationApplied Event
 Verify HeaderService ConfigurationApplied timing
     [Tags]    config_applied    timing
     Set Tags    ${HeaderService}
-    Verify Time Delta    ${HeaderService}    command_start    logevent_configurationApplied
+    Verify Time Delta    ${HeaderService}    logevent_configurationApplied    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 #OCPS:2||3
 Verify OCPS:2||3 Disabled
@@ -78,7 +78,7 @@ Verify OCPS:2||3 Disabled
 Verify OCPS:2||3 SummaryState timing
     [Tags]    software_versions    timing
     Set Tags    OCPS:${OcpsIndex}
-    Verify Time Delta    OCPS    command_start    logevent_summaryState    index=${OcpsIndex}
+    Verify Time Delta    OCPS:${OcpsIndex}    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify OCPS:2||3 ConfigurationApplied Event
     [Tags]    config_applied
@@ -88,4 +88,4 @@ Verify OCPS:2||3 ConfigurationApplied Event
 Verify OCPS:2||3 ConfigurationApplied timing
     [Tags]    config_applied    timing
     Set Tags    OCPS:${OcpsIndex}
-    Verify Time Delta    OCPS    command_start    logevent_configurationApplied    index=${OcpsIndex}
+    Verify Time Delta    OCPS:${OcpsIndex}    logevent_configurationApplied    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}

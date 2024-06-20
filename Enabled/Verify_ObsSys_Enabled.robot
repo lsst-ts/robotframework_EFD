@@ -14,7 +14,7 @@ Verify Scheduler:1 Enabled
 
 Verify Scheduler:1 SummaryState timing
     [Tags]    timing
-    Verify Time Delta    Scheduler    command_enable    logevent_summaryState    index=1
+    Verify Time Delta    Scheduler:1    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 #Scheduler:2
 Verify Scheduler:2 Enabled
@@ -23,7 +23,7 @@ Verify Scheduler:2 Enabled
 
 Verify Scheduler:2 SummaryState timing
     [Tags]    timing
-    Verify Time Delta    Scheduler    command_enable    logevent_summaryState    index=2
+    Verify Time Delta    Scheduler:2    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 #Scheduler:3
 Verify Scheduler:3 Enabled
@@ -32,7 +32,7 @@ Verify Scheduler:3 Enabled
 
 Verify Scheduler:3 SummaryState timing
     [Tags]    timing
-    Verify Time Delta    Scheduler    command_enable    logevent_summaryState    index=3
+    Verify Time Delta    Scheduler:3    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 #ScriptQueue:1
 Verify ScriptQueue:1 Enabled
@@ -56,7 +56,7 @@ Verify Watcher Enabled
 
 Verify Watcher SummaryState timing
     [Tags]    timing
-    Verify Time Delta    Watcher    command_enable    logevent_summaryState
+    Verify Time Delta    Watcher    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 #Test:42
 Verify Test:42 Enabled
@@ -65,4 +65,4 @@ Verify Test:42 Enabled
 
 Verify Test:42 SummaryState timing
     [Tags]    timing
-    Verify Time Delta    Test    command_enable    logevent_summaryState    index=42
+    Verify Time Delta    Test:42    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}

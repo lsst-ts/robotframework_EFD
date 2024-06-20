@@ -14,7 +14,7 @@ Verify LaserTracker:1 Enabled
 
 Verify LaserTracker:1 SummaryState timing
     [Tags]    timing
-    Verify Time Delta    LaserTracker    command_enable    logevent_summaryState    index=1
+    Verify Time Delta    LaserTracker:1    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 #MTAirCompressor:1
 Verify MTAirCompressor:1 Enabled
@@ -23,7 +23,7 @@ Verify MTAirCompressor:1 Enabled
 
 Verify MTAirCompressor:1 SummaryState timing
     [Tags]    timing
-    Verify Time Delta    MTAirCompressor    command_enable    logevent_summaryState    index=1
+    Verify Time Delta    MTAirCompressor:1    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 #MTAirCompressor:2
 Verify MTAirCompressor:2 Enabled
@@ -32,7 +32,7 @@ Verify MTAirCompressor:2 Enabled
 
 Verify MTAirCompressor:2 SummaryState timing
     [Tags]    timing
-    Verify Time Delta    MTAirCompressor    command_enable    logevent_summaryState    index=2
+    Verify Time Delta    MTAirCompressor:2    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 #MTMount
 Verify MTMount Enabled
@@ -41,7 +41,7 @@ Verify MTMount Enabled
 
 Verify MTMount SummaryState timing
     [Tags]    timing
-    Verify Time Delta    MTMount    command_enable    logevent_summaryState
+    Verify Time Delta    MTMount    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 #MTPtg
 Verify MTPtg Enabled
@@ -50,7 +50,7 @@ Verify MTPtg Enabled
 
 Verify MTPtg SummaryState timing
     [Tags]    mtptg    timing
-    Verify Time Delta    MTPtg    command_enable    logevent_summaryState
+    Verify Time Delta    MTPtg    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 #MTDome
 Verify MTDome Enabled
@@ -59,7 +59,7 @@ Verify MTDome Enabled
 
 Verify MTDome SummaryState timing
     [Tags]    timing
-    Verify Time Delta    MTDome    command_enable    logevent_summaryState
+    Verify Time Delta    MTDome    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 #MTDomeTrajectory
 Verify MTDomeTrajectory Enabled
@@ -68,7 +68,7 @@ Verify MTDomeTrajectory Enabled
 
 Verify MTDomeTrajectory SummaryState timing
     [Tags]    timing
-    Verify Time Delta    MTDomeTrajectory    command_enable    logevent_summaryState
+    Verify Time Delta    MTDomeTrajectory    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 #MTAOS
 Verify MTAOS Enabled
@@ -77,7 +77,7 @@ Verify MTAOS Enabled
 
 Verify MTAOS SummaryState timing
     [Tags]    timing
-    Verify Time Delta    MTAOS    command_enable    logevent_summaryState
+    Verify Time Delta    MTAOS    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 #MTHexapod:1
 Verify MTHexapod:1 Enabled
@@ -86,7 +86,7 @@ Verify MTHexapod:1 Enabled
 
 Verify MTHexapod:1 SummaryState timing
     [Tags]    timing
-    Verify Time Delta    MTHexapod    command_enable    logevent_summaryState    index=1
+    Verify Time Delta    MTHexapod:1    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 #MTHexapod:2
 Verify MTHexapod:2 Enabled
@@ -95,7 +95,7 @@ Verify MTHexapod:2 Enabled
 
 Verify MTHexapod:2 SummaryState timing
     [Tags]    timing
-    Verify Time Delta    MTHexapod    command_enable    logevent_summaryState    index=2
+    Verify Time Delta    MTHexapod:2    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 #MTRotator
 Verify MTRotator Enabled
@@ -104,7 +104,7 @@ Verify MTRotator Enabled
 
 Verify MTRotator SummaryState timing
     [Tags]    timing
-    Verify Time Delta    MTRotator    command_enable    logevent_summaryState
+    Verify Time Delta    MTRotator    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 #MTM1M3
 Verify MTM1M3 Enabled
@@ -113,7 +113,7 @@ Verify MTM1M3 Enabled
 
 Verify MTM1M3 SummaryState timing
     [Tags]    timing
-    Verify Time Delta    MTM1M3    command_enable    logevent_summaryState
+    Verify Time Delta    MTM1M3    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 #MTM2
 Verify MTM2 Enabled
@@ -122,4 +122,4 @@ Verify MTM2 Enabled
 
 Verify MTM2 SummaryState timing
     [Tags]    timing
-    Verify Time Delta    MTM2    command_enable    logevent_summaryState
+    Verify Time Delta    MTM2    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}

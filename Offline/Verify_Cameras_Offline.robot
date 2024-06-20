@@ -21,7 +21,7 @@ Verify ATCamera SoftwareVersions
 
 Verify ATCamera SoftwareVersions timing
     [Tags]    latiss    software_versions    timing
-    Verify Time Delta    ATCamera    logevent_summaryState    logevent_softwareVersions
+    Verify Time Delta    ATCamera    logevent_softwareVersions    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify ATCamera OfflineDetailedStates
     [Tags]    latiss    detailed_states
@@ -43,7 +43,7 @@ Verify ATCamera OfflineDetailedStates
 
 Verify ATCamera OfflineDetailedStates timing
     [Tags]    latiss    detailed_states    timing
-    Verify Time Delta    ATCamera    logevent_summaryState   ${offdet_topic}
+    Verify Time Delta    ATCamera    ${offdet_topic}    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 #BigCamera
 Verify BigCamera Offline
@@ -59,7 +59,7 @@ Verify BigCamera SoftwareVersions
 Verify BigCamera SoftwareVersions timing
     [Tags]    software_versions    timing
     Set Tags    ${BigCamera}
-    Verify Time Delta    ${BigCamera}    logevent_summaryState    logevent_softwareVersions
+    Verify Time Delta    ${BigCamera}    logevent_softwareVersions    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify BigCamera OfflineDetailedStates
     [Tags]
@@ -83,4 +83,4 @@ Verify BigCamera OfflineDetailedStates
 Verify BigCamera OfflineDetailedStates timing
     [Tags]    detailed_states    timing
     Set Tags    ${BigCamera}
-    Verify Time Delta    ${BigCamera}    ${offdet_topic}    logevent_summaryState
+    Verify Time Delta    ${BigCamera}    ${offdet_topic}    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
