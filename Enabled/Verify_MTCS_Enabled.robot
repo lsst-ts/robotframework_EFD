@@ -104,7 +104,7 @@ Verify MTRotator Enabled
 
 Verify MTRotator SummaryState timing
     [Tags]    timing
-    Verify Time Delta    MTRotator    logevent_summaryState
+    Verify Time Delta    MTRotator    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 #MTM1M3
 Verify MTM1M3 Enabled
@@ -113,7 +113,7 @@ Verify MTM1M3 Enabled
 
 Verify MTM1M3 SummaryState timing
     [Tags]    timing
-    Verify Time Delta    MTM1M3    logevent_summaryState
+    Verify Time Delta    MTM1M3    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 #MTM2
 Verify MTM2 Enabled
@@ -122,4 +122,4 @@ Verify MTM2 Enabled
 
 Verify MTM2 SummaryState timing
     [Tags]    timing
-    Verify Time Delta    MTM2    logevent_summaryState
+    Verify Time Delta    MTM2    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}

@@ -56,7 +56,7 @@ Verify Watcher Enabled
 
 Verify Watcher SummaryState timing
     [Tags]    timing
-    Verify Time Delta    Watcher    logevent_summaryState
+    Verify Time Delta    Watcher    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 #Test:42
 Verify Test:42 Enabled

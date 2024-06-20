@@ -37,7 +37,7 @@ Verify DIMM:2 ConfigurationApplied Event
 
 Verify DIMM:2 ConfigurationApplied Event timing
     [Tags]    config_applied    timing
-    Verify Time Delta    DIMM    l:2ogevent_configurationApplied    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+    Verify Time Delta    DIMM    logevent_configurationApplied    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 # EPM:1
 Verify EPM:1 Disabled
