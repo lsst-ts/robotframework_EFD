@@ -22,5 +22,5 @@
 
 #  Redefine default variables
 --variable env_efd:base_efd
---variable XMLVersion:21.0.0
+--variable XMLVersion:22.0.0
 --variable SALVersion:8.0.0
