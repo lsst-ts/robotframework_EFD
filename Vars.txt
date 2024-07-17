@@ -21,6 +21,6 @@
 --reportbackground #61C4CD:#61C4CD
 
 #  Redefine default variables
---variable env_efd:base_efd
+--variable env_efd:tucson_teststand_efd
 --variable XMLVersion:22.0.0
 --variable SALVersion:8.0.0
