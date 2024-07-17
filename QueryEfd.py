@@ -631,7 +631,7 @@ class QueryEfd:
 
     @keyword
     def verify_time_delta(
-         self, csc: str, topic: str, hour: int = None, day: int = None, week: int = 0
+         self, csc: str, topic: str, minute: int = 1, hour: int = None, day: int = None, week: int = 0
     ) -> None:
         """Fails if the publish time for the given topic is older than
            the Monday of the deployment week. A deployment will reset
@@ -645,6 +645,8 @@ class QueryEfd:
             The name of the CSC, in index format, i.e <CSC>[:<index>].
         topic_1 : `str`
             The name of the first topic.
+        minute : `int`
+            The number of minutes to go back. Default is 1.
         hour : `int`
             The number of hours to go back. Default of None gets
             set to 4, meaning four hours prior to 'now'.
@@ -667,18 +669,21 @@ class QueryEfd:
         if hour is None:
               hour = 4       
         # Define the target datetime.
-        time0 = today - datetime.timedelta(hours=hour, days=day, weeks=week)
+        time0 = today - datetime.timedelta(minutes=minute, hours=hour, days=day, weeks=week)
         # Get the timestamp for the topic.
         pub_time = self.get_topic_sent_time(f"{csc}", topic)
         # Get the timedelta, in seconds.
-        delta = (pub_time - time0).total_seconds()
+        actual_delta = (pub_time - time0).total_seconds()
+        allowed_delta = (today - time0).total_seconds()
         print(
             f"*TRACE*{csc} {topic} was sent at {pub_time}.\n"
-            f"*TRACE*The time difference is {delta} seconds."
+            f"*TRACE*Today is {today}. Time0 was set to {time0}.\n"
+            f"*TRACE*The time difference is {actual_delta} seconds."
+            f" The allowed difference was {allowed_delta} seconds."
         )
-        if delta < 0:
+        if actual_delta < 0:
             raise AssertionError(
-                f"{topic} was published {abs(delta)} seconds BEFORE {time0}."
+                f"{topic} was published {abs(actual_delta)} seconds BEFORE {time0}."
             )
 
     @keyword
