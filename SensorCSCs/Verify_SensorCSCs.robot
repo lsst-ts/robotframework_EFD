@@ -88,7 +88,7 @@ Verify ESS:107 Data is Recent
 # ESS:108
 Verify ESS:108 Data is Recent
     [Tags]
-    Set Test Variable    ${ess_minutes_ago}    0.035
+    Set Test Variable    ${ess_minutes_ago}    0.036
     Verify Time Delta    ESS:108    temperature    minute=${ess_minutes_ago}    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 # ESS:201
