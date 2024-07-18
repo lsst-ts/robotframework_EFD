@@ -35,7 +35,7 @@ class QueryEfd:
         Defines the Regular Expression for the software versions.
         Starts from the Semantic Version definition, but allows for
         slight deviations to accommodate Conda versioning standards.
-    pattern : `re.Patter`
+    pattern : `re.Pattern`
         Converts version_regex string to an re.Pattern object.
         This is used for the actual version validation.
 
