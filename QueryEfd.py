@@ -670,7 +670,7 @@ class QueryEfd:
         # Get the timestamp for the topic.
         pub_time = self.get_topic_sent_time(f"{csc}", topic)
         # Define `today` as the execution time. Convert to TAI time.
-        today = datetime.datetime.now(tz=datetime.timezone.utc) + datetime.timedelta(seconds=37)
+        today = datetime.datetime.now(tz=datetime.timezone.utc) + datetime.timedelta(seconds=self.tai_offset)
         # If `day` is not defined, set it to the current
         # day number of the week (Monday is day 0).
         if day is None:
