@@ -144,7 +144,7 @@ Verify ESS:103 relativeHumidity Data is Recent
 # ESS:104
 Verify ESS:104 accelerometer Published Data
     [Tags]    robot:continue-on-failure
-    ${dataframe}=    Get Recent Samples    ESS    accelerometer    ["sensorName", "location", "relativeHumidityItem",]    num=4    index=104
+    ${dataframe}=    Get Recent Samples    ESS    accelerometer    ["sensorName", "location", "accelerationX0", "accelerationY0", "accelerationZ0",]    num=4    index=104
     Log    ${dataframe}
     Should Not Be True    ${dataframe.empty}
     # Get dataframe indexes.
@@ -155,15 +155,27 @@ Verify ESS:104 accelerometer Published Data
     Comment    ============SST top end ring +x -y============
     ${dataframe01}=    Evaluate    $dataframe.loc[$idx01]
     Should Be Equal As Strings    ${dataframe01.location.values}[0]    SST top end ring +x -y side, at base plate of star tracker: x = -azimuth, y = elevation
+    Should Be True    abs(${dataframe01.accelerationX0.values}[0]) >= 0
+    Should Be True    abs(${dataframe01.accelerationY0.values}[0]) >= 0
+    Should Be True    abs(${dataframe01.accelerationZ0.values}[0]) >= 0
     Comment    ============SST top end ring -x -y============
     ${dataframe02}=    Evaluate    $dataframe.loc[$idx02]
     Should Be Equal As Strings    ${dataframe02.location.values}[0]    SST top end ring -x -y side, at base plate of DIMM telescope: x = -azimuth, y = elevation
+    Should Be True    abs(${dataframe02.accelerationX0.values}[0]) >= 0
+    Should Be True    abs(${dataframe02.accelerationY0.values}[0]) >= 0
+    Should Be True    abs(${dataframe02.accelerationZ0.values}[0]) >= 0
     Comment    ============SST spider spindle============
     ${dataframe03}=    Evaluate    $dataframe.loc[$idx03]
     Should Be Equal As Strings    ${dataframe03.location.values}[0]    SST cental spider spindle, before hexapod at -x side: x = -azimuth, y = elevation
+    Should Be True    abs(${dataframe03.accelerationX0.values}[0]) >= 0
+    Should Be True    abs(${dataframe03.accelerationY0.values}[0]) >= 0
+    Should Be True    abs(${dataframe03.accelerationZ0.values}[0]) >= 0
     Comment    ============SST M2 surrogate============
     ${dataframe04}=    Evaluate    $dataframe.loc[$idx04]
     Should Be Equal As Strings    ${dataframe04.location.values}[0]    SST M2 surrogate mass, -x side of front flange: x = -azimuth, y = elevation
+    Should Be True    abs(${dataframe04.accelerationX0.values}[0]) >= 0
+    Should Be True    abs(${dataframe04.accelerationY0.values}[0]) >= 0
+    Should Be True    abs(${dataframe04.accelerationZ0.values}[0]) >= 0
 
 Verify ESS:104 accelerometer Data is Recent
     [Tags]
@@ -272,7 +284,7 @@ Verify ESS:201 temperature Published Data
     ${idx01}=    Evaluate     $dataframe.index[$dataframe["sensorName"]=="AuxTel-ESS01"]
     ${idx02}=    Evaluate     $dataframe.index[$dataframe["sensorName"]=="AuxTel-ESS02"]
     ${idx03}=    Evaluate     $dataframe.index[$dataframe["sensorName"]=="AuxTel-ESS03"]
-    Comment    ============AuxTel-ESS03============
+    Comment    ============AuxTel-ESS01============
     ${dataframe01}=    Evaluate    $dataframe.loc[$idx01]
     Should Be Equal As Strings    ${dataframe01.location.values}[0]    unused, AT air, AT truss, AT M2, unused, unused, unused, unused
     Should Be True    abs(${dataframe01.temperatureItem0.values}[0]) >= 0
@@ -280,7 +292,7 @@ Verify ESS:201 temperature Published Data
     Should Be True    abs(${dataframe01.temperatureItem2.values}[0]) >= 0
     Should Be True    abs(${dataframe01.temperatureItem3.values}[0]) >= 0
     Should Be True    abs(${dataframe01.temperatureItem4.values}[0]) >= 0
-    Comment    ============AuxTel-ESS03============
+    Comment    ============AuxTel-ESS02============
     ${dataframe02}=    Evaluate    $dataframe.loc[$idx02]
     Should Be Equal As Strings    ${dataframe02.location.values}[0]    AT azimuth axis
     Should Be True    abs(${dataframe02.temperatureItem0.values}[0]) >= 0
@@ -320,15 +332,21 @@ Verify ESS:202 accelerometer Published Data
     Comment    ============AuxTel-M1============
     ${dataframe01}=    Evaluate    $dataframe.loc[$idx01]
     Should Be Equal As Strings    ${dataframe01.location.values}[0]    AuxTel M1 x=el y=az
-    Should Be True    abs(${dataframe.accelerationX0.values}[0]) >= 0
+    Should Be True    abs(${dataframe01.accelerationX0.values}[0]) >= 0
+    Should Be True    abs(${dataframe01.accelerationY0.values}[0]) >= 0
+    Should Be True    abs(${dataframe01.accelerationZ0.values}[0]) >= 0
     Comment    ============AuxTel-Truss============
     ${dataframe02}=    Evaluate    $dataframe.loc[$idx02]
     Should Be Equal As Strings    ${dataframe02.location.values}[0]    AuxTel Truss x=el z=az
-    Should Be True    abs(${dataframe.accelerationY0.values}[0]) >= 0
+    Should Be True    abs(${dataframe02.accelerationX0.values}[0]) >= 0
+    Should Be True    abs(${dataframe02.accelerationY0.values}[0]) >= 0
+    Should Be True    abs(${dataframe02.accelerationZ0.values}[0]) >= 0
     Comment    ============AuxTel-M2============
     ${dataframe03}=    Evaluate    $dataframe.loc[$idx03]
     Should Be Equal As Strings    ${dataframe03.location.values}[0]    AuxTel M2 x=el y=az
-    Should Be True    abs(${dataframe.accelerationZ0.values}[0]) >= 0
+    Should Be True    abs(${dataframe03.accelerationX0.values}[0]) >= 0
+    Should Be True    abs(${dataframe03.accelerationY0.values}[0]) >= 0
+    Should Be True    abs(${dataframe03.accelerationZ0.values}[0]) >= 0
 
 Verify ESS:202 accelerometer Data is Recent
     [Tags]
