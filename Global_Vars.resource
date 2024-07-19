@@ -13,4 +13,5 @@ ${env_efd}      tucson_teststand_efd
 ${weeks_ago}    0
 ${days_ago}     ${None}
 ${hours_ago}    ${None}
+${minutes_ago}    0
 &{STATES}       disabled=${1}    enabled=${2}    fault=${3}    offline=${4}    standby=${5}

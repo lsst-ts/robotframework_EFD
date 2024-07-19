@@ -25,10 +25,19 @@ class QueryEfd:
 
     Attributes
     ----------
+    tai_offset : `int`
+        Defines the offset, in seconds, between UTC and TAI.
     INDEX_DELIM : `str`
         Defines the delimiter used in specifying indexed CSCs.
     time_format : `str`
         Defines the format for time strings.
+    version_regex : `str`
+        Defines the Regular Expression for the software versions.
+        Starts from the Semantic Version definition, but allows for
+        slight deviations to accommodate Conda versioning standards.
+    pattern : `re.Pattern`
+        Converts version_regex string to an re.Pattern object.
+        This is used for the actual version validation.
 
     Notes
     -----
@@ -39,6 +48,7 @@ class QueryEfd:
     https://github.com/lsst-ts/ts_IntegrationTests
     """
 
+    tai_offset: int = 37
     INDEX_DELIM: str = ":"
     time_format: str = "%Y-%m-%dT%H:%M:%S.%f"
     version_regex = "".join(
@@ -631,7 +641,7 @@ class QueryEfd:
 
     @keyword
     def verify_time_delta(
-         self, csc: str, topic: str, hour: int = None, day: int = None, week: int = 0
+         self, csc: str, topic: str, minute: int = 1, hour: int = None, day: int = None, week: int = 0
     ) -> None:
         """Fails if the publish time for the given topic is older than
            the Monday of the deployment week. A deployment will reset
@@ -645,6 +655,8 @@ class QueryEfd:
             The name of the CSC, in index format, i.e <CSC>[:<index>].
         topic_1 : `str`
             The name of the first topic.
+        minute : `int`
+            The number of minutes to go back. Default is 1.
         hour : `int`
             The number of hours to go back. Default of None gets
             set to 4, meaning four hours prior to 'now'.
@@ -655,8 +667,10 @@ class QueryEfd:
             The number of weeks to go back. Default is 0, meaning
             the current week, i.e. the most recent Monday.
         """
-        # Define `today` as the execution time.
-        today = datetime.datetime.now(tz=datetime.timezone.utc)
+        # Get the timestamp for the topic.
+        pub_time = self.get_topic_sent_time(f"{csc}", topic)
+        # Define `today` as the execution time. Convert to TAI time.
+        today = datetime.datetime.now(tz=datetime.timezone.utc) + datetime.timedelta(seconds=self.tai_offset)
         # If `day` is not defined, set it to the current
         # day number of the week (Monday is day 0).
         if day is None:
@@ -667,18 +681,21 @@ class QueryEfd:
         if hour is None:
               hour = 4       
         # Define the target datetime.
-        time0 = today - datetime.timedelta(hours=hour, days=day, weeks=week)
-        # Get the timestamp for the topic.
-        pub_time = self.get_topic_sent_time(f"{csc}", topic)
-        # Get the timedelta, in seconds.
-        delta = (pub_time - time0).total_seconds()
+        time0 = today - datetime.timedelta(minutes=minute, hours=hour, days=day, weeks=week)
+        # Get the deltas, in seconds.
+        ## Actual difference between published time and time0.
+        actual_delta = (pub_time - time0).total_seconds() 
+        ## The allowed difference is between today and time0, back-dated by the offset in hours, days and/or weeks.
+        allowed_delta = (today - time0 - datetime.timedelta(hours=hour, days=day, weeks=week)).total_seconds()
         print(
             f"*TRACE*{csc} {topic} was sent at {pub_time}.\n"
-            f"*TRACE*The time difference is {delta} seconds."
+            f"*TRACE*Today is {today}. Time0 was set to {time0}.\n"
+            f"*TRACE*The time difference is {actual_delta} seconds."
+            f" The allowed difference was {allowed_delta} seconds."
         )
-        if delta < 0:
+        if actual_delta < 0:
             raise AssertionError(
-                f"{topic} was published {abs(delta)} seconds BEFORE {time0}."
+                f"{topic} was published {abs(actual_delta)} seconds BEFORE {time0}."
             )
 
     @keyword
