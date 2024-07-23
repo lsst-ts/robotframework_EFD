@@ -1,0 +1,8 @@
+###  Test Suite list ###
+#  Change the title of the test results
+--name SensorCSCs
+--output sensor_cscs
+--skiponfailure skipped
+
+# List of test suites
+SensorCSCs/Verify_SensorCSCs.robot
