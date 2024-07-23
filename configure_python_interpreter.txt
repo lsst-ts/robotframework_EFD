@@ -17,17 +17,25 @@ for csc in cscs:
 
 
 
+=====BTS=====
 from QueryEfd import QueryEfd
 efd = QueryEfd("7.5.0", "20.2.0", "6.10.4p2", "base_efd")
-
 from utils import dataframe
-
 from lsst_efd_client import EfdClient
 efd_client = EfdClient("base_efd")
-
 import asyncio
-loop = asyncio.get_event_loop()
 
+#loop = asyncio.get_event_loop()
+
+=====TTS=====
+from QueryEfd import QueryEfd
+efd = QueryEfd("7.5.0", "20.2.0", "6.10.4p2", "tucson_teststand_efd")
+from utils import dataframe
+from lsst_efd_client import EfdClient
+efd_client = EfdClient("tucson_teststand_efd")
+import asyncio
+
+#loop = asyncio.get_event_loop()
 
 
 
@@ -43,6 +51,32 @@ loop.run_until_complete(efd_client.select_top_n("lsst.sal.CCCamera.logevent_summ
 
 
 ======= on the fly script configurations =======
+
+====AuxTel Housekeeping====
+component: "ATDome"
+cmd: "homeAzimuth"
+
+component: "ATPtg"
+cmd: azElTarget
+parameters:
+  targetName: Park position
+  azDegs: 0
+  elDegs: 80
+  rotPA: 0
+
+component: "ATDome"
+cmd: moveAzimuth
+parameters:
+  azimuth: 285
+
+component: "ATPtg"
+cmd: stopTracking
+
+component: "ATMCS"
+cmd: "setInstrumentPort"
+parameters:
+  port: 2
+====END====
 
 track_target:
   target_name: HD164461

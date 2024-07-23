@@ -12,7 +12,7 @@ Verify GenericCamera:1 Disabled
 
 Verify GenericCamera:1 SummaryState timing
     [Tags]    software_versions    timing
-    Verify Time Delta    GenericCamera    command_start    logevent_summaryState    index=1
+    Verify Time Delta    GenericCamera:1    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify GenericCamera:1 ConfigurationApplied Event
     [Tags]    config_applied
@@ -20,7 +20,7 @@ Verify GenericCamera:1 ConfigurationApplied Event
 
 Verify GenericCamera:1 ConfigurationApplied Event timing
     [Tags]    config_applied    timing
-    Verify Time Delta    GenericCamera    command_start    logevent_configurationApplied    index=1
+    Verify Time Delta    GenericCamera:1    logevent_configurationApplied    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 #GCHeaderService:1
 Verify GCHeaderService:1 Disabled
@@ -29,7 +29,7 @@ Verify GCHeaderService:1 Disabled
 
 Verify GCHeaderService:1 SummaryState timing
     [Tags]    software_versions    timing
-    Verify Time Delta    GCHeaderService    command_start    logevent_summaryState    index=1
+    Verify Time Delta    GCHeaderService:1    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify GCHeaderService:1 ConfigurationApplied Event
     [Tags]    config_applied

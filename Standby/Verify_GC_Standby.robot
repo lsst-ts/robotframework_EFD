@@ -22,7 +22,7 @@ Verify GenericCamera:1 SoftwareVersions
 
 Verify GenericCamera:1 SoftwareVersions timing
     [Tags]    software_versions    timing
-    Verify Time Delta    GenericCamera    logevent_softwareVersions    logevent_summaryState    index=1
+    Verify Time Delta    GenericCamera:1    logevent_softwareVersions    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify GenericCamera:1 ConfigurationsAvailable Event
     [Tags]    config_available
@@ -30,7 +30,7 @@ Verify GenericCamera:1 ConfigurationsAvailable Event
 
 Verify GenericCamera:1 ConfigurationsAvailable timing
     [Tags]    config_available    timing
-    Verify Time Delta    GenericCamera    logevent_configurationsAvailable    logevent_summaryState    index=1
+    Verify Time Delta    GenericCamera:1    logevent_configurationsAvailable    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 # GCHeaderService
 Verify GCHeaderService:1 Standby
@@ -43,7 +43,7 @@ Verify GCHeaderService:1 SoftwareVersions
 
 Verify GCHeaderService:1 SoftwareVersions timing
     [Tags]    software_versions    timing
-    Verify Time Delta    GCHeaderService    logevent_softwareVersions    logevent_summaryState    index=1
+    Verify Time Delta    GCHeaderService:1    logevent_softwareVersions    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify GCHeaderService:1 ConfigurationsAvailable Event
     [Tags]    config_available

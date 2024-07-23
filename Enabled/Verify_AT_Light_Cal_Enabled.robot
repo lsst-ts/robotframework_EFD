@@ -15,7 +15,7 @@ Verify ATMonochromator Enabled
 
 Verify ATMonochromator SummaryState timing
     [Tags]    timing
-    Verify Time Delta    ATMonochromator    command_enable    logevent_summaryState
+    Verify Time Delta    ATMonochromator    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 #FiberSpectrograph:3
 Verify FiberSpectrograph:3 Enabled
@@ -24,4 +24,4 @@ Verify FiberSpectrograph:3 Enabled
 
 Verify FiberSpectrograph:3 SummaryState timing
     [Tags]    timing
-    Verify Time Delta    FiberSpectrograph    command_enable    logevent_summaryState    index=3
+    Verify Time Delta    FiberSpectrograph:3    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}

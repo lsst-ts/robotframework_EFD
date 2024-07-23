@@ -3,6 +3,7 @@ Resource    ../Global_Vars.resource
 Resource    ../CSC_Lists.resource
 Resource    ../Common_Keywords.resource
 Force Tags    enabled    execute
+Suite Setup    Set EFD Values
 
 *** Variables ***
 
@@ -14,10 +15,9 @@ Execute AuxTel Disabled to Enabled
     Report If Failed    ${scripts}    ${states}
 
 Execute BigCamera Disabled to Enabled
-    [Tags]    bigcamera
-    # Set the BigCamera name to MTCamera if running on the BTS, or CCCamera if running on TTS.
-    ${big_camera}=    Set Variable If    "${env_efd}" == "base_efd"    MTCamera    CCCamera
-    ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    ${big_camera}    Enabled
+    [Tags]
+    Set Tags    ${BigCamera}
+    ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    ${BigCamera}    Enabled
     Verify Scripts Completed Successfully    ${scripts}    ${states}
     Report If Failed    ${scripts}    ${states}
 
@@ -66,10 +66,9 @@ Execute MTPtg Disabled to Enabled
     Report If Failed    ${scripts}    ${states}
 
 Execute OCPS2||3 Disabled to Enabled
-    [Tags]    mtocps
-    # Set the OCPS name based on running on the BTS or TTS.
-    ${big_ocps}=    Set Variable If    "${env_efd}" == "base_efd"    OCPS:3    OCPS:2
-    ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    ${big_ocps}    Enabled
+    [Tags]
+    Set Tag    OCPS:${OcpsIndex}
+    ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    OCPS    Enabled    -x ${OcpsIndex}
     Verify Scripts Completed Successfully    ${scripts}    ${states}
     Report If Failed    ${scripts}    ${states}
 

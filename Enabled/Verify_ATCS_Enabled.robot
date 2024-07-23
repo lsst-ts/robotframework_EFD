@@ -14,7 +14,7 @@ Verify ATAOS Enabled
 
 Verify ATAOS SummaryState timing
     [Tags]    timing
-    Verify Time Delta    ATAOS    command_enable    logevent_summaryState
+    Verify Time Delta    ATAOS    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 #ATDome
 Verify ATDome Enabled
@@ -23,7 +23,7 @@ Verify ATDome Enabled
 
 Verify ATDome SummaryState timing
     [Tags]    timing
-    Verify Time Delta    ATDome    command_enable    logevent_summaryState
+    Verify Time Delta    ATDome    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 #ATDomeTrajectory
 Verify ATDomeTrajectory Enabled
@@ -32,7 +32,7 @@ Verify ATDomeTrajectory Enabled
 
 Verify ATDomeTrajectory SummaryState timing
     [Tags]    timing
-    Verify Time Delta    ATDomeTrajectory    command_enable    logevent_summaryState
+    Verify Time Delta    ATDomeTrajectory    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 #ATHexapod
 Verify ATHexapod Enabled
@@ -41,7 +41,7 @@ Verify ATHexapod Enabled
 
 Verify ATHexapod SummaryState timing
     [Tags]    timing
-    Verify Time Delta    ATHexapod    command_enable    logevent_summaryState
+    Verify Time Delta    ATHexapod    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 #ATMCS
 Verify ATMCS Enabled
@@ -50,7 +50,7 @@ Verify ATMCS Enabled
 
 Verify ATMCS SummaryState timing
     [Tags]    timing
-    Verify Time Delta    ATMCS    command_enable    logevent_summaryState
+    Verify Time Delta    ATMCS    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 #ATPneumatics
 Verify ATPneumatics Enabled
@@ -59,7 +59,7 @@ Verify ATPneumatics Enabled
 
 Verify ATPneumatics SummaryState timing
     [Tags]    timing
-    Verify Time Delta    ATPneumatics    command_enable    logevent_summaryState
+    Verify Time Delta    ATPneumatics    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 #ATPtg
 Verify ATPtg Enabled
@@ -68,4 +68,4 @@ Verify ATPtg Enabled
 
 Verify ATPtg SummaryState timing
     [Tags]    timing
-    Verify Time Delta    ATPtg    command_enable    logevent_summaryState
+    Verify Time Delta    ATPtg    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}

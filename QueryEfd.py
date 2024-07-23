@@ -25,10 +25,19 @@ class QueryEfd:
 
     Attributes
     ----------
+    tai_offset : `int`
+        Defines the offset, in seconds, between UTC and TAI.
     INDEX_DELIM : `str`
         Defines the delimiter used in specifying indexed CSCs.
     time_format : `str`
         Defines the format for time strings.
+    version_regex : `str`
+        Defines the Regular Expression for the software versions.
+        Starts from the Semantic Version definition, but allows for
+        slight deviations to accommodate Conda versioning standards.
+    pattern : `re.Pattern`
+        Converts version_regex string to an re.Pattern object.
+        This is used for the actual version validation.
 
     Notes
     -----
@@ -39,6 +48,7 @@ class QueryEfd:
     https://github.com/lsst-ts/ts_IntegrationTests
     """
 
+    tai_offset: int = 37
     INDEX_DELIM: str = ":"
     time_format: str = "%Y-%m-%dT%H:%M:%S.%f"
     version_regex = "".join(
@@ -631,35 +641,61 @@ class QueryEfd:
 
     @keyword
     def verify_time_delta(
-        self, csc: str, topic_1: str, topic_2: str, index: int = None
+         self, csc: str, topic: str, minute: int = 1, hour: int = None, day: int = None, week: int = 0
     ) -> None:
-        """Fails if the difference between the publish times for the two given
-        topics is negative, indicating the second occurred BEFORE the first.
+        """Fails if the publish time for the given topic is older than
+           the Monday of the deployment week. A deployment will reset
+           all the publish times, and the earliest it will occur is on
+           a Monday. Therefore, if publish times are too old or
+           non-existent, there is a problem.
 
         Parameters
         ----------
         csc : `str`
-            The name of the CSC.
+            The name of the CSC, in index format, i.e <CSC>[:<index>].
         topic_1 : `str`
             The name of the first topic.
-        topic_2 : `str`
-            The name of the second topic.
-        index : `int`
-            The index of the CSC, if applicable (default is None).
+        minute : `int`
+            The number of minutes to go back. Default is 1.
+        hour : `int`
+            The number of hours to go back. Default of None gets
+            set to 4, meaning four hours prior to 'now'.
+        day : `int`
+            The number day of the week. Default of None gets set
+            to the current number day of the week.
+        week : `int`
+            The number of weeks to go back. Default is 0, meaning
+            the current week, i.e. the most recent Monday.
         """
-        # Get the timestamps for the topics.
-        time_1 = self.get_topic_sent_time(csc, topic_1)
-        time_2 = self.get_topic_sent_time(csc, topic_2)
-        # Get the timedelta, in seconds.
-        delta = (time_2 - time_1).total_seconds()
+        # Get the timestamp for the topic.
+        pub_time = self.get_topic_sent_time(f"{csc}", topic)
+        # Define `today` as the execution time. Convert to TAI time.
+        today = datetime.datetime.now(tz=datetime.timezone.utc) + datetime.timedelta(seconds=self.tai_offset)
+        # If `day` is not defined, set it to the current
+        # day number of the week (Monday is day 0).
+        if day is None:
+              day = today.weekday()
+        # If `hour` is not defined, set to 4 hours, which
+        # assumes the testing starts about four hours later in
+        # the day than the deployment happened.
+        if hour is None:
+              hour = 4       
+        # Define the target datetime.
+        time0 = today - datetime.timedelta(minutes=minute, hours=hour, days=day, weeks=week)
+        # Get the deltas, in seconds.
+        ## Actual difference between published time and time0.
+        actual_delta = (pub_time - time0).total_seconds() 
+        ## The allowed difference is between today and time0, back-dated by the offset in hours, days and/or weeks.
+        allowed_delta = (today - time0 - datetime.timedelta(hours=hour, days=day, weeks=week)).total_seconds()
         print(
-            f"*TRACE*{topic_1} was sent at {time_1}.\n"
-            f"*TRACE*{topic_2} was sent at {time_2}.\n"
-            f"*TRACE*The time difference is {delta} seconds."
+            f"*TRACE*{csc} {topic} was sent at {pub_time}.\n"
+            f"*TRACE*Today is {today}. Time0 was set to {time0}.\n"
+            f"*TRACE*The time difference is {actual_delta} seconds."
+            f" The allowed difference was {allowed_delta} seconds."
         )
-        if delta < 0:
+        if actual_delta < 0:
             raise AssertionError(
-                f"{topic_2} was published {abs(delta)} seconds BEFORE {topic_1}."
+                f"{topic} was published {abs(actual_delta)} seconds BEFORE {time0}."
             )
 
     @keyword

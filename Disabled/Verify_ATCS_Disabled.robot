@@ -12,7 +12,7 @@ Verify ATAOS Disabled
 
 Verify ATAOS SummaryState timing
     [Tags]    software_versions    timing
-    Verify Time Delta    ATAOS    command_start    logevent_summaryState
+    Verify Time Delta    ATAOS    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify ATAOS ConfigurationApplied Event
     [Tags]    config_applied
@@ -20,7 +20,7 @@ Verify ATAOS ConfigurationApplied Event
 
 Verify ATAOS ConfigurationApplied Event timing
     [Tags]    config_applied    timing
-    Verify Time Delta    ATAOS    command_start    logevent_configurationApplied
+    Verify Time Delta    ATAOS    logevent_configurationApplied    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 #ATDome
 Verify ATDome Disabled
@@ -29,7 +29,7 @@ Verify ATDome Disabled
 
 Verify ATDome SummaryState timing
     [Tags]    software_versions    timing
-    Verify Time Delta    ATDome    command_start    logevent_summaryState
+    Verify Time Delta    ATDome    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify ATDome ConfigurationApplied Event
     [Tags]    config_applied
@@ -37,7 +37,7 @@ Verify ATDome ConfigurationApplied Event
 
 Verify ATDome ConfigurationApplied Event timing
     [Tags]    config_applied    timing
-    Verify Time Delta    ATDome    command_start    logevent_configurationApplied
+    Verify Time Delta    ATDome    logevent_configurationApplied    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 #ATDomeTrajectory
 Verify ATDomeTrajectory Disabled
@@ -46,7 +46,7 @@ Verify ATDomeTrajectory Disabled
 
 Verify ATDomeTrajectory SummaryState timing
     [Tags]    software_versions    timing
-    Verify Time Delta    ATDomeTrajectory    command_start    logevent_summaryState
+    Verify Time Delta    ATDomeTrajectory    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify ATDomeTrajectory ConfigurationApplied Event
     [Tags]    config_applied
@@ -54,7 +54,7 @@ Verify ATDomeTrajectory ConfigurationApplied Event
 
 Verify ATDomeTrajectory ConfigurationApplied Event timing
     [Tags]    config_applied    timing
-    Verify Time Delta    ATDomeTrajectory    command_start    logevent_configurationApplied
+    Verify Time Delta    ATDomeTrajectory    logevent_configurationApplied    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 #ATHexapod
 Verify ATHexapod Disabled
@@ -63,7 +63,7 @@ Verify ATHexapod Disabled
 
 Verify ATHexapod SummaryState timing
     [Tags]    software_versions    timing
-    Verify Time Delta    ATHexapod    command_start    logevent_summaryState
+    Verify Time Delta    ATHexapod    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify ATHexapod ConfigurationApplied Event
     [Tags]    config_applied
@@ -71,7 +71,7 @@ Verify ATHexapod ConfigurationApplied Event
 
 Verify ATHexapod ConfigurationApplied Event timing 
     [Tags]    config_applied    timing
-    Verify Time Delta    ATHexapod    command_start    logevent_configurationApplied
+    Verify Time Delta    ATHexapod    logevent_configurationApplied    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 #ATMCS
 Verify ATMCS Disabled
@@ -80,12 +80,15 @@ Verify ATMCS Disabled
 
 Verify ATMCS SummaryState timing
     [Tags]    software_versions    timing
-    Verify Time Delta    ATMCS    command_start    logevent_summaryState
+    Verify Time Delta    ATMCS    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
     
 Verify ATMCS ConfigurationApplied Event
-    [Tags]    config_applied
-    # Non-configurable: dataframe empty, no timing test.
+    [Tags]    config_applied    DM-44733
     Verify ConfigurationApplied    ATMCS
+
+Verify ATMCS ConfigurationApplied Event timing
+    [Tags]    config_applied    timing    DM-44733
+    Verify Time Delta    ATMCS    logevent_configurationApplied    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 #ATPneumatics
 Verify ATPneumatics Disabled
@@ -94,12 +97,15 @@ Verify ATPneumatics Disabled
 
 Verify ATPneumatics SummaryState timing
     [Tags]    software_versions    timing
-    Verify Time Delta    ATPneumatics    command_start    logevent_summaryState
+    Verify Time Delta    ATPneumatics    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
     
 Verify ATPneumatics ConfigurationApplied Event
-    [Tags]    config_applied
-    # Non-configurable: dataframe empty, no timing test.
+    [Tags]    config_applied    DM-44734
     Verify ConfigurationApplied    ATPneumatics
+
+Verify ATPneumatics ConfigurationApplied Event timing
+    [Tags]    config_applied    timing    DM-44734
+    Verify Time Delta    ATPneumatics    logevent_configurationApplied    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 #ATPtg
 Verify ATPtg Disabled
@@ -108,7 +114,7 @@ Verify ATPtg Disabled
 
 Verify ATPtg SummaryState timing
     [Tags]    software_versions    timing
-    Verify Time Delta    ATPtg    command_start    logevent_summaryState
+    Verify Time Delta    ATPtg    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
     
 Verify ATPtg ConfigurationApplied Event
     [Tags]    config_applied

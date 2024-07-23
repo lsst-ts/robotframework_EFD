@@ -12,7 +12,7 @@ Verify Scheduler:1 Disabled
 
 Verify Scheduler:1 SummaryState timing
     [Tags]    software_versions    timing
-    Verify Time Delta    Scheduler    command_start    logevent_summaryState    index=1
+    Verify Time Delta    Scheduler:1    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify Scheduler:1 ConfigurationApplied Event
     [Tags]    config_applied
@@ -20,7 +20,7 @@ Verify Scheduler:1 ConfigurationApplied Event
 
 Verify Scheduler:1 ConfigurationApplied Event timing
     [Tags]    config_applied    timing
-    Verify Time Delta    Scheduler    command_start    logevent_configurationApplied    index=1
+    Verify Time Delta    Scheduler:1    logevent_configurationApplied    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 #Scheduler:2
 Verify Scheduler:2 Disabled
@@ -29,7 +29,7 @@ Verify Scheduler:2 Disabled
 
 Verify Scheduler:2 SummaryState timing
     [Tags]    software_versions    timing
-    Verify Time Delta    Scheduler    command_start    logevent_summaryState    index=2
+    Verify Time Delta    Scheduler:2    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify Scheduler:2 ConfigurationApplied Event
     [Tags]    config_applied
@@ -37,7 +37,7 @@ Verify Scheduler:2 ConfigurationApplied Event
 
 Verify Scheduler:2 ConfigurationApplied Event timing
     [Tags]    config_applied    timing
-    Verify Time Delta    Scheduler    command_start    logevent_configurationApplied    index=2
+    Verify Time Delta    Scheduler:2    logevent_configurationApplied    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 #Scheduler:3
 Verify Scheduler:3 Disabled
@@ -46,7 +46,7 @@ Verify Scheduler:3 Disabled
 
 Verify Scheduler:3 SummaryState timing
     [Tags]    software_versions    timing
-    Verify Time Delta    Scheduler    command_start    logevent_summaryState    index=3
+    Verify Time Delta    Scheduler:3    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify Scheduler:3 ConfigurationApplied Event
     [Tags]    config_applied
@@ -54,42 +54,33 @@ Verify Scheduler:3 ConfigurationApplied Event
 
 Verify Scheduler:3 ConfigurationApplied Event timing
     [Tags]    config_applied    timing
-    Verify Time Delta    Scheduler    command_start    logevent_configurationApplied    index=3
+    Verify Time Delta    Scheduler:3    logevent_configurationApplied    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 #ScriptQueue:1
+##Auto-Enabled: no timing tests
 Verify ScriptQueue:1 Disabled
     [Tags]    disabled
     Verify Summary State    ${STATES}[disabled]    ScriptQueue:1    auto_enable=True
-
-Verify ScriptQueue:1 SummaryState timing
-    [Tags]    software_versions    timing
-    Verify Time Delta    ScriptQueue    command_start    logevent_summaryState    index=1
 
 Verify ScriptQueue:1 ConfigurationApplied Event
     [Tags]    config_applied
     Verify ConfigurationApplied    ScriptQueue    index=1
 
 #ScriptQueue:2
+##Auto-Enabled: no timing tests
 Verify ScriptQueue:2 Disabled
     [Tags]    disabled
     Verify Summary State    ${STATES}[disabled]    ScriptQueue:2    auto_enable=True
-
-Verify ScriptQueue:2 SummaryState timing
-    [Tags]    software_versions    timing
-    Verify Time Delta    ScriptQueue    command_start    logevent_summaryState    index=2
 
 Verify ScriptQueue:2 ConfigurationApplied Event
     [Tags]    config_applied
     Verify ConfigurationApplied    ScriptQueue    index=2
 
 #ScriptQueue:3
+##Auto-Enabled: no timing tests
 Verify ScriptQueue:3 Disabled
     [Tags]    disabled
     Verify Summary State    ${STATES}[disabled]    ScriptQueue:3    auto_enable=True
-
-Verify ScriptQueue:3 SummaryState timing
-    [Tags]    software_versions    timing
-    Verify Time Delta    ScriptQueue    command_start    logevent_summaryState    index=3
 
 Verify ScriptQueue:3 ConfigurationApplied Event
     [Tags]    config_applied
@@ -102,7 +93,7 @@ Verify Watcher Disabled
 
 Verify Watcher SummaryState timing
     [Tags]    software_versions    timing
-    Verify Time Delta    Watcher    command_start    logevent_summaryState
+    Verify Time Delta    Watcher    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify Watcher ConfigurationApplied Event
     [Tags]    config_applied
@@ -110,7 +101,7 @@ Verify Watcher ConfigurationApplied Event
 
 Verify Watcher ConfigurationApplied Event timing
     [Tags]    config_applied    timing
-    Verify Time Delta    Watcher    command_start    logevent_configurationApplied
+    Verify Time Delta    Watcher    logevent_configurationApplied    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 #Test:42
 Verify Test:42 Disabled
@@ -119,7 +110,7 @@ Verify Test:42 Disabled
 
 Verify Test:42 SummaryState timing
     [Tags]    software_versions    timing
-    Verify Time Delta    Test    command_start    logevent_summaryState    index=42
+    Verify Time Delta    Test:42    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify Test:42 ConfigurationApplied Event
     [Tags]    config_applied
@@ -127,4 +118,4 @@ Verify Test:42 ConfigurationApplied Event
 
 Verify Test:42 ConfigurationApplied Event timing
     [Tags]    config_applied    timing
-    Verify Time Delta    Test    command_start    logevent_configurationApplied    index=42
+    Verify Time Delta    Test:42    logevent_configurationApplied    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}

@@ -12,6 +12,7 @@ offline.xml
 standby.xml 
 disabled.xml 
 enabled.xml 
+sensor_cscs.xml
 athousekeeping.xml 
 mthousekeeping.xml 
 bigcam_image_verify.xml 
