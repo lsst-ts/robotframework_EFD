@@ -6,6 +6,22 @@ Force Tags    shutdown    execute
 Suite Setup    Run Keywords    Set EFD Values    AND    Log Many    ${STATES}[offline]
 
 *** Variables ***
+${cccamera_salver}    ${SALVersion}
+${cccamera_xmlver}    ${XMLVersion}
+${ccoods_salver}    ${SALVersion}
+${ccoods_xmlver}    ${XMLVersion}
+${ccheaderservice_salver}    ${SALVersion}
+${ccheaderservice_xmlver}    ${XMLVersion}
+${mtcamera_salver}    ${SALVersion}
+${mtcamera_xmlver}    ${XMLVersion}
+${mtoods_salver}    ${SALVersion}
+${mtoods_xmlver}    ${XMLVersion}
+${mtheaderservice_salver}    ${SALVersion}
+${mtheaderservice_xmlver}    ${XMLVersion}
+${ocps2_salver}    ${SALVersion}
+${ocps2_xmlver}    ${XMLVersion}
+${ocps3_salver}    ${SALVersion}
+${ocps3_xmlver}    ${XMLVersion}
 
 *** Test Cases ***
 Execute BigCamera Enabled to Offline
