@@ -32,13 +32,13 @@ Execute BigCamera Enabled to Offline
 
 Execute EPM:1 Enabled to Offline
     [Tags]    epm:1
-    ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    EPM    Disabled    -x 1
+    ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    EPM    Offline    -x 1
     Verify Scripts Completed Successfully    ${scripts}    ${states}
     Report If Failed    ${scripts}    ${states}
 
 Execute MTPtg Enabled to Offline
     [Tags]    mtptg 
-    ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    MTPtg    Disabled
+    ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    MTPtg    Offline
     Verify Scripts Completed Successfully    ${scripts}    ${states}
     Report If Failed    ${scripts}    ${states}
 
