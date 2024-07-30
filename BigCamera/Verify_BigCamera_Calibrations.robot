@@ -39,7 +39,8 @@ Verify MTPtg Target
     [Documentation]    Ensure the telescope is pointed at the correct target, in this case at the Az/El of the flat-field screen.
     ...    This command is sent prior to the start of the script.
     [Tags]    bigcamera_imaging    robot:continue-on-failure
-    Verify Time Delta    MTPtg    command_raDecTarget    logevent_currentTarget
+    Verify Time Delta    MTPtg    logevent_currentTarget    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+    Verify Time Delta    MTPtg    command_raDecTarget    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
     ${cmd_dataframe}=    Get Recent Samples    MTPtg    command_raDecTarget    ["targetName", "ra", "declination",]    1    None
     Should Be Equal    ${cmd_dataframe.targetName.values}[0]    Flatfield position
     ${evt_dataframe}=    Get Recent Samples    MTPtg    logevent_currentTarget    ["targetName", "azDegs", "elDegs",]    1    None
@@ -51,7 +52,8 @@ Verify MTPtg Tracking is Off
     [Tags]    bigcamera_imaging
     ${evt_df}=    Get Recent Samples    MTPtg    logevent_trackPosting    ["status"]    1    None
     Should Not Be True    ${evt_df.status.values}[0]
-    Verify Time Delta    MTPtg    command_stopTracking    logevent_trackPosting    
+    Verify Time Delta    MTPtg    logevent_trackPosting    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+    Verify Time Delta    MTPtg    command_stopTracking    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify BigCamera Filter
     [Tags]    bigcamera_imaging
@@ -103,7 +105,7 @@ Verify HeaderService LargeFileObjectAvailable
     FOR    ${i}    IN RANGE    ${num_images}
         Should Be Equal As Strings    ${dataframe.id.values}[${i}]    ${image_names}[0][${i}]
         ${file_name}=    Catenate    SEPARATOR=    ${HeaderService}_header_    ${image_names}[0][${i}]    .yaml
-        Should Be Equal As Strings    ${dataframe.url[${i}].split("/")[-1]}    ${file_name}
+        Should Be Equal As Strings    ${dataframe.url.iloc[${i}].split("/")[-1]}    ${file_name}
     END
  
 *** Keywords ***
