@@ -68,4 +68,4 @@ Verify HeaderService LargeFileObjectAvailable
     ${dataframe}=    Get Recent Samples    ${HeaderService}    logevent_largeFileObjectAvailable    ["id", "url",]    ${num_images}    None
     Should Be Equal As Strings    ${dataframe.id.values}[${0}]    ${image_names}[0][${0}]
     ${file_name}=    Catenate    SEPARATOR=    ${HeaderService}_header_    ${image_names}[0][${0}]    .yaml
-    Should Be Equal As Strings    ${dataframe.url[0].split("/")[-1]}    ${file_name}
+    Should Be Equal As Strings    ${dataframe.url.iloc[0].split("/")[-1]}    ${file_name}
