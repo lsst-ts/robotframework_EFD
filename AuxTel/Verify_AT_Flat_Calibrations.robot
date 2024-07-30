@@ -42,7 +42,8 @@ Verify ATPtg Tracking is Off
     [Tags]
     ${evt_df}=    Get Recent Samples    ATPtg    logevent_trackPosting    ["status"]    1    None
     Should Not Be True    ${evt_df.status.values}[0]
-    Verify Time Delta    ATPtg    command_stopTracking    logevent_trackPosting    
+    Verify Time Delta    ATPtg    logevent_trackPosting    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+    Verify Time Delta    ATPtg    command_stopTracking    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify ATSpectrograph Filter
     [Tags]    DM-35582

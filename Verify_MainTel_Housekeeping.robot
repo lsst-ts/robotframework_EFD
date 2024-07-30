@@ -41,11 +41,15 @@ Verify Tracking is Disabled
 Verify MTMount Axes Homed
     [Tags]    robot:continue-on-failure    mtmount
     Verify Topic Attribute    MTMount    logevent_elevationInPosition    ${in_position_field}    ${in_position}
-    Verify Time Delta    MTMount    command_homeBothAxes    logevent_elevationInPosition    index=None
+    Verify Time Delta    MTMount    logevent_elevationInPosition    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+    Verify Time Delta    MTMount    command_homeBothAxes    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
     Verify Topic Attribute    MTMount    logevent_azimuthInPosition    ${in_position_field}    ${in_position}
-    Verify Time Delta    MTMount    command_homeBothAxes    logevent_azimuthInPosition    index=None
+    Verify Time Delta    MTMount    logevent_azimuthInPosition    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+    Verify Time Delta    MTMount    command_homeBothAxes    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify BigCamera has Filter Set
     [Tags]    bigcamera
+    Set Test Variable    ${hours_ago}    0.015
     Verify Topic Attribute    ${BigCamera}    logevent_endSetFilter    ${filter_field}    ${filter_name}
-    Verify Time Delta    ${BigCamera}    command_setFilter    logevent_endSetFilter    45
+    Verify Time Delta    ${BigCamera}    logevent_endSetFilter    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+    Verify Time Delta    ${BigCamera}    command_setFilter    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}

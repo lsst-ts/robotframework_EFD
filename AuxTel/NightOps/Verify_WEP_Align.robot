@@ -17,7 +17,8 @@ Execute AuxTel Reset Offsets
 Verify ATAOS Corrections Enabled
     [Documentation]    Corrections should already be enabled, ensure nothing was changed prior to running this script.
     [Tags]
-    Verify Time Delta    ATAOS    command_enableCorrection    logevent_correctionEnabled
+    Verify Time Delta    ATAOS    logevent_correctionEnabled    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+    Verify Time Delta    ATAOS    command_enableCorrection    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
     ${dataframe}=    Get Recent Samples    ATAOS    logevent_correctionEnabled    ["*",]    1    None
     Should Be True    $dataframe.atspectrograph.values
     Should Be True    $dataframe.hexapod.values
@@ -47,7 +48,8 @@ Verify ATPtg Target
     ${topic_sent}=    Convert Date    ${output}    result_format=datetime
     ${delta}=    Subtract Date From Date    ${topic_sent}    ${script_start}
     Should Be True    ${delta} > 0
-    Verify Time Delta    ATPtg    command_raDecTarget    logevent_currentTarget
+    Verify Time Delta    ATPtg    logevent_currentTarget    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+    Verify Time Delta    ATPtg    command_raDecTarget    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
     Verify Topic Attribute    ATPtg    command_raDecTarget    ["targetName"]    ["HD164461"]
     Verify Topic Attribute    ATPtg    command_raDecTarget    ["ra"]    [${18.913095}]
     Verify Topic Attribute    ATPtg    command_raDecTarget    ["declination"]    [${-87.605843}]
@@ -114,8 +116,10 @@ Verify ATSpectrograph ChangeFilter
     ${topic_sent}=    Convert Date    ${output}    result_format=datetime
     ${delta}=    Subtract Date From Date    ${topic_sent}    ${script_start}
     Should Be True    ${delta} > 0
-    Verify Time Delta    ATSpectrograph    command_changeFilter    logevent_filterInPosition
-    Verify Time Delta    ATSpectrograph    command_changeFilter    logevent_reportedFilterPosition
+    Verify Time Delta    ATSpectrograph    logevent_filterInPosition    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+    Verify Time Delta    ATSpectrograph    command_changeFilter    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+    Verify Time Delta    ATSpectrograph    logevent_reportedFilterPosition    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+    Verify Time Delta    ATSpectrograph    command_changeFilter    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
     Verify Topic Attribute    ATSpectrograph    logevent_filterInPosition    ["inPosition",]    [True,]
 
 Verify ATSpectrograph Filter
@@ -129,8 +133,10 @@ Verify ATSpectrograph ChangeDisperer
     ${topic_sent}=    Convert Date    ${output}    result_format=datetime
     ${delta}=    Subtract Date From Date    ${topic_sent}    ${script_start}
     Should Be True    ${delta} > 0
-    Verify Time Delta    ATSpectrograph    command_changeDisperser    logevent_disperserInPosition
-    Verify Time Delta    ATSpectrograph    command_changeDisperser    logevent_reportedDisperserPosition
+    Verify Time Delta    ATSpectrograph    logevent_disperserInPosition    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+    Verify Time Delta    ATSpectrograph    command_changeDisperser    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+    Verify Time Delta    ATSpectrograph    logevent_reportedDisperserPosition    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+    Verify Time Delta    ATSpectrograph    command_changeDisperser    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
     Verify Topic Attribute    ATSpectrograph    logevent_disperserInPosition    ["inPosition",]    [True,]
 
 Verify ATSpectrograph Disperser
