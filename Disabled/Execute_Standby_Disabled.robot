@@ -83,7 +83,7 @@ Execute MTPtg Standby to Disabled
 
 Execute OCPS2||3 Standby to Disabled
     [Tags]
-    Set Tag    OCPS:${OcpsIndex}
+    Set Tags    OCPS:${OcpsIndex}
     ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    OCPS    Disabled    -x ${OcpsIndex}
     Verify Scripts Completed Successfully    ${scripts}    ${states}
     Report If Failed    ${scripts}    ${states}
