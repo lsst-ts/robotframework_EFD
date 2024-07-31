@@ -9,26 +9,23 @@ Suite Setup    Run Keywords    Check If Failed    AND    Set EFD Values    AND  
 *** Variables ***
 
 *** Test Cases ***
-Set Camera Variables
-    [Tags]
-    Comment    This test case is runs all the time, regardless of environment. If running on the BTS, the following test cases will be skipped, until the MTCamera simulator is deployed.
-    ${bigcam}=    Set Variable If    "${env_efd}" == "base_efd"    mt    cc
-    Set Suite Variable    ${bigcam}
-
 Load Camera Playlist
     [Tags]    execute    playlist    bigcamera_imaging
+    Skip If    "${env_efd}" == "base_efd"    "BigCamera imaging is skipped on the BTS"
     ${result}=    Run Process    load_camera_playlist    ${bigcam}    master_flat    --no-repeat
     Log Many    ${result.rc}    ${result.stdout}    ${result.stderr}
     Run Keyword If    ${result.rc} == 1    Fatal Error
 
 Verify Camera Playlist Loaded
     [Tags]    playlist    bigcamera_imaging
+    Skip If    "${env_efd}" == "base_efd"    "BigCamera imaging is skipped on the BTS"
     Log    ${playlist_full_name}
     ${dataframe}=    Get Recent Samples    ${BigCamera}    command_play    ["*",]    1    None
     Should Be Equal    ${dataframe.playlist.values}[0]    ${playlist_full_name}
 
 Execute BigCamera Flat Calibrations
     [Tags]    execute    bigcamera_imaging
+    Skip If    "${env_efd}" == "base_efd"    "BigCamera imaging is skipped on the BTS"
     # Set the 'test_env' variable to 'bts' if running on the BTS, otherwise, set it to 'tts'.
     ${integration_script}=    Set Variable If    "${env_efd}" == "base_efd"    lsstcam_calibrations    comcam_calibrations
     ${scripts}    ${states}=    Execute Integration Test    ${integration_script}    flat
@@ -39,6 +36,7 @@ Verify MTPtg Target
     [Documentation]    Ensure the telescope is pointed at the correct target, in this case at the Az/El of the flat-field screen.
     ...    This command is sent prior to the start of the script.
     [Tags]    bigcamera_imaging    robot:continue-on-failure
+    Skip If    "${env_efd}" == "base_efd"    "BigCamera imaging is skipped on the BTS"
     Verify Time Delta    MTPtg    logevent_currentTarget    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
     Verify Time Delta    MTPtg    command_raDecTarget    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
     ${cmd_dataframe}=    Get Recent Samples    MTPtg    command_raDecTarget    ["targetName", "ra", "declination",]    1    None
@@ -50,6 +48,7 @@ Verify MTPtg Target
 
 Verify MTPtg Tracking is Off
     [Tags]    bigcamera_imaging
+    Skip If    "${env_efd}" == "base_efd"    "BigCamera imaging is skipped on the BTS"
     ${evt_df}=    Get Recent Samples    MTPtg    logevent_trackPosting    ["status"]    1    None
     Should Not Be True    ${evt_df.status.values}[0]
     Verify Time Delta    MTPtg    logevent_trackPosting    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
@@ -57,6 +56,7 @@ Verify MTPtg Tracking is Off
 
 Verify BigCamera Filter
     [Tags]    bigcamera_imaging
+    Skip If    "${env_efd}" == "base_efd"    "BigCamera imaging is skipped on the BTS"
     ${evt_df}=    Get Recent Samples    ${BigCamera}    logevent_startSetFilter    ["filterName", "filterType"]    1    None
     Should Be Equal    ${evt_df.filterName.values}[0]    ${filter_name}
     Should Be Equal    ${evt_df.filterType.values}[0]    ${filter_type}
@@ -64,6 +64,7 @@ Verify BigCamera Filter
 Verify Camera Image Sequence
     [Documentation]    Verify the Camera images are the correct type, with the correct exposure time.
     [Tags]    bigcamera_imaging    robot:continue-on-failure
+    Skip If    "${env_efd}" == "base_efd"    "BigCamera imaging is skipped on the BTS"
     ${cmd_df}=    Get Recent Samples    ${BigCamera}    command_takeImages    ["expTime", "keyValueMap", "numImages", "shutter",]    ${num_images}    None
     ${evt_df}=    Get Recent Samples    ${BigCamera}    logevent_startIntegration    ["additionalValues", "exposureTime", "imageName"]    ${num_images}    None
     Set Suite Variable    @{image_names}    ${evt_df.imageName.values}
@@ -81,6 +82,7 @@ Verify Camera Image Sequence
 
 Verify OODS ImageInOODS
     [Tags]    bigcamera_imaging    robot:continue-on-failure
+    Skip If    "${env_efd}" == "base_efd"    "BigCamera imaging is skipped on the BTS"
     Wait Until Keyword Succeeds    60 sec    10 sec    Verify Image in OODS    ${OODS}    ${image_names}[0][0]
     ${total_images}=    Evaluate    ${num_images} * 9    # ComCam has 9 CCDs, so there are 9 times the images.
     Set Suite Variable    ${total_images}
@@ -99,6 +101,7 @@ Verify OODS ImageInOODS
 
 Verify HeaderService LargeFileObjectAvailable
     [Tags]    bigcamera_imaging    robot:continue-on-failure
+    Skip If    "${env_efd}" == "base_efd"    "BigCamera imaging is skipped on the BTS"
     ${dataframe}=    Get Recent Samples    ${HeaderService}    logevent_largeFileObjectAvailable    ["id", "url",]    ${total_images}    None
     Log    ${image_names}
     Log    ${dataframe.id.values}
@@ -112,6 +115,8 @@ Verify HeaderService LargeFileObjectAvailable
 Set Variables
     [Documentation]    The sequence length is defined by the number of exposures, num_images.
     ...    The img_type_seq is defined by the sequence of image types, in reverse order (dataframes are in time-descending order).
+    ${bigcam}=    Set Variable If    "${env_efd}" == "base_efd"    mt    cc
+    Set Suite Variable    ${bigcam}
     Set Suite Variable    ${playlist_full_name}    bias_dark_flat
     # Image type.
     Set Suite Variable    ${num_images}    30    # 10 Bias + 10 Dark + 10 Flat
