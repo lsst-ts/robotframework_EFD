@@ -24,7 +24,8 @@ Verify ATDome AzimuthInPosition
     ${topic_sent}=    Convert Date    ${output}    result_format=datetime
     ${delta}=    Subtract Date From Date    ${topic_sent}    ${script_start}
     Should Be True    ${delta} > 0
-    Verify Time Delta    ATDome    command_moveAzimuth    logevent_azimuthInPosition    30
+    Verify Time Delta    ATDome    logevent_azimuthInPosition    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+    Verify Time Delta    ATDome    command_moveAzimuth    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
     Verify Topic Attribute    ATDome    logevent_azimuthInPosition    ["inPosition",]    ["True",]
 
 Verify ATDome azimuthState
