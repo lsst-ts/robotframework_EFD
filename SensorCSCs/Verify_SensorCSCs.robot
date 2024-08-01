@@ -23,7 +23,7 @@ Verify DIMM:1 logevent_dimmMeasurement Published Data
     Should Not Be True    ${dataframe.empty}
 
 Verify DIMM:1 logevent_dimmMeasurement Data is Recent
-    [Tags]
+    [Tags]    timing
     Verify Time Delta    DIMM:1    logevent_dimmMeasurement    minute=${dimm_minutes_ago}    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 # DIMM:2
@@ -34,7 +34,7 @@ Verify DIMM:2 logevent_dimmMeasurement Published Data
     Should Not Be True    ${dataframe.empty}
 
 Verify DIMM:2 logevent_dimmMeasurement Data is Recent
-    [Tags]
+    [Tags]    timing
     Verify Time Delta    DIMM:2    logevent_dimmMeasurement    minute=${dimm_minutes_ago}    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 # DSM:1
@@ -45,7 +45,7 @@ Verify DSM:1 domeSeeing Published Data
     Should Not Be True    ${dataframe.empty}
 
 Verify DSM:1 domeSeeing Data is Recent
-    [Tags]
+    [Tags]    timing
     Verify Time Delta    DSM:1    domeSeeing    minute=${dsm1_minutes_ago}    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 # DSM:2
@@ -56,7 +56,7 @@ Verify DSM:2 domeSeeing Published Data
     Should Not Be True    ${dataframe.empty}
 
 Verify DSM:2 domeSeeing Data is Recent
-    [Tags]
+    [Tags]    timing
     Verify Time Delta    DSM:2    domeSeeing    minute=${dsm2_minutes_ago}    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 # EPM:1
@@ -68,7 +68,7 @@ Verify EPM:1 scheiderPm5xxx Published Data
     Should Be Equal As Strings    ${dataframe.private_identity.values}[0]    EPM:1
 
 Verify EPM:1 scheiderPm5xxx Data is Recent
-    [Tags]
+    [Tags]    timing
     Verify Time Delta    EPM:1    scheiderPm5xxx    minute=${epm_minutes_ago}    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 # ESS:1
@@ -89,7 +89,7 @@ Verify ESS:1 temperature Published Data
     Should Be True    abs(${dataframe.temperatureItem7.values}[0]) >= 0
 
 Verify ESS:1 temperature Data is Recent
-    [Tags]
+    [Tags]    timing
     Verify Time Delta    ESS:1    temperature    minute=${ess_minutes_ago}    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 # ESS:101
@@ -110,7 +110,7 @@ Verify ESS:101 temperature Published Data
     Should Be True    ${dataframe.temperatureItem7.values}[0] == None
 
 Verify ESS:101 temperature Data is Recent
-    [Tags]
+    [Tags]    timing
     Verify Time Delta    ESS:101    temperature    minute=${ess_minutes_ago}    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 # ESS:102
@@ -124,7 +124,7 @@ Verify ESS:102 relativeHumidity Published Data
     Should Be True    abs(${dataframe.relativeHumidityItem.values}[0]) >= 0
 
 Verify ESS:102 relativeHumidity Data is Recent
-    [Tags]
+    [Tags]    timing
     Verify Time Delta    ESS:102    relativeHumidity    minute=${ess_minutes_ago}    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 # ESS:103
@@ -138,7 +138,7 @@ Verify ESS:103 relativeHumidity Published Data
     Should Be True    abs(${dataframe.relativeHumidityItem.values}[0]) >= 0
 
 Verify ESS:103 relativeHumidity Data is Recent
-    [Tags]
+    [Tags]    timing
     Verify Time Delta    ESS:103    relativeHumidity    minute=${ess_minutes_ago}    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 # ESS:104
@@ -178,7 +178,7 @@ Verify ESS:104 accelerometer Published Data
     Should Be True    abs(${dataframe04.accelerationZ0.values}[0]) >= 0
 
 Verify ESS:104 accelerometer Data is Recent
-    [Tags]
+    [Tags]    timing
     Set Test Variable    ${ess_minutes_ago}    0.35
     Verify Time Delta    ESS:104    accelerometer    minute=${ess_minutes_ago}    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
@@ -193,7 +193,7 @@ Verify ESS:105 spectrumAnalyzer Published Data
     Should Be True    abs(${dataframe.spectrum1.values}[0]) >= 0
 
 Verify ESS:105 spectrumAnalyzer Data is Recent
-    [Tags]
+    [Tags]    timing
     Verify Time Delta    ESS:105    spectrumAnalyzer    minute=${ess_minutes_ago}    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 # ESS:106
@@ -214,7 +214,7 @@ Verify ESS:106 temperature Published Data
     Should Be True    abs(${dataframe.temperatureItem7.values}[0]) >= 0
 
 Verify ESS:106 temperature Data is Recent
-    [Tags]
+    [Tags]    timing
     Verify Time Delta    ESS:106    temperature    minute=${ess_minutes_ago}    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 # ESS:107
@@ -235,7 +235,7 @@ Verify ESS:107 temperature Published Data
     Should Be True    abs(${dataframe.temperatureItem7.values}[0]) >= 0
 
 Verify ESS:107 temperature Data is Recent
-    [Tags]
+    [Tags]    timing
     Verify Time Delta    ESS:107    temperature    minute=${ess_minutes_ago}    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 # ESS:108
@@ -256,7 +256,7 @@ Verify ESS:108 temperature Published Data
     Should Be True    ${dataframe.temperatureItem7.values}[0] == None
 
 Verify ESS:108 temperature Data is Recent
-    [Tags]
+    [Tags]    timing
     Set Test Variable    ${ess_minutes_ago}    0.036
     Verify Time Delta    ESS:108    temperature    minute=${ess_minutes_ago}    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
@@ -271,7 +271,7 @@ Verify ESS:201 airTurbulence Published Data
     Should Be True    abs(${dataframe.speedMagnitude.values}[0]) >= 0
 
 Verify ESS:201 airTurbulence Data is Recent
-    [Tags]
+    [Tags]    timing
     Set Test Variable    ${ess_minutes_ago}    0.18
     Verify Time Delta    ESS:201    airTurbulence    minute=${ess_minutes_ago}    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
@@ -287,22 +287,25 @@ Verify ESS:201 temperature Published Data
     Comment    ============AuxTel-ESS01============
     ${dataframe01}=    Evaluate    $dataframe.loc[$idx01]
     Should Be Equal As Strings    ${dataframe01.location.values}[0]    unused, AT air, AT truss, AT M2, unused, unused, unused, unused
-    Should Be True    abs(${dataframe01.temperatureItem0.values}[0]) >= 0
+    Should Be True    ${dataframe01.temperatureItem0.values}[0] >= 0
     Should Be True    abs(${dataframe01.temperatureItem1.values}[0]) >= 0
     Should Be True    abs(${dataframe01.temperatureItem2.values}[0]) >= 0
     Should Be True    abs(${dataframe01.temperatureItem3.values}[0]) >= 0
-    Should Be True    abs(${dataframe01.temperatureItem4.values}[0]) >= 0
+    Should Be True    ${dataframe01.temperatureItem4.values}[0] >= 0
+    Should Be True    ${dataframe01.temperatureItem5.values}[0] >= 0
+    Should Be True    ${dataframe01.temperatureItem6.values}[0] >= 0
+    Should Be True    ${dataframe01.temperatureItem7.values}[0] >= 0
     Comment    ============AuxTel-ESS02============
     ${dataframe02}=    Evaluate    $dataframe.loc[$idx02]
     Should Be Equal As Strings    ${dataframe02.location.values}[0]    AT azimuth axis
     Should Be True    abs(${dataframe02.temperatureItem0.values}[0]) >= 0
-    #Should Be True    ${dataframe02.temperatureItem1.values}[0] == None
-    #Should Be True    ${dataframe02.temperatureItem2.values}[0] == None
-    #Should Be True    ${dataframe02.temperatureItem3.values}[0] == None
-    #Should Be True    ${dataframe02.temperatureItem4.values}[0] == None
-    #Should Be True    ${dataframe02.temperatureItem5.values}[0] == None
-    #Should Be True    ${dataframe02.temperatureItem6.values}[0] == None
-    #Should Be True    ${dataframe02.temperatureItem7.values}[0] == None
+    Pass Execution If    "${env_efd}" == "base_efd" || "${env_efd}" == "tucson_teststand_efd"    Should Be True    ${dataframe02.temperatureItem1.values}[0] == None
+    Pass Execution If    "${env_efd}" == "base_efd" || "${env_efd}" == "tucson_teststand_efd"    Should Be True    ${dataframe02.temperatureItem2.values}[0] == None
+    Should Be True    ${dataframe02.temperatureItem3.values}[0] == nan
+    Should Be True    ${dataframe02.temperatureItem4.values}[0] == nan
+    Should Be True    ${dataframe02.temperatureItem5.values}[0] == nan
+    Should Be True    ${dataframe02.temperatureItem6.values}[0] == nan
+    Should Be True    ${dataframe02.temperatureItem7.values}[0] == nan
     Comment    ============AuxTel-ESS03============
     ${dataframe03}=    Evaluate    $dataframe.loc[$idx03]
     Should Be Equal As Strings    ${dataframe03.location.values}[0]    M1 sensor 1, M1 sensor 2, M1 sensor 3, M1 sensor 4, M1 sensor 5
@@ -316,7 +319,7 @@ Verify ESS:201 temperature Published Data
     #Should Be True    abs(${dataframe03.temperatureItem7.values}[0]) >= 0
 
 Verify ESS:201 temperature Data is Recent
-    [Tags]
+    [Tags]    timing
     Verify Time Delta    ESS:201    temperature    minute=${ess_minutes_ago}    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 # ESS:202
@@ -349,7 +352,7 @@ Verify ESS:202 accelerometer Published Data
     Should Be True    abs(${dataframe03.accelerationZ0.values}[0]) >= 0
 
 Verify ESS:202 accelerometer Data is Recent
-    [Tags]
+    [Tags]    timing
     Set Test Variable    ${ess_minutes_ago}    0.35
     Verify Time Delta    ESS:202    accelerometer    minute=${ess_minutes_ago}    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
@@ -364,7 +367,7 @@ Verify ESS:203 lightningStrikeStatus Published Data
     Should Be True    abs(${dataframe.totalStrikeRate.values}[0]) >= 0
 
 Verify ESS:203 lightningStrikeStatus Data is Recent
-    [Tags]
+    [Tags]    timing
     Verify Time Delta    ESS:203    lightningStrikeStatus    minute=${ess_minutes_ago}    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify ESS:203 electricFieldStrength Published Data
@@ -377,7 +380,7 @@ Verify ESS:203 electricFieldStrength Published Data
     Should Be True    abs(${dataframe.strength.values}[0]) >= 0
 
 Verify ESS:203 electricFieldStrength Data is Recent
-    [Tags]
+    [Tags]    timing
     Set Test Variable    ${ess_minutes_ago}    0.68
     Verify Time Delta    ESS:203    electricFieldStrength    minute=${ess_minutes_ago}    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
@@ -393,7 +396,7 @@ Verify ESS:204 airFlow Published Data
     Should Be True    abs(${dataframe.speed.values}[0]) >= 0
 
 Verify ESS:204 airFlow Data is Recent
-    [Tags]
+    [Tags]    timing
     Set Test Variable    ${ess_minutes_ago}    1.1
     Verify Time Delta    ESS:204    airFlow    minute=${ess_minutes_ago}    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
@@ -413,31 +416,31 @@ Verify ESS:205 airTurbulence Published Data
     Should Be True    abs(${dataframe.speedMaxMagnitude.values}[0]) >= 0
 
 Verify ESS:205 airTurbulence Data is Recent
-    [Tags]
+    [Tags]    timing
     Verify Time Delta    ESS:205    airTurbulence    minute=${ess_minutes_ago}    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 # ESS:301
 Verify ESS:301 airFlow Data is Recent
-    [Tags]
+    [Tags]    timing
     Set Test Variable    ${ess_minutes_ago}    0.18
     Verify Time Delta    ESS:301    airFlow    minute=${ess_minutes_ago}    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify ESS:301 dewPoint Data is Recent
-    [Tags]
+    [Tags]    timing
     Set Test Variable    ${ess_minutes_ago}    1.6
     Verify Time Delta    ESS:301    dewPoint    minute=${ess_minutes_ago}    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify ESS:301 pressure Data is Recent
-    [Tags]
+    [Tags]    timing
     Set Test Variable    ${ess_minutes_ago}    0.55
     Verify Time Delta    ESS:301    pressure    minute=${ess_minutes_ago}    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 #Verify ESS:301 rainRate Data is Recent
-    #[Tags]    
+    #[Tags]    timing
     #Verify Time Delta    ESS:301    rainRate    minute=${ess_minutes_ago}    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify ESS:301 relativeHumidity Data is Recent
-    [Tags] 
+    [Tags]    timing
     Set Test Variable    ${ess_minutes_ago}    0.55
     Verify Time Delta    ESS:301    relativeHumidity    minute=${ess_minutes_ago}    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
@@ -458,7 +461,7 @@ Verify ESS:301 temperature Published Data
     Should Be True    ${dataframe.temperatureItem7.values}[0] == None
 
 Verify ESS:301 temperature Data is Recent
-    [Tags]
+    [Tags]    timing
     Set Test Variable    ${ess_minutes_ago}    1.6
     Verify Time Delta    ESS:301    temperature    minute=${ess_minutes_ago}    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
@@ -477,5 +480,5 @@ Verify WeatherForecast hourlyTrend Published Data
     Should Be True    abs(${dataframe.visibility0.values}[0]) >= 0
 
 Verify WeatherForecast hourlyTrend Data is Recent
-    [Tags]
+    [Tags]    timing
     Verify Time Delta    WeatherForecast    hourlyTrend    minute=15   hour=12    day=${days_ago}    week=${weeks_ago}
