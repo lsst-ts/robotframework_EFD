@@ -321,6 +321,11 @@ Verify ESS:201 pressure Published Data
     ${dataframe}=    Get Recent Samples    ESS    pressure    ["sensorName", "location", "pressureItem0", "pressureItem1",]    num=5    index=201
     Log    ${dataframe}
     Should Not Be True    ${dataframe.empty}
+    # Sometimes, the last 5 telemetry items does not include AuxTel-LabJack01. If so, get another batch.
+    IF    "AuxTel-LabJack01" not in $dataframe.sensorName.values
+        ${dataframe_redux}=    Get Recent Samples    ESS    pressure    ["sensorName", "location", "pressureItem0", "pressureItem1",]    num=5    index=201
+        Set Test Variable    ${dataframe}    ${dataframe_redux}
+    END
     # Get dataframe indexes.
     ${idx01}=    Evaluate     $dataframe.index[$dataframe["sensorName"]=="AuxTel-LabJack01"]
     ${idx02}=    Evaluate     $dataframe.index[$dataframe["sensorName"]=="AuxTel-ESS02"]
@@ -330,17 +335,16 @@ Verify ESS:201 pressure Published Data
     Should Be Equal As Strings    ${dataframe01.location.values}[0]    Camera coolant high side, Camera coolant low side
     Should Be True    abs(${dataframe01.pressureItem0.values}[0]) >= 0
     Should Be True    abs(${dataframe01.pressureItem1.values}[0]) >= 0
-    Comment    ============AuxTel-LabJack01============
+    Comment    ============AuxTel-ESS02============
     ${dataframe02}=    Evaluate    $dataframe.loc[$idx02]
     Log    ${dataframe02}
     Should Be Equal As Strings    ${dataframe02.location.values}[0]    AT azimuth axis
     Should Be True    abs(${dataframe02.pressureItem0.values}[0]) >= 0
-    Run Keyword If    "${env_efd}" != "summit_efd"    Should Be True    abs(${dataframe02.pressureItem1.values}[0]) >= 0
-    Run Keyword If    "${env_efd}" == "summit_efd"    Should Be Equal As Strings    ${dataframe02.pressureItem1.values}[0]    nan
+    Should Be Equal As Strings    ${dataframe02.pressureItem1.values}[0]    nan
 
-Verify ESS:107 pressure Data is Recent
+Verify ESS:201 pressure Data is Recent
     [Tags]    timing
-    Verify Time Delta    ESS:107    pressure    minute=${ess_minutes_ago}    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+    Verify Time Delta    ESS:201    pressure    minute=${ess_minutes_ago}    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 ## relativeHumidity ##
 Verify ESS:201 relativeHumidity Published Data
@@ -352,9 +356,9 @@ Verify ESS:201 relativeHumidity Published Data
     Should Be Equal As Strings    ${dataframe.sensorName.values}[0]    AuxTel-ESS02
     Should Be True    abs(${dataframe.relativeHumidityItem.values}[0]) >= 0
 
-Verify ESS:107 relativeHumidity Data is Recent
+Verify ESS:201 relativeHumidity Data is Recent
     [Tags]    timing
-    Verify Time Delta    ESS:107    relativeHumidity    minute=${ess_minutes_ago}    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+    Verify Time Delta    ESS:201    relativeHumidity    minute=${ess_minutes_ago}    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 ## temperature ##
 Verify ESS:201 temperature Published Data
