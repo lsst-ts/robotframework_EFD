@@ -240,20 +240,21 @@ Verify ESS:107 temperature Data is Recent
 
 # ESS:108
 Verify ESS:108 temperature Published Data
-    [Tags]    robot:continue-on-failure
+    [Tags]    robot:continue-on-failure    DM-45561
     ${dataframe}=    Get Recent Samples    ESS    temperature    ["sensorName", "location", "temperatureItem0", "temperatureItem1", "temperatureItem2", "temperatureItem3", "temperatureItem4", "temperatureItem5", "temperatureItem6", "temperatureItem7"]    num=1    index=108
     Log    ${dataframe}
+    # The CBP-ESS01 device and simulator actually behave the same.
     Should Not Be True    ${dataframe.empty}
     Should Be Equal As Strings    ${dataframe.sensorName.values}[0]    CBP-ESS01
     Should Be Equal As Strings    ${dataframe.location.values}[0]    Photodiode PrimaryMirror MaskChanger ElectronicsCabinet
-    #Should Be True    abs(${dataframe.temperatureItem0.values}[0]) >= 0
-    #Should Be True    abs(${dataframe.temperatureItem1.values}[0]) >= 0
-    #Should Be True    abs(${dataframe.temperatureItem2.values}[0]) >= 0
-    #Should Be True    abs(${dataframe.temperatureItem3.values}[0]) >= 0
-    Should Be True    ${dataframe.temperatureItem4.values}[0] == None
-    Should Be True    ${dataframe.temperatureItem5.values}[0] == None
-    Should Be True    ${dataframe.temperatureItem6.values}[0] == None
-    Should Be True    ${dataframe.temperatureItem7.values}[0] == None
+    Should Be True    abs(${dataframe.temperatureItem0.values}[0]) >= 0
+    Should Be True    abs(${dataframe.temperatureItem1.values}[0]) >= 0
+    Should Be True    abs(${dataframe.temperatureItem2.values}[0]) >= 0
+    Should Be True    abs(${dataframe.temperatureItem3.values}[0]) >= 0
+    Should Be Equal As Strings    ${dataframe.temperatureItem4.values}[0]    nan
+    Should Be Equal As Strings    ${dataframe.temperatureItem5.values}[0]    nan
+    Should Be Equal As Strings    ${dataframe.temperatureItem6.values}[0]    nan
+    Should Be Equal As Strings    ${dataframe.temperatureItem7.values}[0]    nan
 
 Verify ESS:108 temperature Data is Recent
     [Tags]    timing
@@ -276,7 +277,7 @@ Verify ESS:201 airTurbulence Data is Recent
     Verify Time Delta    ESS:201    airTurbulence    minute=${ess_minutes_ago}    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify ESS:201 temperature Published Data
-    [Tags]    robot:continue-on-failure
+    [Tags]    robot:continue-on-failure    DM-45561
     ${dataframe}=    Get Recent Samples    ESS    temperature    ["sensorName", "location", "temperatureItem0", "temperatureItem1", "temperatureItem2", "temperatureItem3", "temperatureItem4", "temperatureItem5", "temperatureItem6", "temperatureItem7"]    num=3    index=201
     Log    ${dataframe}
     Should Not Be True    ${dataframe.empty}
@@ -285,38 +286,49 @@ Verify ESS:201 temperature Published Data
     ${idx02}=    Evaluate     $dataframe.index[$dataframe["sensorName"]=="AuxTel-ESS02"]
     ${idx03}=    Evaluate     $dataframe.index[$dataframe["sensorName"]=="AuxTel-ESS03"]
     Comment    ============AuxTel-ESS01============
+    # The AuxTel-ESS03 device and simulator DO NOT behave the same.
     ${dataframe01}=    Evaluate    $dataframe.loc[$idx01]
+    Log    ${dataframe01}
     Should Be Equal As Strings    ${dataframe01.location.values}[0]    unused, AT air, AT truss, AT M2, unused, unused, unused, unused
-    Should Be True    ${dataframe01.temperatureItem0.values}[0] >= 0
+    Run Keyword If    "${env_efd}" == "summit_efd"    Should Be Equal As Strings    ${dataframe01.temperatureItem0.values}[0]    nan
+    Run Keyword If    "${env_efd}" != "summit_efd"    Should Be True    ${dataframe01.temperatureItem0.values}[0] >= 0
     Should Be True    abs(${dataframe01.temperatureItem1.values}[0]) >= 0
     Should Be True    abs(${dataframe01.temperatureItem2.values}[0]) >= 0
     Should Be True    abs(${dataframe01.temperatureItem3.values}[0]) >= 0
-    Should Be True    ${dataframe01.temperatureItem4.values}[0] >= 0
-    Should Be True    ${dataframe01.temperatureItem5.values}[0] >= 0
-    Should Be True    ${dataframe01.temperatureItem6.values}[0] >= 0
-    Should Be True    ${dataframe01.temperatureItem7.values}[0] >= 0
+    Run Keyword If    "${env_efd}" == "summit_efd"    Should Be Equal As Strings    ${dataframe01.temperatureItem4.values}[0]    nan
+    Run Keyword If    "${env_efd}" == "summit_efd"    Should Be Equal As Strings    ${dataframe01.temperatureItem5.values}[0]    nan
+    Run Keyword If    "${env_efd}" == "summit_efd"    Should Be Equal As Strings    ${dataframe01.temperatureItem6.values}[0]    nan
+    Run Keyword If    "${env_efd}" == "summit_efd"    Should Be Equal As Strings    ${dataframe01.temperatureItem7.values}[0]    nan
+    Run Keyword If    "${env_efd}" != "summit_efd"    Should Be True    ${dataframe01.temperatureItem4.values}[0] >= 0
+    Run Keyword If    "${env_efd}" != "summit_efd"    Should Be True    ${dataframe01.temperatureItem5.values}[0] >= 0
+    Run Keyword If    "${env_efd}" != "summit_efd"    Should Be True    ${dataframe01.temperatureItem6.values}[0] >= 0
+    Run Keyword If    "${env_efd}" != "summit_efd"    Should Be True    ${dataframe01.temperatureItem7.values}[0] >= 0
     Comment    ============AuxTel-ESS02============
+    # The AuxTel-ESS02 device and simulator actually behave the same.
     ${dataframe02}=    Evaluate    $dataframe.loc[$idx02]
+    Log    ${dataframe02}
     Should Be Equal As Strings    ${dataframe02.location.values}[0]    AT azimuth axis
     Should Be True    abs(${dataframe02.temperatureItem0.values}[0]) >= 0
-    Pass Execution If    "${env_efd}" == "base_efd" || "${env_efd}" == "tucson_teststand_efd"    Should Be True    ${dataframe02.temperatureItem1.values}[0] == None
-    Pass Execution If    "${env_efd}" == "base_efd" || "${env_efd}" == "tucson_teststand_efd"    Should Be True    ${dataframe02.temperatureItem2.values}[0] == None
-    Should Be True    ${dataframe02.temperatureItem3.values}[0] == nan
-    Should Be True    ${dataframe02.temperatureItem4.values}[0] == nan
-    Should Be True    ${dataframe02.temperatureItem5.values}[0] == nan
-    Should Be True    ${dataframe02.temperatureItem6.values}[0] == nan
-    Should Be True    ${dataframe02.temperatureItem7.values}[0] == nan
+    Should Be Equal As Strings    ${dataframe02.temperatureItem1.values}[0]    nan
+    Should Be Equal As Strings    ${dataframe02.temperatureItem2.values}[0]    nan
+    Should Be Equal As Strings    ${dataframe02.temperatureItem3.values}[0]    nan
+    Should Be Equal As Strings    ${dataframe02.temperatureItem4.values}[0]    nan
+    Should Be Equal As Strings    ${dataframe02.temperatureItem5.values}[0]    nan
+    Should Be Equal As Strings    ${dataframe02.temperatureItem6.values}[0]    nan
+    Should Be Equal As Strings    ${dataframe02.temperatureItem7.values}[0]    nan
     Comment    ============AuxTel-ESS03============
+    # The AuxTel-ESS03 device and simulator actually behave the same.
     ${dataframe03}=    Evaluate    $dataframe.loc[$idx03]
+    Log    ${dataframe03}
     Should Be Equal As Strings    ${dataframe03.location.values}[0]    M1 sensor 1, M1 sensor 2, M1 sensor 3, M1 sensor 4, M1 sensor 5
     Should Be True    abs(${dataframe03.temperatureItem0.values}[0]) >= 0
     Should Be True    abs(${dataframe03.temperatureItem1.values}[0]) >= 0
     Should Be True    abs(${dataframe03.temperatureItem2.values}[0]) >= 0
     Should Be True    abs(${dataframe03.temperatureItem3.values}[0]) >= 0
     Should Be True    abs(${dataframe03.temperatureItem4.values}[0]) >= 0
-    #Should Be True    abs(${dataframe03.temperatureItem5.values}[0]) >= 0
-    #Should Be True    abs(${dataframe03.temperatureItem6.values}[0]) >= 0
-    #Should Be True    abs(${dataframe03.temperatureItem7.values}[0]) >= 0
+    Should Be Equal As Strings    ${dataframe03.temperatureItem5.values}[0]    nan
+    Should Be Equal As Strings    ${dataframe03.temperatureItem6.values}[0]    nan
+    Should Be Equal As Strings    ${dataframe03.temperatureItem7.values}[0]    nan
 
 Verify ESS:201 temperature Data is Recent
     [Tags]    timing
@@ -420,30 +432,82 @@ Verify ESS:205 airTurbulence Data is Recent
     Verify Time Delta    ESS:205    airTurbulence    minute=${ess_minutes_ago}    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 # ESS:301
+## airFlow ##
+Verify ESS:301 airFlow Published Data
+    [Tags]    robot:continue-on-failure
+    ${dataframe}=    Get Recent Samples    ESS    airFlow    ["sensorName", "location", "speed"]    num=1    index=301
+    Log    ${dataframe}
+    Should Not Be True    ${dataframe.empty}
+    Should Be Equal As Strings    ${dataframe.sensorName.values}[0]    Weather tower airflow
+    Should Be Equal As Strings    ${dataframe.location.values}[0]    Weather tower
+    Should Be True    abs(${dataframe.speed.values}[0]) >= 0
+    
 Verify ESS:301 airFlow Data is Recent
     [Tags]    timing
     Set Test Variable    ${ess_minutes_ago}    0.18
     Verify Time Delta    ESS:301    airFlow    minute=${ess_minutes_ago}    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
+## dewPoint ##
+Verify ESS:301 dewPoint Published Data
+    [Tags]    robot:continue-on-failure
+    ${dataframe}=    Get Recent Samples    ESS    dewPoint    ["sensorName", "location", "dewPointItem"]    num=1    index=301
+    Log    ${dataframe}
+    Should Not Be True    ${dataframe.empty}
+    Should Be Equal As Strings    ${dataframe.sensorName.values}[0]    Weather tower computed dew point
+    Should Be Equal As Strings    ${dataframe.location.values}[0]    Weather tower
+    Should Be True    abs(${dataframe.dewPointItem.values}[0]) >= 0
 
 Verify ESS:301 dewPoint Data is Recent
     [Tags]    timing
     Set Test Variable    ${ess_minutes_ago}    1.6
     Verify Time Delta    ESS:301    dewPoint    minute=${ess_minutes_ago}    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
+## pressure ##
+Verify ESS:301 pressure Published Data
+    [Tags]    robot:continue-on-failure    DM-45561
+    ${dataframe}=    Get Recent Samples    ESS    pressure    ["sensorName", "location", "pressureItem0", "pressureItem1"]    num=1    index=301
+    Log    ${dataframe}
+    Should Not Be True    ${dataframe.empty}
+    Should Be Equal As Strings    ${dataframe.sensorName.values}[0]    Weather tower atmospheric pressure
+    Should Be Equal As Strings    ${dataframe.location.values}[0]    Weather tower
+    Should Be True    abs(${dataframe.pressureItem0.values}[0]) >= 0
+    Should Be Equal As Strings    ${dataframe.pressureItem1.values}[0]    nan
+
 Verify ESS:301 pressure Data is Recent
     [Tags]    timing
     Set Test Variable    ${ess_minutes_ago}    0.55
     Verify Time Delta    ESS:301    pressure    minute=${ess_minutes_ago}    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
-#Verify ESS:301 rainRate Data is Recent
-    #[Tags]    timing
-    #Verify Time Delta    ESS:301    rainRate    minute=${ess_minutes_ago}    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+## rainRate ##
+Verify ESS:301 rainRate Published Data
+    [Tags]    robot:continue-on-failure    DM-45561
+    ${dataframe}=    Get Recent Samples    ESS    rainRate    ["sensorName", "location", "pressureItem0", "rainRateItem"]    num=1    index=301
+    Log    ${dataframe}
+    Should Not Be True    ${dataframe.empty}
+    Should Be Equal As Strings    ${dataframe.sensorName.values}[0]    Weather tower rain tip count
+    Should Be Equal As Strings    ${dataframe.location.values}[0]    Weather tower
+    Should Be True    abs(${dataframe.rainRateItem.values}[0]) >= 0
+
+Verify ESS:301 rainRate Data is Recent
+    [Tags]    timing    DM-45561
+    Verify Time Delta    ESS:301    rainRate    minute=${ess_minutes_ago}    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
+## relativeHumidity ##
+Verify ESS:301 relativeHumidity Published Data
+    [Tags]    robot:continue-on-failure
+    ${dataframe}=    Get Recent Samples    ESS    relativeHumidity    ["sensorName", "location", "pressureItem0", "relativeHumidityItem"]    num=1    index=301
+    Log    ${dataframe}
+    Should Not Be True    ${dataframe.empty}
+    Should Be Equal As Strings    ${dataframe.sensorName.values}[0]    Weather tower relative humidity
+    Should Be Equal As Strings    ${dataframe.location.values}[0]    Weather tower
+    Should Be True    abs(${dataframe.relativeHumidityItem.values}[0]) >= 0
 
 Verify ESS:301 relativeHumidity Data is Recent
     [Tags]    timing
     Set Test Variable    ${ess_minutes_ago}    0.55
     Verify Time Delta    ESS:301    relativeHumidity    minute=${ess_minutes_ago}    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
+## Temperature ##
 Verify ESS:301 temperature Published Data
     [Tags]    robot:continue-on-failure
     ${dataframe}=    Get Recent Samples    ESS    temperature    ["sensorName", "location", "temperatureItem0", "temperatureItem1", "temperatureItem2", "temperatureItem3", "temperatureItem4", "temperatureItem5", "temperatureItem6", "temperatureItem7"]    num=1    index=301
