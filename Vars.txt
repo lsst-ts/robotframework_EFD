@@ -20,5 +20,5 @@
 
 #  Redefine default variables
 --variable env_efd:tucson_teststand_efd
---variable XMLVersion:22.0.0
---variable SALVersion:8.0.0
+--variable XMLVersion:22.1.0
+--variable SALVersion:9.0.0
