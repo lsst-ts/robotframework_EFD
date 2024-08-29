@@ -130,7 +130,7 @@ Verify ESS:1 ConfigurationsAvailable timing
 # ESS:101
 Verify ESS:101 Standby
     [Tags]    standby
-    Verify Summary State    ${STATES}[standby]    ESS:101
+    Verify Summary State    ${STATES}[standby]    ESS:101    auto_enable=True
 
 Verify ESS:101 SoftwareVersions
     [Tags]    software_versions
@@ -151,7 +151,7 @@ Verify ESS:101 ConfigurationsAvailable timing
 # ESS:102
 Verify ESS:102 Standby
     [Tags]    standby
-    Verify Summary State    ${STATES}[standby]    ESS:102
+    Verify Summary State    ${STATES}[standby]    ESS:102    auto_enable=True
 
 Verify ESS:102 SoftwareVersions
     [Tags]    software_versions
@@ -172,7 +172,7 @@ Verify ESS:102 ConfigurationsAvailable timing
 # ESS:103
 Verify ESS:103 Standby
     [Tags]    standby
-    Verify Summary State    ${STATES}[standby]    ESS:103
+    Verify Summary State    ${STATES}[standby]    ESS:103    auto_enable=True
 
 Verify ESS:103 SoftwareVersions
     [Tags]    software_versions
@@ -193,7 +193,7 @@ Verify ESS:103 ConfigurationsAvailable timing
 # ESS:104
 Verify ESS:104 Standby
     [Tags]    standby
-    Verify Summary State    ${STATES}[standby]    ESS:104
+    Verify Summary State    ${STATES}[standby]    ESS:104    auto_enable=True
 
 Verify ESS:104 SoftwareVersions
     [Tags]    software_versions
@@ -298,7 +298,7 @@ Verify ESS:108 ConfigurationsAvailable timing
 # ESS:201
 Verify ESS:201 Standby
     [Tags]    standby
-    Verify Summary State    ${STATES}[standby]    ESS:201
+    Verify Summary State    ${STATES}[standby]    ESS:201    auto_enable=True
 
     [Tags]    software_versions
     Verify Software Versions    ESS    index=201    csc_salver=${ess201_salver}    csc_xmlver=${ess201_xmlver}
@@ -318,7 +318,7 @@ Verify ESS:201 ConfigurationsAvailable timing
 # ESS:202
 Verify ESS:202 Standby
     [Tags]    standby
-    Verify Summary State    ${STATES}[standby]    ESS:202
+    Verify Summary State    ${STATES}[standby]    ESS:202    auto_enable=True
 
 Verify ESS:202 SoftwareVersions
     [Tags]    software_versions
@@ -339,7 +339,7 @@ Verify ESS:202 ConfigurationsAvailable timing
 # ESS:203
 Verify ESS:203 Standby
     [Tags]    standby
-    Verify Summary State    ${STATES}[standby]    ESS:203
+    Verify Summary State    ${STATES}[standby]    ESS:203    auto_enable=True
 
 Verify ESS:203 SoftwareVersions
     [Tags]    software_versions
@@ -360,7 +360,7 @@ Verify ESS:203 ConfigurationsAvailable timing
 # ESS:204
 Verify ESS:204 Standby
     [Tags]    standby
-    Verify Summary State    ${STATES}[standby]    ESS:204
+    Verify Summary State    ${STATES}[standby]    ESS:204    auto_enable=True
 
 Verify ESS:204 SoftwareVersions
     [Tags]    software_versions
@@ -381,7 +381,7 @@ Verify ESS:204 ConfigurationsAvailable timing
 # ESS:205
 Verify ESS:205 Standby
     [Tags]    standby
-    Verify Summary State    ${STATES}[standby]    ESS:205
+    Verify Summary State    ${STATES}[standby]    ESS:205    auto_enable=True
 
 Verify ESS:205 SoftwareVersions
     [Tags]    software_versions
@@ -402,7 +402,7 @@ Verify ESS:205 ConfigurationsAvailable timing
 # ESS:301
 Verify ESS:301 Standby
     [Tags]    standby
-    Verify Summary State    ${STATES}[standby]    ESS:301
+    Verify Summary State    ${STATES}[standby]    ESS:301    auto_enable=True
 
 Verify ESS:301 SoftwareVersions
     [Tags]    software_versions

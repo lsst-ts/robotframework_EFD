@@ -76,7 +76,7 @@ Verify ESS:1 ConfigurationApplied Event timing
 # ESS:101
 Verify ESS:101 Disabled
     [Tags]    disabled
-    Verify Summary State    ${STATES}[disabled]    ESS:101
+    Verify Summary State    ${STATES}[disabled]    ESS:101    auto_enable=True
 
 Verify ESS:101 SummaryState timing
     [Tags]    software_versions    timing
@@ -93,7 +93,7 @@ Verify ESS:101 ConfigurationApplied Event timing
 # ESS:102
 Verify ESS:102 Disabled
     [Tags]    disabled
-    Verify Summary State    ${STATES}[disabled]    ESS:102
+    Verify Summary State    ${STATES}[disabled]    ESS:102    auto_enable=True
 
 Verify ESS:102 SummaryState timing
     [Tags]    software_versions    timing
@@ -110,7 +110,7 @@ Verify ESS:102 ConfigurationApplied Event timing
 # ESS:103
 Verify ESS:103 Disabled
     [Tags]    disabled
-    Verify Summary State    ${STATES}[disabled]    ESS:103
+    Verify Summary State    ${STATES}[disabled]    ESS:103    auto_enable=True
 
 Verify ESS:103 SummaryState timing
     [Tags]    software_versions    timing
@@ -127,7 +127,7 @@ Verify ESS:103 ConfigurationApplied Event timing
 # ESS:104
 Verify ESS:104 Disabled
     [Tags]    disabled
-    Verify Summary State    ${STATES}[disabled]    ESS:104
+    Verify Summary State    ${STATES}[disabled]    ESS:104    auto_enable=True
 
 Verify ESS:104 SummaryState timing
     [Tags]    software_versions    timing
@@ -212,7 +212,7 @@ Verify ESS:108 ConfigurationApplied Event timing
 # ESS:201
 Verify ESS:201 Disabled
     [Tags]    disabled
-    Verify Summary State    ${STATES}[disabled]    ESS:201
+    Verify Summary State    ${STATES}[disabled]    ESS:201    auto_enable=True
 
 Verify ESS:201 SummaryState timing
     [Tags]    software_versions    timing
@@ -229,7 +229,7 @@ Verify ESS:201 ConfigurationApplied Event timing
 # ESS:202
 Verify ESS:202 Disabled
     [Tags]    disabled
-    Verify Summary State    ${STATES}[disabled]    ESS:202
+    Verify Summary State    ${STATES}[disabled]    ESS:202    auto_enable=True
 
 Verify ESS:202 SummaryState timing
     [Tags]    software_versions    timing
@@ -246,7 +246,7 @@ Verify ESS:202 ConfigurationApplied Event timing
 # ESS:203
 Verify ESS:203 Disabled
     [Tags]    disabled
-    Verify Summary State    ${STATES}[disabled]    ESS:203
+    Verify Summary State    ${STATES}[disabled]    ESS:203    auto_enable=True
 
 Verify ESS:203 SummaryState timing
     [Tags]    software_versions    timing
@@ -263,7 +263,7 @@ Verify ESS:203 ConfigurationApplied Event timing
 # ESS:204
 Verify ESS:204 Disabled
     [Tags]    disabled
-    Verify Summary State    ${STATES}[disabled]    ESS:204
+    Verify Summary State    ${STATES}[disabled]    ESS:204    auto_enable=True
 
 Verify ESS:204 SummaryState timing
     [Tags]    software_versions    timing
@@ -280,7 +280,7 @@ Verify ESS:204 ConfigurationApplied Event timing
 # ESS:205
 Verify ESS:205 Disabled
     [Tags]    disabled
-    Verify Summary State    ${STATES}[disabled]    ESS:205
+    Verify Summary State    ${STATES}[disabled]    ESS:205    auto_enable=True
     
 Verify ESS:205 SummaryState timing
     [Tags]    software_versions    timing
@@ -297,7 +297,7 @@ Verify ESS:205 ConfigurationApplied Event timing
 # ESS:301
 Verify ESS:301 Disabled
     [Tags]    disabled
-    Verify Summary State    ${STATES}[disabled]    ESS:301
+    Verify Summary State    ${STATES}[disabled]    ESS:301    auto_enable=True
 
 Verify ESS:301 SummaryState timing
     [Tags]    software_versions    timing

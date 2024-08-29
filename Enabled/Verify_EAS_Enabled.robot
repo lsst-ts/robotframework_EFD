@@ -46,7 +46,7 @@ Verify ESS:1 SummaryState timing
 # ESS:101
 Verify ESS:101 Enabled
     [Tags]    enabled
-    Verify Summary State    ${STATES}[enabled]    ESS:101
+    Verify Summary State    ${STATES}[enabled]    ESS:101    auto_enable=True
 
 Verify ESS:101 SummaryState timing
     [Tags]    enabled    timing
@@ -55,7 +55,7 @@ Verify ESS:101 SummaryState timing
 # ESS:102
 Verify ESS:102 Enabled
     [Tags]    enabled
-    Verify Summary State    ${STATES}[enabled]    ESS:102
+    Verify Summary State    ${STATES}[enabled]    ESS:102    auto_enable=True
 
 Verify ESS:102 SummaryState timing
     [Tags]    enabled    timing
@@ -64,7 +64,7 @@ Verify ESS:102 SummaryState timing
 # ESS:103
 Verify ESS:103 Enabled
     [Tags]    enabled
-    Verify Summary State    ${STATES}[enabled]    ESS:103
+    Verify Summary State    ${STATES}[enabled]    ESS:103    auto_enable=True
 
 Verify ESS:103 SummaryState timing
     [Tags]    enabled    timing
@@ -73,7 +73,7 @@ Verify ESS:103 SummaryState timing
 # ESS:104
 Verify ESS:104 Enabled
     [Tags]    enabled
-    Verify Summary State    ${STATES}[enabled]    ESS:104
+    Verify Summary State    ${STATES}[enabled]    ESS:104    auto_enable=True
 
 Verify ESS:104 SummaryState timing
     [Tags]    enabled    timing
@@ -118,7 +118,7 @@ Verify ESS:108 SummaryState timing
 # ESS:201
 Verify ESS:201 Enabled
     [Tags]    enabled
-    Verify Summary State    ${STATES}[enabled]    ESS:201
+    Verify Summary State    ${STATES}[enabled]    ESS:201    auto_enable=True
 
 Verify ESS:201 SummaryState timing
     [Tags]    enabled    timing
@@ -127,7 +127,7 @@ Verify ESS:201 SummaryState timing
 # ESS:202
 Verify ESS:202 Enabled
     [Tags]    enabled
-    Verify Summary State    ${STATES}[enabled]    ESS:202
+    Verify Summary State    ${STATES}[enabled]    ESS:202    auto_enable=True
 
 Verify ESS:202 SummaryState timing
     [Tags]    enabled    timing
@@ -136,7 +136,7 @@ Verify ESS:202 SummaryState timing
 # ESS:203
 Verify ESS:203 Enabled
     [Tags]    enabled
-    Verify Summary State    ${STATES}[enabled]    ESS:203
+    Verify Summary State    ${STATES}[enabled]    ESS:203    auto_enable=True
 
 Verify ESS:203 SummaryState timing
     [Tags]    enabled    timing
@@ -145,7 +145,7 @@ Verify ESS:203 SummaryState timing
 # ESS:204
 Verify ESS:204 Enabled
     [Tags]    enabled
-    Verify Summary State    ${STATES}[enabled]    ESS:204
+    Verify Summary State    ${STATES}[enabled]    ESS:204    auto_enable=True
 
 Verify ESS:204 SummaryState timing
     [Tags]    enabled    timing
@@ -154,7 +154,7 @@ Verify ESS:204 SummaryState timing
 # ESS:205
 Verify ESS:205 Enabled
     [Tags]    enabled
-    Verify Summary State    ${STATES}[enabled]    ESS:205
+    Verify Summary State    ${STATES}[enabled]    ESS:205    auto_enable=True
 
 Verify ESS:205 SummaryState timing
     [Tags]    enabled    timing
@@ -163,7 +163,7 @@ Verify ESS:205 SummaryState timing
 #ESS:301
 Verify ESS:301 Enabled
     [Tags]    enabled
-    Verify Summary State    ${STATES}[enabled]    ESS:301
+    Verify Summary State    ${STATES}[enabled]    ESS:301    auto_enable=True
 
 Verify ESS:301 SummaryState timing
     [Tags]    enabled    timing
