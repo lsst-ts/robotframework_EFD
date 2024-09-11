@@ -300,6 +300,7 @@ Verify ESS:201 Standby
     [Tags]    standby
     Verify Summary State    ${STATES}[standby]    ESS:201
 
+Verify ESS:201 SoftwareVersions
     [Tags]    software_versions
     Verify Software Versions    ESS    index=201    csc_salver=${ess201_salver}    csc_xmlver=${ess201_xmlver}
 
