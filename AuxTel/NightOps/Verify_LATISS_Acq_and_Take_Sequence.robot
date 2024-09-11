@@ -37,7 +37,9 @@ Execute AuxTel LATISS Acquire and Take Sequence
 
 Verify ATDome AzimuthInPosition
     [Tags]
-    Verify Time Delta    ATDome    command_moveAzimuth    logevent_azimuthInPosition    60    # Moving the dome can longer than the default 10s time window.
+    Set Test Variable    ${hours_ago}    0.02
+    Verify Time Delta    ATDome    logevent_azimuthInPosition    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}    # Moving the dome can longer than the default 10s time window.
+    Verify Time Delta    ATDome    command_moveAzimuth    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}    # Moving the dome can longer than the default 10s time window.
     Verify Topic Attribute    ATDome    logevent_azimuthInPosition    ["inPosition",]    ["True",]
 
 Verify ATPtg Target
@@ -51,7 +53,8 @@ Verify ATPtg Target
         ${topic_sent}=    Convert Date    ${output}    result_format=datetime
         ${delta}=    Subtract Date From Date    ${topic_sent}    ${script_start}
         Should Be True    ${delta} > 0
-        Verify Time Delta    ATPtg    command_raDecTarget    logevent_currentTarget
+        Verify Time Delta    ATPtg    logevent_currentTarget    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+        Verify Time Delta    ATPtg    command_raDecTarget    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
         ${cmd_dataframe}=    Get Recent Samples    ATPtg    command_raDecTarget    ["targetName", "ra", "declination",]    1    None
         Should Be Equal    ${cmd_dataframe.iloc[0].targetName}    HD164461
         Should Be Equal    ${cmd_dataframe.iloc[0].ra.round(6)}    ${18.913095}
@@ -107,8 +110,10 @@ Verify ATSpectrograph ChangeFilter
     ${topic_sent}=    Convert Date    ${output}    result_format=datetime
     ${delta}=    Subtract Date From Date    ${topic_sent}    ${script_start}
     Should Be True    ${delta} > 0
-    Verify Time Delta    ATSpectrograph    command_changeFilter    logevent_filterInPosition
-    Verify Time Delta    ATSpectrograph    command_changeFilter    logevent_reportedFilterPosition
+    Verify Time Delta    ATSpectrograph    logevent_filterInPosition    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+    Verify Time Delta    ATSpectrograph    command_changeFilter    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+    Verify Time Delta    ATSpectrograph    logevent_reportedFilterPosition    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+    Verify Time Delta    ATSpectrograph    command_changeFilter    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
     Verify Topic Attribute    ATSpectrograph    logevent_filterInPosition    ["inPosition",]    [True,]
 
 Verify ATSpectrograph Filter
@@ -122,8 +127,10 @@ Verify ATSpectrograph ChangeDisperser
     ${topic_sent}=    Convert Date    ${output}    result_format=datetime
     ${delta}=    Subtract Date From Date    ${topic_sent}    ${script_start}
     Should Be True    ${delta} > 0
-    Verify Time Delta    ATSpectrograph    command_changeDisperser    logevent_disperserInPosition
-    Verify Time Delta    ATSpectrograph    command_changeDisperser    logevent_reportedDisperserPosition
+    Verify Time Delta    ATSpectrograph    logevent_disperserInPosition    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+    Verify Time Delta    ATSpectrograph    command_changeDisperser    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+    Verify Time Delta    ATSpectrograph    logevent_reportedDisperserPosition    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+    Verify Time Delta    ATSpectrograph    command_changeDisperser    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
     Verify Topic Attribute    ATSpectrograph    logevent_disperserInPosition    ["inPosition",]    [True,]
 
 Verify ATSpectrograph Disperser
