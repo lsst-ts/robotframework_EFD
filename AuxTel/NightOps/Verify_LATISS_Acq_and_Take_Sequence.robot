@@ -37,9 +37,9 @@ Execute AuxTel LATISS Acquire and Take Sequence
 
 Verify ATDome AzimuthInPosition
     [Tags]
-    Set Test Variable    ${hours_ago}    0.02
-    Verify Time Delta    ATDome    logevent_azimuthInPosition    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}    # Moving the dome can longer than the default 10s time window.
-    Verify Time Delta    ATDome    command_moveAzimuth    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}    # Moving the dome can longer than the default 10s time window.
+    Set Test Variable    ${minutes_ago}    1
+    Verify Time Delta    ATDome    logevent_azimuthInPosition    minute=${minutes_ago}    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}    # Moving the dome can longer than the default 10s time window.
+    Verify Time Delta    ATDome    command_moveAzimuth    minute=${minutes_ago}    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}    # Moving the dome can longer than the default 10s time window.
     Verify Topic Attribute    ATDome    logevent_azimuthInPosition    ["inPosition",]    ["True",]
 
 Verify ATPtg Target

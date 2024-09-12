@@ -81,7 +81,7 @@ Verify ATCamera First Engineering Frame Image Sequence
     ${img_type_seq}=    Set Variable    ENGTEST    # All images in this sequence are ENGTEST.
     ${cmd_df}=    Get Recent Samples    ATCamera    command_takeImages    ["expTime", "keyValueMap", "numImages", "shutter",]    2    None
     ${evt_df}=    Get Recent Samples    ATCamera    logevent_startIntegration    ["additionalValues", "exposureTime", "imageName"]    2    None
-    Set Suite Variable    @{image_names}    ${evt_df.iloc[0].imageName}
+    Set Suite Variable    @{image_names}    ${evt_df.iloc[1].imageName}
     Should Be Equal As Numbers    ${cmd_df.iloc[1].expTime}    ${exp_time}
     Should Be Equal As Numbers    ${evt_df.iloc[1].exposureTime}    ${exp_time}
     ${evt_image_type}=    Fetch From Left    ${evt_df.iloc[1].additionalValues}    :
@@ -94,9 +94,9 @@ Verify ATCamera First Engineering Frame Image Sequence
 Verify ATOODS First Engineering Frame ImageInOODS
     [Tags]
     ${dataframe}=    Get Recent Samples    ATOODS    logevent_imageInOODS    ["camera", "description", "obsid",]    2    None
-    Should Be Equal As Strings    ${dataframe.iloc[0].camera}    LATISS
-    Should Be Equal As Strings    ${dataframe.iloc[0].description}    file ingested
-    Should Be Equal As Strings    ${dataframe.iloc[0].obsid}    ${image_names}[0]
+    Should Be Equal As Strings    ${dataframe.iloc[1].camera}    LATISS
+    Should Be Equal As Strings    ${dataframe.iloc[1].description}    file ingested
+    Should Be Equal As Strings    ${dataframe.iloc[1].obsid}    ${image_names}[0]
 
 Verify ATHeaderService First Engineering Frame LargeFileObjectAvailable
     [Tags]
