@@ -192,3 +192,5 @@ Set EFD Values
     ELSE
         Fail    msg="Please set the env_efd variable; allowed values are ['tucson_teststand_efd', 'base_efd']"
     END
+    @{bigcamera_cscs}=    Create List    ${BigCamera}    ${OODS}    ${HeaderService}
+    Set Suite Variable    @{bigcamera_cscs}
