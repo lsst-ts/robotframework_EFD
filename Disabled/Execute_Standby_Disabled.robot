@@ -33,10 +33,13 @@ Execute AuxTel Standby to Disabled
 Execute BigCamera Standby to Disabled
     [Tags]
     Set Tags    ${BigCamera}
-    ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    ${BigCamera}    Disabled
-    Verify Scripts Completed Successfully    ${scripts}    ${states}
-    Report If Failed    ${scripts}    ${states}
-    
+    Log Many    @{bigcamera_cscs}    # Defined in Common_Keywords.Set Efd Values
+    FOR    ${csc}    IN    @{bigcamera_cscs}
+        ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    ${csc}    Disabled
+        Verify Scripts Completed Successfully    ${scripts}    ${states}
+        Report If Failed    ${scripts}    ${states}
+    END
+
 Execute EAS Standby to Disabled
     [Tags]    eas
     ${scripts}    ${states}=    Execute Integration Test    eas_standby_disabled
