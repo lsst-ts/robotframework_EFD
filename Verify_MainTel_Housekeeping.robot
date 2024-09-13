@@ -7,7 +7,7 @@ Suite Setup    Run Keywords    Check If Failed    AND    Set EFD Values
 
 *** Variables ***
 @{in_position_field}    inPosition
-@{in_position}    True
+${in_position}    True
 @{filter_field}   filterName
 @{filter_name}    r_03
 
@@ -40,16 +40,20 @@ Verify Tracking is Disabled
 
 Verify MTMount Axes Homed
     [Tags]    robot:continue-on-failure    mtmount
-    Verify Topic Attribute    MTMount    logevent_elevationInPosition    ${in_position_field}    ${in_position}
-    Verify Time Delta    MTMount    logevent_elevationInPosition    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
-    Verify Time Delta    MTMount    command_homeBothAxes    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
-    Verify Topic Attribute    MTMount    logevent_azimuthInPosition    ${in_position_field}    ${in_position}
-    Verify Time Delta    MTMount    logevent_azimuthInPosition    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
-    Verify Time Delta    MTMount    command_homeBothAxes    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+    Set Test Variable    ${minutes_ago}    1
+    # The inPosition toggles True for less than one second. Get two events and the obtain the value from the older.
+    ${el_in_position_df}=    Get Recent Samples    MTMount    logevent_elevationInPosition    ${in_position_field}    2    None
+    Should Be Equal As Strings    ${el_in_position_df.iloc[1].inPosition}    ${in_position}
+    Verify Time Delta    MTMount    logevent_elevationInPosition    minute=${minutes_ago}    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+    Verify Time Delta    MTMount    command_homeBothAxes    minute=${minutes_ago}    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+    ${az_in_position_df}=    Get Recent Samples    MTMount    logevent_azimuthInPosition    ${in_position_field}    2    None
+    Should Be Equal As Strings    ${az_in_position_df.iloc[1].inPosition}    ${in_position}
+    Verify Time Delta    MTMount    logevent_azimuthInPosition    minute=${minutes_ago}    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+    Verify Time Delta    MTMount    command_homeBothAxes    minute=${minutes_ago}    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify BigCamera has Filter Set
     [Tags]    bigcamera
-    Set Test Variable    ${hours_ago}    0.015
+    Set Test Variable    ${minutes_ago}    1
     Verify Topic Attribute    ${BigCamera}    logevent_endSetFilter    ${filter_field}    ${filter_name}
-    Verify Time Delta    ${BigCamera}    logevent_endSetFilter    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
-    Verify Time Delta    ${BigCamera}    command_setFilter    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+    Verify Time Delta    ${BigCamera}    logevent_endSetFilter    minute=${minutes_ago}    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+    Verify Time Delta    ${BigCamera}    command_setFilter    minute=${minutes_ago}    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
