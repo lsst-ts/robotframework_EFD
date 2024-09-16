@@ -3,7 +3,7 @@ Resource    ../Global_Vars.resource
 Resource    ../CSC_Lists.resource
 Resource    ../Common_Keywords.resource
 Force Tags    shutdown    execute
-Suite Setup    Run Keywords    Set EFD Values    AND    Log Many    ${STATES}[offline]
+Suite Setup    Set EFD Values
 
 *** Variables ***
 ${cccamera_salver}    ${SALVersion}
@@ -24,11 +24,28 @@ ${ocps3_salver}    ${SALVersion}
 ${ocps3_xmlver}    ${XMLVersion}
 
 *** Test Cases ***
+Execute MTRotator Enabled to Offline
+    [Tags]    mtrotator
+    ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    MTRotator    Offline
+    Verify Scripts Completed Successfully    ${scripts}    ${states}
+    Report If Failed    ${scripts}    ${states}
+
+Execute Enabled to Offline
+    [Tags]
+    # Keep this keyword FIRST, as it shuts down the Watcher first, to avoid unnecessary warning messages.
+    # Set the 'test_env' variable to 'bts' if running on the BTS, otherwise, set it to 'tts'.
+    ${test_env}=    Set Variable If    "${env_efd}" == "base_efd"    bts    tts
+    ${scripts}    ${states}=    Execute Integration Test    enabled_offline    ${test_env}
+    Verify Scripts Completed Successfully    ${scripts}    ${states}    shutdown=${True}
+
 Execute BigCamera Enabled to Offline
     [Tags]
     Set Tags    ${BigCamera}
-    ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    ${BigCamera}    Offline
-    Verify Scripts Completed Successfully    ${scripts}    ${states}
+    Log Many    @{bigcamera_cscs}    # Defined in Common_Keywords.Set Efd Values
+    FOR    ${csc}    IN    @{bigcamera_cscs}
+        ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    ${csc}    Offline
+        Verify Scripts Completed Successfully    ${scripts}    ${states}
+    EDN
 
 Execute EPM:1 Enabled to Offline
     [Tags]    epm:1
@@ -57,10 +74,3 @@ Execute Test:42 Enabled to Offline
     [Tags]    test:42
     ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    Test    Offline    -x 42
     Verify Scripts Completed Successfully    ${scripts}    ${states}
-
-Execute Enabled to Offline
-    [Tags]
-    # Set the 'test_env' variable to 'bts' if running on the BTS, otherwise, set it to 'tts'.
-    ${test_env}=    Set Variable If    "${env_efd}" == "base_efd"    bts    tts
-    ${scripts}    ${states}=    Execute Integration Test    enabled_offline    ${test_env}
-    Verify Scripts Completed Successfully    ${scripts}    ${states}    shutdown=${True}

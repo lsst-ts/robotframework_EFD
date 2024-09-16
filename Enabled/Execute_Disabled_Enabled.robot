@@ -33,9 +33,12 @@ Execute AuxTel Disabled to Enabled
 Execute BigCamera Disabled to Enabled
     [Tags]
     Set Tags    ${BigCamera}
-    ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    ${BigCamera}    Enabled
-    Verify Scripts Completed Successfully    ${scripts}    ${states}
-    Report If Failed    ${scripts}    ${states}
+    Log Many    @{bigcamera_cscs}    # Defined in Common_Keywords.Set Efd Values
+    FOR    ${csc}    IN    @{bigcamera_cscs}
+        ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    ${csc}    Enabled
+        Verify Scripts Completed Successfully    ${scripts}    ${states}
+        Report If Failed    ${scripts}    ${states}
+    END
 
 Execute EAS Disabled to Enabled
     [Tags]    eas

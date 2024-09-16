@@ -32,19 +32,19 @@ Execute BigCamera Flat Calibrations
     Verify Scripts Completed Successfully    ${scripts}    ${states}
     Check If Script Failed    ${states}
 
-Verify MTPtg Target
-    [Documentation]    Ensure the telescope is pointed at the correct target, in this case at the Az/El of the flat-field screen.
-    ...    This command is sent prior to the start of the script.
-    [Tags]    bigcamera_imaging    robot:continue-on-failure
-    Skip If    "${env_efd}" == "base_efd"    "BigCamera imaging is skipped on the BTS"
-    Verify Time Delta    MTPtg    logevent_currentTarget    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
-    Verify Time Delta    MTPtg    command_raDecTarget    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
-    ${cmd_dataframe}=    Get Recent Samples    MTPtg    command_raDecTarget    ["targetName", "ra", "declination",]    1    None
-    Should Be Equal    ${cmd_dataframe.targetName.values}[0]    Flatfield position
-    ${evt_dataframe}=    Get Recent Samples    MTPtg    logevent_currentTarget    ["targetName", "azDegs", "elDegs",]    1    None
-    Should Be Equal    ${evt_dataframe.targetName.values}[0]    Flatfield position
-    Should Be Equal    ${evt_dataframe.azDegs.values.round(6)}[0]    ${0}
-    Should Be Equal    ${evt_dataframe.elDegs.values.round(6)}[0]    ${0}
+### The MainTel flatfield position is not defined and there is no script to move the telescope
+#Verify MTPtg Target
+    #[Documentation]    Ensure the telescope is pointed at the correct target, in this case at the Az/El of the flat-field screen.
+    #...    This command is sent prior to the start of the script.
+    #[Tags]    bigcamera_imaging    robot:continue-on-failure
+    #Verify Time Delta    MTPtg    logevent_currentTarget    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+    #Verify Time Delta    MTPtg    command_raDecTarget    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+    #${cmd_dataframe}=    Get Recent Samples    MTPtg    command_raDecTarget    ["targetName", "ra", "declination",]    1    None
+    #Should Be Equal    ${cmd_dataframe.targetName.values}[0]    Flatfield position
+    #${evt_dataframe}=    Get Recent Samples    MTPtg    logevent_currentTarget    ["targetName", "azDegs", "elDegs",]    1    None
+    #Should Be Equal    ${evt_dataframe.targetName.values}[0]    Flatfield position
+    #Should Be Equal    ${evt_dataframe.azDegs.values.round(6)}[0]    ${0}
+    #Should Be Equal    ${evt_dataframe.elDegs.values.round(6)}[0]    ${0}
 
 Verify MTPtg Tracking is Off
     [Tags]    bigcamera_imaging
