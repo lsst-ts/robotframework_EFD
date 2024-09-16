@@ -24,6 +24,12 @@ ${ocps3_salver}    ${SALVersion}
 ${ocps3_xmlver}    ${XMLVersion}
 
 *** Test Cases ***
+Execute MTRotator Enabled to Offline
+    [Tags]    mtrotator
+    ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    MTRotator    Offline
+    Verify Scripts Completed Successfully    ${scripts}    ${states}
+    Report If Failed    ${scripts}    ${states}
+
 Execute Enabled to Offline
     [Tags]
     # Keep this keyword FIRST, as it shuts down the Watcher first, to avoid unnecessary warning messages.
