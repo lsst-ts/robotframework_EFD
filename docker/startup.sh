@@ -15,6 +15,4 @@ term_handler() {
 # on callback, kill the last background process and execute term_handler
 trap 'kill ${!}; term_handler' SIGTERM
 
-source miniconda3/bin/activate
-conda activate test_reporting
 /bin/bash --rcfile /home/saluser/.bashrc
