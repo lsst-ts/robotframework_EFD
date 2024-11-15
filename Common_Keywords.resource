@@ -40,7 +40,7 @@ Verify Scripts Completed Successfully
     # So wait for 'Get Script Metadata' to succeed.
     Run Keyword If    ${shutdown}    Log    This is the Shutdown test.
     FOR    ${i}    IN RANGE    ${num_scripts}
-        Get Script Metadata    ${script_indexes}[${i}]
+        Wait Until Keyword Succeeds   3x    5s    Get Script Metadata    ${script_indexes}[${i}]
         IF    ${shutdown} and ${i + 1} == ${num_scripts}    # Only for the last script of the Shutdown process.
             Run Keyword And Continue On Failure    Should Be Equal As Integers    ${script_states}[${i}]    7    values=True    msg=Script index ${script_indexes}[${i}]
         ELSE
@@ -50,7 +50,7 @@ Verify Scripts Completed Successfully
 
 Report If Failed
     [Documentation]    This keyword creates or updates the `STATE_FAILED` file that is used in the `Check if Failed` keyword.
-    [Arguments]    ${script_indexes}    ${script_states}
+    [Arguments]    ${script_indexes}    ${script_states}    ${csc}
     # See if the STATE_FAILED file exists. It is stored in the ${EXECDIR}/Reports folder, as that is persistent across ArgoCD Workflows.
     ${exists}=    Run Process    ls     ${EXECDIR}/Reports/STATE_FAILED
     # If a script failed, either create or update the STATE_FAILED file accordingly.
@@ -206,5 +206,3 @@ Set EFD Values
     ELSE
         Fail    msg="Please set the env_efd variable; allowed values are ['tucson_teststand_efd', 'base_efd']"
     END
-    @{bigcamera_cscs}=    Create List    ${BigCamera}    ${OODS}    ${HeaderService}
-    Set Suite Variable    @{bigcamera_cscs}

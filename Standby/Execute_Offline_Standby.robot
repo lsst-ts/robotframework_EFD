@@ -6,6 +6,7 @@ Force Tags    standby    execute
 Suite Setup    Set EFD Values
 
 *** Variables ***
+${state}    Standby
 ${cccamera_salver}    ${SALVersion}
 ${cccamera_xmlver}    ${XMLVersion}
 ${ccoods_salver}    ${SALVersion}
@@ -25,14 +26,14 @@ ${ocps3_xmlver}    ${XMLVersion}
 
 *** Test Cases ***
 Execute AuxTel Offline to Standby
-    [Tags]    auxtel
-    ${scripts}    ${states}=    Execute Integration Test    auxtel_offline_standby
+    [Tags]    atcamera
+    ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    ATCamera    ${state}    2
     Verify Scripts Completed Successfully    ${scripts}    ${states}
-    Report If Failed    ${scripts}    ${states}
+    Report If Failed    ${scripts}    ${states}    ATCamera
 
 Execute BigCamera Offline to Standby
     [Tags]
     Set Tags    ${BigCamera}
-    ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    ${BigCamera}    Standby
+    ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    ${BigCamera}    ${state}    1
     Verify Scripts Completed Successfully    ${scripts}    ${states}
-    Report If Failed    ${scripts}    ${states}
+    Report If Failed    ${scripts}    ${states}    ${BigCamera}
