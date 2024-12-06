@@ -6,3 +6,4 @@
 
 # List of test suites
 SensorCSCs/Verify_SensorCSCs.robot
+SensorCSCs/Verify_MTAirCompressors.robot
