@@ -5,13 +5,13 @@ Resource    ../Common_Keywords.resource
 Force Tags    eas_sensor_data
 
 *** Variables ***
-${dimm_minutes_ago}    0.18    # >10.0s
-${dsm1_minutes_ago}    0.018    # >1.0s
-${dsm2_minutes_ago}    0.55    # >30.0s
-${epm_minutes_ago}    0.018    # >1.0s
-${ess_minutes_ago}    0.035    # >2.0s
+${dimm_minutes_ago}   0.2  # 12.0s
+${dsm1_minutes_ago}   0.2  # 12.0s
+${dsm2_minutes_ago}   0.5  # 30.0s
+${epm_minutes_ago}    0.2  # 12.0s
+${ess_minutes_ago}    0.1  # 6.0s
 ${hours_ago}    0
-${days_ago}    0
+${days_ago}     0
 ${weeks_ago}    0
 
 *** Test Cases ***
@@ -91,55 +91,6 @@ Verify ESS:1 temperature Published Data
 Verify ESS:1 temperature Data is Recent
     [Tags]    timing
     Verify Time Delta    ESS:1    temperature    minute=${ess_minutes_ago}    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
-
-# ESS:101
-Verify ESS:101 temperature Published Data
-    [Tags]    robot:continue-on-failure
-    ${dataframe}=    Get Recent Samples    ESS    temperature    ["sensorName", "location", "temperatureItem0", "temperatureItem1", "temperatureItem2", "temperatureItem3", "temperatureItem4", "temperatureItem5", "temperatureItem6", "temperatureItem7"]    num=1    index=101
-    Log    ${dataframe}
-    Should Not Be True    ${dataframe.empty}
-    Should Be Equal As Strings    ${dataframe.sensorName.values}[0]    MTDome-ESS01
-    Should Be Equal As Strings    ${dataframe.location.values}[0]    MT dome air handling unit 1; RPi with sticker 3
-    Should Be True    abs(${dataframe.temperatureItem0.values}[0]) >= 0
-    Should Be True    ${dataframe.temperatureItem1.values}[0] == None
-    Should Be True    ${dataframe.temperatureItem2.values}[0] == None
-    Should Be True    ${dataframe.temperatureItem3.values}[0] == None
-    Should Be True    ${dataframe.temperatureItem4.values}[0] == None
-    Should Be True    ${dataframe.temperatureItem5.values}[0] == None
-    Should Be True    ${dataframe.temperatureItem6.values}[0] == None
-    Should Be True    ${dataframe.temperatureItem7.values}[0] == None
-
-Verify ESS:101 temperature Data is Recent
-    [Tags]    timing
-    Verify Time Delta    ESS:101    temperature    minute=${ess_minutes_ago}    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
-
-# ESS:102
-Verify ESS:102 relativeHumidity Published Data
-    [Tags]    robot:continue-on-failure
-    ${dataframe}=    Get Recent Samples    ESS    relativeHumidity    ["sensorName", "location", "relativeHumidityItem",]    num=1    index=102
-    Log    ${dataframe}
-    Should Not Be True    ${dataframe.empty}
-    Should Be Equal As Strings    ${dataframe.sensorName.values}[0]    MTDome-ESS02
-    Should Be Equal As Strings    ${dataframe.location.values}[0]    MT dome wall inside at 7th floor; RPi with sticker 1
-    Should Be True    abs(${dataframe.relativeHumidityItem.values}[0]) >= 0
-
-Verify ESS:102 relativeHumidity Data is Recent
-    [Tags]    timing
-    Verify Time Delta    ESS:102    relativeHumidity    minute=${ess_minutes_ago}    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
-
-# ESS:103
-Verify ESS:103 relativeHumidity Published Data
-    [Tags]    robot:continue-on-failure
-    ${dataframe}=    Get Recent Samples    ESS    relativeHumidity    ["sensorName", "location", "relativeHumidityItem",]    num=1    index=103
-    Log    ${dataframe}
-    Should Not Be True    ${dataframe.empty}
-    Should Be Equal As Strings    ${dataframe.sensorName.values}[0]    MTDome-ESS03
-    Should Be Equal As Strings    ${dataframe.location.values}[0]    MT dome inside at 8th floor; RPi with sticker 4
-    Should Be True    abs(${dataframe.relativeHumidityItem.values}[0]) >= 0
-
-Verify ESS:103 relativeHumidity Data is Recent
-    [Tags]    timing
-    Verify Time Delta    ESS:103    relativeHumidity    minute=${ess_minutes_ago}    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 # ESS:104
 Verify ESS:104 accelerometer Published Data
@@ -297,6 +248,99 @@ Verify ESS:108 temperature Data is Recent
     [Tags]    timing
     Set Test Variable    ${ess_minutes_ago}    0.036
     Verify Time Delta    ESS:108    temperature    minute=${ess_minutes_ago}    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
+# ESS:109
+Verify ESS:109 spectrumAnalyzer Published Data
+    [Tags]    robot:continue-on-failure
+    ${dataframe}=    Get Recent Samples    ESS    spectrumAnalyzer    ["sensorName", "location", "spectrum0", "spectrum1", "spectrum10", "spectrum100", "spectrum101", "spectrum102", "spectrum103", "spectrum104", "startFrequency","stopFrequency",]    num=1    index=109
+    Log    ${dataframe}
+    # The CBP-ESS01 device and simulator actually behave the same.
+    Should Not Be True    ${dataframe.empty}
+    Should Be Equal As Strings    ${dataframe.sensorName.values}[0]    SSA3000X
+    Should Be Equal As Strings    ${dataframe.location.values}[0]    Clean room
+    Should Be True    abs(${dataframe.spectrum0.values}[0]) >= 0
+    Should Be True    abs(${dataframe.spectrum1.values}[0]) >= 0
+    Should Be True    abs(${dataframe.spectrum10.values}[0]) >= 0
+    Should Be True    abs(${dataframe.spectrum100.values}[0]) >= 0
+    Should Be True    abs(${dataframe.spectrum101.values}[0]) >= 0
+    Should Be True    abs(${dataframe.spectrum102.values}[0]) >= 0
+    Should Be True    abs(${dataframe.spectrum103.values}[0]) >= 0
+    Should Be True    abs(${dataframe.spectrum104.values}[0]) >= 0
+    Should Be True    abs(${dataframe.startFrequency.values}[0]) >= 0
+    Should Be True    abs(${dataframe.stopFrequency.values}[0]) >= 0
+
+Verify ESS:109 spectrumAnalyzer Data is Recent
+    [Tags]    timing
+    Set Test Variable    ${ess_minutes_ago}    0.036
+    Verify Time Delta    ESS:109    spectrumAnalyzer    minute=${ess_minutes_ago}    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
+# ESS:110
+Verify ESS:110 airTurbulence Published Data
+    [Tags]    robot:continue-on-failure
+    ${dataframe}=    Get Recent Samples    ESS    airTurbulence    ["sensorName", "location", "sonicTemperature", "speed0", "speed1", "speed2", "speedMagnitude", "speedMaxMagnitude",]    num=1    index=110
+    Log    ${dataframe}
+    Should Not Be True    ${dataframe.empty}
+    Should Be Equal As Strings    ${dataframe.sensorName.values}[0]    TMA-GillLabJack01
+    Should Be Equal As Strings    ${dataframe.location.values}[0]    TMA (unknown location)
+    Should Be True    abs(${dataframe.sonicTemperature.values}[0]) >= 0
+    Should Be True    abs(${dataframe.speed0.values}[0]) >= 0
+    Should Be True    abs(${dataframe.speed1.values}[0]) >= 0
+    Should Be True    abs(${dataframe.speed2.values}[0]) >= 0
+    Should Be True    abs(${dataframe.speedMagnitude.values}[0]) >= 0
+    Should Be True    abs(${dataframe.speedMaxMagnitude.values}[0]) >= 0
+
+Verify ESS:110 airTurbulence Data is Recent
+    [Tags]    timing
+    Verify Time Delta    ESS:110    airTurbulence    minute=${ess_minutes_ago}    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
+# ESS:111
+Verify ESS:111 temperature Published Data
+    [Tags]    robot:continue-on-failure
+    ${dataframe}=    Get Recent Samples    ESS    temperature    ["sensorName", "location", "temperatureItem0", "temperatureItem1", "temperatureItem2", "temperatureItem3", "temperatureItem4", "temperatureItem5", "temperatureItem6", "temperatureItem7"]    num=1    index=111
+    Log    ${dataframe}
+    Should Not Be True    ${dataframe.empty}
+    Should Be Equal As Strings    ${dataframe.sensorName.values}[0]    Camera-ESS01
+    Should Be Equal As Strings    ${dataframe.location.values}[0]    Camera inlet plane; RPi with sticker 3
+    Should Be True    abs(${dataframe.temperatureItem0.values}[0]) >= 0
+    Should Be True    ${dataframe.temperatureItem1.values}[0] == None
+    Should Be True    ${dataframe.temperatureItem2.values}[0] == None
+    Should Be True    ${dataframe.temperatureItem3.values}[0] == None
+    Should Be True    ${dataframe.temperatureItem4.values}[0] == None
+    Should Be True    ${dataframe.temperatureItem5.values}[0] == None
+    Should Be True    ${dataframe.temperatureItem6.values}[0] == None
+    Should Be True    ${dataframe.temperatureItem7.values}[0] == None
+
+Verify ESS:111 temperature Data is Recent
+    [Tags]    timing
+    Verify Time Delta    ESS:111    temperature    minute=${ess_minutes_ago}    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
+# ESS:112
+Verify ESS:112 relativeHumidity Published Data
+    [Tags]    robot:continue-on-failure
+    ${dataframe}=    Get Recent Samples    ESS    relativeHumidity    ["sensorName", "location", "relativeHumidityItem",]    num=1    index=112
+    Log    ${dataframe}
+    Should Not Be True    ${dataframe.empty}
+    Should Be Equal As Strings    ${dataframe.sensorName.values}[0]    M2-ESS02
+    Should Be Equal As Strings    ${dataframe.location.values}[0]    M2; RPi with sticker 1
+    Should Be True    abs(${dataframe.relativeHumidityItem.values}[0]) >= 0
+
+Verify ESS:112 relativeHumidity Data is Recent
+    [Tags]    timing
+    Verify Time Delta    ESS:112    relativeHumidity    minute=${ess_minutes_ago}    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
+# ESS:113
+Verify ESS:113 relativeHumidity Published Data
+    [Tags]    robot:continue-on-failure
+    ${dataframe}=    Get Recent Samples    ESS    relativeHumidity    ["sensorName", "location", "relativeHumidityItem",]    num=1    index=113
+    Log    ${dataframe}
+    Should Not Be True    ${dataframe.empty}
+    Should Be Equal As Strings    ${dataframe.sensorName.values}[0]    M1M3-ESS03
+    Should Be Equal As Strings    ${dataframe.location.values}[0]    M1M3; RPi with sticker 4
+    Should Be True    abs(${dataframe.relativeHumidityItem.values}[0]) >= 0
+
+Verify ESS:113 relativeHumidity Data is Recent
+    [Tags]    timing
+    Verify Time Delta    ESS:113    relativeHumidity    minute=${ess_minutes_ago}    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 # ESS:201
 ## airTurbulence ##
@@ -496,25 +540,6 @@ Verify ESS:204 airFlow Data is Recent
     [Tags]    timing
     Set Test Variable    ${ess_minutes_ago}    1.1
     Verify Time Delta    ESS:204    airFlow    minute=${ess_minutes_ago}    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
-
-# ESS:205
-Verify ESS:205 airTurbulence Published Data
-    [Tags]    robot:continue-on-failure
-    ${dataframe}=    Get Recent Samples    ESS    airTurbulence    ["sensorName", "location", "sonicTemperature", "speed0", "speed1", "speed2", "speedMagnitude", "speedMaxMagnitude",]    num=1    index=205
-    Log    ${dataframe}
-    Should Not Be True    ${dataframe.empty}
-    Should Be Equal As Strings    ${dataframe.sensorName.values}[0]    AuxTel-GillLabJack01
-    Should Be Equal As Strings    ${dataframe.location.values}[0]    Auxtel Dome Floor 2
-    Should Be True    abs(${dataframe.sonicTemperature.values}[0]) >= 0
-    Should Be True    abs(${dataframe.speed0.values}[0]) >= 0
-    Should Be True    abs(${dataframe.speed1.values}[0]) >= 0
-    Should Be True    abs(${dataframe.speed2.values}[0]) >= 0
-    Should Be True    abs(${dataframe.speedMagnitude.values}[0]) >= 0
-    Should Be True    abs(${dataframe.speedMaxMagnitude.values}[0]) >= 0
-
-Verify ESS:205 airTurbulence Data is Recent
-    [Tags]    timing
-    Verify Time Delta    ESS:205    airTurbulence    minute=${ess_minutes_ago}    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 # ESS:301
 ## airFlow ##

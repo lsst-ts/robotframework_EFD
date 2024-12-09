@@ -3,9 +3,10 @@ Resource    ../Global_Vars.resource
 Resource    ../CSC_Lists.resource
 Resource    ../Common_Keywords.resource
 Force Tags    shutdown    execute
-Suite Setup    Run Keywords    Set EFD Values    AND    Log Many    ${STATES}[offline]
+Suite Setup    Set EFD Values
 
 *** Variables ***
+${state}    Offline
 ${cccamera_salver}    ${SALVersion}
 ${cccamera_xmlver}    ${XMLVersion}
 ${ccoods_salver}    ${SALVersion}
@@ -24,43 +25,83 @@ ${ocps3_salver}    ${SALVersion}
 ${ocps3_xmlver}    ${XMLVersion}
 
 *** Test Cases ***
+Execute ATCS Enabled to Offline
+    [Tags]    atcs    robot:continue-on-failure
+    @{script_args}=    Create List    ${state}    2
+    FOR    ${csc}    IN    @{ATCS}
+        ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    ${csc}    @{script_args}
+        Verify Scripts Completed Successfully    ${scripts}    ${states}
+    END
+
+Execute LATISS Enabled to Offline
+    [Tags]    latiss    robot:continue-on-failure
+    FOR    ${csc}    IN    @{LATISS}
+        @{script_args}=    Create List    ${state}    2
+        Run Keyword If    "${csc}" == "ATCamera"    Append To List    ${script_args}    -a Normal
+        ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    ${csc}    @{script_args}
+        Verify Scripts Completed Successfully    ${scripts}    ${states}
+    END
+
 Execute BigCamera Enabled to Offline
     [Tags]
     Set Tags    ${BigCamera}
-    ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    ${BigCamera}    Offline
-    Verify Scripts Completed Successfully    ${scripts}    ${states}
+    @{bigcamera_cscs}=    Set Variable If    "${env_efd}" == "base_efd"    ${MTCamera}    ${ComCam}
+    FOR    ${csc}    IN    @{bigcamera_cscs}
+        ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    ${csc}    @{script_args}
+        Verify Scripts Completed Successfully    ${scripts}    ${states}
+    END
 
-Execute EPM:1 Enabled to Offline
-    [Tags]    epm:1
-    ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    EPM    Offline    -x 1
-    Verify Scripts Completed Successfully    ${scripts}    ${states}
-    Report If Failed    ${scripts}    ${states}
+Execute EAS Enabled to Offline
+    [Tags]    eas    robot:continue-on-failure
+    @{script_args}=    Create List    ${state}    1
+    FOR    ${csc}    IN    @{EAS}
+        ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    ${csc}    @{script_args}
+        Verify Scripts Completed Successfully    ${scripts}    ${states}
+    END
 
-Execute MTPtg Enabled to Offline
-    [Tags]    mtptg 
-    ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    MTPtg    Offline
-    Verify Scripts Completed Successfully    ${scripts}    ${states}
-    Report If Failed    ${scripts}    ${states}
+Execute EAS_AE Enabled to Offline
+    [Tags]    eas    robot:continue-on-failure
+    @{script_args}=    Create List    ${state}    1
+    FOR    ${csc}    IN    @{EAS_AE}
+        ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    ${csc}    @{script_args}
+        Verify Scripts Completed Successfully    ${scripts}    ${states}
+    END
 
-Execute OCPS2||3 Enabled to Offline
-    [Tags]
-    Set Tags    OCPS:${OcpsIndex}
-    ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    OCPS    Offline    -x ${OcpsIndex}
-    Verify Scripts Completed Successfully    ${scripts}    ${states}
+Execute GenCam Enabled to Offline
+    [Tags]    gencam    robot:continue-on-failure
+    @{script_args}=    Create List    ${state}    1
+    FOR    ${csc}    IN    @{GenCam}
+        ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    ${csc}    @{script_args}
+        Verify Scripts Completed Successfully    ${scripts}    ${states}
+    END
 
-Execute MTM1M3 Enabled to Offline
-    [Tags]    mtm1m3
-    ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    MTM1M3    Offline
-    Verify Scripts Completed Successfully    ${scripts}    ${states}
+Execute MTCS Enabled to Offline
+    [Tags]    mtcs    robot:continue-on-failure
+    FOR    ${csc}    IN    @{MTCS}
+        @{script_args}=    Create List    ${state}    1
+        Run Keyword If    "${csc}" == "MTM1M3"    Append To List    ${script_args}    -a Default
+        ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    ${csc}    @{script_args}
+        Verify Scripts Completed Successfully    ${scripts}    ${states}
+    END
+
+Execute MTAirCompressors Enabled to Offline
+    [Tags]    mtaircompressor
+    @{script_args}=    Create List    ${state}    1
+    FOR ${csc}    IN    @{AUTO_DISABLED}
+        ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    ${csc}    @{script_args}
+        Verify Scripts Completed Successfully    ${scripts}    ${states}
+    END
+
+Execute ObsSys Enabled to Offline
+    [Tags]    obssys    robot:continue-on-failure
+    @{script_args}=    Create List    ${state}    3
+    FOR    ${csc}    IN    @{ObsSys}
+        ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    ${csc}    @{script_args}
+        Verify Scripts Completed Successfully    ${scripts}    ${states}
+    END
 
 Execute Test:42 Enabled to Offline
     [Tags]    test:42
-    ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    Test    Offline    -x 42
+    @{script_args}=    Create List    ${state}    1
+    ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    Test:42    @{script_args}
     Verify Scripts Completed Successfully    ${scripts}    ${states}
-
-Execute Enabled to Offline
-    [Tags]
-    # Set the 'test_env' variable to 'bts' if running on the BTS, otherwise, set it to 'tts'.
-    ${test_env}=    Set Variable If    "${env_efd}" == "base_efd"    bts    tts
-    ${scripts}    ${states}=    Execute Integration Test    enabled_offline    ${test_env}
-    Verify Scripts Completed Successfully    ${scripts}    ${states}    shutdown=${True}

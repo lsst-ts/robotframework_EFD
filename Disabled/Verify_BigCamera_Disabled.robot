@@ -41,12 +41,8 @@ Verify OODS SummaryState timing
 Verify OODS ConfigurationApplied Event
     [Tags]    config_applied
     Set Tags    ${OODS}
+    # OODS CSCs are NOT configurable.
     Verify ConfigurationApplied    ${OODS}
-
-Verify OODS ConfigurationApplied timing
-    [Tags]    config_applied    timing
-    Set Tags    ${OODS}
-    Verify Time Delta    ${OODS}    logevent_configurationApplied    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 #HeaderService
 Verify HeaderService Disabled
@@ -57,17 +53,13 @@ Verify HeaderService Disabled
 Verify HeaderService SummaryState timing
     [Tags]    software_versions    timing
     Set Tags    ${HeaderService}
+    # HeaderService CSCs are NOT configurable.
     Verify Time Delta    ${HeaderService}    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify HeaderService ConfigurationApplied Event
     [Tags]    config_applied
     Set Tags    ${HeaderService}
     Verify ConfigurationApplied    ${HeaderService}
-
-Verify HeaderService ConfigurationApplied timing
-    [Tags]    config_applied    timing
-    Set Tags    ${HeaderService}
-    Verify Time Delta    ${HeaderService}    logevent_configurationApplied    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 #OCPS:2||3
 Verify OCPS:2||3 Disabled

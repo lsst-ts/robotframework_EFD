@@ -6,6 +6,7 @@ Force Tags    enabled    execute
 Suite Setup    Set EFD Values
 
 *** Variables ***
+${state}    Enabled
 ${cccamera_salver}    ${SALVersion}
 ${cccamera_xmlver}    ${XMLVersion}
 ${ccoods_salver}    ${SALVersion}
@@ -24,72 +25,83 @@ ${ocps3_salver}    ${SALVersion}
 ${ocps3_xmlver}    ${XMLVersion}
 
 *** Test Cases ***
-Execute AuxTel Disabled to Enabled
+Execute ATCS Disabled to Enabled
     [Tags]    atcs
-    ${scripts}    ${states}=    Execute Integration Test    auxtel_disabled_enabled
-    Verify Scripts Completed Successfully    ${scripts}    ${states}
-    Report If Failed    ${scripts}    ${states}
+    @{script_args}=    Create List    ${state}    2
+    FOR    ${csc}    IN    @{ATCS}
+        ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    ${csc}    @{script_args}
+        Verify Scripts Completed Successfully    ${scripts}    ${states}
+        Report If Failed    ${scripts}    ${states}    ${csc}
+    END
+
+Execute LATISS Disabled to Enabled
+    [Tags]    latiss    robot:continue-on-failure
+    FOR    ${csc}    IN    @{LATISS}
+        @{script_args}=    Create List    ${state}    2
+        Run Keyword If    "${csc}" == "ATCamera"    Append To List    ${script_args}    -a Normal
+        ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    ${csc}    @{script_args}
+        Verify Scripts Completed Successfully    ${scripts}    ${states}
+        Report If Failed    ${scripts}    ${states}    ${csc}
+    END
 
 Execute BigCamera Disabled to Enabled
     [Tags]
     Set Tags    ${BigCamera}
-    ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    ${BigCamera}    Enabled
-    Verify Scripts Completed Successfully    ${scripts}    ${states}
-    Report If Failed    ${scripts}    ${states}
+    @{bigcamera_cscs}=    Set Variable If    "${env_efd}" == "base_efd"    ${MTCamera}    ${ComCam}
+    @{script_args}=    Create List    ${state}    1
+    FOR    ${csc}    IN    @{bigcamera_cscs}
+        ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    ${csc}    @{script_args}
+        Verify Scripts Completed Successfully    ${scripts}    ${states}
+        Report If Failed    ${scripts}    ${states}    ${csc}
+    END
 
 Execute EAS Disabled to Enabled
     [Tags]    eas
-    ${scripts}    ${states}=    Execute Integration Test    eas_disabled_enabled
-    Verify Scripts Completed Successfully    ${scripts}    ${states}
-    Report If Failed    ${scripts}    ${states}
-
-Execute MainTel Disabled to Enabled
-    [Tags]    mtcs
-    # Set the 'test_env' variable to 'bts' if running on the BTS, otherwise, set it to 'tts'.
-    ${test_env}=    Set Variable If    "${env_efd}" == "base_efd"    bts    tts
-    ${scripts}    ${states}=    Execute Integration Test    maintel_disabled_enabled    ${test_env}
-    Verify Scripts Completed Successfully    ${scripts}    ${states}
-    Report If Failed    ${scripts}    ${states}
-
-Execute MTM1M3 Disabled to Enabled
-    [Tags]    mtm1m3
-    ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    MTM1M3    Enabled
-    Verify Scripts Completed Successfully    ${scripts}    ${states}
-    Report If Failed    ${scripts}    ${states}
+    @{script_args}=    Create List    ${state}    1
+    FOR    ${csc}    IN    @{EAS}
+        ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    ${csc}    @{script_args}
+        Verify Scripts Completed Successfully    ${scripts}    ${states}
+        Report If Failed    ${scripts}    ${states}    ${csc}
+    END
 
 Execute GenCam Disabled to Enabled
-    [Tags]    gc
-    ${scripts}    ${states}=    Execute Integration Test    gencam_disabled_enabled
-    Verify Scripts Completed Successfully    ${scripts}    ${states}
-    Report If Failed    ${scripts}    ${states}
+    [Tags]    gencam    robot:continue-on-failure
+    @{script_args}=    Create List    ${state}    1
+    FOR    ${csc}    IN    @{GenCam}
+        ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    ${csc}    @{script_args}
+        Verify Scripts Completed Successfully    ${scripts}    ${states}
+        Report If Failed    ${scripts}    ${states}    ${csc}
+    END
+
+Execute MTCS Disabled to Enabled
+    [Tags]    mtcs
+    @{script_args}=    Create List    ${state}    1
+    FOR    ${csc}    IN    @{MTCS}
+        ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    ${csc}    @{script_args}
+        Verify Scripts Completed Successfully    ${scripts}    ${states}
+        Report If Failed    ${scripts}    ${states}    ${csc}
+    END
+
+Execute MTAirCompressors Disabled to Enabled
+    [Tags]    mtaircompressor
+    @{script_args}=    Create List    ${state}    1
+    FOR    ${csc}    IN    @{AUTO_DISABLED}
+        ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    ${csc}    @{script_args}
+        Verify Scripts Completed Successfully    ${scripts}    ${states}
+        Report If Failed    ${scripts}    ${states}    ${csc}
+    END
 
 Execute ObsSys Disabled to Enabled
     [Tags]    obssys
-    ${scripts}    ${states}=    Execute Integration Test    obssys_disabled_enabled
-    Verify Scripts Completed Successfully    ${scripts}    ${states}
-    Report If Failed    ${scripts}    ${states}
-
-Execute EPM:1 Disabled to Enabled
-    [Tags]    epm:1
-    ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    EPM    Enabled    -x 1
-    Verify Scripts Completed Successfully    ${scripts}    ${states}
-    Report If Failed    ${scripts}    ${states}
-
-Execute MTPtg Disabled to Enabled
-    [Tags]    mtptg
-    ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    MTPtg    Enabled
-    Verify Scripts Completed Successfully    ${scripts}    ${states}
-    Report If Failed    ${scripts}    ${states}
-
-Execute OCPS2||3 Disabled to Enabled
-    [Tags]
-    Set Tags    OCPS:${OcpsIndex}
-    ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    OCPS    Enabled    -x ${OcpsIndex}
-    Verify Scripts Completed Successfully    ${scripts}    ${states}
-    Report If Failed    ${scripts}    ${states}
+    @{script_args}=    Create List    ${state}    3
+    FOR    ${csc}    IN    @{ObsSys}
+        ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    ${csc}    @{script_args}
+        Verify Scripts Completed Successfully    ${scripts}    ${states}
+        Report If Failed    ${scripts}    ${states}    ${csc}
+    END
 
 Execute Test:42 Disabled to Enabled
-    [Tags]    test:42
-    ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    Test    Enabled    -x 42
+    [Tags]    test42
+    ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    Test:42    Enabled    1
     Verify Scripts Completed Successfully    ${scripts}    ${states}
-    Report If Failed    ${scripts}    ${states}
+    Report If Failed    ${scripts}    ${states}    Test:42
