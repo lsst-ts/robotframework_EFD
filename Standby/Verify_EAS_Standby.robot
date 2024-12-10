@@ -13,12 +13,6 @@ ${epm1_salver}     ${SALVersion}
 ${epm1_xmlver}     ${XMLVersion}
 ${ess1_salver}     ${SALVersion}
 ${ess1_xmlver}     ${XMLVersion}
-${ess101_salver}    ${SALVersion}
-${ess101_xmlver}    ${XMLVersion}
-${ess102_salver}    ${SALVersion}
-${ess102_xmlver}    ${XMLVersion}
-${ess103_salver}    ${SALVersion}
-${ess103_xmlver}    ${XMLVersion}
 ${ess104_salver}    ${SALVersion}
 ${ess104_xmlver}    ${XMLVersion}
 ${ess105_salver}    ${SALVersion}
@@ -29,6 +23,16 @@ ${ess107_salver}    ${SALVersion}
 ${ess107_xmlver}    ${XMLVersion}
 ${ess108_salver}    ${SALVersion}
 ${ess108_xmlver}    ${XMLVersion}
+${ess109_salver}    ${SALVersion}
+${ess109_xmlver}    ${XMLVersion}
+${ess110_salver}    ${SALVersion}
+${ess110_xmlver}    ${XMLVersion}
+${ess111_salver}    ${SALVersion}
+${ess111_xmlver}    ${XMLVersion}
+${ess112_salver}    ${SALVersion}
+${ess112_xmlver}    ${XMLVersion}
+${ess113_salver}    ${SALVersion}
+${ess113_xmlver}    ${XMLVersion}
 ${ess201_salver}    ${SALVersion}
 ${ess201_xmlver}    ${XMLVersion}
 ${ess202_salver}    ${SALVersion}
@@ -126,69 +130,6 @@ Verify ESS:1 ConfigurationsAvailable Event
 Verify ESS:1 ConfigurationsAvailable timing
     [Tags]    config_available    timing
     Verify Time Delta    ESS:1    logevent_configurationsAvailable    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
-
-# ESS:101
-Verify ESS:101 Standby
-    [Tags]    standby
-    Verify Summary State    ${STATES}[standby]    ESS:101
-
-Verify ESS:101 SoftwareVersions
-    [Tags]    software_versions
-    Verify Software Versions    ESS    index=101    csc_salver=${ess101_salver}    csc_xmlver=${ess101_xmlver}
-    
-Verify ESS:101 SoftwareVersions timing
-    [Tags]    software_versions    timing
-    Verify Time Delta    ESS:101    logevent_softwareVersions    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
-
-Verify ESS:101 ConfigurationsAvailable Event
-    [Tags]    config_available
-    Verify ConfigurationsAvailable    ESS    index=101
-
-Verify ESS:101 ConfigurationsAvailable timing
-    [Tags]    config_available    timing
-    Verify Time Delta    ESS:101    logevent_configurationsAvailable    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
-
-# ESS:102
-Verify ESS:102 Standby
-    [Tags]    standby
-    Verify Summary State    ${STATES}[standby]    ESS:102
-
-Verify ESS:102 SoftwareVersions
-    [Tags]    software_versions
-    Verify Software Versions    ESS    index=102    csc_salver=${ess102_salver}    csc_xmlver=${ess102_xmlver}
-    
-Verify ESS:102 SoftwareVersions timing
-    [Tags]    software_versions    timing
-    Verify Time Delta    ESS:102    logevent_softwareVersions    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
-
-Verify ESS:102 ConfigurationsAvailable Event
-    [Tags]    config_available
-    Verify ConfigurationsAvailable    ESS    index=102
-
-Verify ESS:102 ConfigurationsAvailable timing
-    [Tags]    config_available    timing
-    Verify Time Delta    ESS:102    logevent_configurationsAvailable    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
-
-# ESS:103
-Verify ESS:103 Standby
-    [Tags]    standby
-    Verify Summary State    ${STATES}[standby]    ESS:103
-
-Verify ESS:103 SoftwareVersions
-    [Tags]    software_versions
-    Verify Software Versions    ESS    index=103    csc_salver=${ess103_salver}    csc_xmlver=${ess103_xmlver}
-    
-Verify ESS:103 SoftwareVersions timing
-    [Tags]    software_versions    timing
-    Verify Time Delta    ESS:103    logevent_softwareVersions    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
-
-Verify ESS:103 ConfigurationsAvailable Event
-    [Tags]    config_available
-    Verify ConfigurationsAvailable    ESS    index=103
-
-Verify ESS:103 ConfigurationsAvailable timing
-    [Tags]    config_available    timing
-    Verify Time Delta    ESS:103    logevent_configurationsAvailable    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 # ESS:104
 Verify ESS:104 Standby
@@ -294,6 +235,111 @@ Verify ESS:108 ConfigurationsAvailable Event
 Verify ESS:108 ConfigurationsAvailable timing
     [Tags]    config_available    timing
     Verify Time Delta    ESS:108    logevent_configurationsAvailable    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
+# ESS:109
+Verify ESS:109 Standby
+    [Tags]    standby
+    Verify Summary State    ${STATES}[standby]    ESS:109
+
+Verify ESS:109 SoftwareVersions
+    [Tags]    software_versions
+    Verify Software Versions    ESS    index=109    csc_salver=${ess109_salver}    csc_xmlver=${ess109_xmlver}
+
+Verify ESS:109 SoftwareVersions timing
+    [Tags]    software_versions    timing
+    Verify Time Delta    ESS:109    logevent_softwareVersions    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
+Verify ESS:109 ConfigurationsAvailable Event
+    [Tags]    config_available
+    Verify ConfigurationsAvailable    ESS    index=109
+
+Verify ESS:109 ConfigurationsAvailable timing
+    [Tags]    config_available    timing
+    Verify Time Delta    ESS:109    logevent_configurationsAvailable    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
+# ESS:110
+Verify ESS:110 Standby
+    [Tags]    standby
+    Verify Summary State    ${STATES}[standby]    ESS:110
+
+Verify ESS:110 SoftwareVersions
+    [Tags]    software_versions
+    Verify Software Versions    ESS    index=110    csc_salver=${ess110_salver}    csc_xmlver=${ess110_xmlver}
+
+Verify ESS:110 SoftwareVersions timing
+    [Tags]    software_versions    timing
+    Verify Time Delta    ESS:110    logevent_softwareVersions    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
+Verify ESS:110 ConfigurationsAvailable Event
+    [Tags]    config_available
+    Verify ConfigurationsAvailable    ESS    index=110
+
+Verify ESS:110 ConfigurationsAvailable timing
+    [Tags]    config_available    timing
+    Verify Time Delta    ESS:110    logevent_configurationsAvailable    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
+# ESS:111
+Verify ESS:111 Standby
+    [Tags]    standby
+    Verify Summary State    ${STATES}[standby]    ESS:111
+
+Verify ESS:111 SoftwareVersions
+    [Tags]    software_versions
+    Verify Software Versions    ESS    index=111    csc_salver=${ess111_salver}    csc_xmlver=${ess111_xmlver}
+
+Verify ESS:111 SoftwareVersions timing
+    [Tags]    software_versions    timing
+    Verify Time Delta    ESS:111    logevent_softwareVersions    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
+Verify ESS:111 ConfigurationsAvailable Event
+    [Tags]    config_available
+    Verify ConfigurationsAvailable    ESS    index=111
+
+Verify ESS:111 ConfigurationsAvailable timing
+    [Tags]    config_available    timing
+    Verify Time Delta    ESS:111    logevent_configurationsAvailable    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
+# ESS:112
+Verify ESS:112 Standby
+    [Tags]    standby
+    Verify Summary State    ${STATES}[standby]    ESS:112
+
+Verify ESS:112 SoftwareVersions
+    [Tags]    software_versions
+    Verify Software Versions    ESS    index=112    csc_salver=${ess112_salver}    csc_xmlver=${ess112_xmlver}
+
+Verify ESS:112 SoftwareVersions timing
+    [Tags]    software_versions    timing
+    Verify Time Delta    ESS:112    logevent_softwareVersions    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
+Verify ESS:112 ConfigurationsAvailable Event
+    [Tags]    config_available
+    Verify ConfigurationsAvailable    ESS    index=112
+
+Verify ESS:112 ConfigurationsAvailable timing
+    [Tags]    config_available    timing
+    Verify Time Delta    ESS:112    logevent_configurationsAvailable    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
+# ESS:113
+Verify ESS:113 Standby
+    [Tags]    standby
+    Verify Summary State    ${STATES}[standby]    ESS:113
+
+Verify ESS:113 SoftwareVersions
+    [Tags]    software_versions
+    Verify Software Versions    ESS    index=113    csc_salver=${ess113_salver}    csc_xmlver=${ess113_xmlver}
+
+Verify ESS:113 SoftwareVersions timing
+    [Tags]    software_versions    timing
+    Verify Time Delta    ESS:113    logevent_softwareVersions    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
+Verify ESS:113 ConfigurationsAvailable Event
+    [Tags]    config_available
+    Verify ConfigurationsAvailable    ESS    index=113
+
+Verify ESS:113 ConfigurationsAvailable timing
+    [Tags]    config_available    timing
+    Verify Time Delta    ESS:113    logevent_configurationsAvailable    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 # ESS:201
 Verify ESS:201 Standby
