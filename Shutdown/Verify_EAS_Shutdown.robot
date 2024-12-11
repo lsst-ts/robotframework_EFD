@@ -89,10 +89,6 @@ Verify ESS:204 Shutdown
     [Tags]    eas
     Verify Shutdown Process    ESS    index=204
 
-Verify ESS:205 Shutdown
-    [Tags]    eas
-    Verify Shutdown Process    ESS    index=205
-
 Verify ESS:301 Shutdown
     [Tags]    eas
     Verify Shutdown Process    ESS    index=301

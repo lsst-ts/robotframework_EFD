@@ -36,7 +36,6 @@ eas = [
     "ESS:202",
     "ESS:203",
     "ESS:204",
-    "ESS:205",
     "ESS:301",
 ]
 eas_ae = [
@@ -137,7 +136,6 @@ salobj = [
     "ESS:202",
     "ESS:203",
     "ESS:204",
-    "ESS:205",
     "ESS:301",
     "FiberSpectrograph:3",
     "LinearStage",

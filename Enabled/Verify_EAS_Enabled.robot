@@ -169,15 +169,6 @@ Verify ESS:204 SummaryState timing
     [Tags]    enabled    timing
     Verify Time Delta    ESS:204    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
-# ESS:205
-Verify ESS:205 Enabled
-    [Tags]    enabled
-    Verify Summary State    ${STATES}[enabled]    ESS:205
-
-Verify ESS:205 SummaryState timing
-    [Tags]    enabled    timing
-    Verify Time Delta    ESS:205    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
-
 #ESS:301
 Verify ESS:301 Enabled
     [Tags]    enabled

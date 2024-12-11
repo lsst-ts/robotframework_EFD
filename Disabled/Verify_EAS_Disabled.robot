@@ -311,23 +311,6 @@ Verify ESS:204 ConfigurationApplied Event timing
     [Tags]    config_applied    timing
     Verify Time Delta    ESS:204    logevent_configurationApplied    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
-# ESS:205
-Verify ESS:205 Disabled
-    [Tags]    disabled
-    Verify Summary State    ${STATES}[disabled]    ESS:205
-    
-Verify ESS:205 SummaryState timing
-    [Tags]    software_versions    timing
-    Verify Time Delta    ESS:205    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
-
-Verify ESS:205 ConfigurationApplied Event
-    [Tags]    config_applied
-    Verify ConfigurationApplied    ESS    index=205
-
-Verify ESS:205 ConfigurationApplied Event timing
-    [Tags]    config_applied    timing
-    Verify Time Delta    ESS:205    logevent_configurationApplied    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
-
 # ESS:301
 Verify ESS:301 Disabled
     [Tags]    disabled
