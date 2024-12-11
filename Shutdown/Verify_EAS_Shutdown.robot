@@ -33,18 +33,6 @@ Verify ESS:1 Shutdown
     [Tags]    eas
     Verify Shutdown Process    ESS    index=1
 
-Verify ESS:101 Shutdown
-    [Tags]    eas
-    Verify Shutdown Process    ESS    index=101
-
-Verify ESS:102 Shutdown
-    [Tags]    eas
-    Verify Shutdown Process    ESS    index=102
-
-Verify ESS:103 Shutdown
-    [Tags]    eas
-    Verify Shutdown Process    ESS    index=103
-
 Verify ESS:104 Shutdown
     [Tags]    eas
     Verify Shutdown Process    ESS    index=104
@@ -65,6 +53,26 @@ Verify ESS:108 Shutdown
     [Tags]    eas
     Verify Shutdown Process    ESS    index=108
 
+Verify ESS:109 Shutdown
+    [Tags]    eas
+    Verify Shutdown Process    ESS    index=109
+
+Verify ESS:110 Shutdown
+    [Tags]    eas
+    Verify Shutdown Process    ESS    index=110
+
+Verify ESS:111 Shutdown
+    [Tags]    eas
+    Verify Shutdown Process    ESS    index=111
+
+Verify ESS:112 Shutdown
+    [Tags]    eas
+    Verify Shutdown Process    ESS    index=112
+
+Verify ESS:113 Shutdown
+    [Tags]    eas
+    Verify Shutdown Process    ESS    index=113
+
 Verify ESS:201 Shutdown
     [Tags]    eas
     Verify Shutdown Process    ESS    index=201
@@ -80,10 +88,6 @@ Verify ESS:203 Shutdown
 Verify ESS:204 Shutdown
     [Tags]    eas
     Verify Shutdown Process    ESS    index=204
-
-Verify ESS:205 Shutdown
-    [Tags]    eas
-    Verify Shutdown Process    ESS    index=205
 
 Verify ESS:301 Shutdown
     [Tags]    eas
