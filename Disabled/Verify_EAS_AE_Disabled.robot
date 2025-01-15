@@ -2,7 +2,7 @@
 Resource    ../Global_Vars.resource
 Resource    ../CSC_Lists.resource
 Resource    ../Common_Keywords.resource
-Force Tags    eas_ae
+Force Tags    envsys_ae
 
 *** Test Cases ***
 #DSM:1
