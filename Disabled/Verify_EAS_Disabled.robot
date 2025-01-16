@@ -46,7 +46,7 @@ Verify DREAM Disabled
 
 Verify DREAM SummaryState timing
     [Tags]    software_versions    timing
-    Verify Time Delta    DREAM logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+    Verify Time Delta    DREAM    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify DREAM ConfigurationApplied Event
     [Tags]    software_versions    timing
@@ -63,7 +63,7 @@ Verify EAS Disabled
 
 Verify EAS SummaryState timing
     [Tags]    software_versions    timing
-    Verify Time Delta    EAS logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+    Verify Time Delta    EAS    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify EAS ConfigurationApplied Event
     [Tags]    software_versions    timing
