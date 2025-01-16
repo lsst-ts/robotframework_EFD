@@ -2,12 +2,12 @@
 Resource    ../Global_Vars.resource
 Resource    ../CSC_Lists.resource
 Resource    ../Common_Keywords.resource
-Force Tags    eas
+Force Tags    envsys
 
 *** Variables ***
 
 *** Test Cases ***
-#DIMM:1
+# DIMM:1
 Verify DIMM:1 Enabled
     [Tags]    enabled
     Verify Summary State    ${STATES}[enabled]    DIMM:1
@@ -16,7 +16,7 @@ Verify DIMM:1 SummaryState timing
     [Tags]    enabled    timing
     Verify Time Delta    DIMM:1    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
-#DIMM:2
+# DIMM:2
 Verify DIMM:2 Enabled
     [Tags]    enabled
     Verify Summary State    ${STATES}[enabled]    DIMM:2
@@ -25,7 +25,25 @@ Verify DIMM:2 SummaryState timing
     [Tags]    enabled    timing
     Verify Time Delta    DIMM:2    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
-#EPM:1
+# DREAM
+Verify DREAM Enabled
+    [Tags]    enabled
+    Verify Summary State    ${STATES}[enabled]    DREAM
+
+Verify DREAM SummaryState timing
+    [Tags]    enabled    timing
+    Verify Time Delta    DREAM    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
+# EAS
+Verify EAS Enabled
+    [Tags]    enabled
+    Verify Summary State    ${STATES}[enabled]    EAS
+
+Verify EAS SummaryState timing
+    [Tags]    enabled    timing
+    Verify Time Delta    EAS    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
+# EPM:1
 Verify EPM:1 Enabled
     [Tags]    epm:1    enabled
     Verify Summary State    ${STATES}[enabled]    EPM:1
@@ -34,7 +52,7 @@ Verify EPM:1 SummaryState timing
     [Tags]    epm:1    enabled    timing
     Verify Time Delta    EPM:1    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
-#ESS:1
+# ESS:1
 Verify ESS:1 Enabled
     [Tags]    enabled
     Verify Summary State    ${STATES}[enabled]    ESS:1
@@ -169,7 +187,7 @@ Verify ESS:204 SummaryState timing
     [Tags]    enabled    timing
     Verify Time Delta    ESS:204    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
-#ESS:301
+# ESS:301
 Verify ESS:301 Enabled
     [Tags]    enabled
     Verify Summary State    ${STATES}[enabled]    ESS:301

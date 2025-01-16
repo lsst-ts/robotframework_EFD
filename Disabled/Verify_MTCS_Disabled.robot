@@ -5,7 +5,7 @@ Resource    ../Common_Keywords.resource
 Force Tags    mtcs
 
 *** Test Cases ***
-#LaserTracker
+# LaserTracker
 Verify LaserTracker:1 Disabled
     [Tags]    disabled
     Verify Summary State    ${STATES}[disabled]    LaserTracker:1
@@ -22,7 +22,7 @@ Verify LaserTracker:1 ConfigurationApplied Event timing
     [Tags]    config_applied    timing
     Verify Time Delta    LaserTracker:1    logevent_configurationApplied    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
-#MTAirCompressor:1
+# MTAirCompressor:1
 ##Auto-Enabled: no timing tests
 Verify MTAirCompressor:1 Disabled
     [Tags]    disabled
@@ -32,7 +32,7 @@ Verify MTAirCompressor:1 ConfigurationApplied Event
     [Tags]    config_applied
     Verify ConfigurationApplied    MTAirCompressor    index=1
 
-#MTAirCompressor:2
+# MTAirCompressor:2
 ##Auto-Enabled: no timing tests
 Verify MTAirCompressor:2 Disabled
     [Tags]    disabled
@@ -42,7 +42,7 @@ Verify MTAirCompressor:2 ConfigurationApplied Event
     [Tags]    config_applied
     Verify ConfigurationApplied    MTAirCompressor    index=2
 
-#MTMount
+# MTMount
 Verify MTMount Disabled
     [Tags]    disabled
     Verify Summary State    ${STATES}[disabled]    MTMount
@@ -59,7 +59,7 @@ Verify MTMount ConfigurationApplied Event timing
     [Tags]    config_applied    timing
     Verify Time Delta    MTMount    logevent_configurationApplied     hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
-#MTPtg
+# MTPtg
 Verify MTPtg Disabled
     [Tags]    mtptg    disabled
     Verify Summary State    ${STATES}[disabled]    MTPtg
@@ -72,7 +72,7 @@ Verify MTPtg ConfigurationApplied Event
     [Tags]    mtptg    config_applied
     Verify ConfigurationApplied    MTPtg
 
-#MTDome
+# MTDome
 Verify MTDome Disabled
     [Tags]    disabled
     Verify Summary State    ${STATES}[disabled]    MTDome
@@ -89,7 +89,7 @@ Verify MTDome ConfigurationApplied Event timing
     [Tags]    config_applied    timing
     Verify Time Delta    MTDome    logevent_configurationApplied    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
-#MTDomeTrajectory
+# MTDomeTrajectory
 Verify MTDomeTrajectory Disabled
     [Tags]    disabled
     Verify Summary State    ${STATES}[disabled]    MTDomeTrajectory
@@ -106,7 +106,7 @@ Verify MTDomeTrajectory ConfigurationApplied Event timing
     [Tags]    config_applied    timing
     Verify Time Delta    MTDomeTrajectory    logevent_configurationApplied    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
-#MTAOS
+# MTAOS
 Verify MTAOS Disabled
     [Tags]    disabled
     Verify Summary State    ${STATES}[disabled]    MTAOS
@@ -123,7 +123,7 @@ Verify MTAOS ConfigurationApplied Event timing
     [Tags]    config_applied    timing
     Verify Time Delta    MTAOS    logevent_configurationApplied    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
-#MTHexapod:1
+# MTHexapod:1
 Verify MTHexapod:1 Disabled
     [Tags]    disabled
     Verify Summary State    ${STATES}[disabled]    MTHexapod:1
@@ -140,7 +140,7 @@ Verify MTHexapod:1 ConfigurationApplied Event timing
     [Tags]    config_applied    timing
     Verify Time Delta    MTHexapod:1    logevent_configurationApplied    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
-#MTHexapod:2
+# MTHexapod:2
 Verify MTHexapod:2 Disabled
     [Tags]    disabled
     Verify Summary State    ${STATES}[disabled]    MTHexapod:2
@@ -157,7 +157,7 @@ Verify MTHexapod:2 ConfigurationApplied Event timing
     [Tags]    config_applied    timing
     Verify Time Delta    MTHexapod:2    logevent_configurationApplied    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
-#MTRotator
+# MTRotator
 Verify MTRotator Disabled
     [Tags]    disabled
     Verify Summary State    ${STATES}[disabled]    MTRotator
@@ -174,7 +174,7 @@ Verify MTRotator ConfigurationApplied Event timing
     [Tags]    config_applied    timing
     Verify Time Delta    MTRotator    logevent_configurationApplied    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
-#MTM1M3
+# MTM1M3
 Verify MTM1M3 Disabled
     [Tags]    disabled
     Verify Summary State    ${STATES}[disabled]    MTM1M3
@@ -191,7 +191,24 @@ Verify MTM1M3 ConfigurationApplied Event timing
     [Tags]    config_applied    timing
     Verify Time Delta    MTM1M3    logevent_configurationApplied    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
-#MTM2
+# MTM1M3TS
+Verify MTM1M3TS Disabled
+    [Tags]    disabled
+    Verify Summary State    ${STATES}[disabled]    MTM1M3TS
+
+Verify MTM1M3TS SummaryState timing
+    [Tags]    software_versions    timing
+    Verify Time Delta    MTM1M3TS    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+    
+Verify MTM1M3TS ConfigurationApplied Event
+    [Tags]    config_applied
+    Verify ConfigurationApplied    MTM1M3TS
+    
+Verify MTM1M3TS ConfigurationApplied Event timing
+    [Tags]    config_applied    timing
+    Verify Time Delta    MTM1M3TS    logevent_configurationApplied    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
+# MTM2
 Verify MTM2 Disabled
     [Tags]    disabled
     Verify Summary State    ${STATES}[disabled]    MTM2
@@ -207,3 +224,20 @@ Verify MTM2 ConfigurationApplied Event
 Verify MTM2 ConfigurationApplied Event timing
     [Tags]    config_applied    timing
     Verify Time Delta    MTM2    logevent_configurationApplied    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
+# MTVMS:1
+Verify MTVMS:1 Disabled
+    [Tags]    disabled
+    Verify Summary State    ${STATES}[disabled]    MTVMS:1
+
+Verify MTVMS:1 SummaryState timing
+    [Tags]    software_versions    timing
+    Verify Time Delta    MTVMS:1    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
+Verify MTVMS:1 ConfigurationApplied Event
+    [Tags]    config_applied
+    Verify ConfigurationApplied    MTVMS    index=1
+
+Verify MTVMS:1 ConfigurationApplied Event timing
+    [Tags]    config_applied    timing
+    Verify Time Delta    MTVMS:1    logevent_configurationApplied    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}

@@ -43,7 +43,7 @@ Execute LATISS Enabled to Offline
     END
 
 Execute BigCamera Enabled to Offline
-    [Tags]
+    [Tags]    robot:continue-on-failure
     Set Tags    ${BigCamera}
     @{bigcamera_cscs}=    Set Variable If    "${env_efd}" == "base_efd"    ${MTCamera}    ${ComCam}
     FOR    ${csc}    IN    @{bigcamera_cscs}
@@ -51,18 +51,26 @@ Execute BigCamera Enabled to Offline
         Verify Scripts Completed Successfully    ${scripts}    ${states}
     END
 
-Execute EAS Enabled to Offline
-    [Tags]    eas    robot:continue-on-failure
+Execute Calibration Enabled to Offline
+    [Tags]    calibration    robot:continue-on-failure
     @{script_args}=    Create List    ${state}    1
-    FOR    ${csc}    IN    @{EAS}
+    FOR    ${csc}    IN    @{Calibration}
         ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    ${csc}    @{script_args}
         Verify Scripts Completed Successfully    ${scripts}    ${states}
     END
 
-Execute EAS_AE Enabled to Offline
-    [Tags]    eas    robot:continue-on-failure
+Execute EnvSys Enabled to Offline
+    [Tags]    envsys    robot:continue-on-failure
     @{script_args}=    Create List    ${state}    1
-    FOR    ${csc}    IN    @{EAS_AE}
+    FOR    ${csc}    IN    @{EnvSys}
+        ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    ${csc}    @{script_args}
+        Verify Scripts Completed Successfully    ${scripts}    ${states}
+    END
+
+Execute EnvSys_AE Enabled to Offline
+    [Tags]    envsys    robot:continue-on-failure
+    @{script_args}=    Create List    ${state}    1
+    FOR    ${csc}    IN    @{EnvSys_AE}
         ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    ${csc}    @{script_args}
         Verify Scripts Completed Successfully    ${scripts}    ${states}
     END
@@ -85,7 +93,7 @@ Execute MTCS Enabled to Offline
     END
 
 Execute MTAirCompressors Enabled to Offline
-    [Tags]    mtaircompressor
+    [Tags]    mtaircompressor    robot:continue-on-failure
     @{script_args}=    Create List    ${state}    1
     FOR ${csc}    IN    @{AUTO_DISABLED}
         ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    ${csc}    @{script_args}

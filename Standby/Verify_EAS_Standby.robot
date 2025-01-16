@@ -2,13 +2,17 @@
 Resource    ../Global_Vars.resource
 Resource    ../CSC_Lists.resource
 Resource    ../Common_Keywords.resource
-Force Tags    eas
+Force Tags    envsys
 
 *** Variables ***
 ${dimm1_salver}    ${SALVersion}
 ${dimm1_xmlver}    ${XMLVersion}
 ${dimm2_salver}    ${SALVersion}
 ${dimm2_xmlver}    ${XMLVersion}
+${dream_salver}     ${SALVersion}
+${dream_xmlver}     ${XMLVersion}
+${eas_salver}     ${SALVersion}
+${eas_xmlver}     ${XMLVersion}
 ${epm1_salver}     ${SALVersion}
 ${epm1_xmlver}     ${XMLVersion}
 ${ess1_salver}     ${SALVersion}
@@ -86,6 +90,48 @@ Verify DIMM:2 ConfigurationsAvailable Event
 Verify DIMM:2 ConfigurationsAvailable timing
     [Tags]    config_available    timing
     Verify Time Delta    DIMM:2    logevent_configurationsAvailable    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
+# DREAM
+Verify DREAM Standby
+    [Tags]    standby
+    Verify Summary State    ${STATES}[standby]    DREAM
+
+Verify DREAM SoftwareVersions
+    [Tags]    software_versions
+    Verify Software Versions    DREAM    csc_salver=${dream_salver}    csc_xmlver=${dream_xmlver}
+
+Verify DREAM SoftwareVersions timing
+    [Tags]    software_versions    timing
+    Verify Time Delta    DREAM    logevent_softwareVersions    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
+Verify DREAM ConfigurationsAvailable Event
+    [Tags]    config_available
+    Verify ConfigurationsAvailable    DREAM
+
+Verify DREAM ConfigurationsAvailable timing
+    [Tags]    config_available    timing
+    Verify Time Delta    DREAM    logevent_configurationsAvailable    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
+# EAS
+Verify EAS Standby
+    [Tags]    standby
+    Verify Summary State    ${STATES}[standby]    EAS
+
+Verify EAS SoftwareVersions
+    [Tags]    software_versions
+    Verify Software Versions    EAS    csc_salver=${eas_salver}    csc_xmlver=${eas_xmlver}
+
+Verify EAS SoftwareVersions timing
+    [Tags]    software_versions    timing
+    Verify Time Delta    EAS    logevent_softwareVersions    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
+Verify EAS ConfigurationsAvailable Event
+    [Tags]    config_available
+    Verify ConfigurationsAvailable    EAS
+
+Verify EAS ConfigurationsAvailable timing
+    [Tags]    config_available    timing
+    Verify Time Delta    EAS    logevent_configurationsAvailable    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 # EPM:1
 Verify EPM:1 Standby

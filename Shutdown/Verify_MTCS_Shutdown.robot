@@ -53,6 +53,14 @@ Verify MTM1M3 Shutdown
     [Tags]
     Verify Shutdown Process    MTM1M3
 
+Verify MTM1M3TS Shutdown
+    [Tags]
+    Verify Shutdown Process    MTM1M3TS
+
 Verify MTM2 Shutdown
     [Tags]
     Verify Shutdown Process    MTM2
+
+Verify MTVMS:1 Shutdown
+    [Tags]
+    Verify Shutdown Process    MTVMS:1
