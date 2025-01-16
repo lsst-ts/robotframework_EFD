@@ -133,11 +133,11 @@ Verify MTM2 SummaryState timing
     [Tags]    timing
     Verify Time Delta    MTM2    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
-# MTVMS
-Verify MTVMS Enabled
+# MTVMS:1
+Verify MTVMS:1 Enabled
     [Tags]    enabled
-    Verify Summary State    ${STATES}[enabled]    MTVMS
+    Verify Summary State    ${STATES}[enabled]    MTVMS:1
 
-Verify MTVMS SummaryState timing
+Verify MTVMS:1 SummaryState timing
     [Tags]    timing
-    Verify Time Delta    MTVMS    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+    Verify Time Delta    MTVMS:1    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}

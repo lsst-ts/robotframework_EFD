@@ -33,8 +33,8 @@ ${mtm1m3ts_salver}    ${SALVersion}
 ${mtm1m3ts_xmlver}    ${XMLVersion}
 ${mtm2_salver}    ${SALVersion}
 ${mtm2_xmlver}    ${XMLVersion}
-${mtvms_salver}    ${SALVersion}
-${mtvms_xmlver}    ${XMLVersion}
+${mtvms1_salver}    ${SALVersion}
+${mtvms1_xmlver}    ${XMLVersion}
 @{in_position_field}    inPosition
 @{in_position}    False
 
@@ -299,7 +299,7 @@ Verify MTM1M3TS Standby
     
 Verify MTM1M3TS SoftwareVersions
     [Tags]    software_versions
-    Verify Software Versions    MTM1M3TS    csc_salver=${mtm1m3_salver}    csc_xmlver=${mtm1m3_xmlver}
+    Verify Software Versions    MTM1M3TS    csc_salver=${mtm1m3ts_salver}    csc_xmlver=${mtm1m3ts_xmlver}
     
 Verify MTM1M3TS SoftwareVersions timing
     [Tags]    software_versions    timing
@@ -334,23 +334,23 @@ Verify MTM2 ConfigurationsAvailable timing
     [Tags]    config_available    timing
     Verify Time Delta    MTM2    logevent_configurationsAvailable    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
-# MTVMS
-Verify MTVMS Standby
+# MTVMS:1
+Verify MTVMS:1 Standby
     [Tags]    standby
-    Verify Summary State    ${STATES}[standby]    MTVMS
+    Verify Summary State    ${STATES}[standby]    MTVMS:1
 
-Verify MTVMS SoftwareVersions
+Verify MTVMS:1 SoftwareVersions
     [Tags]    software_versions
-    Verify Software Versions    MTVMS    csc_salver=${mtm2_salver}    csc_xmlver=${mtm2_xmlver}
+    Verify Software Versions    MTVMS:1    csc_salver=${mtvms1_salver}    csc_xmlver=${mtvms1_xmlver}
 
-Verify MTVMS SoftwareVersions timing
+Verify MTVMS:1 SoftwareVersions timing
     [Tags]    software_versions    timing
-    Verify Time Delta    MTVMS    logevent_softwareVersions    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+    Verify Time Delta    MTVMS:1    logevent_softwareVersions    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
-Verify MTVMS ConfigurationsAvailable Event
+Verify MTVMS:1 ConfigurationsAvailable Event
     [Tags]    config_available
-    Verify ConfigurationsAvailable    MTVMS
+    Verify ConfigurationsAvailable    MTVMS    index=1
 
-Verify MTVMS ConfigurationsAvailable timing
+Verify MTVMS:1 ConfigurationsAvailable timing
     [Tags]    config_available    timing
-    Verify Time Delta    MTVMS    logevent_configurationsAvailable    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+    Verify Time Delta    MTVMS:1    logevent_configurationsAvailable    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}

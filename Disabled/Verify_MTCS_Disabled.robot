@@ -225,19 +225,19 @@ Verify MTM2 ConfigurationApplied Event timing
     [Tags]    config_applied    timing
     Verify Time Delta    MTM2    logevent_configurationApplied    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
-# MTVMS
-Verify MTVMS Disabled
+# MTVMS:1
+Verify MTVMS:1 Disabled
     [Tags]    disabled
-    Verify Summary State    ${STATES}[disabled]    MTVMS
+    Verify Summary State    ${STATES}[disabled]    MTVMS:1
 
-Verify MTVMS SummaryState timing
+Verify MTVMS:1 SummaryState timing
     [Tags]    software_versions    timing
-    Verify Time Delta    MTVMS    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+    Verify Time Delta    MTVMS:1    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
-Verify MTVMS ConfigurationApplied Event
+Verify MTVMS:1 ConfigurationApplied Event
     [Tags]    config_applied
-    Verify ConfigurationApplied    MTVMS
+    Verify ConfigurationApplied    MTVMS    index=1
 
-Verify MTVMS ConfigurationApplied Event timing
+Verify MTVMS:1 ConfigurationApplied Event timing
     [Tags]    config_applied    timing
-    Verify Time Delta    MTVMS    logevent_configurationApplied    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+    Verify Time Delta    MTVMS:1    logevent_configurationApplied    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
