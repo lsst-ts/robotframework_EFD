@@ -66,7 +66,7 @@ Execute Calibration Disabled to Enabled
 
 Execute EnvSys Disabled to Enabled
     [Tags]    envsys    robot:continue-on-failure
-    @{script_args}=    Create List    ${state}    1
+    @{script_args}=    Create List    ${state}    3
     FOR    ${csc}    IN    @{EnvSys}
         ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    ${csc}    @{script_args}
         Verify Scripts Completed Successfully    ${scripts}    ${states}
