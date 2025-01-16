@@ -39,21 +39,55 @@ Verify DIMM:2 ConfigurationApplied Event timing
     [Tags]    config_applied    timing
     Verify Time Delta    DIMM    logevent_configurationApplied    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
+# DREAM
+Verify DREAM Disabled
+    [Tags]    disabled
+    Verify Summary State    ${STATES}[disabled]    DREAM
+
+Verify DREAM SummaryState timing
+    [Tags]    software_versions    timing
+    Verify Time Delta    DREAM logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
+Verify DREAM ConfigurationApplied Event
+    [Tags]    software_versions    timing
+    Verify Time Delta    DREAM    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
+Verify DREAM ConfigurationApplied Event timing
+    [Tags]    config_applied    timing
+    Verify Time Delta    DREAM    logevent_configurationApplied    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
+# EAS
+Verify EAS Disabled
+    [Tags]    disabled
+    Verify Summary State    ${STATES}[disabled]    EAS
+
+Verify EAS SummaryState timing
+    [Tags]    software_versions    timing
+    Verify Time Delta    EAS logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
+Verify EAS ConfigurationApplied Event
+    [Tags]    software_versions    timing
+    Verify Time Delta    EAS    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
+Verify EAS ConfigurationApplied Event timing
+    [Tags]    config_applied    timing
+    Verify Time Delta    EAS    logevent_configurationApplied    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
 # EPM:1
 Verify EPM:1 Disabled
-    [Tags]    epm:1    disabled
+    [Tags]    epm1    disabled
     Verify Summary State    ${STATES}[disabled]    EPM:1
 
 Verify EPM:1 SummaryState timing
-    [Tags]    epm:1    software_versions    timing
+    [Tags]    epm1    software_versions    timing
     Verify Time Delta    EPM:1    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify EPM:1 ConfigurationApplied Event
-    [Tags]    epm:1    config_applied
+    [Tags]    epm1    config_applied
     Verify ConfigurationApplied    EPM    index=1
 
 Verify EPM:1 ConfigurationApplied Event timing
-    [Tags]    epm:1    config_applied    timing
+    [Tags]    epm1    config_applied    timing
     Verify Time Delta    EPM:1    logevent_configurationApplied    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 # ESS:1

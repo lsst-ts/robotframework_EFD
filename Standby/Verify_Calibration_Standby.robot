@@ -33,6 +33,10 @@ Verify CBP SummaryState timing
     [Tags]    software_versions    timing
     Verify Time Delta    CBP    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
+Verify CBP SoftwareVersions
+    [Tags]    software_versions
+    Verify Software Versions    CBP    csc_salver=${cbp_salver}    csc_xmlver=${cbp_xmlver}
+
 Verify CBP SoftwareVersions timing
     [Tags]    software_versions    timing
     Verify Time Delta    CBP    logevent_softwareVersions    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
@@ -79,6 +83,10 @@ Verify Electrometer:102 SummaryState timing
     [Tags]    software_versions    timing
     Verify Time Delta    Electrometer:102    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
+Verify Electrometer:102 SoftwareVersions
+    [Tags]    software_versions
+    Verify Software Versions    Electrometer    index=102    csc_salver=${electrometer102_salver}    csc_xmlver=${electrometer102_xmlver}
+
 Verify Electrometer:102 SoftwareVersions timing
     [Tags]    software_versions    timing
     Verify Time Delta    Electrometer:102    logevent_softwareVersions    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
@@ -99,6 +107,10 @@ Verify Electrometer:201 Enabled
 Verify Electrometer:201 SummaryState timing
     [Tags]    software_versions    timing
     Verify Time Delta    Electrometer:201    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
+Verify Electrometer:201 SoftwareVersions
+    [Tags]    software_versions
+    Verify Software Versions    Electrometer    index=201    csc_salver=${electrometer201_salver}    csc_xmlver=${electrometer201_xmlver}
 
 Verify Electrometer:201 SoftwareVersions timing
     [Tags]    software_versions    timing
@@ -121,6 +133,10 @@ Verify LEDProjector SummaryState timing
     [Tags]    software_versions    timing
     Verify Time Delta    LEDProjector    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
+Verify LEDProjector SoftwareVersions
+    [Tags]    software_versions
+    Verify Software Versions    LEDProjector    csc_salver=${ledprojector_salver}    csc_xmlver=${ledprojector_xmlver}
+
 Verify LEDProjector SoftwareVersions timing
     [Tags]    software_versions    timing
     Verify Time Delta    LEDProjector    logevent_softwareVersions    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
@@ -141,6 +157,10 @@ Verify LinearStage:101 Enabled
 Verify LinearStage:101 SummaryState timing
     [Tags]    software_versions    timing
     Verify Time Delta    LinearStage:101    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
+Verify LinearStage:101 SoftwareVersions
+    [Tags]    software_versions
+    Verify Software Versions    LinearStage    index=101    csc_salver=${linearstage101_salver}    csc_xmlver=${linearstage101_xmlver}
 
 Verify LinearStage:101 SoftwareVersions timing
     [Tags]    software_versions    timing
@@ -163,6 +183,10 @@ Verify LinearStage:102 SummaryState timing
     [Tags]    software_versions    timing
     Verify Time Delta    LinearStage:102    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
+Verify LinearStage:102 SoftwareVersions
+    [Tags]    software_versions
+    Verify Software Versions    LinearStage    index=102    csc_salver=${linearstage102_salver}    csc_xmlver=${linearstage102_xmlver}
+
 Verify LinearStage:102 SoftwareVersions timing
     [Tags]    software_versions    timing
     Verify Time Delta    LinearStage:102    logevent_softwareVersions    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
@@ -184,6 +208,10 @@ Verify LinearStage:103 SummaryState timing
     [Tags]    software_versions    timing
     Verify Time Delta    LinearStage:103    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
     
+Verify LinearStage:103 SoftwareVersions
+    [Tags]    software_versions
+    Verify Software Versions    LinearStage    index=103    csc_salver=${linearstage103_salver}    csc_xmlver=${linearstage103_xmlver}
+
 Verify LinearStage:103 SoftwareVersions timing
     [Tags]    software_versions    timing
     Verify Time Delta    LinearStage:103    logevent_softwareVersions    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
@@ -204,6 +232,10 @@ Verify LinearStage:104 Enabled
 Verify LinearStage:104 SummaryState timing
     [Tags]    software_versions    timing
     Verify Time Delta    LinearStage:104    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
+Verify LinearStage:104 SoftwareVersions
+    [Tags]    software_versions
+    Verify Software Versions    LinearStage    index=104    csc_salver=${linearstage104_salver}    csc_xmlver=${linearstage104_xmlver}
 
 Verify LinearStage:104 SoftwareVersions timing
     [Tags]    software_versions    timing
@@ -226,6 +258,10 @@ Verify TunableLaser SummaryState timing
     [Tags]    software_versions    timing
     Verify Time Delta    TunableLaser    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
     
+Verify TunableLaser SoftwareVersions
+    [Tags]    software_versions
+    Verify Software Versions    TunableLaser    csc_salver=${tunablelaser_salver}    csc_xmlver=${tunablelaser_xmlver}
+
 Verify TunableLaser SoftwareVersions timing    
     [Tags]    software_versions    timing
     Verify Time Delta    TunableLaser    logevent_softwareVersions    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
