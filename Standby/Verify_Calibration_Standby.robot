@@ -13,15 +13,15 @@ ${electrometer102_salver}    ${SALVersion}
 ${electrometer102_xmlver}    ${XMLVersion}
 ${electrometer201_salver}    ${SALVersion}
 ${electrometer201_xmlver}    ${XMLVersion}
-${LEDProjector_salver}    ${SALVersion}
-${LinearStage101_xmlver}    ${XMLVersion}
-${LinearStage101_salver}    ${SALVersion}
-${LinearStage102_xmlver}    ${XMLVersion}
-${LinearStage102_salver}    ${SALVersion}
-${LinearStage103_xmlver}    ${XMLVersion}
-${LinearStage103_salver}    ${SALVersion}
-${LinearStage104_xmlver}    ${XMLVersion}
-${LinearStage104_salver}    ${SALVersion}
+${ledprojector_salver}    ${SALVersion}
+${linearstage101_xmlver}    ${XMLVersion}
+${linearstage101_salver}    ${SALVersion}
+${linearstage102_xmlver}    ${XMLVersion}
+${linearstage102_salver}    ${SALVersion}
+${linearstage103_xmlver}    ${XMLVersion}
+${linearstage103_salver}    ${SALVersion}
+${linearstage104_xmlver}    ${XMLVersion}
+${linearstage104_salver}    ${SALVersion}
 
 *** Test Cases ***
 # CBP
@@ -54,17 +54,21 @@ Verify Electrometer:101 SummaryState timing
     [Tags]    software_versions    timing
     Verify Time Delta    Electrometer:101    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
-Verify Electrometer:1 SoftwareVersions timing
-    [Tags]    software_versions    timing
-    Verify Time Delta    Electrometer:1    logevent_softwareVersions    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+Verify Electrometer:101 SoftwareVersions
+    [Tags]    software_versions
+    Verify Software Versions    Electrometer    index=101    csc_salver=${electrometer101_salver}    csc_xmlver=${electrometer101_xmlver}
 
-Verify Electrometer:1 ConfigurationsAvailable Event
+Verify Electrometer:101 SoftwareVersions timing
+    [Tags]    software_versions    timing
+    Verify Time Delta    Electrometer:101    logevent_softwareVersions    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
+Verify Electrometer:101 ConfigurationsAvailable Event
     [Tags]    config_available
     Verify ConfigurationsAvailable    Electrometer    index=101
 
-Verify Electrometer:1 ConfigurationsAvailable timing
+Verify Electrometer:101 ConfigurationsAvailable timing
     [Tags]    config_available    timing
-    Verify Time Delta    Electrometer:1    logevent_configurationsAvailable    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+    Verify Time Delta    Electrometer:101    logevent_configurationsAvailable    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 # Electrometer:102
 Verify Electrometer:102 Enabled
