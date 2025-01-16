@@ -9,6 +9,7 @@ Disabled/Execute_Standby_Disabled.robot
 Disabled/Verify_ATCS_Disabled.robot
 Disabled/Verify_AT_Light_Cal_Disabled.robot
 Disabled/Verify_BigCamera_Disabled.robot
+Disabled/Verify_Calibration_Disabled.robot
 Disabled/Verify_EAS_AE_Disabled.robot
 Disabled/Verify_EAS_Disabled.robot
 Disabled/Verify_GC_Disabled.robot

@@ -29,13 +29,17 @@ ${mtrotator_salver}    ${SALVersion}
 ${mtrotator_xmlver}    ${XMLVersion}
 ${mtm1m3_salver}    ${SALVersion}
 ${mtm1m3_xmlver}    ${XMLVersion}
+${mtm1m3ts_salver}    ${SALVersion}
+${mtm1m3ts_xmlver}    ${XMLVersion}
 ${mtm2_salver}    ${SALVersion}
 ${mtm2_xmlver}    ${XMLVersion}
+${mtvms1_salver}    ${SALVersion}
+${mtvms1_xmlver}    ${XMLVersion}
 @{in_position_field}    inPosition
 @{in_position}    False
 
 *** Test Cases ***
-#LaserTracker:1
+# LaserTracker:1
 Verify LaserTracker:1 Standby
     [Tags]    standby
     Verify Summary State    ${STATES}[standby]    LaserTracker:1
@@ -56,7 +60,7 @@ Verify LaserTracker:1 ConfigurationsAvailable timing
     [Tags]    config_available    timing
     Verify Time Delta    LaserTracker:1    logevent_configurationsAvailable    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
-#MTAirCompressor:1
+# MTAirCompressor:1
 Verify MTAirCompressor:1 Standby
     [Tags]    standby
     Verify Summary State    ${STATES}[standby]    MTAirCompressor:1    auto_enable=True
@@ -77,7 +81,7 @@ Verify MTAirCompressor:1 ConfigurationsAvailable timing
     [Tags]    config_available    timing
     Verify Time Delta    MTAirCompressor:1    logevent_configurationsAvailable    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
-#MTAirCompressor:2
+# MTAirCompressor:2
 Verify MTAirCompressor:2 Standby
     [Tags]    standby
     Verify Summary State    ${STATES}[standby]    MTAirCompressor:2    auto_enable=True
@@ -98,7 +102,7 @@ Verify MTAirCompressor:2 ConfigurationsAvailable timing
     [Tags]    config_available    timing
     Verify Time Delta    MTAirCompressor:2    logevent_configurationsAvailable    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
-#MTMount
+# MTMount
 Verify MTMount Standby
     [Tags]    standby
     Verify Summary State    ${STATES}[standby]    MTMount
@@ -162,7 +166,7 @@ Verify MTDome ConfigurationsAvailable timing
     [Tags]    config_available    timing
     Verify Time Delta    MTDome    logevent_configurationsAvailable    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
-#MTDomeTrajectory
+# MTDomeTrajectory
 Verify MTDomeTrajectory Standby
     [Tags]    standby
     Verify Summary State    ${STATES}[standby]    MTDomeTrajectory
@@ -288,6 +292,27 @@ Verify MTM1M3 ConfigurationsAvailable timing
     [Tags]    config_available    timing
     Verify Time Delta    MTM1M3    logevent_configurationsAvailable    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
+# MTM1M3TS
+Verify MTM1M3TS Standby
+    [Tags]    standby
+    Verify Summary State    ${STATES}[standby]    MTM1M3TS
+    
+Verify MTM1M3TS SoftwareVersions
+    [Tags]    software_versions
+    Verify Software Versions    MTM1M3TS    csc_salver=${mtm1m3ts_salver}    csc_xmlver=${mtm1m3ts_xmlver}
+    
+Verify MTM1M3TS SoftwareVersions timing
+    [Tags]    software_versions    timing
+    Verify Time Delta    MTM1M3TS    logevent_softwareVersions    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+    
+Verify MTM1M3TS ConfigurationsAvailable Event
+    [Tags]    config_available
+    Verify ConfigurationsAvailable    MTM1M3TS
+    
+Verify MTM1M3TS ConfigurationsAvailable timing
+    [Tags]    config_available    timing
+    Verify Time Delta    MTM1M3TS    logevent_configurationsAvailable    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
 # MTM2
 Verify MTM2 Standby
     [Tags]    standby
@@ -308,3 +333,24 @@ Verify MTM2 ConfigurationsAvailable Event
 Verify MTM2 ConfigurationsAvailable timing
     [Tags]    config_available    timing
     Verify Time Delta    MTM2    logevent_configurationsAvailable    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
+# MTVMS:1
+Verify MTVMS:1 Standby
+    [Tags]    standby
+    Verify Summary State    ${STATES}[standby]    MTVMS:1
+
+Verify MTVMS:1 SoftwareVersions
+    [Tags]    software_versions
+    Verify Software Versions    MTVMS:1    csc_salver=${mtvms1_salver}    csc_xmlver=${mtvms1_xmlver}
+
+Verify MTVMS:1 SoftwareVersions timing
+    [Tags]    software_versions    timing
+    Verify Time Delta    MTVMS:1    logevent_softwareVersions    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
+Verify MTVMS:1 ConfigurationsAvailable Event
+    [Tags]    config_available
+    Verify ConfigurationsAvailable    MTVMS    index=1
+
+Verify MTVMS:1 ConfigurationsAvailable timing
+    [Tags]    config_available    timing
+    Verify Time Delta    MTVMS:1    logevent_configurationsAvailable    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}

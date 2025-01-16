@@ -55,10 +55,19 @@ Execute BigCamera Standby to Disabled
         Report If Failed    ${scripts}    ${states}    ${csc}
     END
 
-Execute EAS Standby to Disabled
-    [Tags]    eas    robot:continue-on-failure
+Execute Calibration Standby to Disabled
+    [Tags]    calibration    robot:continue-on-failure
     @{script_args}=    Create List    ${state}    1
-    FOR    ${csc}    IN    @{EAS}
+    FOR    ${csc}    IN    @{Calibration}
+        ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    ${csc}    @{script_args}
+        Verify Scripts Completed Successfully    ${scripts}    ${states}
+        Report If Failed    ${scripts}    ${states}    ${csc}
+    END
+
+Execute EnvSys Standby to Disabled
+    [Tags]    envsys    robot:continue-on-failure
+    @{script_args}=    Create List    ${state}    1
+    FOR    ${csc}    IN    @{EnvSys}
         ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    ${csc}    @{script_args}
         Verify Scripts Completed Successfully    ${scripts}    ${states}
         Report If Failed    ${scripts}    ${states}    ${csc}

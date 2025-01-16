@@ -26,7 +26,7 @@ ${ocps3_xmlver}    ${XMLVersion}
 
 *** Test Cases ***
 Execute ATCS Disabled to Enabled
-    [Tags]    atcs
+    [Tags]    atcs    robot:continue-on-failure
     @{script_args}=    Create List    ${state}    2
     FOR    ${csc}    IN    @{ATCS}
         ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    ${csc}    @{script_args}
@@ -45,7 +45,7 @@ Execute LATISS Disabled to Enabled
     END
 
 Execute BigCamera Disabled to Enabled
-    [Tags]
+    [Tags]    robot:continue-on-failure
     Set Tags    ${BigCamera}
     @{bigcamera_cscs}=    Set Variable If    "${env_efd}" == "base_efd"    ${MTCamera}    ${ComCam}
     @{script_args}=    Create List    ${state}    1
@@ -55,10 +55,19 @@ Execute BigCamera Disabled to Enabled
         Report If Failed    ${scripts}    ${states}    ${csc}
     END
 
-Execute EAS Disabled to Enabled
-    [Tags]    eas
+Execute Calibration Disabled to Enabled
+    [Tags]    calibration    robot:continue-on-failure
     @{script_args}=    Create List    ${state}    1
-    FOR    ${csc}    IN    @{EAS}
+    FOR    ${csc}    IN    @{Calibration}
+        ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    ${csc}    @{script_args}
+        Verify Scripts Completed Successfully    ${scripts}    ${states}
+        Report If Failed    ${scripts}    ${states}    ${csc}
+    END
+
+Execute EnvSys Disabled to Enabled
+    [Tags]    envsys    robot:continue-on-failure
+    @{script_args}=    Create List    ${state}    1
+    FOR    ${csc}    IN    @{EnvSys}
         ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    ${csc}    @{script_args}
         Verify Scripts Completed Successfully    ${scripts}    ${states}
         Report If Failed    ${scripts}    ${states}    ${csc}
@@ -74,7 +83,7 @@ Execute GenCam Disabled to Enabled
     END
 
 Execute MTCS Disabled to Enabled
-    [Tags]    mtcs
+    [Tags]    mtcs    robot:continue-on-failure
     @{script_args}=    Create List    ${state}    1
     FOR    ${csc}    IN    @{MTCS}
         ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    ${csc}    @{script_args}
@@ -83,7 +92,7 @@ Execute MTCS Disabled to Enabled
     END
 
 Execute MTAirCompressors Disabled to Enabled
-    [Tags]    mtaircompressor
+    [Tags]    mtaircompressor    robot:continue-on-failure
     @{script_args}=    Create List    ${state}    1
     FOR    ${csc}    IN    @{AUTO_DISABLED}
         ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    ${csc}    @{script_args}
@@ -92,7 +101,7 @@ Execute MTAirCompressors Disabled to Enabled
     END
 
 Execute ObsSys Disabled to Enabled
-    [Tags]    obssys
+    [Tags]    obssys    robot:continue-on-failure
     @{script_args}=    Create List    ${state}    3
     FOR    ${csc}    IN    @{ObsSys}
         ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    ${csc}    @{script_args}

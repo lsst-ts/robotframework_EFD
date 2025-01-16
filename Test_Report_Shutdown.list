@@ -9,6 +9,7 @@ Shutdown/Execute_Enabled_Offline.robot
 Shutdown/Verify_ATCS_Shutdown.robot
 Shutdown/Verify_AT_Light_Cal_Shutdown.robot
 Shutdown/Verify_BigCamera_Shutdown.robot
+Shutdown/Verify_Calibration_Shutdown.robot
 Shutdown/Verify_EAS_AE_Shutdown.robot
 Shutdown/Verify_EAS_Shutdown.robot
 Shutdown/Verify_GC_Shutdown.robot
