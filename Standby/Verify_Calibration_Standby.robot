@@ -13,15 +13,16 @@ ${electrometer102_salver}    ${SALVersion}
 ${electrometer102_xmlver}    ${XMLVersion}
 ${electrometer201_salver}    ${SALVersion}
 ${electrometer201_xmlver}    ${XMLVersion}
-${ledprojector_salver}    ${SALVersion}
-${linearstage101_xmlver}    ${XMLVersion}
+${ledprojector_salver}     ${SALVersion}
+${ledprojector_xmlver}     ${XMLVersion}
 ${linearstage101_salver}    ${SALVersion}
-${linearstage102_xmlver}    ${XMLVersion}
+${linearstage101_xmlver}    ${XMLVersion}
 ${linearstage102_salver}    ${SALVersion}
-${linearstage103_xmlver}    ${XMLVersion}
+${linearstage102_xmlver}    ${XMLVersion}
 ${linearstage103_salver}    ${SALVersion}
-${linearstage104_xmlver}    ${XMLVersion}
+${linearstage103_xmlver}    ${XMLVersion}
 ${linearstage104_salver}    ${SALVersion}
+${linearstage104_xmlver}    ${XMLVersion}
 
 *** Test Cases ***
 # CBP
