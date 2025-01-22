@@ -83,11 +83,11 @@ Verify ATMCS SummaryState timing
     Verify Time Delta    ATMCS    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
     
 Verify ATMCS ConfigurationApplied Event
-    [Tags]    config_applied    DM-44733
+    [Tags]    config_applied
     Verify ConfigurationApplied    ATMCS
 
 Verify ATMCS ConfigurationApplied Event timing
-    [Tags]    config_applied    timing    DM-44733
+    [Tags]    config_applied    timing
     Verify Time Delta    ATMCS    logevent_configurationApplied    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 #ATPneumatics
@@ -100,11 +100,11 @@ Verify ATPneumatics SummaryState timing
     Verify Time Delta    ATPneumatics    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
     
 Verify ATPneumatics ConfigurationApplied Event
-    [Tags]    config_applied    DM-44734
+    [Tags]    config_applied
     Verify ConfigurationApplied    ATPneumatics
 
 Verify ATPneumatics ConfigurationApplied Event timing
-    [Tags]    config_applied    timing    DM-44734
+    [Tags]    config_applied    timing
     Verify Time Delta    ATPneumatics    logevent_configurationApplied    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 #ATPtg
