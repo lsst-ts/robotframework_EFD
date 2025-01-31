@@ -19,6 +19,7 @@
 --reportbackground #61C4CD:#61C4CD
 
 #  Redefine default variables
+#--variable env_efd:summit_efd
 --variable env_efd:base_efd
 #--variable env_efd:tucson_teststand_efd
 --variable XMLVersion:22.1.1
