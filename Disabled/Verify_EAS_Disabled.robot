@@ -73,23 +73,6 @@ Verify EAS ConfigurationApplied Event timing
     [Tags]    config_applied    timing
     Verify Time Delta    EAS    logevent_configurationApplied    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
-# EPM:1
-Verify EPM:1 Disabled
-    [Tags]    epm1    disabled
-    Verify Summary State    ${STATES}[disabled]    EPM:1
-
-Verify EPM:1 SummaryState timing
-    [Tags]    epm1    software_versions    timing
-    Verify Time Delta    EPM:1    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
-
-Verify EPM:1 ConfigurationApplied Event
-    [Tags]    epm1    config_applied
-    Verify ConfigurationApplied    EPM    index=1
-
-Verify EPM:1 ConfigurationApplied Event timing
-    [Tags]    epm1    config_applied    timing
-    Verify Time Delta    EPM:1    logevent_configurationApplied    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
-
 # ESS:1
 Verify ESS:1 Disabled
     [Tags]    disabled
@@ -361,3 +344,20 @@ Verify ESS:301 ConfigurationApplied Event
 Verify ESS:301 ConfigurationApplied Event timing
     [Tags]    config_applied    timing
     Verify Time Delta    ESS:301    logevent_configurationApplied    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
+# ESS:303
+Verify ESS:303 Disabled
+    [Tags]    ess303    disabled
+    Verify Summary State    ${STATES}[disabled]    ESS:303
+    
+Verify ESS:303 SummaryState timing
+    [Tags]    ess303    software_versions    timing
+    Verify Time Delta    ESS:303  logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+    
+Verify ESS:303 ConfigurationApplied Event
+    [Tags]    ess303    config_applied
+    Verify ConfigurationApplied    ESS    index=303
+    
+Verify ESS:303 ConfigurationApplied Event timing
+    [Tags]    ess303    config_applied    timing
+    Verify Time Delta    ESS:303    logevent_configurationApplied    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}

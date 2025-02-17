@@ -13,8 +13,6 @@ ${dream_salver}     ${SALVersion}
 ${dream_xmlver}     ${XMLVersion}
 ${eas_salver}     ${SALVersion}
 ${eas_xmlver}     ${XMLVersion}
-${epm1_salver}     ${SALVersion}
-${epm1_xmlver}     ${XMLVersion}
 ${ess1_salver}     ${SALVersion}
 ${ess1_xmlver}     ${XMLVersion}
 ${ess104_salver}    ${SALVersion}
@@ -47,6 +45,8 @@ ${ess204_salver}    ${SALVersion}
 ${ess204_xmlver}    ${XMLVersion}
 ${ess301_salver}    ${SALVersion}
 ${ess301_xmlver}    ${XMLVersion}
+${ess303_salver}     ${SALVersion}
+${ess303_xmlver}     ${XMLVersion}
 
 *** Test Cases ***
 # DIMM:1
@@ -132,27 +132,6 @@ Verify EAS ConfigurationsAvailable Event
 Verify EAS ConfigurationsAvailable timing
     [Tags]    config_available    timing
     Verify Time Delta    EAS    logevent_configurationsAvailable    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
-
-# EPM:1
-Verify EPM:1 Standby
-    [Tags]    epm:1    standby
-    Verify Summary State    ${STATES}[standby]    EPM:1
-
-Verify EPM:1 SoftwareVersions
-    [Tags]    epm:1    software_versions
-    Verify Software Versions    EPM    csc_salver=${epm1_salver}    csc_xmlver=${epm1_xmlver}    index=1
-
-Verify EPM:1 SoftwareVersions timing
-    [Tags]    epm:1    software_versions    timing
-    Verify Time Delta    EPM:1    logevent_softwareVersions    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
-
-Verify EPM:1 ConfigurationsAvailable Event
-    [Tags]    epm:1    config_available
-    Verify ConfigurationsAvailable    EPM    index=1
-
-Verify EPM:1 ConfigurationsAvailable timing
-    [Tags]    epm:1    config_available    timing
-    Verify Time Delta    EPM:1    logevent_configurationsAvailable    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 # ESS:1
 Verify ESS:1 Standby
@@ -489,3 +468,24 @@ Verify ESS:301 ConfigurationsAvailable Event
 Verify ESS:301 ConfigurationsAvailable timing
     [Tags]    config_available    timing
     Verify Time Delta    ESS:301    logevent_configurationsAvailable    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
+# ESS:303
+Verify ESS:303 Standby
+    [Tags]    ess303    standby
+    Verify Summary State    ${STATES}[standby]    ESS:303
+
+Verify ESS:303 SoftwareVersions
+    [Tags]    ess303    software_versions
+    Verify Software Versions    ESS    csc_salver=${ess303_salver}    csc_xmlver=${ess303_xmlver}    index=303
+
+Verify ESS:303 SoftwareVersions timing
+    [Tags]    ess303    software_versions    timing
+    Verify Time Delta    ESS:303    logevent_softwareVersions    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
+Verify ESS:303 ConfigurationsAvailable Event
+    [Tags]    ess303    config_available
+    Verify ConfigurationsAvailable    ESS    index=303
+
+Verify ESS:303 ConfigurationsAvailable timing
+    [Tags]    ess303    config_available    timing
+    Verify Time Delta    ESS:303    logevent_configurationsAvailable    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}

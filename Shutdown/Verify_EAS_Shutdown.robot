@@ -33,11 +33,6 @@ Verify EAS Shutdown
     [Tags]    envsys
     Verify Shutdown Process    EAS
 
-# EPM:1
-Verify EPM:1 Shutdown
-    [Tags]    envsys
-    Verify Shutdown Process    EPM    index=1
-
 # ESS
 Verify ESS:1 Shutdown
     [Tags]    envsys
@@ -102,3 +97,7 @@ Verify ESS:204 Shutdown
 Verify ESS:301 Shutdown
     [Tags]    envsys
     Verify Shutdown Process    ESS    index=301
+
+Verify ESS:303 Shutdown
+    [Tags]    envsys
+    Verify Shutdown Process    ESS    index=303

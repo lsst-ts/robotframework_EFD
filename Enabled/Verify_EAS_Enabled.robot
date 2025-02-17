@@ -43,15 +43,6 @@ Verify EAS SummaryState timing
     [Tags]    enabled    timing
     Verify Time Delta    EAS    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
-# EPM:1
-Verify EPM:1 Enabled
-    [Tags]    epm:1    enabled
-    Verify Summary State    ${STATES}[enabled]    EPM:1
-
-Verify EPM:1 SummaryState timing
-    [Tags]    epm:1    enabled    timing
-    Verify Time Delta    EPM:1    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
-
 # ESS:1
 Verify ESS:1 Enabled
     [Tags]    enabled
@@ -195,3 +186,12 @@ Verify ESS:301 Enabled
 Verify ESS:301 SummaryState timing
     [Tags]    enabled    timing
     Verify Time Delta    ESS:301    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
+# ESS:303
+Verify ESS:303 Enabled
+    [Tags]    ess303    enabled
+    Verify Summary State    ${STATES}[enabled]    ESS:303
+
+Verify ESS:303 SummaryState timing
+    [Tags]    ess303    enabled    timing
+    Verify Time Delta    ESS:303    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
