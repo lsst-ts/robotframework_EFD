@@ -20,7 +20,6 @@ comcam = [
 eas = [
     "DIMM:1",
     "DIMM:2",
-    "EPM:1",
     "ESS:1",
     "ESS:104",
     "ESS:105",
@@ -37,6 +36,7 @@ eas = [
     "ESS:203",
     "ESS:204",
     "ESS:301",
+    "ESS:303",
 ]
 eas_ae = [
     "DSM:1",
@@ -120,7 +120,6 @@ salobj = [
     "DIMM:2",
     "DSM:1",
     "DSM:2",
-    "EPM:1",
     "ESS:1",
     "ESS:104",
     "ESS:105",
@@ -137,6 +136,7 @@ salobj = [
     "ESS:203",
     "ESS:204",
     "ESS:301",
+    "ESS:303",
     "FiberSpectrograph:3",
     "LinearStage",
     "MTAOS",

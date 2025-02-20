@@ -8,7 +8,6 @@ Force Tags    eas_sensor_data
 ${dimm_minutes_ago}   0.2  # 12.0s
 ${dsm1_minutes_ago}   0.2  # 12.0s
 ${dsm2_minutes_ago}   0.5  # 30.0s
-${epm_minutes_ago}    0.2  # 12.0s
 ${ess_minutes_ago}    0.1  # 6.0s
 ${hours_ago}    0
 ${days_ago}     0
@@ -58,18 +57,6 @@ Verify DSM:2 domeSeeing Published Data
 Verify DSM:2 domeSeeing Data is Recent
     [Tags]    timing
     Verify Time Delta    DSM:2    domeSeeing    minute=${dsm2_minutes_ago}    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
-
-# EPM:1
-Verify EPM:1 scheiderPm5xxx Published Data
-    [Tags]
-    ${dataframe}=    Get Recent Samples    EPM    scheiderPm5xxx    ["*",]    num=1    index=1
-    Log    ${dataframe}
-    Should Not Be True    ${dataframe.empty}
-    Should Be Equal As Strings    ${dataframe.private_identity.values}[0]    EPM:1
-
-Verify EPM:1 scheiderPm5xxx Data is Recent
-    [Tags]    timing
-    Verify Time Delta    EPM:1    scheiderPm5xxx    minute=${epm_minutes_ago}    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 # ESS:1
 Verify ESS:1 temperature Published Data
@@ -631,6 +618,18 @@ Verify ESS:301 temperature Data is Recent
     [Tags]    timing
     Set Test Variable    ${ess_minutes_ago}    1.6
     Verify Time Delta    ESS:301    temperature    minute=${ess_minutes_ago}    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
+# ESS:303
+Verify ESS:303 scheiderPm5xxx Published Data
+    [Tags]    ess303
+    ${dataframe}=    Get Recent Samples    ESS    scheiderPm5xxx    ["*",]    num=1    index=303
+    Log    ${dataframe}
+    Should Not Be True    ${dataframe.empty}
+    Should Be Equal As Strings    ${dataframe.private_identity.values}[0]    ESS:303
+
+Verify ESS:303 scheiderPm5xxx Data is Recent
+    [Tags]    timing
+    Verify Time Delta    ESS:303    scheiderPm5xxx    minute=${ess_minutes_ago}    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 # WeatherForecast
 Verify WeatherForecast hourlyTrend Published Data
