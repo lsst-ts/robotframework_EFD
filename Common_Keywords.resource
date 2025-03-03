@@ -1,5 +1,5 @@
 *** Settings ***
-Library    QueryEfd    ${SALVersion}    ${XMLVersion}    ${OSPLVersion}    ${env_efd}
+Library    QueryEfd    ${SALVersion}    ${XMLVersion}    ${env_efd}
 Library    Process
 Library    Collections
 Library    DateTime
