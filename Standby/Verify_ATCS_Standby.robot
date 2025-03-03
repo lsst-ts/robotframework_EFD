@@ -5,17 +5,11 @@ Resource    ../Common_Keywords.resource
 Force Tags    atcs
 
 *** Variables ***
-${ataos_salver}    ${SALVersion}
 ${ataos_xmlver}    ${XMLVersion}
-${atdome_salver}    ${SALVersion}
 ${atdome_xmlver}    ${XMLVersion}
-${atdometrajectory_salver}    ${SALVersion}
 ${atdometrajectory_xmlver}    ${XMLVersion}
-${athexapod_salver}    ${SALVersion}
 ${athexapod_xmlver}    ${XMLVersion}
-${atmcs_salver}    ${SALVersion}
 ${atmcs_xmlver}    ${XMLVersion}
-${atpneumatics_salver}    ${SALVersion}
 ${atpneumatics_xmlver}    ${XMLVersion}
 ${atptg_salver}    ${SALVersion}
 ${atptg_xmlver}    ${XMLVersion}
@@ -28,7 +22,7 @@ Verify ATAOS Standby
 
 Verify ATAOS SoftwareVersions
     [Tags]    software_versions
-    Verify Software Versions    ATAOS    csc_salver=${ataos_salver}    csc_xmlver=${ataos_xmlver}
+    Verify Software Versions    ATAOS    csc_xmlver=${ataos_xmlver}
 
 Verify ATAOS SoftwareVersions timing
     [Tags]    software_versions    timing
@@ -49,7 +43,7 @@ Verify ATDome Standby
 
 Verify ATDome SoftwareVersions
     [Tags]    software_versions
-    Verify Software Versions    ATDome    csc_salver=${atdome_salver}    csc_xmlver=${atdome_xmlver}
+    Verify Software Versions    ATDome    csc_xmlver=${atdome_xmlver}
 
 Verify ATDome SoftwareVersions timing
     [Tags]    software_versions    timing
@@ -70,7 +64,7 @@ Verify ATDomeTrajectory Standby
 
 Verify ATDomeTrajectory SoftwareVersions
     [Tags]    software_versions
-    Verify Software Versions    ATDomeTrajectory    csc_salver=${atdometrajectory_salver}    csc_xmlver=${atdometrajectory_xmlver}
+    Verify Software Versions    ATDomeTrajectory    csc_xmlver=${atdometrajectory_xmlver}
 
 Verify ATDomeTrajectory SoftwareVersions timing
     [Tags]    software_versions    timing
@@ -91,7 +85,7 @@ Verify ATHexapod Standby
 
 Verify ATHexapod SoftwareVersions
     [Tags]    software_versions
-    Verify Software Versions    ATHexapod    csc_salver=${athexapod_salver}    csc_xmlver=${athexapod_xmlver}
+    Verify Software Versions    ATHexapod    csc_xmlver=${athexapod_xmlver}
 
 Verify ATHexapod SoftwareVersions timing
     [Tags]    software_versions    timing
@@ -111,19 +105,19 @@ Verify ATMCS Standby
     Verify Summary State    ${STATES}[standby]    ATMCS
 
 Verify ATMCS SoftwareVersions
-    [Tags]    software_versions    DM-39357
-    Verify Software Versions    ATMCS    csc_salver=${atmcs_salver}    csc_xmlver=${atmcs_xmlver}
+    [Tags]    software_versions
+    Verify Software Versions    ATMCS    csc_xmlver=${atmcs_xmlver}
 
 Verify ATMCS SoftwareVersions timing
-    [Tags]    software_versions    timing    DM-39357
+    [Tags]    software_versions    timing
     Verify Time Delta    ATMCS    logevent_softwareVersions    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify ATMCS ConfigurationsAvailable Event
-    [Tags]    config_available    DM-44733
+    [Tags]    config_available
     Verify ConfigurationsAvailable    ATMCS
 
 Verify ATMCS ConfigurationsAvailable timing
-    [Tags]    config_available    timing    DM-44733
+    [Tags]    config_available    timing
     Verify Time Delta    ATMCS    logevent_configurationsAvailable    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 #ATPneumatics
@@ -133,18 +127,18 @@ Verify ATPneumatics Standby
 
 Verify ATPneumatics SoftwareVersions
     [Tags]    software_versions
-    Verify Software Versions    ATPneumatics    csc_salver=${atpneumatics_salver}    csc_xmlver=${atpneumatics_xmlver}
+    Verify Software Versions    ATPneumatics    csc_xmlver=${atpneumatics_xmlver}
 
 Verify ATPneumatics SoftwareVersions timing
     [Tags]    software_versions    timing
     Verify Time Delta    ATPneumatics    logevent_softwareVersions    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify ATPneumatics ConfigurationsAvailable Event
-    [Tags]    config_available    DM-44734
+    [Tags]    config_available
     Verify ConfigurationsAvailable    ATPneumatics
 
 Verify ATPneumatics ConfigurationsAvailable timing
-    [Tags]    config_available    timing    DM-44734
+    [Tags]    config_available    timing
     Verify Time Delta    ATMCS    logevent_configurationsAvailable    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 #ATPtg

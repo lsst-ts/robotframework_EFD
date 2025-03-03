@@ -5,9 +5,7 @@ Resource    ../Common_Keywords.resource
 Force Tags    at_light_cal    skipped
 
 *** Variables ***
-${atmonochromator_salver}    ${SALVersion}
 ${atmonochromator_xmlver}    ${XMLVersion}
-${fiberspectrograph_salver}    ${SALVersion}
 ${fiberspectrograph_xmlver}    ${XMLVersion}
 
 *** Test Cases ***
@@ -18,7 +16,7 @@ Verify ATMonochromator Standby
 
 Verify ATMonochromator SoftwareVersions
     [Tags]    software_versions
-    Verify Software Versions    ATMonochromator    csc_salver=${atmonochromator_salver}    csc_xmlver=${atmonochromator_xmlver}
+    Verify Software Versions    ATMonochromator    csc_xmlver=${atmonochromator_xmlver}
 
 Verify ATMonochromator SoftwareVersions timing
     [Tags]    software_versions    timing
@@ -39,7 +37,7 @@ Verify FiberSpectrograph:3 Standby
     
 Verify FiberSpectrograph:3 SoftwareVersions
     [Tags]    software_versions
-    Verify Software Versions    FiberSpectrograph    index=3    csc_salver=${fiberspectrograph_salver}    csc_xmlver=${fiberspectrograph_xmlver}
+    Verify Software Versions    FiberSpectrograph    index=3    csc_xmlver=${fiberspectrograph_xmlver}
 
 Verify FiberSpectrograph:3 SoftwareVersions timing
     [Tags]    software_versions    timing
