@@ -17,6 +17,13 @@ comcam = [
     "CCOODS",
     "OCPS:2",
 ]
+cpp_cscs = [
+    "ATPtg",
+    "MTM1M3",
+    "MTM1M3TS",
+    "MTPtg",
+    "MTVMS",
+]
 eas = [
     "DIMM:1",
     "DIMM:2",
