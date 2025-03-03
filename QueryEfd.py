@@ -65,7 +65,6 @@ class QueryEfd:
         self,
         salver: str,
         xmlver: str,
-        osplver: str,
         efd_name: str = "tucson_teststand_efd",
     ) -> None:
         """
@@ -77,13 +76,10 @@ class QueryEfd:
             The SAL version.
         xmlver : `str`
             The XML version.
-        osplver : `str`
-            The OSPL version.
         """
         self.efd_name = efd_name
         self.sal_version = salver
         self.xml_version = xmlver
-        self.ospl_version = osplver
 
     @keyword
     def get_efd_names(self) -> list:
@@ -514,21 +510,18 @@ class QueryEfd:
         # Get the dependency versions.
         sal_ver = dataframe.salVersion.iloc[0]
         xml_ver = dataframe.xmlVersion.iloc[0]
-        ospl_ver = dataframe.openSpliceVersion.iloc[0]
         csc_ver = dataframe.cscVersion.iloc[0]
         print(
-            f"*TRACE*Expected: SALVersion: {csc_salver}, XMLVersion: {csc_xmlver}, OSPLVersion: {self.ospl_version}",
-            f"\n  Actual: SALVersion: {sal_ver}, XMLVersion: {xml_ver}, OSPLVersion: {ospl_ver}, CSCVersion: {csc_ver}",
+            f"*TRACE*Expected: XMLVersion: {csc_xmlver}",
+            f"\n  Actual: XMLVersion: {xml_ver}, CSCVersion: {csc_ver}",
         )
         # Test the various versions, collect error messages in a list,
         # and print out all errors, if present.
         error_list = []
-        if sal_ver != csc_salver:
+        if csc in csc_lists.cpp_cscs and sal_ver != csc_salver:
             error_list.append(f"Bad SAL Version: {sal_ver}")
         if xml_ver != csc_xmlver:
             error_list.append(f"Bad XML Version: {xml_ver}")
-        if ospl_ver != self.ospl_version:
-            error_list.append(f"Bad OSPL Version: {ospl_ver}")
         if not csc_ver:
             error_list.append("CSC version cannot be blank.")
         try:
