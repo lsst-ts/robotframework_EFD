@@ -5,15 +5,10 @@ Resource    ../Common_Keywords.resource
 Force Tags    latiss
 
 *** Variables ***
-${atcamera_salver}    ${SALVersion}
 ${atcamera_xmlver}    ${XMLVersion}
-${atheaderservice_salver}    ${SALVersion}
 ${atheaderservice_xmlver}    ${XMLVersion}
-${ocps1_salver}    ${SALVersion}
 ${ocps1_xmlver}    ${XMLVersion}
-${atoods_salver}    ${SALVersion}
 ${atoods_xmlver}    ${XMLVersion}
-${atspectrograph_salver}    ${SALVersion}
 ${atspectrograph_xmlver}    ${XMLVersion}
 
 *** Test Cases ***
@@ -24,7 +19,7 @@ Verify ATCamera Standby
     
 Verify ATCamera SoftwareVersions
     [Tags]    latiss    software_versions
-    Verify Software Versions    ATCamera    csc_salver=${atcamera_salver}    csc_xmlver=${atcamera_xmlver}
+    Verify Software Versions    ATCamera    csc_xmlver=${atcamera_xmlver}
 
 Verify ATCamera SoftwareVersions timing
     [Tags]    software_versions    timing
@@ -45,7 +40,7 @@ Verify ATOODS Standby
 
 Verify ATOODS SoftwareVersions
     [Tags]    software_versions
-    Verify Software Versions    ATOODS      csc_salver=${atoods_salver}    csc_xmlver=${atoods_xmlver}
+    Verify Software Versions    ATOODS      csc_xmlver=${atoods_xmlver}
 
 Verify ATOODS SoftwareVersions timing
     [Tags]    software_versions    timing
@@ -62,7 +57,7 @@ Verify ATHeaderService Standby
 
 Verify ATHeaderService SoftwareVersions
     [Tags]    software_versions
-    Verify Software Versions    ATHeaderService    csc_salver=${atheaderservice_salver}    csc_xmlver=${atheaderservice_xmlver}
+    Verify Software Versions    ATHeaderService    csc_xmlver=${atheaderservice_xmlver}
 
 Verify ATHeaderService SoftwareVersions timing
     [Tags]    software_versions    timing
@@ -79,7 +74,7 @@ Verify OCPS:1 Standby
 
 Verify OCPS:1 SoftwareVersions
     [Tags]    software_versions
-    Verify Software Versions    OCPS    index=1    csc_salver=${ocps1_salver}    csc_xmlver=${ocps1_xmlver}
+    Verify Software Versions    OCPS    index=1    csc_xmlver=${ocps1_xmlver}
 
 Verify OCPS:1 SoftwareVersions timing
     [Tags]    software_versions    timing
@@ -100,7 +95,7 @@ Verify ATSpectrograph Standby
 
 Verify ATSpectrograph SoftwareVersions
     [Tags]    software_versions
-    Verify Software Versions    ATSpectrograph    csc_salver=${atspectrograph_salver}    csc_xmlver=${atspectrograph_xmlver}
+    Verify Software Versions    ATSpectrograph    csc_xmlver=${atspectrograph_xmlver}
 
 Verify ATSpectrograph SoftwareVersions timing
     [Tags]    software_versions    timing

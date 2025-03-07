@@ -45,6 +45,7 @@ Execute LATISS Enabled to Offline
 Execute BigCamera Enabled to Offline
     [Tags]    robot:continue-on-failure
     Set Tags    ${BigCamera}
+    @{script_args}=    Create List    ${state}    1
     @{bigcamera_cscs}=    Set Variable If    "${env_efd}" == "base_efd"    ${MTCamera}    ${ComCam}
     FOR    ${csc}    IN    @{bigcamera_cscs}
         ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    ${csc}    @{script_args}
@@ -53,7 +54,7 @@ Execute BigCamera Enabled to Offline
 
 Execute Calibration Enabled to Offline
     [Tags]    calibration    robot:continue-on-failure
-    @{script_args}=    Create List    ${state}    1
+    @{script_args}=    Create List    ${state}    3
     FOR    ${csc}    IN    @{Calibration}
         ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    ${csc}    @{script_args}
         Verify Scripts Completed Successfully    ${scripts}    ${states}
@@ -61,7 +62,7 @@ Execute Calibration Enabled to Offline
 
 Execute EnvSys Enabled to Offline
     [Tags]    envsys    robot:continue-on-failure
-    @{script_args}=    Create List    ${state}    1
+    @{script_args}=    Create List    ${state}    3
     FOR    ${csc}    IN    @{EnvSys}
         ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    ${csc}    @{script_args}
         Verify Scripts Completed Successfully    ${scripts}    ${states}
@@ -69,7 +70,7 @@ Execute EnvSys Enabled to Offline
 
 Execute EnvSys_AE Enabled to Offline
     [Tags]    envsys    robot:continue-on-failure
-    @{script_args}=    Create List    ${state}    1
+    @{script_args}=    Create List    ${state}    3
     FOR    ${csc}    IN    @{EnvSys_AE}
         ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    ${csc}    @{script_args}
         Verify Scripts Completed Successfully    ${scripts}    ${states}

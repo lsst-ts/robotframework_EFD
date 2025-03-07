@@ -5,9 +5,7 @@ Resource    ../Common_Keywords.resource
 Force Tags    gc
 
 *** Variables ***
-${genericcamera_salver}    ${SALVersion}
 ${genericcamera_xmlver}    ${XMLVersion}
-${gcheaderservice_salver}    ${SALVersion}
 ${gcheaderservice_xmlver}    ${XMLVersion}
 
 *** Test Cases ***
@@ -18,7 +16,7 @@ Verify GenericCamera:1 Standby
 
 Verify GenericCamera:1 SoftwareVersions
     [Tags]    software_versions
-    Verify Software Versions    GenericCamera    index=1    csc_salver=${genericcamera_salver}    csc_xmlver=${genericcamera_xmlver}
+    Verify Software Versions    GenericCamera    index=1    csc_xmlver=${genericcamera_xmlver}
 
 Verify GenericCamera:1 SoftwareVersions timing
     [Tags]    software_versions    timing
@@ -39,7 +37,7 @@ Verify GCHeaderService:1 Standby
  
 Verify GCHeaderService:1 SoftwareVersions
     [Tags]    software_versions
-    Verify Software Versions    GCHeaderService    index=1    csc_salver=${gcheaderservice_salver}    csc_xmlver=${gcheaderservice_xmlver}
+    Verify Software Versions    GCHeaderService    index=1    csc_xmlver=${gcheaderservice_xmlver}
 
 Verify GCHeaderService:1 SoftwareVersions timing
     [Tags]    software_versions    timing
