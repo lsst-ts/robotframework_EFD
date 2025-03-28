@@ -8,6 +8,7 @@ Force Tags    calibration
 ${cbp_xmlver}    ${XMLVersion}
 ${electrometer101_xmlver}    ${XMLVersion}
 ${electrometer102_xmlver}    ${XMLVersion}
+${electrometer103_xmlver}    ${XMLVersion}
 ${electrometer201_xmlver}    ${XMLVersion}
 ${ledprojector_xmlver}     ${XMLVersion}
 ${linearstage101_xmlver}    ${XMLVersion}
@@ -91,6 +92,31 @@ Verify Electrometer:102 ConfigurationsAvailable Event
 Verify Electrometer:102 ConfigurationsAvailable timing
     [Tags]    config_available    timing
     Verify Time Delta    Electrometer:102    logevent_configurationsAvailable    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
+# Electrometer:103
+Verify Electrometer:103 Enabled
+    [Tags]    standby
+    Verify Summary State    ${STATES}[standby]    Electrometer:103
+
+Verify Electrometer:103 SummaryState timing
+    [Tags]    software_versions    timing
+    Verify Time Delta    Electrometer:103    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
+Verify Electrometer:103 SoftwareVersions
+    [Tags]    software_versions
+    Verify Software Versions    Electrometer    index=103    csc_xmlver=${electrometer103_xmlver}
+
+Verify Electrometer:103 SoftwareVersions timing
+    [Tags]    software_versions    timing
+    Verify Time Delta    Electrometer:103    logevent_softwareVersions    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
+Verify Electrometer:103 ConfigurationsAvailable Event
+    [Tags]    config_available
+    Verify ConfigurationsAvailable    Electrometer    index=103
+
+Verify Electrometer:103 ConfigurationsAvailable timing
+    [Tags]    config_available    timing
+    Verify Time Delta    Electrometer:103    logevent_configurationsAvailable    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 # Electrometer:201
 Verify Electrometer:201 Enabled

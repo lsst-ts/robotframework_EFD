@@ -56,6 +56,23 @@ Verify Electrometer:102 ConfigurationApplied Event timing
     [Tags]    config_applied    timing
     Verify Time Delta    Electrometer:102    logevent_configurationApplied    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
+# Electrometer:103
+Verify Electrometer:103 Disabled
+    [Tags]    disabled
+    Verify Summary State    ${STATES}[disabled]    Electrometer:103
+
+Verify Electrometer:103 SummaryState timing
+    [Tags]    software_versions    timing
+    Verify Time Delta    Electrometer:103    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
+Verify Electrometer:103 ConfigurationApplied Event
+    [Tags]    config_applied
+    Verify ConfigurationApplied    Electrometer    index=103
+
+Verify Electrometer:103 ConfigurationApplied Event timing
+    [Tags]    config_applied    timing
+    Verify Time Delta    Electrometer:103    logevent_configurationApplied    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
 # Electrometer:201
 Verify Electrometer:201 Disabled
     [Tags]    disabled

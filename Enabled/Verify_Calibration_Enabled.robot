@@ -32,6 +32,15 @@ Verify Electrometer:102 SummaryState timing
     [Tags]    software_versions    timing
     Verify Time Delta    Electrometer:102    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
+# Electrometer:103
+Verify Electrometer:103 Enabled
+    [Tags]    enabled
+    Verify Summary State    ${STATES}[enabled]    Electrometer:103
+
+Verify Electrometer:103 SummaryState timing
+    [Tags]    software_versions    timing
+    Verify Time Delta    Electrometer:103    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
 # Electrometer:201
 Verify Electrometer:201 Enabled
     [Tags]    enabled
