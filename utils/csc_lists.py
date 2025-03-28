@@ -57,6 +57,8 @@ eas = [
     "ESS:204",
     "ESS:301",
     "ESS:303",
+    "ESS:305",
+    "ESS:306",
 ]
 eas_ae = [
     "DSM:1",
@@ -162,6 +164,8 @@ salobj = [
     "ESS:204",
     "ESS:301",
     "ESS:303",
+    "ESS:305",
+    "ESS:306",
     "FiberSpectrograph:3",
     "LEDProjector",    
     "LinearStage:101",    
