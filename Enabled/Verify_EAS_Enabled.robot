@@ -195,3 +195,21 @@ Verify ESS:303 Enabled
 Verify ESS:303 SummaryState timing
     [Tags]    ess303    enabled    timing
     Verify Time Delta    ESS:303    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
+# ESS:305
+Verify ESS:305 Enabled
+    [Tags]    ess305    enabled
+    Verify Summary State    ${STATES}[enabled]    ESS:305
+    
+Verify ESS:305 SummaryState timing
+    [Tags]    ess305    enabled    timing
+    Verify Time Delta    ESS:305    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
+# ESS:306
+Verify ESS:306 Enabled
+    [Tags]    ess306    enabled
+    Verify Summary State    ${STATES}[enabled]    ESS:306
+    
+Verify ESS:306 SummaryState timing
+    [Tags]    ess306    enabled    timing
+    Verify Time Delta    ESS:306    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}

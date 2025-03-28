@@ -19,6 +19,10 @@ Verify Electrometer:102 Shutdown
     [Tags]    electrometer
     Verify Shutdown Process    Electrometer    index=102
 
+Verify Electrometer:103 Shutdown
+    [Tags]    electrometer
+    Verify Shutdown Process    Electrometer    index=103
+
 Verify Electrometer:201 Shutdown
     [Tags]    electrometer
     Verify Shutdown Process    Electrometer    index=201

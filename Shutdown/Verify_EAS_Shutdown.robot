@@ -101,3 +101,11 @@ Verify ESS:301 Shutdown
 Verify ESS:303 Shutdown
     [Tags]    envsys
     Verify Shutdown Process    ESS    index=303
+
+Verify ESS:305 Shutdown
+    [Tags]    envsys
+    Verify Shutdown Process    ESS    index=305
+
+Verify ESS:306 Shutdown
+    [Tags]    envsys
+    Verify Shutdown Process    ESS    index=306
