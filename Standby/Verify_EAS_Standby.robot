@@ -26,6 +26,8 @@ ${ess203_xmlver}    ${XMLVersion}
 ${ess204_xmlver}    ${XMLVersion}
 ${ess301_xmlver}    ${XMLVersion}
 ${ess303_xmlver}     ${XMLVersion}
+${ess305_xmlver}     ${XMLVersion}
+${ess306_xmlver}     ${XMLVersion}
 
 *** Test Cases ***
 # DIMM:1
@@ -468,3 +470,45 @@ Verify ESS:303 ConfigurationsAvailable Event
 Verify ESS:303 ConfigurationsAvailable timing
     [Tags]    ess303    config_available    timing
     Verify Time Delta    ESS:303    logevent_configurationsAvailable    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
+# ESS:305
+Verify ESS:305 Standby
+    [Tags]    ess305    standby
+    Verify Summary State    ${STATES}[standby]    ESS:305
+
+Verify ESS:305 SoftwareVersions
+    [Tags]    ess305    software_versions
+    Verify Software Versions    ESS    csc_xmlver=${ess305_xmlver}    index=305
+
+Verify ESS:305 SoftwareVersions timing
+    [Tags]    ess305    software_versions    timing
+    Verify Time Delta    ESS:305    logevent_softwareVersions    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+    
+Verify ESS:305 ConfigurationsAvailable Event
+    [Tags]    ess305    config_available
+    Verify ConfigurationsAvailable    ESS    index=305
+    
+Verify ESS:305 ConfigurationsAvailable timing
+    [Tags]    ess305    config_available    timing
+    Verify Time Delta    ESS:305    logevent_configurationsAvailable    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
+# ESS:306
+Verify ESS:306 Standby
+    [Tags]    ess306    standby
+    Verify Summary State    ${STATES}[standby]    ESS:306
+
+Verify ESS:306 SoftwareVersions
+    [Tags]    ess306    software_versions
+    Verify Software Versions    ESS    csc_xmlver=${ess306_xmlver}    index=306
+
+Verify ESS:306 SoftwareVersions timing
+    [Tags]    ess306    software_versions    timing
+    Verify Time Delta    ESS:306    logevent_softwareVersions    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+    
+Verify ESS:306 ConfigurationsAvailable Event
+    [Tags]    ess306    config_available
+    Verify ConfigurationsAvailable    ESS    index=306
+    
+Verify ESS:306 ConfigurationsAvailable timing
+    [Tags]    ess306    config_available    timing
+    Verify Time Delta    ESS:306    logevent_configurationsAvailable    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
