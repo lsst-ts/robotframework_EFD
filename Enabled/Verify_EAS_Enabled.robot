@@ -196,6 +196,15 @@ Verify ESS:303 SummaryState timing
     [Tags]    ess303    enabled    timing
     Verify Time Delta    ESS:303    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
+# ESS:304
+Verify ESS:304 Enabled
+    [Tags]    ess304    enabled
+    Verify Summary State    ${STATES}[enabled]    ESS:304
+
+Verify ESS:304 SummaryState timing
+    [Tags]    ess304    enabled    timing
+    Verify Time Delta    ESS:304    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
 # ESS:305
 Verify ESS:305 Enabled
     [Tags]    ess305    enabled
