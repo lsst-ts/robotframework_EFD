@@ -26,6 +26,7 @@ ${ess203_xmlver}    ${XMLVersion}
 ${ess204_xmlver}    ${XMLVersion}
 ${ess301_xmlver}    ${XMLVersion}
 ${ess303_xmlver}     ${XMLVersion}
+${ess304_xmlver}     ${XMLVersion}
 ${ess305_xmlver}     ${XMLVersion}
 ${ess306_xmlver}     ${XMLVersion}
 
@@ -470,6 +471,27 @@ Verify ESS:303 ConfigurationsAvailable Event
 Verify ESS:303 ConfigurationsAvailable timing
     [Tags]    ess303    config_available    timing
     Verify Time Delta    ESS:303    logevent_configurationsAvailable    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
+# ESS:304
+Verify ESS:304 Standby
+    [Tags]    ess304    standby
+    Verify Summary State    ${STATES}[standby]    ESS:304
+
+Verify ESS:304 SoftwareVersions
+    [Tags]    ess304    software_versions
+    Verify Software Versions    ESS    csc_xmlver=${ess304_xmlver}    index=304
+
+Verify ESS:304 SoftwareVersions timing
+    [Tags]    ess304    software_versions    timing
+    Verify Time Delta    ESS:304    logevent_softwareVersions    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
+Verify ESS:304 ConfigurationsAvailable Event
+    [Tags]    ess304    config_available
+    Verify ConfigurationsAvailable    ESS    index=304
+
+Verify ESS:304 ConfigurationsAvailable timing
+    [Tags]    ess304    config_available    timing
+    Verify Time Delta    ESS:304    logevent_configurationsAvailable    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 # ESS:305
 Verify ESS:305 Standby
