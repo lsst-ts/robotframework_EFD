@@ -11,13 +11,11 @@ Suite Setup    Run Keywords    Set EFD Values    AND    Check If Failed
 *** Test Cases ***
 Set Camera Variables
     [Tags]
-    Skip If    "${env_efd}" == "base_efd"    "BigCamera imaging is skipped on the BTS"
     ${bigcam}=    Set Variable If    "${env_efd}" == "base_efd"    mt    cc
     Set Suite Variable    ${bigcam}
 
 Load Camera Playlist
     [Tags]    execute    playlist    bigcamera_imaging
-    Skip If    "${env_efd}" == "base_efd"    "BigCamera imaging is skipped on the BTS"
     ${result}=    Run Process    load_camera_playlist    ${bigcam}    master_flat    --no-repeat
     Log Many    ${result.rc}    ${result.stdout}    ${result.stderr}
     Run Keyword If    ${result.rc} == 1    Fatal Error
@@ -25,13 +23,11 @@ Load Camera Playlist
 Verify Camera Playlist Loaded
     [Documentation]    Playlist should already be loaded, ensure nothing was changed prior to running this script.
     [Tags]    playlist    bigcamera_imaging
-    Skip If    "${env_efd}" == "base_efd"    "BigCamera imaging is skipped on the BTS"
     ${dataframe}=    Get Recent Samples    ${BigCamera}    command_play    ["playlist", "repeat", "private_identity", "private_origin",]    1    None
     Should Be Equal    ${dataframe.playlist.values}[0]    bias_dark_flat
 
 Execute BigCamera Image Taking Test
     [Tags]    execute    bigcamera_imaging
-    Skip If    "${env_efd}" == "base_efd"    "BigCamera imaging is skipped on the BTS"
     # Use the correct script, based on which TestStand is being used.
     ${integration_script}=    Set Variable If    "${env_efd}" == "base_efd"    lsstcam_image_taking    comcam_image_taking
     ${scripts}    ${states}=    Execute Integration Test    comcam_image_taking
@@ -41,7 +37,6 @@ Execute BigCamera Image Taking Test
 Verify Camera Image Sequence
     [Documentation]    Verify the Camera images are the correct type, with the correct exposure time.
     [Tags]    bigcamera_imaging    robot:continue-on-failure
-    Skip If    "${env_efd}" == "base_efd"    "BigCamera imaging is skipped on the BTS"
     Set Suite Variable    ${num_images}    ${1}    # Needed by Verify OODS ImageInOODS test case.
     ${seq_length}=    Set Variable    ${1}
     ${exp_time}=    Set Variable    ${0}
@@ -60,7 +55,6 @@ Verify Camera Image Sequence
 
 Verify OODS ImageInOODS
     [Tags]    bigcamera_imaging
-    Skip If    "${env_efd}" == "base_efd"    "BigCamera imaging is skipped on the BTS"
     Wait Until Keyword Succeeds    60 sec    10 sec    Verify Image in OODS    ${OODS}    ${image_names}[0][0]
     ${dataframe}=    Get Recent Samples    ${OODS}    logevent_imageInOODS    ["camera", "description", "obsid",]    ${num_images}    None
     ${camera}=    Set Variable If    "${env_efd}" == "base_efd"    LSSTCam    LSSTComCam
@@ -70,7 +64,6 @@ Verify OODS ImageInOODS
 
 Verify HeaderService LargeFileObjectAvailable
     [Tags]    bigcamera_imaging
-    Skip If    "${env_efd}" == "base_efd"    "BigCamera imaging is skipped on the BTS"
     ${dataframe}=    Get Recent Samples    ${HeaderService}    logevent_largeFileObjectAvailable    ["id", "url",]    ${num_images}    None
     Should Be Equal As Strings    ${dataframe.id.values}[${0}]    ${image_names}[0][${0}]
     ${file_name}=    Catenate    SEPARATOR=    ${HeaderService}_header_    ${image_names}[0][${0}]    .yaml
