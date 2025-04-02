@@ -5,11 +5,8 @@ Resource    ../Common_Keywords.resource
 Force Tags    standby
 
 *** Variables ***
-${dsm1_salver}    ${SALVersion}
 ${dsm1_xmlver}    ${XMLVersion}
-${dsm2_salver}    ${SALVersion}
 ${dsm2_xmlver}    ${XMLVersion}
-${weatherforecast_salver}    ${SALVersion}
 ${weatherforecast_xmlver}    ${XMLVersion}
 
 *** Test Cases ***
@@ -20,7 +17,7 @@ Verify DSM:1 Standby
 
 Verify DSM:1 SoftwareVersions
     [Tags]    eas_ae    software_versions
-    Verify Software Versions    DSM    index=1    csc_salver=${dsm1_salver}    csc_xmlver=${dsm1_xmlver}
+    Verify Software Versions    DSM    index=1    csc_xmlver=${dsm1_xmlver}
 
 Verify DSM:1 SoftwareVersions timing
     [Tags]    eas_ae    software_versions    timing
@@ -37,7 +34,7 @@ Verify DSM:2 Standby
     
 Verify DSM:2 SoftwareVersions
     [Tags]    eas_ae    software_versions
-    Verify Software Versions    DSM    index=2    csc_salver=${dsm2_salver}    csc_xmlver=${dsm2_xmlver}
+    Verify Software Versions    DSM    index=2    csc_xmlver=${dsm2_xmlver}
 
 Verify DSM:2 SoftwareVersions timing
     [Tags]    eas_ae    software_versions    timing
@@ -54,7 +51,7 @@ Verify WeatherForecast Standby
 
 Verify WeatherForecast SoftwareVersions
     [Tags]    eas_ae    software_versions
-    Verify Software Versions    WeatherForecast    csc_salver=${weatherforecast_salver}    csc_xmlver=${weatherforecast_xmlver}
+    Verify Software Versions    WeatherForecast    csc_xmlver=${weatherforecast_xmlver}
 
 Verify WeatherForecast SoftwareVersions timing
     [Tags]    eas_ae    software_versions    timing

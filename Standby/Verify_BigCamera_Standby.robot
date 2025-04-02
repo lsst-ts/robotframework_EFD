@@ -6,21 +6,13 @@ Force Tags    standby
 Suite Setup   Set EFD Values
 
 *** Variables ***
-${cccamera_salver}    ${SALVersion}
 ${cccamera_xmlver}    ${XMLVersion}
-${ccoods_salver}    ${SALVersion}
 ${ccoods_xmlver}    ${XMLVersion}
-${ccheaderservice_salver}    ${SALVersion}
 ${ccheaderservice_xmlver}    ${XMLVersion}
-${mtcamera_salver}    ${SALVersion}
 ${mtcamera_xmlver}    ${XMLVersion}
-${mtoods_salver}    ${SALVersion}
 ${mtoods_xmlver}    ${XMLVersion}
-${mtheaderservice_salver}    ${SALVersion}
 ${mtheaderservice_xmlver}    ${XMLVersion}
-${ocps2_salver}    ${SALVersion}
 ${ocps2_xmlver}    ${XMLVersion}
-${ocps3_salver}    ${SALVersion}
 ${ocps3_xmlver}    ${XMLVersion}
 
 *** Test Cases ***
@@ -33,7 +25,7 @@ Verify BigCamera Standby
 Verify BigCamera SoftwareVersions Event
     [Tags]    software_versions
     Set Tags    ${BigCamera}
-    Verify Software Versions    ${BigCamera}    csc_salver=${camera_salver}    csc_xmlver=${camera_xmlver}
+    Verify Software Versions    ${BigCamera}    csc_xmlver=${camera_xmlver}
 
 Verify BigCamera SoftwareVersions Event timing
     [Tags]    software_versions    timing
@@ -59,7 +51,7 @@ Verify OODS Standby
 Verify OODS SoftwareVersions
     [Tags]    software_versions
     Set Tags    ${OODS}
-    Verify Software Versions    ${OODS}    csc_salver=${oods_salver}    csc_xmlver=${oods_xmlver}
+    Verify Software Versions    ${OODS}    csc_xmlver=${oods_xmlver}
 
 Verify OODS SoftwareVersions timing
     [Tags]    software_versions    timing
@@ -85,7 +77,7 @@ Verify HeaderService ConfigurationsAvailable Event
 Verify HeaderService SoftwareVersions
     [Tags]    software_versions
     Set Tags    ${HeaderService}
-    Verify Software Versions    ${HeaderService}    csc_salver=${headerservice_salver}    csc_xmlver=${headerservice_xmlver}
+    Verify Software Versions    ${HeaderService}    csc_xmlver=${headerservice_xmlver}
 
 Verify HeaderService SoftwareVersions Event timing
     [Tags]    software_versions    timing
@@ -101,7 +93,7 @@ Verify OCPS:2||3 Standby
 Verify OCPS:2||3 SoftwareVersions
     [Tags]    software_versions
     Set Tags    OCPS:${OcpsIndex}
-    Verify SoftwareVersions    OCPS    index=${OcpsIndex}    csc_salver=${ocps_salver}    csc_xmlver=${ocps_xmlver}
+    Verify SoftwareVersions    OCPS    index=${OcpsIndex}    csc_xmlver=${ocps_xmlver}
 
 Verify OCPS:2||3 SoftwareVersions Event timing
     [Tags]    software_versions    timing

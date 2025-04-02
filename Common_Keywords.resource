@@ -1,5 +1,5 @@
 *** Settings ***
-Library    QueryEfd    ${SALVersion}    ${XMLVersion}    ${OSPLVersion}    ${env_efd}
+Library    QueryEfd    ${SALVersion}    ${XMLVersion}    ${env_efd}
 Library    Process
 Library    Collections
 Library    DateTime
@@ -79,6 +79,7 @@ Get Script Metadata
     [Documentation]    Capture script metadata, like script index and start time. Ensure script finished successfully.
     [Arguments]    ${script_index}
     ${dataframe}=    Influxdb Query    ScriptQueue    logevent_script    isStandard,path,scriptSalIndex,timestampProcessStart,timestampProcessEnd,scriptState    where_clause=WHERE scriptSalIndex=${script_index} AND timestampProcessEnd>0
+    Should Not Be Empty    ${dataframe}    msg="Dataframe is empty. Either the script index ${script_index} does not exist or it did not finish in time."
     Log Many    ${dataframe.isStandard.values}[0]    ${dataframe.path.values}[0]    ${dataframe.scriptSalIndex.values}[0]    ${dataframe.timestampProcessStart.values}[0]    ${dataframe.timestampProcessEnd.values}[0]    ${dataframe.scriptState.values}[0]
     # Convert start and end times to the proper format.
     ${script_start}=    Convert Date    ${dataframe.timestampProcessStart.values}[0]    result_format=datetime

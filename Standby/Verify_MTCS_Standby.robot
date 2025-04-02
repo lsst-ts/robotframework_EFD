@@ -5,33 +5,22 @@ Resource    ../Common_Keywords.resource
 Force Tags    mtcs
 
 *** Variables ***
-${lasertracker_salver}    ${SALVersion}
 ${lasertracker_xmlver}    ${XMLVersion}
-${mtaircompressor1_salver}    ${SALVersion}
 ${mtaircompressor1_xmlver}    ${XMLVersion}
-${mtaircompressor2_salver}    ${SALVersion}
 ${mtaircompressor2_xmlver}    ${XMLVersion}
-${mtmount_salver}    ${SALVersion}
 ${mtmount_xmlver}    ${XMLVersion}
 ${mtptg_salver}    ${SALVersion}
 ${mtptg_xmlver}    ${XMLVersion}
-${mtdome_salver}    ${SALVersion}
 ${mtdome_xmlver}    ${XMLVersion}
-${mtdometrajectory_salver}    ${SALVersion}
 ${mtdometrajectory_xmlver}    ${XMLVersion}
-${mtaos_salver}    ${SALVersion}
 ${mtaos_xmlver}    ${XMLVersion}
-${mthexapod1_salver}    ${SALVersion}
 ${mthexapod1_xmlver}    ${XMLVersion}
-${mthexapod2_salver}    ${SALVersion}
 ${mthexapod2_xmlver}    ${XMLVersion}
-${mtrotator_salver}    ${SALVersion}
 ${mtrotator_xmlver}    ${XMLVersion}
 ${mtm1m3_salver}    ${SALVersion}
 ${mtm1m3_xmlver}    ${XMLVersion}
 ${mtm1m3ts_salver}    ${SALVersion}
 ${mtm1m3ts_xmlver}    ${XMLVersion}
-${mtm2_salver}    ${SALVersion}
 ${mtm2_xmlver}    ${XMLVersion}
 ${mtvms1_salver}    ${SALVersion}
 ${mtvms1_xmlver}    ${XMLVersion}
@@ -46,7 +35,7 @@ Verify LaserTracker:1 Standby
 
 Verify LaserTracker:1 SoftwareVersions
     [Tags]    software_versions
-    Verify Software Versions    LaserTracker    index=1    csc_salver=${lasertracker_salver}    csc_xmlver=${lasertracker_xmlver}
+    Verify Software Versions    LaserTracker    index=1    csc_xmlver=${lasertracker_xmlver}
 
 Verify LaserTracker:1 SoftwareVersions timing
     [Tags]    software_versions    timing
@@ -67,7 +56,7 @@ Verify MTAirCompressor:1 Standby
 
 Verify MTAirCompressor:1 SoftwareVersions
     [Tags]    software_versions
-    Verify Software Versions    MTAirCompressor    index=1    csc_salver=${mtaircompressor1_salver}    csc_xmlver=${mtaircompressor1_xmlver}
+    Verify Software Versions    MTAirCompressor    index=1    csc_xmlver=${mtaircompressor1_xmlver}
 
 Verify MTAirCompressor:1 SoftwareVersions timing
     [Tags]    software_versions    timing
@@ -88,7 +77,7 @@ Verify MTAirCompressor:2 Standby
 
 Verify MTAirCompressor:2 SoftwareVersions
     [Tags]    software_versions
-    Verify Software Versions    MTAirCompressor    index=2    csc_salver=${mtaircompressor2_salver}    csc_xmlver=${mtaircompressor2_xmlver}
+    Verify Software Versions    MTAirCompressor    index=2    csc_xmlver=${mtaircompressor2_xmlver}
 
 Verify MTAirCompressor:2 SoftwareVersions timing
     [Tags]    software_versions    timing
@@ -114,7 +103,7 @@ Verify MTMount Axes NOT InPosition
 
 Verify MTMount SoftwareVersions
     [Tags]    software_versions
-    Verify Software Versions    MTMount    csc_salver=${mtmount_salver}    csc_xmlver=${mtmount_xmlver}
+    Verify Software Versions    MTMount    csc_xmlver=${mtmount_xmlver}
 
 Verify MTMount SoftwareVersions timing
     [Tags]    software_versions    timing
@@ -152,7 +141,7 @@ Verify MTDome Standby
 
 Verify MTDome SoftwareVersions
     [Tags]    software_versions
-    Verify Software Versions    MTDome    csc_salver=${mtdome_salver}    csc_xmlver=${mtdome_xmlver}
+    Verify Software Versions    MTDome    csc_xmlver=${mtdome_xmlver}
 
 Verify MTDome SoftwareVersions timing
     [Tags]    software_versions    timing
@@ -173,7 +162,7 @@ Verify MTDomeTrajectory Standby
 
 Verify MTDomeTrajectory SoftwareVersions
     [Tags]    software_versions
-    Verify Software Versions    MTDomeTrajectory    csc_salver=${mtdometrajectory_salver}    csc_xmlver=${mtdometrajectory_xmlver}
+    Verify Software Versions    MTDomeTrajectory    csc_xmlver=${mtdometrajectory_xmlver}
 
 Verify MTDomeTrajectory SoftwareVersions timing
     [Tags]    software_versions    timing
@@ -194,7 +183,7 @@ Verify MTAOS Standby
 
 Verify MTAOS SoftwareVersions
     [Tags]    software_versions
-    Verify Software Versions    MTAOS    csc_salver=${mtaos_salver}    csc_xmlver=${mtaos_xmlver}
+    Verify Software Versions    MTAOS    csc_xmlver=${mtaos_xmlver}
 
 Verify MTAOS SoftwareVersions timing
     [Tags]    software_versions    timing
@@ -215,7 +204,7 @@ Verify MTHexapod:1 Standby
 
 Verify MTHexapod:1 SoftwareVersions
     [Tags]    software_versions
-    Verify Software Versions    MTHexapod    index=1    csc_salver=${mthexapod1_salver}    csc_xmlver=${mthexapod1_xmlver}
+    Verify Software Versions    MTHexapod    index=1    csc_xmlver=${mthexapod1_xmlver}
 
 Verify MTHexapod:1 SoftwareVersions timing
     [Tags]    software_versions    timing
@@ -236,7 +225,7 @@ Verify MTHexapod:2 Standby
 
 Verify MTHexapod:2 SoftwareVersions
     [Tags]    software_versions
-    Verify Software Versions    MTHexapod    index=2    csc_salver=${mthexapod2_salver}    csc_xmlver=${mthexapod2_xmlver}
+    Verify Software Versions    MTHexapod    index=2    csc_xmlver=${mthexapod2_xmlver}
 
 Verify MTHexapod:2 SoftwareVersions timing
     [Tags]    software_versions    timing
@@ -257,7 +246,7 @@ Verify MTRotator Standby
 
 Verify MTRotator SoftwareVersions
     [Tags]    software_versions
-    Verify Software Versions    MTRotator    csc_salver=${mtrotator_salver}    csc_xmlver=${mtrotator_xmlver}
+    Verify Software Versions    MTRotator    csc_xmlver=${mtrotator_xmlver}
 
 Verify MTRotator SoftwareVersions timing
     [Tags]    software_versions    timing
@@ -320,7 +309,7 @@ Verify MTM2 Standby
 
 Verify MTM2 SoftwareVersions
     [Tags]    software_versions
-    Verify Software Versions    MTM2    csc_salver=${mtm2_salver}    csc_xmlver=${mtm2_xmlver}
+    Verify Software Versions    MTM2    csc_xmlver=${mtm2_xmlver}
 
 Verify MTM2 SoftwareVersions timing
     [Tags]    software_versions    timing

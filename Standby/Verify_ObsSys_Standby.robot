@@ -5,21 +5,13 @@ Resource    ../Common_Keywords.resource
 Force Tags    obssys
 
 *** Variables ***
-${scheduler1_salver}    ${SALVersion}
 ${scheduler1_xmlver}    ${XMLVersion}
-${scheduler2_salver}    ${SALVersion}
 ${scheduler2_xmlver}    ${XMLVersion}
-${scheduler3_salver}    ${SALVersion}
 ${scheduler3_xmlver}    ${XMLVersion}
-${scriptqueue1_salver}    ${SALVersion}
 ${scriptqueue1_xmlver}    ${XMLVersion}
-${scriptqueue2_salver}    ${SALVersion}
 ${scriptqueue2_xmlver}    ${XMLVersion}
-${scriptqueue3_salver}    ${SALVersion}
 ${scriptqueue3_xmlver}    ${XMLVersion}
-${watcher_salver}    ${SALVersion}
 ${watcher_xmlver}    ${XMLVersion}
-${test42_salver}    ${SALVersion}
 ${test42_xmlver}    ${XMLVersion}
 
 *** Test Cases ***
@@ -34,7 +26,7 @@ Verify Scheduler:1 SummaryState timing
 
 Verify Scheduler:1 SoftwareVersions
     [Tags]    software_versions    CAP-1044
-    Verify Software Versions    Scheduler    index=1    csc_salver=${scheduler1_salver}    csc_xmlver=${scheduler1_xmlver}
+    Verify Software Versions    Scheduler    index=1    csc_xmlver=${scheduler1_xmlver}
 
 Verify Scheduler:1 SoftwareVersions timing
     [Tags]    software_versions    timing
@@ -55,7 +47,7 @@ Verify Scheduler:2 SummaryState timing
 
 Verify Scheduler:2 SoftwareVersions
     [Tags]    software_versions    CAP-1044
-    Verify Software Versions    Scheduler    index=2    csc_salver=${scheduler2_salver}    csc_xmlver=${scheduler2_xmlver}
+    Verify Software Versions    Scheduler    index=2    csc_xmlver=${scheduler2_xmlver}
 
 Verify Scheduler:2 SoftwareVersions timing
     [Tags]    software_versions    timing
@@ -76,7 +68,7 @@ Verify Scheduler:3 SummaryState timing
 
 Verify Scheduler:3 SoftwareVersions
     [Tags]    software_versions    CAP-1044
-    Verify Software Versions    Scheduler    index=3    csc_salver=${scheduler3_salver}    csc_xmlver=${scheduler3_xmlver}
+    Verify Software Versions    Scheduler    index=3    csc_xmlver=${scheduler3_xmlver}
 
 Verify Scheduler:3 SoftwareVersions timing
     [Tags]    software_versions    timing
@@ -97,7 +89,7 @@ Verify ScriptQueue:1 SummaryState timing
 
 Verify ScriptQueue:1 SoftwareVersions
     [Tags]    software_versions
-    Verify Software Versions    ScriptQueue    index=1    csc_salver=${scriptqueue1_salver}    csc_xmlver=${scriptqueue1_xmlver}
+    Verify Software Versions    ScriptQueue    index=1    csc_xmlver=${scriptqueue1_xmlver}
 
 Verify ScriptQueue:1 SoftwareVersions timing
     [Tags]    software_versions    timing
@@ -118,7 +110,7 @@ Verify ScriptQueue:2 SummaryState timing
 
 Verify ScriptQueue:2 SoftwareVersions
     [Tags]    software_versions
-    Verify Software Versions    ScriptQueue    index=2    csc_salver=${scriptqueue2_salver}    csc_xmlver=${scriptqueue2_xmlver}
+    Verify Software Versions    ScriptQueue    index=2    csc_xmlver=${scriptqueue2_xmlver}
 
 Verify ScriptQueue:2 SoftwareVersions timing
     [Tags]    software_versions    timing
@@ -139,7 +131,7 @@ Verify ScriptQueue:3 SummaryState timing
 
 Verify ScriptQueue:3 SoftwareVersions
     [Tags]    software_versions
-    Verify Software Versions    ScriptQueue    index=3    csc_salver=${scriptqueue3_salver}    csc_xmlver=${scriptqueue3_xmlver}
+    Verify Software Versions    ScriptQueue    index=3    csc_xmlver=${scriptqueue3_xmlver}
 
 Verify ScriptQueue:3 SoftwareVersions timing
     [Tags]    software_versions    timing
@@ -160,7 +152,7 @@ Verify Watcher SummaryState timing
 
 Verify Watcher SoftwareVersions
     [Tags]    software_versions
-    Verify Software Versions    Watcher    csc_salver=${watcher_salver}    csc_xmlver=${watcher_xmlver}
+    Verify Software Versions    Watcher    csc_xmlver=${watcher_xmlver}
 
 Verify Watcher SoftwareVersions timing
     [Tags]    software_versions    timing
@@ -185,7 +177,7 @@ Verify Test:42 SummaryState timing
 
 Verify Test:42 SoftwareVersions
     [Tags]    software_versions
-    Verify Software Versions    Test    index=42    csc_salver=${test42_salver}    csc_xmlver=${test42_xmlver}
+    Verify Software Versions    Test    index=42    csc_xmlver=${test42_xmlver}
 
 Verify Test:42 SoftwareVersions timing
     [Tags]    software_versions    timing

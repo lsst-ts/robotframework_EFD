@@ -361,3 +361,54 @@ Verify ESS:303 ConfigurationApplied Event
 Verify ESS:303 ConfigurationApplied Event timing
     [Tags]    ess303    config_applied    timing
     Verify Time Delta    ESS:303    logevent_configurationApplied    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
+# ESS:304
+Verify ESS:304 Disabled  
+    [Tags]    ess304    disabled
+    Verify Summary State    ${STATES}[disabled]    ESS:304
+    
+Verify ESS:304 SummaryState timing
+    [Tags]    ess304    software_versions    timing
+    Verify Time Delta    ESS:304  logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+    
+Verify ESS:304 ConfigurationApplied Event
+    [Tags]    ess304    config_applied
+    Verify ConfigurationApplied    ESS    index=304
+    
+Verify ESS:304 ConfigurationApplied Event timing
+    [Tags]    ess304    config_applied    timing
+    Verify Time Delta    ESS:304    logevent_configurationApplied    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
+# ESS:305
+Verify ESS:305 Disabled
+    [Tags]    ess305    disabled
+    Verify Summary State    ${STATES}[disabled]    ESS:305
+    
+Verify ESS:305 SummaryState timing
+    [Tags]    ess305    software_versions    timing
+    Verify Time Delta    ESS:305  logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+    
+Verify ESS:305 ConfigurationApplied Event
+    [Tags]    ess305    config_applied
+    Verify ConfigurationApplied    ESS    index=305
+    
+Verify ESS:305 ConfigurationApplied Event timing
+    [Tags]    ess305    config_applied    timing
+    Verify Time Delta    ESS:305    logevent_configurationApplied    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
+# ESS:306
+Verify ESS:306 Disabled
+    [Tags]    ess306    disabled
+    Verify Summary State    ${STATES}[disabled]    ESS:306
+    
+Verify ESS:306 SummaryState timing
+    [Tags]    ess306    software_versions    timing
+    Verify Time Delta    ESS:306  logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+    
+Verify ESS:306 ConfigurationApplied Event
+    [Tags]    ess306    config_applied
+    Verify ConfigurationApplied    ESS    index=306
+    
+Verify ESS:306 ConfigurationApplied Event timing
+    [Tags]    ess306    config_applied    timing
+    Verify Time Delta    ESS:306    logevent_configurationApplied    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}

@@ -19,7 +19,7 @@ for csc in cscs:
 
 =====BTS=====
 from QueryEfd import QueryEfd
-efd = QueryEfd("9.0.0", "22.1.0", "6.10.4p2", "base_efd")
+efd = QueryEfd("10.0.1", "23.0.0", "base_efd")
 from utils import dataframe
 from lsst_efd_client import EfdClient
 efd_client = EfdClient("base_efd")
@@ -29,7 +29,7 @@ import asyncio
 
 =====TTS=====
 from QueryEfd import QueryEfd
-efd = QueryEfd("9.0.0", "22.1.0", "6.10.4p2", "tucson_teststand_efd")
+efd = QueryEfd("10.0.1", "23.0.0", "tucson_teststand_efd")
 from utils import dataframe
 from lsst_efd_client import EfdClient
 efd_client = EfdClient("tucson_teststand_efd")
@@ -39,7 +39,7 @@ import asyncio
 
 ====Summit====
 from QueryEfd import QueryEfd
-efd = QueryEfd("9.0.0", "22.1.0", "6.10.4p2", "summit_efd")
+efd = QueryEfd("10.0.1", "23.0.0", "summit_efd")
 from utils import dataframe
 from lsst_efd_client import EfdClient
 efd_client = EfdClient("summit_efd")

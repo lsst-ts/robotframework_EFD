@@ -5,24 +5,17 @@ Resource    ../Common_Keywords.resource
 Force Tags    calibration
 
 *** Variables ***
-${cbp_salver}    ${SALVersion}
 ${cbp_xmlver}    ${XMLVersion}
-${electrometer101_salver}    ${SALVersion}
 ${electrometer101_xmlver}    ${XMLVersion}
-${electrometer102_salver}    ${SALVersion}
 ${electrometer102_xmlver}    ${XMLVersion}
-${electrometer201_salver}    ${SALVersion}
+${electrometer103_xmlver}    ${XMLVersion}
 ${electrometer201_xmlver}    ${XMLVersion}
-${ledprojector_salver}     ${SALVersion}
 ${ledprojector_xmlver}     ${XMLVersion}
-${linearstage101_salver}    ${SALVersion}
 ${linearstage101_xmlver}    ${XMLVersion}
-${linearstage102_salver}    ${SALVersion}
 ${linearstage102_xmlver}    ${XMLVersion}
-${linearstage103_salver}    ${SALVersion}
 ${linearstage103_xmlver}    ${XMLVersion}
-${linearstage104_salver}    ${SALVersion}
 ${linearstage104_xmlver}    ${XMLVersion}
+${tunablelaser_xmlver}    ${XMLVersion}
 
 *** Test Cases ***
 # CBP
@@ -36,7 +29,7 @@ Verify CBP SummaryState timing
 
 Verify CBP SoftwareVersions
     [Tags]    software_versions
-    Verify Software Versions    CBP    csc_salver=${cbp_salver}    csc_xmlver=${cbp_xmlver}
+    Verify Software Versions    CBP    csc_xmlver=${cbp_xmlver}
 
 Verify CBP SoftwareVersions timing
     [Tags]    software_versions    timing
@@ -61,7 +54,7 @@ Verify Electrometer:101 SummaryState timing
 
 Verify Electrometer:101 SoftwareVersions
     [Tags]    software_versions
-    Verify Software Versions    Electrometer    index=101    csc_salver=${electrometer101_salver}    csc_xmlver=${electrometer101_xmlver}
+    Verify Software Versions    Electrometer    index=101    csc_xmlver=${electrometer101_xmlver}
 
 Verify Electrometer:101 SoftwareVersions timing
     [Tags]    software_versions    timing
@@ -86,7 +79,7 @@ Verify Electrometer:102 SummaryState timing
 
 Verify Electrometer:102 SoftwareVersions
     [Tags]    software_versions
-    Verify Software Versions    Electrometer    index=102    csc_salver=${electrometer102_salver}    csc_xmlver=${electrometer102_xmlver}
+    Verify Software Versions    Electrometer    index=102    csc_xmlver=${electrometer102_xmlver}
 
 Verify Electrometer:102 SoftwareVersions timing
     [Tags]    software_versions    timing
@@ -100,6 +93,31 @@ Verify Electrometer:102 ConfigurationsAvailable timing
     [Tags]    config_available    timing
     Verify Time Delta    Electrometer:102    logevent_configurationsAvailable    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
+# Electrometer:103
+Verify Electrometer:103 Enabled
+    [Tags]    standby
+    Verify Summary State    ${STATES}[standby]    Electrometer:103
+
+Verify Electrometer:103 SummaryState timing
+    [Tags]    software_versions    timing
+    Verify Time Delta    Electrometer:103    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
+Verify Electrometer:103 SoftwareVersions
+    [Tags]    software_versions
+    Verify Software Versions    Electrometer    index=103    csc_xmlver=${electrometer103_xmlver}
+
+Verify Electrometer:103 SoftwareVersions timing
+    [Tags]    software_versions    timing
+    Verify Time Delta    Electrometer:103    logevent_softwareVersions    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
+Verify Electrometer:103 ConfigurationsAvailable Event
+    [Tags]    config_available
+    Verify ConfigurationsAvailable    Electrometer    index=103
+
+Verify Electrometer:103 ConfigurationsAvailable timing
+    [Tags]    config_available    timing
+    Verify Time Delta    Electrometer:103    logevent_configurationsAvailable    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
 # Electrometer:201
 Verify Electrometer:201 Enabled
     [Tags]    standby
@@ -111,7 +129,7 @@ Verify Electrometer:201 SummaryState timing
 
 Verify Electrometer:201 SoftwareVersions
     [Tags]    software_versions
-    Verify Software Versions    Electrometer    index=201    csc_salver=${electrometer201_salver}    csc_xmlver=${electrometer201_xmlver}
+    Verify Software Versions    Electrometer    index=201    csc_xmlver=${electrometer201_xmlver}
 
 Verify Electrometer:201 SoftwareVersions timing
     [Tags]    software_versions    timing
@@ -136,7 +154,7 @@ Verify LEDProjector SummaryState timing
 
 Verify LEDProjector SoftwareVersions
     [Tags]    software_versions
-    Verify Software Versions    LEDProjector    csc_salver=${ledprojector_salver}    csc_xmlver=${ledprojector_xmlver}
+    Verify Software Versions    LEDProjector    csc_xmlver=${ledprojector_xmlver}
 
 Verify LEDProjector SoftwareVersions timing
     [Tags]    software_versions    timing
@@ -161,7 +179,7 @@ Verify LinearStage:101 SummaryState timing
 
 Verify LinearStage:101 SoftwareVersions
     [Tags]    software_versions
-    Verify Software Versions    LinearStage    index=101    csc_salver=${linearstage101_salver}    csc_xmlver=${linearstage101_xmlver}
+    Verify Software Versions    LinearStage    index=101    csc_xmlver=${linearstage101_xmlver}
 
 Verify LinearStage:101 SoftwareVersions timing
     [Tags]    software_versions    timing
@@ -186,7 +204,7 @@ Verify LinearStage:102 SummaryState timing
 
 Verify LinearStage:102 SoftwareVersions
     [Tags]    software_versions
-    Verify Software Versions    LinearStage    index=102    csc_salver=${linearstage102_salver}    csc_xmlver=${linearstage102_xmlver}
+    Verify Software Versions    LinearStage    index=102    csc_xmlver=${linearstage102_xmlver}
 
 Verify LinearStage:102 SoftwareVersions timing
     [Tags]    software_versions    timing
@@ -211,7 +229,7 @@ Verify LinearStage:103 SummaryState timing
     
 Verify LinearStage:103 SoftwareVersions
     [Tags]    software_versions
-    Verify Software Versions    LinearStage    index=103    csc_salver=${linearstage103_salver}    csc_xmlver=${linearstage103_xmlver}
+    Verify Software Versions    LinearStage    index=103    csc_xmlver=${linearstage103_xmlver}
 
 Verify LinearStage:103 SoftwareVersions timing
     [Tags]    software_versions    timing
@@ -236,7 +254,7 @@ Verify LinearStage:104 SummaryState timing
 
 Verify LinearStage:104 SoftwareVersions
     [Tags]    software_versions
-    Verify Software Versions    LinearStage    index=104    csc_salver=${linearstage104_salver}    csc_xmlver=${linearstage104_xmlver}
+    Verify Software Versions    LinearStage    index=104    csc_xmlver=${linearstage104_xmlver}
 
 Verify LinearStage:104 SoftwareVersions timing
     [Tags]    software_versions    timing
@@ -261,7 +279,7 @@ Verify TunableLaser SummaryState timing
     
 Verify TunableLaser SoftwareVersions
     [Tags]    software_versions
-    Verify Software Versions    TunableLaser    csc_salver=${tunablelaser_salver}    csc_xmlver=${tunablelaser_xmlver}
+    Verify Software Versions    TunableLaser    csc_xmlver=${tunablelaser_xmlver}
 
 Verify TunableLaser SoftwareVersions timing    
     [Tags]    software_versions    timing
