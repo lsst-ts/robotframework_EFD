@@ -14,7 +14,7 @@
 @{LATISS}          ATOODS    ATCamera    ATHeaderService    ATSpectrograph    OCPS:1
 @{MTCamera}        MTCamera    MTHeaderService    MTOODS    OCPS:3
 @{MTCS}            LaserTracker:1    MTMount    MTPtg    MTDome    MTDomeTrajectory    MTAOS    MTHexapod:1    MTHexapod:2    MTRotator    MTM1M3    MTM1M3TS    MTM2    MTVMS:1
-@{ObsSys}          Scheduler:1    Scheduler:2    Scheduler:3    Watcher
+@{ObsSys}          OCPS:101    Scheduler:1    Scheduler:2    Scheduler:3    Watcher
 @{ObsSys_AE}       ScriptQueue:1    ScriptQueue:2    ScriptQueue:3
 @{NON_CONFIG}      ATHeaderService    ATOODS    ATPtg    CCHeaderService    CCOODS    DSM    GCHeaderService    HVAC    LOVE    MTHeaderService    MTOODS    MTPtg    Script    ScriptQueue    SummitFacility
 @{OFFLINE}         ATCamera    CCCamera    MTCamera
@@ -24,4 +24,4 @@
 ...    ESS:301    ESS:303    ESS:304    ESS:305    ESS:306
 ...    FiberSpectrograph:3    LEDProjector    LinearStage:101    LinearStage:102    LinearStage:103    LinearStage:104
 ...    MTAOS    MTDome    MTDomeTrajectory    MTHexapod    MTRotator
-...    OCPS:1   OCPS:2   Scheduler:1   Scheduler:2    Scheduler:3   ScriptQueue:1    ScriptQueue:2    ScriptQueue:3   TunableLaser    Watcher   WeatherForecast
+...    OCPS:1   OCPS:2   OCPS:3    OCPS:101    Scheduler:1   Scheduler:2    Scheduler:3   ScriptQueue:1    ScriptQueue:2    ScriptQueue:3   TunableLaser    Watcher   WeatherForecast
