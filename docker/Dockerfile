@@ -1,4 +1,4 @@
-FROM almalinux:8
+FROM almalinux:9
 LABEL org.opencontainers.image.authors="trekkie2@gmail.com"
 ARG USER=saluser
 ARG HOME=/home/${USER}
@@ -24,21 +24,6 @@ dnf clean all && \
 rm -rf /var/cache/dnf && \
 updatedb
 
-# Python3.11
-#RUN cd /tmp && \
-#wget https://www.python.org/ftp/python/3.11.9/Python-3.11.9.tgz && \
-#tar xvf Python-3.11.9.tgz
-
-#RUN cd /tmp/Python-3.11.9 && \
-#./configure --enable-optimizations && \
-#make altinstall && \
-#ln /usr/local/bin/python3.11 /usr/local/bin/python3
-
-# Python packages
-#RUN python3 -m pip install --upgrade pip setuptools numpy && \
-#python3 -m pip install pytest requests robotframework && \
-#python3 -m pip install astropy gnureadline lsst-efd-client
-
 # Cleanup
 RUN chown -R ${USER}:${USER} ${HOME}
 
@@ -55,8 +40,11 @@ rm ~/miniconda3/miniconda.sh
 RUN source miniconda3/bin/activate && \
 conda update conda -y && \
 conda config --add channels defaults && \
-conda install -c conda-forge 'python=3.11' 'libarchive' 'libmamba' -y && \
-pip3 install -U setuptools numpy pytest requests robotframework astropy gnureadline lsst-efd-client && \
+conda config --add channels conda-forge && \
+conda install -c conda-forge 'python=3.12' 'libarchive' 'libmamba' -y && \
+pip3 install -U setuptools pytest requests robotframework astropy gnureadline && \
+pip3 install -U pandas aioinflux numpy tables kafkit PyYAML && \
+pip3 install --no-deps -U lsst-efd-client && \
 conda clean --all
 
 # Startup
