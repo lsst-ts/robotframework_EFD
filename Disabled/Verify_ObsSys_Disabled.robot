@@ -5,6 +5,23 @@ Resource    ../Common_Keywords.resource
 Force Tags    obssys
 
 *** Test Cases ***
+#OCPS:101
+Verify OCPS:101 Disabled
+    [Tags]    disabled
+    Verify Summary State    ${STATES}[disabled]    OCPS:101
+
+Verify OCPS:101 SummaryState timing
+    [Tags]    software_versions    timing
+    Verify Time Delta    OCPS:101    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
+Verify OCPS:101 ConfigurationApplied Event
+    [Tags]    config_applied
+    Verify ConfigurationApplied    OCPS    index=101
+
+Verify OCPS:101 ConfigurationApplied Event timing
+    [Tags]    config_applied    timing
+    Verify Time Delta    OCPS:101    logevent_configurationApplied    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
 #Scheduler:1
 Verify Scheduler:1 Disabled
     [Tags]    disabled

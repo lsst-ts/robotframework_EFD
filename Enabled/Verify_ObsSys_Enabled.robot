@@ -7,6 +7,15 @@ Force Tags    enabled    obssys
 *** Variables ***
 
 *** Test Cases ***
+#OCPS:101
+Verify OCPS:101 Enabled
+    [Tags]    obsys2
+    Verify Summary State    ${STATES}[enabled]    OCPS:101
+
+Verify OCPS:101 SummaryState timing
+    [Tags]    timing
+    Verify Time Delta    OCPS:101    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
 #Scheduler:1
 Verify Scheduler:1 Enabled
     [Tags]

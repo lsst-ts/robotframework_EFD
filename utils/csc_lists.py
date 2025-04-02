@@ -95,6 +95,7 @@ mtcs = [
     "MTM2",
 ]
 obssys = [
+    "OCPS:101",
     "Scheduler:1",
     "Scheduler:2",
     "Scheduler:3",
@@ -181,6 +182,8 @@ salobj = [
     "MTRotator",
     "OCPS:1",
     "OCPS:2",
+    "OCPS:3",
+    "OCPS:101",
     "Scheduler:1",
     "Scheduler:2",
     "ScriptQueue",

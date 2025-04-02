@@ -5,6 +5,10 @@ Resource    ../Common_Keywords.resource
 Force Tags    shutdown    obssys
 
 *** Test Cases ***
+Verify OCPS:101 Shutdown
+    [Tags]
+    Verify Shutdown Process    OCPS    index=101
+
 Verify Scheduler:1 Shutdown
     [Tags]
     Verify Shutdown Process    Scheduler    index=1

@@ -5,6 +5,7 @@ Resource    ../Common_Keywords.resource
 Force Tags    obssys
 
 *** Variables ***
+${ocps101_xmlver}    ${XMLVersion}
 ${scheduler1_xmlver}    ${XMLVersion}
 ${scheduler2_xmlver}    ${XMLVersion}
 ${scheduler3_xmlver}    ${XMLVersion}
@@ -15,6 +16,27 @@ ${watcher_xmlver}    ${XMLVersion}
 ${test42_xmlver}    ${XMLVersion}
 
 *** Test Cases ***
+#OCPS:101
+Verify OCPS:101 Standby
+    [Tags]    standby
+    Verify Summary State    ${STATES}[standby]    OCPS:101
+    
+Verify OCPS:101 SoftwareVersions
+    [Tags]    software_versions
+    Verify Software Versions    OCPS    index=1    csc_xmlver=${ocps1_xmlver}
+    
+Verify OCPS:101 SoftwareVersions timing
+    [Tags]    software_versions    timing
+    Verify Time Delta    OCPS:101    logevent_softwareVersions    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+    
+Verify OCPS:101 ConfigurationsAvailable Event
+    [Tags]    config_available
+    Verify ConfigurationsAvailable    OCPS    index=101
+    
+Verify OCPS:101 ConfigurationsAvailable timing
+    [Tags]    config_available    timing
+    Verify Time Delta    OCPS:101    logevent_configurationsAvailable    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
 #Scheduler:1
 Verify Scheduler:1 Standby
     [Tags]    standby
