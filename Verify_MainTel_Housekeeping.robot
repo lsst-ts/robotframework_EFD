@@ -9,7 +9,6 @@ Suite Setup    Run Keywords    Check If Failed    AND    Set EFD Values
 @{in_position_field}    inPosition
 ${in_position}    True
 @{filter_field}   filterName
-@{filter_name}    r_03
 
 *** Test Cases ***
 Execute BigCamera Housekeeping
@@ -54,6 +53,7 @@ Verify MTMount Axes Homed
 Verify BigCamera has Filter Set
     [Tags]    bigcamera
     Set Test Variable    ${minutes_ago}    1
+    ${filter_name}=    Set Variable If    "${env_efd}" == "base_efd"    r_57    r_03
     Verify Topic Attribute    ${BigCamera}    logevent_endSetFilter    ${filter_field}    ${filter_name}
     Verify Time Delta    ${BigCamera}    logevent_endSetFilter    minute=${minutes_ago}    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
     Verify Time Delta    ${BigCamera}    command_setFilter    minute=${minutes_ago}    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
