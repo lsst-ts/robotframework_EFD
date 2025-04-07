@@ -13,7 +13,8 @@
 @{GenCam}          GenericCamera:1    GCHeaderService:1
 @{LATISS}          ATOODS    ATCamera    ATHeaderService    ATSpectrograph    OCPS:1
 @{MTCamera}        MTCamera    MTHeaderService    MTOODS    OCPS:3
-@{MTCS}            LaserTracker:1    MTMount    MTPtg    MTDome    MTDomeTrajectory    MTAOS    MTHexapod:1    MTHexapod:2    MTRotator    MTM1M3    MTM1M3TS    MTM2    MTVMS:1
+# MTRotator must be listed before MTMount, as the shutdown order is significant.
+@{MTCS}            LaserTracker:1    MTRotator    MTMount    MTPtg    MTDome    MTDomeTrajectory    MTAOS    MTHexapod:1    MTHexapod:2    MTM1M3    MTM1M3TS    MTM2    MTVMS:1
 @{ObsSys}          OCPS:101    Scheduler:1    Scheduler:2    Scheduler:3    Watcher
 @{ObsSys_AE}       ScriptQueue:1    ScriptQueue:2    ScriptQueue:3
 @{NON_CONFIG}      ATHeaderService    ATOODS    ATPtg    CCHeaderService    CCOODS    DSM    GCHeaderService    HVAC    LOVE    MTHeaderService    MTOODS    MTPtg    Script    ScriptQueue    SummitFacility
