@@ -29,8 +29,8 @@ Verify Camera Playlist Loaded
 Execute BigCamera Image Taking Test
     [Tags]    execute    bigcamera_imaging
     # Use the correct script, based on which TestStand is being used.
-    ${integration_script}=    Set Variable If    "${env_efd}" == "base_efd"    lsstcam_image_taking    comcam_image_taking
-    ${scripts}    ${states}=    Execute Integration Test    comcam_image_taking
+    ${image_taking_script}=    Set Variable If    "${env_efd}" == "base_efd"    lsstcam_image_taking    comcam_image_taking
+    ${scripts}    ${states}=    Execute Integration Test    ${image_taking_script}
     Verify Scripts Completed Successfully    ${scripts}    ${states}
     Check If Script Failed    ${states}
 

@@ -7,24 +7,14 @@ Suite Setup    Set EFD Values
 
 *** Variables ***
 ${state}    Offline
-${cccamera_salver}    ${SALVersion}
-${cccamera_xmlver}    ${XMLVersion}
-${ccoods_salver}    ${SALVersion}
-${ccoods_xmlver}    ${XMLVersion}
-${ccheaderservice_salver}    ${SALVersion}
-${ccheaderservice_xmlver}    ${XMLVersion}
-${mtcamera_salver}    ${SALVersion}
-${mtcamera_xmlver}    ${XMLVersion}
-${mtoods_salver}    ${SALVersion}
-${mtoods_xmlver}    ${XMLVersion}
-${mtheaderservice_salver}    ${SALVersion}
-${mtheaderservice_xmlver}    ${XMLVersion}
-${ocps2_salver}    ${SALVersion}
-${ocps2_xmlver}    ${XMLVersion}
-${ocps3_salver}    ${SALVersion}
-${ocps3_xmlver}    ${XMLVersion}
 
 *** Test Cases ***
+Execute Watcher Enabled to Offline
+    [Tags]    
+    @{script_args}=    Create List    ${state}    2
+    ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    Watcher    @{script_args}
+    Verify Scripts Completed Successfully    ${scripts}    ${states}
+
 Execute ATCS Enabled to Offline
     [Tags]    atcs    robot:continue-on-failure
     @{script_args}=    Create List    ${state}    2
@@ -96,7 +86,7 @@ Execute MTCS Enabled to Offline
 Execute MTAirCompressors Enabled to Offline
     [Tags]    mtaircompressor    robot:continue-on-failure
     @{script_args}=    Create List    ${state}    1
-    FOR ${csc}    IN    @{AUTO_DISABLED}
+    FOR    ${csc}    IN    @{AUTO_DISABLED}
         ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    ${csc}    @{script_args}
         Verify Scripts Completed Successfully    ${scripts}    ${states}
     END
@@ -104,6 +94,8 @@ Execute MTAirCompressors Enabled to Offline
 Execute ObsSys Enabled to Offline
     [Tags]    obssys    robot:continue-on-failure
     @{script_args}=    Create List    ${state}    3
+    # Remove Watcher, as it is shutdown, explicitly, first.
+    Remove Values From List    @{ObsSys}    Watcher
     FOR    ${csc}    IN    @{ObsSys}
         ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    ${csc}    @{script_args}
         Verify Scripts Completed Successfully    ${scripts}    ${states}
@@ -114,3 +106,12 @@ Execute Test:42 Enabled to Offline
     @{script_args}=    Create List    ${state}    1
     ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    Test:42    @{script_args}
     Verify Scripts Completed Successfully    ${scripts}    ${states}
+
+# ScriptQueues must go last.
+Execute ScriptQueues Enabled to Offline
+    [Tags]    obssys_ae    robot:continue-on-failure
+    @{script_args}=    Create List    ${state}    3
+    FOR    ${csc}    IN    @{ObsSys_AE}
+        ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    ${csc}    @{script_args}
+        Verify Scripts Completed Successfully    ${scripts}    ${states}
+    END
