@@ -31,7 +31,6 @@ Execute ATCS Disabled to Enabled
     FOR    ${csc}    IN    @{ATCS}
         ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    ${csc}    @{script_args}
         Verify Scripts Completed Successfully    ${scripts}    ${states}
-        Report If Failed    ${scripts}    ${states}    ${csc}
     END
 
 Execute LATISS Disabled to Enabled
@@ -41,7 +40,6 @@ Execute LATISS Disabled to Enabled
         Run Keyword If    "${csc}" == "ATCamera"    Append To List    ${script_args}    -a Normal
         ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    ${csc}    @{script_args}
         Verify Scripts Completed Successfully    ${scripts}    ${states}
-        Report If Failed    ${scripts}    ${states}    ${csc}
     END
 
 Execute BigCamera Disabled to Enabled
@@ -52,7 +50,6 @@ Execute BigCamera Disabled to Enabled
     FOR    ${csc}    IN    @{bigcamera_cscs}
         ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    ${csc}    @{script_args}
         Verify Scripts Completed Successfully    ${scripts}    ${states}
-        Report If Failed    ${scripts}    ${states}    ${csc}
     END
 
 Execute Calibration Disabled to Enabled
@@ -61,7 +58,6 @@ Execute Calibration Disabled to Enabled
     FOR    ${csc}    IN    @{Calibration}
         ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    ${csc}    @{script_args}
         Verify Scripts Completed Successfully    ${scripts}    ${states}
-        Report If Failed    ${scripts}    ${states}    ${csc}
     END
 
 Execute EnvSys Disabled to Enabled
@@ -70,7 +66,6 @@ Execute EnvSys Disabled to Enabled
     FOR    ${csc}    IN    @{EnvSys}
         ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    ${csc}    @{script_args}
         Verify Scripts Completed Successfully    ${scripts}    ${states}
-        Report If Failed    ${scripts}    ${states}    ${csc}
     END
 
 Execute GenCam Disabled to Enabled
@@ -79,7 +74,6 @@ Execute GenCam Disabled to Enabled
     FOR    ${csc}    IN    @{GenCam}
         ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    ${csc}    @{script_args}
         Verify Scripts Completed Successfully    ${scripts}    ${states}
-        Report If Failed    ${scripts}    ${states}    ${csc}
     END
 
 Execute MTCS Disabled to Enabled
@@ -88,7 +82,6 @@ Execute MTCS Disabled to Enabled
     FOR    ${csc}    IN    @{MTCS}
         ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    ${csc}    @{script_args}
         Verify Scripts Completed Successfully    ${scripts}    ${states}
-        Report If Failed    ${scripts}    ${states}    ${csc}
     END
 
 Execute MTAirCompressors Disabled to Enabled
@@ -97,7 +90,6 @@ Execute MTAirCompressors Disabled to Enabled
     FOR    ${csc}    IN    @{AUTO_DISABLED}
         ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    ${csc}    @{script_args}
         Verify Scripts Completed Successfully    ${scripts}    ${states}
-        Report If Failed    ${scripts}    ${states}    ${csc}
     END
 
 Execute ObsSys Disabled to Enabled
@@ -106,11 +98,9 @@ Execute ObsSys Disabled to Enabled
     FOR    ${csc}    IN    @{ObsSys}
         ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    ${csc}    @{script_args}
         Verify Scripts Completed Successfully    ${scripts}    ${states}
-        Report If Failed    ${scripts}    ${states}    ${csc}
     END
 
 Execute Test:42 Disabled to Enabled
     [Tags]    test42
     ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    Test:42    Enabled    1
     Verify Scripts Completed Successfully    ${scripts}    ${states}
-    Report If Failed    ${scripts}    ${states}    Test:42
