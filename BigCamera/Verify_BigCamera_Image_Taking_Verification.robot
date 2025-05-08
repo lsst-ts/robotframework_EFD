@@ -4,7 +4,7 @@ Resource    ../CSC_Lists.resource
 Resource    ../Common_Keywords.resource
 Library     Process
 Force Tags    image_taking_verification
-Suite Setup    Run Keywords    Set EFD Values    AND    Check If Failed
+Suite Setup    Run Keyword    Set EFD Values
 
 *** Variables ***
 

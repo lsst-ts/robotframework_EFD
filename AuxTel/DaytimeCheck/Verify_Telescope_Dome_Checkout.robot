@@ -4,7 +4,6 @@ Resource    ../../CSC_Lists.resource
 Resource    ../../Common_Keywords.resource
 Library     Process
 Force Tags    at_telescope_dome_checkout
-Suite Setup    Check If Failed
 
 *** Variables ***
 

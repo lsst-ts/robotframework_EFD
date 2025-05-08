@@ -3,7 +3,7 @@ Resource    Global_Vars.resource
 Resource    CSC_Lists.resource
 Resource    Common_Keywords.resource
 Force Tags    mthousekeeping
-Suite Setup    Run Keywords    Check If Failed    AND    Set EFD Values
+Suite Setup    Run Keyword    Set EFD Values
 
 *** Variables ***
 @{in_position_field}    inPosition

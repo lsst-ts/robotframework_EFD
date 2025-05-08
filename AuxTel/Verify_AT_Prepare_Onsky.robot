@@ -3,7 +3,6 @@ Resource    ../Global_Vars.resource
 Resource    ../CSC_Lists.resource
 Resource    ../Common_Keywords.resource
 Force Tags    auxtel_prep_onsky
-Suite Setup    Check If Failed
 
 *** Variables ***
 @{azimuthInPosition}    inPosition
