@@ -631,6 +631,16 @@ Verify ESS:303 scheiderPm5xxx Data is Recent
     [Tags]    timing
     Verify Time Delta    ESS:303    scheiderPm5xxx    minute=${ess_minutes_ago}    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
+# ESS:305
+Verify ESS:305 agcGenset150 Published Data
+    [Tags]    ess305 
+    ${dataframe}=    Get Recent Samples    ESS    agcGenset150    ["*",]    num=1    index=305
+    Log    ${dataframe}   
+    Should Not Be True    ${dataframe.empty}
+    Should Be Equal As Strings    ${dataframe.private_identity.values}[0]    ESS:305
+
+
+
 # WeatherForecast
 Verify WeatherForecast hourlyTrend Published Data
     [Tags]    robot:continue-on-failure
