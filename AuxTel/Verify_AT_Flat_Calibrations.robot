@@ -18,8 +18,8 @@ Load Camera Playlist
 Verify ATCamera Playlist Loaded 
     [Tags]
     Log    ${playlist_full_name}
+    Wait Until Keyword Succeeds    5s    1s    Verify Topic Attribute    ATCamera    command_play    ["playlist"]    ["${playlist_full_name}"]
     ${dataframe}=    Get Recent Samples    ATCamera    command_play    ["*",]    1    None
-    Should Be Equal    ${dataframe.playlist.values}[0]    ${playlist_full_name}
 
 Execute AuxTel Flat Calibrations
     [Tags]    execute
