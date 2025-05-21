@@ -4,7 +4,7 @@ Resource    ../CSC_Lists.resource
 Resource    ../Common_Keywords.resource
 Library     Process
 Force Tags    image_taking_verification
-Suite Setup    Run Keywords    Set EFD Values    AND    Check If Failed
+Suite Setup    Run Keyword    Set EFD Values
 
 *** Variables ***
 
@@ -23,8 +23,8 @@ Load Camera Playlist
 Verify Camera Playlist Loaded
     [Documentation]    Playlist should already be loaded, ensure nothing was changed prior to running this script.
     [Tags]    playlist    bigcamera_imaging
+    Wait Until Keyword Succeeds    5s    1s    Verify Topic Attribute    ATCamera    command_play    ["playlist"]    ["bias_dark_flat"]
     ${dataframe}=    Get Recent Samples    ${BigCamera}    command_play    ["playlist", "repeat", "private_identity", "private_origin",]    1    None
-    Should Be Equal    ${dataframe.playlist.values}[0]    bias_dark_flat
 
 Execute BigCamera Image Taking Test
     [Tags]    execute    bigcamera_imaging

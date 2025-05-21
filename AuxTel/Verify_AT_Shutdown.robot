@@ -5,7 +5,6 @@ Resource    ../CSC_Lists.resource
 Resource    ../Common_Keywords.resource
 Library     Collections
 Force Tags    auxtel_stop
-Suite Setup    Check If Failed
 
 *** Variables ***
 @{atMountState}         state

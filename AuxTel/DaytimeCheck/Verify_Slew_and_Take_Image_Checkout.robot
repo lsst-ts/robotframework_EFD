@@ -4,7 +4,6 @@ Resource    ../../CSC_Lists.resource
 Resource    ../../Common_Keywords.resource
 Library     Process
 Force Tags    slew_take_image_checkout
-Suite Setup    Check If Failed
 
 *** Variables ***
 
@@ -18,8 +17,8 @@ Load Camera Playlist
 Verify ATCamera Playlist Loaded
     [Documentation]    Playlist should already be loaded, ensure nothing was changed prior to running this script.
     [Tags]
+    Wait Until Keyword Succeeds    5s    1s    Verify Topic Attribute    ATCamera    command_play    ["playlist"]    ["bias_dark_flat"]
     ${dataframe}=    Get Recent Samples    ATCamera    command_play    ["playlist", "repeat", "private_identity", "private_origin",]    1    None
-    Should Be Equal    ${dataframe.iloc[0].playlist}    bias_dark_flat
 
 Execute AuxTel Slew and Take Image
     [Tags]    execute

@@ -4,7 +4,7 @@ Resource    ../../CSC_Lists.resource
 Resource    ../../Common_Keywords.resource
 Library     Collections
 Force Tags    at_night_ops    acq_take_seq
-Suite Setup    Run Keywords    Check If Failed    AND    Set Variables    ${playlist}
+Suite Setup    Run Keyword    Set Variables    ${playlist}
 
 *** Variables ***
 ${playlist}    replace_me
@@ -26,8 +26,8 @@ Load Camera Playlist
 Verify ATCamera Playlist Loaded
     [Tags]
     Log    ${playlist_full_name}
+    Wait Until Keyword Succeeds    5s    1s    Verify Topic Attribute    ATCamera    command_play    ["playlist"]    ["${playlist_full_name}"]
     ${dataframe}=    Get Recent Samples    ATCamera    command_play    ["*",]    1    None
-    Should Be Equal    ${dataframe.iloc[0].playlist}    ${playlist_full_name}
 
 Execute AuxTel LATISS Acquire
     [Tags]    execute

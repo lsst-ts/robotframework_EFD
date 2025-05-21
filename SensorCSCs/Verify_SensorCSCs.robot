@@ -631,6 +631,90 @@ Verify ESS:303 scheiderPm5xxx Data is Recent
     [Tags]    timing
     Verify Time Delta    ESS:303    scheiderPm5xxx    minute=${ess_minutes_ago}    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
+# ESS:304
+Verify ESS:304 ringssMeasurement Published Event
+    [Tags]    ess304    robot:continue-on-failure
+    ${dataframe}=    Get Recent Samples    ESS    logevent_ringssMeasurement    ["private_identity","hrNum","zenithDistance","flux","fwhmScintillation","fwhmSector","fwhmFree","wind","tau0","theta0","totalVariance","eRMS","turbulenceProfiles0","turbulenceProfiles1","turbulenceProfiles2","turbulenceProfiles3","turbulenceProfiles4","turbulenceProfiles5","turbulenceProfiles6","turbulenceProfiles7"]    num=1    index=304
+    Log    ${dataframe}   
+    Should Not Be True    ${dataframe.empty}
+    Should Be Equal As Strings    ${dataframe.private_identity.values}[0]    ESS:304
+    Should Be True    abs(${dataframe.hrNum.values}[0]) >= 0
+    Should Be True    abs(${dataframe.zenithDistance.values}[0]) >= 0
+    Should Be True    abs(${dataframe.flux.values}[0]) >= 0
+    Should Be True    abs(${dataframe.fwhmScintillation.values}[0]) >= 0
+    Should Be True    abs(${dataframe.fwhmSector.values}[0]) >= 0
+    Should Be True    abs(${dataframe.fwhmFree.values}[0]) >= 0
+    Should Be True    abs(${dataframe.wind.values}[0]) >= 0
+    Should Be True    abs(${dataframe.tau0.values}[0]) >= 0
+    Should Be True    abs(${dataframe.theta0.values}[0]) >= 0
+    Should Be True    abs(${dataframe.totalVariance.values}[0]) >= 0
+    Should Be True    abs(${dataframe.eRMS.values}[0]) >= 0
+    Should Be True    abs(${dataframe.turbulenceProfiles0.values}[0]) >= 0
+    Should Be True    abs(${dataframe.turbulenceProfiles1.values}[0]) >= 0
+    Should Be True    abs(${dataframe.turbulenceProfiles2.values}[0]) >= 0
+    Should Be True    abs(${dataframe.turbulenceProfiles3.values}[0]) >= 0
+    Should Be True    abs(${dataframe.turbulenceProfiles4.values}[0]) >= 0
+    Should Be True    abs(${dataframe.turbulenceProfiles5.values}[0]) >= 0
+    Should Be True    abs(${dataframe.turbulenceProfiles6.values}[0]) >= 0
+    Should Be True    abs(${dataframe.turbulenceProfiles7.values}[0]) >= 0
+
+Verify ESS:304 logevent_ringssMeasurement Event is Recent
+    [Tags]    ess304    timing
+    ${ess_minutes_ago}=    Set Variable    5    #5 minutes
+    Verify Time Delta    ESS:304    logevent_ringssMeasurement    minute=${ess_minutes_ago}    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
+# ESS:305
+Verify ESS:305 agcGenset150 Published Data
+    [Tags]    ess305     robot:continue-on-failure
+    ${dataframe}=    Get Recent Samples    ESS    agcGenset150    ["private_identity","running","engineTotalFuel","engineHours","generatorVoltageL1L2","generatorVoltageL2L3","generatorVoltageL3L1","busBVoltageL1N","busBVoltageL2N","busBVoltageL3N","systemFrequency","totalPowerFactor","generatorCurrentL1","generatorCurrentL2","generatorCurrentL3"]    num=1    index=305
+    Log    ${dataframe}   
+    Should Not Be True    ${dataframe.empty}
+    Should Be Equal As Strings    ${dataframe.private_identity.values}[0]    ESS:305
+    Should Be True    ${dataframe.running.values}[0]
+    Should Be True    abs(${dataframe.engineTotalFuel.values}[0]) >= 0
+    Should Be True    abs(${dataframe.engineHours.values}[0]) >= 0
+    Should Be True    abs(${dataframe.generatorVoltageL1L2.values}[0]) >= 0
+    Should Be True    abs(${dataframe.generatorVoltageL2L3.values}[0]) >= 0
+    Should Be True    abs(${dataframe.generatorVoltageL3L1.values}[0]) >= 0
+    Should Be True    abs(${dataframe.busBVoltageL1N.values}[0]) >= 0
+    Should Be True    abs(${dataframe.busBVoltageL2N.values}[0]) >= 0
+    Should Be True    abs(${dataframe.busBVoltageL3N.values}[0]) >= 0
+    Should Be True    abs(${dataframe.systemFrequency.values}[0]) >= 0
+    Should Be True    abs(${dataframe.totalPowerFactor.values}[0]) >= 0
+    Should Be True    abs(${dataframe.generatorCurrentL1.values}[0]) >= 0
+    Should Be True    abs(${dataframe.generatorCurrentL2.values}[0]) >= 0
+    Should Be True    abs(${dataframe.generatorCurrentL1.values}[0]) >= 0
+
+Verify ESS:305 agcGenset150 Data is Recent
+    [Tags]    ess305    timing
+    Verify Time Delta    ESS:305    agcGenset150    minute=${ess_minutes_ago}    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
+# ESS:306
+Verify ESS:306 agcGenset150 Published Data
+    [Tags]    ess306    robot:continue-on-failure
+    ${dataframe}=    Get Recent Samples    ESS    agcGenset150    ["private_identity","running","engineTotalFuel","engineHours","generatorVoltageL1L2","generatorVoltageL2L3","generatorVoltageL3L1","busBVoltageL1N","busBVoltageL2N","busBVoltageL3N","systemFrequency","totalPowerFactor","generatorCurrentL1","generatorCurrentL2","generatorCurrentL3"]    num=1    index=306
+    Log    ${dataframe}   
+    Should Not Be True    ${dataframe.empty}
+    Should Be Equal As Strings    ${dataframe.private_identity.values}[0]    ESS:306
+    Should Be True    ${dataframe.running.values}[0]
+    Should Be True    abs(${dataframe.engineTotalFuel.values}[0]) >= 0
+    Should Be True    abs(${dataframe.engineHours.values}[0]) >= 0
+    Should Be True    abs(${dataframe.generatorVoltageL1L2.values}[0]) >= 0
+    Should Be True    abs(${dataframe.generatorVoltageL2L3.values}[0]) >= 0
+    Should Be True    abs(${dataframe.generatorVoltageL3L1.values}[0]) >= 0
+    Should Be True    abs(${dataframe.busBVoltageL1N.values}[0]) >= 0
+    Should Be True    abs(${dataframe.busBVoltageL2N.values}[0]) >= 0
+    Should Be True    abs(${dataframe.busBVoltageL3N.values}[0]) >= 0
+    Should Be True    abs(${dataframe.systemFrequency.values}[0]) >= 0
+    Should Be True    abs(${dataframe.totalPowerFactor.values}[0]) >= 0
+    Should Be True    abs(${dataframe.generatorCurrentL1.values}[0]) >= 0
+    Should Be True    abs(${dataframe.generatorCurrentL2.values}[0]) >= 0
+    Should Be True    abs(${dataframe.generatorCurrentL1.values}[0]) >= 0
+
+Verify ESS:306 agcGenset150 Data is Recent
+    [Tags]    ess306    timing
+    Verify Time Delta    ESS:306    agcGenset150    minute=${ess_minutes_ago}    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
 # WeatherForecast
 Verify WeatherForecast hourlyTrend Published Data
     [Tags]    robot:continue-on-failure
