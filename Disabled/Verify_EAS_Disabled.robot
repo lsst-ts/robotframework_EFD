@@ -260,6 +260,74 @@ Verify ESS:113 ConfigurationApplied Event timing
     [Tags]    config_applied    timing
     Verify Time Delta    ESS:113    logevent_configurationApplied    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
+# ESS:114
+Verify ESS:114 Disabled
+    [Tags]    disabled
+    Verify Summary State    ${STATES}[disabled]    ESS:114
+    
+Verify ESS:114 SummaryState timing
+    [Tags]    software_versions    timing
+    Verify Time Delta    ESS:114    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+    
+Verify ESS:114 ConfigurationApplied Event
+    [Tags]    config_applied
+    Verify ConfigurationApplied    ESS    index=114
+    
+Verify ESS:114 ConfigurationApplied Event timing
+    [Tags]    config_applied    timing
+    Verify Time Delta    ESS:114    logevent_configurationApplied    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
+# ESS:115
+Verify ESS:115 Disabled
+    [Tags]    disabled
+    Verify Summary State    ${STATES}[disabled]    ESS:115
+    
+Verify ESS:115 SummaryState timing
+    [Tags]    software_versions    timing
+    Verify Time Delta    ESS:115    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+    
+Verify ESS:115 ConfigurationApplied Event
+    [Tags]    config_applied
+    Verify ConfigurationApplied    ESS    index=115
+    
+Verify ESS:115 ConfigurationApplied Event timing
+    [Tags]    config_applied    timing
+    Verify Time Delta    ESS:115    logevent_configurationApplied    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
+# ESS:116
+Verify ESS:116 Disabled
+    [Tags]    disabled
+    Verify Summary State    ${STATES}[disabled]    ESS:116
+    
+Verify ESS:116 SummaryState timing
+    [Tags]    software_versions    timing
+    Verify Time Delta    ESS:116    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+    
+Verify ESS:116 ConfigurationApplied Event
+    [Tags]    config_applied
+    Verify ConfigurationApplied    ESS    index=116
+    
+Verify ESS:116 ConfigurationApplied Event timing
+    [Tags]    config_applied    timing
+    Verify Time Delta    ESS:116    logevent_configurationApplied    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
+# ESS:117
+Verify ESS:117 Disabled
+    [Tags]    disabled
+    Verify Summary State    ${STATES}[disabled]    ESS:117
+    
+Verify ESS:117 SummaryState timing
+    [Tags]    software_versions    timing
+    Verify Time Delta    ESS:117    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+    
+Verify ESS:117 ConfigurationApplied Event
+    [Tags]    config_applied
+    Verify ConfigurationApplied    ESS    index=117
+    
+Verify ESS:117 ConfigurationApplied Event timing
+    [Tags]    config_applied    timing
+    Verify Time Delta    ESS:117    logevent_configurationApplied    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
 # ESS:201
 Verify ESS:201 Disabled
     [Tags]    disabled

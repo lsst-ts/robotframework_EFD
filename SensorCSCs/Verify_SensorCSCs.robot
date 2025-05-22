@@ -327,6 +327,90 @@ Verify ESS:113 relativeHumidity Data is Recent
     [Tags]    timing
     Verify Time Delta    ESS:113    relativeHumidity    minute=${ess_minutes_ago}    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
+# ESS:114
+Verify ESS:114 temperature Published Data
+    [Tags]    ess114    robot:continue-on-failure
+    ${dataframe}=    Get Recent Samples    ESS    temperature    ["sensorName", "location", "temperatureItem0", "temperatureItem1", "temperatureItem2", "temperatureItem3", "temperatureItem4", "temperatureItem5", "temperatureItem6", "temperatureItem7"]    num=1    index=114
+    Log    ${dataframe}
+    Should Not Be True    ${dataframe.empty}
+    Should Be Equal As Strings    ${dataframe.sensorName.values}[0]    m1m3-ts-01 6/6
+    Should Be Equal As Strings    ${dataframe.location.values}[0]    M1M3
+    Should Be True    abs(${dataframe.temperatureItem0.values}[0]) >= 0
+    Should Be True    abs(${dataframe.temperatureItem1.values}[0]) >= 0
+    Should Be True    abs(${dataframe.temperatureItem2.values}[0]) >= 0
+    Should Be True    abs(${dataframe.temperatureItem3.values}[0]) >= 0
+    Should Be True    abs(${dataframe.temperatureItem4.values}[0]) >= 0
+    Should Be True    abs(${dataframe.temperatureItem5.values}[0]) >= 0
+    Should Be True    abs(${dataframe.temperatureItem6.values}[0]) >= 0
+    Should Be True    abs(${dataframe.temperatureItem7.values}[0]) >= 0
+
+Verify ESS:114 temperature Data is Recent
+    [Tags]    ess114    timing
+    Verify Time Delta    ESS:114    temperature    minute=${ess_minutes_ago}    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
+# ESS:115
+Verify ESS:115 temperature Published Data
+    [Tags]    ess115    robot:continue-on-failure
+    ${dataframe}=    Get Recent Samples    ESS    temperature    ["sensorName", "location", "temperatureItem0", "temperatureItem1", "temperatureItem2", "temperatureItem3", "temperatureItem4", "temperatureItem5", "temperatureItem6", "temperatureItem7"]    num=1    index=115
+    Log    ${dataframe}
+    Should Not Be True    ${dataframe.empty}
+    Should Be Equal As Strings    ${dataframe.sensorName.values}[0]    m1m3-ts-02 6/6
+    Should Be Equal As Strings    ${dataframe.location.values}[0]    M1M3
+    Should Be True    abs(${dataframe.temperatureItem0.values}[0]) >= 0
+    Should Be True    abs(${dataframe.temperatureItem1.values}[0]) >= 0
+    Should Be True    abs(${dataframe.temperatureItem2.values}[0]) >= 0
+    Should Be True    abs(${dataframe.temperatureItem3.values}[0]) >= 0
+    Should Be True    abs(${dataframe.temperatureItem4.values}[0]) >= 0
+    Should Be True    abs(${dataframe.temperatureItem5.values}[0]) >= 0
+    Should Be True    abs(${dataframe.temperatureItem6.values}[0]) >= 0
+    Should Be True    abs(${dataframe.temperatureItem7.values}[0]) >= 0
+
+Verify ESS:115 temperature Data is Recent
+    [Tags]    ess115    timing
+    Verify Time Delta    ESS:115    temperature    minute=${ess_minutes_ago}    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
+# ESS:116
+Verify ESS:116 temperature Published Data
+    [Tags]    ess116    robot:continue-on-failure
+    ${dataframe}=    Get Recent Samples    ESS    temperature    ["sensorName", "location", "temperatureItem0", "temperatureItem1", "temperatureItem2", "temperatureItem3", "temperatureItem4", "temperatureItem5", "temperatureItem6", "temperatureItem7"]    num=1    index=116
+    Log    ${dataframe}
+    Should Not Be True    ${dataframe.empty}
+    Should Be Equal As Strings    ${dataframe.sensorName.values}[0]    m1m3-ts-03 6/6
+    Should Be Equal As Strings    ${dataframe.location.values}[0]    M1M3
+    Should Be True    abs(${dataframe.temperatureItem0.values}[0]) >= 0
+    Should Be True    abs(${dataframe.temperatureItem1.values}[0]) >= 0
+    Should Be True    abs(${dataframe.temperatureItem2.values}[0]) >= 0
+    Should Be True    abs(${dataframe.temperatureItem3.values}[0]) >= 0
+    Should Be True    abs(${dataframe.temperatureItem4.values}[0]) >= 0
+    Should Be True    abs(${dataframe.temperatureItem5.values}[0]) >= 0
+    Should Be True    abs(${dataframe.temperatureItem6.values}[0]) >= 0
+    Should Be True    abs(${dataframe.temperatureItem7.values}[0]) >= 0
+
+Verify ESS:116 temperature Data is Recent
+    [Tags]    ess116    timing
+    Verify Time Delta    ESS:116    temperature    minute=${ess_minutes_ago}    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
+# ESS:117
+Verify ESS:117 temperature Published Data
+    [Tags]    ess117    robot:continue-on-failure
+    ${dataframe}=    Get Recent Samples    ESS    temperature    ["sensorName", "location", "temperatureItem0", "temperatureItem1", "temperatureItem2", "temperatureItem3", "temperatureItem4", "temperatureItem5", "temperatureItem6", "temperatureItem7"]    num=1    index=117
+    Log    ${dataframe}
+    Should Not Be True    ${dataframe.empty}
+    Should Be Equal As Strings    ${dataframe.sensorName.values}[0]    m1m3-ts-04 6/6
+    Should Be Equal As Strings    ${dataframe.location.values}[0]    M1M3
+    Should Be True    abs(${dataframe.temperatureItem0.values}[0]) >= 0
+    Should Be True    abs(${dataframe.temperatureItem1.values}[0]) >= 0
+    Should Be True    abs(${dataframe.temperatureItem2.values}[0]) >= 0
+    Should Be True    abs(${dataframe.temperatureItem3.values}[0]) >= 0
+    Should Be True    abs(${dataframe.temperatureItem4.values}[0]) >= 0
+    Should Be True    abs(${dataframe.temperatureItem5.values}[0]) >= 0
+    Should Be True    abs(${dataframe.temperatureItem6.values}[0]) >= 0
+    Should Be True    abs(${dataframe.temperatureItem7.values}[0]) >= 0
+
+Verify ESS:117 temperature Data is Recent
+    [Tags]    ess117    timing
+    Verify Time Delta    ESS:117    temperature    minute=${ess_minutes_ago}    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
 # ESS:201
 ## airTurbulence ##
 Verify ESS:201 airTurbulence Published Data
