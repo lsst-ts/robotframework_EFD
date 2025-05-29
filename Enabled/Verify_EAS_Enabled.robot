@@ -142,6 +142,42 @@ Verify ESS:113 SummaryState timing
     [Tags]    enabled    timing
     Verify Time Delta    ESS:113    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
+# ESS:114    
+Verify ESS:114 Enabled
+    [Tags]    enabled
+    Verify Summary State    ${STATES}[enabled]    ESS:114
+
+Verify ESS:114 SummaryState timing
+    [Tags]    enabled    timing
+    Verify Time Delta    ESS:114    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
+# ESS:115    
+Verify ESS:115 Enabled
+    [Tags]    enabled
+    Verify Summary State    ${STATES}[enabled]    ESS:115
+
+Verify ESS:115 SummaryState timing
+    [Tags]    enabled    timing
+    Verify Time Delta    ESS:115    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
+# ESS:116    
+Verify ESS:116 Enabled
+    [Tags]    enabled
+    Verify Summary State    ${STATES}[enabled]    ESS:116
+
+Verify ESS:116 SummaryState timing
+    [Tags]    enabled    timing
+    Verify Time Delta    ESS:116    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
+# ESS:117    
+Verify ESS:117 Enabled
+    [Tags]    enabled
+    Verify Summary State    ${STATES}[enabled]    ESS:117
+
+Verify ESS:117 SummaryState timing
+    [Tags]    enabled    timing
+    Verify Time Delta    ESS:117    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
 # ESS:201
 Verify ESS:201 Enabled
     [Tags]    enabled

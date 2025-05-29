@@ -49,7 +49,12 @@ Verify LinearStage:104 Shutdown
     [Tags]    linearstage
     Verify Shutdown Process    LinearStage    index=104
 
+# MTReflector
+Verify MTReflector Shutdown
+    [Tags]    mtreflector
+    Verify Shutdown Process    MTReflector
+
 # TunableLaser
 Verify TunableLaser Shutdown
     [Tags]    tunablelaser
-    Verify Shutdown Process    LinearStage
+    Verify Shutdown Process    MTReflector
