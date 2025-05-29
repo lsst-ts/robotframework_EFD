@@ -15,6 +15,7 @@ ${linearstage101_xmlver}    ${XMLVersion}
 ${linearstage102_xmlver}    ${XMLVersion}
 ${linearstage103_xmlver}    ${XMLVersion}
 ${linearstage104_xmlver}    ${XMLVersion}
+${mtreflector_xmlver}    ${XMLVersion}
 ${tunablelaser_xmlver}    ${XMLVersion}
 
 *** Test Cases ***
@@ -268,10 +269,35 @@ Verify LinearStage:104 ConfigurationsAvailable timing
     [Tags]    config_available    timing
     Verify Time Delta    LinearStage:104    logevent_configurationsAvailable    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
+# MTReflector
+Verify MTReflector Enabled
+    [Tags]    standby
+    Verify Summary State    ${STATES}[standby]    MTReflector
+
+Verify MTReflector SummaryState timing
+    [Tags]    software_versions    timing
+    Verify Time Delta    MTReflector    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+    
+Verify MTReflector SoftwareVersions
+    [Tags]    software_versions 
+    Verify Software Versions    MTReflector    csc_xmlver=${mtreflector_xmlver}
+
+Verify MTReflector SoftwareVersions timing
+    [Tags]    software_versions    timing
+    Verify Time Delta    MTReflector    logevent_softwareVersions    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+    
+Verify MTReflector ConfigurationsAvailable Event
+    [Tags]    config_available
+    Verify ConfigurationsAvailable    MTReflector
+
+Verify MTReflector ConfigurationsAvailable timing
+    [Tags]    config_available    timing
+    Verify Time Delta    MTReflector    logevent_configurationsAvailable    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
 # TunableLaser
 Verify TunableLaser Enabled
     [Tags]    standby
-    Verify Summary State    ${STATES}[standby]    LinearStage
+    Verify Summary State    ${STATES}[standby]    TunableLaser
 
 Verify TunableLaser SummaryState timing
     [Tags]    software_versions    timing
@@ -287,7 +313,7 @@ Verify TunableLaser SoftwareVersions timing
     
 Verify TunableLaser ConfigurationsAvailable Event
     [Tags]    config_available
-    Verify ConfigurationsAvailable    LinearStage
+    Verify ConfigurationsAvailable    TunableLaser
     
 Verify TunableLaser ConfigurationsAvailable timing
     [Tags]    config_available    timing

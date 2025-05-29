@@ -95,6 +95,15 @@ Verify LinearStage:104 SummaryState timing
     [Tags]    software_versions    timing
     Verify Time Delta    LinearStage:104    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
+# MTReflector
+Verify MTReflector Enabled
+    [Tags]    enabled
+    Verify Summary State    ${STATES}[enabled]    MTReflector
+    
+Verify MTReflector SummaryState timing
+    [Tags]    software_versions    timing
+    Verify Time Delta    MTReflector    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
 # TunableLaser
 Verify TunableLaser Enabled
     [Tags]    enabled
