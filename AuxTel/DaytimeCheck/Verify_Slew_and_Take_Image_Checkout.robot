@@ -3,7 +3,7 @@ Resource    ../../Global_Vars.resource
 Resource    ../../CSC_Lists.resource
 Resource    ../../Common_Keywords.resource
 Library     Process
-Force Tags    slew_take_image_checkout
+Force Tags    daytime_at_slew_take_image
 
 *** Variables ***
 
@@ -22,7 +22,7 @@ Verify ATCamera Playlist Loaded
 
 Execute AuxTel Slew and Take Image
     [Tags]    execute
-    ${scripts}    ${states}=    Execute Integration Test    auxtel_slew_and_take_image_checkout
+    ${scripts}    ${states}=    Execute Integration Test    auxtel_daytime_slew_and_take_image
     Verify Scripts Completed Successfully    ${scripts}    ${states}
     Check If Script Failed    ${states}
 

@@ -3,14 +3,14 @@ Resource    ../../Global_Vars.resource
 Resource    ../../CSC_Lists.resource
 Resource    ../../Common_Keywords.resource
 Library     Process
-Force Tags    at_telescope_dome_checkout
+Force Tags    daytime_at_telescope_dome
 
 *** Variables ***
 
 *** Test Cases ***
 Execute AuxTel Telescope and Dome Checkout Test
     [Tags]    execute
-    ${scripts}    ${states}=    Execute Integration Test    auxtel_telescope_and_dome_checkout
+    ${scripts}    ${states}=    Execute Integration Test    auxtel_daytime_telescope_and_dome
     Verify Scripts Completed Successfully    ${scripts}    ${states}
     Check If Script Failed    ${states}
 
