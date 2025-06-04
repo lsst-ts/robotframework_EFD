@@ -3,7 +3,7 @@ Resource    ../../Global_Vars.resource
 Resource    ../../CSC_Lists.resource
 Resource    ../../Common_Keywords.resource
 Library     Process
-Force Tags    latiss_checkout
+Force Tags    daytime_at_latiss
 
 *** Variables ***
 
@@ -22,7 +22,7 @@ Verify ATCamera Playlist Loaded
 
 Execute LATISS Checkout
     [Tags]    execute
-    ${scripts}    ${states}=    Execute Integration Test    auxtel_latiss_checkout
+    ${scripts}    ${states}=    Execute Integration Test    auxtel_daytime_latiss
     Verify Scripts Completed Successfully    ${scripts}    ${states}
     Check If Script Failed    ${states}
 
