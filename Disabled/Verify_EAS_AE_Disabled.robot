@@ -23,6 +23,11 @@ Verify DSM:2 ConfigurationApplied Event
     [Tags]    config_applied
     Verify ConfigurationApplied    DSM    2
 
+#HVAC
+Verify HVAC Disabled
+    [Tags]    disabled
+    Verify Summary State    ${STATES}[disabled]    HVAC    auto_enable=True
+
 #WeatherForecast
 Verify WeatherForecast Disabled
     [Tags]    disabled

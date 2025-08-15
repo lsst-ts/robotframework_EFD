@@ -13,6 +13,10 @@ Verify DSM:2 Shutdown
     [Tags]    eas_ae
     Verify Shutdown Process    DSM    index=2
 
+Verify HVAC Shutdown
+    [Tags]    eas
+    Verify Shutdown Process    HVAC
+
 Verify WeatherForecast Shutdown
     [Tags]    eas
     Verify Shutdown Process    WeatherForecast

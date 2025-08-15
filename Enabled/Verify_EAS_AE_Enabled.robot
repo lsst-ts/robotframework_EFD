@@ -17,6 +17,11 @@ Verify DSM:2 Enabled
     [Tags]    eas_ae
     Verify Summary State    ${STATES}[enabled]    DSM:2
 
+#HVAC
+Verify HVAC Enabled
+    [Tags]    eas
+    Verify Summary State    ${STATES}[enabled]    HVAC
+
 #WeatherForecast
 Verify WeatherForecast Enabled
     [Tags]    eas
