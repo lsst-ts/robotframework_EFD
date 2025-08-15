@@ -23,4 +23,6 @@
 --variable env_efd:base_efd
 #--variable env_efd:tucson_teststand_efd
 --variable XMLVersion:23.2.0
+--variable hvac_xmlver:23.3.1
+--variable mtaos_xmlver:23.3.1
 --variable SALVersion:10.0.1
