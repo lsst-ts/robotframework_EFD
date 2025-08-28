@@ -5,7 +5,8 @@ Resource    ../Common_Keywords.resource
 Force Tags    mt_air_compressors
 
 *** Variables ***
-${minutes_ago}   0.2  # ~1sec
+${seconds_ago}   30
+${minutes_ago}   0
 ${hours_ago}     0
 ${days_ago}      0
 ${weeks_ago}     0
@@ -38,9 +39,26 @@ Verify MTAirCompressor:1 Status
         ...    ELSE    Should Not Be True    ${dataframe.${field}.values}[0]
     END
 
+PowerOn MTAirCompressor:1
+    [Tags]
+    Comment    Issue the powerOn command.
+    ${scripts}    ${states}=    Execute Integration Test    run_command    1    MTAirCompressor:1    powerOn
+    Verify Scripts Completed Successfully    ${scripts}    ${states}
+
+Verify MTAirCompressor:1 is Operating
+    [Tags]
+    ${dataframe}=    Get Recent Samples    MTAirCompressor    logevent_status    ["operating"]    num=1    index=1
+    Should Be True    ${dataframe.operating.values}[0]
+
 Verify MTAirCompressor:1 Status is Recent
     [Tags]    timing    robot:continue-on-failure
-    Verify Time Delta    MTAirCompressor:1    logevent_status    minute=${minutes_ago}    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+    Verify Time Delta    MTAirCompressor:1    logevent_status    second=${seconds_ago}    minute=${minutes_ago}    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
+PowerOff MTAirCompressor:1
+    [Tags]
+    Comment    Issue the powerOff command.
+    ${scripts}    ${states}=    Execute Integration Test    run_command    1    MTAirCompressor:1    powerOff
+    Verify Scripts Completed Successfully    ${scripts}    ${states}
 
 Verify MTAirCompressor:1 analogData
     [Tags]    robot:continue-on-failure
@@ -53,7 +71,7 @@ Verify MTAirCompressor:1 analogData
 
 Verify MTAirCompressor:1 analogData Data is Recent
     [Tags]    timing    robot:continue-on-failure
-    Verify Time Delta    MTAirCompressor:1    analogData    minute=${minutes_ago}    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+    Verify Time Delta    MTAirCompressor:1    analogData    second=${seconds_ago}    minute=${minutes_ago}    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify MTAirCompressor:1 CompressorInfo
     [Tags]    robot:continue-on-failure
@@ -104,11 +122,28 @@ Verify MTAirCompressor:2 Status
         ...    ELSE    Should Not Be True    ${dataframe.${field}.values}[0]
     END
 
+PowerOn MTAirCompressor:2 
+    [Tags]    
+    Comment    Issue the powerOn command.
+    ${scripts}    ${states}=    Execute Integration Test    run_command    1    MTAirCompressor:2    powerOn
+    Verify Scripts Completed Successfully    ${scripts}    ${states}
+
+Verify MTAirCompressor:2 is Operating
+    [Tags] 
+    ${dataframe}=    Get Recent Samples    MTAirCompressor    logevent_status    ["operating"]    num=1    index=2
+    Should Be True    ${dataframe.operating.values}[0]
+
 Verify MTAirCompressor:2 Status is Recent
     [Tags]    timing    robot:continue-on-failure
-    Verify Time Delta    MTAirCompressor:2    logevent_status    minute=${minutes_ago}    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+    Verify Time Delta    MTAirCompressor:2    logevent_status    second=${seconds_ago}    minute=${minutes_ago}    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
-Verify MTAirCompressor:2 analogData Published Data
+PowerOff MTAirCompressor:2
+    [Tags]
+    Comment    Issue the powerOff command.
+    ${scripts}    ${states}=    Execute Integration Test    run_command    1    MTAirCompressor:2    powerOff
+    Verify Scripts Completed Successfully    ${scripts}    ${states}
+
+Verify MTAirCompressor:2 analogData
     [Tags]    robot:continue-on-failure
     ${dataframe}=    Get Recent Samples    MTAirCompressor    analogData    ["*",]    num=1    index=2
     Log    ${dataframe}
@@ -119,7 +154,7 @@ Verify MTAirCompressor:2 analogData Published Data
 
 Verify MTAirCompressor:2 analogData Data is Recent
     [Tags]    timing    robot:continue-on-failure
-    Verify Time Delta    MTAirCompressor:2    analogData    minute=${minutes_ago}    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+    Verify Time Delta    MTAirCompressor:2    analogData    second=${seconds_ago}    minute=${minutes_ago}    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify MTAirCompressor:2 CompressorInfo
     [Tags]    robot:continue-on-failure
