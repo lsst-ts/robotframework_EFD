@@ -31,7 +31,7 @@ Verify LaserTracker laserStatus is Recent
     [Tags]    timing
     Verify Time Delta    LaserTracker    logevent_laserStatus    second=30    minute=2    hour=0   day=0    week=0
 
-Verify LaserTracker laserStatus is ON
+Verify laser is ON
     [Tags]
     Comment    It takes the laser one minute to warm up before going in the ON state..
     Wait Until Keyword Succeeds    2min    15s     Verify Topic Attribute    LaserTracker:1    logevent_laserStatus    ["status",]    [4,]    #ON
@@ -42,7 +42,7 @@ PowerOff the Laser
     ${scripts}    ${states}=    Execute Integration Test    run_command    3   LaserTracker:1    power     True
     Verify Scripts Completed Successfully    ${scripts}    ${states}
 
-Verify LaserTracker laserStatus is OFF
+Verify laser is OFF
     [Tags]
     Comment    Verify laser is off.
     Wait Until Keyword Succeeds    1min    15s     Verify Topic Attribute    LaserTracker:1    logevent_laserStatus    ["status",]    [2,]    #OFF
