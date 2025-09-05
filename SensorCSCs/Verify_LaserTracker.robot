@@ -19,7 +19,7 @@ Verify LaserTracker laserStatus is OFF
 PowerOn the Laser
     [Tags]
     Comment    Power on the laser.
-    ${scripts}    ${states}=    Execute Integration Test    run_command    3   LaserTracker:1    power     -p True
+    ${scripts}    ${states}=    Execute Integration Test    run_command    3   LaserTracker:1    laserPower    -p power:True
     Verify Scripts Completed Successfully    ${scripts}    ${states}
 
 Verify laserState is NOTCONNECTED
@@ -39,7 +39,7 @@ Verify laser is ON
 PowerOff the Laser
     [Tags]
     Comment    Power off the laser.
-    ${scripts}    ${states}=    Execute Integration Test    run_command    3   LaserTracker:1    power     True
+    ${scripts}    ${states}=    Execute Integration Test    run_command    3   LaserTracker:1    laserPower    -p power:False
     Verify Scripts Completed Successfully    ${scripts}    ${states}
 
 Verify laser is OFF
