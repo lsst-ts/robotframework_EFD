@@ -23,7 +23,7 @@ Verify OCPS:101 Standby
     
 Verify OCPS:101 SoftwareVersions
     [Tags]    software_versions
-    Verify Software Versions    OCPS    index=1    csc_xmlver=${ocps1_xmlver}
+    Verify Software Versions    OCPS    index=1    csc_xmlver=${ocps101_xmlver}
     
 Verify OCPS:101 SoftwareVersions timing
     [Tags]    software_versions    timing
