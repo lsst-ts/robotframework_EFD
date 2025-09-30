@@ -175,6 +175,23 @@ Verify LinearStage:104 ConfigurationApplied Event timing
     [Tags]    config_applied    timing
     Verify Time Delta    LinearStage:104    logevent_configurationApplied    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
+# MTReflector
+Verify MTReflector Disabled    
+    [Tags]    disabled
+    Verify Summary State    ${STATES}[disabled]    MTReflector
+
+Verify MTReflector SummaryState timing
+    [Tags]    software_versions    timing
+    Verify Time Delta    MTReflector    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
+Verify MTReflector ConfigurationApplied Event
+    [Tags]    config_applied
+    Verify ConfigurationApplied    MTReflector
+
+Verify MTReflector ConfigurationApplied Event timing
+    [Tags]    config_applied    timing
+    Verify Time Delta    MTReflector    logevent_configurationApplied    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
 # TunableLaser
 Verify TunableLaser Disabled
     [Tags]    disabled

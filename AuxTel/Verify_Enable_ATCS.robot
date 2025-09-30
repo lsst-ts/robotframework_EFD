@@ -4,7 +4,6 @@ Resource    ../Global_Vars.resource
 Resource    ../CSC_Lists.resource
 Resource    ../Common_Keywords.resource
 Force Tags    auxtel_enable_atcs
-Suite Setup    Check If Failed
 
 *** Variables ***
 @{states_expected}      8

@@ -31,7 +31,6 @@ Execute ATCS Standby to Disabled
     FOR    ${csc}    IN    @{ATCS}
         ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    ${csc}    @{script_args}
         Verify Scripts Completed Successfully    ${scripts}    ${states}
-        Report If Failed    ${scripts}    ${states}    ${csc}
     END
 
 Execute LATISS Standby to Disabled
@@ -41,7 +40,6 @@ Execute LATISS Standby to Disabled
         Run Keyword If    "${csc}" == "ATCamera"    Append To List    ${script_args}    -a Normal
         ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    ${csc}    @{script_args}
         Verify Scripts Completed Successfully    ${scripts}    ${states}
-        Report If Failed    ${scripts}    ${states}    ${csc}
     END
 
 Execute BigCamera Standby to Disabled
@@ -52,7 +50,6 @@ Execute BigCamera Standby to Disabled
     FOR    ${csc}    IN    @{bigcamera_cscs}
         ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    ${csc}    @{script_args}
         Verify Scripts Completed Successfully    ${scripts}    ${states}
-        Report If Failed    ${scripts}    ${states}    ${csc}
     END
 
 Execute Calibration Standby to Disabled
@@ -61,7 +58,6 @@ Execute Calibration Standby to Disabled
     FOR    ${csc}    IN    @{Calibration}
         ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    ${csc}    @{script_args}
         Verify Scripts Completed Successfully    ${scripts}    ${states}
-        Report If Failed    ${scripts}    ${states}    ${csc}
     END
 
 Execute EnvSys Standby to Disabled
@@ -70,7 +66,6 @@ Execute EnvSys Standby to Disabled
     FOR    ${csc}    IN    @{EnvSys}
         ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    ${csc}    @{script_args}
         Verify Scripts Completed Successfully    ${scripts}    ${states}
-        Report If Failed    ${scripts}    ${states}    ${csc}
     END
 
 Execute GenCam Standby to Disabled
@@ -79,7 +74,6 @@ Execute GenCam Standby to Disabled
     FOR    ${csc}    IN    @{GenCam}
         ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    ${csc}    @{script_args}
         Verify Scripts Completed Successfully    ${scripts}    ${states}
-        Report If Failed    ${scripts}    ${states}    ${csc}
     END
 
 Execute MTCS Standby to Disabled
@@ -89,7 +83,6 @@ Execute MTCS Standby to Disabled
         Run Keyword If    "${csc}" == "MTM1M3"    Append To List    ${script_args}    -a Default
         ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    ${csc}    @{script_args}
         Verify Scripts Completed Successfully    ${scripts}    ${states}
-        Report If Failed    ${scripts}    ${states}    ${csc}
     END
 
 Execute ObsSys Standby to Disabled
@@ -98,7 +91,6 @@ Execute ObsSys Standby to Disabled
     FOR    ${csc}    IN    @{ObsSys}
         ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    ${csc}    @{script_args}
         Verify Scripts Completed Successfully    ${scripts}    ${states}
-        Report If Failed    ${scripts}    ${states}    ${csc}
     END
 
 Execute Test:42 Standby to Disabled
@@ -106,4 +98,3 @@ Execute Test:42 Standby to Disabled
     @{script_args}=    Create List    ${state}    1
     ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    Test:42    @{script_args}
     Verify Scripts Completed Successfully    ${scripts}    ${states}
-    Report If Failed    ${scripts}    ${states}    Test:42

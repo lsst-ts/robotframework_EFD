@@ -4,7 +4,6 @@ Resource    ../../CSC_Lists.resource
 Resource    ../../Common_Keywords.resource
 Library     Process
 Force Tags    at_night_ops    wep_align
-Suite Setup    Check If Failed
 
 *** Variables ***
 
@@ -33,8 +32,8 @@ Load Camera Playlist
 Verify ATCamera Playlist Loaded
     [Documentation]    Playlist should already be loaded, ensure nothing was changed prior to running this script.
     [Tags]
+    Wait Until Keyword Succeeds    5s    1s    Verify Topic Attribute    ATCamera    command_play    ["playlist"]    ["cwfs-test_take_sequence"]
     ${dataframe}=    Get Recent Samples    ATCamera    command_play    ["playlist", "repeat", "private_identity", "private_origin",]    1    None
-    Should Be Equal    ${dataframe.iloc[0].playlist}    cwfs-test_take_sequence
 
 Execute AuxTel LATISS WEP Align test
     [Tags]    execute

@@ -34,10 +34,6 @@ Verify EAS Shutdown
     Verify Shutdown Process    EAS
 
 # ESS
-Verify ESS:1 Shutdown
-    [Tags]    envsys
-    Verify Shutdown Process    ESS    index=1
-
 Verify ESS:104 Shutdown
     [Tags]    envsys
     Verify Shutdown Process    ESS    index=104
@@ -78,6 +74,42 @@ Verify ESS:113 Shutdown
     [Tags]    envsys
     Verify Shutdown Process    ESS    index=113
 
+Verify ESS:114 Shutdown
+    [Tags]    envsys
+    Verify Shutdown Process    ESS    index=114
+
+Verify ESS:115 Shutdown
+    [Tags]    envsys
+    Verify Shutdown Process    ESS    index=115
+
+Verify ESS:116 Shutdown
+    [Tags]    envsys
+    Verify Shutdown Process    ESS    index=116
+
+Verify ESS:117 Shutdown
+    [Tags]    envsys
+    Verify Shutdown Process    ESS    index=117
+
+Verify ESS:118 Shutdown
+    [Tags]    envsys
+    Verify Shutdown Process    ESS    index=118
+
+Verify ESS:119 Shutdown
+    [Tags]    envsys
+    Verify Shutdown Process    ESS    index=119
+
+Verify ESS:120 Shutdown
+    [Tags]    envsys
+    Verify Shutdown Process    ESS    index=120
+
+Verify ESS:121 Shutdown
+    [Tags]    envsys
+    Verify Shutdown Process    ESS    index=121
+
+Verify ESS:122 Shutdown
+    [Tags]    envsys
+    Verify Shutdown Process    ESS    index=122
+
 Verify ESS:201 Shutdown
     [Tags]    envsys
     Verify Shutdown Process    ESS    index=201
@@ -85,10 +117,6 @@ Verify ESS:201 Shutdown
 Verify ESS:202 Shutdown
     [Tags]    envsys
     Verify Shutdown Process    ESS    index=202
-
-Verify ESS:203 Shutdown
-    [Tags]    envsys
-    Verify Shutdown Process    ESS    index=203
 
 Verify ESS:204 Shutdown
     [Tags]    envsys
@@ -113,3 +141,7 @@ Verify ESS:305 Shutdown
 Verify ESS:306 Shutdown
     [Tags]    envsys
     Verify Shutdown Process    ESS    index=306
+
+Verify ESS:308 Shutdown
+    [Tags]    envsys
+    Verify Shutdown Process    ESS    index=308

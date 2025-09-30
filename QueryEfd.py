@@ -634,7 +634,7 @@ class QueryEfd:
 
     @keyword
     def verify_time_delta(
-         self, csc: str, topic: str, minute: int = 1, hour: int = None, day: int = None, week: int = 0
+         self, csc: str, topic: str, second: int = 0, minute: int = 1, hour: int = None, day: int = None, week: int = 0
     ) -> None:
         """Fails if the publish time for the given topic is older than
            the Monday of the deployment week. A deployment will reset
@@ -648,6 +648,8 @@ class QueryEfd:
             The name of the CSC, in index format, i.e <CSC>[:<index>].
         topic_1 : `str`
             The name of the first topic.
+        second : `int`
+            The number of seconds to go back. Default is 0.
         minute : `int`
             The number of minutes to go back. Default is 1.
         hour : `int`
@@ -674,7 +676,7 @@ class QueryEfd:
         if hour is None:
               hour = 4       
         # Define the target datetime.
-        time0 = today - datetime.timedelta(minutes=minute, hours=hour, days=day, weeks=week)
+        time0 = today - datetime.timedelta(seconds=second, minutes=minute, hours=hour, days=day, weeks=week)
         # Get the deltas, in seconds.
         ## Actual difference between published time and time0.
         actual_delta = (pub_time - time0).total_seconds() 

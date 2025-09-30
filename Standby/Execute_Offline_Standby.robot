@@ -29,11 +29,9 @@ Execute AuxTel Offline to Standby
     [Tags]    atcamera
     ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    ATCamera    ${state}    2
     Verify Scripts Completed Successfully    ${scripts}    ${states}
-    Report If Failed    ${scripts}    ${states}    ATCamera
 
 Execute BigCamera Offline to Standby
     [Tags]
     Set Tags    ${BigCamera}
     ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    ${BigCamera}    ${state}    1
     Verify Scripts Completed Successfully    ${scripts}    ${states}
-    Report If Failed    ${scripts}    ${states}    ${BigCamera}

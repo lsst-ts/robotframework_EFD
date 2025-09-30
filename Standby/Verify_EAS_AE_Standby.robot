@@ -7,6 +7,7 @@ Force Tags    standby
 *** Variables ***
 ${dsm1_xmlver}    ${XMLVersion}
 ${dsm2_xmlver}    ${XMLVersion}
+${hvac_xmlver}    ${XMLVersion}
 ${weatherforecast_xmlver}    ${XMLVersion}
 
 *** Test Cases ***
@@ -43,6 +44,23 @@ Verify DSM:2 SoftwareVersions timing
 Verify DSM:2 ConfigurationsAvailable Event
     [Tags]    eas_ae    config_available
     Verify ConfigurationsAvailable    DSM    index=2
+
+# HVAC
+Verify HVAC Standby
+    [Tags]    eas_ae
+    Verify Summary State    ${STATES}[standby]    HVAC    auto_enable=True
+
+Verify HVAC SoftwareVersions
+    [Tags]    eas_ae    software_versions
+    Verify Software Versions    HVAC    csc_xmlver=${hvac_xmlver}
+
+Verify HVAC SoftwareVersions timing
+    [Tags]    eas_ae    software_versions    timing
+    Verify Time Delta    HVAC    logevent_softwareVersions    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
+Verify HVAC ConfigurationsAvailable Event
+    [Tags]    eas_ae    config_available
+    Verify ConfigurationsAvailable    HVAC
 
 # WeatherForecast
 Verify WeatherForecast Standby
