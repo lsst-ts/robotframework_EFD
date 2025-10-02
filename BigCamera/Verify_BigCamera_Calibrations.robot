@@ -4,7 +4,7 @@ Resource    ../CSC_Lists.resource
 Resource    ../Common_Keywords.resource
 Library     Collections
 Force Tags    calibrations
-Suite Setup    Run Keyword    Set EFD Values    AND    Set Variables
+Suite Setup    Run Keywords    Set EFD Values    AND    Set Variables
 
 *** Variables ***
 
