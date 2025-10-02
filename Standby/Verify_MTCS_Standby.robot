@@ -330,7 +330,7 @@ Verify MTVMS:1 Standby
 
 Verify MTVMS:1 SoftwareVersions
     [Tags]    software_versions
-    Verify Software Versions    MTVMS:1    csc_salver=${mtvms1_salver}    csc_xmlver=${mtvms1_xmlver}
+    Verify Software Versions    MTVMS    index=1    csc_xmlver=${mtvms1_xmlver}
 
 Verify MTVMS:1 SoftwareVersions timing
     [Tags]    software_versions    timing
