@@ -11,13 +11,13 @@ ${state}    Offline
 *** Test Cases ***
 Execute Watcher Enabled to Offline
     [Tags]    
-    @{script_args}=    Create List    ${state}    2    -a mute_alarms:false
+    @{script_args}=    Create List    ${state}    2    --mute_alarms
     ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    Watcher    @{script_args}
     Verify Scripts Completed Successfully    ${scripts}    ${states}
 
 Execute ATCS Enabled to Offline
     [Tags]    atcs    robot:continue-on-failure
-    @{script_args}=    Create List    ${state}    2    -a mute_alarms:false
+    @{script_args}=    Create List    ${state}    2    --mute_alarms
     FOR    ${csc}    IN    @{ATCS}
         ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    ${csc}    @{script_args}
         Verify Scripts Completed Successfully    ${scripts}    ${states}
@@ -26,7 +26,7 @@ Execute ATCS Enabled to Offline
 Execute LATISS Enabled to Offline
     [Tags]    latiss    robot:continue-on-failure
     FOR    ${csc}    IN    @{LATISS}
-        @{script_args}=    Create List    ${state}    2    -a mute_alarms:false
+        @{script_args}=    Create List    ${state}    2    --mute_alarms
         Run Keyword If    "${csc}" == "ATCamera"    Append To List    ${script_args}    -a Normal
         ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    ${csc}    @{script_args}
         Verify Scripts Completed Successfully    ${scripts}    ${states}
@@ -35,7 +35,7 @@ Execute LATISS Enabled to Offline
 Execute BigCamera Enabled to Offline
     [Tags]    robot:continue-on-failure
     Set Tags    ${BigCamera}
-    @{script_args}=    Create List    ${state}    1    -a mute_alarms:false
+    @{script_args}=    Create List    ${state}    1    --mute_alarms
     @{bigcamera_cscs}=    Set Variable If    "${env_efd}" == "base_efd"    ${MTCamera}    ${ComCam}
     FOR    ${csc}    IN    @{bigcamera_cscs}
         ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    ${csc}    @{script_args}
@@ -44,7 +44,7 @@ Execute BigCamera Enabled to Offline
 
 Execute Calibration Enabled to Offline
     [Tags]    calibration    robot:continue-on-failure
-    @{script_args}=    Create List    ${state}    3    -a mute_alarms:false
+    @{script_args}=    Create List    ${state}    3    --mute_alarms
     FOR    ${csc}    IN    @{Calibration}
         ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    ${csc}    @{script_args}
         Verify Scripts Completed Successfully    ${scripts}    ${states}
@@ -52,7 +52,7 @@ Execute Calibration Enabled to Offline
 
 Execute EnvSys Enabled to Offline
     [Tags]    envsys    robot:continue-on-failure
-    @{script_args}=    Create List    ${state}    3    -a mute_alarms:false
+    @{script_args}=    Create List    ${state}    3    --mute_alarms
     FOR    ${csc}    IN    @{EnvSys}
         ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    ${csc}    @{script_args}
         Verify Scripts Completed Successfully    ${scripts}    ${states}
@@ -60,7 +60,7 @@ Execute EnvSys Enabled to Offline
 
 Execute EnvSys_AE Enabled to Offline
     [Tags]    envsys    robot:continue-on-failure
-    @{script_args}=    Create List    ${state}    3    -a mute_alarms:false
+    @{script_args}=    Create List    ${state}    3    --mute_alarms
     FOR    ${csc}    IN    @{EnvSys_AE}
         ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    ${csc}    @{script_args}
         Verify Scripts Completed Successfully    ${scripts}    ${states}
@@ -68,7 +68,7 @@ Execute EnvSys_AE Enabled to Offline
 
 Execute GenCam Enabled to Offline
     [Tags]    gencam    robot:continue-on-failure
-    @{script_args}=    Create List    ${state}    1    -a mute_alarms:false
+    @{script_args}=    Create List    ${state}    1    --mute_alarms
     FOR    ${csc}    IN    @{GenCam}
         ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    ${csc}    @{script_args}
         Verify Scripts Completed Successfully    ${scripts}    ${states}
@@ -77,7 +77,7 @@ Execute GenCam Enabled to Offline
 Execute MTCS Enabled to Offline
     [Tags]    mtcs    robot:continue-on-failure
     FOR    ${csc}    IN    @{MTCS}
-        @{script_args}=    Create List    ${state}    1    -a mute_alarms:false
+        @{script_args}=    Create List    ${state}    1    --mute_alarms
         Run Keyword If    "${csc}" == "MTM1M3"    Append To List    ${script_args}    -a Default
         ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    ${csc}    @{script_args}
         Verify Scripts Completed Successfully    ${scripts}    ${states}
@@ -85,7 +85,7 @@ Execute MTCS Enabled to Offline
 
 Execute MTAirCompressors Enabled to Offline
     [Tags]    mtaircompressor    robot:continue-on-failure
-    @{script_args}=    Create List    ${state}    1    -a mute_alarms:false
+    @{script_args}=    Create List    ${state}    1    --mute_alarms
     FOR    ${csc}    IN    @{AUTO_DISABLED}
         ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    ${csc}    @{script_args}
         Verify Scripts Completed Successfully    ${scripts}    ${states}
@@ -93,7 +93,7 @@ Execute MTAirCompressors Enabled to Offline
 
 Execute ObsSys Enabled to Offline
     [Tags]    obssys    robot:continue-on-failure
-    @{script_args}=    Create List    ${state}    3    -a mute_alarms:false
+    @{script_args}=    Create List    ${state}    3    --mute_alarms
     # Remove Watcher, as it is shutdown, explicitly, first.
     Remove Values From List    @{ObsSys}    Watcher
     FOR    ${csc}    IN    @{ObsSys}
@@ -103,14 +103,14 @@ Execute ObsSys Enabled to Offline
 
 Execute Test:42 Enabled to Offline
     [Tags]    test:42
-    @{script_args}=    Create List    ${state}    1    -a mute_alarms:false
+    @{script_args}=    Create List    ${state}    1    --mute_alarms
     ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    Test:42    @{script_args}
     Verify Scripts Completed Successfully    ${scripts}    ${states}
 
 # ScriptQueues must go last.
 Execute ScriptQueues Enabled to Offline
     [Tags]    obssys_ae    robot:continue-on-failure
-    @{script_args}=    Create List    ${state}    3    -a mute_alarms:false
+    @{script_args}=    Create List    ${state}    3    --mute_alarms
     FOR    ${csc}    IN    @{ObsSys_AE}
         ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    ${csc}    @{script_args}
         Verify Scripts Completed Successfully    ${scripts}    ${states}
