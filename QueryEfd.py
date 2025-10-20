@@ -499,7 +499,6 @@ class QueryEfd:
         swv_fields = [
             "private_sndStamp",
             "cscVersion",
-            "openSpliceVersion",
             "salVersion",
             "xmlVersion",
         ]
