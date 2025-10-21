@@ -18,7 +18,7 @@ Load Camera Playlist
 Verify Camera Playlist Loaded
     [Tags]    playlist    bigcamera_imaging
     Log    ${playlist_full_name}
-    Wait Until Keyword Succeeds    5s    1s    Verify Topic Attribute    ATCamera    command_play    ["playlist"]    ["${playlist_full_name}"]
+    Wait Until Keyword Succeeds    5s    1s    Verify Topic Attribute    MTCamera    command_play    ["playlist"]    ["${playlist_full_name}"]
     ${dataframe}=    Get Recent Samples    ${BigCamera}    command_play    ["*",]    1    None
     Should Be Equal    ${dataframe.playlist.values}[0]    ${playlist_full_name}
 
