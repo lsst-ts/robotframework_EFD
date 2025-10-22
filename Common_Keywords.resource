@@ -18,14 +18,23 @@ Execute Integration Test
     [Arguments]    ${inttest_script}    @{script_args}
     ${result}=    Run Process    ${inttest_script}    @{script_args}
     Log Many    ${result.rc}    ${result.stdout}    ${result.stderr}
+    # If scripts failed, issue Fatal Error; no point in continuning.
     Run Keyword If    ${result.rc} == 1    Fatal Error
-    ${indexes}=    Get Line    ${result.stdout}   -2
+    # Remove any warning statements appended to end of output.
+    ${str}=    Remove String Using Regexp    ${result.stdout}    warning.*
+    # Remove trailing whitespace (including newline).
+    ${result_str}=    Strip String    ${str}    mode=right
+    @{lines}=    Split To Lines    ${result_str}
+    Log    ${result_str}
+    # Get Script indexes.
+    ${indexes}=    Get Line    ${lines}   -2
     ${string}=    Strip String    ${indexes}    characters=[]
     @{script_indexes}=    Split String    ${string}    separator=,${SPACE}
-    ${states}=    Get Line    ${result.stdout}   -1
+    # Get Script result states.
+    ${states}=    Get Line    ${lines}   -1
     ${string}=    Strip String    ${states}    characters=[]
     @{script_states}=    Split String    ${string}    separator=,${SPACE}
-    RETURN    ${script_indexes}    ${script_states}
+    RETURN    ${script_indexes}    ${result_str}
 
 Verify Scripts Completed Successfully
     [Documentation]    The keyword requires two arguments, the list of `script_indexes` for each script, 
