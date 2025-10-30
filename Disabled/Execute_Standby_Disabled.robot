@@ -29,8 +29,10 @@ Execute ATCS Standby to Disabled
     [Tags]    atcs    robot:continue-on-failure
     @{script_args}=    Create List    ${state}    2
     FOR    ${csc}    IN    @{ATCS}
+        Log to Console    Starting ${csc}...    no_newline=true
         ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    ${csc}    @{script_args}
         Verify Scripts Completed Successfully    ${scripts}    ${states}
+        Log to Console    Done.
     END
 
 Execute LATISS Standby to Disabled
@@ -38,8 +40,10 @@ Execute LATISS Standby to Disabled
     FOR    ${csc}    IN    @{LATISS}
         @{script_args}=    Create List    ${state}    2
         Run Keyword If    "${csc}" == "ATCamera"    Append To List    ${script_args}    -a Normal
+        Log to Console    Starting ${csc}...    no_newline=true
         ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    ${csc}    @{script_args}
         Verify Scripts Completed Successfully    ${scripts}    ${states}
+        Log to Console    Done.
     END
 
 Execute BigCamera Standby to Disabled
@@ -48,32 +52,40 @@ Execute BigCamera Standby to Disabled
     @{bigcamera_cscs}=    Set Variable If    "${env_efd}" == "base_efd"    ${MTCamera}    ${ComCam}
     @{script_args}=    Create List    ${state}    1
     FOR    ${csc}    IN    @{bigcamera_cscs}
+        Log to Console    Starting ${csc}...    no_newline=true
         ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    ${csc}    @{script_args}
         Verify Scripts Completed Successfully    ${scripts}    ${states}
+        Log to Console    Done.
     END
 
 Execute Calibration Standby to Disabled
     [Tags]    calibration    robot:continue-on-failure
     @{script_args}=    Create List    ${state}    1
     FOR    ${csc}    IN    @{Calibration}
+        Log to Console    Starting ${csc}...    no_newline=true
         ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    ${csc}    @{script_args}
         Verify Scripts Completed Successfully    ${scripts}    ${states}
+        Log to Console    Done.
     END
 
 Execute EnvSys Standby to Disabled
     [Tags]    envsys    robot:continue-on-failure
     @{script_args}=    Create List    ${state}    1
     FOR    ${csc}    IN    @{EnvSys}
+        Log to Console    Starting ${csc}...    no_newline=true
         ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    ${csc}    @{script_args}
         Verify Scripts Completed Successfully    ${scripts}    ${states}
+        Log to Console    Done.
     END
 
 Execute GenCam Standby to Disabled
     [Tags]    gencam    robot:continue-on-failure
     @{script_args}=    Create List    ${state}    1
     FOR    ${csc}    IN    @{GenCam}
+        Log to Console    Starting ${csc}...    no_newline=true
         ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    ${csc}    @{script_args}
         Verify Scripts Completed Successfully    ${scripts}    ${states}
+        Log to Console    Done.
     END
 
 Execute MTCS Standby to Disabled
@@ -81,20 +93,26 @@ Execute MTCS Standby to Disabled
     FOR    ${csc}    IN    @{MTCS}
         @{script_args}=    Create List    ${state}    1
         Run Keyword If    "${csc}" == "MTM1M3"    Append To List    ${script_args}    -a Default
+        Log to Console    Starting ${csc}...    no_newline=true
         ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    ${csc}    @{script_args}
         Verify Scripts Completed Successfully    ${scripts}    ${states}
+        Log to Console    Done.
     END
 
 Execute ObsSys Standby to Disabled
     [Tags]    obssys    robot:continue-on-failure
     @{script_args}=    Create List    ${state}    3
     FOR    ${csc}    IN    @{ObsSys}
+        Log to Console    Starting ${csc}...    no_newline=true
         ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    ${csc}    @{script_args}
         Verify Scripts Completed Successfully    ${scripts}    ${states}
+        Log to Console    Done.
     END
 
 Execute Test:42 Standby to Disabled
     [Tags]    test42    robot:continue-on-failure
     @{script_args}=    Create List    ${state}    1
+    Log to Console    Starting Test:42...    no_newline=true
     ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    Test:42    @{script_args}
     Verify Scripts Completed Successfully    ${scripts}    ${states}
+    Log to Console    Done.

@@ -18,7 +18,7 @@ Load Camera Playlist
 Verify Camera Playlist Loaded
     [Tags]    playlist    bigcamera_imaging
     Log    ${playlist_full_name}
-    Wait Until Keyword Succeeds    5s    1s    Verify Topic Attribute    ATCamera    command_play    ["playlist"]    ["${playlist_full_name}"]
+    Wait Until Keyword Succeeds    5s    1s    Verify Topic Attribute    ${BigCamera}    command_play    ["playlist"]    ["${playlist_full_name}"]
     ${dataframe}=    Get Recent Samples    ${BigCamera}    command_play    ["*",]    1    None
     Should Be Equal    ${dataframe.playlist.values}[0]    ${playlist_full_name}
 
@@ -125,7 +125,9 @@ Set Variables
     @{exp_time}=    Create List    @{bias_exp_time}    @{dark_exp_time}    @{flat_exp_time}
     Set Suite Variable    @{exp_time}   
     # Filter and band.
-    Set Suite Variable    ${filter_type}    r
-    Set Suite Variable    ${filter_name}    r_03
+    ${filter_type}=    Set Variable If    "${env_efd}" == "base_efd"    r    r
+    ${filter_name}=    Set Variable If    "${env_efd}" == "base_efd"    r_57    r_03
+    Set Suite Variable    ${filter_type}
+    Set Suite Variable    ${filter_name}
     Set Suite Variable    @{disperser_band}    EMPTY
     Set Suite Variable    @{disperser_name}    EMPTY
