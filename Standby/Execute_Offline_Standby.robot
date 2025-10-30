@@ -27,11 +27,15 @@ ${ocps3_xmlver}    ${XMLVersion}
 *** Test Cases ***
 Execute AuxTel Offline to Standby
     [Tags]    atcamera
+    Log to Console    Starting ATCamera...    no_newline=true
     ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    ATCamera    ${state}    2
     Verify Scripts Completed Successfully    ${scripts}    ${states}
+    Log to Console    Done.
 
 Execute BigCamera Offline to Standby
     [Tags]
     Set Tags    ${BigCamera}
+    Log to Console    Starting ${BigCamera}...    no_newline=true
     ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    ${BigCamera}    ${state}    1
     Verify Scripts Completed Successfully    ${scripts}    ${states}
+    Log to Console    Done.
