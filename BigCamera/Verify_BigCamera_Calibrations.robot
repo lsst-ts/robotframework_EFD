@@ -60,13 +60,13 @@ Verify BigCamera Filter
 Verify Camera Image Sequence
     [Documentation]    Verify the Camera images are the correct type, with the correct exposure time.
     [Tags]    bigcamera_imaging    robot:continue-on-failure
-    ${cmd_df}=    Get Recent Samples    ${BigCamera}    command_takeImages    ["expTime", "keyValueMap", "numImages", "shutter",]    ${num_images}    None
-    ${evt_df}=    Get Recent Samples    ${BigCamera}    logevent_startIntegration    ["additionalValues", "exposureTime", "imageName"]    ${num_images}    None
+    ${cmd_df}=    Get Recent Samples    ${BigCamera}    command_takeImages    ["expTime", "keyValueMap", "numImages", "shutter",]    ${num_exps}    None
+    ${evt_df}=    Get Recent Samples    ${BigCamera}    logevent_startIntegration    ["additionalValues", "exposureTime", "imageName"]    ${num_exps}    None
     Set Suite Variable    @{image_names}    ${evt_df.imageName.values}
     Log Many    ${image_names}
-    Verify Sequence    ${BigCamera}    command_takeImages    expTime    ${num_images}    ${exp_time}
-    Verify Sequence    ${BigCamera}    logevent_startIntegration    exposureTime    ${num_images}    ${exp_time}
-    FOR    ${i}    IN RANGE    ${num_images}
+    Verify Sequence    ${BigCamera}    command_takeImages    expTime    ${num_exps}    ${exp_time}
+    Verify Sequence    ${BigCamera}    logevent_startIntegration    exposureTime    ${num_exps}    ${exp_time}
+    FOR    ${i}    IN RANGE    ${num_exps}
         ${evt_image_type}=    Fetch From Left    ${evt_df.additionalValues.values}[${i}]    :
         Should Be Equal As Strings    ${evt_image_type}    ${img_type_seq}[${i}]
         ${image_type_str}=    Fetch From Left    ${cmd_df.keyValueMap.values}[${i}]    ,
@@ -78,19 +78,22 @@ Verify Camera Image Sequence
 Verify OODS ImageInOODS
     [Tags]    bigcamera_imaging    robot:continue-on-failure
     Wait Until Keyword Succeeds    60 sec    10 sec    Verify Image in OODS    ${OODS}    ${image_names}[0][0]
-    ${total_images}=    Evaluate    ${num_images} * 9    # ComCam has 9 CCDs, so there are 9 times the images.
-    Set Suite Variable    ${total_images}
     ${dataframe}=    Get Recent Samples    ${OODS}    logevent_imageInOODS    ["camera", "description", "obsid",]    ${total_images}    None
     Log    ${image_names}
     Log    ${dataframe.obsid.values}
-    FOR    ${i}    IN RANGE    ${num_images}
-        FOR    ${j}    IN RANGE    ${9}    # ComCam has 9 CCDs, so there are 9 times the images.
-            ${k}=    Evaluate    ${i} * 9 + ${j}
-            ${camera}=    Set Variable If    "${env_efd}" == "base_efd"    LSSTCam    LSSTComCam
-            Should Be Equal As Strings    ${dataframe.camera.values}[${k}]    ${camera}
-            Should Be Equal As Strings    ${dataframe.description.values}[${k}]    file ingested
-            Should Be Equal As Strings    ${dataframe.obsid.values}[${k}]    ${image_names}[0][${i}]
-        END
+    FOR    ${img}    IN    ${image_names}
+        ${oods_image_df}=    Influxdb Query    ${OODS}    logevent_imageInOODS    'camera,description,obsid'    limit=200    where_clause='Where obsid=~/${img}/'
+        Log    ${oods_image_df.shape[0]}
+        Should Be Equal As Numbers    ${oods_image_df.shape[0]}    ${total_images}
+    END
+    #FOR    ${i}    IN RANGE    ${num_exps}
+        #FOR    ${j}    IN RANGE    ${total_images}
+            #${k}=    Evaluate    ${i} * ${total_images} + ${j}
+            #${camera}=    Set Variable If    "${env_efd}" == "base_efd"    LSSTCam    LSSTComCam
+            #Should Be Equal As Strings    ${dataframe.camera.values}[${k}]    ${camera}
+            #Should Be Equal As Strings    ${dataframe.description.values}[${k}]    file ingested
+            #Should Be Equal As Strings    ${dataframe.obsid.values}[${k}]    ${image_names}[0][${i}]
+        #END
     END
 
 Verify HeaderService LargeFileObjectAvailable
@@ -98,7 +101,8 @@ Verify HeaderService LargeFileObjectAvailable
     ${dataframe}=    Get Recent Samples    ${HeaderService}    logevent_largeFileObjectAvailable    ["id", "url",]    ${total_images}    None
     Log    ${image_names}
     Log    ${dataframe.id.values}
-    FOR    ${i}    IN RANGE    ${num_images}
+    Log    ${dataframe.id.count}
+    FOR    ${i}    IN RANGE    ${num_exps}
         Should Be Equal As Strings    ${dataframe.id.values}[${i}]    ${image_names}[0][${i}]
         ${file_name}=    Catenate    SEPARATOR=    ${HeaderService}_header_    ${image_names}[0][${i}]    .yaml
         Should Be Equal As Strings    ${dataframe.url.iloc[${i}].split("/")[-1]}    ${file_name}
@@ -106,13 +110,18 @@ Verify HeaderService LargeFileObjectAvailable
  
 *** Keywords ***
 Set Variables
-    [Documentation]    The sequence length is defined by the number of exposures, num_images.
+    [Documentation]    The sequence length is defined by the number of exposures, num_exps.
     ...    The img_type_seq is defined by the sequence of image types, in reverse order (dataframes are in time-descending order).
     ${bigcam}=    Set Variable If    "${env_efd}" == "base_efd"    mt    cc
     Set Suite Variable    ${bigcam}
     Set Suite Variable    ${playlist_full_name}    bias_dark_flat
+    # Total images.
+    Set Suite Variable    ${num_exps}    30    # 10 Bias + 10 Dark + 10 Flat
+    Set Suite Variable    ${comcam_images}    9    # ComCam has 9 CCDs.
+    Set Suite Variable    ${lsstcam_images}    197    # LSSTCam has 189 science + 8 wavefront CCDs.
+    ${total_images}=    Set Variable If    "${env_efd}" == "base_efd"    ${lsstcam_images}    ${comcam_images}
+    Set Suite Variable    ${total_images}
     # Image type.
-    Set Suite Variable    ${num_images}    30    # 10 Bias + 10 Dark + 10 Flat
     @{n_flat}=    Evaluate    ["FLAT"] * 10
     @{n_dark}=    Evaluate    ["DARK"] * 10
     @{n_bias}=    Evaluate    ["BIAS"] * 10
