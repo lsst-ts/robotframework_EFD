@@ -27,14 +27,14 @@ Execute Integration Test
     @{lines}=    Split To Lines    ${result_str}
     Log    ${result_str}
     # Get Script indexes.
-    ${indexes}=    Get Line    ${lines}   -2
+    ${indexes}=    Set Variable    ${lines}[-2]
     ${string}=    Strip String    ${indexes}    characters=[]
     @{script_indexes}=    Split String    ${string}    separator=,${SPACE}
     # Get Script result states.
-    ${states}=    Get Line    ${lines}   -1
+    ${states}=    Set Variable    ${lines}[-1]
     ${string}=    Strip String    ${states}    characters=[]
     @{script_states}=    Split String    ${string}    separator=,${SPACE}
-    RETURN    ${script_indexes}    ${result_str}
+    RETURN    ${script_indexes}    ${script_states}
 
 Verify Scripts Completed Successfully
     [Documentation]    The keyword requires two arguments, the list of `script_indexes` for each script, 
