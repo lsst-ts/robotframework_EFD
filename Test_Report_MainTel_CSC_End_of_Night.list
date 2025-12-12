@@ -1,0 +1,8 @@
+###  Test Suite list ###
+#  Change the title of the test results
+--name MTCscEndOfNight
+--output mtcscendofnight
+--skiponfailure skipped
+
+# List of test suites
+Verify_MainTel_CSC_End_Of_Night.robot
