@@ -230,14 +230,17 @@ Set Variables
         Set Suite Variable    @{seq_img_type_seq}    OBJECT    OBJECT    OBJECT
     ELSE IF    "${playlist}" == "pointing"
         Set Suite Variable    ${playlist_full_name}    latiss_acquire_and_take_sequence-test_take_acquisition_pointing
+        Set Suite Variable    ${acq_seq_length}    1
         Set Suite Variable    ${seq_length}    1
-        Set Suite Variable    ${num_images}    3
-        Set Suite Variable    @{exp_time}    ${2}
+        Set Suite Variable    ${num_images}    2
+        Set Suite Variable    @{acq_exp_time}    ${2.0}
+        Set Suite Variable    @{seq_exp_time}    ${2.0}
         Set Suite Variable    @{filter_band}    EMPTY
         Set Suite Variable    ${filter_name}    empty_1
         Set Suite Variable    @{disperser_band}    EMPTY
         Set Suite Variable    @{disperser_name}    EMPTY
-        Set Suite Variable    @{img_type_seq}    ACQ    ACQ    ACQ
+        Set Suite Variable    @{acq_img_type_seq}    ACQ
+        Set Suite Variable    @{seq_img_type_seq}    OBJECT
     ELSE IF    "${playlist}" == "nominal"
         Set Suite Variable    ${playlist_full_name}    latiss_acquire_and_take_sequence-test_take_acquisition_nominal
         Set Suite Variable    ${seq_length}    3
