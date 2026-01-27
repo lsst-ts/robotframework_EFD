@@ -51,3 +51,12 @@ Verify OCPS SummaryState timing
     [Tags]    timing
     Set Tags    OCPS:${OcpsIndex}
     Verify Time Delta    OCPS:${OcpsIndex}    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
+#WFOODS
+Verify WFOODS Enabled
+    [Tags]    wfoods
+    Verify Summary State    ${STATES}[enabled]    WFOODS
+
+Verify WFOODS SummaryState timing
+    [Tags]    wfoods    timing
+    Verify Time Delta    WFOODS    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}

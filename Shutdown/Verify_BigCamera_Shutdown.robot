@@ -25,3 +25,7 @@ Verify OCPS:2||3 Shutdown
     [Tags]
     Set Tags    OCPS:${OcpsIndex}
     Verify Shutdown Process    OCPS    index=${OcpsIndex}
+
+Verify WFOODS Shutdown
+    [Tags]    wfoods
+    Verify Shutdown Process    WFOODS
