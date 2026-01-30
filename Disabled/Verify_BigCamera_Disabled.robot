@@ -81,3 +81,17 @@ Verify OCPS:2||3 ConfigurationApplied timing
     [Tags]    config_applied    timing
     Set Tags    OCPS:${OcpsIndex}
     Verify Time Delta    OCPS:${OcpsIndex}    logevent_configurationApplied    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
+#WFOODS
+Verify WFOODS Disabled
+    [Tags]    wfoods
+    Verify Summary State    ${STATES}[disabled]    WFOODS
+
+Verify WFOODS SummaryState timing
+    [Tags]    wfoods    software_versions    timing
+    Verify Time Delta    WFOODS    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
+Verify WFOODS ConfigurationApplied Event
+    [Tags]    wfoods    config_applied
+    # OODS CSCs are NOT configurable.
+    Verify ConfigurationApplied    WFOODS

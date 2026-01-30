@@ -11,7 +11,7 @@ Verify DIMM:1 Disabled
     Verify Summary State    ${STATES}[disabled]    DIMM:1
 
 Verify DIMM:1 SummaryState timing
-    [Tags]    software_versions    timing
+    [Tags]    disabled    timing
     Verify Time Delta    DIMM:1    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify DIMM:1 ConfigurationApplied Event
@@ -28,7 +28,7 @@ Verify DIMM:2 Disabled
     Verify Summary State    ${STATES}[disabled]    DIMM:2
 
 Verify DIMM:2 SummaryState timing
-    [Tags]    software_versions    timing
+    [Tags]    disabled    timing
     Verify Time Delta    DIMM:2    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify DIMM:2 ConfigurationApplied Event
@@ -45,11 +45,11 @@ Verify DREAM Disabled
     Verify Summary State    ${STATES}[disabled]    DREAM
 
 Verify DREAM SummaryState timing
-    [Tags]    software_versions    timing
-    Verify Time Delta    DREAM logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+    [Tags]    disabled    timing
+    Verify Time Delta    DREAM     logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify DREAM ConfigurationApplied Event
-    [Tags]    software_versions    timing
+    [Tags]    config_applied
     Verify Time Delta    DREAM    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify DREAM ConfigurationApplied Event timing
@@ -62,11 +62,11 @@ Verify EAS Disabled
     Verify Summary State    ${STATES}[disabled]    EAS
 
 Verify EAS SummaryState timing
-    [Tags]    software_versions    timing
-    Verify Time Delta    EAS logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+    [Tags]    disabled    timing
+    Verify Time Delta    EAS    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify EAS ConfigurationApplied Event
-    [Tags]    software_versions    timing
+    [Tags]    config_applied
     Verify Time Delta    EAS    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify EAS ConfigurationApplied Event timing
@@ -79,7 +79,7 @@ Verify ESS:104 Disabled
     Verify Summary State    ${STATES}[disabled]    ESS:104
 
 Verify ESS:104 SummaryState timing
-    [Tags]    software_versions    timing
+    [Tags]    disabled    timing
     Verify Time Delta    ESS:104    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify ESS:104 ConfigurationApplied Event
@@ -96,7 +96,7 @@ Verify ESS:105 Disabled
     Verify Summary State    ${STATES}[disabled]    ESS:105
  
 Verify ESS:105 SummaryState timing
-    [Tags]    software_versions    timing
+    [Tags]    disabled    timing
     Verify Time Delta    ESS:105    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify ESS:105 ConfigurationApplied Event
@@ -113,7 +113,7 @@ Verify ESS:106 Disabled
     Verify Summary State    ${STATES}[disabled]    ESS:106
    
 Verify ESS:106 SummaryState timing
-    [Tags]    software_versions    timing
+    [Tags]    disabled    timing
     Verify Time Delta    ESS:106    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify ESS:106 ConfigurationApplied Event
@@ -130,7 +130,7 @@ Verify ESS:107 Disabled
     Verify Summary State    ${STATES}[disabled]    ESS:107
     
 Verify ESS:107 SummaryState timing
-    [Tags]    software_versions    timing
+    [Tags]    disabled    timing
     Verify Time Delta    ESS:107    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
     
 Verify ESS:107 ConfigurationApplied Event
@@ -147,7 +147,7 @@ Verify ESS:108 Disabled
     Verify Summary State    ${STATES}[disabled]    ESS:108
     
 Verify ESS:108 SummaryState timing
-    [Tags]    software_versions    timing
+    [Tags]    disabled    timing
     Verify Time Delta    ESS:108    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
     
 Verify ESS:108 ConfigurationApplied Event
@@ -164,7 +164,7 @@ Verify ESS:109 Disabled
     Verify Summary State    ${STATES}[disabled]    ESS:109
 
 Verify ESS:109 SummaryState timing
-    [Tags]    software_versions    timing
+    [Tags]    disabled    timing
     Verify Time Delta    ESS:109    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify ESS:109 ConfigurationApplied Event
@@ -181,7 +181,7 @@ Verify ESS:110 Disabled
     Verify Summary State    ${STATES}[disabled]    ESS:110
 
 Verify ESS:110 SummaryState timing
-    [Tags]    software_versions    timing
+    [Tags]    disabled    timing
     Verify Time Delta    ESS:110    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify ESS:110 ConfigurationApplied Event
@@ -198,7 +198,7 @@ Verify ESS:111 Disabled
     Verify Summary State    ${STATES}[disabled]    ESS:111
 
 Verify ESS:111 SummaryState timing
-    [Tags]    software_versions    timing
+    [Tags]    disabled    timing
     Verify Time Delta    ESS:111    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify ESS:111 ConfigurationApplied Event
@@ -215,7 +215,7 @@ Verify ESS:112 Disabled
     Verify Summary State    ${STATES}[disabled]    ESS:112
 
 Verify ESS:112 SummaryState timing
-    [Tags]    software_versions    timing
+    [Tags]    disabled    timing
     Verify Time Delta    ESS:112    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify ESS:112 ConfigurationApplied Event
@@ -232,7 +232,7 @@ Verify ESS:113 Disabled
     Verify Summary State    ${STATES}[disabled]    ESS:113
 
 Verify ESS:113 SummaryState timing
-    [Tags]    software_versions    timing
+    [Tags]    disabled    timing
     Verify Time Delta    ESS:113    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify ESS:113 ConfigurationApplied Event
@@ -249,7 +249,7 @@ Verify ESS:114 Disabled
     Verify Summary State    ${STATES}[disabled]    ESS:114
     
 Verify ESS:114 SummaryState timing
-    [Tags]    software_versions    timing
+    [Tags]    disabled    timing
     Verify Time Delta    ESS:114    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
     
 Verify ESS:114 ConfigurationApplied Event
@@ -266,7 +266,7 @@ Verify ESS:115 Disabled
     Verify Summary State    ${STATES}[disabled]    ESS:115
     
 Verify ESS:115 SummaryState timing
-    [Tags]    software_versions    timing
+    [Tags]    disabled    timing
     Verify Time Delta    ESS:115    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
     
 Verify ESS:115 ConfigurationApplied Event
@@ -283,7 +283,7 @@ Verify ESS:116 Disabled
     Verify Summary State    ${STATES}[disabled]    ESS:116
     
 Verify ESS:116 SummaryState timing
-    [Tags]    software_versions    timing
+    [Tags]    disabled    timing
     Verify Time Delta    ESS:116    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
     
 Verify ESS:116 ConfigurationApplied Event
@@ -300,7 +300,7 @@ Verify ESS:117 Disabled
     Verify Summary State    ${STATES}[disabled]    ESS:117
     
 Verify ESS:117 SummaryState timing
-    [Tags]    software_versions    timing
+    [Tags]    disabled    timing
     Verify Time Delta    ESS:117    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
     
 Verify ESS:117 ConfigurationApplied Event
@@ -317,7 +317,7 @@ Verify ESS:118 Disabled
     Verify Summary State    ${STATES}[disabled]    ESS:118
 
 Verify ESS:118 SummaryState timing
-    [Tags]    software_versions    timing
+    [Tags]    disabled    timing
     Verify Time Delta    ESS:118    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify ESS:118 ConfigurationApplied Event
@@ -334,7 +334,7 @@ Verify ESS:119 Disabled
     Verify Summary State    ${STATES}[disabled]    ESS:119
 
 Verify ESS:119 SummaryState timing
-    [Tags]    software_versions    timing
+    [Tags]    disabled    timing
     Verify Time Delta    ESS:119    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify ESS:119 ConfigurationApplied Event
@@ -351,7 +351,7 @@ Verify ESS:120 Disabled
     Verify Summary State    ${STATES}[disabled]    ESS:120
 
 Verify ESS:120 SummaryState timing
-    [Tags]    software_versions    timing
+    [Tags]    disabled    timing
     Verify Time Delta    ESS:120    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify ESS:120 ConfigurationApplied Event
@@ -368,7 +368,7 @@ Verify ESS:121 Disabled
     Verify Summary State    ${STATES}[disabled]    ESS:121
 
 Verify ESS:121 SummaryState timing
-    [Tags]    software_versions    timing
+    [Tags]    disabled    timing
     Verify Time Delta    ESS:121    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify ESS:121 ConfigurationApplied Event
@@ -385,7 +385,7 @@ Verify ESS:122 Disabled
     Verify Summary State    ${STATES}[disabled]    ESS:122
 
 Verify ESS:122 SummaryState timing
-    [Tags]    software_versions    timing
+    [Tags]    disabled    timing
     Verify Time Delta    ESS:122    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify ESS:122 ConfigurationApplied Event
@@ -402,7 +402,7 @@ Verify ESS:201 Disabled
     Verify Summary State    ${STATES}[disabled]    ESS:201
 
 Verify ESS:201 SummaryState timing
-    [Tags]    software_versions    timing
+    [Tags]    disabled    timing
     Verify Time Delta    ESS:201    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify ESS:201 ConfigurationApplied Event
@@ -419,7 +419,7 @@ Verify ESS:202 Disabled
     Verify Summary State    ${STATES}[disabled]    ESS:202
 
 Verify ESS:202 SummaryState timing
-    [Tags]    software_versions    timing
+    [Tags]    disabled    timing
     Verify Time Delta    ESS:202    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify ESS:202 ConfigurationApplied Event
@@ -436,7 +436,7 @@ Verify ESS:204 Disabled
     Verify Summary State    ${STATES}[disabled]    ESS:204
 
 Verify ESS:204 SummaryState timing
-    [Tags]    software_versions    timing
+    [Tags]    disabled    timing
     Verify Time Delta    ESS:204    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify ESS:204 ConfigurationApplied Event
@@ -453,7 +453,7 @@ Verify ESS:301 Disabled
     Verify Summary State    ${STATES}[disabled]    ESS:301
 
 Verify ESS:301 SummaryState timing
-    [Tags]    software_versions    timing
+    [Tags]    disabled    timing
     Verify Time Delta    ESS:301    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify ESS:301 ConfigurationApplied Event
@@ -470,7 +470,7 @@ Verify ESS:303 Disabled
     Verify Summary State    ${STATES}[disabled]    ESS:303
     
 Verify ESS:303 SummaryState timing
-    [Tags]    ess303    software_versions    timing
+    [Tags]    ess303    disabled    timing
     Verify Time Delta    ESS:303  logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
     
 Verify ESS:303 ConfigurationApplied Event
@@ -487,7 +487,7 @@ Verify ESS:304 Disabled
     Verify Summary State    ${STATES}[disabled]    ESS:304
     
 Verify ESS:304 SummaryState timing
-    [Tags]    ess304    software_versions    timing
+    [Tags]    ess304    disabled    timing
     Verify Time Delta    ESS:304  logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
     
 Verify ESS:304 ConfigurationApplied Event
@@ -504,7 +504,7 @@ Verify ESS:305 Disabled
     Verify Summary State    ${STATES}[disabled]    ESS:305
     
 Verify ESS:305 SummaryState timing
-    [Tags]    ess305    software_versions    timing
+    [Tags]    ess305    disabled    timing
     Verify Time Delta    ESS:305  logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
     
 Verify ESS:305 ConfigurationApplied Event
@@ -521,7 +521,7 @@ Verify ESS:306 Disabled
     Verify Summary State    ${STATES}[disabled]    ESS:306
     
 Verify ESS:306 SummaryState timing
-    [Tags]    ess306    software_versions    timing
+    [Tags]    ess306    disabled    timing
     Verify Time Delta    ESS:306  logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
     
 Verify ESS:306 ConfigurationApplied Event
@@ -534,11 +534,11 @@ Verify ESS:306 ConfigurationApplied Event timing
 
 # ESS:308
 Verify ESS:308 Disabled
-    [Tags]    disabled
+    [Tags]    ess308    disabled
     Verify Summary State    ${STATES}[disabled]    ESS:308
 
 Verify ESS:308 SummaryState timing
-    [Tags]    software_versions    timing
+    [Tags]    ess308    disabled    timing
     Verify Time Delta    ESS:308    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify ESS:308 ConfigurationApplied Event
