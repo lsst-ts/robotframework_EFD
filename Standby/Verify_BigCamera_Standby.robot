@@ -14,6 +14,7 @@ ${mtoods_xmlver}    ${XMLVersion}
 ${mtheaderservice_xmlver}    ${XMLVersion}
 ${ocps2_xmlver}    ${XMLVersion}
 ${ocps3_xmlver}    ${XMLVersion}
+${wfoods_xmlver}    ${XMLVersion}
 
 *** Test Cases ***
 #BigCamera
@@ -42,7 +43,7 @@ Verify BigCamera ConfigurationsAvailable Event timing
     Set Tags    ${BigCamera}
     Verify Time Delta    ${BigCamera}    logevent_configurationsAvailable    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
-#OODS
+#CC/MT OODS
 Verify OODS Standby
     [Tags]
     Set Tags    ${OODS}
@@ -109,3 +110,20 @@ Verify OCPS:2||3 ConfigurationsAvailable Event timing
     [Tags]    config_available    timing
     Set Tags    OCPS:${OcpsIndex}
     Verify Time Delta    OCPS:${OcpsIndex}    logevent_configurationsAvailable    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
+#WFOODS
+Verify WFOODS Standby
+    [Tags]    wfoods
+    Verify Summary State    ${STATES}[standby]    WFOODS
+
+Verify WFOODS SoftwareVersions
+    [Tags]    wfoods    software_versions
+    Verify Software Versions    WFOODS    csc_xmlver=${wfoods_xmlver}
+
+Verify WFOODS SoftwareVersions timing
+    [Tags]    wfoods    software_versions    timing
+    Verify Time Delta    WFOODS    logevent_softwareVersions    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
+Verify WFOODS ConfigurationsAvailable Event
+    [Tags]    wfoods    config_available
+    Verify ConfigurationsAvailable    WFOODS

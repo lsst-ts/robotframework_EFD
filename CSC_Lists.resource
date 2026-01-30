@@ -12,7 +12,7 @@
 @{EnvSys_AE}       DSM:1    DSM:2    HVAC    WeatherForecast
 @{GenCam}          GenericCamera:1    GCHeaderService:1
 @{LATISS}          ATOODS    ATCamera    ATHeaderService    ATSpectrograph    OCPS:1
-@{MTCamera}        MTCamera    MTHeaderService    MTOODS    OCPS:3
+@{MTCamera}        MTCamera    MTHeaderService    MTOODS    OCPS:3    WFOODS
 # MTRotator must be listed before MTMount, as the shutdown order is significant.
 @{MTCS}            LaserTracker:1    MTRotator    MTMount    MTPtg    MTDome    MTDomeTrajectory    MTAOS    MTHexapod:1    MTHexapod:2    MTM1M3    MTM1M3TS    MTM2    MTVMS:1    OCPS:101
 @{ObsSys}          Scheduler:1    Scheduler:2    Scheduler:3    Watcher
@@ -24,5 +24,5 @@
 ...    ESS:104    ESS:105    ESS:106    ESS:107    ESS:108    ESS:109    ESS:110    ESS:111    ESS:112    ESS:113    ESS:114    ESS:115    ESS:116    ESS:117    ESS:118    ESS:119
 ...    ESS:120    ESS:121    ESS:122    ESS:201    ESS:202    ESS:204    ESS:301    ESS:303    ESS:304    ESS:305    ESS:306    ESS:308
 ...    FiberSpectrograph:3    LEDProjector    LinearStage:101    LinearStage:102    LinearStage:103    LinearStage:104
-...    MTAOS    MTDome    MTDomeTrajectory    MTHexapod    MTReflector    MTRotator
+...    MTAOS    MTDome    MTDomeTrajectory    MTHexapod    MTOODS    MTReflector    MTRotator    WFOODS
 ...    OCPS:1   OCPS:2   OCPS:3    OCPS:101    Scheduler:1   Scheduler:2    Scheduler:3   ScriptQueue:1    ScriptQueue:2    ScriptQueue:3   TunableLaser    Watcher   WeatherForecast
