@@ -38,4 +38,4 @@ mtcscendofnight.xml
 shutdown.xml 
 )
 rebot --name IntegrationTests -r full_report.html -l full_log.html --reportbackground "#61C4CD:#61C4CD" --loglevel TRACE:INFO --flattenkeywords TAG:custom -e at_light_cal ${robot_outputs[@]}
-rebot --name IntegrationTests -r streamlined_report.html -l streamlined_log.html --reportbackground "#61C4CD:#61C4CD" --loglevel FAIL --flattenkeywords TAG:custom --tagstatexclude DM* --tagstatexclude CAP* -e runtime -e at_light_cal ${robot_outputs[@]}
+rebot --name IntegrationTests -r streamlined_report.html -l streamlined_log.html --reportbackground "#61C4CD:#61C4CD" --loglevel ERROR --flattenkeywords TAG:custom --tagstatexclude DM* --tagstatexclude CAP* -e runtime -e at_light_cal ${robot_outputs[@]}
