@@ -20,7 +20,7 @@ ${tunablelaser_xmlver}    ${XMLVersion}
 
 *** Test Cases ***
 # CBP
-Verify CBP Enabled
+Verify CBP Standby
     [Tags]    standby
     Verify Summary State    ${STATES}[standby]    CBP
 
@@ -45,7 +45,7 @@ Verify CBP ConfigurationsAvailable timing
     Verify Time Delta    CBP    logevent_configurationsAvailable    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 # Electrometer:101
-Verify Electrometer:101 Enabled
+Verify Electrometer:101 Standby
     [Tags]    standby
     Verify Summary State    ${STATES}[standby]    Electrometer:101
 
@@ -70,7 +70,7 @@ Verify Electrometer:101 ConfigurationsAvailable timing
     Verify Time Delta    Electrometer:101    logevent_configurationsAvailable    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 # Electrometer:102
-Verify Electrometer:102 Enabled
+Verify Electrometer:102 Standby
     [Tags]    standby
     Verify Summary State    ${STATES}[standby]    Electrometer:102
 
@@ -95,7 +95,7 @@ Verify Electrometer:102 ConfigurationsAvailable timing
     Verify Time Delta    Electrometer:102    logevent_configurationsAvailable    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 # Electrometer:103
-Verify Electrometer:103 Enabled
+Verify Electrometer:103 Standby
     [Tags]    standby
     Verify Summary State    ${STATES}[standby]    Electrometer:103
 
@@ -120,7 +120,7 @@ Verify Electrometer:103 ConfigurationsAvailable timing
     Verify Time Delta    Electrometer:103    logevent_configurationsAvailable    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 # Electrometer:201
-Verify Electrometer:201 Enabled
+Verify Electrometer:201 Standby
     [Tags]    standby
     Verify Summary State    ${STATES}[standby]    Electrometer:201
 
@@ -145,7 +145,7 @@ Verify Electrometer:201 ConfigurationsAvailable timing
     Verify Time Delta    Electrometer:201    logevent_configurationsAvailable    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 # LEDProjector
-Verify LEDProjector Enabled
+Verify LEDProjector Standby
     [Tags]    standby
     Verify Summary State    ${STATES}[standby]    LEDProjector
 
@@ -170,7 +170,7 @@ Verify LEDProjector ConfigurationsAvailable timing
     Verify Time Delta    LEDProjector    logevent_configurationsAvailable    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 # LinearStage:101
-Verify LinearStage:101 Enabled
+Verify LinearStage:101 Standby
     [Tags]    standby
     Verify Summary State    ${STATES}[standby]    LinearStage:101
  
@@ -195,7 +195,7 @@ Verify LinearStage:101 ConfigurationsAvailable timing
     Verify Time Delta    LinearStage:101    logevent_configurationsAvailable    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 # LinearStage:102
-Verify LinearStage:102 Enabled
+Verify LinearStage:102 Standby
     [Tags]    standby
     Verify Summary State    ${STATES}[standby]    LinearStage:102
    
@@ -220,7 +220,7 @@ Verify LinearStage:102 ConfigurationsAvailable timing
     Verify Time Delta    LinearStage:102    logevent_configurationsAvailable    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 # LinearStage:103
-Verify LinearStage:103 Enabled
+Verify LinearStage:103 Standby
     [Tags]    standby
     Verify Summary State    ${STATES}[standby]    LinearStage:103
     
@@ -245,7 +245,7 @@ Verify LinearStage:103 ConfigurationsAvailable timing
     Verify Time Delta    LinearStage:103    logevent_configurationsAvailable    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 # LinearStage:104
-Verify LinearStage:104 Enabled
+Verify LinearStage:104 Standby
     [Tags]    standby
     Verify Summary State    ${STATES}[standby]    LinearStage:104
     
@@ -270,7 +270,7 @@ Verify LinearStage:104 ConfigurationsAvailable timing
     Verify Time Delta    LinearStage:104    logevent_configurationsAvailable    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 # MTReflector
-Verify MTReflector Enabled
+Verify MTReflector Standby
     [Tags]    standby
     Verify Summary State    ${STATES}[standby]    MTReflector
 
@@ -295,7 +295,7 @@ Verify MTReflector ConfigurationsAvailable timing
     Verify Time Delta    MTReflector    logevent_configurationsAvailable    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 # TunableLaser
-Verify TunableLaser Enabled
+Verify TunableLaser Standby
     [Tags]    standby
     Verify Summary State    ${STATES}[standby]    TunableLaser
 
