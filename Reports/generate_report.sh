@@ -19,6 +19,7 @@ bigcam_image_verify.xml
 bigcam_calib.xml
 at_image_verify.xml 
 at_latiss_checkout.xml
+at_atpneumatics_checkout.xml
 at_tel_dome_checkout.xml
 at_slew_take_image_checkout.xml
 at_prep_flat.xml
