@@ -24,7 +24,7 @@ Verify Script Kubernetes LogMessages
     ${dataframe}=    Get Recent Samples    Script    logevent_logMessage    ["message",]    6    None
     Log    ${dataframe}
     Should Be Equal As Strings    ${dataframe.message.values}[5]    Configure started
-    Should Be Equal As Strings    ${dataframe.message.values}[4]    Waiting for ${remotes} remotes to be ready
+    Should Be Equal As Strings    ${dataframe.message.values}[4]    Checking for ${remotes} remotes to be ready
     Should Be Equal As Strings    ${dataframe.message.values}[3]    Waiting for ${clients} Manager Clients to be ready
     Should Match Regexp    ${dataframe.message.values}[2]    Received \\d*/${num_msgs} messages
     Should Match Regexp    ${dataframe.message.values}[1]    LOVE stress test result: mean_latency_ms=\\d*\\.?\\d* num_messages=\\d*

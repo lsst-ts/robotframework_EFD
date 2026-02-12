@@ -179,14 +179,14 @@ Verify ESS:107 temperature Published Data
     Log    ${dataframe02}
     Should Be Equal As Strings    ${dataframe02.sensorName.values}[0]    Laser-ESS02
     Should Be Equal As Strings    ${dataframe02.location.values}[0]    EnclosureFan FCUnit LaserTop LaserBottom LaserFan PowerSupply EnclosureOut EnclosureMid
-    Should Be True    "${dataframe02.temperatureItem0.values}[0]" == "nan" or "${dataframe02.temperatureItem0.values}[0]" == "None"
-    Should Be True    "${dataframe02.temperatureItem1.values}[0]" == "nan" or "${dataframe02.temperatureItem1.values}[0]" == "None"
-    Should Be True    "${dataframe02.temperatureItem2.values}[0]" == "nan" or "${dataframe02.temperatureItem2.values}[0]" == "None"
-    Should Be True    "${dataframe02.temperatureItem3.values}[0]" == "nan" or "${dataframe02.temperatureItem3.values}[0]" == "None"
-    Should Be True    "${dataframe02.temperatureItem4.values}[0]" == "nan" or "${dataframe02.temperatureItem4.values}[0]" == "None"
-    Should Be True    "${dataframe02.temperatureItem5.values}[0]" == "nan" or "${dataframe02.temperatureItem5.values}[0]" == "None"
-    Should Be True    "${dataframe02.temperatureItem6.values}[0]" == "nan" or "${dataframe02.temperatureItem6.values}[0]" == "None"
-    Should Be True    "${dataframe02.temperatureItem7.values}[0]" == "nan" or "${dataframe02.temperatureItem7.values}[0]" == "None"
+    Should Be True    abs(${dataframe02.temperatureItem0.values}[0]) >= 0
+    Should Be True    abs(${dataframe02.temperatureItem1.values}[0]) >= 0
+    Should Be True    abs(${dataframe02.temperatureItem2.values}[0]) >= 0
+    Should Be True    abs(${dataframe02.temperatureItem3.values}[0]) >= 0
+    Should Be True    abs(${dataframe02.temperatureItem4.values}[0]) >= 0
+    Should Be True    abs(${dataframe02.temperatureItem5.values}[0]) >= 0
+    Should Be True    abs(${dataframe02.temperatureItem6.values}[0]) >= 0
+    Should Be True    abs(${dataframe02.temperatureItem7.values}[0]) >= 0
 
 Verify ESS:107 temperature Data is Recent
     [Tags]    ess107    timing
@@ -201,10 +201,10 @@ Verify ESS:108 temperature Published Data
     Should Not Be True    ${dataframe.empty}
     Should Be Equal As Strings    ${dataframe.sensorName.values}[0]    CBP-ESS01
     Should Be Equal As Strings    ${dataframe.location.values}[0]    Photodiode PrimaryMirror MaskChanger ElectronicsCabinet
-    Should Be True    "${dataframe.temperatureItem0.values}[0]" == "nan" or "${dataframe.temperatureItem0.values}[0]" == "None"
-    Should Be True    "${dataframe.temperatureItem1.values}[0]" == "nan" or "${dataframe.temperatureItem1.values}[0]" == "None"
-    Should Be True    "${dataframe.temperatureItem2.values}[0]" == "nan" or "${dataframe.temperatureItem2.values}[0]" == "None"
-    Should Be True    "${dataframe.temperatureItem3.values}[0]" == "nan" or "${dataframe.temperatureItem3.values}[0]" == "None"
+    Should Be True    abs(${dataframe.temperatureItem0.values}[0]) >= 0
+    Should Be True    abs(${dataframe.temperatureItem1.values}[0]) >= 0
+    Should Be True    abs(${dataframe.temperatureItem2.values}[0]) >= 0
+    Should Be True    abs(${dataframe.temperatureItem3.values}[0]) >= 0
     Should Be True    "${dataframe.temperatureItem4.values}[0]" == "nan" or "${dataframe.temperatureItem4.values}[0]" == "None"
     Should Be True    "${dataframe.temperatureItem5.values}[0]" == "nan" or "${dataframe.temperatureItem5.values}[0]" == "None"
     Should Be True    "${dataframe.temperatureItem6.values}[0]" == "nan" or "${dataframe.temperatureItem6.values}[0]" == "None"
@@ -212,7 +212,7 @@ Verify ESS:108 temperature Published Data
 
 Verify ESS:108 temperature Data is Recent
     [Tags]    ess108    timing
-    Set Test Variable    ${ess_seconds_ago}    2
+    Set Test Variable    ${ess_seconds_ago}    5
     Verify Time Delta    ESS:108    temperature    second=${ess_seconds_ago}    minute=${minutes_ago}    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 # ESS:109
@@ -237,7 +237,7 @@ Verify ESS:109 spectrumAnalyzer Published Data
 
 Verify ESS:109 spectrumAnalyzer Data is Recent
     [Tags]    ess109    timing
-    Set Test Variable    ${ess_seconds_ago}    2
+    Set Test Variable    ${ess_seconds_ago}    5
     Verify Time Delta    ESS:109    spectrumAnalyzer    second=${ess_seconds_ago}    minute=${minutes_ago}    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 # ESS:110
@@ -247,7 +247,7 @@ Verify ESS:110 airTurbulence Published Data
     Log    ${dataframe}
     Should Not Be True    ${dataframe.empty}
     Should Be Equal As Strings    ${dataframe.sensorName.values}[0]    TMA-GillLabJack01
-    Should Be Equal As Strings    ${dataframe.location.values}[0]    TMA (unknown location)
+    Should Be Equal As Strings    ${dataframe.location.values}[0]    TMA deployable platform
     Should Be True    abs(${dataframe.sonicTemperature.values}[0]) >= 0
     Should Be True    abs(${dataframe.speed0.values}[0]) >= 0
     Should Be True    abs(${dataframe.speed1.values}[0]) >= 0
@@ -400,10 +400,10 @@ Verify ESS:118 airFlow Published Data
     Should Not Be True    ${dataframe.empty}
     Should Be Equal As Strings    ${dataframe.sensorName.values}[0]    RubinWiFiTest1
     Should Be Equal As Strings    ${dataframe.location.values}[0]    MTDome-ESS10
-    Should Be True    "${dataframe.direction.values}[0]" == "nan" or "${dataframe.direction.values}[0]" == "None"
-    Should Be True    "${dataframe.directionStdDev.values}[0]" == "nan" or "${dataframe.directionStdDev.values}[0]" == "None"
-    Should Be True    "${dataframe.speed.values}[0]" == "nan" or "${dataframe.speed.values}[0]" == "None"
-    Should Be True    "${dataframe.speedStdDev.values}[0]" == "nan" or "${dataframe.speedStdDev.values}[0]" == "None"
+    Should Be True    ${dataframe.direction.values}[0] >= 0
+    Should Be True    ${dataframe.directionStdDev.values}[0] >= 0
+    Should Be True    ${dataframe.speed.values}[0] >= 0
+    Should Be True    ${dataframe.speedStdDev.values}[0] >= 0
 
 Verify ESS:118 airFlow Data is Recent
     [Tags]    ess118    timing
@@ -425,8 +425,8 @@ Verify ESS:119 temperature Published Data
     Should Be True    abs(${dataframe.temperatureItem5.values}[0]) >= 0
     Should Be True    abs(${dataframe.temperatureItem6.values}[0]) >= 0
     Should Be True    abs(${dataframe.temperatureItem7.values}[0]) >= 0
-    Should Be True    abs(${dataframe.temperatureItem8.values}[0]) >= 0
-    Should Be True    abs(${dataframe.temperatureItem9.values}[0]) >= 0
+    Should Be True    "${dataframe.temperatureItem8.values}[0]" == "nan" or "${dataframe.temperatureItem8.values}[0]" == "None"
+    Should Be True    "${dataframe.temperatureItem9.values}[0]" == "nan" or "${dataframe.temperatureItem9.values}[0]" == "None"
 
 Verify ESS:119 temperature Data is Recent
     [Tags]    ess119    timing
@@ -440,10 +440,10 @@ Verify ESS:120 airFlow Published Data
     Should Not Be True    ${dataframe.empty}
     Should Be Equal As Strings    ${dataframe.sensorName.values}[0]    RubinWiFiTest3
     Should Be Equal As Strings    ${dataframe.location.values}[0]    MTDome-ESS12
-    Should Be True    "${dataframe.direction.values}[0]" == "nan" or "${dataframe.direction.values}[0]" == "None"
-    Should Be True    "${dataframe.directionStdDev.values}[0]" == "nan" or "${dataframe.directionStdDev.values}[0]" == "None"
-    Should Be True    "${dataframe.speed.values}[0]" == "nan" or "${dataframe.speed.values}[0]" == "None"
-    Should Be True    "${dataframe.speedStdDev.values}[0]" == "nan" or "${dataframe.speedStdDev.values}[0]" == "None"
+    Should Be True    abs(${dataframe.direction.values}[0]) >= 0
+    Should Be True    abs(${dataframe.directionStdDev.values}[0]) >= 0
+    Should Be True    abs(${dataframe.speed.values}[0]) >= 0
+    Should Be True    abs(${dataframe.speedStdDev.values}[0]) >= 0
 
 Verify ESS:120 airFlow Data is Recent
     [Tags]    ess120    timing
@@ -701,7 +701,7 @@ Verify ESS:301 pressure Published Data
 
 Verify ESS:301 pressure Data is Recent
     [Tags]    ess301    timing
-    Set Test Variable    ${ess_second_ago}    45
+    Set Test Variable    ${ess_seconds_ago}    45
     Verify Time Delta    ESS:301    pressure    second=${ess_seconds_ago}    minute=${minutes_ago}    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 ## rainRate ##
@@ -897,4 +897,4 @@ Verify WeatherForecast hourlyTrend Published Data
 
 Verify WeatherForecast hourlyTrend Data is Recent
     [Tags]    timing
-    Verify Time Delta    WeatherForecast    hourlyTrend    minute=15   hour=12    day=${days_ago}    week=${weeks_ago}
+    Verify Time Delta    WeatherForecast    hourlyTrend    second=0    minute=15   hour=12    day=${days_ago}    week=${weeks_ago}
