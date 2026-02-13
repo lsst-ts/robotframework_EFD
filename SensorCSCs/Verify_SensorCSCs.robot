@@ -491,6 +491,70 @@ Verify ESS:122 temperature Data is Recent
     [Tags]    ess122    timing
     Verify Time Delta    ESS:122    temperature    second=${seconds_ago}    minute=${ess_minutes_ago}    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
+# ESS:123
+## airTurbulence ##
+Verify ESS:123 airTurbulence Published Data
+    [Tags]    ess123    robot:continue-on-failure
+    ${dataframe}=    Get Recent Samples    ESS    airTurbulence    ["sensorName", "location", "speedMagnitude",]    num=1    index=123
+    Log    ${dataframe}
+    Should Not Be True    ${dataframe.empty}
+    Should Be Equal As Strings    ${dataframe.sensorName.values}[0]    TMA-3D-ANEM-01-S
+    Should Be Equal As Strings    ${dataframe.location.values}[0]    TMA Top Ring (-X/-Y)
+    Should Be True    abs(${dataframe.speedMagnitude.values}[0]) >= 0
+
+Verify ESS:123 airTurbulence Data is Recent
+    [Tags]    ess123    timing
+    Set Test Variable    ${ess_seconds_ago}    10
+    Verify Time Delta    ESS:123    airTurbulence    second=${ess_seconds_ago}    minute=${minutes_ago}    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
+# ESS:124
+## airTurbulence ##
+Verify ESS:124 airTurbulence Published Data
+    [Tags]    ess124    robot:continue-on-failure
+    ${dataframe}=    Get Recent Samples    ESS    airTurbulence    ["sensorName", "location", "speedMagnitude",]    num=1    index=124
+    Log    ${dataframe}
+    Should Not Be True    ${dataframe.empty}
+    Should Be Equal As Strings    ${dataframe.sensorName.values}[0]    TMA-3D-ANEM-02-S
+    Should Be Equal As Strings    ${dataframe.location.values}[0]    TMA Top Ring (+X/-Y)
+    Should Be True    abs(${dataframe.speedMagnitude.values}[0]) >= 0
+
+Verify ESS:124 airTurbulence Data is Recent
+    [Tags]    ess124    timing
+    Set Test Variable    ${ess_seconds_ago}    10
+    Verify Time Delta    ESS:124    airTurbulence    second=${ess_seconds_ago}    minute=${minutes_ago}    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
+# ESS:125
+## airTurbulence ##
+Verify ESS:125 airTurbulence Published Data
+    [Tags]    ess125    robot:continue-on-failure
+    ${dataframe}=    Get Recent Samples    ESS    airTurbulence    ["sensorName", "location", "speedMagnitude",]    num=1    index=125
+    Log    ${dataframe}
+    Should Not Be True    ${dataframe.empty}
+    Should Be Equal As Strings    ${dataframe.sensorName.values}[0]    TMA-3D-ANEM-03-P
+    Should Be Equal As Strings    ${dataframe.location.values}[0]    TMA Top Ring (+X/+Y)
+    Should Be True    abs(${dataframe.speedMagnitude.values}[0]) >= 0
+
+Verify ESS:125 airTurbulence Data is Recent
+    [Tags]    ess125    timing
+    Set Test Variable    ${ess_seconds_ago}    10
+    Verify Time Delta    ESS:125    airTurbulence    second=${ess_seconds_ago}    minute=${minutes_ago}    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
+# ESS:126
+## airTurbulence ##
+Verify ESS:126 airTurbulence Published Data
+    [Tags]    ess126    robot:continue-on-failure
+    ${dataframe}=    Get Recent Samples    ESS    airTurbulence    ["sensorName", "location", "speedMagnitude",]    num=1    index=126
+    Log    ${dataframe}
+    Should Not Be True    ${dataframe.empty}
+    Should Be Equal As Strings    ${dataframe.sensorName.values}[0]    TMA-3D-ANEM-04-S
+    Should Be Equal As Strings    ${dataframe.location.values}[0]    TMA Top Ring (-X/+Y)
+    Should Be True    abs(${dataframe.speedMagnitude.values}[0]) >= 0
+
+Verify ESS:126 airTurbulence Data is Recent
+    [Tags]    ess126    timing
+    Set Test Variable    ${ess_seconds_ago}    10
+    Verify Time Delta    ESS:126    airTurbulence    second=${ess_seconds_ago}    minute=${minutes_ago}    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
 # ESS:201
 ## airTurbulence ##
 Verify ESS:201 airTurbulence Published Data
@@ -880,6 +944,93 @@ Verify ESS:308 lightningStrikeStatus Published Data
 Verify ESS:308 lightningStrikeStatus Data is Recent
     [Tags]    ess308    timing
     Verify Time Delta    ESS:308    lightningStrikeStatus    second=${ess_seconds_ago}    minute=${ess_minutes_ago}    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
+# ESS:401
+Verify ESS:401 particleMeasurements Published Data  
+    [Tags]    ess401    robot:continue-on-failure
+    ${dataframe}=    Get Recent Samples    ESS    particleMeasurements    ["sensorName", "location", "typicalParticleSize", "matterConcentration0", "matterConcentration1", "matterConcentration2", "matterConcentration3", "matterConcentration4", "numberConcentration0", "numberConcentration1", "numberConcentration2", "numberConcentration3", "numberConcentration4", "particleSizes0", "particleSizes1", "particleSizes2", "particleSizes3", "particleSizes4",]    num=1    index=401
+Log    ${dataframe}
+    Should Not Be True    ${dataframe.empty}
+    Should Be Equal As Strings    ${dataframe.sensorName.values}[0]    MTDome-Sensirion-1
+    Should Be Equal As Strings    ${dataframe.location.values}[0]    MTDome 1
+    Should Be True    abs(${dataframe.typicalParticleSize.values}[0]) >= 0
+    Should Be True    abs(${dataframe.matterConcentration0.values}[0]) >= 0
+    Should Be True    abs(${dataframe.matterConcentration1.values}[0]) >= 0
+    Should Be True    abs(${dataframe.matterConcentration2.values}[0]) >= 0
+    Should Be True    abs(${dataframe.matterConcentration3.values}[0]) >= 0
+    Should Be True    abs(${dataframe.matterConcentration4.values}[0]) >= 0
+    Should Be True    abs(${dataframe.numberConcentration0.values}[0]) >= 0
+    Should Be True    abs(${dataframe.numberConcentration1.values}[0]) >= 0
+    Should Be True    abs(${dataframe.numberConcentration2.values}[0]) >= 0
+    Should Be True    abs(${dataframe.numberConcentration3.values}[0]) >= 0
+    Should Be True    abs(${dataframe.numberConcentration4.values}[0]) >= 0
+    Should Be True    abs(${dataframe.particleSizes0.values}[0]) >= 0
+    Should Be True    abs(${dataframe.particleSizes1.values}[0]) >= 0
+    Should Be True    abs(${dataframe.particleSizes2.values}[0]) >= 0
+    Should Be True    abs(${dataframe.particleSizes3.values}[0]) >= 0
+    Should Be True    abs(${dataframe.particleSizes4.values}[0]) >= 0
+
+Verify ESS:401 particleMeasurements Data is Recent
+    [Tags]    ess401    timing    
+    Verify Time Delta    ESS:401    particleMeasurements    second=${ess_seconds_ago}    minute=${ess_minutes_ago}    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
+# ESS:402
+Verify ESS:402 particleMeasurements Published Data
+    [Tags]    ess402    robot:continue-on-failure
+    ${dataframe}=    Get Recent Samples    ESS    particleMeasurements    ["sensorName", "location", "typicalParticleSize", "matterConcentration0", "matterConcentration1", "matterConcentration2", "matterConcentration3", "matterConcentration4", "numberConcentration0", "numberConcentration1", "numberConcentration2", "numberConcentration3", "numberConcentration4", "particleSizes0", "particleSizes1", "particleSizes2", "particleSizes3", "particleSizes4",]    num=1    index=402
+Log    ${dataframe}
+    Should Not Be True    ${dataframe.empty}
+    Should Be Equal As Strings    ${dataframe.sensorName.values}[0]    MTDome-Sensirion-2
+    Should Be Equal As Strings    ${dataframe.location.values}[0]    MTDome 2
+    Should Be True    abs(${dataframe.typicalParticleSize.values}[0]) >= 0
+    Should Be True    abs(${dataframe.matterConcentration0.values}[0]) >= 0
+    Should Be True    abs(${dataframe.matterConcentration1.values}[0]) >= 0
+    Should Be True    abs(${dataframe.matterConcentration2.values}[0]) >= 0
+    Should Be True    abs(${dataframe.matterConcentration3.values}[0]) >= 0
+    Should Be True    abs(${dataframe.matterConcentration4.values}[0]) >= 0
+    Should Be True    abs(${dataframe.numberConcentration0.values}[0]) >= 0
+    Should Be True    abs(${dataframe.numberConcentration1.values}[0]) >= 0
+    Should Be True    abs(${dataframe.numberConcentration2.values}[0]) >= 0
+    Should Be True    abs(${dataframe.numberConcentration3.values}[0]) >= 0
+    Should Be True    abs(${dataframe.numberConcentration4.values}[0]) >= 0
+    Should Be True    abs(${dataframe.particleSizes0.values}[0]) >= 0
+    Should Be True    abs(${dataframe.particleSizes1.values}[0]) >= 0
+    Should Be True    abs(${dataframe.particleSizes2.values}[0]) >= 0
+    Should Be True    abs(${dataframe.particleSizes3.values}[0]) >= 0
+    Should Be True    abs(${dataframe.particleSizes4.values}[0]) >= 0
+
+Verify ESS:402 particleMeasurements Data is Recent
+    [Tags]    ess402    timing
+    Verify Time Delta    ESS:402    particleMeasurements    second=${ess_seconds_ago}    minute=${ess_minutes_ago}    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
+# ESS:403
+Verify ESS:403 particleMeasurements Published Data
+    [Tags]    ess403    robot:continue-on-failure
+    ${dataframe}=    Get Recent Samples    ESS    particleMeasurements    ["sensorName", "location", "typicalParticleSize", "matterConcentration0", "matterConcentration1", "matterConcentration2", "matterConcentration3", "matterConcentration4", "numberConcentration0", "numberConcentration1", "numberConcentration2", "numberConcentration3", "numberConcentration4", "particleSizes0", "particleSizes1", "particleSizes2", "particleSizes3", "particleSizes4",]    num=1    index=403
+Log    ${dataframe}
+    Should Not Be True    ${dataframe.empty}
+    Should Be Equal As Strings    ${dataframe.sensorName.values}[0]    MTDome-Sensirion-3
+    Should Be Equal As Strings    ${dataframe.location.values}[0]    MTDome 3
+    Should Be True    abs(${dataframe.typicalParticleSize.values}[0]) >= 0
+    Should Be True    abs(${dataframe.matterConcentration0.values}[0]) >= 0
+    Should Be True    abs(${dataframe.matterConcentration1.values}[0]) >= 0
+    Should Be True    abs(${dataframe.matterConcentration2.values}[0]) >= 0
+    Should Be True    abs(${dataframe.matterConcentration3.values}[0]) >= 0
+    Should Be True    abs(${dataframe.matterConcentration4.values}[0]) >= 0
+    Should Be True    abs(${dataframe.numberConcentration0.values}[0]) >= 0
+    Should Be True    abs(${dataframe.numberConcentration1.values}[0]) >= 0
+    Should Be True    abs(${dataframe.numberConcentration2.values}[0]) >= 0
+    Should Be True    abs(${dataframe.numberConcentration3.values}[0]) >= 0
+    Should Be True    abs(${dataframe.numberConcentration4.values}[0]) >= 0
+    Should Be True    abs(${dataframe.particleSizes0.values}[0]) >= 0
+    Should Be True    abs(${dataframe.particleSizes1.values}[0]) >= 0
+    Should Be True    abs(${dataframe.particleSizes2.values}[0]) >= 0
+    Should Be True    abs(${dataframe.particleSizes3.values}[0]) >= 0
+    Should Be True    abs(${dataframe.particleSizes4.values}[0]) >= 0
+
+Verify ESS:403 particleMeasurements Data is Recent
+    [Tags]    ess403    timing
+    Verify Time Delta    ESS:403    particleMeasurements    second=${ess_seconds_ago}    minute=${ess_minutes_ago}    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 # WeatherForecast
 Verify WeatherForecast hourlyTrend Published Data
