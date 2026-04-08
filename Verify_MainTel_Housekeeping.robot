@@ -41,12 +41,12 @@ Verify MTMount Axes Homed
     [Tags]    robot:continue-on-failure    mtmount
     Set Test Variable    ${minutes_ago}    1
     # The inPosition toggles True for less than one second. Get two events and the obtain the value from the older.
-    ${el_in_position_df}=    Get Recent Samples    MTMount    logevent_elevationInPosition    ${in_position_field}    2    None
-    Should Be Equal As Strings    ${el_in_position_df.iloc[1].inPosition}    ${in_position}
+    ${el_in_position_df}=    Get Recent Samples    MTMount    logevent_elevationInPosition    ${in_position_field}    1    None
+    Should Be Equal As Strings    ${el_in_position_df.iloc[0].inPosition}    ${in_position}
     Verify Time Delta    MTMount    logevent_elevationInPosition    minute=${minutes_ago}    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
     Verify Time Delta    MTMount    command_homeBothAxes    minute=${minutes_ago}    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
-    ${az_in_position_df}=    Get Recent Samples    MTMount    logevent_azimuthInPosition    ${in_position_field}    2    None
-    Should Be Equal As Strings    ${az_in_position_df.iloc[1].inPosition}    ${in_position}
+    ${az_in_position_df}=    Get Recent Samples    MTMount    logevent_azimuthInPosition    ${in_position_field}    1    None
+    Should Be Equal As Strings    ${az_in_position_df.iloc[0].inPosition}    ${in_position}
     Verify Time Delta    MTMount    logevent_azimuthInPosition    minute=${minutes_ago}    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
     Verify Time Delta    MTMount    command_homeBothAxes    minute=${minutes_ago}    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 

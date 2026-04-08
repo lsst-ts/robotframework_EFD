@@ -113,10 +113,10 @@ Verify Telescope Parked
         Verify Topic Attribute    MTMount    logevent_target    ["azimuth",]    ["0",]
         Verify Topic Attribute    MTMount    logevent_target    ["elevation",]    ["80",]
         # The inPosition toggles True for less than one second. Get two events and the obtain the value from the older.
-        ${el_in_position_df}=    Get Recent Samples    MTMount    logevent_azimuthInPosition    ${in_position_field}    2    None
-        ${az_in_position_df}=    Get Recent Samples    MTMount    logevent_elevationInPosition    ${in_position_field}    2    None
-        Should Be Equal As Strings    ${az_in_position_df.iloc[1].inPosition}    ${in_position}
-        Should Be Equal As Strings    ${el_in_position_df.iloc[1].inPosition}    ${in_position}
+        ${el_in_position_df}=    Get Recent Samples    MTMount    logevent_azimuthInPosition    ${in_position_field}    1    None
+        ${az_in_position_df}=    Get Recent Samples    MTMount    logevent_elevationInPosition    ${in_position_field}    1    None
+        Should Be Equal As Strings    ${az_in_position_df.iloc[0].inPosition}    ${in_position}
+        Should Be Equal As Strings    ${el_in_position_df.iloc[0].inPosition}    ${in_position}
         # Verify Azimuth position.
         ${dataframe}=    Get Recent Samples    MTMount    azimuth    ["actualPosition", "demandPosition", "actualTorque", "actualVelocity", "demandVelocity",]    1    None
         Compare Numbers    ${dataframe.actualPosition.values}[0]    0    0.5
