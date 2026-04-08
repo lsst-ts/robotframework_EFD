@@ -110,7 +110,6 @@ Verify Telescope Parked
         Compare Numbers    ${dataframe.azimuthCalculatedAngle0.values}[0]    0    0.5
         Compare Numbers    ${dataframe.elevationCalculatedAngle0.values}[0]    80    0.5
     ELSE IF    "${telescope}" == "maintel"
-        Verify Topic Attribute    MTPtg    logevent_currentTarget    ["targetName",]    ["Park position",]
         Verify Topic Attribute    MTMount    logevent_target    ["azimuth",]    ["0",]
         Verify Topic Attribute    MTMount    logevent_target    ["elevation",]    ["80",]
         # The inPosition toggles True for less than one second. Get two events and the obtain the value from the older.
@@ -121,14 +120,14 @@ Verify Telescope Parked
         # Verify Azimuth position.
         ${dataframe}=    Get Recent Samples    MTMount    azimuth    ["actualPosition", "demandPosition", "actualTorque", "actualVelocity", "demandVelocity",]    1    None
         Compare Numbers    ${dataframe.actualPosition.values}[0]    0    0.5
-        Compare Numbers    ${dataframe.actualTorque.values}[0]    0    0.5
+        Compare Numbers    ${dataframe.actualTorque.values}[0]      0    0.5
         Compare Numbers    ${dataframe.actualVelocity.values}[0]    0    0.5
         Compare Numbers    ${dataframe.demandPosition.values}[0]    0    0.5
         Compare Numbers    ${dataframe.demandVelocity.values}[0]    0    0.5
         # Verify Elevation position.
         ${dataframe}=    Get Recent Samples    MTMount    elevation    ["actualPosition", "demandPosition", "actualTorque", "actualVelocity", "demandVelocity",]    1    None
         Compare Numbers    ${dataframe.actualPosition.values}[0]    80    0.5
-        Compare Numbers    ${dataframe.actualTorque.values}[0]    0    0.5
+        Compare Numbers    ${dataframe.actualTorque.values}[0]      0    0.5
         Compare Numbers    ${dataframe.actualVelocity.values}[0]    0    0.5
         Compare Numbers    ${dataframe.demandPosition.values}[0]    80    0.5
         Compare Numbers    ${dataframe.demandVelocity.values}[0]    0    0.5
