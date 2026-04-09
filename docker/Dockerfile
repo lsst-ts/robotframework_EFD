@@ -45,7 +45,8 @@ conda config --add channels conda-forge && \
 conda install -c conda-forge 'python=3.13' 'libarchive' 'libmamba' -y && \
 conda install -y setuptools pytest requests robotframework astropy && \
 conda install -y pandas aioinflux numpy kafkit PyYAML && \
-conda install -c conda-forge lsst-efd-client && \
+pip3 install --no-deps -U lsst-efd-client && \
+#conda install -c conda-forge lsst-efd-client && \
 conda clean --all
 
 # Startup
