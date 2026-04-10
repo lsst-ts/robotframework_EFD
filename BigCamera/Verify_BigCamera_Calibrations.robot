@@ -19,10 +19,10 @@ Verify Dome Flatfield Position
     [Tags]    robot:continue-on-failure
     ${evt_df}=    Get Recent Samples    MTDome    azimuth    ["positionActual", "positionCommanded","velocityActual","velocityCommanded",]    1    None
     Should Not Be Empty    ${evt_df}
-    Should Be Equal As Numbers    ${dome_flat}    ${evt_df.positionActual.values}
-    Should Be Equal As Numbers    ${dome_flat}    ${evt_df.positionCommanded.values}
-    Should Be Equal As Numbers    ${0}    ${evt_df.velocityActual.values}
-    Should Be Equal As Numbers    ${0}    ${evt_df.velocityCommanded.values}
+    Should Be Equal As Numbers    ${dome_flat}    ${evt_df.positionActual.values}[0]
+    Should Be Equal As Numbers    ${dome_flat}    ${evt_df.positionCommanded.values}[0]
+    Should Be Equal As Numbers    ${0}    ${evt_df.velocityActual.values}[0]
+    Should Be Equal As Numbers    ${0}    ${evt_df.velocityCommanded.values}[0]
 
 Engage MTDome Brakes
     [Tags]    execute
@@ -31,11 +31,11 @@ Engage MTDome Brakes
     Check If Script Failed    ${states}
 
 Verify MTDome Brakes are Engaged
-    [Tags]    OSW-1408
+    [Tags]    robot:continue-on-failure    OSW-1408
     ${dataframe}=    Get Recent Samples    MTDome    logevent_azMotion    ["state","inPosition"]    1    None
     Should Not Be Empty    ${dataframe}
     Log    ${dataframe}
-    Should Be Equal As Numbers    ${dataframe.state.values}    13    # MotionState_Stopped_Braked
+    Should Be Equal As Numbers    ${dataframe.state.values}[0]    13    # MotionState_Stopped_Braked
     Should Be True    ${dataframe.inPosition.values}
     # The MTDome simulator currently does not publish logevent_brakesEngaged.
     ${dataframe}=    Get Recent Samples    MTDome    logevent_brakesEngaged    ["brakes"]    1    None
