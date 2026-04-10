@@ -191,7 +191,7 @@ Verify MTAOS SoftwareVersions timing
     Verify Time Delta    MTAOS    logevent_softwareVersions    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify MTAOS ConfigurationsAvailable Event
-    [Tags]    config_available
+    [Tags]    config_available    OSW-2158
     Verify ConfigurationsAvailable    MTAOS
 
 Verify MTAOS ConfigurationsAvailable timing
@@ -212,7 +212,7 @@ Verify MTHexapod:1 SoftwareVersions timing
     Verify Time Delta    MTHexapod:1    logevent_softwareVersions    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify MTHexapod:1 ConfigurationsAvailable Event
-    [Tags]    config_available
+    [Tags]    config_available    OSW-2158
     Verify ConfigurationsAvailable    MTHexapod    index=1
 
 Verify MTHexapod:1 ConfigurationsAvailable timing
@@ -233,7 +233,7 @@ Verify MTHexapod:2 SoftwareVersions timing
     Verify Time Delta    MTHexapod:2    logevent_softwareVersions    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify MTHexapod:2 ConfigurationsAvailable Event
-    [Tags]    config_available
+    [Tags]    config_available    OSW-2158
     Verify ConfigurationsAvailable    MTHexapod    index=2
 
 Verify MTHexapod:2 ConfigurationsAvailable timing
@@ -275,7 +275,7 @@ Verify MTM1M3 SoftwareVersions timing
     Verify Time Delta    MTM1M3    logevent_softwareVersions    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify MTM1M3 ConfigurationsAvailable Event
-    [Tags]    config_available    CAP-872
+    [Tags]    config_available    CAP-872    OSW-2158
     Verify ConfigurationsAvailable    MTM1M3
 
 Verify MTM1M3 ConfigurationsAvailable timing
@@ -296,11 +296,11 @@ Verify MTM1M3TS SoftwareVersions timing
     Verify Time Delta    MTM1M3TS    logevent_softwareVersions    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
     
 Verify MTM1M3TS ConfigurationsAvailable Event
-    [Tags]    config_available
+    [Tags]    config_available    OSW-2158
     Verify ConfigurationsAvailable    MTM1M3TS
     
 Verify MTM1M3TS ConfigurationsAvailable timing
-    [Tags]    config_available    timing
+    [Tags]    config_available    timing    OSW-2158
     Verify Time Delta    MTM1M3TS    logevent_configurationsAvailable    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 # MTM2
@@ -338,11 +338,11 @@ Verify MTVMS:1 SoftwareVersions timing
     Verify Time Delta    MTVMS:1    logevent_softwareVersions    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify MTVMS:1 ConfigurationsAvailable Event
-    [Tags]    config_available
+    [Tags]    config_available    OSW-2158
     Verify ConfigurationsAvailable    MTVMS    index=1
 
 Verify MTVMS:1 ConfigurationsAvailable timing
-    [Tags]    config_available    timing
+    [Tags]    config_available    timing    OSW-2158
     Verify Time Delta    MTVMS:1    logevent_configurationsAvailable    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 #OCPS:101
