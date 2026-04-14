@@ -242,6 +242,40 @@ Verify MTVMS:1 ConfigurationApplied Event timing
     [Tags]    config_applied    timing    OSW-2158
     Verify Time Delta    MTVMS:1    logevent_configurationApplied    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
+# MTVMS:2
+Verify MTVMS:2 Disabled
+    [Tags]    disabled
+    Verify Summary State    ${STATES}[disabled]    MTVMS:2
+
+Verify MTVMS:2 SummaryState timing
+    [Tags]    software_versions    timing
+    Verify Time Delta    MTVMS:2    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
+Verify MTVMS:2 ConfigurationApplied Event
+    [Tags]    config_applied    OSW-2158
+    Verify ConfigurationApplied    MTVMS    index=2
+
+Verify MTVMS:2 ConfigurationApplied Event timing
+    [Tags]    config_applied    timing    OSW-2158
+    Verify Time Delta    MTVMS:2    logevent_configurationApplied    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
+# MTVMS:3
+Verify MTVMS:3 Disabled
+    [Tags]    disabled
+    Verify Summary State    ${STATES}[disabled]    MTVMS:3
+
+Verify MTVMS:3 SummaryState timing
+    [Tags]    software_versions    timing
+    Verify Time Delta    MTVMS:3    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
+Verify MTVMS:3 ConfigurationApplied Event
+    [Tags]    config_applied    OSW-2158
+    Verify ConfigurationApplied    MTVMS    index=3
+
+Verify MTVMS:3 ConfigurationApplied Event timing
+    [Tags]    config_applied    timing    OSW-2158
+    Verify Time Delta    MTVMS:3    logevent_configurationApplied    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
 #OCPS:101
 Verify OCPS:101 Disabled
     [Tags]    disabled

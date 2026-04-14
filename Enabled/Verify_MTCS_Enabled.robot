@@ -142,6 +142,24 @@ Verify MTVMS:1 SummaryState timing
     [Tags]    enabled    timing
     Verify Time Delta    MTVMS:1    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
+# MTVMS:2
+Verify MTVMS:2 Enabled
+    [Tags]    enabled
+    Verify Summary State    ${STATES}[enabled]    MTVMS:2
+    
+Verify MTVMS:2 SummaryState timing
+    [Tags]    enabled    timing
+    Verify Time Delta    MTVMS:2    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
+# MTVMS:3
+Verify MTVMS:3 Enabled
+    [Tags]    enabled
+    Verify Summary State    ${STATES}[enabled]    MTVMS:3
+    
+Verify MTVMS:3 SummaryState timing
+    [Tags]    enabled    timing
+    Verify Time Delta    MTVMS:3    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
 #OCPS:101
 Verify OCPS:101 Enabled
     [Tags]    enabled
