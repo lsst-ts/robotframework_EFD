@@ -120,6 +120,7 @@ non_config = [
     "Script",
     "ScriptQueue",
     "SummitFacility",
+    "WFOODS",
 ]
 offline = [
     "ATCamera",

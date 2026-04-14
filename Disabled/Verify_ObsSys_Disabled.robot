@@ -15,7 +15,7 @@ Verify Scheduler:1 SummaryState timing
     Verify Time Delta    Scheduler:1    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify Scheduler:1 ConfigurationApplied Event
-    [Tags]    config_applied
+    [Tags]    config_applied    OSW-2158
     Verify ConfigurationApplied    Scheduler    index=1
 
 Verify Scheduler:1 ConfigurationApplied Event timing
@@ -32,7 +32,7 @@ Verify Scheduler:2 SummaryState timing
     Verify Time Delta    Scheduler:2    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify Scheduler:2 ConfigurationApplied Event
-    [Tags]    config_applied
+    [Tags]    config_applied    OSW-2158
     Verify ConfigurationApplied    Scheduler    index=2
 
 Verify Scheduler:2 ConfigurationApplied Event timing
@@ -49,7 +49,7 @@ Verify Scheduler:3 SummaryState timing
     Verify Time Delta    Scheduler:3    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify Scheduler:3 ConfigurationApplied Event
-    [Tags]    config_applied
+    [Tags]    config_applied    OSW-2158
     Verify ConfigurationApplied    Scheduler    index=3
 
 Verify Scheduler:3 ConfigurationApplied Event timing
@@ -96,7 +96,7 @@ Verify Watcher SummaryState timing
     Verify Time Delta    Watcher    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify Watcher ConfigurationApplied Event
-    [Tags]    config_applied
+    [Tags]    config_applied    OSW-2158
     Verify ConfigurationApplied    Watcher
 
 Verify Watcher ConfigurationApplied Event timing
