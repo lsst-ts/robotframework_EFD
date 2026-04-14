@@ -2,8 +2,9 @@ FROM almalinux:9
 LABEL org.opencontainers.image.authors="trekkie2@gmail.com"
 ARG USER=saluser
 ARG HOME=/home/${USER}
-ENV PYTHONPATH="$PYTHONPATH:/usr/local/lib/python3.8/site-packages/lsst_efd_client"
+ENV PYTHONPATH="/home/saluser/miniconda3/lib/python3.13/site-packages"
 ENV PATH=$PATH:${HOME}/bin:${HOME}/.local/bin
+ENV CONDA_PLUGINS_AUTO_ACCEPT_TOS=true
 
 USER root
 
@@ -41,10 +42,11 @@ RUN source miniconda3/bin/activate && \
 conda update conda -y && \
 conda config --add channels defaults && \
 conda config --add channels conda-forge && \
-conda install -c conda-forge 'python=3.12' 'libarchive' 'libmamba' -y && \
-pip3 install -U setuptools pytest requests robotframework astropy gnureadline && \
-pip3 install -U pandas aioinflux numpy tables kafkit PyYAML && \
+conda install -c conda-forge 'python=3.13' 'libarchive' 'libmamba' -y && \
+conda install -y setuptools pytest requests robotframework astropy && \
+conda install -y pandas aioinflux numpy kafkit PyYAML && \
 pip3 install --no-deps -U lsst-efd-client && \
+#conda install -c conda-forge lsst-efd-client && \
 conda clean --all
 
 # Startup

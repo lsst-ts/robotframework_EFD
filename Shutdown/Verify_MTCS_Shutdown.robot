@@ -64,3 +64,11 @@ Verify MTM2 Shutdown
 Verify MTVMS:1 Shutdown
     [Tags]
     Verify Shutdown Process    MTVMS:1
+
+Verify MTVMS:2 Shutdown
+    [Tags]
+    Verify Shutdown Process    MTVMS:2
+
+Verify MTVMS:3 Shutdown
+    [Tags]
+    Verify Shutdown Process    MTVMS:3

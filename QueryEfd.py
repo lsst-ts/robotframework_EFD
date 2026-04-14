@@ -702,7 +702,7 @@ class QueryEfd:
         where_clause: str = "",
         output_format: str = "dataframe",
     ) -> str:
-        """Returns the result of the influx_client.query in specified output format.
+        """Returns the result of the _influx_client.query in specified output format.
 
         Parameters
         ----------
@@ -724,13 +724,13 @@ class QueryEfd:
         Returns
         -------
         output : `str`
-            The return from the influx_client.query function.
+            The return from the _influx_client.query function.
         """
         efd_client = EfdClient(self.efd_name)
-        efd_client.influx_client.output = output_format
+        efd_client._influx_client.output = output_format
         loop = asyncio.get_event_loop()
         output = loop.run_until_complete(
-            efd_client.influx_client.query(
+            efd_client._influx_client.query(
                 f"""SELECT {fields} FROM "efd"."autogen"."lsst.sal.{csc}.{topic}" {where_clause} GROUP BY * ORDER BY DESC LIMIT {limit}"""
             )
         )
@@ -808,7 +808,7 @@ class QueryEfd:
     @not_keyword
     def _get_from_json(self, column: str, info: dict) -> Any:
         """Simple function to return a specific value from the JSON dictionary
-        returned from the EfdClient influx_client.query function.
+        returned from the EfdClient _influx_client.query function.
 
         Parameters
         ----------

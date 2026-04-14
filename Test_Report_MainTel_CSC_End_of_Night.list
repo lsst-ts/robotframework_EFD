@@ -5,4 +5,4 @@
 --skiponfailure skipped
 
 # List of test suites
-Verify_MainTel_CSC_End_Of_Night.robot
+MainTel/Verify_MainTel_CSC_End_of_Night.robot

@@ -8,6 +8,12 @@ Force Tags    mtreflector
 
 *** Test Cases ***
 # MTReflector
+Ensure MTReflector is in Standby
+    [Tags]
+    Comment    Transition MTReflector to Standby, if not already there.
+    ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    MTReflector    Standby     1
+    Verify Scripts Completed Successfully    ${scripts}    ${states}
+
 Verify MTReflector reflectorStatus
     [Tags]    robot:continue-on-failure
     Comment    The reflectorStatus Event is sent in response to the open and close commands.

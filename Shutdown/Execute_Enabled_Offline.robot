@@ -115,7 +115,7 @@ Execute ObsSys Enabled to Offline
     [Tags]    obssys    robot:continue-on-failure
     @{script_args}=    Create List    ${state}    3    --mute_alarms
     # Remove Watcher, as it is shutdown, explicitly, first.
-    Remove Values From List    @{ObsSys}    Watcher
+    Remove Values From List    ${ObsSys}    Watcher
     FOR    ${csc}    IN    @{ObsSys}
         Log to Console    Shutting off ${csc}...    no_newline=true
         ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    ${csc}    @{script_args}
