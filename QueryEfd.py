@@ -727,10 +727,10 @@ class QueryEfd:
             The return from the _influx_client.query function.
         """
         efd_client = EfdClient(self.efd_name)
-        efd_client._influx_client.output = output_format
+        efd_client.influx_client.output = output_format
         loop = asyncio.get_event_loop()
         output = loop.run_until_complete(
-            efd_client._influx_client.query(
+            efd_client.influx_client.query(
                 f"""SELECT {fields} FROM "efd"."autogen"."lsst.sal.{csc}.{topic}" {where_clause} GROUP BY * ORDER BY DESC LIMIT {limit}"""
             )
         )
