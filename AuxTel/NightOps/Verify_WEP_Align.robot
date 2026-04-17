@@ -160,19 +160,19 @@ Verify Initial Offset
     Set Suite Variable    ${event_dataframe}
     @{list}=    Create List    ${0.0}    ${0.0}    ${0.8}
     Comment    First Iteration.
-    Lists Should Be Equal    ${command_dataframe.iloc[3].round(3)}    ${list}
+    Lists Should Be Equal    ${command_dataframe.iloc[3].round(3).to_list()}    ${list}
     ${initial_z}=    Set Variable    ${event_dataframe.iloc[8].iloc[2]}
     ${offset_z}=    Set Variable    ${event_dataframe.iloc[7].iloc[2]}
     ${delta}=    Evaluate    ${offset_z} - ${initial_z}
     Should Be Equal As Numbers    ${delta}    0.8
     Comment    Second Iteration.
-    Lists Should Be Equal    ${command_dataframe.iloc[7].round(3)}    ${list}
+    Lists Should Be Equal    ${command_dataframe.iloc[7].round(3).to_list()}    ${list}
     ${initial_z}=    Set Variable    ${event_dataframe.iloc[16].iloc[2]}
     ${offset_z}=    Set Variable    ${event_dataframe.iloc[15].iloc[2]}
     ${delta}=    Evaluate    ${offset_z} - ${initial_z}
     Should Be Equal As Numbers    ${delta}    0.8
     Comment    Third Iteration.
-    Lists Should Be Equal    ${command_dataframe.iloc[11].round(3)}    ${list}
+    Lists Should Be Equal    ${command_dataframe.iloc[11].round(3).to_list()}    ${list}
     ${initial_z}=    Set Variable    ${event_dataframe.iloc[24].iloc[2]}
     ${offset_z}=    Set Variable    ${event_dataframe.iloc[23].iloc[2]}
     ${delta}=    Evaluate    ${offset_z} - ${initial_z}
@@ -183,19 +183,19 @@ Verify Extra-Focal Offset
     [Tags]    robot:continue-on-failure
     @{list}=    Create List    ${0.0}    ${0.0}    ${-1.6011}
     Comment    First Iteration.  Note: ATAOS publishes 2 intervening correctionOffsets Events.
-    Lists Should Be Equal    ${command_dataframe.iloc[2].round(4)}    ${list}
+    Lists Should Be Equal    ${command_dataframe.iloc[2].round(4).to_list()}    ${list}
     ${initial_z}=    Set Variable    ${event_dataframe.iloc[5].iloc[2]}
     ${offset_z}=    Set Variable    ${event_dataframe.iloc[4].iloc[2]}
     ${delta}=    Evaluate    ${offset_z} - ${initial_z}
     Should Be Equal As Numbers    ${delta}    -1.6011
     Comment    Second Iteration.
-    Lists Should Be Equal    ${command_dataframe.iloc[6].round(4)}    ${list}
+    Lists Should Be Equal    ${command_dataframe.iloc[6].round(4).to_list()}    ${list}
     ${initial_z}=    Set Variable    ${event_dataframe.iloc[13].iloc[2]}
     ${offset_z}=    Set Variable    ${event_dataframe.iloc[12].iloc[2]}
     ${delta}=    Evaluate    ${offset_z} - ${initial_z}
     Should Be Equal As Numbers    ${delta}    -1.6011
     Comment    Third Iteration.
-    Lists Should Be Equal    ${command_dataframe.iloc[10].round(4)}    ${list}
+    Lists Should Be Equal    ${command_dataframe.iloc[10].round(4).to_list()}    ${list}
     ${initial_z}=    Set Variable    ${event_dataframe.iloc[21].iloc[2]}
     ${offset_z}=    Set Variable    ${event_dataframe.iloc[20].iloc[2]}
     ${delta}=    Evaluate    ${offset_z} - ${initial_z}
@@ -206,19 +206,19 @@ Verify Return to InFocus Position
     [Tags]    robot:continue-on-failure
     @{list}=    Create List    ${0.0}    ${0.0}    ${0.801}
     Comment    First Iteration.  Note: ATAOS publishes 2 intervening correctionOffsets Events.
-    Lists Should Be Equal    ${command_dataframe.iloc[1].round(3)}    ${list}
+    Lists Should Be Equal    ${command_dataframe.iloc[1].round(3).to_list()}    ${list}
     ${initial_z}=    Set Variable    ${event_dataframe.iloc[2].iloc[2]}
     ${offset_z}=    Set Variable    ${event_dataframe.iloc[1].iloc[2]}
     ${delta}=    Evaluate    ${offset_z} - ${initial_z}
     Should Be Equal As Numbers    ${delta}    0.8011
     Comment    Second Iteration.
-    Lists Should Be Equal    ${command_dataframe.iloc[5].round(3)}    ${list}
+    Lists Should Be Equal    ${command_dataframe.iloc[5].round(3).to_list()}    ${list}
     ${initial_z}=    Set Variable    ${event_dataframe.iloc[10].iloc[2]}
     ${offset_z}=    Set Variable    ${event_dataframe.iloc[9].iloc[2]}
     ${delta}=    Evaluate    ${offset_z} - ${initial_z}
     Should Be Equal As Numbers    ${delta}    0.8011
     Comment    Third Iteration.
-    Lists Should Be Equal    ${command_dataframe.iloc[9].round(3)}    ${list}
+    Lists Should Be Equal    ${command_dataframe.iloc[9].round(3).to_list()}    ${list}
     ${initial_z}=    Set Variable    ${event_dataframe.iloc[18].iloc[2]}
     ${offset_z}=    Set Variable    ${event_dataframe.iloc[17].iloc[2]}
     ${delta}=    Evaluate    ${offset_z} - ${initial_z}
