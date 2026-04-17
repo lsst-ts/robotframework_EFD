@@ -23,7 +23,7 @@ Verify ATCamera Playlist Loaded
 
 Execute AuxTel PTC Calibrations
     [Tags]    execute
-    ${scripts}    ${states}=    Execute Integration Test    auxtel_latiss_calibrations    ptc
+    ${scripts}    ${states}=    Execute Integration Test    auxtel_latiss_calibrations    ptc    --wait=30
     Verify Scripts Completed Successfully    ${scripts}    ${states}
     Check If Script Failed    ${states}
 
