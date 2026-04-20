@@ -3,7 +3,7 @@ Resource    ../../Global_Vars.resource
 Resource    ../../CSC_Lists.resource
 Resource    ../../Common_Keywords.resource
 Library     Process
-Force Tags    daytime_at_telescope_dome
+Force Tags    at_daytime_checkout
 
 *** Variables ***
 
