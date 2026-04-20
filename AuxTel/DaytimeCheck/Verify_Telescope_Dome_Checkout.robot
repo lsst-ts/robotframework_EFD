@@ -25,14 +25,16 @@ Verify ATMCS Tracking is Disabled
     ${dataframe}=    Get Recent Samples    ATMCS    logevent_atMountState    ["state",]    1    None
     Should Be Equal As Integers    ${dataframe.state.values}[0]    8    #TrackingDisabled
 
-Verify ATMCS Tracking was Disabled
+Verify ATMCS Tracking was Enabled
     [Tags]    robot:continue-on-failure
-    ${dataframe}=    Get Recent Samples    ATMCS    logevent_atMountState    ["state",]    2    None
-    Should Be Equal As Integers    ${dataframe.state.values}[1]    9    #TrackingEnabled
-    ${dataframe}=    Get Recent Samples    ATMCS    logevent_azimuthInPosition    ["inPosition",]    2    None
-    Should Not Be True    ${dataframe.inPosition.values}[1]
-    ${dataframe}=    Get Recent Samples    ATMCS    logevent_elevationInPosition    ["inPosition",]    2    None
-    Should Not Be True    ${dataframe.inPosition.values}[1]
+    Comment    When disabling tracking ATMCS goes from Enabled > Stopping > Disabled.
+    ${dataframe}=    Get Recent Samples    ATMCS    logevent_atMountState    ["state",]    3    None
+    Should Be Equal As Integers    ${dataframe.state.values}[2]    9    #TrackingEnabled
+    Comment    When ATMCS is tracking, the inPosition flag is set to False.
+    ${dataframe}=    Get Recent Samples    ATMCS    logevent_azimuthInPosition    ["inPosition",]    3    None
+    Should Not Be True    ${dataframe.inPosition.values}[2]
+    ${dataframe}=    Get Recent Samples    ATMCS    logevent_elevationInPosition    ["inPosition",]    3    None
+    Should Not Be True    ${dataframe.inPosition.values}[2]
 
 Verify ATPtg Tracking was AzEl
     [Tags]
