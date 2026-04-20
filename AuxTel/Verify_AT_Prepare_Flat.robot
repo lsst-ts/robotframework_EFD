@@ -58,19 +58,21 @@ Verify ATHexapod inPosition is True
     Should Be True    ${dataframe.inPosition.values}[0]
 
 Verify ATMCS allAxesInPosition
-    [Tags]
+    [Tags]    robot:continue-on-failure
     ${dataframe}=    Get Recent Samples    ATMCS    logevent_allAxesInPosition    ["*",]    2    None
-    Should Be True    ${dataframe.inPosition.values}[1]    #True when Mount reaches the flatfield position.
-    Should Not Be True    ${dataframe.inPosition.values}[0]    #Goes back to False a few seconds later, in preparation for the next move.
+    Should Be True    ${dataframe.inPosition.values}[0]    #True when Mount reaches the flatfield position.
+    Should Not Be True    ${dataframe.inPosition.values}[1]    #Goes back to False a few seconds later, in preparation for the next move.
 
-Verify ATMCS Tracking Disabled
-    [Tags]
+Verify ATMCS Tracking is Enabled
+    [Tags]    robot:continue-on-failure
+    Comment    AuxTel PrepFor_Flat now leaves telescope tracking the flatfield position.
     ${dataframe}=    Get Recent Samples    ATMCS    logevent_atMountState    ["*",]    1    None
-    Should Be Equal As Integers    ${dataframe.state.values}[0]    8    #TrackingDisabled
+    Should Be Equal As Integers    ${dataframe.state.values}[0]    9    #TrackingEnabled
+    Comment    AzEl are both InPosition while tracking the flatfield target.
     ${dataframe}=    Get Recent Samples    ATMCS    logevent_azimuthInPosition    ["*",]    1    None
-    Should Not Be True    ${dataframe.inPosition.values}[0]
+    Should Be True    ${dataframe.inPosition.values}[0]
     ${dataframe}=    Get Recent Samples    ATMCS    logevent_elevationInPosition    ["*",]    1    None
-    Should Not Be True    ${dataframe.inPosition.values}[0]
+    Should Be True    ${dataframe.inPosition.values}[0]
 
 Verify ATMCS m3State is NASMYTH2
     [Tags]
