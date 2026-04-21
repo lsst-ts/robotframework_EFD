@@ -363,6 +363,11 @@ class QueryEfd:
         if csc in csc_lists.non_config:
             if not dataframe.empty:
                 raise ValueError("Dataframe should be empty")
+            else:
+                # Indicate CSC is non-configurable.
+                print(
+                    f"*TRACE*The {csc} CSC is non-configurable and does not publish the ConfigurationApplied Event."
+                )
         else:
             # Get the various field values.
             configurations = dataframe.configurations.iloc[0]
@@ -437,6 +442,11 @@ class QueryEfd:
         if csc in csc_lists.non_config:
             if not dataframe.empty:
                 raise ValueError("Dataframe should be empty")
+            else:
+                # Indicate CSC is non-configurable.
+                print(
+                    f"*TRACE*The {csc} CSC is non-configurable and does not publish the ConfigurationsAvailable Event."
+                )
         else:
             # Get the various field values.
             version = dataframe.version.iloc[0].strip("tags/")
