@@ -31,12 +31,19 @@ class QueryEfd:
         Defines the delimiter used in specifying indexed CSCs.
     time_format : `str`
         Defines the format for time strings.
-    version_regex : `str`
+    semver_regex : `str`
         Defines the Regular Expression for the software versions.
         Starts from the Semantic Version definition, but allows for
         slight deviations to accommodate Conda versioning standards.
-    pattern : `re.Pattern`
-        Converts version_regex string to an re.Pattern object.
+    gitver_regex : `str`
+        Defines the Regular Expression for the software versions taken
+        from the command 
+        `git describe --all --long --always --dirty --broken
+    semver_pattern : `re.Pattern`
+        Converts semver_regex string to an re.Pattern object.
+        This is used for the actual version validation.
+    gitver_pattern : `re.Pattern`
+        Converts gitver_regex string to an re.Pattern object.
         This is used for the actual version validation.
 
     Notes
@@ -51,7 +58,7 @@ class QueryEfd:
     tai_offset: int = 37
     INDEX_DELIM: str = ":"
     time_format: str = "%Y-%m-%dT%H:%M:%S.%f"
-    version_regex = "".join(
+    semver_regex = "".join(
         [
             r"^v?(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)",
             r"(?:[.-]?((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)",
@@ -59,7 +66,15 @@ class QueryEfd:
             r"(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$",
         ]
     )
-    pattern = re.compile(version_regex)
+    gitver_regex = "".join(
+        [
+            r"^(?:heads)\/(?:develop|main|temp)-",
+            r"[0-9]+-[g](?:[0-9a-fA-F]{6,7})",
+            r"(?:-broken)*$",
+        ]
+    )
+    semver_pattern = re.compile(semver_regex)
+    gitver_pattern = re.compile(gitver_regex)
 
     def __init__(
         self,
@@ -211,16 +226,17 @@ class QueryEfd:
 
     @keyword
     def verify_version(self, version: str) -> None:
-        """Fails if the version does not conform to SemVer syntax.
-        The version_regex is defined as a Class attribute.
+        """Fails if the version does not conform to SemVer
+        or git describe syntax.
+        The version RegExps are defined as Class attributes.
 
         Parameters
         ----------
         version : `str`
             The version string.
         """
-        if not self.pattern.match(version):
-            raise AssertionError(f"Version '{version}' is not SemVer compliant.")
+        if not self.semver_pattern.match(version) and not self.gitver_pattern.match(version):
+            raise AssertionError(f"Version '{version}' is not SemVer or Git version compliant.")
 
     @keyword
     def verify_summary_state(
@@ -369,51 +385,54 @@ class QueryEfd:
                     f"*TRACE*The {csc} CSC is non-configurable and does not publish the ConfigurationApplied Event."
                 )
         else:
-            # Get the various field values.
-            configurations = dataframe.configurations.iloc[0]
-            version = dataframe.version.iloc[0].strip("tags/")
-            url = dataframe.url.iloc[0]
-            print(
-                f"*TRACE*Configurations: {configurations}, Version: {version}, URL: {url}"
-            )
-            # Test the field values, as much as possible.
             error_list = []
-            if not configurations:
-                error_list.append("The configuration field should not be empty.")
-            if not version:
-                error_list.append("The version field should not be empty.")
-            if "https://" not in str(url) and "file://" not in str(url):
-                error_list.append(
-                    f"The url should start with 'https://' or 'file://' - URL: {url}"
+            if dataframe.empty:
+                error_list.append("Dataframe SHOULD NOT be empty")
+            else:
+                # Get the various field values.
+                configurations = dataframe.configurations.iloc[0]
+                version = dataframe.version.iloc[0].strip("tags/")
+                url = dataframe.url.iloc[0]
+                print(
+                    f"*TRACE*Configurations: {configurations}, Version: {version}, URL: {url}"
                 )
-            # Test that the configurable CSCs published the additional set
-            # of events, as defined in the otherInfo field of the
-            # ConfigurationApplied event.
-            try:
-                self.verify_version(version)
-            except AssertionError as e:
-                error_list.append("Config " + str(e))
-            if len(dataframe.otherInfo.iloc[0]) > 0:
-                events = dataframe.otherInfo.iloc[0].split(",")
-                for event in events:
-                    if (
-                        csc.lower() in ("atcamera", "cccamera", "mtcamera")
-                        and self.efd_name != "summit_efd"
-                        and event
-                        not in config_applied_event_subset.config_applied_subset
-                    ):
-                        # The ATCamera, CCCamera and MTCamera CSCs only send a subset of the
-                        # total number of configurationApplied.otherInfo Events for the test stands.
-                        # Ignore the Events that are not expected.
-                        pass
-                    else:
-                        # Only make this query if the Event is expected.
-                        fq_event = "logevent_" + event
-                        event_df = self.get_recent_samples(csc, fq_event, "*", 1, index)
-                        if event_df.empty:
-                            error_list.append(
-                                f"Expected Event {event} was not published."
-                            )
+                # Test the field values, as much as possible.
+                if not configurations:
+                    error_list.append("The configuration field should not be empty.")
+                if not version:
+                    error_list.append("The version field should not be empty.")
+                if "https://" not in str(url) and "file://" not in str(url):
+                    error_list.append(
+                        f"The url should start with 'https://' or 'file://' - URL: {url}"
+                    )
+                try:
+                    self.verify_version(version)
+                except AssertionError as e:
+                    error_list.append("Config " + str(e))
+                # Test that the configurable CSCs published the additional set
+                # of events, as defined in the otherInfo field of the
+                # ConfigurationApplied event.
+                if len(dataframe.otherInfo.iloc[0]) > 0:
+                    events = dataframe.otherInfo.iloc[0].split(",")
+                    for event in events:
+                        if (
+                            csc.lower() in ("atcamera", "cccamera", "mtcamera")
+                            and self.efd_name != "summit_efd"
+                            and event
+                            not in config_applied_event_subset.config_applied_subset
+                        ):
+                            # The ATCamera, CCCamera and MTCamera CSCs only send a subset of the
+                            # total number of configurationApplied.otherInfo Events for the test stands.
+                            # Ignore the Events that are not expected.
+                            pass
+                        else:
+                            # Only make this query if the Event is expected.
+                            fq_event = "logevent_" + event
+                            event_df = self.get_recent_samples(csc, fq_event, "*", 1, index)
+                            if event_df.empty:
+                                error_list.append(
+                                    f"Expected Event {event} was not published."
+                                )
             # If any errors raised, print them all.
             if len(error_list) > 0:
                 raise AssertionError("\n".join(error_list))
@@ -441,40 +460,43 @@ class QueryEfd:
         print(f"*TRACE*dataframe:\n{dataframe}")
         if csc in csc_lists.non_config:
             if not dataframe.empty:
-                raise ValueError("Dataframe should be empty")
+                raise ValueError("Dataframe SHOULD BE empty")
             else:
                 # Indicate CSC is non-configurable.
                 print(
                     f"*TRACE*The {csc} CSC is non-configurable and does not publish the ConfigurationsAvailable Event."
                 )
         else:
-            # Get the various field values.
-            version = dataframe.version.iloc[0].strip("tags/")
-            url = dataframe.url.iloc[0]
-            schema_version = dataframe.schemaVersion.iloc[0]
-            overrides = dataframe.overrides.iloc[0]
-            # Verify field values.
-            print(
-                f"*TRACE*Overrides: '{overrides}', Version: '{version}', URL: '{url}', SchemaVersion: '{schema_version}'"
-            )
             error_list = []
-            if not schema_version:
-                error_list.append("The schemaVersion field should not be empty.")
-            if "https://" not in str(url) and "file://" not in str(url):
-                error_list.append(
-                    f"The url should start with 'https://' or 'file://' - URL: {url}"
+            if dataframe.empty:
+                error_list.append("Dataframe SHOULD NOT be empty")
+            else:
+                # Get the various field values.
+                version = dataframe.version.iloc[0].strip("tags/")
+                url = dataframe.url.iloc[0]
+                schema_version = dataframe.schemaVersion.iloc[0]
+                overrides = dataframe.overrides.iloc[0]
+                # Verify field values.
+                print(
+                    f"*TRACE*Overrides: '{overrides}', Version: '{version}', URL: '{url}', SchemaVersion: '{schema_version}'"
                 )
-            try:
-                self.verify_version(version)
-            except AssertionError as e:
-                error_list.append("Config " + str(e))
-            # The Camera CSCs handle schemaVersion uniquely, so skip those tests.
-            if csc not in csc_lists.camera:
-                schema_version_expected = url.split("/")[-1]
-                if schema_version != schema_version_expected:
-                    raise AssertionError(
-                        f"The schemaVersion '{schema_version}' does not match the expected value '{schema_version_expected}'"
+                if not schema_version:
+                    error_list.append("The schemaVersion field should not be empty.")
+                if "https://" not in str(url) and "file://" not in str(url):
+                    error_list.append(
+                        f"The url should start with 'https://' or 'file://' - URL: {url}"
                     )
+                try:
+                    self.verify_version(version)
+                except AssertionError as e:
+                    error_list.append("Config " + str(e))
+                # The Camera CSCs handle schemaVersion uniquely, so skip those tests.
+                if csc not in csc_lists.camera:
+                    schema_version_expected = url.split("/")[-1]
+                    if schema_version != schema_version_expected:
+                        raise AssertionError(
+                            f"The schemaVersion '{schema_version}' does not match the expected value '{schema_version_expected}'"
+                        )
             # If any errors raised, print them all.
             if len(error_list) > 0:
                 raise AssertionError("\n".join(error_list))
