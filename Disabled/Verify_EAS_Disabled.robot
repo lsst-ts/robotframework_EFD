@@ -50,7 +50,7 @@ Verify DREAM SummaryState timing
 
 Verify DREAM ConfigurationApplied Event
     [Tags]    dream    config_applied
-    Verify Time Delta    DREAM    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+    Verify ConfigurationApplied    DREAM
 
 Verify DREAM ConfigurationApplied Event timing
     [Tags]    dream    config_applied    timing
@@ -67,7 +67,7 @@ Verify EAS SummaryState timing
 
 Verify EAS ConfigurationApplied Event
     [Tags]    eas    config_applied
-    Verify Time Delta    EAS    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+    Verify ConfigurationApplied    EAS
 
 Verify EAS ConfigurationApplied Event timing
     [Tags]    eas    config_applied    timing
