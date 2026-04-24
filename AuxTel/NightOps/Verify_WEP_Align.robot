@@ -143,10 +143,10 @@ Verify ATSpectrograph Disperser
     Verify Topic Attribute    ATSpectrograph    logevent_reportedDisperserPosition    ["band",]    ["EMPTY",]
     #Verify Topic Attribute    ATSpectrograph    logevent_reportedDisperserPosition    ["name",]    ["empty_1",]    #DM-35582
 
-Verify LinearStage MoveLinearStage
+Verify ATSpectrograph MoveLinearStage
     [Tags]
-    ${dataframe}=    Get Recent Samples    LinearStage    command_moveLinearStage    ["*",]    1    None
-    Should Be Empty    ${dataframe}
+    Comment    The WEP Align script should not move the ATSpectrograph LinearStage, and nothing else to this point would have, either.
+    Run Keyword And Expect Error    ValueError: Topic lsst.sal.ATSpectrograph.command_moveLinearStage not in EFD schema    Get Recent Samples    ATSpectrograph    command_moveLinearStage    ["*",]    1    None
 
 Verify Initial Offset
     [Documentation]    The first offset the script applies each iteration is 0.8 mm to the z-axis.
