@@ -116,7 +116,7 @@ Verify MTAOS SummaryState timing
     Verify Time Delta    MTAOS    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify MTAOS ConfigurationApplied Event
-    [Tags]    config_applied    OSW-2158
+    [Tags]    config_applied
     Verify ConfigurationApplied    MTAOS
 
 Verify MTAOS ConfigurationApplied Event timing
@@ -133,7 +133,7 @@ Verify MTHexapod:1 SummaryState timing
     Verify Time Delta    MTHexapod:1    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify MTHexapod:1 ConfigurationApplied Event
-    [Tags]    config_applied    OSW-2158
+    [Tags]    config_applied
     Verify ConfigurationApplied    MTHexapod    index=1
 
 Verify MTHexapod:1 ConfigurationApplied Event timing
@@ -150,7 +150,7 @@ Verify MTHexapod:2 SummaryState timing
     Verify Time Delta    MTHexapod:2    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify MTHexapod:2 ConfigurationApplied Event
-    [Tags]    config_applied    OSW-2158
+    [Tags]    config_applied
     Verify ConfigurationApplied    MTHexapod    index=2
 
 Verify MTHexapod:2 ConfigurationApplied Event timing
@@ -184,7 +184,7 @@ Verify MTM1M3 SummaryState timing
     Verify Time Delta    MTM1M3    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify MTM1M3 ConfigurationApplied Event
-    [Tags]    config_applied    OSW-2158
+    [Tags]    config_applied    CAP-872
     Verify ConfigurationApplied    MTM1M3
 
 Verify MTM1M3 ConfigurationApplied Event timing
