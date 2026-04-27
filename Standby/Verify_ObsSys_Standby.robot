@@ -33,7 +33,7 @@ Verify Scheduler:1 SoftwareVersions timing
     Verify Time Delta    Scheduler:1    logevent_softwareVersions    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify Scheduler:1 ConfigurationsAvailable Event
-    [Tags]    config_available    CAP-1033    OSW-2158
+    [Tags]    config_available    CAP-1033
     Verify ConfigurationsAvailable    Scheduler    index=1
 
 #Scheduler:2
@@ -54,7 +54,7 @@ Verify Scheduler:2 SoftwareVersions timing
     Verify Time Delta    Scheduler:2    logevent_softwareVersions    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify Scheduler:2 ConfigurationsAvailable Event
-    [Tags]    config_available    CAP-1033    OSW-2158
+    [Tags]    config_available    CAP-1033
     Verify ConfigurationsAvailable    Scheduler    index=2
 
 #Scheduler:3
@@ -75,7 +75,7 @@ Verify Scheduler:3 SoftwareVersions timing
     Verify Time Delta    Scheduler:3    logevent_softwareVersions    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify Scheduler:3 ConfigurationsAvailable Event
-    [Tags]    config_available    CAP-1033    OSW-2158
+    [Tags]    config_available    CAP-1033
     Verify ConfigurationsAvailable    Scheduler    index=3
 
 #ScriptQueue:1
@@ -159,7 +159,7 @@ Verify Watcher SoftwareVersions timing
     Verify Time Delta    Watcher    logevent_softwareVersions    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify Watcher ConfigurationsAvailable Event
-    [Tags]    config_available    OSW-2158
+    [Tags]    config_available
     Verify ConfigurationsAvailable    Watcher
 
 Verify Watcher ConfigurationsAvailable timing
