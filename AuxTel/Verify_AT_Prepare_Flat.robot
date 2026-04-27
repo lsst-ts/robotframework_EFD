@@ -58,19 +58,21 @@ Verify ATHexapod inPosition is True
     Should Be True    ${dataframe.inPosition.values}[0]
 
 Verify ATMCS allAxesInPosition
-    [Tags]
+    [Tags]    robot:continue-on-failure
     ${dataframe}=    Get Recent Samples    ATMCS    logevent_allAxesInPosition    ["*",]    2    None
-    Should Be True    ${dataframe.inPosition.values}[1]    #True when Mount reaches the flatfield position.
-    Should Not Be True    ${dataframe.inPosition.values}[0]    #Goes back to False a few seconds later, in preparation for the next move.
+    Should Be True    ${dataframe.inPosition.values}[0]    #True when Mount reaches the flatfield position.
+    Should Not Be True    ${dataframe.inPosition.values}[1]    #Goes back to False a few seconds later, in preparation for the next move.
 
-Verify ATMCS Tracking Disabled
-    [Tags]
+Verify ATMCS Tracking is Enabled
+    [Tags]    robot:continue-on-failure
+    Comment    AuxTel PrepFor_Flat now leaves telescope tracking the flatfield position.
     ${dataframe}=    Get Recent Samples    ATMCS    logevent_atMountState    ["*",]    1    None
-    Should Be Equal As Integers    ${dataframe.state.values}[0]    8    #TrackingDisabled
+    Should Be Equal As Integers    ${dataframe.state.values}[0]    9    #TrackingEnabled
+    Comment    AzEl are both InPosition while tracking the flatfield target.
     ${dataframe}=    Get Recent Samples    ATMCS    logevent_azimuthInPosition    ["*",]    1    None
-    Should Not Be True    ${dataframe.inPosition.values}[0]
+    Should Be True    ${dataframe.inPosition.values}[0]
     ${dataframe}=    Get Recent Samples    ATMCS    logevent_elevationInPosition    ["*",]    1    None
-    Should Not Be True    ${dataframe.inPosition.values}[0]
+    Should Be True    ${dataframe.inPosition.values}[0]
 
 Verify ATMCS m3State is NASMYTH2
     [Tags]
@@ -108,3 +110,21 @@ Verify ATPneumatics m2State is Closed
     [Tags]
     ${dataframe}=    Get Recent Samples    ATPneumatics    logevent_m2State    ["*",]    1    None
     Should Be Equal As Integers    ${dataframe.state.values}[0]    7    #CLOSED - AirValveState
+
+Verify ATPtg Target
+    [Documentation]    Ensure the telescope is pointed at the correct target, in this case at the Az/El of the flat-field screen.
+    ...    This command is sent prior to the start of the script.
+    [Tags]    robot:continue-on-failure
+    ${cmd_dataframe}=    Get Recent Samples    ATPtg    command_azElTarget    ["targetName", "azDegs", "elDegs",]    1    None
+    Should Be Equal    ${cmd_dataframe.targetName.values}[0]    FlatField position
+    ${evt_dataframe}=    Get Recent Samples    ATPtg    logevent_currentTarget    ["targetName", "azDegs", "elDegs",]    1    None
+    Should Be Equal    ${evt_dataframe.targetName.values}[0]    FlatField position
+    Should Be Equal    ${evt_dataframe.azDegs.values.round(6)}[0]    ${188.7}
+    Should Be Equal    ${evt_dataframe.elDegs.values.round(6)}[0]    ${39}
+
+Verify ATPtg Tracking is On
+    [Tags]
+    ${evt_df}=    Get Recent Samples    ATPtg    logevent_trackPosting    ["status"]    1    None
+    Should Be True    ${evt_df.status.values}[0]
+    Verify Time Delta    ATPtg    logevent_trackPosting    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+    Verify Time Delta    ATPtg    command_stopTracking    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}

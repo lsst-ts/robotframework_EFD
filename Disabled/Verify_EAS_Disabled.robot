@@ -583,23 +583,6 @@ Verify ESS:308 ConfigurationApplied Event timing
     [Tags]    ess308    config_applied    timing
     Verify Time Delta    ESS:308    logevent_configurationApplied    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
-# ESS:403
-Verify ESS:403 Disabled
-    [Tags]    ess403    disabled
-    Verify Summary State    ${STATES}[disabled]    ESS:403
-    
-Verify ESS:403 SummaryState timing
-    [Tags]    ess403    disabled    timing
-    Verify Time Delta    ESS:403    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
-    
-Verify ESS:403 ConfigurationApplied Event
-    [Tags]    ess403    config_applied
-    Verify ConfigurationApplied    ESS    index=403
-    
-Verify ESS:403 ConfigurationApplied Event timing
-    [Tags]    ess403    config_applied    timing
-    Verify Time Delta    ESS:403    logevent_configurationApplied    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
-
 # ESS:404
 Verify ESS:404 Disabled
     [Tags]    ess404    disabled

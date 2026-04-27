@@ -23,27 +23,9 @@ Verify ATCamera Playlist Loaded
 
 Execute AuxTel Flat Calibrations
     [Tags]    execute
-    ${scripts}    ${states}=    Execute Integration Test    auxtel_latiss_calibrations    flat
+    ${scripts}    ${states}=    Execute Integration Test    auxtel_latiss_calibrations    flat    --wait=30
     Verify Scripts Completed Successfully    ${scripts}    ${states}
     Check If Script Failed    ${states}
-
-Verify ATPtg Target
-    [Documentation]    Ensure the telescope is pointed at the correct target, in this case at the Az/El of the flat-field screen.
-    ...    This command is sent prior to the start of the script.
-    [Tags]    robot:continue-on-failure
-    ${cmd_dataframe}=    Get Recent Samples    ATPtg    command_azElTarget    ["targetName", "azDegs", "elDegs",]    1    None
-    Should Be Equal    ${cmd_dataframe.targetName.values}[0]    FlatField position
-    ${evt_dataframe}=    Get Recent Samples    ATPtg    logevent_currentTarget    ["targetName", "azDegs", "elDegs",]    1    None
-    Should Be Equal    ${evt_dataframe.targetName.values}[0]    FlatField position
-    Should Be Equal    ${evt_dataframe.azDegs.values.round(6)}[0]    ${188.7}
-    Should Be Equal    ${evt_dataframe.elDegs.values.round(6)}[0]    ${39}
-
-Verify ATPtg Tracking is Off
-    [Tags]
-    ${evt_df}=    Get Recent Samples    ATPtg    logevent_trackPosting    ["status"]    1    None
-    Should Not Be True    ${evt_df.status.values}[0]
-    Verify Time Delta    ATPtg    logevent_trackPosting    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
-    Verify Time Delta    ATPtg    command_stopTracking    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify ATSpectrograph Filter
     [Tags]    DM-35582
