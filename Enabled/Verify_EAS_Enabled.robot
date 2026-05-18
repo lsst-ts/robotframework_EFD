@@ -312,7 +312,34 @@ Verify ESS:308 Enabled
 Verify ESS:308 SummaryState timing
     [Tags]    ess308    enabled    timing
     Verify Time Delta    ESS:308    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
-    
+ 
+# ESS:309
+Verify ESS:309 Enabled
+    [Tags]    ess309    enabled   
+    Verify Summary State    ${STATES}[enabled]    ESS:309   
+
+Verify ESS:309 SummaryState timing
+    [Tags]    ess309    enabled    timing
+    Verify Time Delta    ESS:309    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
+# ESS:310
+Verify ESS:310 Enabled
+    [Tags]    ess310    enabled   
+    Verify Summary State    ${STATES}[enabled]    ESS:310   
+
+Verify ESS:310 SummaryState timing
+    [Tags]    ess310    enabled    timing
+    Verify Time Delta    ESS:310    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
+# ESS:311
+Verify ESS:311 Enabled
+    [Tags]    ess311    enabled   
+    Verify Summary State    ${STATES}[enabled]    ESS:311   
+
+Verify ESS:311 SummaryState timing
+    [Tags]    ess311    enabled    timing
+    Verify Time Delta    ESS:311    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
 # ESS:404
 Verify ESS:404 Enabled
     [Tags]    ess404    enabled
