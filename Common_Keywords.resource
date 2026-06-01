@@ -78,6 +78,13 @@ Get Script Metadata
     Log Many    isStandard= ${dataframe.isStandard.values}    path= ${dataframe.path.values}    scriptIndex= ${dataframe.scriptSalIndex.values}    script_start= ${script_start}    script_end= ${script_end}
     Set Suite Variable    ${script_start}
     Set Suite Variable    ${script_end}
+    IF    ${dataframe.scriptState.values}[0] == 10    # FAILED
+        ${df}=    Influxdb Query    Script    logevent_logMessage    message,salIndex,traceback    where_clause=WHERE salIndex = ${dataframe.scriptSalIndex.values}[0] and message =~ /Error in run/
+        Log Many    ${df.salIndex.values}[0]    ${df.traceback.values}[0]
+    ELSE IF    ${dataframe.scriptState.values}[0] == 11    # CONFIGURE_FAILED
+        ${df}=    Influxdb Query    Script    logevent_logMessage    message,salIndex,traceback    where_clause=WHERE salIndex = ${dataframe.scriptSalIndex.values}[0] and message =~ /config[\\s\\S]*failed/
+        Log Many    ${df.salIndex.values}[0]    ${df.traceback.values}[0]
+    END
 
 Compare Numbers
     [Documentation]    Given two numbers, test if they are equal within a given tolerance.

@@ -223,7 +223,7 @@ Set Variables
         Set Suite Variable    ${acq_seq_length}    2
         Set Suite Variable    ${seq_length}    1
         Set Suite Variable    ${num_images}    3
-        Set Suite Variable    @{acq_exp_time}    ${2.0}    ${2.0}
+        Set Suite Variable    @{acq_exp_time}    ${0.4}    ${0.4}
         Set Suite Variable    @{seq_exp_time}    ${2.0}
         Set Suite Variable    @{filter_band}    r
         Set Suite Variable    ${filter_name}    "SDSSr"

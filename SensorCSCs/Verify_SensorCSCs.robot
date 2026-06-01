@@ -898,6 +898,112 @@ Verify ESS:308 lightningStrikeStatus Data is Recent
     [Tags]    ess308    timing
     Verify Time Delta    ESS:308    lightningStrikeStatus    second=${ess_seconds_ago}    minute=${ess_minutes_ago}    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
+# ESS:309
+Verify ESS:309 agcMains150 Published Data
+    [Tags]    ess309    robot:continue-on-failure
+    ${dataframe}=    Get Recent Samples    ESS    agcMains150    ["private_identity","sensorName","anyAlarmMains","fixedPower","autoMode","blockMode","semiAutoMode","island","fixedPower","busBFrequencyL1","busBFrequencyL2","busBFrequencyL3","busBVoltageL1L2","busBVoltageL1N","busBVoltageL2L3","busBVoltageL2N","busBVoltageL3L1","busBVoltageL3N",]    num=1    index=309
+    Log    ${dataframe}
+    Should Not Be True    ${dataframe.empty}
+    Should Be Equal As Strings    ${dataframe.private_identity.values}[0]    ESS:309
+    Should Be Equal As Strings    ${dataframe.sensorName.values}[0]    tta-gen.cp.lsst.org
+    Should Be True    ${dataframe.fixedPower.values}[0]
+    Should Be True    ${dataframe.island.values}[0]
+    Should Not Be True    ${dataframe.anyAlarmMains.values}[0]
+    Should Not Be True    ${dataframe.autoMode.values}[0]
+    Should Not Be True    ${dataframe.blockMode.values}[0]
+    Should Not Be True    ${dataframe.semiAutoMode.values}[0]
+    Should Be True    abs(${dataframe.busBFrequencyL1.values}[0]) >= 0
+    Should Be True    abs(${dataframe.busBFrequencyL2.values}[0]) >= 0
+    Should Be True    abs(${dataframe.busBFrequencyL3.values}[0]) >= 0
+    Should Be True    abs(${dataframe.busBVoltageL1L2.values}[0]) >= 0
+    Should Be True    abs(${dataframe.busBVoltageL2L3.values}[0]) >= 0
+    Should Be True    abs(${dataframe.busBVoltageL3L1.values}[0]) >= 0
+    Should Be True    abs(${dataframe.busBVoltageL1N.values}[0]) >= 0
+    Should Be True    abs(${dataframe.busBVoltageL2N.values}[0]) >= 0
+    Should Be True    abs(${dataframe.busBVoltageL3N.values}[0]) >= 0
+
+Verify ESS:309 agcMains150 Data is Recent
+    [Tags]    ess309    timing
+    Verify Time Delta    ESS:309    agcMains150    second=${ess_seconds_ago}    minute=${ess_minutes_ago}    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
+# ESS:310
+Verify ESS:310 e9sxups Published Data
+    [Tags]    ess310    robot:continue-on-failure
+    ${dataframe}=    Get Recent Samples    ESS    e9sxups    ["private_identity","sensorName","batteryPresent","batteryCharge1","batteryCharge2","batteryVoltage","currentPhase1Output","currentPhase2Output","currentPhase3Output","main1Frequency","main2Frequency","manufacturerName","modeEco","nominalActivePower","nominalApparentPower","nominalBatteryVoltage","outputFrequency","outputVoltage1N","outputVoltage2N","outputVoltage3N","upsClass","upsModel","voltageMain1Phase1","voltageMain1Phase2","voltageMain1Phase3","voltagePhase1Main2","voltagePhase2Main2","voltagePhase3Main2"]    num=1    index=310
+    Log    ${dataframe}
+    Should Not Be True    ${dataframe.empty}
+    Should Be Equal As Strings    ${dataframe.private_identity.values}[0]    ESS:310
+    Should Be Equal As Strings    ${dataframe.sensorName.values}[0]    sdc-upsmod01.cp.lsst.org
+    Should Not Be True    ${dataframe.batteryPresent.values}[0]
+    Should Not Be True    ${dataframe.modeEco.values}[0]
+    Should Be True    ${dataframe.upsClass.values}[0]
+    Should Be True    abs(${dataframe.batteryCharge1.values}[0]) >= 0
+    Should Be True    abs(${dataframe.batteryCharge2.values}[0]) >= 0
+    Should Be True    abs(${dataframe.batteryVoltage.values}[0]) >= 0
+    Should Be True    abs(${dataframe.currentPhase1Output.values}[0]) >= 0
+    Should Be True    abs(${dataframe.currentPhase2Output.values}[0]) >= 0
+    Should Be True    abs(${dataframe.currentPhase3Output.values}[0]) >= 0
+    Should Be True    abs(${dataframe.main1Frequency.values}[0]) >= 0
+    Should Be True    abs(${dataframe.main2Frequency.values}[0]) >= 0
+    Should Be True    abs(${dataframe.manufacturerName.values}[0]) >= 0
+    Should Be True    abs(${dataframe.nominalActivePower.values}[0]) >= 0
+    Should Be True    abs(${dataframe.nominalApparentPower.values}[0]) >= 0
+    Should Be True    abs(${dataframe.nominalBatteryVoltage.values}[0]) >= 0
+    Should Be True    abs(${dataframe.outputFrequency.values}[0]) >= 0
+    Should Be True    abs(${dataframe.outputVoltage1N.values}[0]) >= 0
+    Should Be True    abs(${dataframe.outputVoltage2N.values}[0]) >= 0
+    Should Be True    abs(${dataframe.outputVoltage3N.values}[0]) >= 0
+    Should Be True    abs(${dataframe.upsModel.values}[0]) >= 0
+    Should Be True    abs(${dataframe.voltageMain1Phase1.values}[0]) >= 0
+    Should Be True    abs(${dataframe.voltageMain1Phase2.values}[0]) >= 0
+    Should Be True    abs(${dataframe.voltageMain1Phase3.values}[0]) >= 0
+    Should Be True    abs(${dataframe.voltagePhase1Main2.values}[0]) >= 0
+    Should Be True    abs(${dataframe.voltagePhase2Main2.values}[0]) >= 0
+    Should Be True    abs(${dataframe.voltagePhase3Main2.values}[0]) >= 0
+
+Verify ESS:310 e9sxups Data is Recent
+    [Tags]    ess310    timing
+    Verify Time Delta    ESS:310    e9sxups    second=${ess_seconds_ago}    minute=${ess_minutes_ago}    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
+# ESS:311
+Verify ESS:311 e9sxups Published Data
+    [Tags]    ess311    robot:continue-on-failure
+    ${dataframe}=    Get Recent Samples    ESS    e9sxups    ["private_identity","sensorName","batteryPresent","batteryCharge1","batteryCharge2","batteryVoltage","currentPhase1Output","currentPhase2Output","currentPhase3Output","main1Frequency","main2Frequency","manufacturerName","modeEco","nominalActivePower","nominalApparentPower","nominalBatteryVoltage","outputFrequency","outputVoltage1N","outputVoltage2N","outputVoltage3N","upsClass","upsModel","voltageMain1Phase1","voltageMain1Phase2","voltageMain1Phase3","voltagePhase1Main2","voltagePhase2Main2","voltagePhase3Main2"]    num=1    index=311
+    Log    ${dataframe}
+    Should Not Be True    ${dataframe.empty}
+    Should Be Equal As Strings    ${dataframe.private_identity.values}[0]    ESS:311
+    Should Be Equal As Strings    ${dataframe.sensorName.values}[0]    sdc-upsmod02.cp.lsst.org
+    Should Not Be True    ${dataframe.batteryPresent.values}[0]
+    Should Not Be True    ${dataframe.modeEco.values}[0]
+    Should Be True    ${dataframe.upsClass.values}[0]
+    Should Be True    abs(${dataframe.batteryCharge1.values}[0]) >= 0
+    Should Be True    abs(${dataframe.batteryCharge2.values}[0]) >= 0
+    Should Be True    abs(${dataframe.batteryVoltage.values}[0]) >= 0
+    Should Be True    abs(${dataframe.currentPhase1Output.values}[0]) >= 0
+    Should Be True    abs(${dataframe.currentPhase2Output.values}[0]) >= 0
+    Should Be True    abs(${dataframe.currentPhase3Output.values}[0]) >= 0
+    Should Be True    abs(${dataframe.main1Frequency.values}[0]) >= 0
+    Should Be True    abs(${dataframe.main2Frequency.values}[0]) >= 0
+    Should Be True    abs(${dataframe.manufacturerName.values}[0]) >= 0
+    Should Be True    abs(${dataframe.nominalActivePower.values}[0]) >= 0
+    Should Be True    abs(${dataframe.nominalApparentPower.values}[0]) >= 0
+    Should Be True    abs(${dataframe.nominalBatteryVoltage.values}[0]) >= 0
+    Should Be True    abs(${dataframe.outputFrequency.values}[0]) >= 0
+    Should Be True    abs(${dataframe.outputVoltage1N.values}[0]) >= 0
+    Should Be True    abs(${dataframe.outputVoltage2N.values}[0]) >= 0
+    Should Be True    abs(${dataframe.outputVoltage3N.values}[0]) >= 0
+    Should Be True    abs(${dataframe.upsModel.values}[0]) >= 0
+    Should Be True    abs(${dataframe.voltageMain1Phase1.values}[0]) >= 0
+    Should Be True    abs(${dataframe.voltageMain1Phase2.values}[0]) >= 0
+    Should Be True    abs(${dataframe.voltageMain1Phase3.values}[0]) >= 0
+    Should Be True    abs(${dataframe.voltagePhase1Main2.values}[0]) >= 0
+    Should Be True    abs(${dataframe.voltagePhase2Main2.values}[0]) >= 0
+    Should Be True    abs(${dataframe.voltagePhase3Main2.values}[0]) >= 0
+
+Verify ESS:311 e9sxups Data is Recent
+    [Tags]    ess311    timing
+    Verify Time Delta    ESS:311    e9sxups    second=${ess_seconds_ago}    minute=${ess_minutes_ago}    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
 # ESS:404
 ## relativeHumidity ##
 Verify ESS:404 relativeHumidity Published Data

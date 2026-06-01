@@ -154,9 +154,17 @@ Verify ESS:308 Shutdown
     [Tags]    envsys
     Verify Shutdown Process    ESS    index=308
 
-Verify ESS:403 Shutdown
+Verify ESS:309 Shutdown
     [Tags]    envsys
-    Verify Shutdown Process    ESS    index=403
+    Verify Shutdown Process    ESS    index=309
+
+Verify ESS:310 Shutdown
+    [Tags]    envsys
+    Verify Shutdown Process    ESS    index=310
+
+Verify ESS:311 Shutdown
+    [Tags]    envsys
+    Verify Shutdown Process    ESS    index=311
 
 Verify ESS:404 Shutdown
     [Tags]    envsys
