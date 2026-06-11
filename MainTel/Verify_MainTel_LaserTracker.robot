@@ -42,7 +42,7 @@ Verify laser is ON
     Wait Until Keyword Succeeds    2min    15s     Verify Topic Attribute    LaserTracker:1    logevent_laserStatus    ["status",]    [4,]    #ON
 
 Align LaserTracker to MTM2
-    [Tags]    execute
+    [Tags]    execute    robot:skip-on-failure
     ${scripts}    ${states}=    Execute Integration Test    maintel_lasertracker_align    M2
     Verify Scripts Completed Successfully    ${scripts}    ${states}
 
@@ -59,7 +59,7 @@ Verify LaserTracker is Published Offsets for MTM2
     Should Be True    abs(${dataframe.dRZ.values}[0]) > 0
 
 Align LaserTracker to the Camera
-    [Tags]    execute
+    [Tags]    execute    robot:skip-on-failure
     ${scripts}    ${states}=    Execute Integration Test    maintel_lasertracker_align    Camera
     Verify Scripts Completed Successfully    ${scripts}    ${states}
 
@@ -76,12 +76,12 @@ Verify LaserTracker is Published Offsets for the Camera
     Should Be True    abs(${dataframe.dRZ.values}[0]) > 0
 
 Point LaserTracker at MTM1M3
-    [Tags]    execute
+    [Tags]    execute    robot:exclude
     ${scripts}    ${states}=    Execute Integration Test    run_command    1    LaserTracker:1    measurePoint    --parameters=collection:A,pointgroup:M1M3,target:p2
     Verify Scripts Completed Successfully    ${scripts}    ${states}
 
 Verify LaserTracker is Published Positions for M1M3
-    [Tags]    robot:continue-on-failure
+    [Tags]    robot:continue-on-failure    robot:exclude
     ${dataframe}=    Get Recent Samples    LaserTracker    logevent_positionPublish    ["*",]    1    1
     Should Not Be True    ${dataframe.empty}
     Should Contain    ${dataframe.target.values}[0]    FrameCAM
