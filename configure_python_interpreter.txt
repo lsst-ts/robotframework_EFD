@@ -21,8 +21,8 @@ for csc in cscs:
 from QueryEfd import QueryEfd
 efd = QueryEfd("10.1.1", "27.0.0", "base_efd")
 from utils import dataframe
-from lsst_efd_client import EfdClient
-efd_client = EfdClient("base_efd")
+from lsst_efd_client import EfdClientSync
+efd_client = EfdClientSync("base_efd")
 import asyncio
 
 #loop = asyncio.get_event_loop()
@@ -31,8 +31,8 @@ import asyncio
 from QueryEfd import QueryEfd
 efd = QueryEfd("10.1.1", "24.1.0", "tucson_teststand_efd")
 from utils import dataframe
-from lsst_efd_client import EfdClient
-efd_client = EfdClient("tucson_teststand_efd")
+from lsst_efd_client import EfdClientSync
+efd_client = EfdClientSync("tucson_teststand_efd")
 import asyncio
 
 #loop = asyncio.get_event_loop()
@@ -41,8 +41,8 @@ import asyncio
 from QueryEfd import QueryEfd
 efd = QueryEfd("10.1.1", "24.1.0", "summit_efd")
 from utils import dataframe
-from lsst_efd_client import EfdClient
-efd_client = EfdClient("summit_efd")
+from lsst_efd_client import EfdClientSync
+efd_client = EfdClientSync("summit_efd")
 import asyncio
 
 #loop = asyncio.get_event_loop()

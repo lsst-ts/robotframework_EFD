@@ -41,11 +41,12 @@ rm ~/miniconda3/miniconda.sh
 RUN source miniconda3/bin/activate && \
 conda update conda -y && \
 conda config --add channels defaults && \
-conda config --add channels conda-forge lsstts && \
+conda config --add channels conda-forge && \
+conda config --add channels lsstts && \
 conda install -c conda-forge 'python=3.13' 'libarchive' 'libmamba' -y && \
 conda install -y setuptools pytest requests robotframework astropy && \
 conda install -y pandas aioinflux numpy kafkit PyYAML && \
-conda install -y lsstts::lsst-efd-client && \
+conda install lsstts::lsst-efd-client && \
 conda clean --all
 
 # Startup
