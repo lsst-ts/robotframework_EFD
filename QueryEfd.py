@@ -14,7 +14,7 @@ from utils import csc_lists
 from utils import config_applied_event_subset
 
 from robot.api.deco import library, keyword, not_keyword
-from lsst_efd_client import EfdClient
+from lsst_efd_client import EfdClientSync
 
 
 @library(scope="GLOBAL", version="0.1", doc_format="reST", auto_keywords=False)
@@ -116,9 +116,8 @@ class QueryEfd:
         -------
         topics_list : `list`
         """
-        efd_client = EfdClient(self.efd_name)
-        loop = asyncio.get_event_loop()
-        topics_list = loop.run_until_complete(efd_client.get_topics())
+        efd_client = EfdClientSync(self.efd_name)
+        topics_list = efd_client.get_topics()
         return topics_list
 
     @keyword
@@ -142,10 +141,9 @@ class QueryEfd:
         This function calls the topic_name function to construct the
         fully-qualified topic name.
         """
-        efd_client = EfdClient(self.efd_name)
-        loop = asyncio.get_event_loop()
-        fields = loop.run_until_complete(
-            efd_client.get_fields(topic_name=self._efd_topic(csc, topic))
+        efd_client = EfdClientSync(self.efd_name)
+        fields = efd_client.get_fields(
+            topic_name=self._efd_topic(csc, topic)
         )
         return fields
 
@@ -206,15 +204,12 @@ class QueryEfd:
         recent_samples : `pandas.core.frame.DataFrame`
             The DataFrame of the most recent samples.
         """
-        efd_client = EfdClient(self.efd_name)
-        loop = asyncio.get_event_loop()
-        recent_samples = loop.run_until_complete(
-            efd_client.select_top_n(
-                topic_name=self._efd_topic(csc, topic),
-                fields=fields,
-                num=num,
-                index=index,
-            )
+        efd_client = EfdClientSync(self.efd_name)
+        recent_samples = efd_client.select_top_n(
+            topic_name=self._efd_topic(csc, topic),
+            fields=fields,
+            num=num,
+            index=index,
         )
         # If the DataFrame has the private_sndStamp field,
         # convert it to the Class-defined time_format.
@@ -758,13 +753,10 @@ class QueryEfd:
         output : `str`
             The return from the influx_client.query function.
         """
-        efd_client = EfdClient(self.efd_name)
-        efd_client.influx_client.output = output_format
-        loop = asyncio.get_event_loop()
-        output = loop.run_until_complete(
-            efd_client.influx_client.query(
-                f"""SELECT {fields} FROM "efd"."autogen"."lsst.sal.{csc}.{topic}" {where_clause} GROUP BY * ORDER BY DESC LIMIT {limit}"""
-            )
+        efd_client = EfdClientSync(self.efd_name, output_mode=output_format)
+        print(f"""*TRACE*Query string:\nSELECT {fields} FROM "efd"."autogen"."lsst.sal.{csc}.{topic}" {where_clause} GROUP BY * ORDER BY DESC LIMIT {limit}""")
+        output = efd_client.influxql_query(
+            f"""SELECT {fields} FROM "efd"."autogen"."lsst.sal.{csc}.{topic}" {where_clause} GROUP BY * ORDER BY DESC LIMIT {limit}"""
         )
         return output
 
