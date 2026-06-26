@@ -13,6 +13,8 @@ at_light_cal = [
 ]
 calibration = [
     "CBP",
+    "FiberSpectrograph:101",
+    "FiberSpectrograph:102",
     "Electrometer:101",
     "Electrometer:102",
     "Electrometer:103",
@@ -69,6 +71,7 @@ eas = [
     "ESS:304",
     "ESS:305",
     "ESS:306",
+    "ESS:307",
     "ESS:308",
     "ESS:309",
     "ESS:310",
@@ -194,6 +197,7 @@ salobj = [
     "ESS:304",
     "ESS:305",
     "ESS:306",
+    "ESS:307",
     "ESS:308",
     "ESS:309",
     "ESS:310",
@@ -203,6 +207,8 @@ salobj = [
     "ESS:441",
     "ESS:442",
     "ESS:443",
+    "FiberSpectrograph:101",
+    "FiberSpectrograph:102",
     "Electrometer:101",    
     "Electrometer:102",    
     "Electrometer:103",    
