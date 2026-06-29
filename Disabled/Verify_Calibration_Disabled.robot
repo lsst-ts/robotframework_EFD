@@ -22,6 +22,40 @@ Verify CBP ConfigurationApplied Event timing
     [Tags]    config_applied    timing
     Verify Time Delta    CBP    logevent_configurationApplied    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
+# FiberSpectrograph:101
+Verify FiberSpectrograph:101 Disabled
+    [Tags]    disabled
+    Verify Summary State    ${STATES}[disabled]    FiberSpectrograph:101
+
+Verify FiberSpectrograph:101 SummaryState timing
+    [Tags]    software_versions    timing
+    Verify Time Delta    FiberSpectrograph:101    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
+Verify FiberSpectrograph:101 ConfigurationApplied Event
+    [Tags]    config_applied
+    Verify ConfigurationApplied    FiberSpectrograph    index=101
+
+Verify FiberSpectrograph:101 ConfigurationApplied Event timing
+    [Tags]    config_applied    timing
+    Verify Time Delta    FiberSpectrograph    logevent_configurationApplied    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
+# FiberSpectrograph:102
+Verify FiberSpectrograph:102 Disabled
+    [Tags]    disabled
+    Verify Summary State    ${STATES}[disabled]    FiberSpectrograph:102
+
+Verify FiberSpectrograph:102 SummaryState timing
+    [Tags]    software_versions    timing
+    Verify Time Delta    FiberSpectrograph:102    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
+Verify FiberSpectrograph:102 ConfigurationApplied Event
+    [Tags]    config_applied
+    Verify ConfigurationApplied    FiberSpectrograph    index=102
+
+Verify FiberSpectrograph:102 ConfigurationApplied Event timing
+    [Tags]    config_applied    timing
+    Verify Time Delta    FiberSpectrograph    logevent_configurationApplied    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
 # Electrometer:101
 Verify Electrometer:101 Disabled
     [Tags]    disabled

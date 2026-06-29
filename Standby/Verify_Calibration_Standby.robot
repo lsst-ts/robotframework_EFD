@@ -6,6 +6,8 @@ Force Tags    calibration
 
 *** Variables ***
 ${cbp_xmlver}    ${XMLVersion}
+${fiberspectrograph101_xmlver}    ${XMLVersion}
+${fiberspectrograph102_xmlver}    ${XMLVersion}
 ${electrometer101_xmlver}    ${XMLVersion}
 ${electrometer102_xmlver}    ${XMLVersion}
 ${electrometer103_xmlver}    ${XMLVersion}
@@ -43,6 +45,31 @@ Verify CBP ConfigurationsAvailable Event
 Verify CBP ConfigurationsAvailable timing
     [Tags]    config_available    timing
     Verify Time Delta    CBP    logevent_configurationsAvailable    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
+# FiberSpectrograph:101
+Verify FiberSpectrograph:101 Standby
+    [Tags]    standby
+    Verify Summary State    ${STATES}[standby]    FiberSpectrograph:101
+
+Verify FiberSpectrograph:101 SummaryState timing
+    [Tags]    software_versions    timing
+    Verify Time Delta    FiberSpectrograph:101    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
+Verify FiberSpectrograph:101 SoftwareVersions
+    [Tags]    software_versions
+    Verify Software Versions    FiberSpectrograph    index=101    csc_xmlver=${electrometer101_xmlver}
+
+Verify FiberSpectrograph:101 SoftwareVersions timing
+    [Tags]    software_versions    timing
+    Verify Time Delta    FiberSpectrograph:101    logevent_softwareVersions    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
+Verify FiberSpectrograph:101 ConfigurationsAvailable Event
+    [Tags]    config_available
+    Verify ConfigurationsAvailable    FiberSpectrograph    index=101
+
+Verify FiberSpectrograph:101 ConfigurationsAvailable timing
+    [Tags]    config_available    timing
+    Verify Time Delta    FiberSpectrograph:101    logevent_configurationsAvailable    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 # Electrometer:101
 Verify Electrometer:101 Standby

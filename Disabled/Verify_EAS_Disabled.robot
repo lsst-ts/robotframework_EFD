@@ -566,6 +566,23 @@ Verify ESS:306 ConfigurationApplied Event timing
     [Tags]    ess306    config_applied    timing
     Verify Time Delta    ESS:306    logevent_configurationApplied    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
+# ESS:307
+Verify ESS:307 Disabled
+    [Tags]    ess307    disabled
+    Verify Summary State    ${STATES}[disabled]    ESS:307
+    
+Verify ESS:307 SummaryState timing 
+    [Tags]    ess307    disabled    timing
+    Verify Time Delta    ESS:307    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+    
+Verify ESS:307 ConfigurationApplied Event
+    [Tags]    ess307    config_applied
+    Verify ConfigurationApplied    ESS    index=307
+
+Verify ESS:307 ConfigurationApplied Event timing
+    [Tags]    ess307    config_applied    timing
+    Verify Time Delta    ESS:307    logevent_configurationApplied    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
 # ESS:308
 Verify ESS:308 Disabled
     [Tags]    ess308    disabled
