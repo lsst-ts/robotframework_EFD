@@ -1,0 +1,9 @@
+###  Test Suite list ###
+#  Change the title of the test results
+--name CalibrationCSCs
+--output calibration_cscs
+--skiponfailure skipped
+
+# List of test suites
+Calibration/Verify_FiberSpectrograph.robot
+Calibration/Verify_MTReflector.robot
