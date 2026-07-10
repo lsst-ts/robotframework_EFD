@@ -10,6 +10,15 @@ Verify CBP Shutdown
     [Tags]    cbp
     Verify Shutdown Process    CBP
 
+# FiberSpectrograph
+Verify FiberSpectrograph:101 Shutdown
+    [Tags]    fiberspectrograph
+    Verify Shutdown Process    FiberSpectrograph    index=101
+
+Verify FiberSpectrograph:102 Shutdown
+    [Tags]    fiberspectrograph
+    Verify Shutdown Process    FiberSpectrograph    index=102
+
 # Electrometer
 Verify Electrometer:101 Shutdown
     [Tags]    electrometer
