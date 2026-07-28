@@ -150,6 +150,10 @@ Verify ESS:306 Shutdown
     [Tags]    envsys
     Verify Shutdown Process    ESS    index=306
 
+Verify ESS:307 Shutdown
+    [Tags]    envsys
+    Verify Shutdown Process    ESS    index=307
+
 Verify ESS:308 Shutdown
     [Tags]    envsys
     Verify Shutdown Process    ESS    index=308
