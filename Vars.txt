@@ -24,5 +24,5 @@
 #--variable env_efd:summit_efd
 --variable env_efd:base_efd
 #--variable env_efd:tucson_teststand_efd
---variable XMLVersion:27.1.1
---variable SALVersion:10.1.1
+--variable XMLVersion:28.0.1
+--variable SALVersion:11.0.0
