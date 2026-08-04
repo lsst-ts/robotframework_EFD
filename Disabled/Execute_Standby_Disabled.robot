@@ -40,6 +40,7 @@ Execute LATISS Standby to Disabled
     FOR    ${csc}    IN    @{LATISS}
         @{script_args}=    Create List    ${state}    2
         Run Keyword If    "${csc}" == "ATCamera"    Append To List    ${script_args}    -a Normal
+        Run Keyword If    "${csc}" == "ATSpectrograph"    Append To List    ${script_args}    -a anytime_survey.yaml
         Log to Console    Starting ${csc}...    no_newline=true
         ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    ${csc}    @{script_args}
         Verify Scripts Completed Successfully    ${scripts}    ${states}

@@ -37,6 +37,7 @@ Verify BigCamera ConfigurationsAvailable Event
     [Tags]    config_available
     Set Tags    ${BigCamera}
     Verify ConfigurationsAvailable    ${BigCamera}
+    Verify Topic Attribute    ${BigCamera}    logevent_configurationsAvailable    ["overrides",]    ["Normal",]
 
 Verify BigCamera ConfigurationsAvailable Event timing
     [Tags]    config_available    timing
