@@ -367,19 +367,20 @@ class QueryEfd:
             "url",
             "otherInfo",
         ]
-        dataframe = self.get_recent_samples(csc, ca_topic, ca_fields, 1, index)
-        print(f"*TRACE*dataframe:\n{dataframe}")
-        # If the CSC is non-configurable, the ConfigurationApplied event
-        # is not applicable.
-        if csc in csc_lists.non_config:
-            if not dataframe.empty:
-                raise ValueError("Dataframe should be empty")
-            else:
+        try:
+            dataframe = self.get_recent_samples(csc, ca_topic, ca_fields, 1, index)
+        except ValueError:
+            # If the CSC is non-configurable, the ConfigurationApplied event
+            # is not applicable.
+            if csc in csc_lists.non_config:
                 # Indicate CSC is non-configurable.
                 print(
                     f"*TRACE*The {csc} CSC is non-configurable and does not publish the ConfigurationApplied Event."
                 )
+            else:
+                raise ValueError(f"The {csc} is configuruable but did not publish its configurations.")
         else:
+            print(f"*TRACE*dataframe:\n{dataframe}")
             error_list = []
             if dataframe.empty:
                 error_list.append("Dataframe SHOULD NOT be empty")
@@ -451,17 +452,18 @@ class QueryEfd:
             "url",
             "schemaVersion",
         ]
-        dataframe = self.get_recent_samples(csc, cav_topic, cav_fields, 1, index)
-        print(f"*TRACE*dataframe:\n{dataframe}")
-        if csc in csc_lists.non_config:
-            if not dataframe.empty:
-                raise ValueError("Dataframe SHOULD BE empty")
-            else:
-                # Indicate CSC is non-configurable.
+        try:
+            dataframe = self.get_recent_samples(csc, cav_topic, cav_fields, 1, index)
+        except ValueError:
+            # Indicate CSC is non-configurable.
+            if csc in csc_lists.non_config:
                 print(
                     f"*TRACE*The {csc} CSC is non-configurable and does not publish the ConfigurationsAvailable Event."
                 )
+            else:
+                raise ValueError(f"The {csc} is configuruable but did not publish its configurations.")
         else:
+            print(f"*TRACE*dataframe:\n{dataframe}")
             error_list = []
             if dataframe.empty:
                 error_list.append("Dataframe SHOULD NOT be empty")
