@@ -29,17 +29,17 @@ Verify M1M3 AppliedForces are Non-Zero
     Should Be True    abs(${dataframe.mz.values}[0]) > 0
     Should Be True    abs(${dataframe.forceMagnitude.values}[0]) > 0
 
-Verify M1M3 AppliedVelocityForces are Non-Zero
+Verify M1M3 AppliedVelocityForces are Zero
     [Tags]    robot:continue-on-failure
     ${dataframe}=    Get Recent Samples   MTM1M3    appliedVelocityForces    ["fx","fy","fz","mx","my","mz","forceMagnitude"]    1    None
     Log    M1M3 is raised but not moving, so appliedVelocityForces are still zero.
-    Should Be True    abs(${dataframe.fx.values}[0]) > 0
-    Should Be True    abs(${dataframe.fy.values}[0]) > 0
-    Should Be True    abs(${dataframe.fz.values}[0]) > 0
-    Should Be True    abs(${dataframe.mx.values}[0]) > 0
-    Should Be True    abs(${dataframe.my.values}[0]) > 0
-    Should Be True    abs(${dataframe.mz.values}[0]) > 0
-    Should Be True    abs(${dataframe.forceMagnitude.values}[0]) > 0
+    Should Be Equal As Numbers    ${dataframe.fx.values}[0]    0
+    Should Be Equal As Numbers    ${dataframe.fy.values}[0]    0
+    Should Be Equal As Numbers    ${dataframe.fz.values}[0]    0
+    Should Be Equal As Numbers    ${dataframe.mx.values}[0]    0
+    Should Be Equal As Numbers    ${dataframe.my.values}[0]    0
+    Should Be Equal As Numbers    ${dataframe.mz.values}[0]    0
+    Should Be Equal As Numbers    ${dataframe.forceMagnitude.values}[0]) > 0
 
 Execute M1M3 Disable Slew Controller Flags
     [Tags]    execute    OSW-2328
