@@ -44,12 +44,12 @@ Verify HeaderService SummaryState timing
 #OCPS:2||3
 Verify OCPS:2||3 Enabled
     [Tags]
-    Set Tags    OCPS:${OcpsIndex}
+    Set Tags    ocps${OcpsIndex}
     Verify Summary State    ${STATES}[enabled]    OCPS:${OcpsIndex}
 
 Verify OCPS SummaryState timing
     [Tags]    timing
-    Set Tags    OCPS:${OcpsIndex}
+    Set Tags    ocps${OcpsIndex}
     Verify Time Delta    OCPS:${OcpsIndex}    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 #WFOODS

@@ -25,7 +25,7 @@ Verify Scheduler:1 SummaryState timing
     Verify Time Delta    Scheduler:1    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify Scheduler:1 SoftwareVersions
-    [Tags]    software_versions    CAP-1044
+    [Tags]    software_versions
     Verify Software Versions    Scheduler    index=1    csc_xmlver=${scheduler1_xmlver}
 
 Verify Scheduler:1 SoftwareVersions timing
@@ -46,7 +46,7 @@ Verify Scheduler:2 SummaryState timing
     Verify Time Delta    Scheduler:2    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify Scheduler:2 SoftwareVersions
-    [Tags]    software_versions    CAP-1044
+    [Tags]    software_versions
     Verify Software Versions    Scheduler    index=2    csc_xmlver=${scheduler2_xmlver}
 
 Verify Scheduler:2 SoftwareVersions timing
@@ -67,7 +67,7 @@ Verify Scheduler:3 SummaryState timing
     Verify Time Delta    Scheduler:3    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify Scheduler:3 SoftwareVersions
-    [Tags]    software_versions    CAP-1044
+    [Tags]    software_versions
     Verify Software Versions    Scheduler    index=3    csc_xmlver=${scheduler3_xmlver}
 
 Verify Scheduler:3 SoftwareVersions timing

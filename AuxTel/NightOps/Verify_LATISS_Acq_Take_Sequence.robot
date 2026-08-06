@@ -187,9 +187,9 @@ Verify ATSpectrograph ChangeFilter
     Verify Topic Attribute    ATSpectrograph    logevent_filterInPosition    ["inPosition",]    [True,]
 
 Verify ATSpectrograph Filter
-    [Tags]    DM-35582
+    [Tags]    OSW-443
     Verify Sequence    ATSpectrograph    logevent_reportedFilterPosition    band    ${seq_length}    ${filter_band}
-    #Verify Sequence    ATSpectrograph    logevent_reportedFilterPosition    name    ${seq_length}    ${filter_name}    #DM-35582
+    #Verify Sequence    ATSpectrograph    logevent_reportedFilterPosition    name    ${seq_length}    ${filter_name}    #OSW-443
 
 Verify ATSpectrograph ChangeDisperser
     [Tags]
@@ -204,7 +204,7 @@ Verify ATSpectrograph ChangeDisperser
     Verify Topic Attribute    ATSpectrograph    logevent_disperserInPosition    ["inPosition",]    [True,]
 
 Verify ATSpectrograph Disperser
-    [Tags]    DM-35582
+    [Tags]    OSW-443
     Verify Sequence    ATSpectrograph    logevent_reportedDisperserPosition    band    ${seq_length}    ${disperser_band}
 
 Verify ATSpectrograph MoveLinearStage

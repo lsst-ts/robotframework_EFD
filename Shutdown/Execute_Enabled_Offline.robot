@@ -124,7 +124,7 @@ Execute ObsSys Enabled to Offline
     END
 
 Execute Test:42 Enabled to Offline
-    [Tags]    test:42
+    [Tags]    test42
     @{script_args}=    Create List    ${state}    1    --mute_alarms
     ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    Test:42    @{script_args}
     Verify Scripts Completed Successfully    ${scripts}    ${states}
