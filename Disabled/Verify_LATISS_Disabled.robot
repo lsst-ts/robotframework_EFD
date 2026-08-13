@@ -80,6 +80,11 @@ Verify ATSpectrograph ConfigurationApplied Event
     [Tags]    config_applied
     Verify ConfigurationApplied    ATSpectrograph
 
+Verify ATSpectrograph SettingsAppliedValues FilterNames
+    [Tags]    config_applied
+    ${dataframe}=    Get Recent Samples    ATSpectrograph    logevent_settingsAppliedValues    ["filterNames",]    num=1    index=None
+    Should Be Equal    ${dataframe.values}[0][0]    empty_1,SDSSg_65mm,SDSSr_65mm,SDSSz_65mm
+
 Verify ATSpectrograph ConfigurationApplied Event timing
     [Tags]    config_applied    timing
     Verify Time Delta    ATSpectrograph    logevent_configurationApplied    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}

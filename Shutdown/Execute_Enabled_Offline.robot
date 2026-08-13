@@ -124,7 +124,7 @@ Execute ObsSys Enabled to Offline
     END
 
 Execute Test:42 Enabled to Offline
-    [Tags]    test:42
+    [Tags]    test42
     @{script_args}=    Create List    ${state}    1    --mute_alarms
     ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    Test:42    @{script_args}
     Verify Scripts Completed Successfully    ${scripts}    ${states}
@@ -134,9 +134,26 @@ Execute Test:42 Enabled to Offline
 Execute ScriptQueues Enabled to Offline
     [Tags]    obssys_ae    robot:continue-on-failure
     @{script_args}=    Create List    ${state}    3    --mute_alarms
+    Comment Strip SQ3 from list, that will be handled separately.
+    Remove Values From List    @{ObsSys_AE}    ScriptQueue:3
+    Log Many    @{ObsSys_AE}
     FOR    ${csc}    IN    @{ObsSys_AE}
         Log to Console    Shutting off ${csc}...    no_newline=true
         ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    ${csc}    @{script_args}
         Verify Scripts Completed Successfully    ${scripts}    ${states}
         Log to Console    Done.
     END
+
+Execute ScriptQueue:3 Enabled to Offline
+    [Tags]    obssys_ae    robot:continue-on-failure
+    Comment    ScriptQueue:3 must be handled differently, as the script process never actually finishes.
+    ...        Therefore, the shutdown process must be started in the background, then gracefully terminated.
+    ...        Graceful termination is handled in the Suite Teardown.
+    ...        Use the Offline Summary State to handle waiting for the process to be successful.
+    ${csc}=    Set Variable   ScriptQueue:3
+    @{script_args}=    Create List    ${state}    3    --mute_alarms
+    Log to Console    Starting shutdown of ${csc}
+    ${process}=    Start Process    csc_state_transition   ${csc}    @{script_args}   alias=offline_sq3
+    Log to Console   Waiting for ${csc} to go Offline...
+    Wait Until Keyword Succeeds   90 sec    10 sec    Verify Summary State     ${STATES}[offline]    ${csc}
+    Log to Console    Done.
