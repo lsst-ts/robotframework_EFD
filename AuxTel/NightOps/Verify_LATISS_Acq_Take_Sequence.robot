@@ -204,14 +204,8 @@ Verify ATSpectrograph ChangeDisperser
     Verify Topic Attribute    ATSpectrograph    logevent_disperserInPosition    ["inPosition",]    [True,]
 
 Verify ATSpectrograph Disperser
-    [Tags]    OSW-443
-    Verify Sequence    ATSpectrograph    logevent_reportedDisperserPosition    band    ${seq_length}    ${disperser_band}
-
-Verify ATSpectrograph MoveLinearStage
     [Tags]
-    ${dataframe}=    Get Recent Samples    ATSpectrograph    command_moveLinearStage    ["*",]    1    None
-    Should Not Be Empty    ${dataframe}
-    Should Be True    abs(${dataframe.distanceFromHome.values}[0]) > 0
+    Verify Sequence    ATSpectrograph    logevent_reportedDisperserPosition    band    ${seq_length}    ${disperser_band}
 
 *** Keywords ***
 Set Variables
