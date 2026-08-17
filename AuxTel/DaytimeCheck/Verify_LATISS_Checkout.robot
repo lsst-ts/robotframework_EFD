@@ -26,6 +26,13 @@ Execute LATISS Checkout
     Verify Scripts Completed Successfully    ${scripts}    ${states}
     Check If Script Failed    ${states}
 
+Verify ATSpectrograph LinearStage Position
+    [Tags]
+    ${dataframe}=    Get Recent Samples    ATSpectrograph    command_moveLinearStage    ["*",]    1    None
+    Should Not Be Empty    ${dataframe}
+    Should Be True    abs(${dataframe.distanceFromHome.values}[0]) > 0
+    Verify Topic Attribute    ATSpectrograph    logevent_reportedLinearStagePosition    ["position"]    ["67"]
+
 # Bias Frame
 Verify ATCamera Bias Frame Image Sequence
     [Documentation]    Verify the ATCamera Bias Frame images are the correct type, with the correct exposure time.
