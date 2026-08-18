@@ -62,7 +62,8 @@ Verify ATPtg Target
         ${output}=    Get Topic Sent Time    ATPtg    command_raDecTarget
         ${topic_sent}=    Convert Date    ${output}    result_format=datetime
         ${delta}=    Subtract Date From Date    ${topic_sent}    ${script_start}
-        Should Be True    ${delta} > 0
+        Run Keyword If    "${playlist}" != "reverify"    Should Be True    ${delta} > 0
+        Run Keyword If    "${playlist}" == "reverify"    Should Be True    ${delta} < 0
         Verify Time Delta    ATPtg    logevent_currentTarget    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
         Verify Time Delta    ATPtg    command_raDecTarget    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
         ${cmd_dataframe}=    Get Recent Samples    ATPtg    command_raDecTarget    ["targetName", "ra", "declination",]    1    None
@@ -225,6 +226,19 @@ Set Variables
         Set Suite Variable    @{disperser_band}    EMPTY
         Set Suite Variable    @{disperser_name}    EMPTY
         Set Suite Variable    @{acq_img_type_seq}    ACQ    ACQ
+        Set Suite Variable    @{seq_img_type_seq}    OBJECT
+    ELSE IF    "${playlist}" == "reverify"
+        Set Suite Variable    ${playlist_full_name}    latiss_acquire_and_take_sequence-test_take_acquisition_with_verification
+        Set Suite Variable    ${acq_seq_length}    3
+        Set Suite Variable    ${seq_length}    1
+        Set Suite Variable    ${num_images}    4
+        Set Suite Variable    @{acq_exp_time}    ${0.4}    ${0.4}    ${0.4}
+        Set Suite Variable    @{seq_exp_time}    ${2.0}
+        Set Suite Variable    @{filter_band}    r
+        Set Suite Variable    ${filter_name}    "SDSSr"
+        Set Suite Variable    @{disperser_band}    EMPTY
+        Set Suite Variable    @{disperser_name}    EMPTY
+        Set Suite Variable    @{acq_img_type_seq}    ACQ    ACQ    ACQ
         Set Suite Variable    @{seq_img_type_seq}    OBJECT
     ELSE IF    "${playlist}" == "test"
         Set Suite Variable    ${playlist_full_name}    latiss_acquire_and_take_sequence-test_take_sequence
