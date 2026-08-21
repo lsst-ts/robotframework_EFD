@@ -31,12 +31,22 @@ Engage MTDome Brakes
     Check If Script Failed    ${states}
 
 Verify MTDome Brakes are Engaged
-    [Tags]    robot:continue-on-failure    OSW-1408
-    ${dataframe}=    Get Recent Samples    MTDome    logevent_azMotion    ["state","inPosition"]    1    None
+    [Tags]    robot:continue-on-failure
+    Wait Until Keyword Succeeds    30 sec    5 sec    Verify Topic Attribute    MTDome    logevent_azMotion    ["state",]    13
+    ${dataframe}=    Get Recent Samples    MTDome    logevent_azMotion    ["state","inPosition"]    10    None
     Should Not Be Empty    ${dataframe}
     Log    ${dataframe}
-    Should Be Equal As Numbers    ${dataframe.state.values}[0]    13    # MotionState_Stopped_Braked
-    Should Be True    ${dataframe.inPosition.values}
+    Should Be Equal As Integers    ${dataframe.state.values}[0]    13    # MotionState_STOPPED_BRAKED
+    Should Be Equal As Integers    ${dataframe.state.values}[1]    35    # MotionState_INFLATED
+    Should Be Equal As Integers    ${dataframe.state.values}[2]    36    # MotionState_INFLATING
+    Should Be Equal As Integers    ${dataframe.state.values}[3]    41    # MotionState_MOTOR_COOLING_OFF
+    Should Be Equal As Integers    ${dataframe.state.values}[4]    48    # MotionState_STOPPING_MOTOR_COOLING
+    Should Be Equal As Integers    ${dataframe.state.values}[5]    43    # MotionState_MOTOR_POWER_OFF
+    Should Be Equal As Integers    ${dataframe.state.values}[6]    20    # MotionState_DISABLING_MOTOR_POWER
+    Should Be Equal As Integers    ${dataframe.state.values}[7]    33    # MotionState_GO_STATIONARY
+    Should Be Equal As Integers    ${dataframe.state.values}[8]    17    # MotionState_BRAKES_ENGAGED
+    Should Be Equal As Integers    ${dataframe.state.values}[9]    25    # MotionState_ENGAGING_BRAKES
+    Should Be True    ${dataframe.inPosition.values}[0]
     # The MTDome simulator currently does not publish logevent_brakesEngaged.
     ${dataframe}=    Get Recent Samples    MTDome    logevent_brakesEngaged    ["brakes"]    1    None
     # Should Not Be Empty    ${dataframe}
