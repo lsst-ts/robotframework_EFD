@@ -44,7 +44,7 @@ conda config --add channels defaults && \
 conda config --add channels conda-forge && \
 conda config --add channels lsstts && \
 conda install -c conda-forge 'python=3.13' 'libarchive' 'libmamba' -y && \
-conda install -y setuptools pytest requests robotframework astropy && \
+conda install -y setuptools pytest requests robotframework "astropy>=7" && \
 conda install -y pandas aioinflux numpy kafkit PyYAML && \
 conda install lsstts::lsst-efd-client && \
 conda clean --all
