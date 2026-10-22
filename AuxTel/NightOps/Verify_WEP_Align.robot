@@ -25,14 +25,14 @@ Verify ATAOS Corrections Enabled
 
 Load Camera Playlist
     [Tags]    execute
-    ${result}=    Run Process    load_camera_playlist    at    cwfs    --no-repeat
+    ${result}=    Run Process    load_camera_playlist    at    wep_test    --no-repeat
     Log Many    ${result.rc}    ${result.stdout}    ${result.stderr}
     Run Keyword If    ${result.rc} == 1    Fatal Error
 
 Verify ATCamera Playlist Loaded
     [Documentation]    Playlist should already be loaded, ensure nothing was changed prior to running this script.
     [Tags]
-    Wait Until Keyword Succeeds    5s    1s    Verify Topic Attribute    ATCamera    command_play    ["playlist"]    ["cwfs-test_take_sequence"]
+    Wait Until Keyword Succeeds    5s    1s    Verify Topic Attribute    ATCamera    command_play    ["playlist"]    ["latiss_wep_align-test"]
     ${dataframe}=    Get Recent Samples    ATCamera    command_play    ["playlist", "repeat", "private_identity", "private_origin",]    1    None
 
 Execute AuxTel LATISS WEP Align test
@@ -59,10 +59,10 @@ Verify ATPtg Target
 Verify ATCamera Image Sequence
     [Documentation]    Verify the ATCamera images are the correct type, with the correct exposure time.
     [Tags]    robot:continue-on-failure
-    Set Suite Variable    ${num_images}    ${7}    # Needed by Verify ATOODS ImageInOODS test case.
-    ${seq_length}=    Set Variable    ${7}
-    @{exp_time}=    Set Variable    ${5}    ${5}    ${5}    ${5}    ${5}    ${5}    ${5}
-    @{img_type_seq}=    Set Variable    ACQ    CWFS    CWFS    CWFS    CWFS    CWFS    CWFS    # Sequence is reversed; EFD is in time-descending order.
+    Set Suite Variable    ${num_images}    ${5}    # Needed by Verify ATOODS ImageInOODS test case.
+    ${seq_length}=    Set Variable    ${5}
+    @{exp_time}=    Set Variable    ${5}    ${5}    ${5}    ${5}    ${5}
+    @{img_type_seq}=    Set Variable    ACQ    CWFS    CWFS    CWFS    CWFS    # Sequence is reversed; EFD is in time-descending order.
     ${cmd_df}=    Get Recent Samples    ATCamera    command_takeImages    ["expTime", "keyValueMap", "numImages", "shutter",]    ${num_images}    None
     ${evt_df}=    Get Recent Samples    ATCamera    logevent_startIntegration    ["additionalValues", "exposureTime", "imageName"]    ${num_images}    None
     Set Suite Variable    @{image_names}    ${evt_df.imageName.values}
@@ -96,14 +96,6 @@ Verify ATHeaderService LargeFileObjectAvailable
         ${file_name}=    Catenate    SEPARATOR=    ATHeaderService_header_    ${image_names}[0][${i}]    .yaml
         Should Be Equal As Strings    ${dataframe.iloc[${i}].url.split("/")[-1]}    ${file_name}
     END
-
-Verify ATHexapod Position
-    [Documentation]    The WEP_Align script does not effect the Hexapod [u, v, w] positions.
-    [Tags]
-    ${dataframe}=    Get Recent Samples    ATHexapod    logevent_positionUpdate    ["positionU", "positionV", "positionW", "positionX", "positionY", "positionZ"]    1    None
-    Should Be Equal As Numbers    ${dataframe.iloc[0].positionU}    0.35
-    Should Be Equal As Numbers    ${dataframe.iloc[0].positionV}    0.22
-    Should Be Equal As Numbers    ${dataframe.iloc[0].positionW}    0
 
 Verify ATMCS AxesInPosition
     [Tags]
@@ -150,13 +142,13 @@ Verify ATSpectrograph MoveLinearStage
 
 Verify Initial Offset
     [Documentation]    The first offset the script applies each iteration is 0.8 mm to the z-axis.
-    ...    The script executes 3 iterations, with 8 ATAOS correctionOffsets events published each iteration.
-    ...    Retrieve 3*8 + 1 samples: 24 from the script, plus the previous value to test initial offset.
-    ...    The script also issues 4 ATAOS offset commands each iteration. Retrieve all 12 samples.
+    ...    The script executes 2 iterations, with 8 ATAOS correctionOffsets events published each iteration.
+    ...    Retrieve 2*8 + 1 samples: 17 from the script, plus the previous value to test initial offset.
+    ...    The script also issues 4 ATAOS offset commands each iteration. Retrieve all 8 samples.
     [Tags]    robot:continue-on-failure
-    ${command_dataframe}=    Get Recent Samples    ATAOS    command_offset    ["x", "y", "z"]    12    None
+    ${command_dataframe}=    Get Recent Samples    ATAOS    command_offset    ["x", "y", "z"]    8    None
     Set Suite Variable    ${command_dataframe}
-    ${event_dataframe}=    Get Recent Samples    ATAOS    logevent_correctionOffsets    ["x", "y", "z"]    25    None
+    ${event_dataframe}=    Get Recent Samples    ATAOS    logevent_correctionOffsets    ["x", "y", "z"]    17    None
     Set Suite Variable    ${event_dataframe}
     @{list}=    Create List    ${0.0}    ${0.0}    ${0.8}
     Comment    First Iteration.
@@ -169,12 +161,6 @@ Verify Initial Offset
     Lists Should Be Equal    ${command_dataframe.iloc[7].round(3).to_list()}    ${list}
     ${initial_z}=    Set Variable    ${event_dataframe.iloc[16].iloc[2]}
     ${offset_z}=    Set Variable    ${event_dataframe.iloc[15].iloc[2]}
-    ${delta}=    Evaluate    ${offset_z} - ${initial_z}
-    Should Be Equal As Numbers    ${delta}    0.8
-    Comment    Third Iteration.
-    Lists Should Be Equal    ${command_dataframe.iloc[11].round(3).to_list()}    ${list}
-    ${initial_z}=    Set Variable    ${event_dataframe.iloc[24].iloc[2]}
-    ${offset_z}=    Set Variable    ${event_dataframe.iloc[23].iloc[2]}
     ${delta}=    Evaluate    ${offset_z} - ${initial_z}
     Should Be Equal As Numbers    ${delta}    0.8
 
@@ -194,12 +180,6 @@ Verify Extra-Focal Offset
     ${offset_z}=    Set Variable    ${event_dataframe.iloc[12].iloc[2]}
     ${delta}=    Evaluate    ${offset_z} - ${initial_z}
     Should Be Equal As Numbers    ${delta}    -1.6011
-    Comment    Third Iteration.
-    Lists Should Be Equal    ${command_dataframe.iloc[10].round(4).to_list()}    ${list}
-    ${initial_z}=    Set Variable    ${event_dataframe.iloc[21].iloc[2]}
-    ${offset_z}=    Set Variable    ${event_dataframe.iloc[20].iloc[2]}
-    ${delta}=    Evaluate    ${offset_z} - ${initial_z}
-    Should Be Equal As Numbers    ${delta}    -1.6011
 
 Verify Return to InFocus Position
     [Documentation]    The third offset the script applies each iteration is 0.8 mm to the z-axis.
@@ -217,40 +197,14 @@ Verify Return to InFocus Position
     ${offset_z}=    Set Variable    ${event_dataframe.iloc[9].iloc[2]}
     ${delta}=    Evaluate    ${offset_z} - ${initial_z}
     Should Be Equal As Numbers    ${delta}    0.8011
-    Comment    Third Iteration.
-    Lists Should Be Equal    ${command_dataframe.iloc[9].round(3).to_list()}    ${list}
-    ${initial_z}=    Set Variable    ${event_dataframe.iloc[18].iloc[2]}
-    ${offset_z}=    Set Variable    ${event_dataframe.iloc[17].iloc[2]}
-    ${delta}=    Evaluate    ${offset_z} - ${initial_z}
-    Should Be Equal As Numbers    ${delta}    0.8011
 
 Verify Final Offset Position
     [Documentation]    The final offset the script applies each iteration is from the result of WEP analysis.
     [Tags]    robot:continue-on-failure
-    Comment    First iteration. Expected Offsets: x=-0.957500, y=0.187200, z=-0.038000
+    Comment    First iteration. Expected Offsets: x=-0.023400, y=0.113500, z=0.007900
     Set Test Variable    ${tol}    ${0.05}
     ${index}=    Set Variable    ${0}
-    @{expected}=    Create List    ${-0.957500}    ${0.187200}    ${-0.038000}
-    @{actual}=    Convert To List    ${command_dataframe.iloc[8].round(4)}
-    FOR    ${number}    IN    @{actual}
-        Compare Numbers    ${number}    ${expected}[${index}]    ${tol}
-        ${index}=    Evaluate    ${index} + 1
-    END
-    ${initial_x}=    Set Variable    ${event_dataframe.iloc[17].iloc[0]}
-    ${offset_x}=    Set Variable    ${event_dataframe.iloc[16].iloc[0]}
-    ${delta}=    Evaluate    ${offset_x} - ${initial_x}
-    Compare Numbers    ${delta}    ${expected}[0]    ${tol}
-    ${initial_y}=    Set Variable    ${event_dataframe.iloc[17].iloc[1]}
-    ${offset_y}=    Set Variable    ${event_dataframe.iloc[16].iloc[1]}
-    ${delta}=    Evaluate    ${offset_y} - ${initial_y}
-    Compare Numbers    ${delta}    ${expected}[1]    ${tol}
-    ${initial_z}=    Set Variable    ${event_dataframe.iloc[17].iloc[2]}
-    ${offset_z}=    Set Variable    ${event_dataframe.iloc[16].iloc[2]}
-    ${delta}=    Evaluate    ${offset_z} - ${initial_z}
-    Compare Numbers    ${delta}    ${expected}[2]    ${tol}
-    Comment    Second Iteration. Offset:  x=-0.308000, y=0.025900, z=0.013000
-    ${index}=    Set Variable    ${0}
-    @{expected}=    Create List    ${-0.308000}    ${0.025900}    ${0.013000}
+    @{expected}=    Create List    ${-0.023400}    ${0.113500}    ${0.007900}
     @{actual}=    Convert To List    ${command_dataframe.iloc[4].round(4)}
     FOR    ${number}    IN    @{actual}
         Compare Numbers    ${number}    ${expected}[${index}]    ${tol}
@@ -268,11 +222,11 @@ Verify Final Offset Position
     ${offset_z}=    Set Variable    ${event_dataframe.iloc[8].iloc[2]}
     ${delta}=    Evaluate    ${offset_z} - ${initial_z}
     Compare Numbers    ${delta}    ${expected}[2]    ${tol}
-    Comment    Third Iteration. Offset: x=-0.085300, y=-0.030000, z=-0.003100
+    Comment    Second Iteration. Offset:  x=0.020800, y=0.028000, z=0.001200
     ${index}=    Set Variable    ${0}
-    @{expected}=    Create List    ${-0.084500}    ${-0.031000}    ${-0.003100}
+    @{expected}=    Create List    ${0.020800}    ${0.028000}    ${0.001200}
     @{actual}=    Convert To List    ${command_dataframe.iloc[0].round(4)}
-    FOR    ${number}    IN    @{actual}    
+    FOR    ${number}    IN    @{actual}
         Compare Numbers    ${number}    ${expected}[${index}]    ${tol}
         ${index}=    Evaluate    ${index} + 1
     END

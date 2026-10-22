@@ -18,6 +18,8 @@ for csc in cscs:
 
 
 =====BTS=====
+import os
+os.environ["EFDAUTH"] = os.path.expanduser("~/.efdauth.json")
 from QueryEfd import QueryEfd
 efd = QueryEfd("10.1.1", "27.0.0", "base_efd")
 from utils import dataframe
@@ -28,6 +30,8 @@ import asyncio
 #loop = asyncio.get_event_loop()
 
 =====TTS=====
+import os
+os.environ["EFDAUTH"] = os.path.expanduser("~/.efdauth.json")
 from QueryEfd import QueryEfd
 efd = QueryEfd("10.1.1", "24.1.0", "tucson_teststand_efd")
 from utils import dataframe
@@ -38,6 +42,8 @@ import asyncio
 #loop = asyncio.get_event_loop()
 
 ====Summit====
+import os
+os.environ["EFDAUTH"] = os.path.expanduser("~/.efdauth.json")
 from QueryEfd import QueryEfd
 efd = QueryEfd("10.1.1", "24.1.0", "summit_efd")
 from utils import dataframe
