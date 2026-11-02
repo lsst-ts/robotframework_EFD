@@ -28,6 +28,7 @@ Verify ATCamera SoftwareVersions timing
 Verify ATCamera ConfigurationsAvailable Event
     [Tags]    config_available
     Verify ConfigurationsAvailable    ATCamera
+    Verify Topic Attribute    ATCamera    logevent_configurationsAvailable    ["overrides",]    ["Normal",]
 
 Verify ATCamera ConfigurationsAvailable timing
     [Tags]    config_available    timing
@@ -104,6 +105,7 @@ Verify ATSpectrograph SoftwareVersions timing
 Verify ATSpectrograph ConfigurationsAvailable Event
     [Tags]    config_available
     Verify ConfigurationsAvailable    ATSpectrograph
+    Verify Topic Attribute    ATSpectrograph    logevent_configurationsAvailable    ["overrides",]    ["anytime_survey.yaml",]
 
 Verify ATSpectrograph ConfigurationsAvailable timing
     [Tags]    config_available    timing

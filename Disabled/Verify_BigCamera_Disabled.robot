@@ -64,22 +64,22 @@ Verify HeaderService ConfigurationApplied Event
 #OCPS:2||3
 Verify OCPS:2||3 Disabled
     [Tags]
-    Set Tags    OCPS:${OcpsIndex}
+    Set Tags    ocps${OcpsIndex}
     Verify Summary State    ${STATES}[disabled]    OCPS:${OcpsIndex}
 
 Verify OCPS:2||3 SummaryState timing
     [Tags]    software_versions    timing
-    Set Tags    OCPS:${OcpsIndex}
+    Set Tags    ocps${OcpsIndex}
     Verify Time Delta    OCPS:${OcpsIndex}    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify OCPS:2||3 ConfigurationApplied Event
     [Tags]    config_applied
-    Set Tags    OCPS:${OcpsIndex}
+    Set Tags    ocps${OcpsIndex}
     Verify ConfigurationApplied    OCPS    index=${OcpsIndex}
 
 Verify OCPS:2||3 ConfigurationApplied timing
     [Tags]    config_applied    timing
-    Set Tags    OCPS:${OcpsIndex}
+    Set Tags    ocps${OcpsIndex}
     Verify Time Delta    OCPS:${OcpsIndex}    logevent_configurationApplied    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 #WFOODS

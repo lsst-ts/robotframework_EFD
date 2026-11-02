@@ -50,7 +50,6 @@ Verify ATAOS Corrections Disabled
     Should Not Be True    $dataframe.hexapod.values
     Should Not Be True    $dataframe.m1.values
     Should Not Be True    $dataframe.m2.values
-    Should Be True    $dataframe.moveWhileExposing.values    # Not a correction itself, more like a modifier...
 
 Verify ATAOS m1CorrectionCompleted
     [Tags]

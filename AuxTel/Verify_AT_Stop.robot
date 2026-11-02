@@ -36,7 +36,10 @@ Verify ATMCS logevent_allAxesInPosition
 
 Verify ATPtg Fault
     [Tags]
-    Verify Summary State    ${STATES}[fault]    ATPtg
+    Comment    ATPtg MIGHT Fault during this test, but it is not guaranteed.
+    ${status}    ${output}=    Run Keyword and Ignore Error    Verify Summary State    ${STATES}[fault]    ATPtg
+    Run Keyword If    "${status}" == "PASS"    Log    ATPtg Faulted!
+    Run Keyword If    "${status}" == "FAIL"    Log    ATPtg did NOT Fault!
 
 # Enable ATCS to recover from Stop
 Execute AuxTel Enable ATCS

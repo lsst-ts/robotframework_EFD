@@ -37,6 +37,7 @@ Verify BigCamera ConfigurationsAvailable Event
     [Tags]    config_available
     Set Tags    ${BigCamera}
     Verify ConfigurationsAvailable    ${BigCamera}
+    Verify Topic Attribute    ${BigCamera}    logevent_configurationsAvailable    ["overrides",]    ["Normal",]
 
 Verify BigCamera ConfigurationsAvailable Event timing
     [Tags]    config_available    timing
@@ -88,27 +89,27 @@ Verify HeaderService SoftwareVersions Event timing
 #OCPS:2||3
 Verify OCPS:2||3 Standby
     [Tags]
-    Set Tags    OCPS:${OcpsIndex}
+    Set Tags    ocps${OcpsIndex}
     Verify Summary State    ${STATES}[standby]    OCPS:${OcpsIndex}
 
 Verify OCPS:2||3 SoftwareVersions
     [Tags]    software_versions
-    Set Tags    OCPS:${OcpsIndex}
+    Set Tags    ocps${OcpsIndex}
     Verify SoftwareVersions    OCPS    index=${OcpsIndex}    csc_xmlver=${ocps_xmlver}
 
 Verify OCPS:2||3 SoftwareVersions Event timing
     [Tags]    software_versions    timing
-    Set Tags    OCPS:${OcpsIndex}
+    Set Tags    ocps${OcpsIndex}
     Verify Time Delta    OCPS:${OcpsIndex}    logevent_softwareVersions    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify OCPS:2||3 ConfigurationsAvailable Event
     [Tags]    config_available
-    Set Tags    OCPS:${OcpsIndex}
+    Set Tags    ocps${OcpsIndex}
     Verify ConfigurationsAvailable    OCPS    index=${OcpsIndex}
 
 Verify OCPS:2||3 ConfigurationsAvailable Event timing
     [Tags]    config_available    timing
-    Set Tags    OCPS:${OcpsIndex}
+    Set Tags    ocps${OcpsIndex}
     Verify Time Delta    OCPS:${OcpsIndex}    logevent_configurationsAvailable    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 #WFOODS
