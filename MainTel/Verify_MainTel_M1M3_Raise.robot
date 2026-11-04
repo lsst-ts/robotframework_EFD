@@ -39,7 +39,7 @@ Verify M1M3 AppliedVelocityForces are Zero
     Should Be Equal As Numbers    ${dataframe.mx.values}[0]    0
     Should Be Equal As Numbers    ${dataframe.my.values}[0]    0
     Should Be Equal As Numbers    ${dataframe.mz.values}[0]    0
-    Should Be Equal As Numbers    ${dataframe.forceMagnitude.values}[0] > 0
+    Should Be Equal As Numbers    ${dataframe.forceMagnitude.values}[0]    0
 
 Execute M1M3 Disable Slew Controller Flags
     [Tags]    execute    OSW-2328
