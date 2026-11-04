@@ -11,7 +11,7 @@ ${state}    Offline
 *** Test Cases ***
 Execute Watcher Enabled to Offline
     [Tags]    
-    @{script_args}=    Create List    ${state}    2    --mute_alarms
+    @{script_args}=    Create List    ${state}    3    --mute_alarms
     Log to Console    Shutting off Watcher...    no_newline=true
     ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    Watcher    @{script_args}
     Verify Scripts Completed Successfully    ${scripts}    ${states}
@@ -134,8 +134,8 @@ Execute Test:42 Enabled to Offline
 Execute ScriptQueues Enabled to Offline
     [Tags]    obssys_ae    robot:continue-on-failure
     @{script_args}=    Create List    ${state}    3    --mute_alarms
-    Comment Strip SQ3 from list, that will be handled separately.
-    Remove Values From List    @{ObsSys_AE}    ScriptQueue:3
+    Comment    Strip SQ3 from list, that will be handled separately.
+    Remove Values From List    ${ObsSys_AE}    ScriptQueue:3
     Log Many    @{ObsSys_AE}
     FOR    ${csc}    IN    @{ObsSys_AE}
         Log to Console    Shutting off ${csc}...    no_newline=true
