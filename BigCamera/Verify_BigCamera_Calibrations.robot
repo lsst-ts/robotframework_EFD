@@ -32,7 +32,7 @@ Engage MTDome Brakes
 
 Verify MTDome Brakes are Engaged
     [Tags]    robot:continue-on-failure
-    Wait Until Keyword Succeeds    30 sec    5 sec    Verify Topic Attribute    MTDome    logevent_azMotion    ["state",]    13
+    Wait Until Keyword Succeeds    30 sec    5 sec    Verify Topic Attribute    MTDome    logevent_azMotion    ["state",]    [13,]
     ${dataframe}=    Get Recent Samples    MTDome    logevent_azMotion    ["state","inPosition"]    10    None
     Should Not Be Empty    ${dataframe}
     Log    ${dataframe}
