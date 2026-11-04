@@ -134,8 +134,8 @@ Execute Test:42 Enabled to Offline
 Execute ScriptQueues Enabled to Offline
     [Tags]    obssys_ae    robot:continue-on-failure
     @{script_args}=    Create List    ${state}    3    --mute_alarms
-    Comment Strip SQ3 from list, that will be handled separately.
-    Remove Values From List    @{ObsSys_AE}    ScriptQueue:3
+    Comment    Strip SQ3 from list, that will be handled separately.
+    Remove Values From List    ${ObsSys_AE}    ScriptQueue:3
     Log Many    @{ObsSys_AE}
     FOR    ${csc}    IN    @{ObsSys_AE}
         Log to Console    Shutting off ${csc}...    no_newline=true
