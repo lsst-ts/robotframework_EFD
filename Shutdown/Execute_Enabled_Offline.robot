@@ -11,7 +11,7 @@ ${state}    Offline
 *** Test Cases ***
 Execute Watcher Enabled to Offline
     [Tags]    
-    @{script_args}=    Create List    ${state}    2    --mute_alarms
+    @{script_args}=    Create List    ${state}    3    --mute_alarms
     Log to Console    Shutting off Watcher...    no_newline=true
     ${scripts}    ${states}=    Execute Integration Test    csc_state_transition    Watcher    @{script_args}
     Verify Scripts Completed Successfully    ${scripts}    ${states}
