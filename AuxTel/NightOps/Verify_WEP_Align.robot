@@ -114,9 +114,9 @@ Verify ATSpectrograph ChangeFilter
     Verify Topic Attribute    ATSpectrograph    logevent_filterInPosition    ["inPosition",]    [True,]
 
 Verify ATSpectrograph Filter
-    [Tags]    DM-35582
+    [Tags]    SSW-250
     Verify Topic Attribute    ATSpectrograph    logevent_reportedFilterPosition    ["band",]    ["r",]
-    #Verify Topic Attribute    ATSpectrograph    logevent_reportedFilterPosition    ["name",]    ["SDSSr",]    #DM-35582
+    #Verify Topic Attribute    ATSpectrograph    logevent_reportedFilterPosition    ["name",]    ["SDSSr",]    #SSW-250
 
 Verify ATSpectrograph ChangeDisperer
     [Tags]
@@ -131,9 +131,9 @@ Verify ATSpectrograph ChangeDisperer
     Verify Topic Attribute    ATSpectrograph    logevent_disperserInPosition    ["inPosition",]    [True,]
 
 Verify ATSpectrograph Disperser
-    [Tags]    DM-35582
+    [Tags]    SSW-250
     Verify Topic Attribute    ATSpectrograph    logevent_reportedDisperserPosition    ["band",]    ["EMPTY",]
-    #Verify Topic Attribute    ATSpectrograph    logevent_reportedDisperserPosition    ["name",]    ["empty_1",]    #DM-35582
+    #Verify Topic Attribute    ATSpectrograph    logevent_reportedDisperserPosition    ["name",]    ["empty_1",]    #SSW-250
 
 Verify ATSpectrograph MoveLinearStage
     [Tags]
