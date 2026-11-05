@@ -35,7 +35,7 @@ Verify ATCamera Playlist Loaded
 Execute AuxTel LATISS Acquire
     [Tags]    execute
     IF     "${playlist}" == "test"
-        Skip    msg="The TEST condition only executes the latiss_take_sequence process. Skipping the latiss_acquire process."
+        Log    "The TEST condition only executes the latiss_take_sequence process. Skipping the latiss_acquire process."
     ELSE
         ${scripts}    ${states}=    Execute Integration Test    auxtel_latiss_acquire    ${playlist}
         Verify Scripts Completed Successfully    ${scripts}    ${states}
@@ -45,7 +45,7 @@ Execute AuxTel LATISS Acquire
 Verify ATDome AzimuthInPosition
     [Tags]
     IF     "${playlist}" == "test"
-        Skip    msg="The TEST condition skips the latiss_acquire process."
+        Log    "The TEST condition skips the latiss_acquire process."
     ELSE
         Set Test Variable    ${minutes_ago}    1
         Verify Time Delta    ATDome    logevent_azimuthInPosition    minute=${minutes_ago}    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}    # Moving the dome can take longer than the default 10s time window.
@@ -57,7 +57,7 @@ Verify ATPtg Target
     [Documentation]    Ensure the telescope is pointed at the correct target.
     [Tags]    robot:continue-on-failure
     IF     "${playlist}" == "test"
-        Skip    msg="The TEST condition skips the latiss_acquire process."
+        Log    "The TEST condition skips the latiss_acquire process."
     ELSE
         ${output}=    Get Topic Sent Time    ATPtg    command_raDecTarget
         ${topic_sent}=    Convert Date    ${output}    result_format=datetime
@@ -80,7 +80,7 @@ Verify ATCamera Acquire Image Sequence
     [Documentation]    Verify the ATCamera images are the correct type, with the correct exposure time.
     [Tags]    robot:continue-on-failure
     IF     "${playlist}" == "test"
-        Skip    msg="The TEST condition skips the latiss_acquire process."
+        Log    "The TEST condition skips the latiss_acquire process."
     ELSE
         ${cmd_df}=    Get Recent Samples    ATCamera    command_takeImages    ["expTime", "keyValueMap", "numImages", "shutter",]    ${acq_seq_length}    None
         ${evt_df}=    Get Recent Samples    ATCamera    logevent_startIntegration    ["additionalValues", "exposureTime", "imageName"]    ${acq_seq_length}    None
@@ -103,7 +103,7 @@ Verify ATCamera Acquire Image Sequence
 Verify ATOODS Acquire ImageInOODS
     [Tags]
     IF     "${playlist}" == "test"
-        Skip    msg="The TEST condition skips the latiss_acquire process."
+        Log    "The TEST condition skips the latiss_acquire process."
     ELSE
         Wait Until Keyword Succeeds    60 sec    10 sec    Verify Image in OODS    ATOODS    ${image_names}[0][0]
         ${dataframe}=    Get Recent Samples    ATOODS    logevent_imageInOODS    ["camera", "description", "obsid",]    ${acq_seq_length}    None
@@ -117,7 +117,7 @@ Verify ATOODS Acquire ImageInOODS
 Verify ATHeaderService Acquire LargeFileObjectAvailable
     [Tags]
     IF     "${playlist}" == "test"
-        Skip    msg="The TEST condition skips the latiss_acquire process."
+        Log    "The TEST condition skips the latiss_acquire process."
     ELSE
         ${dataframe}=    Get Recent Samples    ATHeaderService    logevent_largeFileObjectAvailable    ["id", "url",]    ${acq_seq_length}    None
         FOR    ${i}    IN RANGE    ${acq_seq_length}
