@@ -201,11 +201,11 @@ Verify MTM1M3TS SummaryState timing
     Verify Time Delta    MTM1M3TS    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
     
 Verify MTM1M3TS ConfigurationApplied Event
-    [Tags]    config_applied    OSW-2158
+    [Tags]    config_applied    SSW-2158
     Verify ConfigurationApplied    MTM1M3TS
     
 Verify MTM1M3TS ConfigurationApplied Event timing
-    [Tags]    config_applied    timing    OSW-2158
+    [Tags]    config_applied    timing    SSW-2158
     Verify Time Delta    MTM1M3TS    logevent_configurationApplied    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 # MTM2
@@ -235,11 +235,11 @@ Verify MTVMS:1 SummaryState timing
     Verify Time Delta    MTVMS:1    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify MTVMS:1 ConfigurationApplied Event
-    [Tags]    config_applied    OSW-2158
+    [Tags]    config_applied    SSW-2158
     Verify ConfigurationApplied    MTVMS    index=1
 
 Verify MTVMS:1 ConfigurationApplied Event timing
-    [Tags]    config_applied    timing    OSW-2158
+    [Tags]    config_applied    timing    SSW-2158
     Verify Time Delta    MTVMS:1    logevent_configurationApplied    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 # MTVMS:2
@@ -252,11 +252,11 @@ Verify MTVMS:2 SummaryState timing
     Verify Time Delta    MTVMS:2    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify MTVMS:2 ConfigurationApplied Event
-    [Tags]    config_applied    OSW-2158
+    [Tags]    config_applied    SSW-2158
     Verify ConfigurationApplied    MTVMS    index=2
 
 Verify MTVMS:2 ConfigurationApplied Event timing
-    [Tags]    config_applied    timing    OSW-2158
+    [Tags]    config_applied    timing    SSW-2158
     Verify Time Delta    MTVMS:2    logevent_configurationApplied    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 # MTVMS:3
@@ -269,11 +269,11 @@ Verify MTVMS:3 SummaryState timing
     Verify Time Delta    MTVMS:3    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 Verify MTVMS:3 ConfigurationApplied Event
-    [Tags]    config_applied    OSW-2158
+    [Tags]    config_applied    SSW-2158
     Verify ConfigurationApplied    MTVMS    index=3
 
 Verify MTVMS:3 ConfigurationApplied Event timing
-    [Tags]    config_applied    timing    OSW-2158
+    [Tags]    config_applied    timing    SSW-2158
     Verify Time Delta    MTVMS:3    logevent_configurationApplied    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
 #OCPS:101

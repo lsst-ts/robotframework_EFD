@@ -14,8 +14,8 @@
 #-e skipped
 #-e at_light_cal
 --skiponfailure skipped
---skiponfailure OSW*
---skiponfailure DM*
+--skiponfailure SSW*
+--skiponfailure CAP*
 
 # Report style
 --reportbackground #61C4CD:#61C4CD
