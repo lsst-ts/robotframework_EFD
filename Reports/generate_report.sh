@@ -17,7 +17,7 @@ calibration_cscs.xml
 athousekeeping.xml 
 mthousekeeping.xml 
 bigcam_image_verify.xml 
-raise_m1m3.xml
+raisem1m3.xml
 bigcam_calib.xml
 at_image_verify.xml 
 at_latiss_checkout.xml

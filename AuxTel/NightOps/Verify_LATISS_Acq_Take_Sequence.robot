@@ -188,9 +188,9 @@ Verify ATSpectrograph ChangeFilter
     Verify Topic Attribute    ATSpectrograph    logevent_filterInPosition    ["inPosition",]    [True,]
 
 Verify ATSpectrograph Filter
-    [Tags]    OSW-443
+    [Tags]    SSW-250
     Verify Sequence    ATSpectrograph    logevent_reportedFilterPosition    band    ${seq_length}    ${filter_band}
-    #Verify Sequence    ATSpectrograph    logevent_reportedFilterPosition    name    ${seq_length}    ${filter_name}    #OSW-443
+    #Verify Sequence    ATSpectrograph    logevent_reportedFilterPosition    name    ${seq_length}    ${filter_name}    #SSW-250
 
 Verify ATSpectrograph ChangeDisperser
     [Tags]

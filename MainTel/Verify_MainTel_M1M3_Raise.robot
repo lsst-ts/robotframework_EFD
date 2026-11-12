@@ -42,8 +42,8 @@ Verify M1M3 AppliedVelocityForces are Zero
     Should Be Equal As Numbers    ${dataframe.forceMagnitude.values}[0]    0
 
 Execute M1M3 Disable Slew Controller Flags
-    [Tags]    execute    OSW-2328
-    Comment    As a temporary work-around for OSW-2328, execute this script four times, once for each flag.
+    [Tags]    execute    SSW-2328
+    Comment    As a temporary work-around for SSW-2328, execute this script four times, once for each flag.
     ${scripts}    ${states}=    Execute Integration Test    maintel_m1m3_enable_slew_controller_flags
     WHILE    ${states}[0] == 10    limit=5x
         ${scripts}    ${states}=    Execute Integration Test    maintel_m1m3_enable_slew_controller_flags

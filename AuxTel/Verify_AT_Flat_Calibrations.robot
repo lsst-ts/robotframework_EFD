@@ -28,9 +28,9 @@ Execute AuxTel Flat Calibrations
     Check If Script Failed    ${states}
 
 Verify ATSpectrograph Filter
-    [Tags]    DM-35582
+    [Tags]    SSW-250
     Verify Topic Attribute    ATSpectrograph    logevent_reportedFilterPosition    ["name",]    ${filter_name}    output=json
-    # The next tests are broken until DM-35582 is fixed.
+    # The next tests are broken until SSW-250 is fixed.
     #${evt_df}=    Get Recent Samples    ATSpectrograph    logevent_reportedFilterPosition    ["*",]    1    None
     #Should Be Equal    ${evt_df.name.values}[0]    ${filter_name}
 
