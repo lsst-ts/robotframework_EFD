@@ -118,6 +118,18 @@ Verify ESS:129 Shutdown
     [Tags]    envsys
     Verify Shutdown Process    ESS    index=129
     
+Verify ESS:130 Shutdown
+    [Tags]    envsys
+    Verify Shutdown Process    ESS    index=130
+    
+Verify ESS:131 Shutdown
+    [Tags]    envsys
+    Verify Shutdown Process    ESS    index=131
+    
+Verify ESS:132 Shutdown
+    [Tags]    envsys
+    Verify Shutdown Process    ESS    index=132
+    
 Verify ESS:201 Shutdown
     [Tags]    envsys
     Verify Shutdown Process    ESS    index=201

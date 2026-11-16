@@ -430,6 +430,57 @@ Verify ESS:129 ConfigurationApplied Event timing
     [Tags]    ess129    config_applied    timing
     Verify Time Delta    ESS:129    logevent_configurationApplied    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
+# ESS:130
+Verify ESS:130 Disabled
+    [Tags]    ess130    disabled   
+    Verify Summary State    ${STATES}[disabled]    ESS:130
+
+Verify ESS:130 SummaryState timing
+    [Tags]    ess130    disabled    timing
+    Verify Time Delta    ESS:130    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
+Verify ESS:130 ConfigurationApplied Event
+    [Tags]    ess130    config_applied
+    Verify ConfigurationApplied    ESS    index=130
+
+Verify ESS:130 ConfigurationApplied Event timing
+    [Tags]    ess130    config_applied    timing
+    Verify Time Delta    ESS:130    logevent_configurationApplied    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
+# ESS:131
+Verify ESS:131 Disabled
+    [Tags]    ess131    disabled   
+    Verify Summary State    ${STATES}[disabled]    ESS:131
+
+Verify ESS:131 SummaryState timing
+    [Tags]    ess131    disabled    timing
+    Verify Time Delta    ESS:131    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
+Verify ESS:131 ConfigurationApplied Event
+    [Tags]    ess131    config_applied
+    Verify ConfigurationApplied    ESS    index=131
+
+Verify ESS:131 ConfigurationApplied Event timing
+    [Tags]    ess131    config_applied    timing
+    Verify Time Delta    ESS:131    logevent_configurationApplied    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
+# ESS:132
+Verify ESS:132 Disabled
+    [Tags]    ess132    disabled   
+    Verify Summary State    ${STATES}[disabled]    ESS:132
+
+Verify ESS:132 SummaryState timing
+    [Tags]    ess132    disabled    timing
+    Verify Time Delta    ESS:132    logevent_summaryState    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
+Verify ESS:132 ConfigurationApplied Event
+    [Tags]    ess132    config_applied
+    Verify ConfigurationApplied    ESS    index=132
+
+Verify ESS:132 ConfigurationApplied Event timing
+    [Tags]    ess132    config_applied    timing
+    Verify Time Delta    ESS:132    logevent_configurationApplied    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
 # ESS:201
 Verify ESS:201 Disabled
     [Tags]    ess201    disabled
