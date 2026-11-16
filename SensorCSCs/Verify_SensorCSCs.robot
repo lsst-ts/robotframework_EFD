@@ -506,6 +506,27 @@ Verify ESS:129 particleMeasurements Data is Recent
     [Tags]    ess129    timing
     Verify Time Delta    ESS:129    particleMeasurements    second=${ess_seconds_ago}    minute=${ess_minutes_ago}    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
 
+# ESS:132
+## m1m3ThermalGradients ##
+Verify ESS:132 m1m3ThermalGradients Published Data
+    [Tags]    ess132    robot:continue-on-failure
+    ${dataframe}=    Get Recent Samples    ESS    m1m3ThermalGradients    ["radialGradient", "radialGradientErr", "xGradient", "xGradientError", "yGradient", "yGradientError", "zGradient", "zGradientError",]    num=1    index=132
+    Log    ${dataframe}
+    Should Not Be True    ${dataframe.empty}
+    Should Be True    abs(${dataframe.radialGradient.values}[0]) >= 0
+    Should Be True    abs(${dataframe.radialGradientErr.values}[0]) >= 0
+    Should Be True    abs(${dataframe.xGradient.values}[0]) >= 0
+    Should Be True    abs(${dataframe.xGradientError.values}[0]) >= 0
+    Should Be True    abs(${dataframe.yGradient.values}[0]) >= 0
+    Should Be True    abs(${dataframe.yGradientError.values}[0]) >= 0
+    Should Be True    abs(${dataframe.zGradient.values}[0]) >= 0
+    Should Be True    abs(${dataframe.zGradientError.values}[0]) >= 0
+
+Verify ESS:132 m1m3ThermalGradients Data is Recent
+    [Tags]    ess132    timing
+    Set Test Variable    ${ess_seconds_ago}    90
+    Verify Time Delta    ESS:132    m1m3ThermalGradients    second=${ess_seconds_ago}    minute=${minutes_ago}    hour=${hours_ago}    day=${days_ago}    week=${weeks_ago}
+
 # ESS:201
 ## airTurbulence ##
 Verify ESS:201 airTurbulence Published Data
